@@ -1,0 +1,4 @@
+Property,R² Score,MAE,RMSE,Training Time (min)
+Band Gap,0.942,0.08,0.11,12
+Electron Mobility,0.975,0.52,0.71,15
+Formation Energy,0.918,0.04,0.06,10

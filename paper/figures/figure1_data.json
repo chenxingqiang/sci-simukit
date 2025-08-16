@@ -1,0 +1,9 @@
+{
+  "description": "Graphullerene structure and strain/doping schemes",
+  "subfigures": [
+    "network_structure",
+    "strain_application",
+    "doping_sites",
+    "synergistic_effects"
+  ]
+}

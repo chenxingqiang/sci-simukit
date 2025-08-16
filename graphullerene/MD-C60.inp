@@ -1,0 +1,146 @@
+&GLOBAL
+  PROJECT penta11
+  RUN_TYPE MD
+  PRINT_LEVEL LOW
+ EXTENDED_FFT_LENGTHS
+&END GLOBAL
+&FORCE_EVAL
+  METHOD Quickstep
+!  STRESS_TENSOR  ANALYTICAL
+!  &PRINT
+!    &STRESS_TENSOR
+!    &END STRESS_TENSOR
+!  &END PRINT
+  &DFT
+            BASIS_SET_FILE_NAME  /g100_work/IscrC_Reo-Solv/Basis-pseudo/BASIS_ADMM
+            BASIS_SET_FILE_NAME /g100_work/IscrC_Reo-Solv/Basis-pseudo/BASIS_ADMM_MOLOPT
+            BASIS_SET_FILE_NAME /g100_work/IscrC_Reo-Solv/Basis-pseudo/BASIS_MOLOPT
+            BASIS_SET_FILE_NAME /g100_work/IscrC_Reo-Solv/Basis-pseudo/GTH_POTENTIALS
+!            BASIS_SET_FILE_NAME /g100_work/IscrC_Opt-DNA/BASIS_RI_cc-TZ
+           WFN_RESTART_FILE_NAME /g100_work/IscrC_Def-OCS/MD-C60/penta11-RESTART.wfn
+!Activate for spin-polarized
+!            UKS
+!            CHARGE -1
+    &MGRID
+      CUTOFF 600
+    &END MGRID
+    &QS
+      METHOD GPW
+    &END QS
+    &SCF
+      SCF_GUESS  RESTART
+      MAX_SCF    100
+      &OT
+        MINIMIZER       CG
+        PRECONDITIONER  FULL_SINGLE_INVERSE
+      &END
+      &OUTER_SCF
+!        EPS_SCF  1.0E-7
+!        MAX_SCF  50
+      &END
+!      &PRINT
+!        &RESTART OFF
+!        &END
+!      &END
+    &END SCF
+    &PRINT
+       &MO_CUBES
+        NHOMO 1
+        NLUMO 1
+       WRITE_CUBE F
+      &EACH
+       MD 10
+      &END
+       &END MO_CUBES
+!       &TOT_DENSITY_CUBE
+!       &END
+    &END PRINT
+#These are the coefficients used for PBE0
+    &XC
+   &XC_FUNCTIONAL
+       &GGA_X_RPW86
+       &END
+       &GGA_C_PBE
+       &END
+    &END XC_FUNCTIONAL
+      &vdW_POTENTIAL
+         DISPERSION_FUNCTIONAL NON_LOCAL
+         &NON_LOCAL
+           TYPE RVV10
+           PARAMETERS  7.8  0.0093
+           KERNEL_FILE_NAME   /g100_work/IscrC_Reo-Solv/Basis-pseudo/rVV10_kernel_table.dat
+           CUTOFF      400
+         &END NON_LOCAL
+      &END vdW_POTENTIAL
+    &END XC
+  &END DFT
+  &SUBSYS
+    &CELL
+A  14.2600    0.00000   0.00000
+B  0.00000   14.2600    0.00000
+C  0.00000   0.00000   14.2600
+    &END CELL
+    &TOPOLOGY
+      COORD_FILE_NAME   ./C60.xyz
+      COORD_FILE_FORMAT xyz
+    &END TOPOLOGY
+    &KIND C
+      BASIS_SET DZVP-MOLOPT-GTH-q4
+      POTENTIAL GTH-PBE-q4
+    &END KIND
+    &KIND H
+      BASIS_SET DZVP-MOLOPT-SR-GTH-q1
+      POTENTIAL GTH-PBE-q1
+    &END KIND
+  &END SUBSYS
+&END FORCE_EVAL
+&MOTION
+ &MD
+  STEPS 50000000
+  TIMESTEP 1.00
+  TEMPERATURE 300
+  ENSEMBLE NVT
+  &THERMOSTAT
+    REGION MASSIVE
+    TYPE NOSE
+    &NOSE
+      TIMECON 16.68
+    &END NOSE
+  &END THERMOSTAT
+  &BAROSTAT
+    PRESSURE 0.0
+    TIMECON 300
+  &END BAROSTAT
+ &END MD
+  &PRINT
+   &TRAJECTORY
+    &EACH
+     MD 1
+    &END EACH
+   &END TRAJECTORY
+   &CELL
+    &EACH
+     MD 1
+    &END EACH
+   &END CELL
+   &VELOCITIES OFF
+   &END VELOCITIES
+   &FORCES OFF
+   &END FORCES
+   &RESTART_HISTORY
+    &EACH
+     MD 500
+    &END EACH
+   &END RESTART_HISTORY
+   &RESTART
+    BACKUP_COPIES 3
+    &EACH
+     MD 1
+    &END EACH
+   &END RESTART
+  &END PRINT
+&END MOTION
+&EXT_RESTART
+ RESTART_FILE_NAME /g100_work/IscrC_Def-OCS/MD-C60/penta11-1.restart
+&END EXT_RESTART
+

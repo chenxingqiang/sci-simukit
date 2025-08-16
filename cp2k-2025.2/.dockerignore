@@ -1,0 +1,11 @@
+exe
+lib
+obj
+regtesting
+tools/toolchain/install
+tools/toolchain/build
+docs/_build
+docs/CP2K_INPUT
+.git*
+*~
+\#*\#

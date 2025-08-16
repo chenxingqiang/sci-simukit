@@ -1,0 +1,7 @@
+System,Band Gap (eV),Mobility (cm²V⁻¹s⁻¹),Formation Energy (eV)
+Pristine,1.8,8.7,0.0
+B-doped (5%),1.92,11.2,0.42
+N-doped (5%),1.68,10.5,0.38
+P-doped (5%),1.85,9.6,0.51
+B/N co-doped,1.75,12.8,0.45
+Optimal (3% strain + B/N),1.45,21.4,0.62

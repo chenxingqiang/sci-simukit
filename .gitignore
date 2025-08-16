@@ -1,0 +1,79 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+fullerene-env/
+venv/
+ENV/
+env/
+.env
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# CP2K output files
+*.out
+*.log
+*.restart
+*.wfn
+*.cube
+*-RESTART.wfn
+*.ener
+*.stress
+
+# Large data files
+*.xyz
+!graphullerene/*.xyz
+*.h5
+*.hdf5
+*.npy
+*.npz
+
+# Temporary files
+*.tmp
+*.bak
+*.cache
+temp/
+tmp/
+
+# Results (keep structure but not large files)
+results/data/
+*.pkl
+*.pth
+!best_graphullerene_gnn.pth
+
+# LaTeX auxiliary files
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.synctex.gz
+*.toc
+*.out
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Compressed files
+*.zip
+*.tar.gz
+*.rar
+
+# HPC job files
+*.job
+*.slurm
+slurm-*.out

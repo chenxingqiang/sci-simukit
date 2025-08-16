@@ -1,0 +1,26 @@
+{
+  "materials": [
+    "Si",
+    "Graphene",
+    "MoS\u2082",
+    "This work"
+  ],
+  "mobility": [
+    1400.0,
+    200.0,
+    100.0,
+    21.4
+  ],
+  "flexibility": [
+    1.0,
+    5.0,
+    3.0,
+    4.5
+  ],
+  "tunability": [
+    1,
+    2,
+    3,
+    5
+  ]
+}

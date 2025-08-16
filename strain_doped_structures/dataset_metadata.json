@@ -1,0 +1,602 @@
+{
+  "strain_doped_structures/C60/C60_strain_-5.0_pristine.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": -5.0,
+    "doping": "pristine"
+  },
+  "strain_doped_structures/C60/C60_strain_m5p0_B_2.5p_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": -5.0,
+    "doping_type": "single",
+    "dopant": "B",
+    "concentration": 2.5,
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_m5p0_B_5.0p_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": -5.0,
+    "doping_type": "single",
+    "dopant": "B",
+    "concentration": 5.0,
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_m5p0_B_7.5p_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": -5.0,
+    "doping_type": "single",
+    "dopant": "B",
+    "concentration": 7.5,
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_m5p0_N_2.5p_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": -5.0,
+    "doping_type": "single",
+    "dopant": "N",
+    "concentration": 2.5,
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_m5p0_N_5.0p_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": -5.0,
+    "doping_type": "single",
+    "dopant": "N",
+    "concentration": 5.0,
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_m5p0_N_7.5p_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": -5.0,
+    "doping_type": "single",
+    "dopant": "N",
+    "concentration": 7.5,
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_m5p0_P_2.5p_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": -5.0,
+    "doping_type": "single",
+    "dopant": "P",
+    "concentration": 2.5,
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_m5p0_P_5.0p_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": -5.0,
+    "doping_type": "single",
+    "dopant": "P",
+    "concentration": 5.0,
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_m5p0_P_7.5p_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": -5.0,
+    "doping_type": "single",
+    "dopant": "P",
+    "concentration": 7.5,
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_m5p0_mixed_B2.5_N2.5_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": -5.0,
+    "doping_type": "mixed",
+    "dopants": {
+      "B": 2.5,
+      "N": 2.5
+    },
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_m5p0_mixed_B5.0_N2.5_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": -5.0,
+    "doping_type": "mixed",
+    "dopants": {
+      "B": 5.0,
+      "N": 2.5
+    },
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_m5p0_mixed_B2.5_N5.0_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": -5.0,
+    "doping_type": "mixed",
+    "dopants": {
+      "B": 2.5,
+      "N": 5.0
+    },
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_-2.5_pristine.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": -2.5,
+    "doping": "pristine"
+  },
+  "strain_doped_structures/C60/C60_strain_m2p5_B_2.5p_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": -2.5,
+    "doping_type": "single",
+    "dopant": "B",
+    "concentration": 2.5,
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_m2p5_B_5.0p_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": -2.5,
+    "doping_type": "single",
+    "dopant": "B",
+    "concentration": 5.0,
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_m2p5_B_7.5p_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": -2.5,
+    "doping_type": "single",
+    "dopant": "B",
+    "concentration": 7.5,
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_m2p5_N_2.5p_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": -2.5,
+    "doping_type": "single",
+    "dopant": "N",
+    "concentration": 2.5,
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_m2p5_N_5.0p_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": -2.5,
+    "doping_type": "single",
+    "dopant": "N",
+    "concentration": 5.0,
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_m2p5_N_7.5p_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": -2.5,
+    "doping_type": "single",
+    "dopant": "N",
+    "concentration": 7.5,
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_m2p5_P_2.5p_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": -2.5,
+    "doping_type": "single",
+    "dopant": "P",
+    "concentration": 2.5,
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_m2p5_P_5.0p_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": -2.5,
+    "doping_type": "single",
+    "dopant": "P",
+    "concentration": 5.0,
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_m2p5_P_7.5p_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": -2.5,
+    "doping_type": "single",
+    "dopant": "P",
+    "concentration": 7.5,
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_m2p5_mixed_B2.5_N2.5_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": -2.5,
+    "doping_type": "mixed",
+    "dopants": {
+      "B": 2.5,
+      "N": 2.5
+    },
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_m2p5_mixed_B5.0_N2.5_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": -2.5,
+    "doping_type": "mixed",
+    "dopants": {
+      "B": 5.0,
+      "N": 2.5
+    },
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_m2p5_mixed_B2.5_N5.0_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": -2.5,
+    "doping_type": "mixed",
+    "dopants": {
+      "B": 2.5,
+      "N": 5.0
+    },
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_+0.0_pristine.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": 0.0,
+    "doping": "pristine"
+  },
+  "strain_doped_structures/C60/C60_strain_p0p0_B_2.5p_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": 0.0,
+    "doping_type": "single",
+    "dopant": "B",
+    "concentration": 2.5,
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_p0p0_B_5.0p_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": 0.0,
+    "doping_type": "single",
+    "dopant": "B",
+    "concentration": 5.0,
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_p0p0_B_7.5p_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": 0.0,
+    "doping_type": "single",
+    "dopant": "B",
+    "concentration": 7.5,
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_p0p0_N_2.5p_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": 0.0,
+    "doping_type": "single",
+    "dopant": "N",
+    "concentration": 2.5,
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_p0p0_N_5.0p_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": 0.0,
+    "doping_type": "single",
+    "dopant": "N",
+    "concentration": 5.0,
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_p0p0_N_7.5p_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": 0.0,
+    "doping_type": "single",
+    "dopant": "N",
+    "concentration": 7.5,
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_p0p0_P_2.5p_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": 0.0,
+    "doping_type": "single",
+    "dopant": "P",
+    "concentration": 2.5,
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_p0p0_P_5.0p_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": 0.0,
+    "doping_type": "single",
+    "dopant": "P",
+    "concentration": 5.0,
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_p0p0_P_7.5p_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": 0.0,
+    "doping_type": "single",
+    "dopant": "P",
+    "concentration": 7.5,
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_p0p0_mixed_B2.5_N2.5_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": 0.0,
+    "doping_type": "mixed",
+    "dopants": {
+      "B": 2.5,
+      "N": 2.5
+    },
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_p0p0_mixed_B5.0_N2.5_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": 0.0,
+    "doping_type": "mixed",
+    "dopants": {
+      "B": 5.0,
+      "N": 2.5
+    },
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_p0p0_mixed_B2.5_N5.0_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": 0.0,
+    "doping_type": "mixed",
+    "dopants": {
+      "B": 2.5,
+      "N": 5.0
+    },
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_+2.5_pristine.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": 2.5,
+    "doping": "pristine"
+  },
+  "strain_doped_structures/C60/C60_strain_p2p5_B_2.5p_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": 2.5,
+    "doping_type": "single",
+    "dopant": "B",
+    "concentration": 2.5,
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_p2p5_B_5.0p_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": 2.5,
+    "doping_type": "single",
+    "dopant": "B",
+    "concentration": 5.0,
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_p2p5_B_7.5p_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": 2.5,
+    "doping_type": "single",
+    "dopant": "B",
+    "concentration": 7.5,
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_p2p5_N_2.5p_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": 2.5,
+    "doping_type": "single",
+    "dopant": "N",
+    "concentration": 2.5,
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_p2p5_N_5.0p_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": 2.5,
+    "doping_type": "single",
+    "dopant": "N",
+    "concentration": 5.0,
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_p2p5_N_7.5p_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": 2.5,
+    "doping_type": "single",
+    "dopant": "N",
+    "concentration": 7.5,
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_p2p5_P_2.5p_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": 2.5,
+    "doping_type": "single",
+    "dopant": "P",
+    "concentration": 2.5,
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_p2p5_P_5.0p_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": 2.5,
+    "doping_type": "single",
+    "dopant": "P",
+    "concentration": 5.0,
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_p2p5_P_7.5p_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": 2.5,
+    "doping_type": "single",
+    "dopant": "P",
+    "concentration": 7.5,
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_p2p5_mixed_B2.5_N2.5_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": 2.5,
+    "doping_type": "mixed",
+    "dopants": {
+      "B": 2.5,
+      "N": 2.5
+    },
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_p2p5_mixed_B5.0_N2.5_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": 2.5,
+    "doping_type": "mixed",
+    "dopants": {
+      "B": 5.0,
+      "N": 2.5
+    },
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_p2p5_mixed_B2.5_N5.0_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": 2.5,
+    "doping_type": "mixed",
+    "dopants": {
+      "B": 2.5,
+      "N": 5.0
+    },
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_+5.0_pristine.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": 5.0,
+    "doping": "pristine"
+  },
+  "strain_doped_structures/C60/C60_strain_p5p0_B_2.5p_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": 5.0,
+    "doping_type": "single",
+    "dopant": "B",
+    "concentration": 2.5,
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_p5p0_B_5.0p_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": 5.0,
+    "doping_type": "single",
+    "dopant": "B",
+    "concentration": 5.0,
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_p5p0_B_7.5p_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": 5.0,
+    "doping_type": "single",
+    "dopant": "B",
+    "concentration": 7.5,
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_p5p0_N_2.5p_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": 5.0,
+    "doping_type": "single",
+    "dopant": "N",
+    "concentration": 2.5,
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_p5p0_N_5.0p_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": 5.0,
+    "doping_type": "single",
+    "dopant": "N",
+    "concentration": 5.0,
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_p5p0_N_7.5p_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": 5.0,
+    "doping_type": "single",
+    "dopant": "N",
+    "concentration": 7.5,
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_p5p0_P_2.5p_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": 5.0,
+    "doping_type": "single",
+    "dopant": "P",
+    "concentration": 2.5,
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_p5p0_P_5.0p_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": 5.0,
+    "doping_type": "single",
+    "dopant": "P",
+    "concentration": 5.0,
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_p5p0_P_7.5p_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": 5.0,
+    "doping_type": "single",
+    "dopant": "P",
+    "concentration": 7.5,
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_p5p0_mixed_B2.5_N2.5_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": 5.0,
+    "doping_type": "mixed",
+    "dopants": {
+      "B": 2.5,
+      "N": 2.5
+    },
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_p5p0_mixed_B5.0_N2.5_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": 5.0,
+    "doping_type": "mixed",
+    "dopants": {
+      "B": 5.0,
+      "N": 2.5
+    },
+    "config_index": 1
+  },
+  "strain_doped_structures/C60/C60_strain_p5p0_mixed_B2.5_N5.0_config1.xyz": {
+    "structure": "C60",
+    "strain_type": "biaxial",
+    "strain_value": 5.0,
+    "doping_type": "mixed",
+    "dopants": {
+      "B": 2.5,
+      "N": 5.0
+    },
+    "config_index": 1
+  }
+}

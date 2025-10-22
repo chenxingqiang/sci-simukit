@@ -1,11 +1,16 @@
 {
-  "description": "Enhanced graphullerene structures with strain and doping schemes",
-  "subfigures": [
-    "C60_structure",
-    "qHP_network",
-    "strain_engineering",
-    "heteroatom_doping",
-    "electronic_properties",
-    "synergistic_effects"
+  "description": "qHP C60 network structure and strain/doping schemes",
+  "lattice_params": {
+    "a": 36.67,
+    "b": 30.84
+  },
+  "strain_range": [
+    -5,
+    5
+  ],
+  "doping_concentrations": [
+    2.5,
+    5.0,
+    7.5
   ]
 }

@@ -1,0 +1,109 @@
+&GLOBAL
+  PROJECT dielectric_epsilon
+  RUN_TYPE ENERGY
+  PRINT_LEVEL MEDIUM
+&END GLOBAL
+
+&FORCE_EVAL
+  METHOD Quickstep
+  &DFT
+    BASIS_SET_FILE_NAME BASIS_MOLOPT
+    POTENTIAL_FILE_NAME GTH_POTENTIALS
+    BASIS_SET_FILE_NAME BASIS_ADMM_MOLOPT
+    BASIS_SET_FILE_NAME BASIS_ADMM
+    
+    &MGRID
+      CUTOFF 800
+      REL_CUTOFF 50
+    &END MGRID
+    
+    &QS
+      METHOD GPW
+      EPS_DEFAULT 1.0E-10
+    &END QS
+    
+    &SCF
+      SCF_GUESS ATOMIC
+      MAX_SCF 100
+      EPS_SCF 1.0E-7
+      
+      &OT
+        MINIMIZER CG
+        PRECONDITIONER FULL_SINGLE_INVERSE
+      &END OT
+    &END SCF
+    
+    &AUXILIARY_DENSITY_MATRIX_METHOD
+      METHOD BASIS_PROJECTION
+      ADMM_PURIFICATION_METHOD NONE
+    &END AUXILIARY_DENSITY_MATRIX_METHOD
+    
+    ! PBE0 functional for dielectric constant calculation
+    &XC
+      &XC_FUNCTIONAL
+        &PBE
+          SCALE_X 0.75  ! PBE0: 25% HF exchange
+          SCALE_C 1.0
+        &END PBE
+        &PBE_HOLE_T_C_LR
+          CUTOFF_RADIUS 6.0
+          SCALE_X 0.25
+        &END PBE_HOLE_T_C_LR
+      &END XC_FUNCTIONAL
+      
+      &HF
+        &SCREENING
+          EPS_SCHWARZ 1.0E-6
+          SCREEN_ON_INITIAL_P FALSE
+        &END SCREENING
+        &INTERACTION_POTENTIAL
+          POTENTIAL_TYPE TRUNCATED
+          CUTOFF_RADIUS 6.0
+          T_C_G_DATA t_c_g.dat
+        &END INTERACTION_POTENTIAL
+        &MEMORY
+          MAX_MEMORY 3600
+          EPS_STORAGE_SCALING 0.1
+        &END MEMORY
+        FRACTION 0.25
+      &END HF
+    &END XC
+    
+    &PRINT
+      &MOMENTS
+        PERIODIC
+        REFERENCE COAC  ! Center of atomic charges
+        &EACH
+          QS_SCF 0
+        &END EACH
+      &END MOMENTS
+    &END PRINT
+  &END DFT
+  
+  ! Electric field for dielectric constant calculation
+  &EXTERNAL_POTENTIAL
+    &ELECTRIC_FIELD
+      INTENSITY 0.0001  ! 0.0001 a.u. along a-axis
+      POLARISATION 1.0 0.0 0.0
+    &END ELECTRIC_FIELD
+  &END EXTERNAL_POTENTIAL
+  
+  &SUBSYS
+    &CELL
+      ! vdW C60 unit cell
+      ABC 14.26 14.26 14.26  ! a/2 for unit cell
+      PERIODIC XYZ
+    &END CELL
+    
+    &TOPOLOGY
+      COORD_FILE_NAME C60.xyz
+      COORD_FILE_FORMAT XYZ
+    &END TOPOLOGY
+    
+    &KIND C
+      BASIS_SET DZVP-MOLOPT-GTH-q4
+      BASIS_SET AUX_FIT cFIT3
+      POTENTIAL GTH-PBE-q4
+    &END KIND
+  &END SUBSYS
+&END FORCE_EVAL

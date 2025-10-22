@@ -1,0 +1,90 @@
+&GLOBAL
+  PROJECT alpha_k_determination
+  RUN_TYPE ENERGY
+  PRINT_LEVEL MEDIUM
+&END GLOBAL
+
+&FORCE_EVAL
+  METHOD Quickstep
+  &DFT
+    BASIS_SET_FILE_NAME BASIS_MOLOPT
+    POTENTIAL_FILE_NAME GTH_POTENTIALS
+    
+    ! 先使用简化系统测试混合泛函
+    &MGRID
+      CUTOFF 400
+      REL_CUTOFF 50
+    &END MGRID
+    
+    &QS
+      METHOD GPW
+      EPS_DEFAULT 1.0E-10
+    &END QS
+    
+    &SCF
+      SCF_GUESS ATOMIC
+      MAX_SCF 100
+      EPS_SCF 1.0E-6
+      IGNORE_CONVERGENCE_FAILURE
+      
+      &OT
+        MINIMIZER CG
+        PRECONDITIONER FULL_SINGLE_INVERSE
+        ENERGY_GAP 0.1
+      &END OT
+    &END SCF
+    
+    ! 测试混合泛函：PBE with 20% HF exchange
+    &XC
+      &XC_FUNCTIONAL
+        &PBE
+          SCALE_X 0.80  ! 1.0 - α, where α = 0.20
+          SCALE_C 1.0
+        &END PBE
+      &END XC_FUNCTIONAL
+      
+      &HF
+        &SCREENING
+          EPS_SCHWARZ 1.0E-6
+          SCREEN_ON_INITIAL_P FALSE
+        &END SCREENING
+        &INTERACTION_POTENTIAL
+          POTENTIAL_TYPE TRUNCATED
+          CUTOFF_RADIUS 4.0  ! 较小截断半径避免问题
+        &END INTERACTION_POTENTIAL
+        &MEMORY
+          MAX_MEMORY 1000
+        &END MEMORY
+        FRACTION 0.20  ! α = 20%
+      &END HF
+    &END XC
+    
+    &PRINT
+      &MO
+        EIGENVALUES
+        OCCUPATION_NUMBERS
+        &EACH
+          QS_SCF 0
+        &END EACH
+      &END MO
+    &END PRINT
+  &END DFT
+  
+  &SUBSYS
+    &CELL
+      ABC 12.0 12.0 12.0
+      PERIODIC NONE
+    &END CELL
+    
+    ! 使用简化的C2系统先测试
+    &COORD
+C   0.000000   0.000000   0.000000
+C   1.200000   0.000000   0.000000
+    &END COORD
+    
+    &KIND C
+      BASIS_SET DZVP-MOLOPT-GTH-q4
+      POTENTIAL GTH-PBE-q4
+    &END KIND
+  &END SUBSYS
+&END FORCE_EVAL

@@ -1,0 +1,130 @@
+&GLOBAL
+  PROJECT polaron_IPR
+  RUN_TYPE ENERGY
+  PRINT_LEVEL MEDIUM
+&END GLOBAL
+
+&FORCE_EVAL
+  METHOD Quickstep
+  &DFT
+    BASIS_SET_FILE_NAME BASIS_MOLOPT
+    POTENTIAL_FILE_NAME GTH_POTENTIALS
+    BASIS_SET_FILE_NAME BASIS_ADMM_MOLOPT
+    BASIS_SET_FILE_NAME BASIS_ADMM
+    
+    ! Spin-polarized calculation for charged system
+    UKS
+    CHARGE -1  ! Negatively charged supercell
+    
+    &MGRID
+      CUTOFF 800
+      REL_CUTOFF 50
+    &END MGRID
+    
+    &QS
+      METHOD GPW
+      EPS_DEFAULT 1.0E-10
+    &END QS
+    
+    &SCF
+      SCF_GUESS ATOMIC
+      MAX_SCF 150
+      EPS_SCF 1.0E-6
+      
+      &OT
+        MINIMIZER CG
+        PRECONDITIONER FULL_SINGLE_INVERSE
+      &END OT
+    &END SCF
+    
+    &AUXILIARY_DENSITY_MATRIX_METHOD
+      METHOD BASIS_PROJECTION
+      ADMM_PURIFICATION_METHOD NONE
+    &END AUXILIARY_DENSITY_MATRIX_METHOD
+    
+    ! Final PBE(αK)+rVV10-b7.8 functional with αK = 21%
+    &XC
+      &XC_FUNCTIONAL
+        &PBE
+          SCALE_X 0.79  ! 1.0 - 0.21
+          SCALE_C 1.0
+        &END PBE
+        &PBE_HOLE_T_C_LR
+          CUTOFF_RADIUS 6.0
+          SCALE_X 0.21  ! αK = 21%
+        &END PBE_HOLE_T_C_LR
+      &END XC_FUNCTIONAL
+      
+      &HF
+        &SCREENING
+          EPS_SCHWARZ 1.0E-6
+          SCREEN_ON_INITIAL_P FALSE
+        &END SCREENING
+        &INTERACTION_POTENTIAL
+          POTENTIAL_TYPE TRUNCATED
+          CUTOFF_RADIUS 6.0
+          T_C_G_DATA t_c_g.dat
+        &END INTERACTION_POTENTIAL
+        &MEMORY
+          MAX_MEMORY 3600
+          EPS_STORAGE_SCALING 0.1
+        &END MEMORY
+        FRACTION 0.21
+      &END HF
+      
+      &vdW_POTENTIAL
+        DISPERSION_FUNCTIONAL NON_LOCAL
+        &NON_LOCAL
+          TYPE RVV10
+          PARAMETERS 7.8 0.0093
+          KERNEL_FILE_NAME rVV10_kernel_table.dat
+          CUTOFF 400
+        &END NON_LOCAL
+      &END vdW_POTENTIAL
+    &END XC
+    
+    &PRINT
+      &MO_CUBES
+        NHOMO 3  ! Print HOMO and nearby orbitals
+        NLUMO 1
+        WRITE_CUBE T
+        &EACH
+          QS_SCF 0
+        &END EACH
+      &END MO_CUBES
+      
+      &MO
+        EIGENVALUES
+        OCCUPATION_NUMBERS
+        &EACH
+          QS_SCF 0
+        &END EACH
+      &END MO
+      
+      &MULLIKEN
+        &EACH
+          QS_SCF 0
+        &END EACH
+      &END MULLIKEN
+    &END PRINT
+  &END DFT
+  
+  &SUBSYS
+    &CELL
+      ! Full vdW C60 supercell: 2x2x2, a=28.52 Å
+      ABC 28.52 28.52 28.52
+      PERIODIC XYZ
+    &END CELL
+    
+    &TOPOLOGY
+      COORD_FILE_NAME C60_2x2x2_supercell.xyz
+      COORD_FILE_FORMAT XYZ
+    &END TOPOLOGY
+    
+    &KIND C
+      BASIS_SET DZVP-MOLOPT-GTH-q4
+      BASIS_SET AUX_FIT cFIT3
+      POTENTIAL GTH-PBE-q4
+    &END KIND
+  &END SUBSYS
+&END FORCE_EVAL

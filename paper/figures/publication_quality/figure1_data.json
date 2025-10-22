@@ -1,0 +1,11 @@
+{
+  "description": "Enhanced graphullerene structures with strain and doping schemes",
+  "subfigures": [
+    "C60_structure",
+    "qHP_network",
+    "strain_engineering",
+    "heteroatom_doping",
+    "electronic_properties",
+    "synergistic_effects"
+  ]
+}

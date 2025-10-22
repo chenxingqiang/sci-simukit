@@ -1,0 +1,107 @@
+&GLOBAL
+  PROJECT alpha_k_step1_baseline
+  RUN_TYPE ENERGY
+  PRINT_LEVEL MEDIUM
+&END GLOBAL
+
+&FORCE_EVAL
+  METHOD Quickstep
+  &DFT
+    BASIS_SET_FILE_NAME BASIS_MOLOPT
+    POTENTIAL_FILE_NAME GTH_POTENTIALS
+    
+    &MGRID
+      CUTOFF 600  ! 提高精度
+      REL_CUTOFF 60
+    &END MGRID
+    
+    &QS
+      METHOD GPW
+      EPS_DEFAULT 1.0E-12
+    &END QS
+    
+    &SCF
+      SCF_GUESS ATOMIC
+      MAX_SCF 100
+      EPS_SCF 1.0E-7  ! 高精度收敛
+      IGNORE_CONVERGENCE_FAILURE
+      
+      &OT
+        MINIMIZER CG
+        PRECONDITIONER FULL_SINGLE_INVERSE
+        ENERGY_GAP 0.01
+      &END OT
+    &END SCF
+    
+    ! 基准PBE计算
+    &XC
+      &XC_FUNCTIONAL
+        &PBE
+        &END PBE
+      &END XC_FUNCTIONAL
+    &END XC
+    
+    &PRINT
+      &MO
+        EIGENVALUES
+        OCCUPATION_NUMBERS
+        &EACH
+          QS_SCF 0
+        &END EACH
+      &END MO
+      
+      &PDOS
+        NLUMO 10
+        NHOMO 10
+        &EACH
+          QS_SCF 0
+        &END EACH
+      &END PDOS
+      
+      ! 计算偶极矩
+      &MOMENTS
+        PERIODIC FALSE
+        REFERENCE COAC
+        &EACH
+          QS_SCF 0
+        &END EACH
+      &END MOMENTS
+    &END PRINT
+  &END DFT
+  
+  &SUBSYS
+    &CELL
+      ABC 20.0 20.0 20.0
+      PERIODIC NONE
+    &END CELL
+    
+    ! 单个C60分子：严格验证基础性质
+    &COORD
+C         0.00000        1.40000        0.00000
+C         1.21244        0.70000        0.00000
+C         1.21244       -0.70000        0.00000
+C         0.00000       -1.40000        0.00000
+C        -1.21244       -0.70000        0.00000
+C        -1.21244        0.70000        0.00000
+C         0.70000        0.00000        1.21244
+C        -0.70000        0.00000        1.21244
+C        -1.40000        0.00000        0.00000
+C        -0.70000        0.00000       -1.21244
+C         0.70000        0.00000       -1.21244
+C         1.40000        0.00000        0.00000
+C         0.00000        0.00000        1.40000
+C         0.00000        0.00000       -1.40000
+C         2.42488        1.40000        0.00000
+C         3.63732        0.70000        0.00000
+C         3.63732       -0.70000        0.00000
+C         2.42488       -1.40000        0.00000
+C         1.21244       -2.10000        0.00000
+C        -1.21244       -2.10000        0.00000
+    &END COORD
+    
+    &KIND C
+      BASIS_SET DZVP-MOLOPT-GTH-q4
+      POTENTIAL GTH-PBE-q4
+    &END KIND
+  &END SUBSYS
+&END FORCE_EVAL

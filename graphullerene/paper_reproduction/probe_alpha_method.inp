@@ -1,0 +1,124 @@
+&GLOBAL
+  PROJECT fluorine_probe_alpha
+  RUN_TYPE ENERGY
+  PRINT_LEVEL MEDIUM
+&END GLOBAL
+
+&FORCE_EVAL
+  METHOD Quickstep
+  &DFT
+    BASIS_SET_FILE_NAME BASIS_MOLOPT
+    POTENTIAL_FILE_NAME GTH_POTENTIALS
+    BASIS_SET_FILE_NAME BASIS_ADMM_MOLOPT
+    BASIS_SET_FILE_NAME BASIS_ADMM
+    
+    ! Spin-polarized calculation for charged system
+    UKS
+    CHARGE -1  ! For F- probe
+    
+    &MGRID
+      CUTOFF 800  ! Paper uses 800 Ry
+      REL_CUTOFF 50
+    &END MGRID
+    
+    &QS
+      METHOD GPW
+      EPS_DEFAULT 1.0E-10
+    &END QS
+    
+    &SCF
+      SCF_GUESS ATOMIC
+      MAX_SCF 100
+      EPS_SCF 1.0E-6
+      
+      &OT
+        MINIMIZER CG
+        PRECONDITIONER FULL_SINGLE_INVERSE
+      &END OT
+      
+      &PRINT
+        &MO
+          EIGENVALUES
+          &EACH
+            QS_SCF 0
+          &END EACH
+        &END MO
+      &END PRINT
+    &END SCF
+    
+    ! Auxiliary Density Matrix Method for hybrid functionals
+    &AUXILIARY_DENSITY_MATRIX_METHOD
+      METHOD BASIS_PROJECTION
+      ADMM_PURIFICATION_METHOD NONE
+    &END AUXILIARY_DENSITY_MATRIX_METHOD
+    
+    ! PBE(α) functional - vary α to find Koopman's compliant value
+    &XC
+      &XC_FUNCTIONAL
+        &PBE
+          SCALE_X 0.79  ! 1.0 - α, where α = 0.21 as initial guess
+          SCALE_C 1.0
+        &END PBE
+        &PBE_HOLE_T_C_LR
+          CUTOFF_RADIUS 6.0
+          SCALE_X 0.21  ! α value - this should be varied
+        &END PBE_HOLE_T_C_LR
+      &END XC_FUNCTIONAL
+      
+      &HF
+        &SCREENING
+          EPS_SCHWARZ 1.0E-6
+          SCREEN_ON_INITIAL_P FALSE
+        &END SCREENING
+        &INTERACTION_POTENTIAL
+          POTENTIAL_TYPE TRUNCATED
+          CUTOFF_RADIUS 6.0
+          T_C_G_DATA t_c_g.dat
+        &END INTERACTION_POTENTIAL
+        &MEMORY
+          MAX_MEMORY 3600
+          EPS_STORAGE_SCALING 0.1
+        &END MEMORY
+        FRACTION 0.21  ! α value
+      &END HF
+      
+      ! van der Waals correction - rVV10 with b=7.8
+      &vdW_POTENTIAL
+        DISPERSION_FUNCTIONAL NON_LOCAL
+        &NON_LOCAL
+          TYPE RVV10
+          PARAMETERS 7.8 0.0093  ! b=7.8 for hybrid functional
+          KERNEL_FILE_NAME rVV10_kernel_table.dat
+          CUTOFF 400
+        &END NON_LOCAL
+      &END vdW_POTENTIAL
+    &END XC
+  &END DFT
+  
+  &SUBSYS
+    &CELL
+      ! vdW C60 supercell: 2x2x2, a=28.52 Å
+      ABC 28.52 28.52 28.52
+      PERIODIC XYZ
+    &END CELL
+    
+    &COORD
+      ! Include C60 supercell coordinates + one F atom
+      ! First load C60 supercell, then add F atom in interstitial site
+      @INCLUDE 'C60_2x2x2_supercell.xyz'
+      F 14.26 14.26 14.26  ! Interstitial fluorine probe
+    &END COORD
+    
+    &KIND C
+      BASIS_SET DZVP-MOLOPT-GTH-q4
+      BASIS_SET AUX_FIT cFIT3
+      POTENTIAL GTH-PBE-q4
+    &END KIND
+    
+    &KIND F
+      BASIS_SET DZVP-MOLOPT-SR-GTH-q7
+      BASIS_SET AUX_FIT cFIT3
+      POTENTIAL GTH-PBE-q7
+    &END KIND
+  &END SUBSYS
+&END FORCE_EVAL

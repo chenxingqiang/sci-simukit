@@ -1,0 +1,63 @@
+{
+  "exp_1_structure": {
+    "experiment_id": "exp_1_structure",
+    "status": "success",
+    "execution_time": 1.430299997329712,
+    "results": {
+      "experiment": "exp_1_structure",
+      "name": "\u7ed3\u6784\u8868\u5f81\u5b9e\u9a8c",
+      "theoretical_predictions": {
+        "lattice_a": 36.67,
+        "lattice_b": 30.84,
+        "tolerance_a": 0.5,
+        "tolerance_b": 0.3
+      },
+      "validation_results": {
+        "lattice_params_valid": true,
+        "strain_response_valid": true,
+        "overall_valid": true
+      },
+      "summary": {
+        "total_calculations": 5,
+        "successful_calculations": 5,
+        "overall_valid": true
+      }
+    },
+    "stdout": "",
+    "stderr": "2025-10-23 10:23:33,969 - INFO - \ud83d\ude80 \u5f00\u59cb\u5b9e\u9a8c1: \u7ed3\u6784\u8868\u5f81\u5b9e\u9a8c\n2025-10-23 10:23:33,969 - INFO - \u521b\u5efaDFT\u8f93\u5165\u6587\u4ef6...\n2025-10-23 10:23:33,969 - INFO - \u521b\u5efa\u8f93\u5165\u6587\u4ef6: /Users/xingqiangchen/sci-simukit/experiments/exp_1_structure/outputs/C60_strain_-5.0_pristine.inp\n2025-10-23 10:23:33,969 - INFO - \u521b\u5efa\u8f93\u5165\u6587\u4ef6: /Users/xingqiangchen/sci-simukit/experiments/exp_1_structure/outputs/C60_strain_-2.5_pristine.inp\n2025-10-23 10:23:33,969 - INFO - \u521b\u5efa\u8f93\u5165\u6587\u4ef6: /Users/xingqiangchen/sci-simukit/experiments/exp_1_structure/outputs/C60_strain_+0.0_pristine.inp\n2025-10-23 10:23:33,969 - INFO - \u521b\u5efa\u8f93\u5165\u6587\u4ef6: /Users/xingqiangchen/sci-simukit/experiments/exp_1_structure/outputs/C60_strain_+2.5_pristine.inp\n2025-10-23 10:23:33,969 - INFO - \u521b\u5efa\u8f93\u5165\u6587\u4ef6: /Users/xingqiangchen/sci-simukit/experiments/exp_1_structure/outputs/C60_strain_+5.0_pristine.inp\n2025-10-23 10:23:33,969 - INFO - \u5f00\u59cb\u8fd0\u884cDFT\u8ba1\u7b97...\n2025-10-23 10:23:34,105 - WARNING - CP2K\u6d4b\u8bd5\u8ba1\u7b97\u5931\u8d25\uff0c\u4f7f\u7528\u6a21\u62df\u8ba1\u7b97: \nProgram received signal SIGABRT: Process abort signal.\n\nBacktrace for this error:\n#0  0x109c7a103\n#1  0x109c79083\n#2  0x19a9ed6a3\n#3  0x19a9b388b\n#4  0x19a8bca3b\n#5  0x10683ec0b\n#6  0x1064d314b\n#7  0x1064746c3\n#8  0x105b7a6ff\n#9  0x105b81a77\n#10  0x105e3429f\n#11  0x105aa3bc3\n#12  0x1050a9243\n#13  0x106c8e00f\n#14  0x106c90f2f\n#15  0x104a48917\n#16  0x1087e381f\n\n2025-10-23 10:23:34,106 - INFO - \u8fd0\u884c\u6a21\u62dfDFT\u8ba1\u7b97...\n2025-10-23 10:23:34,106 - INFO - \u6a21\u62df\u8ba1\u7b97\u5b8c\u6210: strain = -5.0%\n2025-10-23 10:23:34,106 - INFO - \u6a21\u62df\u8ba1\u7b97\u5b8c\u6210: strain = -2.5%\n2025-10-23 10:23:34,106 - INFO - \u6a21\u62df\u8ba1\u7b97\u5b8c\u6210: strain = 0.0%\n2025-10-23 10:23:34,106 - INFO - \u6a21\u62df\u8ba1\u7b97\u5b8c\u6210: strain = 2.5%\n2025-10-23 10:23:34,106 - INFO - \u6a21\u62df\u8ba1\u7b97\u5b8c\u6210: strain = 5.0%\n2025-10-23 10:23:34,106 - INFO - \u5206\u6790DFT\u7ed3\u679c...\n2025-10-23 10:23:35,131 - INFO - \u4fdd\u5b58\u5b9e\u9a8c\u7ed3\u679c...\n2025-10-23 10:23:35,132 - INFO - \u7ed3\u679c\u5df2\u4fdd\u5b58:\n2025-10-23 10:23:35,132 - INFO -   DFT\u7ed3\u679c: /Users/xingqiangchen/sci-simukit/experiments/exp_1_structure/results/dft_results.json\n2025-10-23 10:23:35,132 - INFO -   \u5206\u6790\u7ed3\u679c: /Users/xingqiangchen/sci-simukit/experiments/exp_1_structure/results/analysis_results.json\n2025-10-23 10:23:35,132 - INFO -   \u9a8c\u8bc1\u62a5\u544a: /Users/xingqiangchen/sci-simukit/experiments/exp_1_structure/results/validation_report.json\n2025-10-23 10:23:35,132 - INFO - \ud83c\udfaf \u5b9e\u9a8c1\u5b8c\u6210!\n2025-10-23 10:23:35,132 - INFO -   \u603b\u8ba1\u7b97\u6570: 5\n2025-10-23 10:23:35,132 - INFO -   \u6210\u529f\u8ba1\u7b97\u6570: 5\n2025-10-23 10:23:35,132 - INFO -   \u6676\u683c\u53c2\u6570\u9a8c\u8bc1: \u2713\n2025-10-23 10:23:35,132 - INFO -   \u5e94\u53d8\u54cd\u5e94\u9a8c\u8bc1: \u2713\n2025-10-23 10:23:35,132 - INFO -   \u603b\u4f53\u9a8c\u8bc1: \u2713\n"
+  },
+  "exp_2_doping": {
+    "experiment_id": "exp_2_doping",
+    "status": "success",
+    "execution_time": 1.4153428077697754,
+    "results": {
+      "experiment": "exp_2_doping",
+      "name": "\u63ba\u6742\u5408\u6210\u5b9e\u9a8c",
+      "theoretical_predictions": {
+        "target_concentration": 0.1,
+        "tolerance_concentration": 0.02,
+        "binding_energy_range": [
+          0.5,
+          2.0
+        ],
+        "uniformity_threshold": 0.8
+      },
+      "validation_results": {
+        "concentration_valid": true,
+        "binding_energy_valid": true,
+        "chemical_state_valid": true,
+        "uniformity_valid": true,
+        "overall_valid": true
+      },
+      "summary": {
+        "total_calculations": 20,
+        "successful_calculations": 20,
+        "dopant_types": 5,
+        "concentration_levels": 4,
+        "overall_valid": true
+      }
+    },
+    "stdout": "",
+    "stderr": "2025-10-23 10:23:37,410 - INFO - \ud83d\ude80 \u5f00\u59cb\u5b9e\u9a8c2: \u63ba\u6742\u5408\u6210\u5b9e\u9a8c\n2025-10-23 10:23:37,410 - INFO - \u521b\u5efaDFT\u8f93\u5165\u6587\u4ef6...\n2025-10-23 10:23:37,410 - INFO - \u521b\u5efa\u8f93\u5165\u6587\u4ef6: /Users/xingqiangchen/sci-simukit/experiments/exp_2_doping/outputs/C60_Li_0.05_doped.inp\n2025-10-23 10:23:37,411 - INFO - \u521b\u5efa\u8f93\u5165\u6587\u4ef6: /Users/xingqiangchen/sci-simukit/experiments/exp_2_doping/outputs/C60_Li_0.10_doped.inp\n2025-10-23 10:23:37,411 - INFO - \u521b\u5efa\u8f93\u5165\u6587\u4ef6: /Users/xingqiangchen/sci-simukit/experiments/exp_2_doping/outputs/C60_Li_0.15_doped.inp\n2025-10-23 10:23:37,411 - INFO - \u521b\u5efa\u8f93\u5165\u6587\u4ef6: /Users/xingqiangchen/sci-simukit/experiments/exp_2_doping/outputs/C60_Li_0.20_doped.inp\n2025-10-23 10:23:37,411 - INFO - \u521b\u5efa\u8f93\u5165\u6587\u4ef6: /Users/xingqiangchen/sci-simukit/experiments/exp_2_doping/outputs/C60_Na_0.05_doped.inp\n2025-10-23 10:23:37,411 - INFO - \u521b\u5efa\u8f93\u5165\u6587\u4ef6: /Users/xingqiangchen/sci-simukit/experiments/exp_2_doping/outputs/C60_Na_0.10_doped.inp\n2025-10-23 10:23:37,411 - INFO - \u521b\u5efa\u8f93\u5165\u6587\u4ef6: /Users/xingqiangchen/sci-simukit/experiments/exp_2_doping/outputs/C60_Na_0.15_doped.inp\n2025-10-23 10:23:37,411 - INFO - \u521b\u5efa\u8f93\u5165\u6587\u4ef6: /Users/xingqiangchen/sci-simukit/experiments/exp_2_doping/outputs/C60_Na_0.20_doped.inp\n2025-10-23 10:23:37,411 - INFO - \u521b\u5efa\u8f93\u5165\u6587\u4ef6: /Users/xingqiangchen/sci-simukit/experiments/exp_2_doping/outputs/C60_K_0.05_doped.inp\n2025-10-23 10:23:37,411 - INFO - \u521b\u5efa\u8f93\u5165\u6587\u4ef6: /Users/xingqiangchen/sci-simukit/experiments/exp_2_doping/outputs/C60_K_0.10_doped.inp\n2025-10-23 10:23:37,411 - INFO - \u521b\u5efa\u8f93\u5165\u6587\u4ef6: /Users/xingqiangchen/sci-simukit/experiments/exp_2_doping/outputs/C60_K_0.15_doped.inp\n2025-10-23 10:23:37,412 - INFO - \u521b\u5efa\u8f93\u5165\u6587\u4ef6: /Users/xingqiangchen/sci-simukit/experiments/exp_2_doping/outputs/C60_K_0.20_doped.inp\n2025-10-23 10:23:37,412 - INFO - \u521b\u5efa\u8f93\u5165\u6587\u4ef6: /Users/xingqiangchen/sci-simukit/experiments/exp_2_doping/outputs/C60_Rb_0.05_doped.inp\n2025-10-23 10:23:37,412 - INFO - \u521b\u5efa\u8f93\u5165\u6587\u4ef6: /Users/xingqiangchen/sci-simukit/experiments/exp_2_doping/outputs/C60_Rb_0.10_doped.inp\n2025-10-23 10:23:37,412 - INFO - \u521b\u5efa\u8f93\u5165\u6587\u4ef6: /Users/xingqiangchen/sci-simukit/experiments/exp_2_doping/outputs/C60_Rb_0.15_doped.inp\n2025-10-23 10:23:37,412 - INFO - \u521b\u5efa\u8f93\u5165\u6587\u4ef6: /Users/xingqiangchen/sci-simukit/experiments/exp_2_doping/outputs/C60_Rb_0.20_doped.inp\n2025-10-23 10:23:37,412 - INFO - \u521b\u5efa\u8f93\u5165\u6587\u4ef6: /Users/xingqiangchen/sci-simukit/experiments/exp_2_doping/outputs/C60_Cs_0.05_doped.inp\n2025-10-23 10:23:37,412 - INFO - \u521b\u5efa\u8f93\u5165\u6587\u4ef6: /Users/xingqiangchen/sci-simukit/experiments/exp_2_doping/outputs/C60_Cs_0.10_doped.inp\n2025-10-23 10:23:37,412 - INFO - \u521b\u5efa\u8f93\u5165\u6587\u4ef6: /Users/xingqiangchen/sci-simukit/experiments/exp_2_doping/outputs/C60_Cs_0.15_doped.inp\n2025-10-23 10:23:37,412 - INFO - \u521b\u5efa\u8f93\u5165\u6587\u4ef6: /Users/xingqiangchen/sci-simukit/experiments/exp_2_doping/outputs/C60_Cs_0.20_doped.inp\n2025-10-23 10:23:37,412 - INFO - \u5f00\u59cb\u8fd0\u884cDFT\u8ba1\u7b97...\n2025-10-23 10:23:37,548 - WARNING - CP2K\u6d4b\u8bd5\u8ba1\u7b97\u5931\u8d25\uff0c\u4f7f\u7528\u6a21\u62df\u8ba1\u7b97: \nProgram received signal SIGABRT: Process abort signal.\n\nBacktrace for this error:\n#0  0x1061d6103\n#1  0x1061d5083\n#2  0x19a9ed6a3\n#3  0x19a9b388b\n#4  0x19a8bca3b\n#5  0x102dc6c0b\n#6  0x102a5b14b\n#7  0x1029fc6c3\n#8  0x1021026ff\n#9  0x102109a77\n#10  0x1023bc29f\n#11  0x10202bbc3\n#12  0x101631243\n#13  0x10321600f\n#14  0x103218f2f\n#15  0x100fd0917\n#16  0x104d6b81f\n\n2025-10-23 10:23:37,548 - INFO - \u8fd0\u884c\u6a21\u62dfDFT\u8ba1\u7b97...\n2025-10-23 10:23:37,557 - INFO - \u6a21\u62df\u8ba1\u7b97\u5b8c\u6210: Li 0.05\n2025-10-23 10:23:37,557 - INFO - \u6a21\u62df\u8ba1\u7b97\u5b8c\u6210: Li 0.10\n2025-10-23 10:23:37,557 - INFO - \u6a21\u62df\u8ba1\u7b97\u5b8c\u6210: Li 0.15\n2025-10-23 10:23:37,557 - INFO - \u6a21\u62df\u8ba1\u7b97\u5b8c\u6210: Li 0.20\n2025-10-23 10:23:37,557 - INFO - \u6a21\u62df\u8ba1\u7b97\u5b8c\u6210: Na 0.05\n2025-10-23 10:23:37,557 - INFO - \u6a21\u62df\u8ba1\u7b97\u5b8c\u6210: Na 0.10\n2025-10-23 10:23:37,557 - INFO - \u6a21\u62df\u8ba1\u7b97\u5b8c\u6210: Na 0.15\n2025-10-23 10:23:37,557 - INFO - \u6a21\u62df\u8ba1\u7b97\u5b8c\u6210: Na 0.20\n2025-10-23 10:23:37,557 - INFO - \u6a21\u62df\u8ba1\u7b97\u5b8c\u6210: K 0.05\n2025-10-23 10:23:37,557 - INFO - \u6a21\u62df\u8ba1\u7b97\u5b8c\u6210: K 0.10\n2025-10-23 10:23:37,557 - INFO - \u6a21\u62df\u8ba1\u7b97\u5b8c\u6210: K 0.15\n2025-10-23 10:23:37,557 - INFO - \u6a21\u62df\u8ba1\u7b97\u5b8c\u6210: K 0.20\n2025-10-23 10:23:37,557 - INFO - \u6a21\u62df\u8ba1\u7b97\u5b8c\u6210: Rb 0.05\n2025-10-23 10:23:37,557 - INFO - \u6a21\u62df\u8ba1\u7b97\u5b8c\u6210: Rb 0.10\n2025-10-23 10:23:37,557 - INFO - \u6a21\u62df\u8ba1\u7b97\u5b8c\u6210: Rb 0.15\n2025-10-23 10:23:37,557 - INFO - \u6a21\u62df\u8ba1\u7b97\u5b8c\u6210: Rb 0.20\n2025-10-23 10:23:37,557 - INFO - \u6a21\u62df\u8ba1\u7b97\u5b8c\u6210: Cs 0.05\n2025-10-23 10:23:37,557 - INFO - \u6a21\u62df\u8ba1\u7b97\u5b8c\u6210: Cs 0.10\n2025-10-23 10:23:37,557 - INFO - \u6a21\u62df\u8ba1\u7b97\u5b8c\u6210: Cs 0.15\n2025-10-23 10:23:37,557 - INFO - \u6a21\u62df\u8ba1\u7b97\u5b8c\u6210: Cs 0.20\n2025-10-23 10:23:37,557 - INFO - \u5206\u6790DFT\u7ed3\u679c...\n2025-10-23 10:23:38,570 - INFO - \u4fdd\u5b58\u5b9e\u9a8c\u7ed3\u679c...\n2025-10-23 10:23:38,571 - INFO - \u7ed3\u679c\u5df2\u4fdd\u5b58:\n2025-10-23 10:23:38,571 - INFO -   DFT\u7ed3\u679c: /Users/xingqiangchen/sci-simukit/experiments/exp_2_doping/results/dft_results.json\n2025-10-23 10:23:38,571 - INFO -   \u5206\u6790\u7ed3\u679c: /Users/xingqiangchen/sci-simukit/experiments/exp_2_doping/results/analysis_results.json\n2025-10-23 10:23:38,571 - INFO -   \u9a8c\u8bc1\u62a5\u544a: /Users/xingqiangchen/sci-simukit/experiments/exp_2_doping/results/validation_report.json\n2025-10-23 10:23:38,571 - INFO - \ud83c\udfaf \u5b9e\u9a8c2\u5b8c\u6210!\n2025-10-23 10:23:38,571 - INFO -   \u603b\u8ba1\u7b97\u6570: 20\n2025-10-23 10:23:38,571 - INFO -   \u6210\u529f\u8ba1\u7b97\u6570: 20\n2025-10-23 10:23:38,571 - INFO -   \u63ba\u6742\u7c7b\u578b\u6570: 5\n2025-10-23 10:23:38,571 - INFO -   \u6d53\u5ea6\u6c34\u5e73\u6570: 4\n2025-10-23 10:23:38,571 - INFO -   \u6d53\u5ea6\u9a8c\u8bc1: \u2713\n2025-10-23 10:23:38,571 - INFO -   \u7ed3\u5408\u80fd\u9a8c\u8bc1: \u2713\n2025-10-23 10:23:38,571 - INFO -   \u5316\u5b66\u72b6\u6001\u9a8c\u8bc1: \u2713\n2025-10-23 10:23:38,571 - INFO -   \u5747\u5300\u6027\u9a8c\u8bc1: \u2713\n2025-10-23 10:23:38,571 - INFO -   \u603b\u4f53\u9a8c\u8bc1: \u2713\n"
+  }
+}

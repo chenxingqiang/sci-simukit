@@ -1,0 +1,38 @@
+{
+  "synergistic_factors": {
+    "f_deloc": 1.8,
+    "f_coupling": 1.8,
+    "f_reorg": 1.5,
+    "f_total": 4.86
+  },
+  "synergy_analysis": {
+    "contributions": {
+      "delocalization": 1.5599999999999998,
+      "coupling": 1.6199999999999999,
+      "reorganization": 1.3800000000000001,
+      "total": 3.626
+    },
+    "synergy_strength": 1.0397025292355404,
+    "f_total_values": [
+      1.8719999999999999,
+      2.7299999999999995,
+      3.808,
+      4.86,
+      4.86
+    ]
+  },
+  "validation_results": {
+    "delocalization_valid": true,
+    "coupling_valid": true,
+    "reorganization_valid": true,
+    "total_enhancement_valid": false,
+    "synergistic_valid": false,
+    "overall_valid": false
+  },
+  "target_factors": {
+    "f_deloc": 1.8,
+    "f_coupling": 1.8,
+    "f_reorg": 1.5,
+    "f_total": 8.75
+  }
+}

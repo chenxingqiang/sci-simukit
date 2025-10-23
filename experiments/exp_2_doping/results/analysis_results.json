@@ -1,0 +1,180 @@
+{
+  "doping_concentrations": {
+    "Li": {
+      "concentrations": [
+        0.05,
+        0.1,
+        0.15,
+        0.2
+      ],
+      "binding_energies": [
+        0.970101351552253,
+        1.141125374122843,
+        1.5648308852905446,
+        0.9292862128422967
+      ],
+      "total_energies": [
+        -328.43,
+        -328.68,
+        -328.93,
+        -329.18
+      ],
+      "avg_binding_energy": 1.1513359559519845,
+      "binding_energy_std": 0.2516119943568847
+    },
+    "Na": {
+      "concentrations": [
+        0.05,
+        0.1,
+        0.15,
+        0.2
+      ],
+      "binding_energies": [
+        1.0075930047113402,
+        1.4955339035285293,
+        1.502869238867873,
+        1.6235575224677636
+      ],
+      "total_energies": [
+        -328.33,
+        -328.48,
+        -328.63,
+        -328.78000000000003
+      ],
+      "avg_binding_energy": 1.4073884173938764,
+      "binding_energy_std": 0.2363533731437465
+    },
+    "K": {
+      "concentrations": [
+        0.05,
+        0.1,
+        0.15,
+        0.2
+      ],
+      "binding_energies": [
+        1.7870461502821464,
+        1.858465170174508,
+        1.8453358275426535,
+        1.8944407832670054
+      ],
+      "total_energies": [
+        -328.28000000000003,
+        -328.38,
+        -328.48,
+        -328.58
+      ],
+      "avg_binding_energy": 1.8463219828165782,
+      "binding_energy_std": 0.038657058801957855
+    },
+    "Rb": {
+      "concentrations": [
+        0.05,
+        0.1,
+        0.15,
+        0.2
+      ],
+      "binding_energies": [
+        1.3863746949798075,
+        1.7735420469371188,
+        1.6068797053253128,
+        1.4786791600164995
+      ],
+      "total_energies": [
+        -328.255,
+        -328.33,
+        -328.40500000000003,
+        -328.48
+      ],
+      "avg_binding_energy": 1.5613689018146846,
+      "binding_energy_std": 0.14538676226856662
+    },
+    "Cs": {
+      "concentrations": [
+        0.05,
+        0.1,
+        0.15,
+        0.2
+      ],
+      "binding_energies": [
+        1.754492670207596,
+        1.3681584147434227,
+        1.8755405058252748,
+        1.4523022995500259
+      ],
+      "total_energies": [
+        -328.23,
+        -328.28000000000003,
+        -328.33,
+        -328.38
+      ],
+      "avg_binding_energy": 1.61262347258158,
+      "binding_energy_std": 0.20899657810042177
+    }
+  },
+  "binding_energies": {
+    "mean": 1.5158077461117407,
+    "std": 0.3002552122191581,
+    "min": 0.9292862128422967,
+    "max": 1.8944407832670054,
+    "range_valid": true
+  },
+  "chemical_states": {
+    "Li": {
+      "oxidation_state": "+1",
+      "coordination": "interstitial",
+      "stability": "stable"
+    },
+    "Na": {
+      "oxidation_state": "+1",
+      "coordination": "interstitial",
+      "stability": "stable"
+    },
+    "K": {
+      "oxidation_state": "+1",
+      "coordination": "interstitial",
+      "stability": "stable"
+    },
+    "Rb": {
+      "oxidation_state": "+1",
+      "coordination": "interstitial",
+      "stability": "stable"
+    },
+    "Cs": {
+      "oxidation_state": "+1",
+      "coordination": "interstitial",
+      "stability": "stable"
+    }
+  },
+  "uniformity_analysis": {
+    "Li": {
+      "uniformity_score": 0.7814608385535577,
+      "is_uniform": false
+    },
+    "Na": {
+      "uniformity_score": 0.83206244259036,
+      "is_uniform": true
+    },
+    "K": {
+      "uniformity_score": 0.9790626666628395,
+      "is_uniform": true
+    },
+    "Rb": {
+      "uniformity_score": 0.9068850659830663,
+      "is_uniform": true
+    },
+    "Cs": {
+      "uniformity_score": 0.8703996427846556,
+      "is_uniform": true
+    }
+  },
+  "validation_metrics": {
+    "concentration_valid": true,
+    "binding_energy_valid": true,
+    "chemical_state_valid": true,
+    "uniformity_valid": true,
+    "overall_valid": true
+  },
+  "plots": {
+    "plot_file": "/Users/xingqiangchen/sci-simukit/experiments/exp_2_doping/figures/doping_analysis.png"
+  }
+}

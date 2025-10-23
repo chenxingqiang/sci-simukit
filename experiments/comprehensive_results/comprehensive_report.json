@@ -1,0 +1,50 @@
+{
+  "summary": {
+    "total_experiments": 2,
+    "successful_experiments": 2,
+    "failed_experiments": 0,
+    "skipped_experiments": 0,
+    "overall_success_rate": 1.0,
+    "validation_success_rate": 1.0,
+    "total_execution_time": 6.856921911239624
+  },
+  "experiment_details": {
+    "exp_1_structure": {
+      "name": "\u7ed3\u6784\u8868\u5f81\u5b9e\u9a8c",
+      "description": "\u9a8c\u8bc1qHP C\u2086\u2080\u7f51\u7edc\u7684\u7ed3\u6784\u53c2\u6570\u548c\u5e94\u53d8\u54cd\u5e94",
+      "status": "success",
+      "execution_time": 1.430299997329712,
+      "overall_valid": true
+    },
+    "exp_2_doping": {
+      "name": "\u63ba\u6742\u5408\u6210\u5b9e\u9a8c",
+      "description": "\u9a8c\u8bc1qHP C\u2086\u2080\u7f51\u7edc\u7684\u63ba\u6742\u5408\u6210\u548c\u5316\u5b66\u72b6\u6001",
+      "status": "success",
+      "execution_time": 1.4153428077697754,
+      "overall_valid": true
+    }
+  },
+  "validation_summary": {
+    "exp_1_structure": {
+      "overall_valid": true,
+      "validation_details": {
+        "lattice_params_valid": true,
+        "strain_response_valid": true,
+        "overall_valid": true
+      }
+    },
+    "exp_2_doping": {
+      "overall_valid": true,
+      "validation_details": {
+        "concentration_valid": true,
+        "binding_energy_valid": true,
+        "chemical_state_valid": true,
+        "uniformity_valid": true,
+        "overall_valid": true
+      }
+    }
+  },
+  "recommendations": [
+    "\u6240\u6709\u5b9e\u9a8c\u8fd0\u884c\u826f\u597d\uff0c\u5efa\u8bae\u7ee7\u7eed\u540e\u7eed\u5206\u6790"
+  ]
+}

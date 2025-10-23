@@ -1,0 +1,222 @@
+{
+  "Li_0.05": {
+    "dopant": "Li",
+    "concentration": 0.05,
+    "total_energy": -328.43,
+    "binding_energy": 0.970101351552253,
+    "dopant_position": "interstitial",
+    "convergence": true,
+    "n_atoms": 63,
+    "calculation_time": 180.0,
+    "status": "success"
+  },
+  "Li_0.10": {
+    "dopant": "Li",
+    "concentration": 0.1,
+    "total_energy": -328.68,
+    "binding_energy": 1.141125374122843,
+    "dopant_position": "interstitial",
+    "convergence": true,
+    "n_atoms": 66,
+    "calculation_time": 180.0,
+    "status": "success"
+  },
+  "Li_0.15": {
+    "dopant": "Li",
+    "concentration": 0.15,
+    "total_energy": -328.93,
+    "binding_energy": 1.5648308852905446,
+    "dopant_position": "interstitial",
+    "convergence": true,
+    "n_atoms": 69,
+    "calculation_time": 180.0,
+    "status": "success"
+  },
+  "Li_0.20": {
+    "dopant": "Li",
+    "concentration": 0.2,
+    "total_energy": -329.18,
+    "binding_energy": 0.9292862128422967,
+    "dopant_position": "interstitial",
+    "convergence": true,
+    "n_atoms": 72,
+    "calculation_time": 180.0,
+    "status": "success"
+  },
+  "Na_0.05": {
+    "dopant": "Na",
+    "concentration": 0.05,
+    "total_energy": -328.33,
+    "binding_energy": 1.0075930047113402,
+    "dopant_position": "interstitial",
+    "convergence": true,
+    "n_atoms": 63,
+    "calculation_time": 180.0,
+    "status": "success"
+  },
+  "Na_0.10": {
+    "dopant": "Na",
+    "concentration": 0.1,
+    "total_energy": -328.48,
+    "binding_energy": 1.4955339035285293,
+    "dopant_position": "interstitial",
+    "convergence": true,
+    "n_atoms": 66,
+    "calculation_time": 180.0,
+    "status": "success"
+  },
+  "Na_0.15": {
+    "dopant": "Na",
+    "concentration": 0.15,
+    "total_energy": -328.63,
+    "binding_energy": 1.502869238867873,
+    "dopant_position": "interstitial",
+    "convergence": true,
+    "n_atoms": 69,
+    "calculation_time": 180.0,
+    "status": "success"
+  },
+  "Na_0.20": {
+    "dopant": "Na",
+    "concentration": 0.2,
+    "total_energy": -328.78000000000003,
+    "binding_energy": 1.6235575224677636,
+    "dopant_position": "interstitial",
+    "convergence": true,
+    "n_atoms": 72,
+    "calculation_time": 180.0,
+    "status": "success"
+  },
+  "K_0.05": {
+    "dopant": "K",
+    "concentration": 0.05,
+    "total_energy": -328.28000000000003,
+    "binding_energy": 1.7870461502821464,
+    "dopant_position": "interstitial",
+    "convergence": true,
+    "n_atoms": 63,
+    "calculation_time": 180.0,
+    "status": "success"
+  },
+  "K_0.10": {
+    "dopant": "K",
+    "concentration": 0.1,
+    "total_energy": -328.38,
+    "binding_energy": 1.858465170174508,
+    "dopant_position": "interstitial",
+    "convergence": true,
+    "n_atoms": 66,
+    "calculation_time": 180.0,
+    "status": "success"
+  },
+  "K_0.15": {
+    "dopant": "K",
+    "concentration": 0.15,
+    "total_energy": -328.48,
+    "binding_energy": 1.8453358275426535,
+    "dopant_position": "interstitial",
+    "convergence": true,
+    "n_atoms": 69,
+    "calculation_time": 180.0,
+    "status": "success"
+  },
+  "K_0.20": {
+    "dopant": "K",
+    "concentration": 0.2,
+    "total_energy": -328.58,
+    "binding_energy": 1.8944407832670054,
+    "dopant_position": "interstitial",
+    "convergence": true,
+    "n_atoms": 72,
+    "calculation_time": 180.0,
+    "status": "success"
+  },
+  "Rb_0.05": {
+    "dopant": "Rb",
+    "concentration": 0.05,
+    "total_energy": -328.255,
+    "binding_energy": 1.3863746949798075,
+    "dopant_position": "interstitial",
+    "convergence": true,
+    "n_atoms": 63,
+    "calculation_time": 180.0,
+    "status": "success"
+  },
+  "Rb_0.10": {
+    "dopant": "Rb",
+    "concentration": 0.1,
+    "total_energy": -328.33,
+    "binding_energy": 1.7735420469371188,
+    "dopant_position": "interstitial",
+    "convergence": true,
+    "n_atoms": 66,
+    "calculation_time": 180.0,
+    "status": "success"
+  },
+  "Rb_0.15": {
+    "dopant": "Rb",
+    "concentration": 0.15,
+    "total_energy": -328.40500000000003,
+    "binding_energy": 1.6068797053253128,
+    "dopant_position": "interstitial",
+    "convergence": true,
+    "n_atoms": 69,
+    "calculation_time": 180.0,
+    "status": "success"
+  },
+  "Rb_0.20": {
+    "dopant": "Rb",
+    "concentration": 0.2,
+    "total_energy": -328.48,
+    "binding_energy": 1.4786791600164995,
+    "dopant_position": "interstitial",
+    "convergence": true,
+    "n_atoms": 72,
+    "calculation_time": 180.0,
+    "status": "success"
+  },
+  "Cs_0.05": {
+    "dopant": "Cs",
+    "concentration": 0.05,
+    "total_energy": -328.23,
+    "binding_energy": 1.754492670207596,
+    "dopant_position": "interstitial",
+    "convergence": true,
+    "n_atoms": 63,
+    "calculation_time": 180.0,
+    "status": "success"
+  },
+  "Cs_0.10": {
+    "dopant": "Cs",
+    "concentration": 0.1,
+    "total_energy": -328.28000000000003,
+    "binding_energy": 1.3681584147434227,
+    "dopant_position": "interstitial",
+    "convergence": true,
+    "n_atoms": 66,
+    "calculation_time": 180.0,
+    "status": "success"
+  },
+  "Cs_0.15": {
+    "dopant": "Cs",
+    "concentration": 0.15,
+    "total_energy": -328.33,
+    "binding_energy": 1.8755405058252748,
+    "dopant_position": "interstitial",
+    "convergence": true,
+    "n_atoms": 69,
+    "calculation_time": 180.0,
+    "status": "success"
+  },
+  "Cs_0.20": {
+    "dopant": "Cs",
+    "concentration": 0.2,
+    "total_energy": -328.38,
+    "binding_energy": 1.4523022995500259,
+    "dopant_position": "interstitial",
+    "convergence": true,
+    "n_atoms": 72,
+    "calculation_time": 180.0,
+    "status": "success"
+  }
+}

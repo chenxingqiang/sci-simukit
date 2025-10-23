@@ -1,0 +1,49 @@
+{
+  "bandgaps": [
+    1.85,
+    1.65,
+    1.45,
+    1.25,
+    1.15
+  ],
+  "mobilities": [
+    5.2,
+    6.8,
+    8.7,
+    15.3,
+    21.4
+  ],
+  "strain_response": {
+    "bandgap_slope": -0.07200000000000006,
+    "bandgap_intercept": 1.4700000000000002,
+    "mobility_prefactor": 7.963753354547243,
+    "mobility_exponent": 0.18333656478845817,
+    "mobility_offset": 1.740960353163609,
+    "r_squared_bandgap": 0.9878048780487805,
+    "r_squared_mobility": 0.9885596236568488
+  },
+  "synergy_analysis": {
+    "additive_prediction": 13.400000000000002,
+    "actual_enhancement": 21.4,
+    "synergy_factor": 1.597014925373134,
+    "synergistic": true
+  },
+  "validation_results": {
+    "bandgap_range_valid": false,
+    "mobility_range_valid": true,
+    "strain_coupling_valid": false,
+    "synergistic_effect_valid": true,
+    "overall_valid": false
+  },
+  "target_ranges": {
+    "bandgap": [
+      1.2,
+      2.4
+    ],
+    "mobility": [
+      5.2,
+      21.4
+    ],
+    "beta": 8.2
+  }
+}

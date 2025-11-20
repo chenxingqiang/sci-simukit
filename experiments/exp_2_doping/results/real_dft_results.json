@@ -1,11 +1,22 @@
 {
-  "metadata": {
-    "experiment": "exp_2_doping",
-    "total_calculations": 32,
-    "successful": 0,
-    "failed": 32,
-    "total_time_hours": 0.0021088432603412204,
-    "completion_date": "2025-11-20T14:42:29.222026"
+  "C60_B_0.03_doped": {
+    "status": "failed",
+    "time": 0.7852790355682373
   },
-  "results": {}
+  "C60_B_0.05_doped": {
+    "status": "failed",
+    "time": 0.4863770008087158
+  },
+  "C60_B_0.07_doped": {
+    "status": "failed",
+    "time": 0.5040969848632812
+  },
+  "C60_Cs_0.05_doped": {
+    "status": "failed",
+    "time": 0.3136308193206787
+  },
+  "C60_Cs_0.10_doped": {
+    "status": "failed",
+    "time": 1176.3963000774384
+  }
 }

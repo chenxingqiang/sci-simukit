@@ -26,9 +26,6 @@
 cd /Users/xingqiangchen/sci-simukit
 source fullerene-env/bin/activate
 
-# 运行全部验证
-cd experiments
-python run_local_validation_all.py
 
 # 预计耗时: 10-30分钟（取决于系统性能）
 ```
@@ -61,13 +58,7 @@ cd ../exp_6_optimal
 python run_optimal_experiment.py
 ```
 
-### 方法3: 使用综合验证框架
 
-```bash
-# 运行综合验证
-cd experiments
-python comprehensive_validation_framework.py
-```
 
 ---
 

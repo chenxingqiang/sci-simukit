@@ -2,82 +2,81 @@
 """
 Complete C60 Fullerene Coordinates
 Provides accurate C60 molecular coordinates for DFT calculations
-Based on real DFT-optimized C60 structure
+Based on ASE standard C60 molecular structure
 """
 
 def get_c60_coordinates():
     """
-    Returns complete C60 fullerene coordinates
-    Based on real DFT-optimized C60 structure from graphullerene/C60.xyz
+    Returns complete C60 fullerene coordinates (60 atoms)
+    Based on ASE standard C60 molecular structure
+    Coordinates are in Angstroms, centered near origin
     """
-    # 从实际DFT计算中得到的C60 fullerene坐标 (Å)
-    # 这些坐标来自graphullerene/C60.xyz文件的前60个原子
+    # Standard C60 molecular coordinates (Angstrom)
+    # From ASE materials database
     coordinates = [
-        (0.74152, 0.00000, 3.55074),
-        (1.49730, 1.21210, 3.13720),
-        (2.63810, 0.74152, 2.35290),
-        (13.51848, 0.00000, 3.55074),
-        (13.51848, 0.00000, 10.70926),
-        (0.74152, 0.00000, 10.70926),
-        (3.55074, 0.74152, 0.00000),
-        (3.55074, 13.51848, 0.00000),
-        (10.70926, 13.51848, 0.00000),
-        (10.70926, 0.74152, 0.00000),
-        (0.00000, 3.55074, 0.74152),
-        (0.00000, 3.55074, 13.51848),
-        (0.00000, 10.70926, 13.51848),
-        (0.00000, 10.70926, 0.74152),
-        (0.74152, 7.13000, 10.68074),
-        (13.51848, 7.13000, 10.68074),
-        (13.51848, 7.13000, 3.57926),
-        (0.74152, 7.13000, 3.57926),
-        (3.55074, 7.87152, 7.13000),
-        (3.55074, 6.38848, 7.13000),
-        (10.70926, 6.38848, 7.13000),
-        (10.70926, 7.87152, 7.13000),
-        (0.00000, 10.68074, 7.87152),
-        (0.00000, 10.68074, 6.38848),
-        (0.00000, 3.57926, 6.38848),
-        (0.00000, 3.57926, 7.87152),
-        (7.87152, 0.00000, 10.68074),
-        (6.38848, 0.00000, 10.68074),
-        (6.38848, 0.00000, 3.57926),
-        (7.87152, 0.00000, 3.57926),
-        (10.68074, 0.74152, 7.13000),
-        (10.68074, 13.51848, 7.13000),
-        (3.57926, 13.51848, 7.13000),
-        (3.57926, 0.74152, 7.13000),
-        (7.13000, 3.55074, 7.87152),
-        (7.13000, 3.55074, 6.38848),
-        (7.13000, 10.70926, 6.38848),
-        (7.13000, 10.70926, 7.87152),
-        (7.87152, 7.13000, 3.55074),
-        (6.38848, 7.13000, 3.55074),
-        (6.38848, 7.13000, 10.70926),
-        (7.87152, 7.13000, 10.70926),
-        (10.68074, 7.87152, 0.00000),
-        (10.68074, 6.38848, 0.00000),
-        (3.57926, 6.38848, 0.00000),
-        (3.57926, 7.87152, 0.00000),
-        (7.13000, 10.68074, 0.74152),
-        (7.13000, 10.68074, 13.51848),
-        (7.13000, 3.57926, 13.51848),
-        (7.13000, 3.57926, 0.74152),
-        (12.76270, 13.04790, 3.13720),
-        (12.76270, 1.21210, 11.12280),
-        (1.49730, 13.04790, 11.12280),
-        (3.13720, 1.49730, 1.21210),
-        (3.13720, 12.76270, 13.04790),
-        (11.12280, 12.76270, 1.21210),
-        (11.12280, 1.49730, 13.04790),
-        (1.21210, 3.13720, 1.49730),
-        (13.04790, 3.13720, 12.76270),
-        (1.21210, 11.12280, 12.76270),
-        (13.04790, 11.12280, 1.49730),
+        (2.21019530, 0.58666310, 2.66695040),
+        (3.10763930, 0.15770080, 1.63002860),
+        (1.32844300, -0.31589390, 3.23632320),
+        (3.09087090, -1.15850050, 1.20142400),
+        (3.18792450, -1.45745990, -0.19970050),
+        (3.22146230, 1.22309660, 0.67394400),
+        (3.31612100, 0.93515860, -0.67651510),
+        (3.29849810, -0.43011420, -1.12041380),
+        (-0.44808420, 1.35914840, 3.20810200),
+        (0.46720560, 2.29498300, 2.61752640),
+        (-0.02565750, 0.07642190, 3.50862590),
+        (1.77279170, 1.91765840, 2.35296910),
+        (2.39546230, 2.30956890, 1.11895390),
+        (-0.26101950, 3.08209350, 1.66231170),
+        (0.34077260, 3.45923880, 0.47459680),
+        (1.69511710, 3.06924460, 0.19766230),
+        (-2.12583940, -0.84588530, 2.67009630),
+        (-2.56209900, 0.48552020, 2.35317150),
+        (-0.87815210, -1.04619850, 3.23673020),
+        (-1.74150960, 1.56799630, 2.61973330),
+        (-1.62624680, 2.63570300, 1.66418110),
+        (-3.29848100, 0.43018710, 1.12042080),
+        (-3.18794690, 1.45738950, 0.19960300),
+        (-2.33602610, 2.58136270, 0.47609120),
+        (-0.50052100, -2.97977710, 1.79403080),
+        (-1.79443380, -2.77290870, 1.20478910),
+        (-0.05142450, -2.13288410, 2.79388300),
+        (-2.58914710, -1.72258280, 1.63297150),
+        (-3.31607050, -0.93506360, 0.67652680),
+        (-1.69519190, -3.06925810, -0.19765640),
+        (-2.39549010, -2.30968530, -1.11898620),
+        (-3.22141820, -1.22318350, -0.67395810),
+        (2.17582340, -2.09462630, 1.79225290),
+        (1.71186190, -2.97496810, 0.75571980),
+        (1.31306560, -1.68294160, 2.79438920),
+        (0.39590240, -3.40513950, 0.75576380),
+        (-0.34082190, -3.45918830, -0.47456100),
+        (2.33600570, -2.58144990, -0.47610500),
+        (1.62637570, -2.63573490, -1.66423090),
+        (0.26113520, -3.08212710, -1.66226180),
+        (-2.21008440, -0.58686360, -2.66703000),
+        (-1.77269700, -1.91789690, -2.35304660),
+        (-0.46707230, -2.29505090, -2.61751050),
+        (-1.32835000, 0.31576830, -3.23623750),
+        (-2.17598820, 2.09453830, -1.79232940),
+        (-3.09096630, 1.15834720, -1.20157490),
+        (-3.10760900, -0.15784530, -1.63016270),
+        (-1.31313650, 1.68282920, -2.79436390),
+        (0.50032240, 2.97996370, -1.79402030),
+        (-0.39611480, 3.40528170, -0.75572720),
+        (-1.71206290, 2.97491220, -0.75579880),
+        (0.05128240, 2.13294780, -2.79374500),
+        (2.12586300, 0.84608090, -2.67005340),
+        (2.58918530, 1.72277420, -1.63295620),
+        (1.79430100, 2.77306840, -1.20482620),
+        (0.87813230, 1.04635140, -3.23653130),
+        (0.44824520, -1.35910610, -3.20805100),
+        (1.74169480, -1.56795570, -2.61977140),
+        (2.56217240, -0.48535290, -2.35320260),
+        (0.02579040, -0.07635670, -3.50844460),
     ]
     
-    # 确保返回60个原子
-    return coordinates[:60]
+    return coordinates
 
 def format_c60_coordinates_for_cp2k():
     """
@@ -88,107 +87,24 @@ def format_c60_coordinates_for_cp2k():
     
     for coord in coordinates:
         x, y, z = coord
-        formatted_lines.append(f"      C  {x:.6f}  {y:.6f}  {z:.6f}")
+        line = f"      C  {x:.6f}  {y:.6f}  {z:.6f}"
+        formatted_lines.append(line)
     
     return "\n".join(formatted_lines)
-
-def get_multi_c60_coordinates(num_molecules=2):
-    """
-    Returns coordinates for multiple C60 molecules arranged in a supercell
-    For advanced experiments (4-6) that need to study intermolecular interactions
-    
-    Args:
-        num_molecules: Number of C60 molecules (2, 3, or 4)
-    
-    Returns:
-        List of (x, y, z) coordinates for all atoms in the supercell
-    """
-    single_c60 = get_c60_coordinates()
-    multi_c60_coords = []
-    
-    if num_molecules == 2:
-        # 2×1×1 supercell: two C60 molecules side by side
-        for i, (x, y, z) in enumerate(single_c60):
-            # First molecule at original position
-            multi_c60_coords.append((x, y, z))
-            # Second molecule shifted by lattice_a
-            multi_c60_coords.append((x + 36.67, y, z))
-    
-    elif num_molecules == 3:
-        # 3×1×1 supercell: three C60 molecules in a row
-        for i, (x, y, z) in enumerate(single_c60):
-            # First molecule at original position
-            multi_c60_coords.append((x, y, z))
-            # Second molecule shifted by lattice_a
-            multi_c60_coords.append((x + 36.67, y, z))
-            # Third molecule shifted by 2*lattice_a
-            multi_c60_coords.append((x + 73.34, y, z))
-    
-    elif num_molecules == 4:
-        # 2×2×1 supercell: four C60 molecules in a 2×2 arrangement
-        for i, (x, y, z) in enumerate(single_c60):
-            # First molecule at original position
-            multi_c60_coords.append((x, y, z))
-            # Second molecule shifted by lattice_a
-            multi_c60_coords.append((x + 36.67, y, z))
-            # Third molecule shifted by lattice_b
-            multi_c60_coords.append((x, y + 30.84, z))
-            # Fourth molecule shifted by lattice_a + lattice_b
-            multi_c60_coords.append((x + 36.67, y + 30.84, z))
-    
-    else:
-        raise ValueError("num_molecules must be 2, 3, or 4")
-    
-    return multi_c60_coords
-
-def format_multi_c60_coordinates_for_cp2k(num_molecules=2):
-    """
-    Returns multi-C60 coordinates formatted for CP2K input files
-    
-    Args:
-        num_molecules: Number of C60 molecules (2, 3, or 4)
-    
-    Returns:
-        Formatted string for CP2K input file
-    """
-    coordinates = get_multi_c60_coordinates(num_molecules)
-    formatted_lines = []
-    
-    for coord in coordinates:
-        x, y, z = coord
-        formatted_lines.append(f"      C  {x:.6f}  {y:.6f}  {z:.6f}")
-    
-    return "\n".join(formatted_lines)
-
-def get_supercell_dimensions(num_molecules=2):
-    """
-    Returns supercell dimensions for multi-C60 systems
-    
-    Args:
-        num_molecules: Number of C60 molecules (2, 3, or 4)
-    
-    Returns:
-        Tuple of (lattice_a, lattice_b, lattice_c)
-    """
-    base_a, base_b, base_c = 36.67, 30.84, 20.0
-    
-    if num_molecules == 2:
-        return (base_a * 2, base_b, base_c)
-    elif num_molecules == 3:
-        return (base_a * 3, base_b, base_c)
-    elif num_molecules == 4:
-        return (base_a * 2, base_b * 2, base_c)
-    else:
-        raise ValueError("num_molecules must be 2, 3, or 4")
 
 if __name__ == "__main__":
     # Test the function
+    import numpy as np
     coords = get_c60_coordinates()
-    print(f"Total C60 atoms: {len(coords)}")
-    print("First 5 coordinates:")
-    for i, coord in enumerate(coords[:5]):
-        print(f"  {i+1}: {coord}")
+    coords_array = np.array(coords)
     
-    print("\nFormatted for CP2K:")
-    formatted = format_c60_coordinates_for_cp2k()
-    print(formatted[:200] + "...")
+    print(f"Total C60 atoms: {len(coords)}")
+    print(f"Coordinate range:")
+    print(f"  X: [{coords_array[:,0].min():.2f}, {coords_array[:,0].max():.2f}] Angstrom")
+    print(f"  Y: [{coords_array[:,1].min():.2f}, {coords_array[:,1].max():.2f}] Angstrom")
+    print(f"  Z: [{coords_array[:,2].min():.2f}, {coords_array[:,2].max():.2f}] Angstrom")
+    
+    print("\nFirst 5 coordinates:")
+    for i, coord in enumerate(coords[:5]):
+        print(f"  {i+1}: ({coord[0]:.4f}, {coord[1]:.4f}, {coord[2]:.4f})")
+

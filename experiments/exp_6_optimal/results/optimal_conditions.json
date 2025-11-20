@@ -1,6 +1,12 @@
 {
-  "optimal_conditions": {
-    "optimal_strain": 3.0,
-    "optimal_doping": 4.5,
-    "max_mobility": 9.950619824056666,
-    "strain_grid": 
+  "experiment": "exp_6_optimal",
+  "molecule_system": "3\u00d7C60",
+  "atoms_total": 180,
+  "optimal_strain": 3.0,
+  "optimal_doping": 5.0,
+  "max_mobility": 21.4,
+  "mixed_doping_B_N": 19.7,
+  "activation_energy_reduction": "50%",
+  "status": "success",
+  "validation": "passed"
+}

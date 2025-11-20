@@ -2,13 +2,17 @@
   "experiment": "exp_2_doping",
   "name": "\u63ba\u6742\u5408\u6210\u5b9e\u9a8c",
   "theoretical_predictions": {
-    "target_concentration": 0.1,
-    "tolerance_concentration": 0.02,
+    "target_concentrations": [
+      0.025,
+      0.05,
+      0.075
+    ],
+    "tolerance_concentration": 0.002,
     "binding_energy_range": [
       0.5,
       2.0
     ],
-    "uniformity_threshold": 0.8
+    "uniformity_threshold": 0.9
   },
   "validation_results": {
     "concentration_valid": true,
@@ -18,10 +22,10 @@
     "overall_valid": true
   },
   "summary": {
-    "total_calculations": 20,
-    "successful_calculations": 20,
-    "dopant_types": 5,
-    "concentration_levels": 4,
+    "total_calculations": 12,
+    "successful_calculations": 12,
+    "dopant_types": 4,
+    "concentration_levels": 3,
     "overall_valid": true
   }
 }

@@ -1,0 +1,29 @@
+{
+  "experiment": "exp_6_optimal",
+  "name": "\u6700\u4f18\u6761\u4ef6\u9a8c\u8bc1\u5b9e\u9a8c",
+  "theoretical_predictions": {
+    "optimal_strain": 3.0,
+    "optimal_doping": "B",
+    "optimal_concentration": 0.05,
+    "peak_mobility": 21.4,
+    "activation_energy_reduction": 0.09,
+    "mixed_doping_superiority": true,
+    "tolerance_mobility": 2.0,
+    "tolerance_activation": 0.02
+  },
+  "validation_results": {
+    "optimal_strain_valid": false,
+    "optimal_doping_valid": true,
+    "peak_mobility_valid": true,
+    "activation_energy_valid": true,
+    "mixed_doping_superiority_valid": true,
+    "overall_valid": false
+  },
+  "summary": {
+    "total_calculations": 35,
+    "successful_calculations": 35,
+    "dopant_types": 7,
+    "strain_levels": 5,
+    "overall_valid": false
+  }
+}

@@ -1,0 +1,201 @@
+{
+  "synergistic_factors": {
+    "Li": {
+      "f_deloc": 0.38461538461538464,
+      "f_coupling": 0.5714285714285714,
+      "f_reorg": 0.6666666666666666,
+      "f_total": 0.1465201465201465,
+      "synergistic": false
+    },
+    "Na": {
+      "f_deloc": 0.38461538461538464,
+      "f_coupling": 0.5714285714285714,
+      "f_reorg": 0.6666666666666666,
+      "f_total": 0.1465201465201465,
+      "synergistic": false
+    },
+    "K": {
+      "f_deloc": 0.38461538461538464,
+      "f_coupling": 0.5714285714285714,
+      "f_reorg": 0.6666666666666666,
+      "f_total": 0.1465201465201465,
+      "synergistic": false
+    }
+  },
+  "isolated_effects": {
+    "strain_only": {
+      "strains": [
+        -5.0,
+        -2.5,
+        0.0,
+        2.5,
+        5.0
+      ],
+      "iprs": [
+        45.0,
+        46.25,
+        47.5,
+        48.75,
+        50.0
+      ],
+      "couplings": [
+        65.0,
+        70.0,
+        75.0,
+        80.0,
+        85.0
+      ],
+      "reorgs": [
+        0.060000000000000005,
+        0.055,
+        0.05,
+        0.045000000000000005,
+        0.04
+      ],
+      "ipr_change": 5.0,
+      "coupling_change": 20.0,
+      "reorg_change": 0.020000000000000004
+    },
+    "doping_only": {
+      "dopants": [
+        "pristine",
+        "Li",
+        "Na",
+        "K"
+      ],
+      "iprs": [
+        47.5,
+        39.5,
+        41.5,
+        43.5
+      ],
+      "couplings": [
+        75.0,
+        90.0,
+        87.0,
+        83.0
+      ],
+      "reorgs": [
+        0.05,
+        0.04,
+        0.042,
+        0.044000000000000004
+      ],
+      "ipr_change": 8.0,
+      "coupling_change": 15.0,
+      "reorg_change": 0.010000000000000002
+    }
+  },
+  "combined_effects": {
+    "Li": {
+      "strains": [
+        -5.0,
+        -2.5,
+        0.0,
+        2.5,
+        5.0
+      ],
+      "iprs": [
+        37.0,
+        38.25,
+        39.5,
+        40.75,
+        42.0
+      ],
+      "couplings": [
+        80.0,
+        85.0,
+        90.0,
+        95.0,
+        100.0
+      ],
+      "reorgs": [
+        0.05,
+        0.045,
+        0.04,
+        0.035,
+        0.03
+      ],
+      "ipr_change": 5.0,
+      "coupling_change": 20.0,
+      "reorg_change": 0.020000000000000004
+    },
+    "Na": {
+      "strains": [
+        -5.0,
+        -2.5,
+        0.0,
+        2.5,
+        5.0
+      ],
+      "iprs": [
+        39.0,
+        40.25,
+        41.5,
+        42.75,
+        44.0
+      ],
+      "couplings": [
+        77.0,
+        82.0,
+        87.0,
+        92.0,
+        97.0
+      ],
+      "reorgs": [
+        0.052000000000000005,
+        0.047,
+        0.042,
+        0.037000000000000005,
+        0.032
+      ],
+      "ipr_change": 5.0,
+      "coupling_change": 20.0,
+      "reorg_change": 0.020000000000000004
+    },
+    "K": {
+      "strains": [
+        -5.0,
+        -2.5,
+        0.0,
+        2.5,
+        5.0
+      ],
+      "iprs": [
+        41.0,
+        42.25,
+        43.5,
+        44.75,
+        46.0
+      ],
+      "couplings": [
+        73.0,
+        78.0,
+        83.0,
+        88.0,
+        93.0
+      ],
+      "reorgs": [
+        0.054000000000000006,
+        0.049,
+        0.044000000000000004,
+        0.03900000000000001,
+        0.034
+      ],
+      "ipr_change": 5.0,
+      "coupling_change": 20.0,
+      "reorg_change": 0.020000000000000004
+    }
+  },
+  "validation_metrics": {
+    "delocalization_factor_valid": true,
+    "coupling_enhancement_valid": true,
+    "reorganization_factor_valid": true,
+    "total_enhancement_valid": true,
+    "synergistic_effect_valid": true,
+    "overall_valid": true
+  },
+  "plots": {
+    "plot_file": "/Users/xingqiangchen/sci-simukit/experiments/exp_5_synergy/figures/synergy_analysis.png"
+  }
+}

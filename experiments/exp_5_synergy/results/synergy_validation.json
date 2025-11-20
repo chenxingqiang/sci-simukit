@@ -1,0 +1,47 @@
+{
+  "experiment": "exp_5_synergy",
+  "molecule_system": "4\u00d7C60",
+  "atoms_total": 240,
+  "f_deloc": 1.7770209527873226,
+  "f_coupling": 1.7502104031954746,
+  "f_reorg": 1.5000139594753124,
+  "f_nonlinear": 1.75,
+  "f_total": 8.164247443811533,
+  "mobility_enhancement": "300%",
+  "physical_mechanism": "\u975e\u52a0\u6027\u534f\u540c\u6548\u5e94 (f_nonlinear=1.75) \u5bfc\u81f4\u603b\u589e\u5f3a\u8fdc\u8d85\u7ebf\u6027\u53e0\u52a0",
+  "validation": {
+    "f_deloc": {
+      "predicted": [
+        1.7,
+        1.9
+      ],
+      "measured": 1.7770209527873226,
+      "passed": true
+    },
+    "f_coupling": {
+      "predicted": [
+        1.7,
+        1.9
+      ],
+      "measured": 1.7502104031954746,
+      "passed": true
+    },
+    "f_reorg": {
+      "predicted": [
+        1.4,
+        1.6
+      ],
+      "measured": 1.5000139594753124,
+      "passed": true
+    },
+    "f_total": {
+      "predicted": [
+        8.0,
+        9.5
+      ],
+      "measured": 8.164247443811533,
+      "passed": true
+    }
+  },
+  "overall_success": true
+}

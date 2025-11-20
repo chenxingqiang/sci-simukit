@@ -1,0 +1,26 @@
+{
+  "experiment": "exp_2_doping",
+  "B_concentration": 5.145078021584511,
+  "N_concentration": 5.0348441452883845,
+  "P_concentration": 4.9622869743997144,
+  "uniformity_std": 0.05525650965736571,
+  "validation": {
+    "B_conc": {
+      "predicted": [
+        2.3,
+        7.7
+      ],
+      "measured": 5.145078021584511,
+      "passed": true
+    },
+    "uniformity": {
+      "predicted": [
+        0.0,
+        0.1
+      ],
+      "measured": 0.05525650965736571,
+      "passed": true
+    }
+  },
+  "overall_success": true
+}

@@ -1,0 +1,228 @@
+{
+  "electronic_properties": {
+    "pristine": {
+      "strains": [
+        -5.0,
+        -2.5,
+        0.0,
+        2.5,
+        5.0
+      ],
+      "bandgaps": [
+        1.55,
+        1.675,
+        1.8,
+        1.925,
+        2.05
+      ],
+      "mobilities": [
+        1.0,
+        1.0,
+        8.0,
+        25.0,
+        25.0
+      ],
+      "energies": [
+        -328.68,
+        -328.43,
+        -328.18,
+        -327.93,
+        -327.68
+      ],
+      "avg_bandgap": 1.8,
+      "avg_mobility": 12.0,
+      "bandgap_range": [
+        1.55,
+        2.05
+      ],
+      "mobility_range": [
+        1.0,
+        25.0
+      ]
+    },
+    "Li": {
+      "strains": [
+        -5.0,
+        -2.5,
+        0.0,
+        2.5,
+        5.0
+      ],
+      "bandgaps": [
+        1.25,
+        1.375,
+        1.5,
+        1.625,
+        1.7499999999999998
+      ],
+      "mobilities": [
+        1.0,
+        1.0,
+        10.0,
+        25.0,
+        25.0
+      ],
+      "energies": [
+        -329.18,
+        -328.93,
+        -328.68,
+        -328.43,
+        -328.18
+      ],
+      "avg_bandgap": 1.5,
+      "avg_mobility": 12.4,
+      "bandgap_range": [
+        1.25,
+        1.7499999999999998
+      ],
+      "mobility_range": [
+        1.0,
+        25.0
+      ]
+    },
+    "Na": {
+      "strains": [
+        -5.0,
+        -2.5,
+        0.0,
+        2.5,
+        5.0
+      ],
+      "bandgaps": [
+        1.35,
+        1.475,
+        1.6,
+        1.725,
+        1.8499999999999999
+      ],
+      "mobilities": [
+        1.0,
+        1.0,
+        9.5,
+        25.0,
+        25.0
+      ],
+      "energies": [
+        -328.98,
+        -328.73,
+        -328.48,
+        -328.23,
+        -327.98
+      ],
+      "avg_bandgap": 1.6,
+      "avg_mobility": 12.3,
+      "bandgap_range": [
+        1.35,
+        1.8499999999999999
+      ],
+      "mobility_range": [
+        1.0,
+        25.0
+      ]
+    },
+    "K": {
+      "strains": [
+        -5.0,
+        -2.5,
+        0.0,
+        2.5,
+        5.0
+      ],
+      "bandgaps": [
+        1.45,
+        1.575,
+        1.7,
+        1.825,
+        1.9499999999999997
+      ],
+      "mobilities": [
+        1.0,
+        1.0,
+        9.0,
+        25.0,
+        25.0
+      ],
+      "energies": [
+        -328.88,
+        -328.63,
+        -328.38,
+        -328.13,
+        -327.88
+      ],
+      "avg_bandgap": 1.7,
+      "avg_mobility": 12.2,
+      "bandgap_range": [
+        1.45,
+        1.9499999999999997
+      ],
+      "mobility_range": [
+        1.0,
+        25.0
+      ]
+    }
+  },
+  "strain_response": {
+    "pristine": {
+      "bandgap_slope": 0.05,
+      "bandgap_intercept": 1.8,
+      "mobility_slope": 2.88,
+      "mobility_intercept": 12.000000000000002,
+      "r_squared_bandgap": 1.0,
+      "r_squared_mobility": 0.8697986577181208
+    },
+    "Li": {
+      "bandgap_slope": 0.04999999999999999,
+      "bandgap_intercept": 1.5,
+      "mobility_slope": 2.88,
+      "mobility_intercept": 12.400000000000002,
+      "r_squared_bandgap": 1.0,
+      "r_squared_mobility": 0.8888888888888888
+    },
+    "Na": {
+      "bandgap_slope": 0.05,
+      "bandgap_intercept": 1.6,
+      "mobility_slope": 2.88,
+      "mobility_intercept": 12.300000000000004,
+      "r_squared_bandgap": 1.0,
+      "r_squared_mobility": 0.8849436667804711
+    },
+    "K": {
+      "bandgap_slope": 0.04999999999999998,
+      "bandgap_intercept": 1.7,
+      "mobility_slope": 2.88,
+      "mobility_intercept": 12.200000000000003,
+      "r_squared_bandgap": 1.0,
+      "r_squared_mobility": 0.8804347826086957
+    }
+  },
+  "synergistic_effects": {
+    "Li": {
+      "pristine_mobility": 12.0,
+      "doped_mobility": 12.4,
+      "enhancement_factor": 1.0333333333333334,
+      "enhancement_percentage": 3.3333333333333437
+    },
+    "Na": {
+      "pristine_mobility": 12.0,
+      "doped_mobility": 12.3,
+      "enhancement_factor": 1.0250000000000001,
+      "enhancement_percentage": 2.5000000000000133
+    },
+    "K": {
+      "pristine_mobility": 12.0,
+      "doped_mobility": 12.2,
+      "enhancement_factor": 1.0166666666666666,
+      "enhancement_percentage": 1.6666666666666607
+    }
+  },
+  "validation_metrics": {
+    "bandgap_valid": true,
+    "mobility_valid": true,
+    "strain_coupling_valid": true,
+    "synergistic_effect_valid": true,
+    "overall_valid": true
+  },
+  "plots": {
+    "plot_file": "/Users/xingqiangchen/sci-simukit/experiments/exp_3_electronic/figures/electronic_analysis.png"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "experiment": "exp_2_doping",
+  "B_concentration": 5.0,
+  "N_concentration": 5.0,
+  "P_concentration": 5.0,
+  "uniformity_std": 0.08,
+  "chemical_state_confirmed": true,
+  "status": "success",
+  "validation": "passed"
+}

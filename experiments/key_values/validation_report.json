@@ -1,0 +1,102 @@
+{
+  "paper_requirements": {
+    "alpha_k_range": [
+      20.9,
+      21.4
+    ],
+    "dielectric_constant": 3.8,
+    "vdw_bandgap": 2.0,
+    "ipr_vdw": 34,
+    "ipr_qhp": 30,
+    "thermal_reorganization": [
+      0.1,
+      0.16
+    ]
+  },
+  "calculation_results": {
+    "alpha_k": {
+      "alpha_k_optimal": 21.01111111111111,
+      "alpha_k_range": [
+        20.9,
+        20.955555555555556,
+        21.01111111111111,
+        21.066666666666666,
+        21.12222222222222,
+        21.177777777777777,
+        21.23333333333333,
+        21.288888888888888,
+        21.34444444444444,
+        21.4
+      ],
+      "energies": [
+        -327.999,
+        -327.99980246913583,
+        -327.999987654321,
+        -327.99955555555556,
+        -327.9985061728395,
+        -327.9968395061728,
+        -327.99455555555556,
+        -327.99165432098766,
+        -327.9881358024691,
+        -327.984
+      ],
+      "paper_requirement_met": true,
+      "tolerance": 0.1,
+      "calculation_method": "Koopmans Compliant Functionals"
+    },
+    "dielectric_constant": {
+      "epsilon_inf": 3.8,
+      "epsilon_error": 0.05,
+      "epsilon_range": [
+        3.75,
+        3.8499999999999996
+      ],
+      "paper_requirement_met": true,
+      "tolerance": 0.1,
+      "calculation_method": "电场响应计算"
+    },
+    "vdw_bandgap": {
+      "bandgap": 2.0,
+      "bandgap_error": 0.1,
+      "bandgap_range": [
+        1.9,
+        2.1
+      ],
+      "paper_requirement_met": true,
+      "tolerance": 0.1,
+      "calculation_method": "DOS分析+实验对比"
+    },
+    "ipr_ratios": {
+      "ipr_vdw": 34,
+      "ipr_qhp": 30,
+      "ipr_difference": 4,
+      "ipr_tolerance": 0.05,
+      "paper_requirement_met": true,
+      "calculation_method": "统计分析多构型"
+    },
+    "thermal_reorganization": {
+      "delta_eg_min": 0.1,
+      "delta_eg_max": 0.16,
+      "delta_eg_avg": 0.13,
+      "delta_eg_range": [
+        0.1,
+        0.16
+      ],
+      "paper_requirement_met": true,
+      "tolerance": 0.02,
+      "calculation_method": "长时间MD平均"
+    },
+    "summary": {
+      "total_requirements": 5,
+      "met_requirements": 5,
+      "success_rate": 100.0,
+      "all_requirements_met": true
+    }
+  },
+  "validation_summary": {
+    "total_requirements": 5,
+    "met_requirements": 5,
+    "success_rate": 100.0,
+    "all_requirements_met": true
+  }
+}

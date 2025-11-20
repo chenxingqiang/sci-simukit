@@ -1,0 +1,37 @@
+{
+  "experiment": "exp_6_optimal",
+  "molecule_system": "3\u00d7C60",
+  "atoms_total": 180,
+  "optimal_strain": 2.853963468415067,
+  "optimal_doping": 4.803580809568591,
+  "max_mobility": 21.83034237059874,
+  "mixed_doping_B_N": 19.201463298159045,
+  "activation_energy_reduction": "50%",
+  "validation": {
+    "optimal_strain": {
+      "predicted": [
+        2.0,
+        4.0
+      ],
+      "measured": 2.853963468415067,
+      "passed": true
+    },
+    "optimal_doping": {
+      "predicted": [
+        4.0,
+        6.0
+      ],
+      "measured": 4.803580809568591,
+      "passed": true
+    },
+    "max_mobility": {
+      "predicted": [
+        19.0,
+        23.0
+      ],
+      "measured": 21.83034237059874,
+      "passed": true
+    }
+  },
+  "overall_success": true
+}

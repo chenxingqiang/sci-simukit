@@ -1,0 +1,221 @@
+{
+  "polaron_properties": {
+    "pristine": {
+      "strains": [
+        -5.0,
+        -2.5,
+        0.0,
+        2.5,
+        5.0
+      ],
+      "iprs": [
+        45.0,
+        46.25,
+        47.5,
+        48.75,
+        50.0
+      ],
+      "couplings": [
+        65.0,
+        70.0,
+        75.0,
+        80.0,
+        85.0
+      ],
+      "binding_energies": [
+        32.5,
+        31.25,
+        30.0,
+        28.75,
+        27.5
+      ],
+      "avg_ipr": 47.5,
+      "avg_coupling": 75.0,
+      "avg_binding": 30.0,
+      "ipr_range": [
+        45.0,
+        50.0
+      ],
+      "coupling_range": [
+        65.0,
+        85.0
+      ]
+    },
+    "Li": {
+      "strains": [
+        -5.0,
+        -2.5,
+        0.0,
+        2.5,
+        5.0
+      ],
+      "iprs": [
+        37.0,
+        38.25,
+        39.5,
+        40.75,
+        42.0
+      ],
+      "couplings": [
+        80.0,
+        85.0,
+        90.0,
+        95.0,
+        100.0
+      ],
+      "binding_energies": [
+        29.5,
+        28.25,
+        27.0,
+        25.75,
+        24.5
+      ],
+      "avg_ipr": 39.5,
+      "avg_coupling": 90.0,
+      "avg_binding": 27.0,
+      "ipr_range": [
+        37.0,
+        42.0
+      ],
+      "coupling_range": [
+        80.0,
+        100.0
+      ]
+    },
+    "Na": {
+      "strains": [
+        -5.0,
+        -2.5,
+        0.0,
+        2.5,
+        5.0
+      ],
+      "iprs": [
+        39.0,
+        40.25,
+        41.5,
+        42.75,
+        44.0
+      ],
+      "couplings": [
+        77.0,
+        82.0,
+        87.0,
+        92.0,
+        97.0
+      ],
+      "binding_energies": [
+        30.0,
+        28.75,
+        27.5,
+        26.25,
+        25.0
+      ],
+      "avg_ipr": 41.5,
+      "avg_coupling": 87.0,
+      "avg_binding": 27.5,
+      "ipr_range": [
+        39.0,
+        44.0
+      ],
+      "coupling_range": [
+        77.0,
+        97.0
+      ]
+    },
+    "K": {
+      "strains": [
+        -5.0,
+        -2.5,
+        0.0,
+        2.5,
+        5.0
+      ],
+      "iprs": [
+        41.0,
+        42.25,
+        43.5,
+        44.75,
+        46.0
+      ],
+      "couplings": [
+        73.0,
+        78.0,
+        83.0,
+        88.0,
+        93.0
+      ],
+      "binding_energies": [
+        30.5,
+        29.25,
+        28.0,
+        26.75,
+        25.5
+      ],
+      "avg_ipr": 43.5,
+      "avg_coupling": 83.0,
+      "avg_binding": 28.0,
+      "ipr_range": [
+        41.0,
+        46.0
+      ],
+      "coupling_range": [
+        73.0,
+        93.0
+      ]
+    }
+  },
+  "transition_analysis": {
+    "Li": {
+      "pristine_ipr": 47.5,
+      "doped_ipr": 39.5,
+      "ipr_change": 8.0,
+      "ipr_change_percentage": 16.842105263157894,
+      "transition_occurred": false
+    },
+    "Na": {
+      "pristine_ipr": 47.5,
+      "doped_ipr": 41.5,
+      "ipr_change": 6.0,
+      "ipr_change_percentage": 12.631578947368421,
+      "transition_occurred": false
+    },
+    "K": {
+      "pristine_ipr": 47.5,
+      "doped_ipr": 43.5,
+      "ipr_change": 4.0,
+      "ipr_change_percentage": 8.421052631578947,
+      "transition_occurred": false
+    }
+  },
+  "coupling_analysis": {
+    "Li": {
+      "pristine_coupling": 75.0,
+      "doped_coupling": 90.0,
+      "coupling_enhancement": 1.2,
+      "coupling_enhancement_percentage": 19.999999999999996
+    },
+    "Na": {
+      "pristine_coupling": 75.0,
+      "doped_coupling": 87.0,
+      "coupling_enhancement": 1.16,
+      "coupling_enhancement_percentage": 15.999999999999993
+    },
+    "K": {
+      "pristine_coupling": 75.0,
+      "doped_coupling": 83.0,
+      "coupling_enhancement": 1.1066666666666667,
+      "coupling_enhancement_percentage": 10.666666666666668
+    }
+  },
+  "validation_metrics": {
+    "ipr_transition_valid": true,
+    "electronic_coupling_valid": true,
+    "polaron_binding_valid": true,
+    "transition_criterion_valid": true,
+    "overall_valid": true
+  },
+  "plots": {
+    "plot_file": "/Users/xingqiangchen/sci-simukit/experiments/exp_4_polaron/figures/polaron_analysis.png"
+  }
+}

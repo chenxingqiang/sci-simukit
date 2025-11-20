@@ -1,0 +1,66 @@
+{
+  "start_time": "2025-11-20T14:24:48.817929",
+  "experiments": {
+    "exp_1_structure": {
+      "success": false,
+      "error": "\u5b9e\u9a8c\u76ee\u5f55\u4e0d\u5b58\u5728: /Users/xingqiangchen/sci-simukit/experiments/experiments/exp_1_structure",
+      "confidence": 0.0
+    },
+    "exp_2_doping": {
+      "success": false,
+      "error": "\u5b9e\u9a8c\u76ee\u5f55\u4e0d\u5b58\u5728: /Users/xingqiangchen/sci-simukit/experiments/experiments/exp_2_doping",
+      "confidence": 0.0
+    },
+    "exp_3_electronic": {
+      "success": false,
+      "error": "\u5b9e\u9a8c\u76ee\u5f55\u4e0d\u5b58\u5728: /Users/xingqiangchen/sci-simukit/experiments/experiments/exp_3_electronic",
+      "confidence": 0.0
+    },
+    "exp_4_polaron": {
+      "success": false,
+      "error": "\u5b9e\u9a8c\u76ee\u5f55\u4e0d\u5b58\u5728: /Users/xingqiangchen/sci-simukit/experiments/experiments/exp_4_polaron",
+      "confidence": 0.0
+    },
+    "exp_5_synergy": {
+      "success": false,
+      "error": "\u5b9e\u9a8c\u76ee\u5f55\u4e0d\u5b58\u5728: /Users/xingqiangchen/sci-simukit/experiments/experiments/exp_5_synergy",
+      "confidence": 0.0
+    },
+    "exp_6_optimal": {
+      "success": false,
+      "error": "\u5b9e\u9a8c\u76ee\u5f55\u4e0d\u5b58\u5728: /Users/xingqiangchen/sci-simukit/experiments/experiments/exp_6_optimal",
+      "confidence": 0.0
+    }
+  },
+  "overall_summary": {
+    "total_experiments": 6,
+    "successful_experiments": 0,
+    "average_confidence": 0.0,
+    "critical_experiments_passed": 0,
+    "overall_success": false
+  },
+  "theoretical_validation": {
+    "core_hypothesis_validation": {},
+    "quantitative_predictions_validation": {},
+    "overall_theoretical_support": 0.0
+  },
+  "recommendations": [
+    "\u603b\u4f53\u9a8c\u8bc1\u672a\u901a\u8fc7\uff0c\u9700\u8981\u91cd\u65b0\u68c0\u67e5\u5b9e\u9a8c\u8bbe\u7f6e\u548c\u7406\u8bba\u6a21\u578b",
+    "\u5e73\u5747\u7f6e\u4fe1\u5ea6\u8f83\u4f4e\uff0c\u5efa\u8bae\u589e\u52a0\u5b9e\u9a8c\u91cd\u590d\u6b21\u6570\u548c\u6539\u5584\u6570\u636e\u8d28\u91cf",
+    "\u5173\u952e\u5b9e\u9a8c\u672a\u5168\u90e8\u901a\u8fc7\uff0c\u9700\u8981\u4f18\u5148\u89e3\u51b3\u57fa\u7840\u9a8c\u8bc1\u95ee\u9898",
+    "\u5b9e\u9a8c exp_1_structure \u672a\u6210\u529f\uff0c\u9700\u8981\u68c0\u67e5: ",
+    "\u5b9e\u9a8c exp_1_structure \u7f6e\u4fe1\u5ea6\u8f83\u4f4e\uff0c\u5efa\u8bae\u6539\u5584\u5b9e\u9a8c\u6761\u4ef6",
+    "\u5b9e\u9a8c exp_2_doping \u672a\u6210\u529f\uff0c\u9700\u8981\u68c0\u67e5: ",
+    "\u5b9e\u9a8c exp_2_doping \u7f6e\u4fe1\u5ea6\u8f83\u4f4e\uff0c\u5efa\u8bae\u6539\u5584\u5b9e\u9a8c\u6761\u4ef6",
+    "\u5b9e\u9a8c exp_3_electronic \u672a\u6210\u529f\uff0c\u9700\u8981\u68c0\u67e5: ",
+    "\u5b9e\u9a8c exp_3_electronic \u7f6e\u4fe1\u5ea6\u8f83\u4f4e\uff0c\u5efa\u8bae\u6539\u5584\u5b9e\u9a8c\u6761\u4ef6",
+    "\u5b9e\u9a8c exp_4_polaron \u672a\u6210\u529f\uff0c\u9700\u8981\u68c0\u67e5: ",
+    "\u5b9e\u9a8c exp_4_polaron \u7f6e\u4fe1\u5ea6\u8f83\u4f4e\uff0c\u5efa\u8bae\u6539\u5584\u5b9e\u9a8c\u6761\u4ef6",
+    "\u5b9e\u9a8c exp_5_synergy \u672a\u6210\u529f\uff0c\u9700\u8981\u68c0\u67e5: ",
+    "\u5b9e\u9a8c exp_5_synergy \u7f6e\u4fe1\u5ea6\u8f83\u4f4e\uff0c\u5efa\u8bae\u6539\u5584\u5b9e\u9a8c\u6761\u4ef6",
+    "\u5b9e\u9a8c exp_6_optimal \u672a\u6210\u529f\uff0c\u9700\u8981\u68c0\u67e5: ",
+    "\u5b9e\u9a8c exp_6_optimal \u7f6e\u4fe1\u5ea6\u8f83\u4f4e\uff0c\u5efa\u8bae\u6539\u5584\u5b9e\u9a8c\u6761\u4ef6"
+  ],
+  "end_time": "2025-11-20T14:24:48.818306",
+  "total_time": 0.0003819465637207031
+}

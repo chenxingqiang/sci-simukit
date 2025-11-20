@@ -1,0 +1,26 @@
+{
+  "experiment": "exp_3_electronic",
+  "band_gap": 1.877963006047516,
+  "mobility": 16.38808391669215,
+  "strain_coupling_beta": 8.2,
+  "enhancement_factor": 3.12,
+  "validation": {
+    "band_gap": {
+      "predicted": [
+        1.2,
+        2.4
+      ],
+      "measured": 1.877963006047516,
+      "passed": true
+    },
+    "mobility": {
+      "predicted": [
+        5.2,
+        21.4
+      ],
+      "measured": 16.38808391669215,
+      "passed": true
+    }
+  },
+  "overall_success": true
+}

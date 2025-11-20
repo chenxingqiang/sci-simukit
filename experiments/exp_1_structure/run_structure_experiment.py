@@ -13,6 +13,9 @@ import time
 import logging
 from typing import Dict, List, Tuple
 import os
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from c60_coordinates import format_c60_coordinates_for_cp2k
 
 # 设置日志
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -84,12 +87,8 @@ class StructureExperimentRunner:
     &END CELL
     
     &COORD
-      C  0.000000  0.000000  0.000000
-      C  1.400000  0.000000  0.000000
-      C  0.700000  1.212436  0.000000
-      C -0.700000  1.212436  0.000000
-      C -1.400000  0.000000  0.000000
-      C -0.700000 -1.212436  0.000000
+      # C60分子坐标 (完整结构)
+{format_c60_coordinates_for_cp2k()}
     &END COORD
     
     &KIND C

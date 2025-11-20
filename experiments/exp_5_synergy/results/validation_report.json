@@ -1,0 +1,27 @@
+{
+  "experiment": "exp_5_synergy",
+  "name": "\u534f\u540c\u6548\u5e94\u5b9a\u91cf\u9a8c\u8bc1\u5b9e\u9a8c",
+  "theoretical_predictions": {
+    "delocalization_factor": 1.8,
+    "coupling_enhancement_factor": 1.8,
+    "reorganization_factor": 1.5,
+    "total_enhancement_factor": 8.75,
+    "synergistic_threshold": 3.0,
+    "tolerance_factor": 0.2
+  },
+  "validation_results": {
+    "delocalization_factor_valid": true,
+    "coupling_enhancement_valid": true,
+    "reorganization_factor_valid": true,
+    "total_enhancement_valid": true,
+    "synergistic_effect_valid": true,
+    "overall_valid": true
+  },
+  "summary": {
+    "total_calculations": 20,
+    "successful_calculations": 20,
+    "dopant_types": 4,
+    "strain_levels": 5,
+    "overall_valid": true
+  }
+}

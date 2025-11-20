@@ -1,0 +1,33 @@
+{
+  "experiment": "exp_3_electronic",
+  "name": "\u7535\u5b50\u6027\u8d28\u6d4b\u91cf\u5b9e\u9a8c",
+  "theoretical_predictions": {
+    "bandgap_range": [
+      1.2,
+      2.4
+    ],
+    "mobility_range": [
+      5.2,
+      21.4
+    ],
+    "strain_coupling_param": 8.2,
+    "synergistic_enhancement": 3.0,
+    "tolerance_bandgap": 0.2,
+    "tolerance_mobility": 2.0,
+    "tolerance_coupling": 0.5
+  },
+  "validation_results": {
+    "bandgap_valid": true,
+    "mobility_valid": true,
+    "strain_coupling_valid": true,
+    "synergistic_effect_valid": true,
+    "overall_valid": true
+  },
+  "summary": {
+    "total_calculations": 20,
+    "successful_calculations": 20,
+    "dopant_types": 4,
+    "strain_levels": 5,
+    "overall_valid": true
+  }
+}

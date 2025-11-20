@@ -1,169 +1,126 @@
 {
   "doping_concentrations": {
-    "Li": {
+    "pristine": {
       "concentrations": [
+        0.025,
         0.05,
-        0.1,
-        0.15,
-        0.2
+        0.075
       ],
       "binding_energies": [
-        0.970101351552253,
-        1.141125374122843,
-        1.5648308852905446,
-        0.9292862128422967
+        1.4001414188839834,
+        1.2298453918905952,
+        1.257638181874438
       ],
       "total_energies": [
+        -328.18,
+        -328.18,
+        -328.18
+      ],
+      "avg_binding_energy": 1.2958749975496724,
+      "binding_energy_std": 0.07459546347765648
+    },
+    "B": {
+      "concentrations": [
+        0.025,
+        0.05,
+        0.075
+      ],
+      "binding_energies": [
+        1.5252702699134921,
+        1.602950587286735,
+        1.5610033476611782
+      ],
+      "total_energies": [
+        -328.305,
         -328.43,
-        -328.68,
-        -328.93,
-        -329.18
+        -328.555
       ],
-      "avg_binding_energy": 1.1513359559519845,
-      "binding_energy_std": 0.2516119943568847
+      "avg_binding_energy": 1.563074734953802,
+      "binding_energy_std": 0.03174666293002528
     },
-    "Na": {
+    "N": {
       "concentrations": [
+        0.025,
         0.05,
-        0.1,
-        0.15,
-        0.2
+        0.075
       ],
       "binding_energies": [
-        1.0075930047113402,
-        1.4955339035285293,
-        1.502869238867873,
-        1.6235575224677636
-      ],
-      "total_energies": [
-        -328.33,
-        -328.48,
-        -328.63,
-        -328.78000000000003
-      ],
-      "avg_binding_energy": 1.4073884173938764,
-      "binding_energy_std": 0.2363533731437465
-    },
-    "K": {
-      "concentrations": [
-        0.05,
-        0.1,
-        0.15,
-        0.2
-      ],
-      "binding_energies": [
-        1.7870461502821464,
-        1.858465170174508,
-        1.8453358275426535,
-        1.8944407832670054
-      ],
-      "total_energies": [
-        -328.28000000000003,
-        -328.38,
-        -328.48,
-        -328.58
-      ],
-      "avg_binding_energy": 1.8463219828165782,
-      "binding_energy_std": 0.038657058801957855
-    },
-    "Rb": {
-      "concentrations": [
-        0.05,
-        0.1,
-        0.15,
-        0.2
-      ],
-      "binding_energies": [
-        1.3863746949798075,
-        1.7735420469371188,
-        1.6068797053253128,
-        1.4786791600164995
+        1.4467822176006435,
+        1.607630212895426,
+        1.5080776213958393
       ],
       "total_energies": [
         -328.255,
         -328.33,
-        -328.40500000000003,
-        -328.48
+        -328.40500000000003
       ],
-      "avg_binding_energy": 1.5613689018146846,
-      "binding_energy_std": 0.14538676226856662
+      "avg_binding_energy": 1.520830017297303,
+      "binding_energy_std": 0.06628215998546591
     },
-    "Cs": {
+    "P": {
       "concentrations": [
+        0.025,
         0.05,
-        0.1,
-        0.15,
-        0.2
+        0.075
       ],
       "binding_energies": [
-        1.754492670207596,
-        1.3681584147434227,
-        1.8755405058252748,
-        1.4523022995500259
+        1.4533393455954207,
+        1.416613240611057,
+        1.6701467323251198
       ],
       "total_energies": [
         -328.23,
         -328.28000000000003,
-        -328.33,
-        -328.38
+        -328.33
       ],
-      "avg_binding_energy": 1.61262347258158,
-      "binding_energy_std": 0.20899657810042177
+      "avg_binding_energy": 1.5133664395105324,
+      "binding_energy_std": 0.11186970652832824
     }
   },
   "binding_energies": {
-    "mean": 1.5158077461117407,
-    "std": 0.3002552122191581,
-    "min": 0.9292862128422967,
-    "max": 1.8944407832670054,
+    "mean": 1.4732865473278274,
+    "std": 0.1293097498989074,
+    "min": 1.2298453918905952,
+    "max": 1.6701467323251198,
     "range_valid": true
   },
   "chemical_states": {
-    "Li": {
+    "pristine": {
       "oxidation_state": "+1",
       "coordination": "interstitial",
       "stability": "stable"
     },
-    "Na": {
+    "B": {
       "oxidation_state": "+1",
       "coordination": "interstitial",
       "stability": "stable"
     },
-    "K": {
+    "N": {
       "oxidation_state": "+1",
       "coordination": "interstitial",
       "stability": "stable"
     },
-    "Rb": {
-      "oxidation_state": "+1",
-      "coordination": "interstitial",
-      "stability": "stable"
-    },
-    "Cs": {
+    "P": {
       "oxidation_state": "+1",
       "coordination": "interstitial",
       "stability": "stable"
     }
   },
   "uniformity_analysis": {
-    "Li": {
-      "uniformity_score": 0.7814608385535577,
-      "is_uniform": false
-    },
-    "Na": {
-      "uniformity_score": 0.83206244259036,
+    "pristine": {
+      "uniformity_score": 0.9424362198370162,
       "is_uniform": true
     },
-    "K": {
-      "uniformity_score": 0.9790626666628395,
+    "B": {
+      "uniformity_score": 0.979689606504347,
       "is_uniform": true
     },
-    "Rb": {
-      "uniformity_score": 0.9068850659830663,
+    "N": {
+      "uniformity_score": 0.9564171148441315,
       "is_uniform": true
     },
-    "Cs": {
-      "uniformity_score": 0.8703996427846556,
+    "P": {
+      "uniformity_score": 0.9260789035572177,
       "is_uniform": true
     }
   },

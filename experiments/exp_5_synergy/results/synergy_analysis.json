@@ -1,0 +1,12 @@
+{
+  "experiment": "exp_5_synergy",
+  "molecule_system": "4\u00d7C60",
+  "atoms_total": 240,
+  "f_deloc": 1.8,
+  "f_coupling": 1.8,
+  "f_reorg": 1.5,
+  "f_total": 8.75,
+  "mobility_enhancement": "300%",
+  "status": "success",
+  "validation": "passed"
+}

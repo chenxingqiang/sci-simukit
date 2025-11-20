@@ -407,13 +407,21 @@ class ComprehensiveExperimentRunner:
         
         experiment_list = ['exp_1_structure', 'exp_2_doping']
         return self.run_all_experiments(experiment_list)
+    
+    def run_all_6_experiments(self):
+        """运行所有6个实验"""
+        logger.info("🎯 运行所有6个实验")
+        
+        experiment_list = ['exp_1_structure', 'exp_2_doping', 'exp_3_electronic', 
+                          'exp_4_polaron', 'exp_5_synergy', 'exp_6_optimal']
+        return self.run_all_experiments(experiment_list)
 
 def main():
     """主函数"""
     runner = ComprehensiveExperimentRunner()
     
-    # 运行实验1和2
-    results = runner.run_experiments_1_and_2()
+    # 运行所有6个实验
+    results = runner.run_all_6_experiments()
     
     # 输出总结
     comprehensive_report = results['comprehensive_report']

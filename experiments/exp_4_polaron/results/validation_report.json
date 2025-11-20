@@ -1,0 +1,30 @@
+{
+  "experiment": "exp_4_polaron",
+  "name": "\u6781\u5316\u5b50\u8f6c\u53d8\u9a8c\u8bc1\u5b9e\u9a8c",
+  "theoretical_predictions": {
+    "ipr_vdw": 34,
+    "ipr_qhp": 30,
+    "ipr_tolerance": 0.05,
+    "electronic_coupling_initial": 75,
+    "electronic_coupling_final": 135,
+    "polaron_binding_energy": 20,
+    "transition_criterion": true,
+    "tolerance_ipr": 2,
+    "tolerance_coupling": 10,
+    "tolerance_binding": 5
+  },
+  "validation_results": {
+    "ipr_transition_valid": true,
+    "electronic_coupling_valid": true,
+    "polaron_binding_valid": true,
+    "transition_criterion_valid": true,
+    "overall_valid": true
+  },
+  "summary": {
+    "total_calculations": 20,
+    "successful_calculations": 20,
+    "dopant_types": 4,
+    "strain_levels": 5,
+    "overall_valid": true
+  }
+}

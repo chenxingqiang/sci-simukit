@@ -1,0 +1,62 @@
+{
+  "strain_-5.0": {
+    "total_energy": -340.90565888908924,
+    "lattice_parameters": {
+      "a": 34.8365,
+      "b": 29.298
+    },
+    "convergence": true,
+    "n_atoms": 60,
+    "strain": -5.0,
+    "calculation_time": 737.4237759113312,
+    "status": "success"
+  },
+  "strain_-2.5": {
+    "total_energy": -340.90565068207525,
+    "lattice_parameters": {
+      "a": 35.75325,
+      "b": 30.069
+    },
+    "convergence": true,
+    "n_atoms": 60,
+    "strain": -2.5,
+    "calculation_time": 1327.7167532444,
+    "status": "success"
+  },
+  "strain_0.0": {
+    "total_energy": -340.9056705736803,
+    "lattice_parameters": {
+      "a": 36.67,
+      "b": 30.84
+    },
+    "convergence": true,
+    "n_atoms": 60,
+    "strain": 0.0,
+    "calculation_time": 1097.8709812164307,
+    "status": "success"
+  },
+  "strain_2.5": {
+    "total_energy": -340.9056695720283,
+    "lattice_parameters": {
+      "a": 37.58675,
+      "b": 31.611
+    },
+    "convergence": true,
+    "n_atoms": 60,
+    "strain": 2.5,
+    "calculation_time": 1356.974704027176,
+    "status": "success"
+  },
+  "strain_5.0": {
+    "total_energy": -340.9056572509314,
+    "lattice_parameters": {
+      "a": 38.5035,
+      "b": 32.382
+    },
+    "convergence": true,
+    "n_atoms": 60,
+    "strain": 5.0,
+    "calculation_time": 1327.0765550136566,
+    "status": "success"
+  }
+}

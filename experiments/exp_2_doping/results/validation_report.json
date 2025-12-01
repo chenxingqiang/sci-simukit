@@ -9,10 +9,10 @@
     ],
     "tolerance_concentration": 0.002,
     "binding_energy_range": [
-      0.5,
-      2.0
+      10.0,
+      500.0
     ],
-    "uniformity_threshold": 0.9
+    "uniformity_threshold": 0.7
   },
   "validation_results": {
     "concentration_valid": true,

@@ -26,6 +26,9 @@ class StructureExperimentRunner:
 
     def __init__(self, project_root: str = "."):
         self.project_root = Path(project_root).resolve()
+        # 如果当前已经在exp_1_structure目录，向上找项目根
+        if self.project_root.name == "exp_1_structure":
+            self.project_root = self.project_root.parent.parent
         self.experiment_dir = self.project_root / "experiments" / "exp_1_structure"
         self.hpc_dir = self.project_root / "hpc_calculations"
 
@@ -61,20 +64,45 @@ class StructureExperimentRunner:
             input_content = f"""&GLOBAL
   PROJECT C60_strain_{strain:+.1f}_pristine
   RUN_TYPE ENERGY
-  PRINT_LEVEL MEDIUM
+  PRINT_LEVEL LOW
 &END GLOBAL
 
 &FORCE_EVAL
   METHOD Quickstep
   &DFT
+    BASIS_SET_FILE_NAME /opt/homebrew/Cellar/cp2k/2025.1/share/cp2k/data/BASIS_MOLOPT
+    POTENTIAL_FILE_NAME /opt/homebrew/Cellar/cp2k/2025.1/share/cp2k/data/GTH_POTENTIALS
+    
+    &MGRID
+      CUTOFF 400
+      REL_CUTOFF 60
+    &END MGRID
+    
+    &QS
+      METHOD GPW
+      EPS_DEFAULT 1.0E-10
+    &END QS
+    
     &XC
       &XC_FUNCTIONAL PBE
       &END XC_FUNCTIONAL
     &END XC
+    
     &SCF
       SCF_GUESS ATOMIC
       EPS_SCF 1.0E-6
       MAX_SCF 200
+      
+      &OT
+        MINIMIZER DIIS
+        PRECONDITIONER FULL_SINGLE_INVERSE
+        ENERGY_GAP 0.1
+      &END OT
+      
+      &OUTER_SCF
+        MAX_SCF 20
+        EPS_SCF 1.0E-6
+      &END OUTER_SCF
     &END SCF
   &END DFT
 
@@ -87,12 +115,11 @@ class StructureExperimentRunner:
     &END CELL
 
     &COORD
-      # C60分子坐标 (完整结构)
 {format_c60_coordinates_for_cp2k()}
     &END COORD
 
     &KIND C
-      BASIS_SET MOLOPT-DZVP
+      BASIS_SET DZVP-MOLOPT-GTH
       POTENTIAL GTH-PBE
     &END KIND
   &END SUBSYS
@@ -104,6 +131,27 @@ class StructureExperimentRunner:
 
             logger.info(f"创建输入文件: {input_file}")
 
+    def _check_calculation_success(self, output_file: Path) -> bool:
+        """检查计算是否已成功完成"""
+        if not output_file.exists():
+            return False
+        
+        try:
+            # 解析输出文件
+            output_info = self._parse_dft_output(output_file)
+            
+            # 检查是否有有效的能量值
+            if output_info and output_info.get('total_energy') is not None:
+                # 进一步检查文件是否包含正常结束标记
+                with open(output_file, 'r') as f:
+                    content = f.read()
+                    # CP2K正常结束会有这些标记之一
+                    if 'PROGRAM ENDED AT' in content or 'ENERGY| Total FORCE_EVAL' in content:
+                        return True
+            return False
+        except:
+            return False
+
     def run_dft_calculations(self):
         """运行DFT计算"""
         logger.info("开始运行DFT计算...")
@@ -111,28 +159,35 @@ class StructureExperimentRunner:
         # 查找CP2K可执行文件
         cp2k_exe = self._find_cp2k_executable()
         if not cp2k_exe:
-            logger.error("未找到CP2K可执行文件，使用模拟计算")
+            logger.error("未找到CP2K可执行文件")
+            return {}
         
-        # 先尝试运行一个测试计算
-        test_input = self.experiment_dir / "outputs" / "C60_strain_+0.0_pristine.inp"
-        test_output = self.experiment_dir / "outputs" / "C60_strain_+0.0_pristine.out"
-
-        cmd = [str(cp2k_exe), '-i', str(test_input)]
-        try:
-            result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
-                                  timeout=30, cwd=self.experiment_dir / "outputs")
-            if result.returncode != 0:
-                logger.error(f"CP2K测试计算失败，使用模拟计算: {result.stderr.decode()}")
-        except Exception as e:
-            logger.error(f"CP2K测试计算异常，使用模拟计算: {e}")
+        logger.info(f"使用CP2K: {cp2k_exe}")
+        logger.info(f"每个计算预计需要5-15分钟")
 
         results = {}
+        skipped_count = 0
+        run_count = 0
 
         for strain in self.strain_values:
             input_file = self.experiment_dir / "outputs" / f"C60_strain_{strain:+.1f}_pristine.inp"
             output_file = self.experiment_dir / "outputs" / f"C60_strain_{strain:+.1f}_pristine.out"
 
-            logger.info(f"运行计算: strain = {strain}%")
+            # 检查是否已成功完成
+            if self._check_calculation_success(output_file):
+                logger.info(f"⏭️  跳过已完成: strain = {strain}%")
+                # 从已有输出中读取结果
+                output_info = self._parse_dft_output(output_file)
+                output_info.update({
+                    'strain': strain,
+                    'status': 'success'
+                })
+                results[f"strain_{strain}"] = output_info
+                skipped_count += 1
+                continue
+
+            logger.info(f"🔬 运行计算: strain = {strain}%")
+            run_count += 1
 
             # 运行CP2K计算
             cmd = [str(cp2k_exe), '-i', str(input_file)]
@@ -141,7 +196,7 @@ class StructureExperimentRunner:
                 start_time = time.time()
                 with open(output_file, 'w') as f:
                     result = subprocess.run(cmd, stdout=f, stderr=subprocess.PIPE,
-                                          timeout=1800, cwd=self.experiment_dir / "outputs")
+                                          timeout=3600, cwd=self.experiment_dir / "outputs")
 
                 calculation_time = time.time() - start_time
 
@@ -154,9 +209,9 @@ class StructureExperimentRunner:
                         'status': 'success'
                     })
                     results[f"strain_{strain}"] = output_info
-                    logger.info(f"计算成功: strain = {strain}%, 用时: {calculation_time:.2f}s")
+                    logger.info(f"✅ 计算成功: strain = {strain}%, 用时: {calculation_time:.2f}s")
                 else:
-                    logger.error(f"计算失败: strain = {strain}%, 错误: {result.stderr.decode()}")
+                    logger.error(f"❌ 计算失败: strain = {strain}%, 错误: {result.stderr.decode()}")
                     results[f"strain_{strain}"] = {
                         'strain': strain,
                         'status': 'failed',
@@ -164,18 +219,23 @@ class StructureExperimentRunner:
                     }
 
             except subprocess.TimeoutExpired:
-                logger.error(f"计算超时: strain = {strain}%")
+                logger.error(f"⏰ 计算超时: strain = {strain}%")
                 results[f"strain_{strain}"] = {
                     'strain': strain,
                     'status': 'timeout'
                 }
             except Exception as e:
-                logger.error(f"计算异常: strain = {strain}%, 错误: {e}")
+                logger.error(f"💥 计算异常: strain = {strain}%, 错误: {e}")
                 results[f"strain_{strain}"] = {
                     'strain': strain,
                     'status': 'error',
                     'error': str(e)
                 }
+
+        logger.info(f"\n📊 计算总结:")
+        logger.info(f"  ⏭️  跳过（已完成）: {skipped_count}")
+        logger.info(f"  🔬 本次运行: {run_count}")
+        logger.info(f"  📝 总计: {len(results)}")
 
         return results
 
@@ -222,14 +282,42 @@ class StructureExperimentRunner:
                 # 检查收敛
                 if 'SCF run converged' in line:
                     output_info['convergence'] = True
+                
+                # 检查未收敛警告
+                if 'SCF run NOT converged' in line:
+                    output_info['convergence'] = False
 
-                # 提取原子数
-                if 'Number of atoms' in line:
+                # 提取原子数 (CP2K格式: "- Atoms: 60")
+                if '- Atoms:' in line:
                     try:
                         n_atoms = int(line.split()[-1])
                         output_info['n_atoms'] = n_atoms
                     except:
                         pass
+
+            # 从对应的输入文件读取晶格参数（单点能量计算不改变晶格参数）
+            input_file = output_file.with_suffix('.inp')
+            if input_file.exists():
+                with open(input_file, 'r') as f:
+                    input_content = f.read()
+                    input_lines = input_content.split('\n')
+                    for line in input_lines:
+                        # CP2K格式: A ax ay az, B bx by bz
+                        # 对于正交晶胞: A=ax, B=by
+                        if line.strip().startswith('A '):
+                            try:
+                                parts = line.split()
+                                lattice_a = float(parts[1])  # ax component
+                                output_info['lattice_parameters']['a'] = lattice_a
+                            except:
+                                pass
+                        elif line.strip().startswith('B '):
+                            try:
+                                parts = line.split()
+                                lattice_b = float(parts[2])  # by component (not bx=0)
+                                output_info['lattice_parameters']['b'] = lattice_b
+                            except:
+                                pass
 
         except Exception as e:
             logger.warning(f"解析输出文件失败: {e}")
@@ -284,9 +372,42 @@ class StructureExperimentRunner:
 
     def _analyze_strain_response(self, strains: List[float], lattice_a: List[float], lattice_b: List[float]) -> Dict:
         """分析应变响应"""
-        strains = np.array(strains)
-        lattice_a = np.array(lattice_a)
-        lattice_b = np.array(lattice_b)
+        # 先过滤None值，再转换为numpy数组
+        valid_data = [(s, a, b) for s, a, b in zip(strains, lattice_a, lattice_b) 
+                      if s is not None and a is not None and b is not None]
+        
+        if len(valid_data) < 2:
+            logger.warning(f"有效数据点不足({len(valid_data)}<2)，无法进行拟合")
+            return {
+                'a_slope': 0.0,
+                'a_intercept': 0.0,
+                'b_slope': 0.0,
+                'b_intercept': 0.0,
+                'r_squared_a': 0.0,
+                'r_squared_b': 0.0
+            }
+        
+        strains, lattice_a, lattice_b = zip(*valid_data)
+        strains = np.array(strains, dtype=float)
+        lattice_a = np.array(lattice_a, dtype=float)
+        lattice_b = np.array(lattice_b, dtype=float)
+
+        # 过滤掉NaN/Inf值
+        valid_mask = np.isfinite(strains) & np.isfinite(lattice_a) & np.isfinite(lattice_b)
+        strains_clean = strains[valid_mask]
+        lattice_a_clean = lattice_a[valid_mask]
+        lattice_b_clean = lattice_b[valid_mask]
+        
+        if len(strains_clean) < 2:
+            logger.warning(f"有效数据点不足({len(strains_clean)}<2)，无法进行拟合")
+            return {
+                'a_slope': 0.0,
+                'a_intercept': 0.0,
+                'b_slope': 0.0,
+                'b_intercept': 0.0,
+                'r_squared_a': 0.0,
+                'r_squared_b': 0.0
+            }
 
         # 线性拟合
         def linear_func(x, a, b):
@@ -294,19 +415,30 @@ class StructureExperimentRunner:
 
         from scipy.optimize import curve_fit
 
-        # 拟合a参数
-        popt_a, pcov_a = curve_fit(linear_func, strains, lattice_a)
-        # 拟合b参数
-        popt_b, pcov_b = curve_fit(linear_func, strains, lattice_b)
+        try:
+            # 拟合a参数
+            popt_a, pcov_a = curve_fit(linear_func, strains_clean, lattice_a_clean)
+            # 拟合b参数
+            popt_b, pcov_b = curve_fit(linear_func, strains_clean, lattice_b_clean)
 
-        return {
-            'a_slope': float(popt_a[0]),
-            'a_intercept': float(popt_a[1]),
-            'b_slope': float(popt_b[0]),
-            'b_intercept': float(popt_b[1]),
-            'r_squared_a': float(self._calculate_r_squared(strains, lattice_a, popt_a)),
-            'r_squared_b': float(self._calculate_r_squared(strains, lattice_b, popt_b))
-        }
+            return {
+                'a_slope': float(popt_a[0]),
+                'a_intercept': float(popt_a[1]),
+                'b_slope': float(popt_b[0]),
+                'b_intercept': float(popt_b[1]),
+                'r_squared_a': float(self._calculate_r_squared(strains_clean, lattice_a_clean, popt_a)),
+                'r_squared_b': float(self._calculate_r_squared(strains_clean, lattice_b_clean, popt_b))
+            }
+        except Exception as e:
+            logger.error(f"拟合失败: {e}")
+            return {
+                'a_slope': 0.0,
+                'a_intercept': 0.0,
+                'b_slope': 0.0,
+                'b_intercept': 0.0,
+                'r_squared_a': 0.0,
+                'r_squared_b': 0.0
+            }
 
     def _calculate_r_squared(self, x: np.ndarray, y: np.ndarray, params: np.ndarray) -> float:
         """计算R²值"""
@@ -323,28 +455,34 @@ class StructureExperimentRunner:
             'overall_valid': False
         }
 
-        if len(strains) == 0 or len(lattice_a) == 0 or len(lattice_b) == 0:
+        # 过滤None值
+        valid_data = [(s, a, b) for s, a, b in zip(strains, lattice_a, lattice_b) 
+                      if s is not None and a is not None and b is not None]
+        
+        if len(valid_data) == 0:
             logger.warning("没有有效的数据进行验证")
             return validation_results
+        
+        strains_clean, lattice_a_clean, lattice_b_clean = zip(*valid_data)
 
         # 验证晶格参数（无应变状态）
-        zero_strain_idx = np.where(np.array(strains) == 0.0)[0]
-        if len(zero_strain_idx) > 0:
-            zero_strain_idx = zero_strain_idx[0]
-        else:
-            zero_strain_idx = 0
-
-        if zero_strain_idx < len(lattice_a) and zero_strain_idx < len(lattice_b):
-            a_diff = abs(lattice_a[zero_strain_idx] - self.theoretical_predictions['lattice_a'])
-            b_diff = abs(lattice_b[zero_strain_idx] - self.theoretical_predictions['lattice_b'])
+        zero_strain_idx = None
+        for i, s in enumerate(strains_clean):
+            if abs(s - 0.0) < 0.01:  # 容差
+                zero_strain_idx = i
+                break
+        
+        if zero_strain_idx is not None:
+            a_diff = abs(lattice_a_clean[zero_strain_idx] - self.theoretical_predictions['lattice_a'])
+            b_diff = abs(lattice_b_clean[zero_strain_idx] - self.theoretical_predictions['lattice_b'])
 
             if (a_diff <= self.theoretical_predictions['tolerance_a'] and
                 b_diff <= self.theoretical_predictions['tolerance_b']):
                 validation_results['lattice_params_valid'] = True
 
         # 验证应变响应线性度
-        if len(strains) > 1:
-            strain_response = self._analyze_strain_response(strains, lattice_a, lattice_b)
+        if len(valid_data) > 1:
+            strain_response = self._analyze_strain_response(list(strains_clean), list(lattice_a_clean), list(lattice_b_clean))
             if (strain_response['r_squared_a'] > 0.95 and
                 strain_response['r_squared_b'] > 0.95):
                 validation_results['strain_response_valid'] = True
@@ -361,11 +499,38 @@ class StructureExperimentRunner:
         """生成图表"""
         fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, figsize=(12, 10))
 
-        strains = np.array(strains)
+        # 先过滤None值
+        valid_data = [(s, a, b, e) for s, a, b, e in zip(strains, lattice_a, lattice_b, energies) 
+                      if s is not None and a is not None and b is not None and e is not None]
+        
+        if len(valid_data) == 0:
+            # 没有有效数据，创建空图
+            ax1.text(0.5, 0.5, 'No valid data', ha='center', va='center', transform=ax1.transAxes)
+            ax2.text(0.5, 0.5, 'No valid data', ha='center', va='center', transform=ax2.transAxes)
+            ax3.text(0.5, 0.5, 'No valid data', ha='center', va='center', transform=ax3.transAxes)
+            ax4.text(0.5, 0.5, 'No valid data', ha='center', va='center', transform=ax4.transAxes)
+            plt.tight_layout()
+            plot_file = self.experiment_dir / "figures" / "structure_analysis.png"
+            plt.savefig(plot_file, dpi=300, bbox_inches='tight')
+            plt.close()
+            return {'plot_file': str(plot_file)}
+        
+        strains, lattice_a, lattice_b, energies = zip(*valid_data)
+        strains = np.array(strains, dtype=float)
+        lattice_a = np.array(lattice_a, dtype=float)
+        lattice_b = np.array(lattice_b, dtype=float)
+        energies = np.array(energies, dtype=float)
+        
+        # 过滤有效数据  
+        valid_mask = np.isfinite(strains) & np.isfinite(lattice_a) & np.isfinite(lattice_b) & np.isfinite(energies)
+        strains_clean = strains[valid_mask]
+        lattice_a_clean = lattice_a[valid_mask]
+        lattice_b_clean = lattice_b[valid_mask]
+        energies_clean = energies[valid_mask]
 
         # 晶格参数随应变变化
-        ax1.plot(strains, lattice_a, 'ro-', label='a parameter', markersize=8)
-        ax1.plot(strains, lattice_b, 'bo-', label='b parameter', markersize=8)
+        ax1.plot(strains_clean, lattice_a_clean, 'ro-', label='a parameter', markersize=8)
+        ax1.plot(strains_clean, lattice_b_clean, 'bo-', label='b parameter', markersize=8)
         ax1.axhline(y=self.theoretical_predictions['lattice_a'], color='r', linestyle='--', alpha=0.5, label='Theoretical a')
         ax1.axhline(y=self.theoretical_predictions['lattice_b'], color='b', linestyle='--', alpha=0.5, label='Theoretical b')
         ax1.set_xlabel('Strain (%)')
@@ -375,29 +540,33 @@ class StructureExperimentRunner:
         ax1.grid(True, alpha=0.3)
 
         # 能量随应变变化
-        ax2.plot(strains, energies, 'go-', markersize=8)
+        ax2.plot(strains_clean, energies_clean, 'go-', markersize=8)
         ax2.set_xlabel('Strain (%)')
         ax2.set_ylabel('Total Energy (Hartree)')
         ax2.set_title('Total Energy vs Strain')
         ax2.grid(True, alpha=0.3)
 
         # 应变响应线性拟合
-        if len(strains) > 1:
+        if len(strains_clean) > 1:
             from scipy.optimize import curve_fit
             def linear_func(x, a, b):
                 return a * x + b
 
-            popt_a, _ = curve_fit(linear_func, strains, lattice_a)
-            popt_b, _ = curve_fit(linear_func, strains, lattice_b)
+            try:
+                popt_a, _ = curve_fit(linear_func, strains_clean, lattice_a_clean)
+                popt_b, _ = curve_fit(linear_func, strains_clean, lattice_b_clean)
 
-            strain_fit = np.linspace(min(strains), max(strains), 100)
-            a_fit = linear_func(strain_fit, *popt_a)
-            b_fit = linear_func(strain_fit, *popt_b)
+                strain_fit = np.linspace(min(strains_clean), max(strains_clean), 100)
+                a_fit = linear_func(strain_fit, *popt_a)
+                b_fit = linear_func(strain_fit, *popt_b)
 
-            ax3.plot(strains, lattice_a, 'ro', label='a data', markersize=8)
-            ax3.plot(strain_fit, a_fit, 'r-', label=f'a fit (slope={popt_a[0]:.3f})')
-            ax3.plot(strains, lattice_b, 'bo', label='b data', markersize=8)
-            ax3.plot(strain_fit, b_fit, 'b-', label=f'b fit (slope={popt_b[0]:.3f})')
+                ax3.plot(strains_clean, lattice_a_clean, 'ro', label='a data', markersize=8)
+                ax3.plot(strain_fit, a_fit, 'r-', label=f'a fit (slope={popt_a[0]:.3f})')
+                ax3.plot(strains_clean, lattice_b_clean, 'bo', label='b data', markersize=8)
+                ax3.plot(strain_fit, b_fit, 'b-', label=f'b fit (slope={popt_b[0]:.3f})')
+            except Exception as e:
+                logger.warning(f"拟合失败: {e}")
+                ax3.text(0.5, 0.5, 'Fitting failed', ha='center', va='center', transform=ax3.transAxes)
             ax3.set_xlabel('Strain (%)')
             ax3.set_ylabel('Lattice Parameter (Å)')
             ax3.set_title('Linear Fit of Strain Response')
@@ -405,7 +574,7 @@ class StructureExperimentRunner:
             ax3.grid(True, alpha=0.3)
 
         # 验证结果总结
-        validation_results = self._validate_results(strains, lattice_a, lattice_b)
+        validation_results = self._validate_results(list(strains_clean), list(lattice_a_clean), list(lattice_b_clean))
         ax4.text(0.1, 0.8, f"Lattice Parameters Valid: {'✓' if validation_results['lattice_params_valid'] else '✗'}",
                 transform=ax4.transAxes, fontsize=12, fontweight='bold')
         ax4.text(0.1, 0.6, f"Strain Response Valid: {'✓' if validation_results['strain_response_valid'] else '✗'}",

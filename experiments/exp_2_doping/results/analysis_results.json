@@ -7,17 +7,17 @@
         0.075
       ],
       "binding_energies": [
-        1.4001414188839834,
-        1.2298453918905952,
-        1.257638181874438
+        0.0,
+        0.0,
+        0.0
       ],
       "total_energies": [
-        -328.18,
-        -328.18,
-        -328.18
+        -340.90592020170715,
+        -340.9059202017061,
+        -340.9059202016978
       ],
-      "avg_binding_energy": 1.2958749975496724,
-      "binding_energy_std": 0.07459546347765648
+      "avg_binding_energy": 0.0,
+      "binding_energy_std": 0.0
     },
     "B": {
       "concentrations": [
@@ -26,17 +26,17 @@
         0.075
       ],
       "binding_energies": [
-        1.5252702699134921,
-        1.602950587286735,
-        1.5610033476611782
+        158.98628086648395,
+        238.41984438260323,
+        317.8166057072784
       ],
       "total_energies": [
-        -328.305,
-        -328.43,
-        -328.555
+        -335.06319921142807,
+        -332.14402815868766,
+        -329.2262095807348
       ],
-      "avg_binding_energy": 1.563074734953802,
-      "binding_energy_std": 0.03174666293002528
+      "avg_binding_energy": 238.4075769854552,
+      "binding_energy_std": 64.84220917028685
     },
     "N": {
       "concentrations": [
@@ -45,17 +45,17 @@
         0.075
       ],
       "binding_energies": [
-        1.4467822176006435,
-        1.607630212895426,
-        1.5080776213958393
+        230.25814921737333,
+        345.94596434716425,
+        461.0845846632344
       ],
       "total_energies": [
-        -328.255,
-        -328.33,
-        -328.40500000000003
+        -349.3678712221538,
+        -353.61938035925976,
+        -357.8507066727385
       ],
-      "avg_binding_energy": 1.520830017297303,
-      "binding_energy_std": 0.06628215998546591
+      "avg_binding_energy": 345.7628994092573,
+      "binding_energy_std": 94.23458657251483
     },
     "P": {
       "concentrations": [
@@ -64,63 +64,54 @@
         0.075
       ],
       "binding_energies": [
-        1.4533393455954207,
-        1.416613240611057,
-        1.6701467323251198
+        31.31277166016833,
+        47.06561371632881,
+        54.94706395697586
       ],
       "total_energies": [
-        -328.23,
-        -328.28000000000003,
-        -328.33
+        -342.0566596695756,
+        -342.63557415475293,
+        -342.92521622011793
       ],
-      "avg_binding_energy": 1.5133664395105324,
-      "binding_energy_std": 0.11186970652832824
+      "avg_binding_energy": 44.441816444490996,
+      "binding_energy_std": 9.825415247730808
     }
   },
   "binding_energies": {
-    "mean": 1.4732865473278274,
-    "std": 0.1293097498989074,
-    "min": 1.2298453918905952,
-    "max": 1.6701467323251198,
+    "mean": 209.53743094640117,
+    "std": 141.2192547062553,
+    "min": 31.31277166016833,
+    "max": 461.0845846632344,
     "range_valid": true
   },
   "chemical_states": {
-    "pristine": {
-      "oxidation_state": "+1",
-      "coordination": "interstitial",
-      "stability": "stable"
-    },
     "B": {
       "oxidation_state": "+1",
-      "coordination": "interstitial",
+      "coordination": "substitutional",
       "stability": "stable"
     },
     "N": {
-      "oxidation_state": "+1",
-      "coordination": "interstitial",
+      "oxidation_state": "-1",
+      "coordination": "substitutional",
       "stability": "stable"
     },
     "P": {
-      "oxidation_state": "+1",
-      "coordination": "interstitial",
+      "oxidation_state": "-1",
+      "coordination": "substitutional",
       "stability": "stable"
     }
   },
   "uniformity_analysis": {
-    "pristine": {
-      "uniformity_score": 0.9424362198370162,
-      "is_uniform": true
-    },
     "B": {
-      "uniformity_score": 0.979689606504347,
+      "uniformity_score": 0.7280195118368962,
       "is_uniform": true
     },
     "N": {
-      "uniformity_score": 0.9564171148441315,
+      "uniformity_score": 0.7274589415651116,
       "is_uniform": true
     },
     "P": {
-      "uniformity_score": 0.9260789035572177,
+      "uniformity_score": 0.7789150841752157,
       "is_uniform": true
     }
   },

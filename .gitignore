@@ -77,3 +77,11 @@ Thumbs.db
 *.job
 *.slurm
 slurm-*.out
+
+# CP2K temporary files
+*.wfn
+*.wfn.bak-*
+*.out
+polaron_calculations/
+# Logs
+*.log

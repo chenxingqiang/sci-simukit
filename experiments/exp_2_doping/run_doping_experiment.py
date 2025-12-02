@@ -77,9 +77,9 @@ class DopingExperimentRunner:
                 # 创建CP2K输入文件
                 # 根据掺杂元素调整配置
                 uks_setting = ".TRUE." if dopant != 'pristine' else ".FALSE."
-                basis_file_config = """    BASIS_SET_FILE_NAME /opt/homebrew/Cellar/cp2k/2025.1/share/cp2k/data/BASIS_MOLOPT
-    BASIS_SET_FILE_NAME /opt/homebrew/Cellar/cp2k/2025.1/share/cp2k/data/BASIS_MOLOPT_UZH
-    POTENTIAL_FILE_NAME /opt/homebrew/Cellar/cp2k/2025.1/share/cp2k/data/GTH_POTENTIALS"""
+                basis_file_config = """    BASIS_SET_FILE_NAME /opt/cp2k/data/BASIS_MOLOPT
+    BASIS_SET_FILE_NAME /opt/cp2k/data/BASIS_MOLOPT_UZH
+    POTENTIAL_FILE_NAME /opt/cp2k/data/GTH_POTENTIALS"""
 
                 input_content = f"""&GLOBAL
   PROJECT C60_{dopant}_{concentration:.2f}_doped

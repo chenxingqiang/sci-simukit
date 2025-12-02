@@ -87,9 +87,9 @@ class PolaronBindingCalculator:
   METHOD Quickstep
   
   &DFT
-    BASIS_SET_FILE_NAME /opt/homebrew/share/cp2k/data/BASIS_MOLOPT
-    BASIS_SET_FILE_NAME /opt/homebrew/share/cp2k/data/BASIS_MOLOPT_UZH
-    POTENTIAL_FILE_NAME /opt/homebrew/share/cp2k/data/GTH_POTENTIALS
+    BASIS_SET_FILE_NAME /opt/cp2k/data/BASIS_MOLOPT
+    BASIS_SET_FILE_NAME /opt/cp2k/data/BASIS_MOLOPT_UZH
+    POTENTIAL_FILE_NAME /opt/cp2k/data/GTH_POTENTIALS
     
     CHARGE {charge}
     
@@ -144,7 +144,7 @@ class PolaronBindingCalculator:
         POTENTIAL_TYPE NON_LOCAL
         &NON_LOCAL
           TYPE RVV10
-          KERNEL_FILE_NAME /opt/homebrew/share/cp2k/data/rVV10_kernel_table.dat
+          KERNEL_FILE_NAME /opt/cp2k/data/rVV10_kernel_table.dat
         &END NON_LOCAL
       &END VDW_POTENTIAL
     &END XC
@@ -431,7 +431,7 @@ class PolaronBindingCalculator:
             Path("/opt/cp2k/exe/Linux-aarch64-minimal/cp2k.psmp"),
             Path("/opt/cp2k/exe/local/cp2k.psmp"),
             Path("/usr/local/bin/cp2k.psmp"),
-            Path("/opt/homebrew/bin/cp2k.psmp"),
+            Path("/opt/cp2k/exe/Linux-aarch64-minimal/cp2k.psmp"),
             Path("cp2k.psmp"),
         ]
         

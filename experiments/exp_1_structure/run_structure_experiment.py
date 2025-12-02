@@ -16,6 +16,11 @@ import os
 import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from c60_coordinates import format_c60_coordinates_for_cp2k
+from qhp_c60_structures import (
+    get_c60_dimer_coordinates,
+    get_qhp_network_cell,
+    format_coords_for_cp2k
+)
 
 # 设置日志
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -50,19 +55,25 @@ class StructureExperimentRunner:
         (self.experiment_dir / "figures").mkdir(exist_ok=True)
 
     def create_dft_input_files(self):
-        """创建DFT输入文件"""
-        logger.info("创建DFT输入文件...")
+        """创建DFT输入文件 - 使用2×C60二聚体验证网络参数"""
+        logger.info("创建DFT输入文件 (2×C60 二聚体)...")
+
+        # 获取2×C60二聚体坐标
+        dimer_coords, cell_info = get_c60_dimer_coordinates(separation=10.0)
+        coords_str = format_coords_for_cp2k(dimer_coords)
 
         for strain in self.strain_values:
             input_file = self.experiment_dir / "outputs" / f"C60_strain_{strain:+.1f}_pristine.inp"
 
-            # 根据应变计算晶格参数
-            lattice_a = self.theoretical_predictions['lattice_a'] * (1 + strain/100)
-            lattice_b = self.theoretical_predictions['lattice_b'] * (1 + strain/100)
+            # 根据应变计算晶格参数 (基于qHP网络参数)
+            strain_factor = 1 + strain/100
+            lattice_a = cell_info['a'] * strain_factor
+            lattice_b = cell_info['b'] * strain_factor
+            lattice_c = cell_info['c']
 
             # 创建CP2K输入文件
             input_content = f"""&GLOBAL
-  PROJECT C60_strain_{strain:+.1f}_pristine
+  PROJECT C60_dimer_strain_{strain:+.1f}_pristine
   RUN_TYPE ENERGY
   PRINT_LEVEL LOW
 &END GLOBAL
@@ -70,17 +81,16 @@ class StructureExperimentRunner:
 &FORCE_EVAL
   METHOD Quickstep
   &DFT
-    BASIS_SET_FILE_NAME /opt/homebrew/Cellar/cp2k/2025.1/share/cp2k/data/BASIS_MOLOPT
-    POTENTIAL_FILE_NAME /opt/homebrew/Cellar/cp2k/2025.1/share/cp2k/data/GTH_POTENTIALS
+    BASIS_SET_FILE_NAME /opt/cp2k/data/BASIS_MOLOPT
+    POTENTIAL_FILE_NAME /opt/cp2k/data/GTH_POTENTIALS
     
     &MGRID
       CUTOFF 400
-      REL_CUTOFF 60
+      REL_CUTOFF 50
     &END MGRID
     
     &QS
       METHOD GPW
-      EPS_DEFAULT 1.0E-10
     &END QS
     
     &XC
@@ -90,7 +100,7 @@ class StructureExperimentRunner:
     
     &SCF
       SCF_GUESS ATOMIC
-      EPS_SCF 1.0E-6
+      EPS_SCF 1.0E-5
       MAX_SCF 200
       
       &OT
@@ -101,7 +111,7 @@ class StructureExperimentRunner:
       
       &OUTER_SCF
         MAX_SCF 20
-        EPS_SCF 1.0E-6
+        EPS_SCF 1.0E-5
       &END OUTER_SCF
     &END SCF
   &END DFT
@@ -110,12 +120,12 @@ class StructureExperimentRunner:
     &CELL
       A {lattice_a:.6f} 0.000000 0.000000
       B 0.000000 {lattice_b:.6f} 0.000000
-      C 0.000000 0.000000 20.000000
+      C 0.000000 0.000000 {lattice_c:.6f}
       PERIODIC XYZ
     &END CELL
 
     &COORD
-{format_c60_coordinates_for_cp2k()}
+{coords_str}
     &END COORD
 
     &KIND C
@@ -129,7 +139,7 @@ class StructureExperimentRunner:
             with open(input_file, 'w') as f:
                 f.write(input_content)
 
-            logger.info(f"创建输入文件: {input_file}")
+            logger.info(f"创建输入文件: {input_file} (2×C60, {len(dimer_coords)} 原子)")
 
     def _check_calculation_success(self, output_file: Path) -> bool:
         """检查计算是否已成功完成"""

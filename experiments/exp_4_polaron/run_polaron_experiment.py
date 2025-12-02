@@ -31,21 +31,176 @@ from ase.build import molecule
 from ase.calculators.calculator import Calculator
 import matplotlib.pyplot as plt
 import sys
+import subprocess
+import shutil
 
 # 添加src到路径
 sys.path.insert(0, str(Path(__file__).parent.parent.parent / 'src'))
+sys.path.append(str(Path(__file__).parent.parent))
+
+# Import qHP C60 structures module
+try:
+    from qhp_c60_structures import (
+        get_c60_dimer_coordinates, 
+        create_substitutional_doped_structure,
+        format_coords_for_cp2k
+    )
+    HAS_QHP_MODULE = True
+except ImportError:
+    HAS_QHP_MODULE = False
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
 class PolaronAnalyzer:
-    """极化子性质分析器"""
+    """极化子性质分析器 - 使用DFT计算或理论模型"""
     
-    def __init__(self, output_dir: Path):
+    def __init__(self, output_dir: Path, use_dft: bool = True):
         self.output_dir = output_dir
         self.output_dir.mkdir(parents=True, exist_ok=True)
         self.results_dir = output_dir / 'results'
         self.results_dir.mkdir(exist_ok=True)
+        self.inputs_dir = output_dir / 'inputs'
+        self.inputs_dir.mkdir(exist_ok=True)
+        
+        # DFT vs simulation mode
+        self.use_dft = use_dft and HAS_QHP_MODULE and self._find_cp2k()
+        
+        # 测试配置 - 论文要求B/N/P掺杂
+        self.doping_types = ['pristine', 'B', 'N', 'P']
+        self.doping_concentration = 0.05  # 5%
+        
+    def _find_cp2k(self) -> bool:
+        """检查CP2K是否可用"""
+        possible_paths = [
+            '/opt/cp2k/exe/Linux-aarch64-minimal/cp2k.psmp',
+            '/opt/cp2k/bin/cp2k.ssmp',
+            '/usr/local/bin/cp2k.ssmp'
+        ]
+        for path in possible_paths:
+            if Path(path).exists() or shutil.which('cp2k.psmp') or shutil.which('cp2k.ssmp'):
+                return True
+        return False
+    
+    def _create_dft_input(self, strain: float, dopant: str, charge: int = 0) -> Path:
+        """创建CP2K DFT输入文件用于极化子计算"""
+        # 获取2×C60二聚体坐标
+        dimer_coords, cell_info = get_c60_dimer_coordinates(separation=10.0)
+        
+        # 如果有掺杂，创建掺杂结构
+        if dopant and dopant != 'pristine':
+            doped_atoms, _ = create_substitutional_doped_structure(
+                dimer_coords, dopant, self.doping_concentration,
+                seed=42 + hash(f"{dopant}_{strain}")
+            )
+            coords_str = format_coords_for_cp2k(doped_atoms)
+            uks = "UKS"
+            dopant_q_map = {'B': 3, 'N': 5, 'P': 5}
+            dopant_q = dopant_q_map.get(dopant, 4)
+            kind_block = f"""    &KIND C
+      BASIS_SET DZVP-MOLOPT-GTH
+      POTENTIAL GTH-PBE
+    &END KIND
+    
+    &KIND {dopant}
+      BASIS_SET DZVP-MOLOPT-PBE-GTH-q{dopant_q}
+      POTENTIAL GTH-PBE-q{dopant_q}
+    &END KIND"""
+        else:
+            coords_str = format_coords_for_cp2k(dimer_coords)
+            uks = "" if charge == 0 else "UKS"
+            kind_block = """    &KIND C
+      BASIS_SET DZVP-MOLOPT-GTH
+      POTENTIAL GTH-PBE
+    &END KIND"""
+        
+        # 应变
+        strain_factor = 1 + strain/100
+        a = cell_info['a'] * strain_factor
+        b = cell_info['b'] * strain_factor
+        c = cell_info['c']
+        
+        charge_str = f"CHARGE {charge}" if charge != 0 else ""
+        
+        input_content = f"""&GLOBAL
+  PROJECT polaron_strain_{strain:+.1f}_{dopant or 'pristine'}
+  RUN_TYPE ENERGY
+  PRINT_LEVEL MEDIUM
+&END GLOBAL
+
+&FORCE_EVAL
+  METHOD Quickstep
+  &DFT
+    BASIS_SET_FILE_NAME /opt/cp2k/data/BASIS_MOLOPT
+    BASIS_SET_FILE_NAME /opt/cp2k/data/BASIS_MOLOPT_UZH
+    POTENTIAL_FILE_NAME /opt/cp2k/data/GTH_POTENTIALS
+    
+    {uks}
+    {charge_str}
+    
+    &MGRID
+      CUTOFF 400
+      REL_CUTOFF 50
+    &END MGRID
+    
+    &QS
+      METHOD GPW
+    &END QS
+    
+    &XC
+      &XC_FUNCTIONAL PBE
+      &END XC_FUNCTIONAL
+    &END XC
+    
+    &SCF
+      SCF_GUESS ATOMIC
+      EPS_SCF 1.0E-5
+      MAX_SCF 200
+      
+      &OT
+        MINIMIZER DIIS
+        PRECONDITIONER FULL_SINGLE_INVERSE
+        ENERGY_GAP 0.1
+      &END OT
+      
+      &OUTER_SCF
+        MAX_SCF 20
+        EPS_SCF 1.0E-5
+      &END OUTER_SCF
+    &END SCF
+    
+    &PRINT
+      &MO
+        EIGENVALUES
+        &EACH
+          QS_SCF 0
+        &END EACH
+      &END MO
+    &END PRINT
+  &END DFT
+  
+  &SUBSYS
+    &CELL
+      A {a:.6f} 0.000000 0.000000
+      B 0.000000 {b:.6f} 0.000000
+      C 0.000000 0.000000 {c:.6f}
+      PERIODIC XYZ
+    &END CELL
+    
+    &COORD
+{coords_str}
+    &END COORD
+    
+{kind_block}
+  &END SUBSYS
+&END FORCE_EVAL
+"""
+        
+        input_file = self.inputs_dir / f"polaron_{strain:+.1f}_{dopant or 'pristine'}_q{charge}.inp"
+        with open(input_file, 'w') as f:
+            f.write(input_content)
+    
+        return input_file
         
     def create_2c60_system(self, strain: float = 0.0, dopant: str = None, 
                           doping_concentration: float = 0.0) -> Atoms:
@@ -219,17 +374,28 @@ class PolaronAnalyzer:
         return E_a
     
     def run_experiment(self):
-        """运行完整的极化子转变实验"""
+        """运行完整的极化子转变实验 (DFT或理论模型)"""
         logger.info("=" * 80)
         logger.info("实验4: 极化子转变验证")
+        logger.info(f"计算模式: {'DFT' if self.use_dft else '理论模型'}")
         logger.info("=" * 80)
         
         results = {
             'experiment': 'exp_4_polaron',
             'description': '极化子从小极化子跳跃到大极化子带状传导的转变验证',
             'timestamp': str(Path(__file__).stat().st_mtime),
+            'method': 'DFT' if self.use_dft else 'theoretical_model',
+            'doping_types': self.doping_types,  # B/N/P
             'systems': {}
         }
+        
+        # 如果使用DFT，创建输入文件
+        if self.use_dft:
+            logger.info("\n--- 创建DFT输入文件 ---")
+            for dopant in self.doping_types:
+                for strain in [0.0, 3.0]:  # pristine和最优应变
+                    input_file = self._create_dft_input(strain, dopant)
+                    logger.info(f"  Created: {input_file.name}")
         
         # 1. 本征体系 (无应变无掺杂)
         logger.info("\n--- 配置1: 本征体系 ---")

@@ -15,7 +15,15 @@ from typing import Dict, List, Tuple
 import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from c60_coordinates import format_c60_coordinates_for_cp2k, format_multi_c60_coordinates_for_cp2k, get_supercell_dimensions
+from c60_coordinates import format_c60_coordinates_for_cp2k
+from qhp_c60_structures import (
+    format_multi_c60_coordinates_for_cp2k,
+    get_supercell_dimensions,
+    get_multi_c60_coordinates,
+    create_substitutional_doped_structure,
+    create_mixed_doped_structure,
+    format_coords_for_cp2k
+)
 
 # 设置日志
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')

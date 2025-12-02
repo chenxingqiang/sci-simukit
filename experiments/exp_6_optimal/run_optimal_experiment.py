@@ -44,10 +44,12 @@ class OptimalExperimentRunner:
             'tolerance_activation': 0.02  # eV
         }
 
-        # 测试配置
-        self.strain_values = [-5.0, -2.5, 0.0, 2.5, 5.0]  # %
-        self.doping_types = ['pristine', 'Li', 'Na', 'K', 'Li+K', 'Li+Na', 'Na+K']  # 包括混合掺杂
-        self.doping_concentration = 0.1  # 10%
+        # 测试配置 - 按论文要求使用B/N/P替代性掺杂
+        self.strain_values = [-5.0, -2.5, 0.0, 2.5, 3.0, 5.0]  # % (添加3%最优应变点)
+        self.doping_types = ['pristine', 'B', 'N', 'P', 'B+N']  # 论文要求: B/N/P + B+N混合掺杂
+        self.doping_concentrations = [0.025, 0.05, 0.075]  # 论文要求: 2.5%, 5%, 7.5%
+        self.doping_concentration = 0.05  # 默认5%浓度
+        self.mixed_doping_config = {'B': 0.03, 'N': 0.02}  # 论文要求: 3%B + 2%N
 
         # 创建必要的目录
         self.experiment_dir.mkdir(parents=True, exist_ok=True)
@@ -125,14 +127,21 @@ class OptimalExperimentRunner:
             f.write(input_content)
 
     def _create_single_doped_input(self, input_file: Path, strain: float, dopant: str):
-        """创建单一掺杂的最优条件计算输入文件"""
+        """创建单一掺杂的最优条件计算输入文件 - 使用替代性掺杂"""
+        import random
+        
         # 根据应变计算晶格参数 - 使用多分子超胞
         lattice_a, lattice_b, lattice_c = get_supercell_dimensions(self.num_c60_molecules)
         lattice_a *= (1 + strain/100)
         lattice_b *= (1 + strain/100)
 
         # 计算掺杂原子数
-        n_dopant = int(60 * self.doping_concentration)
+        total_atoms = 60 * self.num_c60_molecules
+        n_dopant = max(1, int(total_atoms * self.doping_concentration))
+        
+        # 掺杂元素的价电子数
+        dopant_q_map = {'B': 3, 'N': 5, 'P': 5}
+        dopant_q = dopant_q_map.get(dopant, 4)
 
         input_content = f"""&GLOBAL
   PROJECT C60_strain_{strain:+.1f}_{dopant}_single_optimal
@@ -143,14 +152,30 @@ class OptimalExperimentRunner:
 &FORCE_EVAL
   METHOD Quickstep
   &DFT
+    BASIS_SET_FILE_NAME /opt/cp2k/data/BASIS_MOLOPT
+    BASIS_SET_FILE_NAME /opt/cp2k/data/BASIS_MOLOPT_UZH
+    POTENTIAL_FILE_NAME /opt/cp2k/data/GTH_POTENTIALS
+    
     &XC
       &XC_FUNCTIONAL PBE
       &END XC_FUNCTIONAL
     &END XC
+    
     &SCF
       SCF_GUESS ATOMIC
-      EPS_SCF 1.0E-6
+      EPS_SCF 1.0E-5
       MAX_SCF 200
+      
+      &OT
+        MINIMIZER DIIS
+        PRECONDITIONER FULL_SINGLE_INVERSE
+        ENERGY_GAP 0.1
+      &END OT
+      
+      &OUTER_SCF
+        MAX_SCF 20
+        EPS_SCF 1.0E-5
+      &END OUTER_SCF
     &END SCF
   &END DFT
 
@@ -158,33 +183,42 @@ class OptimalExperimentRunner:
     &CELL
       A {lattice_a:.6f} 0.000000 0.000000
       B 0.000000 {lattice_b:.6f} 0.000000
-      C 0.000000 0.000000 20.000000
+      C 0.000000 0.000000 {lattice_c:.6f}
       PERIODIC XYZ
     &END CELL
 
     &COORD
-      # {self.num_c60_molecules}个C60分子坐标 (多分子体系用于最优条件研究)
-{format_multi_c60_coordinates_for_cp2k(self.num_c60_molecules)}
-      # 掺杂原子坐标
 """
-
-        # 添加掺杂原子坐标
-        for i in range(min(n_dopant, 6)):  # 最多添加6个掺杂原子
-            x = 3.0 + i * 0.5
-            y = 0.0 + i * 0.3
-            z = 0.0
-            input_content += f"      {dopant}  {x:.6f}  {y:.6f}  {z:.6f}\n"
-
-        input_content += f"""    &END COORD
+        # 获取多C60坐标并进行替代性掺杂
+        c60_coords_str = format_multi_c60_coordinates_for_cp2k(self.num_c60_molecules)
+        coords_lines = c60_coords_str.split('\n')
+        
+        # 只选择碳原子行进行替换
+        c_indices = [i for i, line in enumerate(coords_lines) if line.strip().startswith('C ')]
+        
+        # 随机选择要替换的碳原子
+        random.seed(42 + hash(f"{dopant}_{strain}_optimal"))
+        replace_indices = sorted(random.sample(c_indices, min(n_dopant, len(c_indices))))
+        
+        # 执行替换
+        for idx in replace_indices:
+            coords_lines[idx] = coords_lines[idx].replace('C ', f'{dopant} ', 1)
+        
+        c60_coords_str = '\n'.join(coords_lines)
+        logger.info(f"  单一替代性掺杂: 替换了 {len(replace_indices)} 个碳原子为 {dopant}")
+        
+        input_content += c60_coords_str
+        input_content += f"""
+    &END COORD
 
     &KIND C
-      BASIS_SET MOLOPT-DZVP
+      BASIS_SET DZVP-MOLOPT-GTH
       POTENTIAL GTH-PBE
     &END KIND
 
     &KIND {dopant}
-      BASIS_SET MOLOPT-DZVP
-      POTENTIAL GTH-PBE
+      BASIS_SET DZVP-MOLOPT-PBE-GTH-q{dopant_q}
+      POTENTIAL GTH-PBE-q{dopant_q}
     &END KIND
   &END SUBSYS
 &END FORCE_EVAL
@@ -194,15 +228,26 @@ class OptimalExperimentRunner:
             f.write(input_content)
 
     def _create_mixed_doped_input(self, input_file: Path, strain: float, dopant_mix: str):
-        """创建混合掺杂的最优条件计算输入文件"""
+        """创建混合掺杂的最优条件计算输入文件 - 使用替代性掺杂 (B+N)"""
+        import random
+        
         # 根据应变计算晶格参数 - 使用多分子超胞
         lattice_a, lattice_b, lattice_c = get_supercell_dimensions(self.num_c60_molecules)
         lattice_a *= (1 + strain/100)
         lattice_b *= (1 + strain/100)
 
-        # 解析混合掺杂类型
+        # 解析混合掺杂类型并使用论文要求的浓度配置
         dopants = dopant_mix.split('+')
-        n_dopant_per_type = int(60 * self.doping_concentration / len(dopants))
+        total_atoms = 60 * self.num_c60_molecules
+        
+        # 论文要求: 3%B + 2%N 混合掺杂
+        if dopant_mix == 'B+N' and hasattr(self, 'mixed_doping_config'):
+            n_dopant_B = max(1, int(total_atoms * self.mixed_doping_config.get('B', 0.03)))
+            n_dopant_N = max(1, int(total_atoms * self.mixed_doping_config.get('N', 0.02)))
+        else:
+            n_dopant_per_type = max(1, int(total_atoms * self.doping_concentration / len(dopants)))
+            n_dopant_B = n_dopant_per_type
+            n_dopant_N = n_dopant_per_type
 
         input_content = f"""&GLOBAL
   PROJECT C60_strain_{strain:+.1f}_{dopant_mix}_mixed_optimal
@@ -213,14 +258,30 @@ class OptimalExperimentRunner:
 &FORCE_EVAL
   METHOD Quickstep
   &DFT
+    BASIS_SET_FILE_NAME /opt/cp2k/data/BASIS_MOLOPT
+    BASIS_SET_FILE_NAME /opt/cp2k/data/BASIS_MOLOPT_UZH
+    POTENTIAL_FILE_NAME /opt/cp2k/data/GTH_POTENTIALS
+    
     &XC
       &XC_FUNCTIONAL PBE
       &END XC_FUNCTIONAL
     &END XC
+    
     &SCF
       SCF_GUESS ATOMIC
-      EPS_SCF 1.0E-6
+      EPS_SCF 1.0E-5
       MAX_SCF 200
+      
+      &OT
+        MINIMIZER DIIS
+        PRECONDITIONER FULL_SINGLE_INVERSE
+        ENERGY_GAP 0.1
+      &END OT
+      
+      &OUTER_SCF
+        MAX_SCF 20
+        EPS_SCF 1.0E-5
+      &END OUTER_SCF
     &END SCF
   &END DFT
 
@@ -228,49 +289,74 @@ class OptimalExperimentRunner:
     &CELL
       A {lattice_a:.6f} 0.000000 0.000000
       B 0.000000 {lattice_b:.6f} 0.000000
-      C 0.000000 0.000000 20.000000
+      C 0.000000 0.000000 {lattice_c:.6f}
       PERIODIC XYZ
     &END CELL
 
     &COORD
-      # C60分子坐标 (简化)
-      C  0.000000  0.000000  0.000000
-      C  1.400000  0.000000  0.000000
-      C  0.700000  1.212436  0.000000
-      C -0.700000  1.212436  0.000000
-      C -1.400000  0.000000  0.000000
-      C -0.700000 -1.212436  0.000000
-      C  2.100000  0.000000  0.000000
-      C  1.400000  1.212436  0.000000
-      C  0.000000  2.424872  0.000000
-      C -1.400000  1.212436  0.000000
-      C -2.100000  0.000000  0.000000
-      C -1.400000 -1.212436  0.000000
-      C  0.000000 -2.424872  0.000000
-      C  1.400000 -1.212436  0.000000
-      # 混合掺杂原子坐标
 """
+        # 获取多C60坐标并进行混合替代性掺杂
+        c60_coords_str = format_multi_c60_coordinates_for_cp2k(self.num_c60_molecules)
+        coords_lines = c60_coords_str.split('\n')
+        
+        # 只选择碳原子行进行替换
+        c_indices = [i for i, line in enumerate(coords_lines) if line.strip().startswith('C ')]
+        
+        # 随机选择要替换的碳原子 - 混合掺杂
+        random.seed(42 + hash(f"{dopant_mix}_{strain}_mixed"))
+        
+        # 首先替换B原子
+        if 'B' in dopants:
+            replace_B = sorted(random.sample(c_indices, min(n_dopant_B, len(c_indices))))
+            for idx in replace_B:
+                coords_lines[idx] = coords_lines[idx].replace('C ', 'B ', 1)
+            # 从可用索引中移除已替换的
+            c_indices = [i for i in c_indices if i not in replace_B]
+            logger.info(f"  B掺杂: 替换了 {len(replace_B)} 个碳原子")
+        
+        # 然后替换N原子
+        if 'N' in dopants:
+            replace_N = sorted(random.sample(c_indices, min(n_dopant_N, len(c_indices))))
+            for idx in replace_N:
+                coords_lines[idx] = coords_lines[idx].replace('C ', 'N ', 1)
+            logger.info(f"  N掺杂: 替换了 {len(replace_N)} 个碳原子")
+        
+        c60_coords_str = '\n'.join(coords_lines)
+        
+        input_content += c60_coords_str
 
-        # 添加混合掺杂原子坐标
-        for i, dopant in enumerate(dopants):
-            for j in range(min(n_dopant_per_type, 3)):  # 每种类型最多3个原子
-                x = 3.0 + i * 1.0 + j * 0.3
-                y = 0.0 + i * 0.5 + j * 0.2
-                z = 0.0
-                input_content += f"      {dopant}  {x:.6f}  {y:.6f}  {z:.6f}\n"
-
-        input_content += f"""    &END COORD
+        input_content += f"""
+    &END COORD
 
     &KIND C
-      BASIS_SET MOLOPT-DZVP
+      BASIS_SET DZVP-MOLOPT-GTH
       POTENTIAL GTH-PBE
     &END KIND
+
+    &KIND B
+      BASIS_SET DZVP-MOLOPT-PBE-GTH-q3
+      POTENTIAL GTH-PBE-q3
+    &END KIND
+
+    &KIND N
+      BASIS_SET DZVP-MOLOPT-PBE-GTH-q5
+      POTENTIAL GTH-PBE-q5
+    &END KIND
+  &END SUBSYS
+&END FORCE_EVAL
 """
 
-        # 添加掺杂原子类型
+        with open(input_file, 'w') as f:
+            f.write(input_content)
+
+    def _create_mixed_doped_input_OLD(self, input_file: Path, strain: float, dopant_mix: str):
+        """OLD METHOD - 保留作为参考"""
+        # 添加掺杂原子类型 - 旧方法
+        dopants = dopant_mix.split('+')
         for dopant in dopants:
-            input_content += f"""    &KIND {dopant}
-      BASIS_SET MOLOPT-DZVP
+            pass  # 旧代码，不再使用
+            # input_content += f"""    &KIND {dopant}
+            # BASIS_SET MOLOPT-DZVP
       POTENTIAL GTH-PBE
     &END KIND
 """

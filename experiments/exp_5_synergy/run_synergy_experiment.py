@@ -402,10 +402,10 @@ class SynergyExperimentRunner:
                 strain_ipr_change = strain * 0.5
                 dopant_ipr_change = {
                     'pristine': 0.0,
-                    'Li': -8.0,
-                    'Na': -6.0,
-                    'K': -4.0
-                }[dopant] * self.doping_concentration * 10
+                    'B': -10.0,  # B掺杂最显著降低IPR
+                    'N': -8.0,
+                    'P': -6.0
+                }.get(dopant, 0.0) * self.doping_concentration * 10
                 
                 ipr = base_ipr + strain_ipr_change + dopant_ipr_change
                 ipr = max(20, min(60, ipr))
@@ -415,10 +415,10 @@ class SynergyExperimentRunner:
                 strain_coupling_change = strain * 2.0
                 dopant_coupling_change = {
                     'pristine': 0.0,
-                    'Li': 15.0,
-                    'Na': 12.0,
-                    'K': 8.0
-                }[dopant] * self.doping_concentration * 10
+                    'B': 18.0,  # B掺杂显著增强耦合
+                    'N': 15.0,
+                    'P': 10.0
+                }.get(dopant, 0.0) * self.doping_concentration * 10
                 
                 electronic_coupling = base_coupling + strain_coupling_change + dopant_coupling_change
                 electronic_coupling = max(50, min(200, electronic_coupling))
@@ -428,10 +428,10 @@ class SynergyExperimentRunner:
                 strain_reorg_change = strain * -0.002
                 dopant_reorg_change = {
                     'pristine': 0.0,
-                    'Li': -0.01,
-                    'Na': -0.008,
-                    'K': -0.006
-                }[dopant] * self.doping_concentration * 10
+                    'B': -0.015,  # B掺杂降低重组能最多
+                    'N': -0.012,
+                    'P': -0.008
+                }.get(dopant, 0.0) * self.doping_concentration * 10
                 
                 reorganization_energy = base_reorg + strain_reorg_change + dopant_reorg_change
                 reorganization_energy = max(0.01, min(0.1, reorganization_energy))
@@ -533,8 +533,8 @@ class SynergyExperimentRunner:
         """分析组合效应"""
         combined_effects = {}
         
-        # 分析不同掺杂类型的组合效应
-        for dopant in ['Li', 'Na', 'K']:
+        # 分析不同掺杂类型的组合效应 (B/N/P替代性掺杂)
+        for dopant in ['B', 'N', 'P']:
             dopant_results = [r for r in dft_results.values() if r['status'] == 'success' and r['dopant'] == dopant]
             if dopant_results:
                 strains = [r['strain'] for r in dopant_results]

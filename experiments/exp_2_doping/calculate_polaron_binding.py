@@ -342,7 +342,10 @@ class PolaronBindingCalculator:
         with open(input_file, 'w') as f:
             f.write(input_content)
         
-        cmd = [str(cp2k_exe), '-i', str(input_file)]
+        # MPI并行 (32 CPU)
+        nprocs = int(os.environ.get('NPROCS', '32'))
+        cmd = ['mpirun', '-np', str(nprocs), str(cp2k_exe), '-i', str(input_file)]
+        logger.info(f"    命令: mpirun -np {nprocs} {cp2k_exe}")
         
         try:
             start_time = time.time()
@@ -378,7 +381,10 @@ class PolaronBindingCalculator:
         with open(input_file, 'w') as f:
             f.write(input_content)
         
-        cmd = [str(cp2k_exe), '-i', str(input_file)]
+        # MPI并行 (32 CPU)
+        nprocs = int(os.environ.get('NPROCS', '32'))
+        cmd = ['mpirun', '-np', str(nprocs), str(cp2k_exe), '-i', str(input_file)]
+        logger.info(f"    命令: mpirun -np {nprocs} {cp2k_exe}")
         
         try:
             start_time = time.time()
@@ -418,21 +424,23 @@ class PolaronBindingCalculator:
         return None
     
     def _find_cp2k_executable(self):
-        """查找CP2K可执行文件"""
+        """查找CP2K可执行文件 (优先并行版本)"""
         import shutil
         
         possible_paths = [
-            Path("/opt/homebrew/bin/cp2k.ssmp"),
-            Path("/usr/local/bin/cp2k.ssmp"),
-            Path("/opt/cp2k/bin/cp2k.ssmp"),
+            Path("/opt/cp2k/exe/Linux-aarch64-minimal/cp2k.psmp"),
+            Path("/opt/cp2k/exe/local/cp2k.psmp"),
+            Path("/usr/local/bin/cp2k.psmp"),
+            Path("/opt/homebrew/bin/cp2k.psmp"),
+            Path("cp2k.psmp"),
         ]
         
         for path in possible_paths:
             if path.exists():
                 return path
             
-        if shutil.which('cp2k.ssmp'):
-            return 'cp2k.ssmp'
+        if shutil.which('cp2k.psmp'):
+            return 'cp2k.psmp'
         
         return None
     

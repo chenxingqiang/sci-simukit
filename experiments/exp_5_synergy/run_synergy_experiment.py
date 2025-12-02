@@ -241,10 +241,11 @@ class SynergyExperimentRunner:
         # 先尝试运行一个测试计算
         test_input = self.experiment_dir / "outputs" / "C60_strain_+0.0_pristine_synergy.inp"
         
-        cmd = [str(cp2k_exe), '-i', str(test_input)]
+        nprocs = int(os.environ.get('NPROCS', '32'))
+        cmd = ['mpirun', '-np', str(nprocs), str(cp2k_exe), '-i', str(test_input)]
         try:
             result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, 
-                                  timeout=30, cwd=self.experiment_dir / "outputs")
+                                  timeout=60, cwd=self.experiment_dir / "outputs")
             if result.returncode != 0:
                 logger.warning(f"CP2K测试计算失败，使用模拟计算: {result.stderr.decode()}")
                 return self._run_simulated_calculations()
@@ -265,8 +266,10 @@ class SynergyExperimentRunner:
                 
                 logger.info(f"运行计算: strain = {strain}%, dopant = {dopant}")
                 
-                # 运行CP2K计算
-                cmd = [str(cp2k_exe), '-i', str(input_file)]
+                # 运行CP2K计算 (MPI并行, 32 CPU)
+                nprocs = int(os.environ.get('NPROCS', '32'))
+                cmd = ['mpirun', '-np', str(nprocs), str(cp2k_exe), '-i', str(input_file)]
+                logger.info(f"   命令: mpirun -np {nprocs} {cp2k_exe}")
                 
                 try:
                     start_time = time.time()
@@ -319,9 +322,10 @@ class SynergyExperimentRunner:
         import shutil
         
         possible_paths = [
-            Path("/usr/local/bin/cp2k.ssmp"),
-            Path("/opt/cp2k/bin/cp2k.ssmp"),
-            Path("cp2k.ssmp"),
+            Path("/opt/cp2k/exe/Linux-aarch64-minimal/cp2k.psmp"),
+            Path("/opt/cp2k/exe/local/cp2k.psmp"),
+            Path("/usr/local/bin/cp2k.psmp"),
+            Path("cp2k.psmp"),
             Path("cp2k")
         ]
         

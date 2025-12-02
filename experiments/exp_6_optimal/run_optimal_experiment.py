@@ -529,17 +529,15 @@ class OptimalExperimentRunner:
                     'P': 0.3    # P掺杂
                 }
 
-                # 混合掺杂能量（协同效应）
+                # 混合掺杂能量（协同效应）- B+N (3%B + 2%N)
                 mixed_dopant_energies = {
-                    'Li+K': -0.8,
-                    'Li+Na': -0.7,
-                    'Na+K': -0.6
+                    'B+N': 0.3  # B+N协同掺杂
                 }
 
                 if '+' in dopant:
-                    dopant_energy = mixed_dopant_energies[dopant] * self.doping_concentration * 10
+                    dopant_energy = mixed_dopant_energies.get(dopant, 0.3) * self.doping_concentration * 10
                 else:
-                    dopant_energy = single_dopant_energies[dopant] * self.doping_concentration * 10
+                    dopant_energy = single_dopant_energies.get(dopant, 0.0) * self.doping_concentration * 10
 
                 total_energy = base_energy + strain_energy + dopant_energy
 
@@ -555,17 +553,15 @@ class OptimalExperimentRunner:
                     'P': 1.5
                 }
 
-                # 混合掺杂迁移率（协同效应）
+                # 混合掺杂迁移率（协同效应）- B+N (3%B + 2%N)
                 mixed_dopant_mobility = {
-                    'Li+K': 3.5,  # 协同效应
-                    'Li+Na': 3.0,
-                    'Na+K': 2.5
+                    'B+N': 4.0  # B+N协同效应显著提升迁移率
                 }
 
                 if '+' in dopant:
-                    dopant_mobility_change = mixed_dopant_mobility[dopant] * self.doping_concentration * 10
+                    dopant_mobility_change = mixed_dopant_mobility.get(dopant, 3.5) * self.doping_concentration * 10
                 else:
-                    dopant_mobility_change = single_dopant_mobility[dopant] * self.doping_concentration * 10
+                    dopant_mobility_change = single_dopant_mobility.get(dopant, 0.0) * self.doping_concentration * 10
 
                 mobility = base_mobility + strain_mobility_change + dopant_mobility_change
                 mobility = max(1.0, min(25.0, mobility))  # 限制在合理范围内
@@ -582,17 +578,15 @@ class OptimalExperimentRunner:
                     'P': -0.02
                 }
 
-                # 混合掺杂激活能（协同效应）
+                # 混合掺杂激活能（协同效应）- B+N (3%B + 2%N)
                 mixed_dopant_activation = {
-                    'Li+K': -0.05,  # 协同效应
-                    'Li+Na': -0.045,
-                    'Na+K': -0.04
+                    'B+N': -0.05  # B+N协同效应显著降低活化能
                 }
 
                 if '+' in dopant:
-                    dopant_activation_change = mixed_dopant_activation[dopant] * self.doping_concentration * 10
+                    dopant_activation_change = mixed_dopant_activation.get(dopant, -0.04) * self.doping_concentration * 10
                 else:
-                    dopant_activation_change = single_dopant_activation[dopant] * self.doping_concentration * 10
+                    dopant_activation_change = single_dopant_activation.get(dopant, 0.0) * self.doping_concentration * 10
 
                 activation_energy = base_activation + strain_activation_change + dopant_activation_change
                 activation_energy = max(0.05, min(0.25, activation_energy))  # 限制在合理范围内

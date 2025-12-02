@@ -389,12 +389,12 @@ class SynergyExperimentRunner:
                 
                 dopant_energies = {
                     'pristine': 0.0,
-                    'Li': -0.5,
-                    'Na': -0.3,
-                    'K': -0.2
+                    'B': 0.8,   # B掺杂 (p型)
+                    'N': -0.5,  # N掺杂 (n型)
+                    'P': 0.3    # P掺杂
                 }
                 
-                dopant_energy = dopant_energies[dopant] * self.doping_concentration * 10
+                dopant_energy = dopant_energies.get(dopant, 0.0) * self.doping_concentration * 10
                 total_energy = base_energy + strain_energy + dopant_energy
                 
                 # 模拟IPR计算

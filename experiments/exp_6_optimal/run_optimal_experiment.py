@@ -357,24 +357,7 @@ class OptimalExperimentRunner:
         with open(input_file, 'w') as f:
             f.write(input_content)
 
-    def _create_mixed_doped_input_OLD(self, input_file: Path, strain: float, dopant_mix: str):
-        """OLD METHOD - 保留作为参考"""
-        # 添加掺杂原子类型 - 旧方法
-        dopants = dopant_mix.split('+')
-        for dopant in dopants:
-            pass  # 旧代码，不再使用
-            # input_content += f"""    &KIND {dopant}
-            # BASIS_SET MOLOPT-DZVP
-      POTENTIAL GTH-PBE
-    &END KIND
-"""
-
-        input_content += """  &END SUBSYS
-&END FORCE_EVAL
-"""
-
-        with open(input_file, 'w') as f:
-            f.write(input_content)
+    # _create_mixed_doped_input_OLD removed - outdated method
 
     def run_dft_calculations(self):
         """运行DFT计算"""

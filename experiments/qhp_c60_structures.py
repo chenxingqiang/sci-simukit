@@ -244,7 +244,8 @@ def create_substitutional_doped_structure(
         - atoms_with_symbols: List of (element, x, y, z)
         - doping_info: Dictionary with doping statistics
     """
-    np.random.seed(seed)
+    # Ensure seed is within valid range for numpy
+    np.random.seed(abs(seed) % (2**32 - 1))
     n_atoms = len(base_coords)
     n_dopants = int(round(n_atoms * concentration))
     
@@ -287,7 +288,8 @@ def create_mixed_doped_structure(
     Returns:
         Tuple of (atoms_with_symbols, doping_info)
     """
-    np.random.seed(seed)
+    # Ensure seed is within valid range for numpy
+    np.random.seed(abs(seed) % (2**32 - 1))
     n_atoms = len(base_coords)
     
     # Calculate number of each dopant

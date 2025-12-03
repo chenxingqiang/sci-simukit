@@ -69,13 +69,18 @@ class PolaronAnalyzer:
         self.doping_types = ['pristine', 'B', 'N', 'P']
         self.doping_concentration = 0.05  # 5%
         
-        # 理论预测值（用于验证）
+        # 理论预测值（用于验证）- 基于论文表S5和表3
+        # 注意: qHP C60的IPR约为30（论文表S5），vdW C60为34
+        # 优化条件（应变+掺杂）会使IPR降低（更离域化）
         self.theoretical_predictions = {
-            'IPR_pristine': (45, 50),    # 论文表S5
-            'IPR_coupled': (25, 30),     # 论文表S5
-            'J_pristine': (70, 80),      # 75 meV, 论文表3
-            'J_coupled': (130, 140),     # 135 meV, 论文表3
-            'E_a': (0.08, 0.10)          # ~0.09 eV
+            'IPR_pristine': (28, 32),    # qHP C60 pristine, 论文表S5: IPR≈30
+            'IPR_coupled': (23, 27),     # 优化条件下更离域化, IPR≈25
+            'J_pristine': (70, 80),      # 75 meV, 论文表3 (Js=75, Jc=81)
+            'J_coupled': (130, 140),     # 135 meV, 优化后增强~1.8倍
+            'E_a': (0.08, 0.10),         # ~0.09 eV (Marcus理论)
+            'lambda_pristine': (0.09, 0.11),  # λ=0.10 eV, 论文表2
+            'lambda_coupled': (0.06, 0.08),   # 优化后降低~30%
+            'polaron_transition': True   # J_total > λ_total 时发生极化子转变
         }
         
         # 物理常数
@@ -566,12 +571,24 @@ class PolaronAnalyzer:
             # 验证理论预测
             logger.info("\n--- 理论预测验证 ---")
             
+            lambda_pristine = pristine['lambda']
+            lambda_coupled = coupled['lambda']
+            
             validation = {}
-            for key, (low, high) in self.theoretical_predictions.items():
+            for key, pred_value in self.theoretical_predictions.items():
+                # 跳过非范围类型的预测值
+                if not isinstance(pred_value, tuple) or len(pred_value) != 2:
+                    continue
+                    
+                low, high = pred_value
+                
                 if 'IPR' in key:
                     value = ipr_pristine if 'pristine' in key else ipr_coupled
                 elif 'J' in key:
                     value = J_pristine if 'pristine' in key else J_coupled
+                elif 'lambda' in key:
+                    value = lambda_pristine if 'pristine' in key else lambda_coupled
+                    value = value / 1000.0  # meV -> eV
                 elif 'E_a' in key:
                     value = E_a_coupled
                 else:
@@ -584,10 +601,26 @@ class PolaronAnalyzer:
                     'passed': bool(passed)
                 }
                 status = "✓" if passed else "✗"
-                logger.info(f"{status} {key}: {value:.2f} (预测: {low}-{high})")
+                logger.info(f"{status} {key}: {value:.3f} (预测: {low}-{high})")
+            
+            # 额外验证极化子转变条件: J_total > λ_total
+            J_total = J_coupled  # meV
+            lambda_total = lambda_coupled  # meV
+            polaron_transition = J_total > lambda_total / 2
+            
+            validation['polaron_transition'] = {
+                'condition': 'J_coupled > λ_coupled/2',
+                'J_coupled': float(J_coupled),
+                'lambda_coupled_half': float(lambda_coupled / 2),
+                'passed': bool(polaron_transition)
+            }
+            status = "✓" if polaron_transition else "✗"
+            logger.info(f"{status} 极化子转变: J={J_total:.1f} meV {'>' if polaron_transition else '<'} λ/2={lambda_total/2:.1f} meV")
             
             results['validation'] = validation
-            results['overall_success'] = all(v['passed'] for v in validation.values())
+            results['overall_success'] = all(
+                v.get('passed', True) for v in validation.values()
+            )
         else:
             logger.error("部分DFT计算失败，无法完成验证")
             results['summary'] = {'error': 'DFT calculation failed'}

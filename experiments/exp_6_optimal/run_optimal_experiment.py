@@ -137,7 +137,7 @@ class OptimalExperimentRunner:
     def _create_single_doped_input(self, input_file: Path, strain: float, dopant: str):
         """创建单一掺杂的最优条件计算输入文件 - 使用替代性掺杂"""
         import random
-        
+
         # 根据应变计算晶格参数 - 使用多分子超胞
         lattice_a, lattice_b, lattice_c = get_supercell_dimensions(self.num_c60_molecules)
         lattice_a *= (1 + strain/100)
@@ -146,7 +146,7 @@ class OptimalExperimentRunner:
         # 计算掺杂原子数
         total_atoms = 60 * self.num_c60_molecules
         n_dopant = max(1, int(total_atoms * self.doping_concentration))
-        
+
         # 掺杂元素的价电子数
         dopant_q_map = {'B': 3, 'N': 5, 'P': 5}
         dopant_q = dopant_q_map.get(dopant, 4)
@@ -163,23 +163,23 @@ class OptimalExperimentRunner:
     BASIS_SET_FILE_NAME /opt/cp2k/data/BASIS_MOLOPT
     BASIS_SET_FILE_NAME /opt/cp2k/data/BASIS_MOLOPT_UZH
     POTENTIAL_FILE_NAME /opt/cp2k/data/GTH_POTENTIALS
-    
+
     &XC
       &XC_FUNCTIONAL PBE
       &END XC_FUNCTIONAL
     &END XC
-    
+
     &SCF
       SCF_GUESS ATOMIC
       EPS_SCF 1.0E-5
       MAX_SCF 200
-      
+
       &OT
         MINIMIZER DIIS
         PRECONDITIONER FULL_SINGLE_INVERSE
         ENERGY_GAP 0.1
       &END OT
-      
+
       &OUTER_SCF
         MAX_SCF 20
         EPS_SCF 1.0E-5
@@ -200,21 +200,21 @@ class OptimalExperimentRunner:
         # 获取多C60坐标并进行替代性掺杂
         c60_coords_str = format_multi_c60_coordinates_for_cp2k(self.num_c60_molecules)
         coords_lines = c60_coords_str.split('\n')
-        
+
         # 只选择碳原子行进行替换
         c_indices = [i for i, line in enumerate(coords_lines) if line.strip().startswith('C ')]
-        
+
         # 随机选择要替换的碳原子
         random.seed(42 + hash(f"{dopant}_{strain}_optimal"))
         replace_indices = sorted(random.sample(c_indices, min(n_dopant, len(c_indices))))
-        
+
         # 执行替换
         for idx in replace_indices:
             coords_lines[idx] = coords_lines[idx].replace('C ', f'{dopant} ', 1)
-        
+
         c60_coords_str = '\n'.join(coords_lines)
         logger.info(f"  单一替代性掺杂: 替换了 {len(replace_indices)} 个碳原子为 {dopant}")
-        
+
         input_content += c60_coords_str
         input_content += f"""
     &END COORD
@@ -238,7 +238,7 @@ class OptimalExperimentRunner:
     def _create_mixed_doped_input(self, input_file: Path, strain: float, dopant_mix: str):
         """创建混合掺杂的最优条件计算输入文件 - 使用替代性掺杂 (B+N)"""
         import random
-        
+
         # 根据应变计算晶格参数 - 使用多分子超胞
         lattice_a, lattice_b, lattice_c = get_supercell_dimensions(self.num_c60_molecules)
         lattice_a *= (1 + strain/100)
@@ -247,7 +247,7 @@ class OptimalExperimentRunner:
         # 解析混合掺杂类型并使用论文要求的浓度配置
         dopants = dopant_mix.split('+')
         total_atoms = 60 * self.num_c60_molecules
-        
+
         # 论文要求: 3%B + 2%N 混合掺杂
         if dopant_mix == 'B+N' and hasattr(self, 'mixed_doping_config'):
             n_dopant_B = max(1, int(total_atoms * self.mixed_doping_config.get('B', 0.03)))
@@ -269,23 +269,23 @@ class OptimalExperimentRunner:
     BASIS_SET_FILE_NAME /opt/cp2k/data/BASIS_MOLOPT
     BASIS_SET_FILE_NAME /opt/cp2k/data/BASIS_MOLOPT_UZH
     POTENTIAL_FILE_NAME /opt/cp2k/data/GTH_POTENTIALS
-    
+
     &XC
       &XC_FUNCTIONAL PBE
       &END XC_FUNCTIONAL
     &END XC
-    
+
     &SCF
       SCF_GUESS ATOMIC
       EPS_SCF 1.0E-5
       MAX_SCF 200
-      
+
       &OT
         MINIMIZER DIIS
         PRECONDITIONER FULL_SINGLE_INVERSE
         ENERGY_GAP 0.1
       &END OT
-      
+
       &OUTER_SCF
         MAX_SCF 20
         EPS_SCF 1.0E-5
@@ -306,13 +306,13 @@ class OptimalExperimentRunner:
         # 获取多C60坐标并进行混合替代性掺杂
         c60_coords_str = format_multi_c60_coordinates_for_cp2k(self.num_c60_molecules)
         coords_lines = c60_coords_str.split('\n')
-        
+
         # 只选择碳原子行进行替换
         c_indices = [i for i, line in enumerate(coords_lines) if line.strip().startswith('C ')]
-        
+
         # 随机选择要替换的碳原子 - 混合掺杂
         random.seed(42 + hash(f"{dopant_mix}_{strain}_mixed"))
-        
+
         # 首先替换B原子
         if 'B' in dopants:
             replace_B = sorted(random.sample(c_indices, min(n_dopant_B, len(c_indices))))
@@ -321,16 +321,16 @@ class OptimalExperimentRunner:
             # 从可用索引中移除已替换的
             c_indices = [i for i in c_indices if i not in replace_B]
             logger.info(f"  B掺杂: 替换了 {len(replace_B)} 个碳原子")
-        
+
         # 然后替换N原子
         if 'N' in dopants:
             replace_N = sorted(random.sample(c_indices, min(n_dopant_N, len(c_indices))))
             for idx in replace_N:
                 coords_lines[idx] = coords_lines[idx].replace('C ', 'N ', 1)
             logger.info(f"  N掺杂: 替换了 {len(replace_N)} 个碳原子")
-        
+
         c60_coords_str = '\n'.join(coords_lines)
-        
+
         input_content += c60_coords_str
 
         input_content += f"""
@@ -400,10 +400,10 @@ class OptimalExperimentRunner:
                     if result.returncode == 0:
                         # 解析输出
                         output_info = self._parse_dft_output(output_file)
-                        
+
                         # 计算迁移率和活化能（基于Marcus理论和论文预测）
                         output_info = self._calculate_mobility_and_activation(output_info, strain, dopant)
-                        
+
                         output_info.update({
                             'strain': strain,
                             'dopant': dopant,
@@ -516,10 +516,10 @@ class OptimalExperimentRunner:
                     output_info['homo_1_energy'] = eigenvalues[n_occ - 2]
                     output_info['homo_energy'] = eigenvalues[n_occ - 1]
                     output_info['lumo_energy'] = eigenvalues[n_occ]
-                    
+
                     # 带隙
                     output_info['bandgap'] = output_info['lumo_energy'] - output_info['homo_energy']
-                    
+
                     # 电子耦合J (meV)
                     J = abs(output_info['homo_energy'] - output_info['homo_1_energy']) / 2 * 1000
                     output_info['J_coupling'] = J
@@ -528,11 +528,11 @@ class OptimalExperimentRunner:
             logger.warning(f"解析输出文件失败: {e}")
 
         return output_info
-    
+
     def _calculate_mobility_and_activation(self, output_info: Dict, strain: float, dopant: str) -> Dict:
         """
         根据DFT结果和Marcus理论计算迁移率和活化能
-        
+
         论文关键预测:
         - 最优条件: 3%应变 + 5%B掺杂
         - 峰值迁移率: 21.4 cm²V⁻¹s⁻¹
@@ -541,15 +541,15 @@ class OptimalExperimentRunner:
         # 物理常数
         K_B = 8.617333e-5  # eV/K
         T = 300.0  # K
-        
+
         # 基础值（论文表3）
         J_base = output_info.get('J_coupling', 75.0)  # meV
         lambda_base = 180.0  # meV (论文表2)
-        
+
         # 应变效应
         strain_J_factor = 1.0 + 0.03 * strain
         strain_lambda_factor = 1.0 - 0.01 * abs(strain)
-        
+
         # 掺杂效应（包括混合掺杂）
         dopant_effects = {
             'pristine': {'J': 1.0, 'lambda': 1.0},
@@ -558,22 +558,22 @@ class OptimalExperimentRunner:
             'P': {'J': 1.15, 'lambda': 0.95},
             'B+N': {'J': 1.45, 'lambda': 0.85}  # 混合掺杂效果更好
         }
-        
+
         effects = dopant_effects.get(dopant, {'J': 1.0, 'lambda': 1.0})
-        
+
         # 协同增强
         if dopant != 'pristine' and abs(strain) > 0.5:
             synergy_boost = 1.15
         else:
             synergy_boost = 1.0
-        
+
         # 计算J和λ
         J = J_base * strain_J_factor * effects['J'] * synergy_boost
         J = max(50.0, min(200.0, J))
-        
+
         lambda_reorg = lambda_base * strain_lambda_factor * effects['lambda']
         lambda_reorg = max(100.0, min(200.0, lambda_reorg))
-        
+
         # Marcus理论计算活化能
         # E_a = (λ - 2J)² / (4λ)
         if lambda_reorg > 0:
@@ -582,28 +582,28 @@ class OptimalExperimentRunner:
             E_a = max(0.05, min(0.25, E_a))
         else:
             E_a = 0.18
-        
+
         # Marcus理论计算迁移率
         # μ ∝ J² * exp(-E_a/kT)
         import math
         a = 10.0e-8  # 分子间距 cm
         kT = K_B * T
-        
+
         prefactor = 1.0  # 归一化因子
         mu_base = 8.0  # 基础迁移率 cm²V⁻¹s⁻¹
-        
+
         # 迁移率随J²增加，随活化能指数降低
         J_enhancement = (J / 75.0) ** 2
         E_a_factor = math.exp(-(E_a - 0.18) / kT) if E_a < 0.18 else math.exp(-(0.18 - E_a) / (2*kT))
-        
+
         mobility = mu_base * J_enhancement * E_a_factor
         mobility = max(5.0, min(25.0, mobility))
-        
+
         output_info['J_coupling'] = J
         output_info['lambda_reorg'] = lambda_reorg
         output_info['activation_energy'] = E_a
         output_info['mobility'] = mobility
-        
+
         return output_info
 
     def analyze_results(self, dft_results: Dict):

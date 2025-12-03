@@ -1,0 +1,125 @@
+CP2K environment loaded
+Version:  CP2K version 2024.1
+    "pristine": {
+      "concentrations": [
+        0.025,
+        0.05,
+        0.075
+      ],
+      "binding_energies": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "total_energies": [
+        -340.9059202016976,
+        -340.9059202016976,
+        -340.9059202016978
+      ],
+      "avg_binding_energy": 0.0,
+      "binding_energy_std": 0.0
+    },
+    "B": {
+      "concentrations": [
+        0.025,
+        0.05,
+        0.075
+      ],
+      "binding_energies": [
+        159.01840106890214,
+        238.26795168990859,
+        318.68314013790285
+      ],
+      "total_energies": [
+        -335.0620187989964,
+        -332.149610191411,
+        -329.1943645757411
+      ],
+      "avg_binding_energy": 238.65649763223783,
+      "binding_energy_std": 65.18343578678557
+    },
+    "N": {
+      "concentrations": [
+        0.025,
+        0.05,
+        0.075
+      ],
+      "binding_energies": [
+        230.59514004214375,
+        345.9933452420152,
+        460.82575364619856
+      ],
+      "total_energies": [
+        -349.380255582321,
+        -353.6211215997357,
+        -357.8411946732789
+      ],
+      "avg_binding_energy": 345.8047463101191,
+      "binding_energy_std": 93.99134902494212
+    },
+    "P": {
+      "concentrations": [
+        0.05,
+        0.075
+      ],
+      "binding_energies": [
+        37.79969748084554,
+        55.09248168605861
+      ],
+      "total_energies": [
+        -342.2950531803035,
+        -342.93056029893984
+      ],
+      "avg_binding_energy": 46.44608958345208,
+      "binding_energy_std": 8.646392102606537
+    }
+  },
+  "binding_energies": {
+    "mean": 230.7844888742469,
+    "std": 135.66293594049793,
+    "min": 37.79969748084554,
+    "max": 460.82575364619856,
+    "range_valid": true
+  },
+  "chemical_states": {
+    "B": {
+      "oxidation_state": "+1",
+      "coordination": "substitutional",
+      "stability": "stable"
+    },
+    "N": {
+      "oxidation_state": "-1",
+      "coordination": "substitutional",
+      "stability": "stable"
+    },
+    "P": {
+      "oxidation_state": "-1",
+      "coordination": "substitutional",
+      "stability": "stable"
+    }
+  },
+  "uniformity_analysis": {
+    "B": {
+      "uniformity_score": 0.7268734082939942,
+      "is_uniform": true
+    },
+    "N": {
+      "uniformity_score": 0.728195318231259,
+      "is_uniform": true
+    },
+    "P": {
+      "uniformity_score": 0.8138402569484107,
+      "is_uniform": true
+    }
+  },
+  "validation_metrics": {
+    "concentration_valid": true,
+    "binding_energy_valid": true,
+    "chemical_state_valid": true,
+    "uniformity_valid": true,
+    "overall_valid": true
+  },
+  "plots": {
+    "plot_file": "/opt/sci-simukit/experiments/exp_2_doping/figures/doping_analysis.png"
+  }
+}

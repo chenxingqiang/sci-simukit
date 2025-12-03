@@ -1,0 +1,62 @@
+CP2K environment loaded
+Version:  CP2K version 2024.1
+    "total_energy": -681.810585529232,
+    "lattice_parameters": {
+      "a": 22.8,
+      "b": 14.25
+    },
+    "convergence": true,
+    "n_atoms": 120,
+    "strain": -5.0,
+    "calculation_time": 146.36151337623596,
+    "status": "success"
+  },
+  "strain_-2.5": {
+    "total_energy": -681.8105246983085,
+    "lattice_parameters": {
+      "a": 23.4,
+      "b": 14.625
+    },
+    "convergence": true,
+    "n_atoms": 120,
+    "strain": -2.5,
+    "calculation_time": 144.86973428726196,
+    "status": "success"
+  },
+  "strain_0.0": {
+    "total_energy": -681.8104708114656,
+    "lattice_parameters": {
+      "a": 24.0,
+      "b": 15.0
+    },
+    "convergence": true,
+    "n_atoms": 120,
+    "strain": 0.0,
+    "calculation_time": 149.17273092269897,
+    "status": "success"
+  },
+  "strain_2.5": {
+    "total_energy": -681.8104954119859,
+    "lattice_parameters": {
+      "a": 24.6,
+      "b": 15.375
+    },
+    "convergence": true,
+    "n_atoms": 120,
+    "strain": 2.5,
+    "calculation_time": 149.2421431541443,
+    "status": "success"
+  },
+  "strain_5.0": {
+    "total_energy": -681.8104348857554,
+    "lattice_parameters": {
+      "a": 25.2,
+      "b": 15.75
+    },
+    "convergence": true,
+    "n_atoms": 120,
+    "strain": 5.0,
+    "calculation_time": 155.39819884300232,
+    "status": "success"
+  }
+}

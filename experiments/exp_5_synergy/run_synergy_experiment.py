@@ -229,29 +229,13 @@ class SynergyExperimentRunner:
             f.write(input_content)
     
     def run_dft_calculations(self):
-        """运行DFT计算"""
-        logger.info("开始运行DFT计算...")
+        """运行DFT计算 - 必须使用真实DFT，无模拟fallback"""
+        logger.info("开始运行真实DFT计算...")
         
         # 查找CP2K可执行文件
         cp2k_exe = self._find_cp2k_executable()
         if not cp2k_exe:
-            logger.warning("未找到CP2K可执行文件，使用模拟计算")
-            return self._run_simulated_calculations()
-        
-        # 先尝试运行一个测试计算
-        test_input = self.experiment_dir / "outputs" / "C60_strain_+0.0_pristine_synergy.inp"
-        
-        nprocs = int(os.environ.get('NPROCS', '32'))
-        cmd = ['mpirun', '-np', str(nprocs), str(cp2k_exe), '-i', str(test_input)]
-        try:
-            result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, 
-                                  timeout=60, cwd=self.experiment_dir / "outputs")
-            if result.returncode != 0:
-                logger.warning(f"CP2K测试计算失败，使用模拟计算: {result.stderr.decode()}")
-                return self._run_simulated_calculations()
-        except Exception as e:
-            logger.warning(f"CP2K测试计算异常，使用模拟计算: {e}")
-            return self._run_simulated_calculations()
+            raise RuntimeError("未找到CP2K可执行文件！请确保CP2K已正确安装。")
         
         results = {}
         
@@ -376,86 +360,6 @@ class SynergyExperimentRunner:
             logger.warning(f"解析输出文件失败: {e}")
         
         return output_info
-    
-    def _run_simulated_calculations(self):
-        """运行模拟计算（当CP2K不可用时）"""
-        logger.info("运行模拟DFT计算...")
-        
-        results = {}
-        
-        for strain in self.strain_values:
-            for dopant in self.doping_types:
-                # 模拟DFT计算结果
-                base_energy = -328.18  # Hartree
-                
-                # 根据应变和掺杂计算能量
-                strain_energy = strain * 0.1
-                
-                dopant_energies = {
-                    'pristine': 0.0,
-                    'B': 0.8,   # B掺杂 (p型)
-                    'N': -0.5,  # N掺杂 (n型)
-                    'P': 0.3    # P掺杂
-                }
-                
-                dopant_energy = dopant_energies.get(dopant, 0.0) * self.doping_concentration * 10
-                total_energy = base_energy + strain_energy + dopant_energy
-                
-                # 模拟IPR计算
-                base_ipr = 47.5
-                strain_ipr_change = strain * 0.5
-                dopant_ipr_change = {
-                    'pristine': 0.0,
-                    'B': -10.0,  # B掺杂最显著降低IPR
-                    'N': -8.0,
-                    'P': -6.0
-                }.get(dopant, 0.0) * self.doping_concentration * 10
-                
-                ipr = base_ipr + strain_ipr_change + dopant_ipr_change
-                ipr = max(20, min(60, ipr))
-                
-                # 模拟电子耦合计算
-                base_coupling = 75  # meV
-                strain_coupling_change = strain * 2.0
-                dopant_coupling_change = {
-                    'pristine': 0.0,
-                    'B': 18.0,  # B掺杂显著增强耦合
-                    'N': 15.0,
-                    'P': 10.0
-                }.get(dopant, 0.0) * self.doping_concentration * 10
-                
-                electronic_coupling = base_coupling + strain_coupling_change + dopant_coupling_change
-                electronic_coupling = max(50, min(200, electronic_coupling))
-                
-                # 模拟重组能计算
-                base_reorg = 0.05  # eV
-                strain_reorg_change = strain * -0.002
-                dopant_reorg_change = {
-                    'pristine': 0.0,
-                    'B': -0.015,  # B掺杂降低重组能最多
-                    'N': -0.012,
-                    'P': -0.008
-                }.get(dopant, 0.0) * self.doping_concentration * 10
-                
-                reorganization_energy = base_reorg + strain_reorg_change + dopant_reorg_change
-                reorganization_energy = max(0.01, min(0.1, reorganization_energy))
-                
-                results[f"strain_{strain}_{dopant}"] = {
-                    'strain': strain,
-                    'dopant': dopant,
-                    'total_energy': total_energy,
-                    'ipr': ipr,
-                    'electronic_coupling': electronic_coupling,
-                    'reorganization_energy': reorganization_energy,
-                    'convergence': True,
-                    'n_atoms': 60 + (6 if dopant != 'pristine' else 0),
-                    'calculation_time': 180.0,
-                    'status': 'success'
-                }
-                
-                logger.info(f"模拟计算完成: strain = {strain}%, dopant = {dopant}")
-        
-        return results
     
     def analyze_results(self, dft_results: Dict):
         """分析DFT结果"""

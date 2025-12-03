@@ -289,29 +289,13 @@ class ElectronicExperimentRunner:
         logger.info(f"  Substitutional doping: {doping_info['n_dopants']} {dopant} atoms in 2×C60 dimer")
     
     def run_dft_calculations(self):
-        """运行DFT计算"""
-        logger.info("开始运行DFT计算...")
+        """运行DFT计算 - 必须使用真实DFT，无模拟fallback"""
+        logger.info("开始运行真实DFT计算...")
         
         # 查找CP2K可执行文件
         cp2k_exe = self._find_cp2k_executable()
         if not cp2k_exe:
-            logger.warning("未找到CP2K可执行文件，使用模拟计算")
-            return self._run_simulated_calculations()
-        
-        # 先尝试运行一个测试计算
-        test_input = self.experiment_dir / "outputs" / "C60_strain_+0.0_pristine.inp"
-        
-        nprocs = int(os.environ.get('NPROCS', '32'))
-        cmd = ['mpirun', '-np', str(nprocs), str(cp2k_exe), '-i', str(test_input)]
-        try:
-            result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, 
-                                  timeout=60, cwd=self.experiment_dir / "outputs")
-            if result.returncode != 0:
-                logger.warning(f"CP2K测试计算失败，使用模拟计算: {result.stderr.decode()}")
-                return self._run_simulated_calculations()
-        except Exception as e:
-            logger.warning(f"CP2K测试计算异常，使用模拟计算: {e}")
-            return self._run_simulated_calculations()
+            raise RuntimeError("未找到CP2K可执行文件！请确保CP2K已正确安装。")
         
         results = {}
         
@@ -518,98 +502,6 @@ class ElectronicExperimentRunner:
         mobility = prefactor * rate_factor * activation
         
         return mobility
-    
-    def _run_simulated_calculations(self):
-        """运行模拟计算（当CP2K不可用时）- 使用Marcus理论"""
-        logger.info("运行模拟DFT计算 (Marcus理论)...")
-        
-        results = {}
-        
-        # 论文中的关键参数
-        J_pristine = 0.075  # 75 meV
-        lambda_pristine = 0.13  # 130 meV
-        
-        for strain in self.strain_values:
-            for dopant in self.doping_types:
-                # 2×C60二聚体的基础能量 (Hartree)
-                base_energy = -656.36  # 120原子
-                
-                # 应变效应
-                strain_energy = strain * 0.05
-                
-                # 掺杂效应 (B/N/P替代性掺杂)
-                dopant_energies = {
-                    'pristine': 0.0,
-                    'B': 0.8,   # B掺杂增加能量
-                    'N': -0.5,  # N掺杂降低能量
-                    'P': 0.3    # P掺杂
-                }
-                
-                dopant_energy = dopant_energies.get(dopant, 0.0) * self.doping_concentration * 10
-                total_energy = base_energy + strain_energy + dopant_energy
-                
-                # 计算电子耦合J（从应变和掺杂效应）
-                # 论文: J increases with tensile strain and B/N doping
-                strain_J_factor = 1.0 + strain * 0.02  # 2% per % strain
-                dopant_J_factor = {
-                    'pristine': 1.0,
-                    'B': 1.4,   # B掺杂增强J by 40%
-                    'N': 1.3,   # N掺杂增强J by 30%
-                    'P': 1.2    # P掺杂增强J by 20%
-                }.get(dopant, 1.0)
-                
-                J_coupling = J_pristine * strain_J_factor * dopant_J_factor
-                J_coupling = max(0.05, min(0.20, J_coupling))  # 50-200 meV
-                
-                # 计算重组能λ（从应变和掺杂效应）
-                # 论文: λ decreases with strain (more delocalized)
-                strain_lambda_factor = 1.0 - strain * 0.01  # -1% per % strain
-                dopant_lambda_factor = {
-                    'pristine': 1.0,
-                    'B': 0.85,  # B掺杂降低λ by 15%
-                    'N': 0.90,  # N掺杂降低λ by 10%
-                    'P': 0.95   # P掺杂降低λ by 5%
-                }.get(dopant, 1.0)
-                
-                lambda_reorg = lambda_pristine * strain_lambda_factor * dopant_lambda_factor
-                lambda_reorg = max(0.08, min(0.15, lambda_reorg))  # 80-150 meV
-                
-                # 使用Marcus理论计算迁移率
-                mobility = self._calculate_marcus_mobility(J_coupling, lambda_reorg, T=300.0)
-                mobility = max(1.0, min(25.0, mobility))
-                
-                # 计算带隙
-                base_bandgap = 1.7  # eV
-                strain_bandgap_change = strain * 0.03  # eV per %
-                dopant_bandgap_change = {
-                    'pristine': 0.0,
-                    'B': -0.2,  # p型掺杂降低带隙
-                    'N': 0.1,   # n型掺杂
-                    'P': 0.05
-                }.get(dopant, 0.0)
-                
-                bandgap = base_bandgap + strain_bandgap_change + dopant_bandgap_change
-                bandgap = max(0.8, min(2.5, bandgap))
-                
-                results[f"strain_{strain}_{dopant}"] = {
-                    'strain': strain,
-                    'dopant': dopant,
-                    'total_energy': total_energy,
-                    'homo_energy': -5.0,
-                    'lumo_energy': -5.0 + bandgap,
-                    'bandgap': bandgap,
-                    'J_coupling': J_coupling,
-                    'lambda_reorg': lambda_reorg,
-                    'mobility': mobility,
-                    'convergence': True,
-                    'n_atoms': 120,  # 2×C60 dimer
-                    'calculation_time': 150.0,
-                    'status': 'success'
-                }
-                
-                logger.info(f"模拟计算完成: strain = {strain}%, dopant = {dopant}")
-        
-        return results
     
     def analyze_results(self, dft_results: Dict):
         """分析DFT结果"""

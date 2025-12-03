@@ -1,0 +1,128 @@
+CP2K environment loaded
+Version:  CP2K version 2024.1
+    "total_energy": -340.9059202016976,
+    "binding_energy": 0.0,
+    "dopant_position": null,
+    "convergence": true,
+    "n_atoms": 60,
+    "dopant": "pristine",
+    "concentration": 0.025,
+    "calculation_time": 291.53897643089294,
+    "status": "success"
+  },
+  "pristine_0.05": {
+    "total_energy": -340.9059202016976,
+    "binding_energy": 0.0,
+    "dopant_position": null,
+    "convergence": true,
+    "n_atoms": 60,
+    "dopant": "pristine",
+    "concentration": 0.05,
+    "calculation_time": 292.62061381340027,
+    "status": "success"
+  },
+  "pristine_0.07": {
+    "total_energy": -340.9059202016978,
+    "binding_energy": 0.0,
+    "dopant_position": null,
+    "convergence": true,
+    "n_atoms": 60,
+    "dopant": "pristine",
+    "concentration": 0.075,
+    "calculation_time": 290.6033093929291,
+    "status": "success"
+  },
+  "B_0.03": {
+    "total_energy": -335.0620187989964,
+    "binding_energy": 159.01840106890214,
+    "dopant_position": "substitutional",
+    "convergence": true,
+    "n_atoms": 2,
+    "dopant": "B",
+    "concentration": 0.025,
+    "calculation_time": 999.3203754425049,
+    "status": "success"
+  },
+  "B_0.05": {
+    "total_energy": -332.149610191411,
+    "binding_energy": 238.26795168990859,
+    "dopant_position": "substitutional",
+    "convergence": true,
+    "n_atoms": 3,
+    "dopant": "B",
+    "concentration": 0.05,
+    "calculation_time": 873.4922468662262,
+    "status": "success"
+  },
+  "B_0.07": {
+    "total_energy": -329.1943645757411,
+    "binding_energy": 318.68314013790285,
+    "dopant_position": "substitutional",
+    "convergence": true,
+    "n_atoms": 4,
+    "dopant": "B",
+    "concentration": 0.075,
+    "calculation_time": 795.8664064407349,
+    "status": "success"
+  },
+  "N_0.03": {
+    "total_energy": -349.380255582321,
+    "binding_energy": 230.59514004214375,
+    "dopant_position": "substitutional",
+    "convergence": true,
+    "n_atoms": 2,
+    "dopant": "N",
+    "concentration": 0.025,
+    "calculation_time": 737.3538289070129,
+    "status": "success"
+  },
+  "N_0.05": {
+    "total_energy": -353.6211215997357,
+    "binding_energy": 345.9933452420152,
+    "dopant_position": "substitutional",
+    "convergence": true,
+    "n_atoms": 3,
+    "dopant": "N",
+    "concentration": 0.05,
+    "calculation_time": 1049.1696753501892,
+    "status": "success"
+  },
+  "N_0.07": {
+    "total_energy": -357.8411946732789,
+    "binding_energy": 460.82575364619856,
+    "dopant_position": "substitutional",
+    "convergence": true,
+    "n_atoms": 4,
+    "dopant": "N",
+    "concentration": 0.075,
+    "calculation_time": 1068.9587762355804,
+    "status": "success"
+  },
+  "P_0.03": {
+    "dopant": "P",
+    "concentration": 0.025,
+    "status": "timeout"
+  },
+  "P_0.05": {
+    "total_energy": -342.2950531803035,
+    "binding_energy": 37.79969748084554,
+    "dopant_position": "substitutional",
+    "convergence": true,
+    "n_atoms": 3,
+    "dopant": "P",
+    "concentration": 0.05,
+    "calculation_time": 1309.6508173942566,
+    "status": "success"
+  },
+  "P_0.07": {
+    "total_energy": -342.93056029893984,
+    "binding_energy": 55.09248168605861,
+    "dopant_position": "substitutional",
+    "convergence": true,
+    "n_atoms": 4,
+    "dopant": "P",
+    "concentration": 0.075,
+    "calculation_time": 1109.5667555332184,
+    "status": "success"
+  }
+}

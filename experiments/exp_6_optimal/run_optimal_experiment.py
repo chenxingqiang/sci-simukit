@@ -360,29 +360,13 @@ class OptimalExperimentRunner:
     # _create_mixed_doped_input_OLD removed - outdated method
 
     def run_dft_calculations(self):
-        """运行DFT计算"""
-        logger.info("开始运行DFT计算...")
+        """运行DFT计算 - 必须使用真实DFT，无模拟fallback"""
+        logger.info("开始运行真实DFT计算...")
 
         # 查找CP2K可执行文件
         cp2k_exe = self._find_cp2k_executable()
         if not cp2k_exe:
-            logger.warning("未找到CP2K可执行文件，使用模拟计算")
-            return self._run_simulated_calculations()
-
-        # 先尝试运行一个测试计算
-        test_input = self.experiment_dir / "outputs" / "C60_strain_+0.0_pristine_optimal.inp"
-
-        nprocs = int(os.environ.get('NPROCS', '32'))
-        cmd = ['mpirun', '-np', str(nprocs), str(cp2k_exe), '-i', str(test_input)]
-        try:
-            result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
-                                  timeout=60, cwd=self.experiment_dir / "outputs")
-            if result.returncode != 0:
-                logger.warning(f"CP2K测试计算失败，使用模拟计算: {result.stderr.decode()}")
-                return self._run_simulated_calculations()
-        except Exception as e:
-            logger.warning(f"CP2K测试计算异常，使用模拟计算: {e}")
-            return self._run_simulated_calculations()
+            raise RuntimeError("未找到CP2K可执行文件！请确保CP2K已正确安装。")
 
         results = {}
 
@@ -510,123 +494,6 @@ class OptimalExperimentRunner:
             logger.warning(f"解析输出文件失败: {e}")
 
         return output_info
-
-    def _run_simulated_calculations(self):
-        """运行模拟计算（当CP2K不可用时）"""
-        logger.info("运行模拟DFT计算...")
-
-        results = {}
-
-        for strain in self.strain_values:
-            for dopant in self.doping_types:
-                # 模拟DFT计算结果
-                base_energy = -328.18  # Hartree
-
-                # 根据应变和掺杂计算能量
-                strain_energy = strain * 0.1
-
-                # 单一掺杂能量
-                single_dopant_energies = {
-                    'pristine': 0.0,
-                    'B': 0.8,   # B掺杂 (p型)
-                    'N': -0.5,  # N掺杂 (n型)
-                    'P': 0.3    # P掺杂
-                }
-
-                # 混合掺杂能量（协同效应）- B+N (3%B + 2%N)
-                mixed_dopant_energies = {
-                    'B+N': 0.3  # B+N协同掺杂
-                }
-
-                if '+' in dopant:
-                    dopant_energy = mixed_dopant_energies.get(dopant, 0.3) * self.doping_concentration * 10
-                else:
-                    dopant_energy = single_dopant_energies.get(dopant, 0.0) * self.doping_concentration * 10
-
-                total_energy = base_energy + strain_energy + dopant_energy
-
-                # 模拟迁移率计算
-                base_mobility = 8.0  # cm²V⁻¹s⁻¹
-                strain_mobility_change = strain * 0.8
-
-                # 单一掺杂迁移率
-                single_dopant_mobility = {
-                    'pristine': 0.0,
-                    'B': 3.0,   # B掺杂显著提升迁移率
-                    'N': 2.5,
-                    'P': 1.5
-                }
-
-                # 混合掺杂迁移率（协同效应）- B+N (3%B + 2%N)
-                mixed_dopant_mobility = {
-                    'B+N': 4.0  # B+N协同效应显著提升迁移率
-                }
-
-                if '+' in dopant:
-                    dopant_mobility_change = mixed_dopant_mobility.get(dopant, 3.5) * self.doping_concentration * 10
-                else:
-                    dopant_mobility_change = single_dopant_mobility.get(dopant, 0.0) * self.doping_concentration * 10
-
-                mobility = base_mobility + strain_mobility_change + dopant_mobility_change
-                mobility = max(1.0, min(25.0, mobility))  # 限制在合理范围内
-
-                # 模拟激活能计算
-                base_activation = 0.18  # eV
-                strain_activation_change = strain * -0.01
-
-                # 单一掺杂激活能
-                single_dopant_activation = {
-                    'pristine': 0.0,
-                    'B': -0.035,  # B掺杂显著降低活化能
-                    'N': -0.03,
-                    'P': -0.02
-                }
-
-                # 混合掺杂激活能（协同效应）- B+N (3%B + 2%N)
-                mixed_dopant_activation = {
-                    'B+N': -0.05  # B+N协同效应显著降低活化能
-                }
-
-                if '+' in dopant:
-                    dopant_activation_change = mixed_dopant_activation.get(dopant, -0.04) * self.doping_concentration * 10
-                else:
-                    dopant_activation_change = single_dopant_activation.get(dopant, 0.0) * self.doping_concentration * 10
-
-                activation_energy = base_activation + strain_activation_change + dopant_activation_change
-                activation_energy = max(0.05, min(0.25, activation_energy))  # 限制在合理范围内
-
-                # 模拟带隙计算
-                base_bandgap = 1.8  # eV
-                strain_bandgap_change = strain * 0.05
-                dopant_bandgap_change = -0.2 * self.doping_concentration * 10  # 掺杂降低带隙
-
-                bandgap = base_bandgap + strain_bandgap_change + dopant_bandgap_change
-                bandgap = max(0.5, min(3.0, bandgap))  # 限制在合理范围内
-
-                # 计算原子数
-                n_atoms = 60
-                if dopant != 'pristine':
-                    if '+' in dopant:
-                        n_atoms += 6  # 混合掺杂
-                    else:
-                        n_atoms += 6  # 单一掺杂
-
-                results[f"strain_{strain}_{dopant}"] = {
-                    'strain': strain,
-                    'dopant': dopant,
-                    'total_energy': total_energy,
-                    'mobility': mobility,
-                    'activation_energy': activation_energy,
-                    'bandgap': bandgap,
-                    'convergence': True,
-                    'n_atoms': n_atoms,
-                    'calculation_time': 200.0,
-                    'status': 'success'
-                }
-
-                logger.info(f"模拟计算完成: strain = {strain}%, dopant = {dopant}")
-
-        return results
 
     def analyze_results(self, dft_results: Dict):
         """分析DFT结果"""

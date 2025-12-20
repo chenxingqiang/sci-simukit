@@ -73,10 +73,10 @@ def generate_size_scaling_input(n_molecules, dopant, strain, output_dir):
     # Adjust SCF settings for larger systems
     if n_molecules >= 6:
         max_scf = 500
-        cutoff = 350
+        cutoff = 280  # Reduced for large systems
     else:
         max_scf = 300
-        cutoff = 400
+        cutoff = 300  # Reduced from 400 for stability
     
     input_content = f"""&GLOBAL
   PROJECT {project_name}

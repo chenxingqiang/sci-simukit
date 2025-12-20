@@ -80,7 +80,7 @@ def generate_cp2k_input(strain, dopant, output_dir):
     POTENTIAL_FILE_NAME GTH_POTENTIALS
     
     &MGRID
-      CUTOFF 400
+      CUTOFF 300
       REL_CUTOFF 50
     &END MGRID
     

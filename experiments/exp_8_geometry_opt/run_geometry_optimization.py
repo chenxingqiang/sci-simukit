@@ -1,12 +1,17 @@
 #!/usr/bin/env python3
 """
-Experiment 8: Geometry Optimization + Single Point Energy
-==========================================================
-Goal: First optimize the structure, then calculate accurate energies
-      This ensures reliable equilibrium geometries before property calculation
+Experiment 8: Geometry Optimization
+====================================
+Goal: Optimize equilibrium structures for pristine and doped C60 dimers
+      WITHOUT strain - strain would be released during optimization
+
+CORRECTED:
+- Uses C60 dimer (120 atoms) for consistency with Exp1-6
+- Only 0% strain (optimization would release any applied strain)
+- Fixed cell parameters (only optimize atomic positions)
 
 Two-step workflow:
-1. GEO_OPT: Find equilibrium structure
+1. GEO_OPT: Find equilibrium atomic positions (fixed cell)
 2. ENERGY: Calculate properties at optimized geometry
 """
 
@@ -17,42 +22,31 @@ from pathlib import Path
 # Import qHP C60 structure module
 sys.path.insert(0, str(Path(__file__).parent.parent))
 from qhp_c60_structures import (
-    get_single_c60_coordinates,
+    get_c60_dimer_coordinates,
     create_substitutional_doped_structure,
     format_coords_for_cp2k
 )
 
-def get_c60_coords_with_strain_and_doping(strain_percent, dopant, n_dopants=4):
-    """Get C60 coordinates with strain and doping applied"""
-    coords = get_single_c60_coordinates()
-    scale = 1.0 + strain_percent / 100.0
+def get_dimer_coords_with_doping(dopant, n_dopants_per_c60=2):
+    """Get C60 dimer coordinates with optional doping (no strain)"""
+    coords, cell_info = get_c60_dimer_coordinates(separation=10.0)
     
     # Apply doping
     if dopant != 'pristine':
-        concentration = n_dopants / 60.0
+        concentration = (n_dopants_per_c60 * 2) / 120.0
         atoms, _ = create_substitutional_doped_structure(coords, dopant, concentration, seed=42)
     else:
         atoms = [('C', x, y, z) for x, y, z in coords]
     
-    # Apply biaxial strain and format
-    formatted_lines = []
-    for elem, x, y, z in atoms:
-        x_scaled = x * scale
-        y_scaled = y * scale
-        z_scaled = z
-        formatted_lines.append(f"      {elem}  {x_scaled:.6f}  {y_scaled:.6f}  {z_scaled:.6f}")
-    
-    return '\n'.join(formatted_lines)
+    return atoms, cell_info
 
-def generate_geo_opt_input(strain, dopant, output_dir):
-    """Generate CP2K input for geometry optimization"""
+def generate_geo_opt_input(dopant, output_dir):
+    """Generate CP2K input for geometry optimization (no strain)"""
     
-    coords = get_c60_coords_with_strain_and_doping(strain, dopant)
+    atoms, cell_info = get_dimer_coords_with_doping(dopant)
+    coords_str = format_coords_for_cp2k(atoms)
     
-    strain_str = f"{strain:+.1f}".replace('.', 'p').replace('+', 'pos').replace('-', 'neg')
-    project_name = f"geoopt_{strain_str}_{dopant}"
-    
-    box_size = 15.0 * (1.0 + strain / 100.0)
+    project_name = f"geoopt_{dopant}"
     
     input_content = f"""&GLOBAL
   PROJECT {project_name}
@@ -71,6 +65,11 @@ def generate_geo_opt_input(strain, dopant, output_dir):
     RMS_FORCE 5.0E-5
   &END GEO_OPT
   
+  ! Fixed cell - only optimize atomic positions
+  &CELL_OPT
+    KEEP_SYMMETRY .TRUE.
+  &END CELL_OPT
+  
   &PRINT
     &TRAJECTORY
       FORMAT XYZ
@@ -84,6 +83,12 @@ def generate_geo_opt_input(strain, dopant, output_dir):
         GEO_OPT 10
       &END EACH
     &END RESTART
+    
+    &FORCES
+      &EACH
+        GEO_OPT 1
+      &END EACH
+    &END FORCES
   &END PRINT
 &END MOTION
 
@@ -142,12 +147,12 @@ def generate_geo_opt_input(strain, dopant, output_dir):
   
   &SUBSYS
     &CELL
-      ABC {box_size:.4f} {box_size:.4f} 20.0000
+      ABC {cell_info['a']:.4f} {cell_info['b']:.4f} {cell_info['c']:.4f}
       PERIODIC XYZ
     &END CELL
     
     &COORD
-{coords}
+{coords_str}
     &END COORD
     
     &KIND C
@@ -177,13 +182,13 @@ def generate_geo_opt_input(strain, dopant, output_dir):
     with open(input_file, 'w') as f:
         f.write(input_content)
     
-    return input_file, project_name
+    return input_file, project_name, cell_info
 
-def generate_single_point_template():
+def generate_single_point_template(cell_info):
     """Generate template for single-point calculation on optimized geometry"""
     
-    template = """&GLOBAL
-  PROJECT {project_name}
+    template = f"""&GLOBAL
+  PROJECT {{project_name}}
   RUN_TYPE ENERGY
   PRINT_LEVEL MEDIUM
 &END GLOBAL
@@ -206,7 +211,7 @@ def generate_single_point_template():
     &END QS
     
     &SCF
-      SCF_GUESS RESTART
+      SCF_GUESS ATOMIC
       EPS_SCF 1.0E-7
       MAX_SCF 500
       
@@ -237,19 +242,28 @@ def generate_single_point_template():
         NDIGITS 10
       &END MO
       
+      &MO_CUBES
+        NHOMO 3
+        NLUMO 3
+        WRITE_CUBE .TRUE.
+      &END MO_CUBES
+      
       &MULLIKEN
       &END MULLIKEN
+      
+      &HIRSHFELD
+      &END HIRSHFELD
     &END PRINT
   &END DFT
   
   &SUBSYS
     &CELL
-      ABC {box_a} {box_b} {box_c}
+      ABC {cell_info['a']:.4f} {cell_info['b']:.4f} {cell_info['c']:.4f}
       PERIODIC XYZ
     &END CELL
     
     &TOPOLOGY
-      COORD_FILE_NAME {optimized_xyz}
+      COORD_FILE_NAME {{optimized_xyz}}
       COORD_FILE_FORMAT XYZ
     &END TOPOLOGY
     
@@ -283,37 +297,38 @@ def main():
     output_dir = Path(__file__).parent / "inputs"
     output_dir.mkdir(exist_ok=True)
     
-    # Representative configurations
-    strains = [0.0, +3.0]
+    # Only optimize 0% strain structures - strain would be released during optimization
     dopants = ['pristine', 'N', 'B', 'P']
     
     print("=" * 60)
-    print("Experiment 8: Geometry Optimization + Single Point")
+    print("Experiment 8: Geometry Optimization (Fixed Cell)")
     print("=" * 60)
-    print(f"Strains: {strains}")
+    print("System: C60 dimer (120 atoms)")
+    print("Strain: 0% only (optimization would release applied strain)")
     print(f"Dopants: {dopants}")
-    print(f"Total GEO_OPT calculations: {len(strains) * len(dopants)}")
+    print(f"Total GEO_OPT calculations: {len(dopants)}")
     print()
     
     input_files = []
+    cell_info = None
     
-    for strain in strains:
-        for dopant in dopants:
-            input_file, project = generate_geo_opt_input(strain, dopant, output_dir)
-            input_files.append((input_file, project))
-            print(f"Generated: {project}.inp")
+    for dopant in dopants:
+        input_file, project, cell_info = generate_geo_opt_input(dopant, output_dir)
+        input_files.append((input_file, project))
+        print(f"Generated: {project}.inp")
     
     # Save single-point template
     template_file = output_dir / "single_point_template.inp"
     with open(template_file, 'w') as f:
-        f.write(generate_single_point_template())
+        f.write(generate_single_point_template(cell_info))
     print(f"\nSingle-point template: {template_file}")
     
     # Generate workflow script
     workflow_script = output_dir.parent / "run_workflow.sh"
     with open(workflow_script, 'w') as f:
         f.write("#!/bin/bash\n")
-        f.write("# Two-step workflow: GEO_OPT -> ENERGY\n\n")
+        f.write("# Two-step workflow: GEO_OPT -> ENERGY\n")
+        f.write("# System: C60 dimer (120 atoms), no strain\n\n")
         f.write("cd inputs\n\n")
         
         for input_file, project in input_files:
@@ -321,14 +336,11 @@ def main():
             f.write(f"mpirun -np 8 cp2k.popt -i {project}.inp -o {project}.out\n")
             f.write(f"\n")
             f.write(f"# Extract final geometry from trajectory\n")
-            f.write(f"tail -n 61 {project}-pos-1.xyz > {project}_optimized.xyz\n")
+            f.write(f"tail -n 121 {project}-pos-1.xyz > {project}_optimized.xyz\n")
             f.write(f"\n")
             f.write(f"echo '=== Step 2: Single Point Energy - {project} ==='\n")
             f.write(f"sed -e 's/{{project_name}}/{project}_sp/' \\\n")
             f.write(f"    -e 's/{{optimized_xyz}}/{project}_optimized.xyz/' \\\n")
-            f.write(f"    -e 's/{{box_a}}/15.0/' \\\n")
-            f.write(f"    -e 's/{{box_b}}/15.0/' \\\n")
-            f.write(f"    -e 's/{{box_c}}/20.0/' \\\n")
             f.write(f"    single_point_template.inp > {project}_sp.inp\n")
             f.write(f"\n")
             f.write(f"mpirun -np 8 cp2k.popt -i {project}_sp.inp -o {project}_sp.out\n")
@@ -338,9 +350,11 @@ def main():
     
     print()
     print(f"Workflow: {workflow_script}")
-    print("  1. Geometry optimization")
+    print("  1. Geometry optimization (fixed cell, optimize atoms)")
     print("  2. Extract optimized coordinates")
-    print("  3. Single-point with tighter convergence")
+    print("  3. Single-point with tighter convergence + MO output")
+    print()
+    print("Purpose: Obtain equilibrium structures and verify doping effects")
 
 if __name__ == "__main__":
     main()

@@ -22,7 +22,7 @@
     &END QS
     
     &SCF
-      SCF_GUESS RESTART
+      SCF_GUESS ATOMIC
       EPS_SCF 1.0E-7
       MAX_SCF 500
       
@@ -53,14 +53,23 @@
         NDIGITS 10
       &END MO
       
+      &MO_CUBES
+        NHOMO 3
+        NLUMO 3
+        WRITE_CUBE .TRUE.
+      &END MO_CUBES
+      
       &MULLIKEN
       &END MULLIKEN
+      
+      &HIRSHFELD
+      &END HIRSHFELD
     &END PRINT
   &END DFT
   
   &SUBSYS
     &CELL
-      ABC {box_a} {box_b} {box_c}
+      ABC 24.0000 15.0000 25.0000
       PERIODIC XYZ
     &END CELL
     

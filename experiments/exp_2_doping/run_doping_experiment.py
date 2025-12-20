@@ -23,16 +23,16 @@ logger = logging.getLogger(__name__)
 
 class DopingExperimentRunner:
     """掺杂合成实验运行器"""
-
+    
     def __init__(self, project_root: str = "."):
         self.project_root = Path(project_root).resolve()
         # 如果已经在exp_2_doping目录中，就不要再添加路径
         if self.project_root.name == "exp_2_doping":
             self.experiment_dir = self.project_root
         else:
-            self.experiment_dir = self.project_root / "experiments" / "exp_2_doping"
+        self.experiment_dir = self.project_root / "experiments" / "exp_2_doping"
         self.hpc_dir = self.project_root.parent.parent if self.project_root.name == "exp_2_doping" else self.project_root / "hpc_calculations"
-
+        
         # 理论预测值 - 严格按照论文要求
         self.theoretical_predictions = {
             'target_concentrations': [0.025, 0.05, 0.075],  # 论文要求: 2.5%, 5.0%, 7.5%
@@ -40,25 +40,25 @@ class DopingExperimentRunner:
             'binding_energy_range': (10.0, 500.0),  # eV (替换掺杂的能量范围更大)
             'uniformity_threshold': 0.70  # 70% 均匀性 (DFT计算的合理范围)
         }
-
+        
         # 掺杂类型和浓度 - 严格按照论文要求
         self.doping_types = ['pristine', 'B', 'N', 'P']  # 论文要求: B/N/P掺杂
         self.doping_concentrations = [0.025, 0.05, 0.075]  # 论文要求: 2.5%, 5.0%, 7.5%
-
+        
         # 创建必要的目录
         self.experiment_dir.mkdir(parents=True, exist_ok=True)
         (self.experiment_dir / "outputs").mkdir(exist_ok=True)
         (self.experiment_dir / "results").mkdir(exist_ok=True)
         (self.experiment_dir / "figures").mkdir(exist_ok=True)
-
+    
     def create_dft_input_files(self):
         """创建DFT输入文件 - 使用替换掺杂机制"""
         logger.info("创建DFT输入文件（替换掺杂）...")
-
+        
         for dopant in self.doping_types:
             for concentration in self.doping_concentrations:
                 input_file = self.experiment_dir / "outputs" / f"C60_{dopant}_{concentration:.2f}_doped.inp"
-
+                
                 # 计算要替换的碳原子数量
                 n_c60 = 60  # C60分子中的碳原子总数
                 n_dopant = int(round(n_c60 * concentration))  # 替换的原子数
@@ -73,7 +73,7 @@ class DopingExperimentRunner:
                     'P': 5
                 }
                 dopant_q = dopant_valence_electrons.get(dopant, 4)
-
+                
                 # 创建CP2K输入文件
                 # 根据掺杂元素调整配置
                 uks_setting = ".TRUE." if dopant != 'pristine' else ".FALSE."
@@ -113,7 +113,7 @@ class DopingExperimentRunner:
       &END OUTER_SCF
     &END SCF
   &END DFT
-
+  
   &SUBSYS
     &CELL
       A 36.67 0.000000 0.000000
@@ -121,7 +121,7 @@ class DopingExperimentRunner:
       C 0.000000 0.000000 20.000000
       PERIODIC XYZ
     &END CELL
-
+    
     &COORD
 """
 
@@ -149,13 +149,13 @@ class DopingExperimentRunner:
                 input_content += c60_coords_str
                 input_content += f"""
     &END COORD
-
+    
     &KIND C
       BASIS_SET DZVP-MOLOPT-GTH
       POTENTIAL GTH-PBE
     &END KIND
 """
-
+    
                 # 只为非pristine添加掺杂元素的KIND定义
                 if dopant != 'pristine':
                     input_content += f"""
@@ -168,12 +168,12 @@ class DopingExperimentRunner:
                 input_content += """  &END SUBSYS
 &END FORCE_EVAL
 """
-
+                
                 with open(input_file, 'w') as f:
                     f.write(input_content)
-
+                
                 logger.info(f"创建输入文件: {input_file}")
-
+    
     def _check_calculation_success(self, output_file: Path) -> bool:
         """检查计算是否已成功完成"""
         if not output_file.exists():
@@ -202,39 +202,39 @@ class DopingExperimentRunner:
     def run_dft_calculations(self):
         """运行DFT计算"""
         logger.info("开始运行DFT计算...")
-
+        
         # 查找CP2K可执行文件
         cp2k_exe = self._find_cp2k_executable()
         if not cp2k_exe:
             logger.warning("未找到CP2K可执行文件")
-
+        
         # 先尝试运行一个测试计算
         test_input = self.experiment_dir / "outputs" / "C60_Li_0.10_doped.inp"
         test_output = self.experiment_dir / "outputs" / "C60_Li_0.10_doped.out"
-
+        
         nprocs = int(os.environ.get('NPROCS', '32'))
         cmd = ['mpirun', '-np', str(nprocs), str(cp2k_exe), '-i', str(test_input)]
         try:
-            result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+            result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, 
                                   timeout=60, cwd=self.experiment_dir / "outputs")
             if result.returncode != 0:
                 logger.error(f"CP2K测试计算失败: {result.stderr.decode()}")
 
         except Exception as e:
             logger.error(f"CP2K测试计算异常: {e}")
-
+        
         results = {}
 
         # 统计信息
         total_calcs = len(self.doping_types) * len(self.doping_concentrations)
         completed = 0
         skipped = 0
-
+        
         for dopant in self.doping_types:
             for concentration in self.doping_concentrations:
                 input_file = self.experiment_dir / "outputs" / f"C60_{dopant}_{concentration:.2f}_doped.inp"
                 output_file = self.experiment_dir / "outputs" / f"C60_{dopant}_{concentration:.2f}_doped.out"
-
+                
                 # 检查是否已完成
                 if self._check_calculation_success(output_file):
                     logger.info(f"⏭️  跳过已完成的计算: {dopant} {concentration:.2f}")
@@ -252,20 +252,20 @@ class DopingExperimentRunner:
                     continue
 
                 logger.info(f"🔄 运行计算 ({completed + skipped + 1}/{total_calcs}): {dopant} {concentration:.2f}")
-
+                
                 # 运行CP2K计算 (MPI并行, 32 CPU)
                 nprocs = int(os.environ.get('NPROCS', '32'))
                 cmd = ['mpirun', '-np', str(nprocs), str(cp2k_exe), '-i', str(input_file)]
                 logger.info(f"   命令: mpirun -np {nprocs} {cp2k_exe}")
-
+                
                 try:
                     start_time = time.time()
                     with open(output_file, 'w') as f:
-                        result = subprocess.run(cmd, stdout=f, stderr=subprocess.PIPE,
+                        result = subprocess.run(cmd, stdout=f, stderr=subprocess.PIPE, 
                                               timeout=7200, cwd=self.experiment_dir / "outputs")
-
+                    
                     calculation_time = time.time() - start_time
-
+                    
                     if result.returncode == 0:
                         # 解析输出
                         output_info = self._parse_dft_output(output_file)
@@ -286,7 +286,7 @@ class DopingExperimentRunner:
                             'status': 'failed',
                             'error': result.stderr.decode()
                         }
-
+                        
                 except subprocess.TimeoutExpired:
                     logger.error(f"计算超时: {dopant} {concentration:.2f}")
                     results[f"{dopant}_{concentration:.2f}"] = {
@@ -302,7 +302,7 @@ class DopingExperimentRunner:
                         'status': 'error',
                         'error': str(e)
                     }
-
+        
         # 输出统计信息
         logger.info(f"\n📊 计算统计:")
         logger.info(f"  总计算数: {total_calcs}")
@@ -352,11 +352,11 @@ class DopingExperimentRunner:
                     result['dopant_position'] = 'substitutional'
 
         return results
-
+    
     def _find_cp2k_executable(self):
         """查找CP2K可执行文件 (优先并行版本)"""
         import shutil
-
+        
         possible_paths = [
             Path("/opt/cp2k/exe/Linux-aarch64-minimal/cp2k.psmp"),
             Path("/opt/cp2k/exe/local/cp2k.psmp"),
@@ -364,7 +364,7 @@ class DopingExperimentRunner:
             Path("cp2k.psmp"),
             Path("cp2k")
         ]
-
+        
         for path in possible_paths:
             if path.exists():
                 return path
@@ -372,7 +372,7 @@ class DopingExperimentRunner:
             if found:
                 return Path(found)
         return None
-
+    
     def _parse_dft_output(self, output_file: Path) -> Dict:
         """解析DFT输出文件"""
         output_info = {
@@ -382,13 +382,13 @@ class DopingExperimentRunner:
             'convergence': False,
             'n_atoms': 0
         }
-
+        
         try:
             with open(output_file, 'r') as f:
                 content = f.read()
-
+            
             lines = content.split('\n')
-
+            
             for line in lines:
                 # 提取总能量
                 if 'ENERGY| Total FORCE_EVAL' in line:
@@ -397,11 +397,11 @@ class DopingExperimentRunner:
                         output_info['total_energy'] = energy
                     except:
                         pass
-
+                
                 # 检查收敛
                 if 'SCF run converged' in line:
                     output_info['convergence'] = True
-
+                
                 # 提取原子数
                 if 'Number of atoms' in line:
                     try:
@@ -409,16 +409,16 @@ class DopingExperimentRunner:
                         output_info['n_atoms'] = n_atoms
                     except:
                         pass
-
+            
         except Exception as e:
             logger.warning(f"解析输出文件失败: {e}")
-
+        
         return output_info
-
+    
     def analyze_results(self, dft_results: Dict):
         """分析DFT结果"""
         logger.info("分析DFT结果...")
-
+        
         analysis_results = {
             'doping_concentrations': {},
             'binding_energies': {},
@@ -427,7 +427,7 @@ class DopingExperimentRunner:
             'validation_metrics': {},
             'plots': {}
         }
-
+        
         # 获取pristine C60能量作为参考
         pristine_energy = None
         for result in dft_results.values():
@@ -446,12 +446,12 @@ class DopingExperimentRunner:
             concentrations = []
             binding_energies = []
             total_energies = []
-
+            
             for calc_name, result in dft_results.items():
                 if result['status'] in ['success', 'success_cached'] and result['dopant'] == dopant:
                     # 过滤掉None值
                     if result.get('total_energy') is not None:
-                        concentrations.append(result['concentration'])
+                    concentrations.append(result['concentration'])
                         total_energy = result['total_energy']
 
                         # 计算相对于pristine的结合能 (Hartree转eV: 1 Hartree = 27.211 eV)
@@ -464,7 +464,7 @@ class DopingExperimentRunner:
 
                         binding_energies.append(binding_energy)
                         total_energies.append(total_energy)
-
+            
             if concentrations and binding_energies:
                 dopant_data = {
                     'concentrations': concentrations,
@@ -474,7 +474,7 @@ class DopingExperimentRunner:
                     'binding_energy_std': np.std(binding_energies)
                 }
                 analysis_results['doping_concentrations'][dopant] = dopant_data
-
+        
         # 分析结合能 (排除pristine)
         all_binding_energies = []
         for result in dft_results.values():
@@ -484,7 +484,7 @@ class DopingExperimentRunner:
                 total_energy = result['total_energy']
                 binding_energy = abs(total_energy - pristine_energy) * 27.211
                 all_binding_energies.append(binding_energy)
-
+        
         if all_binding_energies:
             analysis_results['binding_energies'] = {
                 'mean': np.mean(all_binding_energies),
@@ -493,7 +493,7 @@ class DopingExperimentRunner:
                 'max': np.max(all_binding_energies),
                 'range_valid': (self.theoretical_predictions['binding_energy_range'][0] <= np.mean(all_binding_energies) <= self.theoretical_predictions['binding_energy_range'][1])
             }
-
+        
         # 分析化学状态
         chemical_states = {}
         for dopant in self.doping_types:
@@ -516,27 +516,27 @@ class DopingExperimentRunner:
                     'coordination': 'substitutional',  # 替换掺杂
                     'stability': 'stable' if np.mean(binding_energies) > 1.0 else 'metastable'
                 }
-
+        
         analysis_results['chemical_states'] = chemical_states
-
+        
         # 均匀性分析
         uniformity_analysis = self._analyze_uniformity(dft_results)
         analysis_results['uniformity_analysis'] = uniformity_analysis
-
+        
         # 验证结果
         validation_metrics = self._validate_results(dft_results, analysis_results)
         analysis_results['validation_metrics'] = validation_metrics
-
+        
         # 生成图表
         plots = self._generate_plots(dft_results, analysis_results)
         analysis_results['plots'] = plots
-
+        
         return analysis_results
-
+    
     def _analyze_uniformity(self, dft_results: Dict) -> Dict:
         """分析掺杂均匀性"""
         uniformity_data = {}
-
+        
         # 获取pristine能量
         pristine_energy = None
         for result in dft_results.values():
@@ -565,9 +565,9 @@ class DopingExperimentRunner:
                     'uniformity_score': max(0, uniformity_score),
                     'is_uniform': uniformity_score >= self.theoretical_predictions['uniformity_threshold']
                 }
-
+        
         return uniformity_data
-
+    
     def _validate_results(self, dft_results: Dict, analysis_results: Dict) -> Dict:
         """验证实验结果"""
         validation_results = {
@@ -577,14 +577,14 @@ class DopingExperimentRunner:
             'uniformity_valid': False,
             'overall_valid': False
         }
-
+        
         # 验证掺杂浓度 - 严格按照论文要求
         successful_results = [r for r in dft_results.values() if r['status'] in ['success', 'success_cached']]
         if successful_results:
             concentrations = [r['concentration'] for r in successful_results]
             target_concentrations = self.theoretical_predictions['target_concentrations']
             tolerance = self.theoretical_predictions['tolerance_concentration']
-
+            
             # 检查是否包含所有目标浓度
             concentration_valid = True
             for target_conc in target_concentrations:
@@ -595,41 +595,41 @@ class DopingExperimentRunner:
             validation_results['concentration_valid'] = concentration_valid
         else:
             validation_results['concentration_valid'] = False
-
+        
         # 验证结合能
         if 'binding_energies' in analysis_results and 'mean' in analysis_results['binding_energies']:
             binding_energy_range = self.theoretical_predictions['binding_energy_range']
             mean_binding_energy = analysis_results['binding_energies']['mean']
             if binding_energy_range[0] <= mean_binding_energy <= binding_energy_range[1]:
                 validation_results['binding_energy_valid'] = True
-
+        
         # 验证化学状态
         if 'chemical_states' in analysis_results:
             chemical_states = analysis_results['chemical_states']
             if len(chemical_states) >= 3:  # 至少3种掺杂类型成功
                 validation_results['chemical_state_valid'] = True
-
+        
         # 验证均匀性
         if 'uniformity_analysis' in analysis_results and analysis_results['uniformity_analysis']:
             uniformity_data = analysis_results['uniformity_analysis']
             uniform_count = sum(1 for data in uniformity_data.values() if data.get('is_uniform', False))
             if uniform_count >= len(uniformity_data) * 0.6:  # 60%的掺杂类型均匀（降低要求）
                 validation_results['uniformity_valid'] = True
-
+        
         # 总体验证
         validation_results['overall_valid'] = (
-            validation_results['concentration_valid'] and
-            validation_results['binding_energy_valid'] and
-            validation_results['chemical_state_valid'] and
+            validation_results['concentration_valid'] and 
+            validation_results['binding_energy_valid'] and 
+            validation_results['chemical_state_valid'] and 
             validation_results['uniformity_valid']
         )
-
+        
         return validation_results
-
+    
     def _generate_plots(self, dft_results: Dict, analysis_results: Dict) -> Dict:
         """生成图表"""
         fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, figsize=(15, 12))
-
+        
         # 1. 结合能随掺杂浓度变化
         for dopant in self.doping_types:
             dopant_data = analysis_results['doping_concentrations'].get(dopant, {})
@@ -637,13 +637,13 @@ class DopingExperimentRunner:
                 concentrations = dopant_data['concentrations']
                 binding_energies = dopant_data['binding_energies']
                 ax1.plot(concentrations, binding_energies, 'o-', label=dopant, markersize=8)
-
+        
         ax1.set_xlabel('Doping Concentration')
         ax1.set_ylabel('Binding Energy (eV)')
         ax1.set_title('Binding Energy vs Doping Concentration')
         ax1.legend()
         ax1.grid(True, alpha=0.3)
-
+        
         # 2. 总能量随掺杂浓度变化
         for dopant in self.doping_types:
             dopant_data = analysis_results['doping_concentrations'].get(dopant, {})
@@ -651,13 +651,13 @@ class DopingExperimentRunner:
                 concentrations = dopant_data['concentrations']
                 total_energies = dopant_data['total_energies']
                 ax2.plot(concentrations, total_energies, 'o-', label=dopant, markersize=8)
-
+        
         ax2.set_xlabel('Doping Concentration')
         ax2.set_ylabel('Total Energy (Hartree)')
         ax2.set_title('Total Energy vs Doping Concentration')
         ax2.legend()
         ax2.grid(True, alpha=0.3)
-
+        
         # 3. 结合能分布
         # 获取pristine能量
         pristine_energy = None
@@ -669,13 +669,13 @@ class DopingExperimentRunner:
 
         all_binding_energies = []
         if pristine_energy is not None:
-            for result in dft_results.values():
+        for result in dft_results.values():
                 if (result['status'] in ['success', 'success_cached'] and
                     result.get('total_energy') is not None and
                     result.get('dopant') != 'pristine'):
                     binding_energy = abs(result['total_energy'] - pristine_energy) * 27.211
                     all_binding_energies.append(binding_energy)
-
+        
         if all_binding_energies:
             ax3.hist(all_binding_energies, bins=10, alpha=0.7, edgecolor='black')
             ax3.axvline(np.mean(all_binding_energies), color='red', linestyle='--', label=f'Mean: {np.mean(all_binding_energies):.2f} eV')
@@ -684,7 +684,7 @@ class DopingExperimentRunner:
             ax3.set_title('Binding Energy Distribution')
             ax3.legend()
             ax3.grid(True, alpha=0.3)
-
+        
         # 4. 验证结果总结
         validation_results = analysis_results.get('validation_metrics', {})
         ax4.text(0.1, 0.8, f"Concentration Valid: {'✓' if validation_results.get('concentration_valid', False) else '✗'}",
@@ -701,18 +701,18 @@ class DopingExperimentRunner:
         ax4.set_xlim(0, 1)
         ax4.set_ylim(0, 1)
         ax4.axis('off')
-
+        
         plt.tight_layout()
         plot_file = self.experiment_dir / "figures" / "doping_analysis.png"
         plt.savefig(plot_file, dpi=300, bbox_inches='tight')
         plt.close()
-
+        
         return {'plot_file': str(plot_file)}
-
+    
     def save_results(self, dft_results: Dict, analysis_results: Dict):
         """保存结果"""
         logger.info("保存实验结果...")
-
+        
         def convert_numpy_types(obj):
             """转换numpy类型为Python原生类型"""
             if isinstance(obj, np.integer):
@@ -729,17 +729,17 @@ class DopingExperimentRunner:
                 return [convert_numpy_types(item) for item in obj]
             else:
                 return obj
-
+        
         # 保存DFT结果
         dft_file = self.experiment_dir / "results" / "dft_results.json"
         with open(dft_file, 'w') as f:
             json.dump(convert_numpy_types(dft_results), f, indent=2)
-
+        
         # 保存分析结果
         analysis_file = self.experiment_dir / "results" / "analysis_results.json"
         with open(analysis_file, 'w') as f:
             json.dump(convert_numpy_types(analysis_results), f, indent=2)
-
+        
         # 保存验证报告
         validation_report = {
             'experiment': 'exp_2_doping',
@@ -754,32 +754,32 @@ class DopingExperimentRunner:
                 'overall_valid': analysis_results['validation_metrics']['overall_valid']
             }
         }
-
+        
         report_file = self.experiment_dir / "results" / "validation_report.json"
         with open(report_file, 'w') as f:
             json.dump(convert_numpy_types(validation_report), f, indent=2)
-
+        
         logger.info(f"结果已保存:")
         logger.info(f"  DFT结果: {dft_file}")
         logger.info(f"  分析结果: {analysis_file}")
         logger.info(f"  验证报告: {report_file}")
-
+    
     def run_complete_experiment(self):
         """运行完整实验"""
         logger.info("🚀 开始实验2: 掺杂合成实验")
-
+        
         # 1. 创建DFT输入文件
         self.create_dft_input_files()
-
+        
         # 2. 运行DFT计算
         dft_results = self.run_dft_calculations()
-
+        
         # 3. 分析结果
         analysis_results = self.analyze_results(dft_results)
-
+        
         # 4. 保存结果
         self.save_results(dft_results, analysis_results)
-
+        
         # 5. 输出总结
         validation_metrics = analysis_results['validation_metrics']
         logger.info("🎯 实验2完成!")
@@ -792,7 +792,7 @@ class DopingExperimentRunner:
         logger.info(f"  化学状态验证: {'✓' if validation_metrics['chemical_state_valid'] else '✗'}")
         logger.info(f"  均匀性验证: {'✓' if validation_metrics['uniformity_valid'] else '✗'}")
         logger.info(f"  总体验证: {'✓' if validation_metrics['overall_valid'] else '✗'}")
-
+        
         return {
             'dft_results': dft_results,
             'analysis_results': analysis_results,

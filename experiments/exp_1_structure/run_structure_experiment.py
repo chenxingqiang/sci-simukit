@@ -299,7 +299,7 @@ class StructureExperimentRunner:
                 # 检查收敛
                 if 'SCF run converged' in line:
                     output_info['convergence'] = True
-                
+
                 # 检查未收敛警告
                 if 'SCF run NOT converged' in line:
                     output_info['convergence'] = False
@@ -333,8 +333,8 @@ class StructureExperimentRunner:
                                 parts = line.split()
                                 lattice_b = float(parts[2])  # by component (not bx=0)
                                 output_info['lattice_parameters']['b'] = lattice_b
-                            except:
-                                pass
+                    except:
+                        pass
 
         except Exception as e:
             logger.warning(f"解析输出文件失败: {e}")
@@ -433,16 +433,16 @@ class StructureExperimentRunner:
         from scipy.optimize import curve_fit
 
         try:
-            # 拟合a参数
+        # 拟合a参数
             popt_a, pcov_a = curve_fit(linear_func, strains_clean, lattice_a_clean)
-            # 拟合b参数
+        # 拟合b参数
             popt_b, pcov_b = curve_fit(linear_func, strains_clean, lattice_b_clean)
 
-            return {
-                'a_slope': float(popt_a[0]),
-                'a_intercept': float(popt_a[1]),
-                'b_slope': float(popt_b[0]),
-                'b_intercept': float(popt_b[1]),
+        return {
+            'a_slope': float(popt_a[0]),
+            'a_intercept': float(popt_a[1]),
+            'b_slope': float(popt_b[0]),
+            'b_intercept': float(popt_b[1]),
                 'r_squared_a': float(self._calculate_r_squared(strains_clean, lattice_a_clean, popt_a)),
                 'r_squared_b': float(self._calculate_r_squared(strains_clean, lattice_b_clean, popt_b))
             }
@@ -455,7 +455,7 @@ class StructureExperimentRunner:
                 'b_intercept': 0.0,
                 'r_squared_a': 0.0,
                 'r_squared_b': 0.0
-            }
+        }
 
     def _calculate_r_squared(self, x: np.ndarray, y: np.ndarray, params: np.ndarray) -> float:
         """计算R²值"""
@@ -574,13 +574,13 @@ class StructureExperimentRunner:
                 popt_b, _ = curve_fit(linear_func, strains_clean, lattice_b_clean)
 
                 strain_fit = np.linspace(min(strains_clean), max(strains_clean), 100)
-                a_fit = linear_func(strain_fit, *popt_a)
-                b_fit = linear_func(strain_fit, *popt_b)
+            a_fit = linear_func(strain_fit, *popt_a)
+            b_fit = linear_func(strain_fit, *popt_b)
 
                 ax3.plot(strains_clean, lattice_a_clean, 'ro', label='a data', markersize=8)
-                ax3.plot(strain_fit, a_fit, 'r-', label=f'a fit (slope={popt_a[0]:.3f})')
+            ax3.plot(strain_fit, a_fit, 'r-', label=f'a fit (slope={popt_a[0]:.3f})')
                 ax3.plot(strains_clean, lattice_b_clean, 'bo', label='b data', markersize=8)
-                ax3.plot(strain_fit, b_fit, 'b-', label=f'b fit (slope={popt_b[0]:.3f})')
+            ax3.plot(strain_fit, b_fit, 'b-', label=f'b fit (slope={popt_b[0]:.3f})')
             except Exception as e:
                 logger.warning(f"拟合失败: {e}")
                 ax3.text(0.5, 0.5, 'Fitting failed', ha='center', va='center', transform=ax3.transAxes)

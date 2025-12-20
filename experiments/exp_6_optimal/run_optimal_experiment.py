@@ -564,7 +564,7 @@ class OptimalExperimentRunner:
         # 协同增强
         if dopant != 'pristine' and abs(strain) > 0.5:
             synergy_boost = 1.15
-        else:
+                else:
             synergy_boost = 1.0
 
         # 计算J和λ
@@ -580,7 +580,7 @@ class OptimalExperimentRunner:
             E_a_meV = (lambda_reorg - 2*J)**2 / (4 * lambda_reorg)
             E_a = E_a_meV / 1000.0  # meV -> eV
             E_a = max(0.05, min(0.25, E_a))
-        else:
+                else:
             E_a = 0.18
 
         # Marcus理论计算迁移率

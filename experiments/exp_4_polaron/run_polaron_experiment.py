@@ -131,7 +131,7 @@ class PolaronAnalyzer:
       BASIS_SET DZVP-MOLOPT-PBE-GTH-q{dopant_q}
       POTENTIAL GTH-PBE-q{dopant_q}
     &END KIND"""
-        else:
+                else:
             coords_str = format_coords_for_cp2k(dimer_coords)
             uks = "" if charge == 0 else "UKS"
             kind_block = """    &KIND C
@@ -298,22 +298,22 @@ class PolaronAnalyzer:
         
         start_time = time.time()
         try:
-            with open(output_file, 'w') as f:
-                result = subprocess.run(cmd, stdout=f, stderr=subprocess.PIPE, 
+                    with open(output_file, 'w') as f:
+                        result = subprocess.run(cmd, stdout=f, stderr=subprocess.PIPE, 
                                         cwd=self.inputs_dir)
-            
-            calculation_time = time.time() - start_time
-            
-            if result.returncode == 0:
+                    
+                    calculation_time = time.time() - start_time
+                    
+                    if result.returncode == 0:
                 logger.info(f"  ✅ 计算成功，用时: {calculation_time:.1f}s ({calculation_time/3600:.2f}小时)")
                 return output_file
-            else:
+                    else:
                 logger.error(f"  ❌ 计算失败: {result.stderr.decode()}")
                 return None
                 
-        except Exception as e:
+                except Exception as e:
             logger.error(f"  ❌ 计算异常: {e}")
-            return None
+        return None
     
     def _parse_dft_output(self, output_file: Path) -> dict:
         """解析DFT输出文件，提取能量和能级"""

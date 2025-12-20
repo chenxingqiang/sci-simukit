@@ -1,36 +1,108 @@
 {
   "total_experiments": 6,
   "total_calculations": 93,
-  "successful_calculations": 92,
+  "successful_calculations": 93,
   "experiments": {
     "exp1_structure": {
       "total": 5,
       "successful": 5,
+      "running": 0,
+      "failed": 0,
+      "dopants": [
+        "pristine"
+      ],
+      "strain_range": [
+        -5.0,
+        5.0
+      ],
+      "n_atoms": null,
       "completion_rate": "100.0%"
     },
     "exp2_doping": {
       "total": 12,
-      "successful": 11,
-      "completion_rate": "91.7%"
+      "successful": 12,
+      "running": 0,
+      "failed": 0,
+      "dopants": [
+        "B",
+        "N",
+        "P",
+        "pristine"
+      ],
+      "strain_range": null,
+      "n_atoms": null,
+      "completion_rate": "100.0%"
     },
     "exp3_electronic": {
       "total": 24,
       "successful": 24,
+      "running": 0,
+      "failed": 0,
+      "dopants": [
+        "B",
+        "N",
+        "P",
+        "pristine"
+      ],
+      "strain_range": [
+        -5.0,
+        5.0
+      ],
+      "n_atoms": null,
       "completion_rate": "100.0%"
     },
     "exp4_polaron": {
       "total": 8,
       "successful": 8,
+      "running": 0,
+      "failed": 0,
+      "dopants": [
+        "N",
+        "P",
+        "pristine",
+        "B"
+      ],
+      "strain_range": [
+        0.0,
+        3.0
+      ],
+      "n_atoms": null,
       "completion_rate": "100.0%"
     },
     "exp5_synergy": {
       "total": 24,
       "successful": 24,
+      "running": 0,
+      "failed": 0,
+      "dopants": [
+        "B",
+        "N",
+        "P",
+        "pristine"
+      ],
+      "strain_range": [
+        -5.0,
+        5.0
+      ],
+      "n_atoms": null,
       "completion_rate": "100.0%"
     },
     "exp6_optimal": {
       "total": 20,
       "successful": 20,
+      "running": 0,
+      "failed": 0,
+      "dopants": [
+        "B",
+        "pristine",
+        "N",
+        "P"
+      ],
+      "strain_range": [
+        -5.0,
+        5.0
+      ],
+      "n_atoms": null,
       "completion_rate": "100.0%"
     }
   }

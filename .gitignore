@@ -85,3 +85,4 @@ slurm-*.out
 polaron_calculations/
 # Logs
 *.log
+dft_results_download/

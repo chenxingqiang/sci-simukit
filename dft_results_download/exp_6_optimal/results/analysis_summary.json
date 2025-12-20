@@ -2,10 +2,10 @@
   "total_calculations": 20,
   "successful_calculations": 20,
   "dopant_types": [
-    "P",
-    "B",
     "N",
-    "pristine"
+    "pristine",
+    "P",
+    "B"
   ],
   "strain_values": [
     -5.0,
@@ -15,20 +15,6 @@
     5.0
   ],
   "energy_statistics": {
-    "P": {
-      "count": 5,
-      "min_energy_Ha": -341.46049815598775,
-      "max_energy_Ha": -341.46048196917775,
-      "mean_energy_Ha": -341.46048862916604,
-      "energy_range_meV": 0.4404657616562531
-    },
-    "B": {
-      "count": 5,
-      "min_energy_Ha": -337.96614272846176,
-      "max_energy_Ha": -337.96612910474175,
-      "mean_energy_Ha": -337.96613686167825,
-      "energy_range_meV": 0.37072049462914264
-    },
     "N": {
       "count": 5,
       "min_energy_Ha": -345.12471743251973,
@@ -42,13 +28,27 @@
       "max_energy_Ha": -340.88822369181446,
       "mean_energy_Ha": -340.8882327354996,
       "energy_range_meV": 0.3762847680083155
+    },
+    "P": {
+      "count": 5,
+      "min_energy_Ha": -341.46049815598775,
+      "max_energy_Ha": -341.46048196917775,
+      "mean_energy_Ha": -341.46048862916604,
+      "energy_range_meV": 0.4404657616562531
+    },
+    "B": {
+      "count": 5,
+      "min_energy_Ha": -337.96614272846176,
+      "max_energy_Ha": -337.96612910474175,
+      "mean_energy_Ha": -337.96613686167825,
+      "energy_range_meV": 0.37072049462914264
     }
   },
   "strain_sensitivity": {
-    "P": 0.019548659373386405,
-    "B": -0.010383046740360311,
     "N": 0.11128710901830943,
-    "pristine": -0.017029883644889183
+    "pristine": -0.017029883644889183,
+    "P": 0.019548659373386405,
+    "B": -0.010383046740360311
   },
   "most_stable_config": {
     "key": "strain_-3.0_N",

@@ -434,7 +434,7 @@ class SynergyExperimentRunner:
                         output_info['n_atoms'] = int(line.split()[-1])
                     except:
                         pass
-                
+            
                 # 提取MO能级用于J计算
                 if 'MO|' in line and 'eV' in line:
                     parts = line.split()
@@ -872,7 +872,7 @@ class SynergyExperimentRunner:
         logger.info(f"  验证报告: {report_file}")
     
     def run_complete_experiment(self):
-        """运行完整实验"""
+        """运行完整实验 - 只运行DFT计算，不生成结果文件"""
         logger.info("🚀 开始实验5: 协同效应定量验证实验")
         
         # 1. 创建DFT输入文件
@@ -881,31 +881,19 @@ class SynergyExperimentRunner:
         # 2. 运行DFT计算
         dft_results = self.run_dft_calculations()
         
-        # 3. 分析结果
-        analysis_results = self.analyze_results(dft_results)
+        # 3. 输出计算状态总结
+        n_success = sum(1 for r in dft_results.values() if r.get('status') == 'success')
+        n_total = len(dft_results)
         
-        # 4. 保存结果
-        self.save_results(dft_results, analysis_results)
+        logger.info("🎯 DFT计算完成!")
+        logger.info(f"  总计算数: {n_total}")
+        logger.info(f"  成功计算数: {n_success}")
+        logger.info(f"  完成率: {n_success/n_total*100:.1f}%")
+        logger.info("")
+        logger.info("📝 注意: 结果分析请使用独立的分析脚本:")
+        logger.info("   python analyze_dft_results.py --dir .")
         
-        # 5. 输出总结
-        validation_metrics = analysis_results['validation_metrics']
-        logger.info("🎯 实验5完成!")
-        logger.info(f"  总计算数: {len(dft_results)}")
-        logger.info(f"  成功计算数: {sum(1 for r in dft_results.values() if r['status'] == 'success')}")
-        logger.info(f"  掺杂类型数: {len(self.doping_types)}")
-        logger.info(f"  应变水平数: {len(self.strain_values)}")
-        logger.info(f"  离域化因子验证: {'✓' if validation_metrics['delocalization_factor_valid'] else '✗'}")
-        logger.info(f"  耦合增强验证: {'✓' if validation_metrics['coupling_enhancement_valid'] else '✗'}")
-        logger.info(f"  重组能因子验证: {'✓' if validation_metrics['reorganization_factor_valid'] else '✗'}")
-        logger.info(f"  总增强因子验证: {'✓' if validation_metrics['total_enhancement_valid'] else '✗'}")
-        logger.info(f"  协同效应验证: {'✓' if validation_metrics['synergistic_effect_valid'] else '✗'}")
-        logger.info(f"  总体验证: {'✓' if validation_metrics['overall_valid'] else '✗'}")
-        
-        return {
-            'dft_results': dft_results,
-            'analysis_results': analysis_results,
-            'validation_metrics': validation_metrics
-        }
+        return {'dft_results': dft_results}
 
 def main():
     """主函数"""

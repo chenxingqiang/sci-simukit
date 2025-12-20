@@ -92,6 +92,9 @@ class SynergyExperimentRunner:
 &FORCE_EVAL
   METHOD Quickstep
   &DFT
+    BASIS_SET_FILE_NAME /opt/cp2k/data/BASIS_MOLOPT
+    POTENTIAL_FILE_NAME /opt/cp2k/data/GTH_POTENTIALS
+    
     &XC
       &XC_FUNCTIONAL PBE
       &END XC_FUNCTIONAL
@@ -117,7 +120,7 @@ class SynergyExperimentRunner:
     &END COORD
     
     &KIND C
-      BASIS_SET MOLOPT-DZVP
+      BASIS_SET DZVP-MOLOPT-SR-GTH
       POTENTIAL GTH-PBE
     &END KIND
   &END SUBSYS
@@ -213,12 +216,12 @@ class SynergyExperimentRunner:
     &END COORD
     
     &KIND C
-      BASIS_SET DZVP-MOLOPT-GTH
+      BASIS_SET DZVP-MOLOPT-SR-GTH
       POTENTIAL GTH-PBE
     &END KIND
     
     &KIND {dopant}
-      BASIS_SET DZVP-MOLOPT-PBE-GTH-q{dopant_q}
+      BASIS_SET DZVP-MOLOPT-SR-GTH-q{dopant_q}
       POTENTIAL GTH-PBE-q{dopant_q}
     &END KIND
   &END SUBSYS
@@ -259,7 +262,7 @@ class SynergyExperimentRunner:
                     start_time = time.time()
                     with open(output_file, 'w') as f:
                         result = subprocess.run(cmd, stdout=f, stderr=subprocess.PIPE, 
-                                              timeout=1800, cwd=self.experiment_dir / "outputs")
+                                              timeout=None, cwd=self.experiment_dir / "outputs")
                     
                     calculation_time = time.time() - start_time
                     

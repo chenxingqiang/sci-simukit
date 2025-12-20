@@ -1,0 +1,115 @@
+{
+  "experiment": "exp_4_polaron",
+  "description": "\u6781\u5316\u5b50\u4ece\u5c0f\u6781\u5316\u5b50\u8df3\u8dc3\u5230\u5927\u6781\u5316\u5b50\u5e26\u72b6\u4f20\u5bfc\u7684\u8f6c\u53d8\u9a8c\u8bc1",
+  "timestamp": "1764855501.7991865",
+  "method": "DFT",
+  "doping_types": [
+    "pristine",
+    "B",
+    "N",
+    "P"
+  ],
+  "systems": {
+    "pristine": {
+      "strain": 0.0,
+      "doping": null,
+      "concentration": 0.0,
+      "total_energy": -681.8104708114665,
+      "homo_energy": -4.594595,
+      "lumo_energy": null,
+      "IPR": 75.03418259281088,
+      "J": 26.559499999999847,
+      "lambda": 180.0,
+      "E_a": 0.022359428001388997,
+      "convergence": true,
+      "regime": "\u5c0f\u6781\u5316\u5b50\u8df3\u8dc3",
+      "status": "success"
+    },
+    "coupled": {
+      "strain": 3.0,
+      "doping": "B",
+      "concentration": 5.0,
+      "total_energy": -664.2556395723993,
+      "homo_energy": -4.350582,
+      "lumo_energy": null,
+      "IPR": 45.0,
+      "J": 37.1699999999997,
+      "lambda": 158.0,
+      "E_a": 0.011074360126582436,
+      "convergence": true,
+      "regime": "\u5c0f\u6781\u5316\u5b50\u8df3\u8dc3",
+      "status": "success"
+    }
+  },
+  "summary": {
+    "IPR_change_factor": 0.5997266638353639,
+    "J_enhancement_percent": 39.9499237560945,
+    "E_a_reduction_percent": 50.47118322573153,
+    "transition_confirmed": false
+  },
+  "validation": {
+    "IPR_pristine": {
+      "predicted": [
+        28,
+        32
+      ],
+      "measured": 75.03418259281088,
+      "passed": false
+    },
+    "IPR_coupled": {
+      "predicted": [
+        23,
+        27
+      ],
+      "measured": 45.0,
+      "passed": false
+    },
+    "J_pristine": {
+      "predicted": [
+        70,
+        80
+      ],
+      "measured": 26.559499999999847,
+      "passed": false
+    },
+    "J_coupled": {
+      "predicted": [
+        130,
+        140
+      ],
+      "measured": 37.1699999999997,
+      "passed": false
+    },
+    "E_a": {
+      "predicted": [
+        0.08,
+        0.1
+      ],
+      "measured": 0.011074360126582436,
+      "passed": false
+    },
+    "lambda_pristine": {
+      "predicted": [
+        0.09,
+        0.11
+      ],
+      "measured": 0.18,
+      "passed": false
+    },
+    "lambda_coupled": {
+      "predicted": [
+        0.06,
+        0.08
+      ],
+      "measured": 0.158,
+      "passed": false
+    },
+    "polaron_transition": {
+      "condition": "J_coupled > \u03bb_coupled/2",
+      "J_coupled": 37.1699999999997,
+      "lambda_coupled_half": 79.0,
+      "passed": false
+    }
+  },
+  "overall_success": false
+}

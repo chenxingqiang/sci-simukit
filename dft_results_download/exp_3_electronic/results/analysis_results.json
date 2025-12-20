@@ -1,0 +1,225 @@
+{
+  "electronic_properties": {
+    "pristine": {
+      "strains": [
+        -5.0,
+        -2.5,
+        0.0,
+        2.5,
+        3.0,
+        5.0
+      ],
+      "bandgaps": [
+        1.55,
+        1.625,
+        1.7,
+        1.775,
+        1.79,
+        1.8499999999999999
+      ],
+      "mobilities": [
+        10.672160085936744,
+        12.419286313201411,
+        14.37675133728345,
+        16.564809705726308,
+        17.03201002951416,
+        19.0056675468869
+      ],
+      "energies": [
+        -656.61,
+        -656.485,
+        -656.36,
+        -656.235,
+        -656.21,
+        -656.11
+      ],
+      "avg_bandgap": 1.715,
+      "avg_mobility": 15.011780836424832,
+      "bandgap_range": [
+        1.55,
+        1.8499999999999999
+      ],
+      "mobility_range": [
+        10.672160085936744,
+        19.0056675468869
+      ]
+    },
+    "B": {
+      "strains": [
+        -5.0,
+        -2.5,
+        0.0,
+        2.5,
+        3.0,
+        5.0
+      ],
+      "bandgaps": [
+        1.35,
+        1.425,
+        1.5,
+        1.575,
+        1.59,
+        1.65
+      ],
+      "mobilities": [
+        25.0,
+        25.0,
+        25.0,
+        25.0,
+        25.0,
+        25.0
+      ],
+      "energies": [
+        -656.21,
+        -656.085,
+        -655.96,
+        -655.835,
+        -655.8100000000001,
+        -655.71
+      ],
+      "avg_bandgap": 1.515,
+      "avg_mobility": 25.0,
+      "bandgap_range": [
+        1.35,
+        1.65
+      ],
+      "mobility_range": [
+        25.0,
+        25.0
+      ]
+    },
+    "N": {
+      "strains": [
+        -5.0,
+        -2.5,
+        0.0,
+        2.5,
+        3.0,
+        5.0
+      ],
+      "bandgaps": [
+        1.6500000000000001,
+        1.725,
+        1.8,
+        1.875,
+        1.8900000000000001,
+        1.95
+      ],
+      "mobilities": [
+        21.694280926343893,
+        25.0,
+        25.0,
+        25.0,
+        25.0,
+        25.0
+      ],
+      "energies": [
+        -656.86,
+        -656.735,
+        -656.61,
+        -656.485,
+        -656.46,
+        -656.36
+      ],
+      "avg_bandgap": 1.8149999999999997,
+      "avg_mobility": 24.449046821057312,
+      "bandgap_range": [
+        1.6500000000000001,
+        1.95
+      ],
+      "mobility_range": [
+        21.694280926343893,
+        25.0
+      ]
+    },
+    "P": {
+      "strains": [
+        -5.0,
+        -2.5,
+        0.0,
+        2.5,
+        3.0,
+        5.0
+      ],
+      "bandgaps": [
+        1.6,
+        1.675,
+        1.75,
+        1.825,
+        1.84,
+        1.9
+      ],
+      "mobilities": [
+        16.842895725420785,
+        19.569449017083492,
+        22.618315097121595,
+        25.0,
+        25.0,
+        25.0
+      ],
+      "energies": [
+        -656.46,
+        -656.335,
+        -656.21,
+        -656.085,
+        -656.0600000000001,
+        -655.96
+      ],
+      "avg_bandgap": 1.7650000000000003,
+      "avg_mobility": 22.338443306604308,
+      "bandgap_range": [
+        1.6,
+        1.9
+      ],
+      "mobility_range": [
+        16.842895725420785,
+        25.0
+      ]
+    }
+  },
+  "strain_response": {
+    "pristine": {
+      "bandgap_slope": 0.029999999999999978,
+      "bandgap_intercept": 1.7,
+      "mobility_slope": 0.829886190941319,
+      "mobility_intercept": 14.59683774095417,
+      "r_squared_bandgap": 1.0,
+      "r_squared_mobility": 0.99605011919793
+    },
+    "B": {
+      "bandgap_slope": 0.02999999999999999,
+      "bandgap_intercept": 1.5,
+      "mobility_slope": -4.440892098500626e-16,
+      "mobility_intercept": 25.0,
+      "r_squared_bandgap": 1.0,
+      "r_squared_mobility": 0.0
+    },
+    "N": {
+      "bandgap_slope": 0.02999999999999999,
+      "bandgap_intercept": 1.8,
+      "mobility_slope": 0.25973507007297925,
+      "mobility_intercept": 24.319179286020823,
+      "r_squared_bandgap": 1.0,
+      "r_squared_mobility": 0.5185714285714287
+    },
+    "P": {
+      "bandgap_slope": 0.029999999999999978,
+      "bandgap_intercept": 1.75,
+      "mobility_slope": 0.8906652701482063,
+      "mobility_intercept": 21.89311067153021,
+      "r_squared_bandgap": 1.0,
+      "r_squared_mobility": 0.9380315652974032
+    }
+  },
+  "synergistic_effects": {},
+  "validation_metrics": {
+    "bandgap_valid": true,
+    "mobility_valid": true,
+    "strain_coupling_valid": false,
+    "synergistic_effect_valid": false,
+    "overall_valid": false
+  },
+  "plots": {
+    "plot_file": "/opt/sci-simukit/experiments/exp_3_electronic/experiments/exp_3_electronic/figures/electronic_analysis.png"
+  }
+}

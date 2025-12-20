@@ -1,0 +1,60 @@
+{
+  "total_calculations": 20,
+  "successful_calculations": 20,
+  "dopant_types": [
+    "P",
+    "B",
+    "N",
+    "pristine"
+  ],
+  "strain_values": [
+    -5.0,
+    -3.0,
+    0.0,
+    3.0,
+    5.0
+  ],
+  "energy_statistics": {
+    "P": {
+      "count": 5,
+      "min_energy_Ha": -341.46049815598775,
+      "max_energy_Ha": -341.46048196917775,
+      "mean_energy_Ha": -341.46048862916604,
+      "energy_range_meV": 0.4404657616562531
+    },
+    "B": {
+      "count": 5,
+      "min_energy_Ha": -337.96614272846176,
+      "max_energy_Ha": -337.96612910474175,
+      "mean_energy_Ha": -337.96613686167825,
+      "energy_range_meV": 0.37072049462914264
+    },
+    "N": {
+      "count": 5,
+      "min_energy_Ha": -345.12471743251973,
+      "max_energy_Ha": -345.12467879600405,
+      "mean_energy_Ha": -345.12469895951955,
+      "energy_range_meV": 1.0513536828512315
+    },
+    "pristine": {
+      "count": 5,
+      "min_energy_Ha": -340.88823752001764,
+      "max_energy_Ha": -340.88822369181446,
+      "mean_energy_Ha": -340.8882327354996,
+      "energy_range_meV": 0.3762847680083155
+    }
+  },
+  "strain_sensitivity": {
+    "P": 0.019548659373386405,
+    "B": -0.010383046740360311,
+    "N": 0.11128710901830943,
+    "pristine": -0.017029883644889183
+  },
+  "most_stable_config": {
+    "key": "strain_-3.0_N",
+    "strain": -3.0,
+    "dopant": "N",
+    "energy_Ha": -345.12471743251973
+  },
+  "plot_file": "/Users/xingqiangchen/sci-simukit/dft_results_download/exp_6_optimal/figures/real_dft_analysis.png"
+}

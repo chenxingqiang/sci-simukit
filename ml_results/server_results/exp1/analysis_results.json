@@ -1,0 +1,48 @@
+{
+  "lattice_parameters": {
+    "strains": [
+      -5.0,
+      -2.5,
+      0.0,
+      2.5,
+      5.0
+    ],
+    "lattice_a": [
+      22.8,
+      23.4,
+      24.0,
+      24.6,
+      25.2
+    ],
+    "lattice_b": [
+      14.25,
+      14.625,
+      15.0,
+      15.375,
+      15.75
+    ],
+    "energies": [
+      -681.810585529232,
+      -681.8105246983085,
+      -681.8104708114656,
+      -681.8104954119859,
+      -681.8104348857554
+    ]
+  },
+  "strain_response": {
+    "a_slope": 0.24000000000000019,
+    "a_intercept": 24.0,
+    "b_slope": 0.14999999999999994,
+    "b_intercept": 15.0,
+    "r_squared_a": 1.0,
+    "r_squared_b": 1.0
+  },
+  "validation_metrics": {
+    "lattice_params_valid": false,
+    "strain_response_valid": true,
+    "overall_valid": false
+  },
+  "plots": {
+    "plot_file": "/opt/sci-simukit/experiments/exp_1_structure/figures/structure_analysis.png"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "model_type": "gradient_boosting",
+  "total_samples": 30,
+  "feature_names": [
+    "strain",
+    "concentration",
+    "n_atoms",
+    "is_B",
+    "is_N",
+    "is_P",
+    "is_pristine",
+    "is_mixed",
+    "strain_squared",
+    "strain_abs"
+  ],
+  "targets": {
+    "bandgap": {
+      "r2": 0.9934529210301338,
+      "mae": 0.010876399766509745,
+      "rmse": 0.01148263453746206,
+      "loo_cv_r2": 0.9935145811169446,
+      "loo_cv_mae": 0.012146076451991061,
+      "n_samples": 30
+    },
+    "mobility": {
+      "r2": 0.9342114248927662,
+      "mae": 0.4914195891086714,
+      "rmse": 0.5539229228497947,
+      "loo_cv_r2": 0.953759323055261,
+      "loo_cv_mae": 0.5014365046201339,
+      "n_samples": 30
+    },
+    "activation_energy": {
+      "r2": 0.938695795304616,
+      "mae": 0.005925454283734731,
+      "rmse": 0.006605806043253863,
+      "loo_cv_r2": 0.9556289031661217,
+      "loo_cv_mae": 0.00600416134846429,
+      "n_samples": 30
+    }
+  },
+  "average_test_r2": 0.955453380409172,
+  "average_loo_cv_r2": 0.9676342691127758
+}

@@ -1,0 +1,37 @@
+{
+  "total_experiments": 6,
+  "total_calculations": 93,
+  "successful_calculations": 92,
+  "experiments": {
+    "exp1_structure": {
+      "total": 5,
+      "successful": 5,
+      "completion_rate": "100.0%"
+    },
+    "exp2_doping": {
+      "total": 12,
+      "successful": 11,
+      "completion_rate": "91.7%"
+    },
+    "exp3_electronic": {
+      "total": 24,
+      "successful": 24,
+      "completion_rate": "100.0%"
+    },
+    "exp4_polaron": {
+      "total": 8,
+      "successful": 8,
+      "completion_rate": "100.0%"
+    },
+    "exp5_synergy": {
+      "total": 24,
+      "successful": 24,
+      "completion_rate": "100.0%"
+    },
+    "exp6_optimal": {
+      "total": 20,
+      "successful": 20,
+      "completion_rate": "100.0%"
+    }
+  }
+}

@@ -65,11 +65,6 @@ def generate_geo_opt_input(dopant, output_dir):
     RMS_FORCE 5.0E-5
   &END GEO_OPT
   
-  ! Fixed cell - only optimize atomic positions
-  &CELL_OPT
-    KEEP_SYMMETRY .TRUE.
-  &END CELL_OPT
-  
   &PRINT
     &TRAJECTORY
       FORMAT XYZ
@@ -83,12 +78,6 @@ def generate_geo_opt_input(dopant, output_dir):
         GEO_OPT 10
       &END EACH
     &END RESTART
-    
-    &FORCES
-      &EACH
-        GEO_OPT 1
-      &END EACH
-    &END FORCES
   &END PRINT
 &END MOTION
 
@@ -139,10 +128,6 @@ def generate_geo_opt_input(dopant, output_dir):
       &END VDW_POTENTIAL
     &END XC
     
-    &PRINT
-      &FORCES
-      &END FORCES
-    &END PRINT
   &END DFT
   
   &SUBSYS

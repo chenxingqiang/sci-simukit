@@ -11,7 +11,7 @@ where $\epsilon$ is biaxial strain, $\delta$ labels the dopant species (B, N, or
 Non-additive coupling corresponds to $\mathcal{S}\neq 0$; additive superposition gives $\mathcal{S}=0$ by construction.
 
 Operationally, $P$ is extracted from converged CP2K outputs (`SCF run converged`): total energy from the \texttt{ENERGY|} line, energy per atom from $E/N_{\mathrm{atoms}}$, and $J$ from the HOMO--HOMO$-1$ splitting of the MO eigenvalue block (same protocol as Exp.~3--4).
-All $\mathcal{S}$ values reported for finite-size validation are computed with \texttt{c/simukit-sdc} (canonical; see \texttt{AGENTS.md}), which writes auditable JSON/CSV under \texttt{experiments/analysis/sdc/} with source \texttt{.out} paths for each term in Eq.~\eqref{eq:synergy_order}. Python plotting parity checks use \texttt{src/sdc\_coupling\_analysis.py}.
+All $\mathcal{S}$ values reported for finite-size validation are computed with \texttt{c/simukit-sdc} (canonical; see \texttt{AGENTS.md}), which writes auditable JSON under \texttt{experiments/analysis/sdc/}; meV/atom tables and provisional size-scaling fits are summarized in \texttt{sdc\_exp10\_synergy\_audit.json} ($\mathcal{S}_\infty$ withheld until 40/40). Python plotting uses \texttt{src/sdc\_coupling\_analysis.py --plots-from-json}.
 
 Finite-size extrapolation of the coupling contribution uses
 \begin{equation}

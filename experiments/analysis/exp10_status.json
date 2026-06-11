@@ -144,8 +144,8 @@
     {
       "task": "size_4x60_P_pos3pct",
       "converged": false,
-      "last_ot_step": 30,
-      "last_grad": 0.00014702
+      "last_ot_step": 35,
+      "last_grad": 9.78e-05
     },
     {
       "task": "size_4x60_pristine_pos0pct",
@@ -256,5 +256,9 @@
       "last_grad": null
     }
   ],
-  "running_task": "size_4x60_P_pos3pct"
+  "running_task": "size_4x60_P_pos3pct",
+  "running_snapshot": {
+    "last_ot_step": 35,
+    "last_grad": 9.78e-05
+  }
 }

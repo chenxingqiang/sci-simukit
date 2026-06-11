@@ -53,6 +53,11 @@ def main() -> None:
     }
     if running_task:
         payload["running_task"] = running_task
+        rt = next(r for r in rows if r["task"] == running_task)
+        payload["running_snapshot"] = {
+            "last_ot_step": rt.get("last_ot_step"),
+            "last_grad": rt.get("last_grad"),
+        }
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(payload, indent=2) + "\n")
     print(f"{OUT}: {conv}/{len(rows)} converged")

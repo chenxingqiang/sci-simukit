@@ -12,7 +12,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 
 **投稿目标（优先级）**：**PRL** → **Nature Materials** / **Nature Communications** → **PRB** / **Carbon**（降级路径）。每一轮策略须对照目标期刊的「主张强度 vs 证据强度」。
 
-**双轨并行**：CP2K 在后台跑时，Agent **不得空等** — 同步执行 [文稿·文献闭环](#文稿文献闭环-manuscript--literature-loop)（整理、校准、配图配表、检索最新文献、创新审计）。计算轮与文稿轮交替推进，每轮结束写回 `AGENTS.md`。
+**双轨并行**：CP2K 在后台跑时，Agent **不得空等** — 同步执行 [文稿·文献闭环](#文稿文献闭环-manuscript--literature-loop)（整理、校准、配图配表、检索最新文献、创新审计）。计算轮与文稿轮交替推进，每轮结束写回 `AGENTS.md` 并 **commit + push**（见 [每轮 Git 闭环](#每轮-git-闭环-commit--push)）。
 
 ---
 
@@ -55,10 +55,11 @@ flowchart TB
 | **文稿-计算契约** | Methods 写 PBE+D3 就只引用 PBE+D3；写 rVV10/Koopmans 须有对应输入与输出 |
 | **瓶颈驱动** | 优先：Exp10 尺寸收敛、Exp8 SP、文稿与计算不一致、静默失败/OOM；再追求 ML/新图 |
 | **最小改动** | 每轮只解决 1～2 个瓶颈，避免无关重构 |
-| **验证通过再沉淀** | `SCF run converged` / GeoOpt 完成后再更新 `paper/`、`dft_results_download/`、本文件 |
+| **验证通过再沉淀** | `SCF run converged` / GeoOpt 完成后再更新 `paper/`、`dft_results/`、本文件 |
 | **分层对齐** | 借鉴顶刊材料稿结构：**结构/掺杂（Exp1–2）→ 电子/极化子（Exp3–4,7,9）→ 协同/尺寸（Exp5–6,10）→ 文稿** |
 | **执行前价值闸门** | 每轮进入「策略 → 落地」前，对照投稿目标判断本轮是否值得做（见下节） |
 | **算时写稿** | CP2K 长跑期间做 Track B；定量句标注 `[pending: Exp10 task X]` 或 `[verified: file.out]` |
+| **每轮落盘** | 每轮 Loop 结束 **必须** `git commit` + `git push`；笔记写 commit hash；禁止跨多轮 R 堆成一次提交 |
 | **文献即证据** | 新引用须来自检索结果；创新声明须对照 `docs/reference_info.md` + 最新论文 |
 | **图表可审计** | 每个 panel 的数字追溯到 `.out` / `.csv` / 分析 JSON；无源数字不进 tex |
 
@@ -118,7 +119,7 @@ flowchart LR
   I --> V[4 验证 Verify]
   V --> M{证据够写进稿?}
   M -->|否| S
-  M -->|是| PR[开 PR + 合并 main]
+  M -->|是| PR[commit + push]
   PR --> E[5 进化 Evolve]
   E --> N[扫描新瓶颈]
   N --> P
@@ -135,7 +136,7 @@ flowchart LR
 | Exp | 目录 | 完成判据 | 投稿权重 |
 |-----|------|----------|----------|
 | Exp7 | `experiments/exp_7_electronic_structure/` | 12/12 `.out` 收敛 | 高（电子结构） |
-| Exp8 | `experiments/exp_8_geometry_opt/` | 6 GeoOpt + SP；缺 `geoopt_pristine_sp` | 高 |
+| Exp8 | `experiments/exp_8_geometry_opt/` | 5 GeoOpt converged + N\_sp；`geoopt_pristine_sp.inp` 已生成，SP 待跑 | 高 |
 | Exp9 | `experiments/exp_9_charged_polaron/` | 12/12 polaron 收敛 | 高 |
 | Exp10 | `experiments/exp_10_size_scaling/` | 40/40；按 1×60…8×60 收敛 | **阻塞 PRL 尺寸论证** |
 
@@ -154,7 +155,7 @@ grep -l 'GEOMETRY OPTIMIZATION COMPLETED\|SCF run converged' \
   experiments/exp_8_geometry_opt/inputs/geoopt_*.out 2>/dev/null
 
 # 本地归档
-ls dft_results_download/exp_10_size_scaling/*.out | wc -l
+ls dft_results/exp_10_size_scaling/*.out | wc -l
 
 # 文稿-计算一致性（示例）
 grep -E 'rVV10|Koopmans|28 DFT' paper/strain_doped_graphullerene.tex
@@ -205,7 +206,7 @@ ssh root@47.76.224.134 'grep -l "SCF run converged" /root/sci-simukit/experiment
 | Exp10 生成 | `experiments/exp_10_size_scaling/run_size_scaling.py` |
 | Exp8 工作流 | `experiments/exp_8_geometry_opt/run_workflow.sh`、`inputs/single_point_template.inp` |
 | 本地顺序跑 | `experiments/run_pending_local.sh`（已有；勿重复造 orchestrator） |
-| 结果归档 | `dft_results_download/exp_{7,8,9,10}_*/` |
+| 结果归档 | `dft_results/exp_{7,8,9,10}_*/` |
 | 文稿 | `paper/strain_doped_graphullerene.tex` |
 | 分析 | `experiments/exp_*/analyze_*.py` |
 
@@ -249,7 +250,7 @@ for f in experiments/exp_10_size_scaling/inputs/size_*.out; do
 done
 
 # 3) 同步到归档
-cp experiments/exp_10_size_scaling/inputs/size_*.out dft_results_download/exp_10_size_scaling/  # 仅 converged
+cp experiments/exp_10_size_scaling/inputs/size_*.out dft_results/exp_10_size_scaling/  # 仅 converged
 
 # 4) Exp8 SP
 grep 'SCF run converged' experiments/exp_8_geometry_opt/inputs/geoopt_pristine_sp.out
@@ -265,7 +266,7 @@ grep 'SCF run converged' experiments/exp_8_geometry_opt/inputs/geoopt_pristine_s
 
 1. **`AGENTS.md`** — 「当前轮次笔记」或 **Gotchas**
 2. **`paper/strain_doped_graphullerene.tex`** — Methods/Results 与证据同步
-3. **`dft_results_download/`** — 新 converged `.out`
+3. **`dft_results/`** — 新 converged `.out`
 4. **（可选）`docs/`** — 实验状态报告，仅当用户要求
 
 **本轮结束时写清**：瓶颈 → 策略 → 改动 → 验证命令与结果 → **下一轮建议**。
@@ -283,7 +284,7 @@ CP2K 计算在后台执行时，Agent **默认进入本闭环**。遵循 `.curso
 | **先本地后外网** | 先读 `paper/`、`docs/reference_info.md`、已有 `.bib`，再 Web/PubMed 补 2024–2026 新文 |
 | **校准不杜撰** | 改稿 = 对齐已有计算与文献；新创新点 = 「假设 + 待验证 Exp」写入笔记，不直接写进 Abstract |
 | **旗杆风格** | PRL：1 主图 + 1 表 + 极简正文；Nature Materials：机制 schematic + 多 panel + SI 放方法细节 |
-| **图表同源** | `paper/figures/*.csv` 与 `dft_results_download/` 或分析脚本输出一致 |
+| **图表同源** | `paper/figures/*.csv` 与 `dft_results/` 或分析脚本输出一致 |
 | **创新可辩** | 每轮产出「创新审计表」：主张 / 文献是否已有 / 我方差异 / 证据等级 |
 
 ### 执行前闸门（文稿轮）
@@ -425,9 +426,31 @@ ls paper/*report*.md docs/reference_info.md
 - **Track A**：感知 → 策略 → 落地 → 验证 → 进化（计算）
 - **Track B**：B1→B5（文稿·文献），**与 A 并行**；单轮会话若 A 已后台运行，**至少完成 1 项 B3 落地**
 
-每一轮结束：**扫描双轨 backlog → 开 Loop R{n+1}**。
+每一轮结束：**扫描双轨 backlog → 追加 Loop R{n} 笔记 → [Git 闭环](#每轮-git-闭环-commit--push)**。
 
-仍**禁止**新建独立 orchestrator；用 `run_pending_local.sh` + 现有 `run_*.py` + `paper/` 工具串联。
+仍**禁止**新建独立 orchestrator；用 `simukit-run` / `run_pending_local.sh`（legacy）+ 现有 `run_*.py` + `paper/` 工具串联。
+
+### 每轮 Git 闭环（Commit + Push）
+
+**硬规则**：每一轮 Loop（含 `go loops`、`go loops B`、Track A/B 专轮）在写回 `AGENTS.md` 笔记后 **必须** 提交并推送，**无需** 等用户再说「commit」。
+
+| 步骤 | 动作 |
+|------|------|
+| 1 | `git status` + `git diff` — 确认无 `.env`、密钥、巨型 `.out` 误加入 |
+| 2 | 暂存本轮文件（代码 / `paper/` / `experiments/analysis/` / `AGENTS.md`；**勿** 提交 `c/simukit-*` 二进制若已在 `.gitignore`） |
+| 3 | `git commit -m "loop R{n}: <一句话 why>"` — 消息含 **Loop 编号** 与 Track A/B 要点 |
+| 4 | `git push -u origin HEAD` — push 失败则修复后 **新 commit**，勿 force-push `main` |
+| 5 | 在 Loop 笔记末行写 **`commit: <short-hash>`** 与 **`pushed: origin/<branch>`** |
+
+**提交粒度**：
+
+- **默认**：1 Loop = 1 commit（R39 文稿、R27 pos0 收敛后处理等各自独立）。
+- **允许**：同一轮仅 Track B 微改 + 笔记 → 仍须 commit；Track A 仅监控无文件变更 → 可只更新笔记并 commit 笔记（或 `git commit --allow-empty -m "loop R{n}: Track A monitor only"` 若确无 diff）。
+- **禁止**：「R8–R40 攒一起」「用户确认后再 commit」— 旧 backlog 若未 push，下一轮优先 **拆分或单次收口 commit** 后立即 push。
+
+**分支**：默认当前工作分支；长期 Loop 可用 `cursor/loop-r<n>-sci` 或 `loop/sci-r<n>`，每轮 push 到 remote。
+
+**与 PR 的关系**：小步 commit+push 为主；攒够一个里程碑再 `gh pr create`，PR 描述链到 Loop 编号区间。
 
 #### 验证通过后的 PR / 合并
 
@@ -481,8 +504,9 @@ ls paper/*report*.md docs/reference_info.md
 [ ] B5. 进化：更新 bib + AGENTS 笔记（query / DOI / 下一轮 B）
 
 === 闭环 ===
-[ ] 6. （可选）PR：双轨摘要 + 证据路径
-[ ] 7. 扫描双轨 backlog → Loop R{n+1}
+[ ] 6. Git：commit（消息含 Loop R{n}）+ push；笔记记录 short-hash
+[ ] 7. （可选）PR：双轨摘要 + 证据路径
+[ ] 8. 扫描双轨 backlog → Loop R{n+1}
 ```
 
 ---
@@ -526,7 +550,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 | 轨道 | 层 | 工具 / 路径 |
 |------|-----|-------------|
-| **A 计算** | 感知 | `experiments/exp_*/inputs/*.out`、`dft_results_download/`、`local_run.log` |
+| **A 计算** | 感知 | `experiments/exp_*/inputs/*.out`、`dft_results/`、`local_run.log` |
 | **A 计算** | 落地 | **`c/simukit-run`**、`run_pending_local.sh`（legacy）、`run_size_scaling.py` |
 | **A 计算** | 验证 | **`c/simukit-sdc`**、`grep 'SCF run converged'` |
 | **B 文稿** | 感知 | `paper/strain_doped_graphullerene.tex`、`strain_graphullerene_50refs.bib`、`docs/reference_info.md` |
@@ -535,21 +559,22 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 | **B 文稿** | SDC 工具 | **`c/simukit-sdc`**（canonical）+ `src/sdc_coupling_analysis.py`（图） |
 | **B 文稿** | 文献 | **WebSearch**、Semantic Scholar、DOI；更新 `strain_graphullerene_50refs.bib` |
 | **B 文稿** | 验证 | `latexmk -pdf`、创新审计表、csv↔out 对照 |
-| **共用** | 进化 | **`AGENTS.md`**、`dft_results_download/`、`paper/` |
+| **共用** | 进化 | **`AGENTS.md`**、`dft_results/`、`paper/` |
 
 ---
 
 ### 当前轮次笔记（由 Agent 持续追加）
 
-> **维护说明**：每完成一轮 Loop，追加 3～5 行：日期、瓶颈、验证命令、下一轮建议。勿删历史条目。
+> **维护说明**：每完成一轮 Loop，追加 3～5 行：日期、Track A/B 要点、验证命令、**commit short-hash + push 分支**、下一轮建议。勿删历史条目。**每轮必须 commit + push**（见上节）。
 
-- **基线（2026-06-11）**：Exp7 **12/12**、Exp9 **12/12** 已完成并归档于 `dft_results_download/`。Exp8 **5/6**（缺 `geoopt_pristine_sp`）。Exp10 **28/40**（1×60 满；2×60 缺 pristine×2；4×60 缺 P_pos3；6×60 缺 B/N pos3；8×60 仅 N_pos0）。文稿 Methods 声称 rVV10/Koopmans/28 DFT，实际输入多为 **PBE+DFT-D3** — **契约缺口**。
+- **基线（2026-06-11）**：Exp7 **12/12**、Exp9 **12/12** 已完成并归档于 `dft_results/`。Exp8 **5/6**（缺 `geoopt_pristine_sp`）。Exp10 **28/40**（1×60 满；2×60 缺 pristine×2；4×60 缺 P_pos3；6×60 缺 B/N pos3；8×60 仅 N_pos0）。文稿 Methods 声称 rVV10/Koopmans/28 DFT，实际输入多为 **PBE+DFT-D3** — **契约缺口**。
 - **Loop R1（2026-06-11，本地续算）**：瓶颈 Exp10 pending + SSH 超时。落地 `experiments/run_pending_local.sh`（顺序、Mac cp2k.psmp）。验证：`size_2x60_pristine_pos0pct` 运行中；`local_run.log` 有 START 记录。**下一轮**：该任务收敛后自动进入 pos3；若 300 步 ABORT → pristine 2×60 放宽 `EPS_SCF`。
 - **Loop R2 感知建议**：Exp10 达 40/40 后跑 `run_size_scaling.py` 尺寸收敛图 → 再改 Abstract「validated by … atoms」。并行起草 Methods 诚实化（PBE+D3）或补 rVV10 四结构对比。
 - **Loop R3（2026-06-11，双轨协议）**：新增 Track B 文稿·文献闭环 — CP2K 后台时并行：Methods 诚实化、文献检索 2024–2026、PRL/Nature 配图规范、创新审计表。**下一轮 B**：WebSearch graphullerene strain 2025；校准 Table 1 与 converged `.out`；Figure synergy 占位。
+- **Innovation backlog（快照 2026-06-12 R39）**：Exp10 **29/40**；2×60 pristine **pos0 ✓ / pos3 运行中**；SDC JSON **6 条**（缺 n=2）；Figure 2 pending PDF = **6 点草稿**，**未接入** `figure2_synergy.pdf` compile。
 - **Innovation backlog**：
-  - `(1)` **SDC 设计算符** — `src/sdc_coupling_analysis.py` + `paper/sdc_method_section.tex`；Eq.~\mathcal{S} 与 Exp10 JSON `[28/40 converged, pending 12]`。
-  - `(2)` 非加性交叉项定量图 → `experiments/analysis/sdc/figures/` 进 Figure 2 `[pending Exp10 40/40]`；Table 1 审计 → **done** `table1_verification.json`。
+  - `(1)` **SDC 设计算符** — `c/simukit-sdc` + `paper/sdc_method_section.tex`；Eq.~\mathcal{S} 与 Exp10 JSON `[29/40 converged, pending 11]`。
+  - `(2)` 非加性交叉项定量图 → `experiments/analysis/sdc/figures/` + `paper/figures/pending/` 进 Figure 2 `[pending n=2 pristine + 40/40]`；Table 1 审计 → **done** `table1_verification.json`。
   - `(3)` **GPTG 图极化子输运** — DFT→J/IPR→Master 方程；GNN 仅 active learning `[after SDC 参数表]`。
   - `(4)` graphullerene 专属 strain-doping 耦合 vs Khan2025 — **Discussion 对比段已写** `[Loop R6]`；待 Table 1 校准。
   - `(5)` 实验 validation pathway 段落 `[B only]`。
@@ -570,6 +595,177 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
   - **Track B**：Table 1 与 `dft_results/exp_5_synergy/results/real_dft_results.json` 对照完成；P 的 $\alpha=-19.1$ 需排除 $+2.5$\% 离群点 → `experiments/analysis/table1_verification.json` + 表注；`simukit-sdc` 仍 6 条 𝒮。
   - **创新审计**：Table 1 能量列 = **A 级**；P 的 $\alpha$ = **B 级**（离群点待重算）。
   - **下一轮 A**：SCF >400 步仍不收敛 → 停 job、`EPS_SCF 1e-5` 重跑 2×60 pristine；**下一轮 B**：P $+2.5$\% Exp5 重算或 Figure 2 接 SDC 图。
+- **Loop R8（2026-06-12，双轨）**：
+  - **Track A**：`size_2x60_pristine_pos0pct` SCF **~209 步**、$\|\nabla\|\sim3\times10^{-3}$，仍振荡；Exp10 **28/40**；`size_2x60_pristine_pos3pct.inp` 已预置 `EPS_SCF 1e-5`；`relax_pristine_2x60_eps.sh` 供 pos0 停 job 后一键放宽。**勿启**第二路 CP2K。
+  - **Track B**：归档路径 **dft_results_download → dft_results**（`AGENTS.md`、`run_pending_local.sh`）；P $+2.5$\% 确认为 **85 步收敛、 metastable**（非 unconverged）；SDC 图刷新 → `experiments/analysis/sdc/figures/` + `paper/figures/pending/sdc_synergy_vs_size_eps3pct_epa.pdf`。
+  - **创新审计**：P $\alpha$ 表注 = **A 级**（有 `.out`）；Figure 2 SDC panel = **B 级**（28/40，待 pos0 收敛后更新 $\mathcal{S}_\infty$）。
+  - **下一轮 A**：SCF >400 步 → `./experiments/exp_10_size_scaling/inputs/relax_pristine_2x60_eps.sh` + `./c/simukit-run --one size_2x60_pristine_pos0pct`；**下一轮 B**：Exp10 40/40 后替换 Figure 2(b) 为 SDC 尺寸标度图。
+- **Loop R9（2026-06-12，双轨）**：
+  - **Track A**：`size_2x60_pristine_pos0pct` SCF **~249 步**、$\|\nabla\|\sim3\times10^{-3}$，仍振荡；Exp10 **28/40**；距 400 步阈值尚远，**继续跑、勿杀 job**。
+  - **Track B**：Abstract/Methods「28 DFT」→ **24 Exp5 + Exp10 28/40** 诚实化；`sdc_method_section.tex` 指向 **simukit-sdc**；`theory_enhancement_report.md` 加 **[verified/pending]** 审计表。
+  - **创新审计**：计算计数诚实化 = **A 级**；理论报告 IPR/J/ML 段 = **C 级**（待 Exp7/9 对照）。
+  - **下一轮 A**：SCF >400 步 → relax + rerun；**下一轮 B**：Exp10 40/40 后更新 Abstract「28/40」句为最终计数。
+- **Loop R10（2026-06-12，双轨）**：
+  - **Track A**：`size_2x60_pristine_pos0pct` SCF **~268 步**、$\|\nabla\|\sim2\times10^{-2}$，仍振荡；Exp10 **28/40**；**继续跑**（~130 步至 400 步阈值）。
+  - **Track B**：Exp4 审计 → `experiments/analysis/exp4_polaron_verification.json`（IPR 75/45，$J$ 27/37 meV；理论报告 45/25、135 meV **不符**）；主稿删未验证 ML 方差句；生成 `geoopt_pristine_sp.inp`（Exp8 pending，**待 pos0 收敛后再跑**，勿并行占内存）。
+  - **创新审计**：Exp4 极化子机制 = **C 级**（transition 未确认）；Formation energy 段 = **A 级**。
+  - **下一轮 A**：>400 步 → relax + rerun；Exp8 SP 入 `run_pending_local.sh` 队列；**下一轮 B**：对齐 `supplementary_material_theory.tex` IPR/J 与 Exp4 JSON。
+- **Loop R11（2026-06-12，双轨）**：
+  - **Track A**：`size_2x60_pristine_pos0pct` SCF **~298 步**、$\|\nabla\|\sim3\times10^{-2}$，仍振荡；Exp10 **28/40**；**继续跑**（~102 步至 400 步阈值）。
+  - **Track B**：`supplementary_material_theory.tex` IPR/J/极化子转变段与 `exp4_polaron_verification.json` 对齐；775\%/300\% 迁移率标 **[pending]**。
+  - **创新审计**：补充材料 Exp4 段 = **A 级**；S2.3 重组能分解 = **C 级**（未独立验证）。
+  - **下一轮 A**：>400 步 → kill → `relax_pristine_2x60_eps.sh` → `./c/simukit-run --one size_2x60_pristine_pos0pct`；**下一轮 B**：commit R8–R11 文稿/审计 diff。
+- **Loop R12（2026-06-12，双轨）**：
+  - **Track A**：旧 job 内层 OT **触 MAX_SCF=300**、外层 SCF **15 轮**仍振荡 → **已 kill**；`relax_pristine_2x60_eps.sh`（pos0/pos3 → `EPS_SCF 1e-5`）；归档 `size_2x60_pristine_pos0pct.out.failed_*`；**`simukit-run --one size_2x60_pristine_pos0pct` 重跑中**。发现并终止陈旧 `run_pending_local.sh` 及其误启的 **pos3 双跑**。
+  - **Track B**：AGENTS Gotcha 更新触发条件（MAX_SCF/外层 SCF）；Exp10 **28/40** 未变。
+  - **创新审计**：pos0 重跑 = **B 级**（待 converged `.out`）；双 batch 冲突 = **运维 gotcha**。
+  - **下一轮 A**：仅保留单路 CP2K；pos0 收敛后 `simukit-run` 续 pending（勿并行 `run_pending_local.sh`）；**下一轮 B**：commit R8–R12 diff。
+- **Loop R13（2026-06-12，双轨）**：
+  - **Track A**：`size_2x60_pristine_pos0pct` **EPS 1e-5 重跑中**；内层 OT **~15 步**、$\|\nabla\|\sim8\times10^{-4}$（较旧 job 明显改善）；Exp10 **28/40**；单路 CP2K，无 legacy batch。
+  - **Track B**：`run_pending_local.sh` 加 **lock + cp2k 冲突检测**；`.gitignore` 忽略 `.out.failed_*`。
+  - **创新审计**：pos0 重跑收敛前景 = **B 级**（待 `SCF run converged`）。
+  - **下一轮 A**：pos0 收敛 → 同步 `dft_results/exp_10_size_scaling/` + `simukit-sdc` 刷新；**下一轮 B**：commit R8–R13。
+- **Loop R14（2026-06-12，双轨）**：
+  - **Track A**：`size_2x60_pristine_pos0pct` EPS 1e-5 重跑中；内层 OT **~28 步**、$\|\nabla\|\sim2.7\times10^{-4}$ ↓；Exp10 **28/40**；单路 CP2K。
+  - **Track B**：新增 `experiments/sync_exp10_archive.sh`；`relax_pristine_2x60_eps.sh` 幂等化。
+  - **创新审计**：pos0 = **B 级**（接近 EPS 阈值，待 converged）。
+  - **下一轮 A**：converged 后 `sync_exp10_archive.sh` + `simukit-sdc` + 续 `simukit-run` pending；**下一轮 B**：commit R8–R14。
+- **Loop R15（2026-06-12，双轨）**：
+  - **Track A**：`size_2x60_pristine_pos0pct` EPS 1e-5；内层 OT **~40 步**、$\|\nabla\|\sim2.8\times10^{-4}$（偶发 OT 回跳）；Exp10 **28/40**；单路 CP2K 继续。
+  - **Track B**：Methods 注明 pristine $2\times\mathrm{C}_{60}$ 可用 `EPS_SCF=10^{-5}`（与 \texttt{*.inp} 一致）；`run_pending_local.sh` 结束时调用 `sync_exp10_archive.sh`。
+  - **创新审计**：Methods EPS 例外 = **A 级**；Exp10 计数仍 **28/40 pending**。
+  - **下一轮 A**：pos0 converged → sync + sdc + `simukit-run` 全 pending；**下一轮 B**：commit R8–R15。
+- **Loop R16（2026-06-12，双轨）**：
+  - **Track A**：`size_2x60_pristine_pos0pct` EPS 1e-5；内层 OT **~48 步**、$\|\nabla\|\sim5\times10^{-4}$（OT 振荡但未发散）；Exp10 **28/40**；单路 CP2K。
+  - **Track B**：新增 `experiments/post_exp10_converged.sh`（sync + `simukit-sdc` + 计数）。
+  - **创新审计**：pos0 = **B 级**（能量平台 $\sim -681.8$ Ha，待 converged 关键字）。
+  - **下一轮 A**：converged → `post_exp10_converged.sh` → `./c/simukit-run experiments/exp_10_size_scaling/inputs`；**下一轮 B**：commit R8–R16。
+- **Loop R17（2026-06-12，双轨）**：
+  - **Track A**：`size_2x60_pristine_pos0pct` EPS 1e-5；内层 OT **~62 步**、$\|\nabla\|\sim2.4\times10^{-4}$；Exp10 **28/40**；单路 CP2K，仍未 converged。
+  - **Track B**：新增 `experiments/analysis/exp10_status.json`（40 任务 converged/pending 审计）；`sdc_method_section.tex` 注释指向该 JSON。
+  - **创新审计**：Exp10 状态机 = **A 级**（可复现 JSON）；pos0 = **B 级**。
+  - **pending 12**：2×60 pristine×2、4×60 P\_pos3、6×60 B/N pos3、8×60 除 N\_pos0 外 7 项。
+  - **下一轮 A**：pos0 converged → `post_exp10_converged.sh` + 续 pending；**下一轮 B**：commit R8–R17。
+- **Loop R18（2026-06-12，双轨）**：
+  - **Track A**：`size_2x60_pristine_pos0pct` EPS 1e-5；内层 OT **~73 步**、$\|\nabla\|\sim7.8\times10^{-5}$（**接近 EPS 阈值**）；Exp10 **28/40**；单路 CP2K。
+  - **Track B**：`experiments/update_exp10_status.py` 固化；`post_exp10_converged.sh` 自动刷新 status JSON。
+  - **创新审计**：pos0 收敛前景 = **B+ 级**（梯度单调段出现，待关键字）。
+  - **下一轮 A**：converged 后 `post_exp10_converged.sh` → `simukit-run` 续 11 pending；**下一轮 B**：commit R8–R18。
+- **Loop R19（2026-06-12，双轨）**：
+  - **Track A**：`size_2x60_pristine_pos0pct` EPS 1e-5；内层 OT **~89 步**、$\|\nabla\|\sim4.6\times10^{-5}$（**低于 EPS 阈值**，OT 偶发回跳）；Exp10 **28/40**；单路 CP2K。
+  - **Track B**：刷新 `exp10_status.json`（pos0 `last_grad=4.56e-05`）。
+  - **创新审计**：pos0 = **B+ 级**（已在阈值下，待 `SCF run converged` 关键字）。
+  - **下一轮 A**：converged → `post_exp10_converged.sh`（→29/40）→ `simukit-run` pending；**下一轮 B**：commit R8–R19。
+- **Loop R20（2026-06-12，双轨）**：
+  - **Track A**：`size_2x60_pristine_pos0pct` EPS 1e-5；内层 OT **~95 步**、$\|\nabla\|\sim3.8\times10^{-5}$（稳定低于阈值）；Exp10 **28/40**；单路 CP2K，**极近 converged**。
+  - **Track B**：新增 `experiments/continue_exp10_pending.sh`（post + 全 pending batch）；刷新 `exp10_status.json`。
+  - **创新审计**：pos0 = **A− 级**（梯度稳定 $<10^{-5}$，差 converged 关键字）。
+  - **下一轮 A**：`simukit-run --one` 结束后 → `continue_exp10_pending.sh`；**下一轮 B**：commit R8–R20。
+- **Loop R21（2026-06-12，双轨）**：
+  - **Track A**：`size_2x60_pristine_pos0pct` EPS 1e-5；内层 OT **~104 步**、$\|\nabla\|\sim4.1\times10^{-5}$；Exp10 **28/40**；单路 CP2K，仍未 converged（能量 $\sim -681.80$ Ha 已平台化）。
+  - **Track B**：刷新 `exp10_status.json`。
+  - **创新审计**：pos0 = **A− 级**（持续 $<10^{-5}$ 量级，待关键字）。
+  - **下一轮 A**：converged → `continue_exp10_pending.sh`；**下一轮 B**：commit R8–R21。
+- **Loop R22（2026-06-12，双轨）**：
+  - **Track A**：`size_2x60_pristine_pos0pct` EPS 1e-5；内层 OT **~111 步**、$\|\nabla\|\sim3.0\times10^{-5}$（108 步 OT 回跳 $5.7\times10^{-4}$ 后恢复）；Exp10 **28/40**；单路 CP2K。
+  - **Track B**：刷新 `exp10_status.json`。
+  - **创新审计**：pos0 = **A− 级**（多数步 $<10^{-5}$，CP2K 尚判未收敛）。
+  - **下一轮 A**：converged → `continue_exp10_pending.sh`；若 OT **>250** 仍无关键字 → 考虑 `EPS_SCF 1e-4` 仅 pos0 试验；**下一轮 B**：commit R8–R22。
+- **Loop R23（2026-06-12，双轨）**：
+  - **Track A**：`size_2x60_pristine_pos0pct` EPS **1e-5**；内层 OT **~118 步**、$\|\nabla\|\sim2.5\times10^{-5}$（**仍高于** `1e-5` 目标，110 步起单调下降）；Exp10 **28/40**；单路 CP2K。
+  - **Track B**：刷新 `exp10_status.json`；澄清 Gotcha——梯度 $<10^{-5}$ 才 converged，$10^{-5}$–$10^{-4}$ 仅为逼近区。
+  - **创新审计**：pos0 = **B+ 级**（趋势正确，未达 EPS）。
+  - **下一轮 A**：converged → `continue_exp10_pending.sh`；**下一轮 B**：commit R8–R23。
+- **Loop R24（2026-06-12，双轨）**：
+  - **Track A**：`size_2x60_pristine_pos0pct` EPS 1e-5；内层 OT **~124 步**、$\|\nabla\|\sim2.4\times10^{-5}$（123 步回跳 $7.1\times10^{-5}$）；Exp10 **28/40**；单路 CP2K。
+  - **Track B**：刷新 `exp10_status.json`。
+  - **创新审计**：pos0 = **B+ 级**（最低曾至 $2.5\times10^{-5}$，仍 $>10^{-5}$）。
+  - **下一轮 A**：converged → `continue_exp10_pending.sh`；**下一轮 B**：commit R8–R24。
+- **Loop R25（2026-06-12，双轨）**：
+  - **Track A**：`size_2x60_pristine_pos0pct` EPS 1e-5；内层 OT **~136 步**、$\|\nabla\|\sim2.1\times10^{-5}$（124→136 缓降，130 步 DIIS 回跳后恢复）；能量 **−681.802 Ha**；Exp10 **28/40**；pid **11845** 单路 CP2K。
+  - **Track B**：`python3 experiments/update_exp10_status.py` → `exp10_status.json`（pos0 last_ot **136**, last_grad **2.097e-5**）。
+  - **创新审计**：pos0 = **B+ 级**（距 $10^{-5}$ 约 2×，无 MAX_SCF/外层振荡告警）。
+  - **下一轮 A**：converged → `post_exp10_converged.sh` → `continue_exp10_pending.sh`；OT **>250** 未收敛 → pos0 单独试 EPS **1e-4**；**下一轮 B**：commit R8–R25。
+- **Loop R26（2026-06-12，双轨）**：
+  - **Track A**：`size_2x60_pristine_pos0pct` EPS 1e-5；内层 OT **~144 步**、$\|\nabla\|\sim2.0\times10^{-5}$（136→143 降至 **1.88×10⁻⁵**，144 步微回跳）；能量 **−681.8027 Ha**；Exp10 **28/40**；单路 CP2K。
+  - **Track B**：刷新 `exp10_status.json`；确认 `post_exp10_converged.sh` / `continue_exp10_pending.sh` 链就绪。
+  - **创新审计**：pos0 = **B+→A−**（临界区，再降 ~1× 即达 EPS）。
+  - **下一轮 A**：`SCF run converged` → 立即 `post_exp10_converged.sh` → `continue_exp10_pending.sh`；**下一轮 B**：commit R8–R26。
+- **Loop R27（2026-06-12，双轨）**：
+  - **Track A**：**pos0 收敛** — `size_2x60_pristine_pos0pct` **219 OT 步**、EPS 1e-5；Exp10 **29/40**；已跑 `post_exp10_converged.sh`（归档 29 + SDC 刷新）；`continue_exp10_pending.sh` 已启 → **`size_2x60_pristine_pos3pct`** 运行中（pid 59939）。
+  - **Track B**：Abstract/Methods/Figure DATA 注释 **28/40→29/40**；`sdc_method_section.tex`、`theory_enhancement_report.md` 同步。
+  - **创新审计**：pos0 = **A 级**（Exp10 2×60 pristine 闭环）；Figure 2 SDC panel 仍 **B 级**（29/40，待 2×60 pristine $\mathcal{S}$ 入 JSON）。
+  - **下一轮 A**：监控 pos3（同 EPS 1e-5 inp）；**下一轮 B**：commit R8–R27。
+- **Loop R28（2026-06-12，双轨）**：
+  - **Track A**：Exp10 **29/40**；`size_2x60_pristine_pos3pct` EPS 1e-5 运行中（simukit-run pid **59939**）；内层 OT **~11 步**、$\|\nabla\|\sim2.4\times10^{-3}$（早期下降）；单路 CP2K。
+  - **Track B**：刷新 `exp10_status.json`；SDC JSON 仍 **6 条**（n=2 pristine 待 pos3 收敛后入 `synergy_energy_per_atom`）。
+  - **创新审计**：pos3 = **B 级**（长跑预期，+3% strain 通常比 pos0 难）；2×60 pristine $\mathcal{S}$ = **pending pos3**。
+  - **下一轮 A**：pos3 converged → `post_exp10_converged.sh`（batch 内自动续）；**下一轮 B**：commit R8–R28。
+- **Loop R29（2026-06-12，双轨）**：
+  - **Track A**：Exp10 **29/40**；`size_2x60_pristine_pos3pct` EPS 1e-5；内层 OT **~21 步**、$\|\nabla\|\sim5.3\times10^{-4}$（11→21 步：$2.4\times10^{-3}\to5.5\times10^{-4}$）；能量 **−681.715 Ha**；simukit-run 单路 CP2K 正常（~246% CPU）。
+  - **Track B**：刷新 `exp10_status.json`（pos3 last_ot **20**, last_grad **5.51e-4**）。
+  - **创新审计**：pos3 = **B 级**（进展正常，参照 pos0 219 步预期长跑）；2×60 pristine $\mathcal{S}$ 仍 **pending**。
+  - **下一轮 A**：继续 batch；pos3 converged → SDC 应增 n=2 pristine 条目；**下一轮 B**：commit R8–R29。
+- **Loop R30（2026-06-12，双轨）**：
+  - **Track A**：Exp10 **29/40**；`size_2x60_pristine_pos3pct` EPS 1e-5；内层 OT **~32 步**、$\|\nabla\|\sim2.6\times10^{-4}$；能量 **−681.786 Ha**；单路 CP2K（~1.5 min elapsed）。
+  - **Track B**：修复 `update_exp10_status.py` — 仅解析最后一次 `PROGRAM STARTED` 后的 OT（修复 pos3 拼接 `.out` 误报 step 20）；刷新 `exp10_status.json`（pos3 last_ot **32**）。
+  - **创新审计**：pos3 = **B 级**（中期下降，仍远高于 $10^{-5}$）；ETA 参照 pos0 ~219 步。
+  - **下一轮 A**：继续 batch；**下一轮 B**：commit R8–R30。
+- **Loop R31（2026-06-12，双轨）**：
+  - **Track A**：Exp10 **29/40**；`size_2x60_pristine_pos3pct` EPS 1e-5；内层 OT **~40 步**、$\|\nabla\|\sim6.2\times10^{-4}$（36 步 DIIS 回跳 $2.7\times10^{-3}$ 后恢复）；能量 **−681.781 Ha**；单路 CP2K（~2 min）。
+  - **Track B**：刷新 `exp10_status.json`（pos3 last_ot **40**, last_grad **6.18e-4**）。
+  - **创新审计**：pos3 = **B 级**（OT 振荡未发散，仍远高于 EPS）；参照 pos0 219 步 ETA 仍长。
+  - **下一轮 A**：继续 batch；OT **>250** 未收敛 → 同 pos0 策略（保持 1e-5 或单独放宽）；**下一轮 B**：commit R8–R31。
+- **Loop R32（2026-06-12，双轨）**：
+  - **Track A**：Exp10 **29/40**；`size_2x60_pristine_pos3pct` EPS 1e-5；内层 OT **~47 步**、$\|\nabla\|\sim2.3\times10^{-4}$（46 步回跳 $1.8\times10^{-3}$，47 步恢复）；能量 **−681.775 Ha**；单路 CP2K（~2.5 min）。
+  - **Track B**：刷新 `exp10_status.json`（pos3 last_ot **47**, last_grad **2.28e-4**）。
+  - **创新审计**：pos3 = **B 级**（多次 OT 回跳但未发散；仍 $\gg10^{-5}$）。
+  - **下一轮 A**：继续 batch；**下一轮 B**：commit R8–R32。
+- **Loop R33（2026-06-12，双轨）**：
+  - **Track A**：Exp10 **29/40**；`size_2x60_pristine_pos3pct` EPS 1e-5；内层 OT **~53 步**、$\|\nabla\|\sim2.1\times10^{-4}$（51 步回跳 $1.3\times10^{-3}$ 后恢复）；能量 **−681.777 Ha**；单路 CP2K（~3 min）。
+  - **Track B**：刷新 `exp10_status.json`；审计 `paper/figures/pending/sdc_synergy_vs_size_eps3pct_epa.pdf` = **6 点草稿**（n=1,4,6 × B/N/P），**缺 n=2 pristine**（待 pos3）。
+  - **创新审计**：pos3 = **B 级**；Figure 2 SDC panel = **B 级**（draft 可用，非 final）。
+  - **下一轮 A**：继续 batch；pos3 converged → 重跑 `simukit-sdc` + 刷新 pending 图；**下一轮 B**：commit R8–R33。
+- **Loop R34（2026-06-12，双轨）**：
+  - **Track A**：Exp10 **29/40**；`size_2x60_pristine_pos3pct` EPS 1e-5；内层 OT **~61 步**、$\|\nabla\|\sim9.7\times10^{-5}$（55→61 单调下降，进入 $10^{-4}$ 量级）；能量 **−681.791 Ha**；单路 CP2K（~3.2 min）。
+  - **Track B**：刷新 `exp10_status.json`（pos3 last_ot **61**, last_grad **9.68e-5**）。
+  - **创新审计**：pos3 = **B+ 级**（趋势优于 R33 振荡段；仍 $>10^{-5}$）。
+  - **下一轮 A**：继续 batch；**下一轮 B**：commit R8–R34。
+- **Loop R35（2026-06-12，双轨）**：
+  - **Track A**：Exp10 **29/40**；`size_2x60_pristine_pos3pct` EPS 1e-5；内层 OT **~66 步**、$\|\nabla\|\sim8.2\times10^{-5}$（61→66 缓降，距 $10^{-5}$ **~8×**）；能量 **−681.795 Ha**；单路 CP2K（~3.5 min）。
+  - **Track B**：刷新 `exp10_status.json`（pos3 last_ot **66**, last_grad **8.21e-5**）。
+  - **创新审计**：pos3 = **B+ 级**（稳定逼近 EPS，无新回跳）。
+  - **下一轮 A**：继续 batch；**下一轮 B**：commit R8–R35。
+- **Loop R36（2026-06-12，双轨）**：
+  - **Track A**：Exp10 **29/40**；`size_2x60_pristine_pos3pct` EPS 1e-5；内层 OT **~73 步**、$\|\nabla\|\sim6.0\times10^{-4}$（66→68 平台 $\sim8.2\times10^{-5}$，73 步 DIIS 回跳）；能量 **−681.794 Ha**；单路 CP2K（~4 min）。
+  - **Track B**：刷新 `exp10_status.json`（pos3 last_ot **73**, last_grad **6.05e-4**）。
+  - **创新审计**：pos3 = **B+ 级**（近 EPS 平台振荡，参照 pos0 110+ 步后仍回跳，属正常）。
+  - **下一轮 A**：继续 batch；**下一轮 B**：commit R8–R36。
+- **Loop R37（2026-06-12，双轨）**：
+  - **Track A**：Exp10 **29/40**；`size_2x60_pristine_pos3pct` EPS 1e-5；内层 OT **~79 步**、$\|\nabla\|\sim7.3\times10^{-5}$（73 步回跳后 74/78 曾至 **7.9×10⁻⁵**）；能量 **−681.796 Ha**；单路 CP2K（~4.2 min）。
+  - **Track B**：刷新 `exp10_status.json`（pos3 last_ot **79**, last_grad **7.32e-5**）。
+  - **创新审计**：pos3 = **B+→A−**（二次进入 EPS 临界区，仍 $>10^{-5}$）。
+  - **下一轮 A**：继续 batch；**下一轮 B**：commit R8–R37。
+- **Loop R38（2026-06-12，双轨）**：
+  - **Track A**：Exp10 **29/40**；`size_2x60_pristine_pos3pct` EPS 1e-5；内层 OT **~89 步**、$\|\nabla\|\sim5.0\times10^{-5}$（79→89 临界区缓降，距 $10^{-5}$ **~5×**）；能量 **−681.802 Ha**；单路 CP2K（~5 min）。
+  - **Track B**：刷新 `exp10_status.json`（pos3 last_ot **89**, last_grad **4.96e-5**）。
+  - **创新审计**：pos3 = **A− 级**（临界区稳定下降，参照 pos0 140+ 步才 converged）。
+  - **下一轮 A**：继续 batch；**下一轮 B**：commit R8–R38。
+- **Loop R39（2026-06-12，Track B 专轮）**：
+  - **Track A（快照）**：Exp10 **29/40**；pos3 运行中（OT **~106**，$\|\nabla\|\sim3.9\times10^{-5}$）；**不干预** CP2K。
+  - **Track B**：`theory_enhancement_report.md` 增 pos0 converged / Figure 2 draft 6 点 / n=2 pending 审计行；`sdc_method_section.tex` + Figure DATA 注释细化（draft **未接入** compile）；Innovation backlog 快照 **29/40**。
+  - **创新审计**：pos0 2×60 = **A 级**；SDC size-scaling 图 = **B 级**（6 点 draft）；$\mathcal{S}_\infty$ = **B 级**（待 40/40）。
+  - **下一轮 B**：`latexmk` 验证；pos3 converged → `simukit-sdc` + 刷新 pending 图 + 29→30 文稿计数；**commit R8–R39**（用户确认后）。
+- **Loop R40（2026-06-12，Track B 专轮）**：
+  - **Track A（快照）**：Exp10 **29/40**；pos3 OT **~130**、$\|\nabla\|\sim2.8\times10^{-5}$；**不干预** CP2K。
+  - **Track B**：主稿 Methods 增 **11 pending** + `exp10_status.json` 指针；Discussion 增 Exp10 $\mathcal{S}(n)$ 进行中段；Conclusions 增 $\mathcal{S}_\infty$ 待 40/40 句；`theory_enhancement_report.md` 更新 pos3 OT 快照。
+  - **创新审计**：Exp10 诚实化 = **A 级**；$\mathcal{S}_\infty$ 数值 = **B 级**（仍 withheld）；Figure 2 pending PDF = **B 级**。
+  - **下一轮 B**：pos3 converged → SDC + 图 + 30/40 文稿；~~commit R8–R40（用户确认后）~~ → **自 R41 起每轮 commit+push**。
+- **Loop R41（2026-06-12，协议 + Track B）**：
+  - **Track A（快照）**：Exp10 **29/40**；pos3 仍 batch 中；**不干预** CP2K。
+  - **Track B**：`AGENTS.md` 增 **[每轮 Git 闭环](#每轮-git-闭环-commit--push)** — 硬规则 **1 Loop = commit + push**；检查清单、核心原则、五层图同步；废止「R8–Rn 攒批 / 用户确认后 commit」。
+  - **创新审计**：Git 契约 = **A 级**（可审计 Loop ↔ commit 映射）。
+  - **Git**：本轮 `loop R41: require commit+push each loop` → push。
 - **投稿策略**：PRL 需先闭环 Exp10 + 非加性定量图；Nature Materials 需机制图（IPR/J）+ 实验路径段；未闭环前不投。
 
 ---
@@ -578,12 +774,12 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 - **Mac 内存 36GB**：勿同时跑多个 6×60/8×60；服务器 64GB 亦曾 OOM，宜 ≤5 任务并发。
 - **CP2K 路径**：Mac `/opt/homebrew/bin/cp2k.psmp`；服务器 `/usr/local/bin/cp2k.psmp`；`run_all.sh` 里 `cp2k.popt` 在 Mac 上**不存在**。
-- **`size_2x60_pristine_*`**：收敛慢，服务器与本地均曾长时间 SCF；可考虑 `EPS_SCF 1e-5`。
-- **`geoopt_pristine_sp`**：需 `geoopt_pristine_optimized.xyz`（已在 `dft_results_download/exp_8_geometry_opt/`）；SP 用 `EPS_SCF 1e-6`。
-- **SSH `47.76.224.134`**：间歇超时/重启丢进程；本地 `run_pending_local.sh` 为主力。
+- **`size_2x60_pristine_*`**：收敛慢；内层 OT 触 **MAX_SCF=300** 或外层 SCF **>10** 轮仍振荡 → 停 job，跑 `relax_pristine_2x60_eps.sh`，删 `-RESTART.wfn`，归档 `.out.failed_*`，`simukit-run --one size_2x60_pristine_pos0pct`。EPS 1e-5 下梯度可在 $10^{-5}$–$10^{-4}$ 间 OT 回跳；**仅当** $\|\nabla\|<10^{-5}$ 且输出 `SCF run converged` 才算完成（$2.5\times10^{-5}$ 仍属逼近区）。
+- **`geoopt_pristine_sp`**：需 `geoopt_pristine_optimized.xyz`（已在 `dft_results/exp_8_geometry_opt/`）；SP 用 `EPS_SCF 1e-6`。
+- **SSH `47.76.224.134`**：间歇超时/重启丢进程；本地 **`simukit-run`** 为主力；`run_pending_local.sh` 为 legacy — 启动前 `pkill -f run_pending_local.sh` 防双 batch。
 - **SCI 写作协议**：`.cursor/rules/write.mdc` — Abstract/Methods/Results 边界；改 Results 须有 `.out` 支撑。
-- **归档**：converged `.out` 同步到 `dft_results_download/`，与 `experiments/*/inputs/` 保持一致。
-- **双轨勿忘**：用户 `go loops` = A 续算 + B 至少 1 项改稿/检索；禁止只 tail 日志空转。
+- **归档**：converged `.out` 同步到 `dft_results/`，与 `experiments/*/inputs/` 保持一致。
+- **双轨勿忘**：用户 `go loops` = A 续算 + B 至少 1 项改稿/检索 + **commit push**；禁止只 tail 日志空转。
 - **文献勿堆**：每轮 bib 新增 ≤3 篇，且必须写进 tex 或笔记说明用途。
 - **图表 pending**：占位图须注释 `% DATA: pending size_2x60_pristine` 防误投稿。
 
@@ -604,8 +800,12 @@ which cp2k.psmp mpirun   # Homebrew Open MPI + CP2K 2025.1
 
 | 任务 | 命令 |
 |------|------|
-| 续跑 pending | `nohup bash experiments/run_pending_local.sh >> experiments/local_run.log 2>&1 &` |
+| 续跑 pending | `./c/simukit-run --one size_2x60_pristine_pos0pct experiments/exp_10_size_scaling/inputs`（单任务；legacy: `run_pending_local.sh`） |
 | Exp10 完成数 | `grep -l 'SCF run converged' experiments/exp_10_size_scaling/inputs/size_*.out \| wc -l` |
+| Exp10 归档 | `bash experiments/sync_exp10_archive.sh` |
+| Exp10 converged 后 | `bash experiments/post_exp10_converged.sh`（归档 + SDC 刷新） |
+| Exp10 续跑 pending | `bash experiments/continue_exp10_pending.sh`（post + 全 batch，无 CP2K 时） |
+| Exp10 状态审计 | `experiments/analysis/exp10_status.json`（29/40 快照） |
 | 看日志 | `tail -f experiments/local_run.log` |
 | 生成 Exp10 输入 | `python experiments/exp_10_size_scaling/run_size_scaling.py` |
 | **SDC 耦合分析** | `cd c && make && ./simukit-sdc ../experiments/exp_10_size_scaling/inputs` |
@@ -615,7 +815,7 @@ which cp2k.psmp mpirun   # Homebrew Open MPI + CP2K 2025.1
 ### 结果目录
 
 ```
-dft_results_download/
+dft_results/
 ├── exp_7_electronic_structure/outputs/
 ├── exp_8_geometry_opt/
 ├── exp_9_charged_polaron/
@@ -624,4 +824,4 @@ dft_results_download/
 
 见 [README.md](README.md)、[docs/experimental_implementation_plan.md](docs/experimental_implementation_plan.md)。
 
-**持续优化闭环**：**Track A 计算** + **Track B 文稿·文献** 双轨并行；见 [双轨并行总览](#双轨并行总览) 与 [文稿·文献闭环](#文稿文献闭环-manuscript--literature-loop)。验证通过后再改定量主张，勿新建独立 Loop orchestrator。
+**持续优化闭环**：**Track A 计算** + **Track B 文稿·文献** 双轨并行；见 [双轨并行总览](#双轨并行总览) 与 [文稿·文献闭环](#文稿文献闭环-manuscript--literature-loop)。**每轮 Loop 必须 commit + push**。验证通过后再改定量主张，勿新建独立 Loop orchestrator。

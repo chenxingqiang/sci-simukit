@@ -31,7 +31,7 @@
       "E_5pct_Ha": -1370.488849,
       "alpha_meV_per_pct": -19.1,
       "Ef_eV_per_dopant": -31.5,
-      "alpha_note": "Linear fit over strain grid excluding +2.5% outlier (E=-1369.909 Ha; C60_strain_+2.5_P_doped_synergy.out) pending re-convergence",
+      "alpha_note": "Linear fit excludes +2.5% point (E=-1369.909 Ha; C60_strain_+2.5_P_doped_synergy.out): SCF converged in 85 steps but metastable/local minimum vs rest of strain grid",
       "out_0": "C60_strain_+0.0_P_doped_synergy.out",
       "out_5": "C60_strain_+5.0_P_doped_synergy.out"
     }

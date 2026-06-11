@@ -1,12 +1,25 @@
 #!/bin/bash
 # Run unfinished CP2K tasks locally (sequential, memory-safe).
-# Prefer C runner when built: c/build/simukit-run [--exp8-sp] experiments/exp_10_size_scaling/inputs
+# LEGACY — prefer: ./c/simukit-run [--one TASK] experiments/exp_10_size_scaling/inputs
+# Before starting: ensure no other batch (pkill -f run_pending_local.sh; check cp2k.psmp).
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 CP2K="/opt/homebrew/bin/cp2k.psmp"
 export CP2K_DATA="/opt/homebrew/share/cp2k/data"
 LOG="$ROOT/experiments/local_run.log"
+LOCK="$ROOT/experiments/.cp2k_batch.lock"
+
+if [[ -f "$LOCK" ]] && kill -0 "$(cat "$LOCK")" 2>/dev/null; then
+    echo "Another run_pending_local.sh is running (pid $(cat "$LOCK")). Exit." >&2
+    exit 1
+fi
+if pgrep -f 'cp2k\.psmp.*size_' >/dev/null 2>&1; then
+    echo "CP2K size_* job already running. Use simukit-run --one or wait. Exit." >&2
+    exit 1
+fi
+echo $$ > "$LOCK"
+trap 'rm -f "$LOCK"' EXIT
 
 log() { echo "$(date '+%Y-%m-%d %H:%M:%S') $*" | tee -a "$LOG"; }
 
@@ -35,12 +48,12 @@ run_cp2k() {
 
     if is_done "$out"; then
         log "DONE: $base"
-        mkdir -p "$ROOT/dft_results_download/exp_10_size_scaling"
-        mkdir -p "$ROOT/dft_results_download/exp_8_geometry_opt"
+        mkdir -p "$ROOT/dft_results/exp_10_size_scaling"
+        mkdir -p "$ROOT/dft_results/exp_8_geometry_opt"
         if [[ "$dir" == *exp_10* ]]; then
-            cp -f "$(basename "$out")" "$ROOT/dft_results_download/exp_10_size_scaling/"
+            cp -f "$(basename "$out")" "$ROOT/dft_results/exp_10_size_scaling/"
         elif [[ "$dir" == *exp_8* ]]; then
-            cp -f "$(basename "$out")" "$ROOT/dft_results_download/exp_8_geometry_opt/"
+            cp -f "$(basename "$out")" "$ROOT/dft_results/exp_8_geometry_opt/"
         fi
         return 0
     fi
@@ -95,4 +108,5 @@ if ! is_done "$EXP8/geoopt_pristine_sp.out"; then
 fi
 
 done_count=$(grep -l 'SCF run converged' "$EXP10"/size_*.out 2>/dev/null | wc -l | tr -d ' ')
+bash "$ROOT/experiments/sync_exp10_archive.sh" >> "$LOG" 2>&1 || true
 log "========== Batch finished: Exp10 $done_count/40 converged =========="

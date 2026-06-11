@@ -6,6 +6,10 @@ DIR="$(cd "$(dirname "$0")" && pwd)"
 for base in size_2x60_pristine_pos0pct size_2x60_pristine_pos3pct; do
   inp="$DIR/${base}.inp"
   [[ -f "$inp" ]] || continue
+  if grep -q 'EPS_SCF 1.0E-5' "$inp"; then
+    echo "skip (already 1e-5): $inp"
+    continue
+  fi
   sed -i '' 's/EPS_SCF 1.0E-6/EPS_SCF 1.0E-5/g' "$inp"
   echo "patched: $inp"
 done

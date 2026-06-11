@@ -1,5 +1,7 @@
 # Supplementary Material: Theoretical Framework for Non-Additive Coupling in Strain-Doped Graphullerenes
 
+> **Loop R11 audit (2026-06-12)** — DFT-backed values from `experiments/analysis/exp4_polaron_verification.json` (`dft_results/exp_4_polaron/results/polaron_transition.json`). Legacy illustrative numbers (IPR 45/25, $J=135$ meV, 8.75× mobility) are **superseded** where noted below.
+
 ## S1. First-Principles Derivation of Non-Additive Coupling
 
 ### S1.1 Effective Hamiltonian Construction
@@ -93,41 +95,32 @@ The charge delocalization is quantified using the inverse participation ratio (I
 \label{eq:S2_IPR}
 \end{equation}
 
-The delocalization enhancement factor is:
+The delocalization enhancement factor is [verified: Exp.~4, pristine 0\% vs B-doped +3\% strain]:
 
 \begin{equation}
-f_{deloc} = \frac{\text{IPR}_{pristine}}{\text{IPR}_{coupled}} = \frac{45}{25} = 1.8
+f_{deloc} = \frac{\text{IPR}_{pristine}}{\text{IPR}_{coupled}} = \frac{75.0}{45.0} \approx 1.67
 \label{eq:S2_deloc_factor}
 \end{equation}
 
-This leads to a mobility enhancement:
-
-\begin{equation}
-\mu_{deloc} = \mu_0 \cdot f_{deloc}^{2} = \mu_0 \cdot 3.24
-\label{eq:S2_mobility_deloc}
-\end{equation}
+Mobility scaling from delocalization alone is **not** reported in the main text until Marcus/hopping analysis is re-audited [pending].
 
 ### S2.2 Enhanced Electronic Coupling
 
-The electronic coupling $J$ between molecular units is enhanced by the combined effect:
+The electronic coupling $J$ between molecular units [verified: Exp.~4 HOMO--HOMO$-1$ splitting protocol]:
 
 \begin{equation}
-J_{total} = J_0 + \Delta J_{doping} + \Delta J_{strain} + \Delta J_{coupling}
+J_{pristine} = 26.6~\text{meV}, \quad J_{coupled} = 37.2~\text{meV}
 \label{eq:S2_coupling}
 \end{equation}
 
-where:
-- $J_0 = 75$ meV (pristine qHP C$_{60}$)
-- $\Delta J_{doping} = +15$ meV (doping effect)
-- $\Delta J_{strain} = +20$ meV (strain effect)
-- $\Delta J_{coupling} = +25$ meV (non-additive coupling)
-
-The total enhancement factor:
+The enhancement factor:
 
 \begin{equation}
-f_{coupling} = \frac{J_{total}}{J_0} = \frac{135}{75} = 1.8
+f_{coupling} = \frac{J_{coupled}}{J_{pristine}} = \frac{37.2}{26.6} \approx 1.40 \quad (+40\%)
 \label{eq:S2_coupling_factor}
 \end{equation}
+
+The earlier decomposition $J_0=75$ meV, $\Delta J_{coupling}=25$ meV [superseded] is retained only as a pedagogical sketch, not as a DFT result.
 
 ### S2.3 Reduced Reorganization Energy
 
@@ -149,14 +142,7 @@ The mobility enhancement from reduced reorganization energy:
 
 ### S2.4 Combined Synergistic Effect
 
-The total mobility enhancement is the product of all three effects:
-
-\begin{equation}
-\mu_{total} = \mu_0 \cdot f_{deloc} \cdot f_{coupling} \cdot f_{reorg} = \mu_0 \cdot 3.24 \cdot 1.8 \cdot 1.5 = \mu_0 \cdot 8.75
-\label{eq:S2_total_enhancement}
-\end{equation}
-
-This gives a theoretical enhancement of 775%, which is consistent with the observed 300% enhancement when considering realistic factors.
+The product formula $\mu_{total} = \mu_0 \cdot f_{deloc} \cdot f_{coupling} \cdot f_{reorg}$ and the 775\%/300\% mobility claims are **[pending]** — they require reconciled $\lambda$, hopping rates, and independent transport validation. Main-text quantitative claims use Exp.~5 strain sensitivities and the SDC order parameter $\mathcal{S}$ instead.
 
 ## S3. Boundary Conditions and Applicability
 
@@ -197,10 +183,10 @@ where $E_{activation} = 0.05$ eV is the activation energy for the coupling mecha
 
 ### S4.1 Small Polaron Regime
 
-In the small polaron regime, the charge is localized on 2-3 C$_{60}$ units:
+In the small polaron regime [verified: Exp.~4 labels both pristine and B+3\% as small-polaron hopping]:
 
 \begin{equation}
-\text{IPR}_{small} = 45 \pm 5
+\text{IPR}_{pristine} = 75.0 \pm \text{(audit)}, \quad \text{IPR}_{coupled} = 45.0
 \label{eq:S4_small_polaron}
 \end{equation}
 
@@ -213,36 +199,22 @@ The mobility follows the hopping mechanism:
 
 ### S4.2 Large Polaron Regime
 
-In the large polaron regime, the charge is delocalized over 4-5 C$_{60}$ units:
-
-\begin{equation}
-\text{IPR}_{large} = 25 \pm 3
-\label{eq:S4_large_polaron}
-\end{equation}
-
-The mobility follows the band-like mechanism:
-
-\begin{equation}
-\mu_{large} = \frac{e \tau}{m^*} = \frac{e \hbar^2}{m^* k_B T} \frac{J^2}{\Gamma}
-\label{eq:S4_large_mobility}
-\end{equation}
-
-where $\Gamma$ is the scattering rate and $m^*$ is the effective mass.
+Band-like large-polaron transport is **not** confirmed for the Exp.~4 B+3\% configuration. The previous target $\text{IPR}_{large}=25\pm 3$ [superseded].
 
 ### S4.3 Transition Criterion
 
 The transition occurs when the electronic coupling exceeds the polaron binding energy:
 
 \begin{equation}
-J_{total} > \lambda_{total}
+J_{coupled} > \lambda_{coupled}/2
 \label{eq:S4_transition_criterion}
 \end{equation}
 
-For the optimal conditions (3% strain + 5% doping):
-- $J_{total} = 135$ meV
-- $\lambda_{total} = 0.02$ eV = 20 meV
+For Exp.~4 (B-doped, +3\% strain) [verified]:
+- $J_{coupled} = 37.2$ meV
+- $\lambda_{coupled}/2 = 79.0$ meV
 
-Since $J_{total} > \lambda_{total}$, the system is in the large polaron regime.
+Since $J_{coupled} < \lambda_{coupled}/2$, **polaron transition is not confirmed** (`polaron_transition.json`: `transition_confirmed: false`). The criterion $J_{total} > \lambda_{total}$ with $J=135$ meV [superseded].
 
 ## S5. Optimal Conditions Theory
 

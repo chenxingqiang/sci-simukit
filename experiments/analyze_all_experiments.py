@@ -345,7 +345,7 @@ def main():
     else:
         # 自动检测
         base_dirs = [
-            Path("/Users/xingqiangchen/sci-simukit/dft_results_download"),
+            Path("/Users/xingqiangchen/sci-simukit/dft_results"),
             Path("/opt/sci-simukit/experiments"),
         ]
         base_dir = None

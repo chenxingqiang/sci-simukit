@@ -85,7 +85,9 @@ slurm-*.out
 polaron_calculations/
 # Logs
 *.log
+# Legacy download tree (superseded by tracked dft_results/)
 dft_results_download/
+experiments/exp_10_size_scaling/inputs/*.out.failed_*
 
 # C core (simukit) — build locally via `cd c && make`
 c/build/

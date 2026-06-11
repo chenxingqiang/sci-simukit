@@ -40,6 +40,10 @@ def main() -> None:
             }
         )
     conv = sum(r["converged"] for r in rows)
+    pending_rows = [r for r in rows if not r["converged"] and r.get("last_ot_step")]
+    running_task = None
+    if pending_rows:
+        running_task = max(pending_rows, key=lambda r: r["last_ot_step"] or 0)["task"]
     payload = {
         "updated": date.today().isoformat(),
         "converged": conv,
@@ -47,6 +51,8 @@ def main() -> None:
         "pending": [r["task"] for r in rows if not r["converged"]],
         "tasks": rows,
     }
+    if running_task:
+        payload["running_task"] = running_task
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(payload, indent=2) + "\n")
     print(f"{OUT}: {conv}/{len(rows)} converged")

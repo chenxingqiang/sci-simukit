@@ -18,6 +18,7 @@ same system size. Maps to H_eff = H0 + V_dop + V_str + V_coup in paper/AGENTS.
 
 Usage:
     python src/sdc_coupling_analysis.py --exp10 experiments/exp_10_size_scaling/inputs
+    python src/sdc_coupling_analysis.py --plots-from-json experiments/analysis/sdc/sdc_exp10_results.json
     python src/sdc_coupling_analysis.py --dir experiments/exp_5_synergy
 """
 

@@ -14,8 +14,8 @@ OT_RE = re.compile(r"^\s+(\d+) OT \S+\s+\S+\s+\S+\s+(\S+)", re.M)
 
 
 def reference_ot_task(task: str) -> str | None:
-    """Map size_Nx60_D_posXpct -> size_Nx60_D_pos0pct for OT progress reference."""
-    if "_pos" not in task:
+    """Map size_Nx60_D_posXpct -> size_Nx60_D_pos0pct (skip already-at-pos0)."""
+    if "_pos" not in task or task.endswith("_pos0pct"):
         return None
     return task.rsplit("_pos", 1)[0] + "_pos0pct"
 
@@ -88,7 +88,30 @@ def main() -> None:
         snapshot["eps_scf"] = eps
         if rt.get("last_grad") is not None and eps > 0:
             snapshot["grad_ratio_to_eps"] = round(rt["last_grad"] / eps, 1)
+        ot_step = rt.get("last_ot_step") or 0
+        ratio = snapshot.get("grad_ratio_to_eps") or 0
+        if ot_step >= 200 and ratio > 10:
+            snapshot["escalation_hint"] = (
+                "OT>=200 and grad>10x EPS; if no SCF converged by OT~300, "
+                "consider EPS 1e-5 rerun (see AGENTS pristine 2x60 protocol)"
+            )
         payload["running_snapshot"] = snapshot
+
+    by_task = {r["task"]: r for r in rows}
+    pending_refs = {}
+    for task in payload["pending"]:
+        ref_task = reference_ot_task(task)
+        if not ref_task:
+            continue
+        ref_row = by_task.get(ref_task)
+        if ref_row and ref_row.get("converged") and ref_row.get("last_ot_step"):
+            pending_refs[task] = {
+                "reference_task": ref_task,
+                "reference_ot_steps": ref_row["last_ot_step"],
+                "eps_scf": read_eps_scf(task),
+            }
+    if pending_refs:
+        payload["pending_reference_ot"] = pending_refs
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(payload, indent=2) + "\n")
     print(f"{OUT}: {conv}/{len(rows)} converged")

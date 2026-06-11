@@ -144,8 +144,8 @@
     {
       "task": "size_4x60_P_pos3pct",
       "converged": false,
-      "last_ot_step": 43,
-      "last_grad": 6.309e-05
+      "last_ot_step": 49,
+      "last_grad": 4.485e-05
     },
     {
       "task": "size_4x60_pristine_pos0pct",
@@ -258,12 +258,34 @@
   ],
   "running_task": "size_4x60_P_pos3pct",
   "running_snapshot": {
-    "last_ot_step": 43,
-    "last_grad": 6.309e-05,
+    "last_ot_step": 49,
+    "last_grad": 4.485e-05,
     "reference_task": "size_4x60_P_pos0pct",
     "reference_ot_steps": 202,
-    "ot_progress_pct": 21.3,
+    "ot_progress_pct": 24.3,
     "eps_scf": 1e-06,
-    "grad_ratio_to_eps": 63.1
+    "grad_ratio_to_eps": 44.9
+  },
+  "pending_reference_ot": {
+    "size_4x60_P_pos3pct": {
+      "reference_task": "size_4x60_P_pos0pct",
+      "reference_ot_steps": 202,
+      "eps_scf": 1e-06
+    },
+    "size_6x60_B_pos3pct": {
+      "reference_task": "size_6x60_B_pos0pct",
+      "reference_ot_steps": 156,
+      "eps_scf": 1e-06
+    },
+    "size_6x60_N_pos3pct": {
+      "reference_task": "size_6x60_N_pos0pct",
+      "reference_ot_steps": 196,
+      "eps_scf": 1e-06
+    },
+    "size_8x60_N_pos3pct": {
+      "reference_task": "size_8x60_N_pos0pct",
+      "reference_ot_steps": 250,
+      "eps_scf": 1e-06
+    }
   }
 }

@@ -144,8 +144,8 @@
     {
       "task": "size_4x60_P_pos3pct",
       "converged": false,
-      "last_ot_step": 40,
-      "last_grad": 6.968e-05
+      "last_ot_step": 43,
+      "last_grad": 6.309e-05
     },
     {
       "task": "size_4x60_pristine_pos0pct",
@@ -258,10 +258,12 @@
   ],
   "running_task": "size_4x60_P_pos3pct",
   "running_snapshot": {
-    "last_ot_step": 40,
-    "last_grad": 6.968e-05,
+    "last_ot_step": 43,
+    "last_grad": 6.309e-05,
     "reference_task": "size_4x60_P_pos0pct",
     "reference_ot_steps": 202,
-    "ot_progress_pct": 19.8
+    "ot_progress_pct": 21.3,
+    "eps_scf": 1e-06,
+    "grad_ratio_to_eps": 63.1
   }
 }

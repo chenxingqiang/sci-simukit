@@ -20,6 +20,14 @@ def reference_ot_task(task: str) -> str | None:
     return task.rsplit("_pos", 1)[0] + "_pos0pct"
 
 
+def read_eps_scf(task: str) -> float:
+    inp = INPUTS / f"{task}.inp"
+    if not inp.is_file():
+        return 1e-6
+    m = re.search(r"EPS_SCF\s+([\d.E+-]+)", inp.read_text(errors="replace"))
+    return float(m.group(1)) if m else 1e-6
+
+
 def main() -> None:
     rows = []
     for inp in sorted(INPUTS.glob("size_*.inp")):
@@ -76,6 +84,10 @@ def main() -> None:
                     snapshot["ot_progress_pct"] = round(
                         100.0 * rt["last_ot_step"] / ref_ot, 1
                     )
+        eps = read_eps_scf(running_task)
+        snapshot["eps_scf"] = eps
+        if rt.get("last_grad") is not None and eps > 0:
+            snapshot["grad_ratio_to_eps"] = round(rt["last_grad"] / eps, 1)
         payload["running_snapshot"] = snapshot
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(payload, indent=2) + "\n")

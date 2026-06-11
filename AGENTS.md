@@ -785,7 +785,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
   - **Track A**：Exp10 **30/40**；`size_4x60_P_pos3pct` OT **~24**、$\|\nabla\|\sim2.5\times10^{-4}$（~7 min）；**不干预** CP2K。
   - **Track B**：`update_exp10_status.py` 增 **`running_task`** 字段；Discussion 增 interim $\mathcal{S}(n)$ 符号趋势（JSON 支撑，待 40/40 修订）；docstring 补 `--plots-from-json`。
   - **创新审计**：interim $\mathcal{S}$ 叙述 = **B+ 级**（9 点、缺 n=4 P）；`running_task` 审计 = **A 级**。
-  - **Git**：`loop R45: running_task audit, interim S(n) discussion` → push。
+  - **Git**：`11f76df` — `loop R45: running_task audit, interim S(n) discussion` → **pushed: origin/main**。
 - **投稿策略**：PRL 需先闭环 Exp10 + 非加性定量图；Nature Materials 需机制图（IPR/J）+ 实验路径段；未闭环前不投。
 
 ---
@@ -826,7 +826,7 @@ which cp2k.psmp mpirun   # Homebrew Open MPI + CP2K 2025.1
 | Exp10 归档 | `bash experiments/sync_exp10_archive.sh` |
 | Exp10 converged 后 | `bash experiments/post_exp10_converged.sh`（归档 + SDC + **plots-from-json** → pending 图） |
 | Exp10 续跑 pending | `bash experiments/continue_exp10_pending.sh`（post + 全 batch，无 CP2K 时） |
-| Exp10 状态审计 | `experiments/analysis/exp10_status.json`（30/40 快照 + running OT） |
+| Exp10 状态审计 | `experiments/analysis/exp10_status.json`（30/40 + **`running_task`**） |
 | 看日志 | `tail -f experiments/local_run.log` |
 | 生成 Exp10 输入 | `python experiments/exp_10_size_scaling/run_size_scaling.py` |
 | **SDC 耦合分析** | `cd c && make && ./simukit-sdc ../experiments/exp_10_size_scaling/inputs` |

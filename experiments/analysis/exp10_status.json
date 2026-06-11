@@ -1,9 +1,8 @@
 {
   "updated": "2026-06-12",
-  "converged": 29,
+  "converged": 30,
   "total": 40,
   "pending": [
-    "size_2x60_pristine_pos3pct",
     "size_4x60_P_pos3pct",
     "size_6x60_B_pos3pct",
     "size_6x60_N_pos3pct",
@@ -108,9 +107,9 @@
     },
     {
       "task": "size_2x60_pristine_pos3pct",
-      "converged": false,
-      "last_ot_step": 130,
-      "last_grad": 2.791e-05
+      "converged": true,
+      "last_ot_step": 190,
+      "last_grad": 9.96e-06
     },
     {
       "task": "size_4x60_B_pos0pct",

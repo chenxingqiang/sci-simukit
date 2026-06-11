@@ -1,12 +1,15 @@
 {
   "simukit_version": "0.1.0",
-  "inputs_dir": "/Users/xingqiangchen/sci-simukit/experiments/exp_10_size_scaling/inputs",
+  "inputs_dir": "experiments/exp_10_size_scaling/inputs",
   "strain_pct": 3.0,
-  "n_parsed": 30,
-  "n_converged": 29,
+  "n_parsed": 31,
+  "n_converged": 30,
   "synergy_energy_per_atom": [
     {"n_molecules": 4, "dopant": "B", "strain_pct": 3.0, "synergy_S": -2.289384760221e-04, "reference": -5.682820388623e+00, "combined": -5.634307376098e+00, "strain_only_delta": 1.122140160836e-04, "doping_only_delta": 4.862973698535e-02},
     {"n_molecules": 4, "dopant": "N", "strain_pct": 3.0, "synergy_S": 1.084617279652e-04, "reference": -5.682820388623e+00, "combined": -5.753288909104e+00, "strain_only_delta": 1.122140160836e-04, "doping_only_delta": -7.068919622526e-02},
+    {"n_molecules": 2, "dopant": "B", "strain_pct": 3.0, "synergy_S": -8.019720769781e-05, "reference": -5.681702854852e+00, "combined": -5.633970280260e+00, "strain_only_delta": -4.341967400112e-05, "doping_only_delta": 4.785619147420e-02},
+    {"n_molecules": 2, "dopant": "N", "strain_pct": 3.0, "synergy_S": 2.517288881290e-04, "reference": -5.681702854852e+00, "combined": -5.752992449076e+00, "strain_only_delta": -4.341967400112e-05, "doping_only_delta": -7.149790343811e-02},
+    {"n_molecules": 2, "dopant": "P", "strain_pct": 3.0, "synergy_S": -1.039504669148e-03, "reference": -5.681702854852e+00, "combined": -5.690583125920e+00, "strain_only_delta": -4.341967400112e-05, "doping_only_delta": -7.797346724150e-03},
     {"n_molecules": 6, "dopant": "P", "strain_pct": 3.0, "synergy_S": -1.171795874297e-03, "reference": -5.682851795645e+00, "combined": -5.692709148199e+00, "strain_only_delta": 1.138461017431e-04, "doping_only_delta": -8.799402781484e-03},
     {"n_molecules": 1, "dopant": "B", "strain_pct": 3.0, "synergy_S": -3.078140066943e-04, "reference": -5.682671337035e+00, "combined": -5.634174469692e+00, "strain_only_delta": 1.099221323795e-04, "doping_only_delta": 4.869475921673e-02},
     {"n_molecules": 1, "dopant": "N", "strain_pct": 3.0, "synergy_S": 8.449032300284e-05, "reference": -5.682671337035e+00, "combined": -5.753089072199e+00, "strain_only_delta": 1.099221323795e-04, "doping_only_delta": -7.061214761983e-02},

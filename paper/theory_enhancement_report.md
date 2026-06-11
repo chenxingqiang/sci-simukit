@@ -5,10 +5,9 @@
 > |------|------|------|
 > | $H_{eff}$, $V_{coupling}$, 协同序参量 $\mathcal{S}$ | **[verified]** | `paper/strain_doped_graphullerene.tex`, `paper/sdc_method_section.tex` |
 > | Exp.~5 $\alpha_{B,N,P}$, Table 1 | **[verified]** | `experiments/analysis/table1_verification.json` |
-> | Exp.~10 $\mathcal{S}(n)$, $\mathcal{S}_\infty$ 外推 | **[pending: 29/40]** | `experiments/analysis/sdc/sdc_exp10_results.json` |
-> | Exp.~10 `size_2x60_pristine_pos0pct` | **[verified converged]** | 219 OT 步，EPS $10^{-5}$；`exp10_status.json` |
-> | Exp.~10 `size_2x60_pristine_pos3pct` / n=2 pristine $\mathcal{S}$ | **[pending]** | batch 运行中（OT **~130**, $\|\nabla\|\sim2.8\times10^{-5}$）；Figure 2 draft 缺此点 |
-> | Figure 2 SDC size-scaling panel | **[draft: 6 pts]** | `paper/figures/pending/sdc_synergy_vs_size_eps3pct_epa.pdf`（n=1,4,6 × B/N/P） |
+> | Exp.~10 $\mathcal{S}(n)$, $\mathcal{S}_\infty$ 外推 | **[pending: 30/40]** | `experiments/analysis/sdc/sdc_exp10_results.json` — **9** synergy pts (incl. n=2 B/N/P) |
+> | Exp.~10 `size_2x60_pristine_pos3pct` | **[verified converged]** | 190 OT 步；启用 n=2 $\mathcal{S}$ 锚点 |
+> | Figure 2 SDC size-scaling panel | **[draft: 9 pts]** | `paper/figures/pending/sdc_synergy_vs_size_eps3pct_epa.pdf`（待 40/40 后 final） |
 > | Exp.~4 IPR/J（pristine vs B+3\%） | **[verified, 与理论报告不符]** | `experiments/analysis/exp4_polaron_verification.json` — IPR 75/45，$J$ 27/37 meV；极化子转变 **未确认** |
 > | 理论报告 IPR 45→25, $J=135$ meV, $\mu$ 8.75× | **[discrepancy]** | 勿进 Results；`supplementary_material_theory.tex` **已对齐 Exp4** [Loop R11] |
 > | ML $R^2>0.95$, 300% 迁移率 | **[pending]** | 需独立脚本输出与误差条 |

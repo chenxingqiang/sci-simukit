@@ -1,0 +1,39 @@
+{
+  "source": "dft_results/exp_5_synergy/results/real_dft_results.json",
+  "verified_date": "2026-06-12",
+  "n_atoms": 240,
+  "systems": {
+    "pristine": {
+      "E_0pct_Ha": -1363.551156,
+      "E_5pct_Ha": -1363.550871,
+      "alpha_meV_per_pct": -1.0,
+      "out_0": "C60_strain_+0.0_pristine_synergy.out",
+      "out_5": "C60_strain_+5.0_pristine_synergy.out"
+    },
+    "B": {
+      "E_0pct_Ha": -1328.48998,
+      "E_5pct_Ha": -1328.408959,
+      "alpha_meV_per_pct": 56.9,
+      "Ef_eV_per_dopant": 159.0,
+      "out_0": "C60_strain_+0.0_B_doped_synergy.out",
+      "out_5": "C60_strain_+5.0_B_doped_synergy.out"
+    },
+    "N": {
+      "E_0pct_Ha": -1414.381232,
+      "E_5pct_Ha": -1414.40526,
+      "alpha_meV_per_pct": -303.2,
+      "Ef_eV_per_dopant": -230.5,
+      "out_0": "C60_strain_+0.0_N_doped_synergy.out",
+      "out_5": "C60_strain_+5.0_N_doped_synergy.out"
+    },
+    "P": {
+      "E_0pct_Ha": -1370.496466,
+      "E_5pct_Ha": -1370.488849,
+      "alpha_meV_per_pct": -19.1,
+      "Ef_eV_per_dopant": -31.5,
+      "alpha_note": "Linear fit over strain grid excluding +2.5% outlier (E=-1369.909 Ha; C60_strain_+2.5_P_doped_synergy.out) pending re-convergence",
+      "out_0": "C60_strain_+0.0_P_doped_synergy.out",
+      "out_5": "C60_strain_+5.0_P_doped_synergy.out"
+    }
+  }
+}

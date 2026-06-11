@@ -1,0 +1,41 @@
+{
+  "doping_effects": {
+    "strain_+3.0_N": {
+      "delta_E_eV": -691.7413947023902,
+      "dopant": "N",
+      "strain": 3.0
+    },
+    "strain_+3.0_B": {
+      "delta_E_eV": 477.69191865262957,
+      "dopant": "B",
+      "strain": 3.0
+    },
+    "strain_+3.0_P": {
+      "delta_E_eV": -93.95899077810034,
+      "dopant": "P",
+      "strain": 3.0
+    },
+    "strain_+0.0_P": {
+      "delta_E_eV": -94.22069051118007,
+      "dopant": "P",
+      "strain": 0.0
+    },
+    "strain_+0.0_B": {
+      "delta_E_eV": 476.60092970898654,
+      "dopant": "B",
+      "strain": 0.0
+    },
+    "strain_+0.0_N": {
+      "delta_E_eV": -691.6569975149566,
+      "dopant": "N",
+      "strain": 0.0
+    }
+  },
+  "strain_effects": {
+    "pristine": -0.12795795878863978,
+    "B": 363.5350232565717,
+    "N": -28.26035376945637,
+    "P": 87.10528640163413
+  },
+  "pristine_reference": -681.8104708114665
+}

@@ -1,0 +1,98 @@
+{
+  "strain_+3.0_N": {
+    "strain": 3.0,
+    "dopant": "N",
+    "charge": 0,
+    "total_energy_Ha": -707.2314994456517,
+    "total_energy_eV": -19244.759224015408,
+    "n_atoms": 120,
+    "energy_per_atom_Ha": -5.893595828713765,
+    "converged": true,
+    "output_file": "polaron_+3.0_N_q0.out",
+    "status": "success"
+  },
+  "strain_+3.0_B": {
+    "strain": 3.0,
+    "dopant": "B",
+    "charge": 0,
+    "total_energy_Ha": -664.2556395723993,
+    "total_energy_eV": -18075.325910660387,
+    "n_atoms": 120,
+    "energy_per_atom_Ha": -5.535463663103328,
+    "converged": true,
+    "output_file": "polaron_+3.0_B_q0.out",
+    "status": "success"
+  },
+  "strain_+3.0_pristine": {
+    "strain": 3.0,
+    "dopant": "pristine",
+    "charge": 0,
+    "total_energy_Ha": -681.8104849185642,
+    "total_energy_eV": -18553.017829313016,
+    "n_atoms": 120,
+    "energy_per_atom_Ha": -5.681754040988035,
+    "converged": true,
+    "output_file": "polaron_+3.0_pristine_q0.out",
+    "status": "success"
+  },
+  "strain_+0.0_pristine": {
+    "strain": 0.0,
+    "dopant": "pristine",
+    "charge": 0,
+    "total_energy_Ha": -681.8104708114665,
+    "total_energy_eV": -18553.01744543914,
+    "n_atoms": 120,
+    "energy_per_atom_Ha": -5.681753923428888,
+    "converged": true,
+    "output_file": "polaron_+0.0_pristine_q0.out",
+    "status": "success"
+  },
+  "strain_+3.0_P": {
+    "strain": 3.0,
+    "dopant": "P",
+    "charge": 0,
+    "total_energy_Ha": -685.2634123966836,
+    "total_energy_eV": -18646.976820091117,
+    "n_atoms": 120,
+    "energy_per_atom_Ha": -5.71052843663903,
+    "converged": true,
+    "output_file": "polaron_+3.0_P_q0.out",
+    "status": "success"
+  },
+  "strain_+0.0_P": {
+    "strain": 0.0,
+    "dopant": "P",
+    "charge": 0,
+    "total_energy_Ha": -685.2730155725292,
+    "total_energy_eV": -18647.23813595032,
+    "n_atoms": 120,
+    "energy_per_atom_Ha": -5.71060846310441,
+    "converged": true,
+    "output_file": "polaron_+0.0_P_q0.out",
+    "status": "success"
+  },
+  "strain_+0.0_B": {
+    "strain": 0.0,
+    "dopant": "B",
+    "charge": 0,
+    "total_energy_Ha": -664.2957185492166,
+    "total_energy_eV": -18076.416515730154,
+    "n_atoms": 120,
+    "energy_per_atom_Ha": -5.535797654576806,
+    "converged": true,
+    "output_file": "polaron_+0.0_B_q0.out",
+    "status": "success"
+  },
+  "strain_+0.0_N": {
+    "strain": 0.0,
+    "dopant": "N",
+    "charge": 0,
+    "total_energy_Ha": -707.22838380069,
+    "total_energy_eV": -19244.6744429541,
+    "n_atoms": 120,
+    "energy_per_atom_Ha": -5.89356986500575,
+    "converged": true,
+    "output_file": "polaron_+0.0_N_q0.out",
+    "status": "success"
+  }
+}

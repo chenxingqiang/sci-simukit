@@ -1,0 +1,72 @@
+[
+  {
+    "strain": 5.0,
+    "total_energy_Ha": -681.8104348857554,
+    "total_energy_eV": -18553.016467850244,
+    "n_atoms": null,
+    "energy_per_atom_Ha": null,
+    "energy_per_atom_eV": null,
+    "converged": true,
+    "scf_steps": 58,
+    "output_file": "C60_strain_+5.0_pristine.out",
+    "status": "success",
+    "relative_energy_Ha": 3.592571022181801e-05,
+    "relative_energy_meV": 0.9775888711299786
+  },
+  {
+    "strain": -5.0,
+    "total_energy_Ha": -681.810585529232,
+    "total_energy_eV": -18553.020567070143,
+    "n_atoms": null,
+    "energy_per_atom_Ha": null,
+    "energy_per_atom_eV": null,
+    "converged": true,
+    "scf_steps": 58,
+    "output_file": "C60_strain_-5.0_pristine.out",
+    "status": "success",
+    "relative_energy_Ha": -0.00011471776633698028,
+    "relative_energy_meV": -3.1216310269021053
+  },
+  {
+    "strain": 0.0,
+    "total_energy_Ha": -681.8104708114656,
+    "total_energy_eV": -18553.017445439116,
+    "n_atoms": null,
+    "energy_per_atom_Ha": null,
+    "energy_per_atom_eV": null,
+    "converged": true,
+    "scf_steps": 58,
+    "output_file": "C60_strain_+0.0_pristine.out",
+    "status": "success",
+    "relative_energy_Ha": 0.0,
+    "relative_energy_meV": 0.0
+  },
+  {
+    "strain": -2.5,
+    "total_energy_Ha": -681.8105246983085,
+    "total_energy_eV": -18553.018911775554,
+    "n_atoms": null,
+    "energy_per_atom_Ha": null,
+    "energy_per_atom_eV": null,
+    "converged": true,
+    "scf_steps": 59,
+    "output_file": "C60_strain_-2.5_pristine.out",
+    "status": "success",
+    "relative_energy_Ha": -5.388684292029211e-05,
+    "relative_energy_meV": -1.4663364374412369
+  },
+  {
+    "strain": 2.5,
+    "total_energy_Ha": -681.8104954119859,
+    "total_energy_eV": -18553.018114853716,
+    "n_atoms": null,
+    "energy_per_atom_Ha": null,
+    "energy_per_atom_eV": null,
+    "converged": true,
+    "scf_steps": 59,
+    "output_file": "C60_strain_+2.5_pristine.out",
+    "status": "success",
+    "relative_energy_Ha": -2.460052030528459e-05,
+    "relative_energy_meV": -0.6694145982352211
+  }
+]

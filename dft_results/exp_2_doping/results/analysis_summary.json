@@ -1,0 +1,30 @@
+{
+  "total_calculations": 12,
+  "successful_calculations": 11,
+  "dopant_types": [
+    "B",
+    "pristine",
+    "P",
+    "N"
+  ],
+  "concentrations": [
+    0.03,
+    0.05,
+    0.07
+  ],
+  "most_stable": {
+    "dopant": "N",
+    "concentration": 0.07,
+    "energy_Ha": -357.8411946732789
+  },
+  "formation_energies_5pct": {
+    "B": 238.27145421391288,
+    "N": -345.9984313225741,
+    "P": -37.80025313403712
+  },
+  "doping_effects": {
+    "B": 399167.7153267225,
+    "P": -59667.968206617494,
+    "N": -575584.9949492285
+  }
+}

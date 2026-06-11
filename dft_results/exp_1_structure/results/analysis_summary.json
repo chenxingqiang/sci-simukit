@@ -1,0 +1,22 @@
+{
+  "total_calculations": 5,
+  "successful_calculations": 5,
+  "system": "C60 Dimer (pristine)",
+  "n_atoms": 120,
+  "strain_values": [
+    -5.0,
+    -2.5,
+    0.0,
+    2.5,
+    5.0
+  ],
+  "strain_response": {
+    "linear_meV_per_percent": 0.3598144645870492,
+    "quadratic_meV_per_percent2": -0.049196188289228115
+  },
+  "most_stable_strain": {
+    "strain": -5.0,
+    "energy_Ha": -681.810585529232
+  },
+  "energy_range_meV": 4.099219898032084
+}

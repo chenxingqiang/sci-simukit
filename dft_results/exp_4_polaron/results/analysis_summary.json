@@ -1,0 +1,27 @@
+{
+  "total_calculations": 8,
+  "successful_calculations": 8,
+  "dopant_types": [
+    "B",
+    "pristine",
+    "P",
+    "N"
+  ],
+  "strain_values": [
+    0.0,
+    3.0
+  ],
+  "strain_effects": {
+    "pristine": -0.12795795878863978,
+    "B": 363.5350232565717,
+    "N": -28.26035376945637,
+    "P": 87.10528640163413
+  },
+  "doping_effects_count": 6,
+  "most_stable": {
+    "key": "strain_+3.0_N",
+    "strain": 3.0,
+    "dopant": "N",
+    "energy_Ha": -707.2314994456517
+  }
+}

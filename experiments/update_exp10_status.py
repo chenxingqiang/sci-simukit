@@ -13,6 +13,13 @@ OUT = ROOT / "experiments/analysis/exp10_status.json"
 OT_RE = re.compile(r"^\s+(\d+) OT \S+\s+\S+\s+\S+\s+(\S+)", re.M)
 
 
+def reference_ot_task(task: str) -> str | None:
+    """Map size_Nx60_D_posXpct -> size_Nx60_D_pos0pct for OT progress reference."""
+    if "_pos" not in task:
+        return None
+    return task.rsplit("_pos", 1)[0] + "_pos0pct"
+
+
 def main() -> None:
     rows = []
     for inp in sorted(INPUTS.glob("size_*.inp")):
@@ -54,10 +61,22 @@ def main() -> None:
     if running_task:
         payload["running_task"] = running_task
         rt = next(r for r in rows if r["task"] == running_task)
-        payload["running_snapshot"] = {
+        snapshot = {
             "last_ot_step": rt.get("last_ot_step"),
             "last_grad": rt.get("last_grad"),
         }
+        ref_task = reference_ot_task(running_task)
+        if ref_task:
+            ref_row = next((r for r in rows if r["task"] == ref_task), None)
+            if ref_row and ref_row.get("converged") and ref_row.get("last_ot_step"):
+                ref_ot = ref_row["last_ot_step"]
+                snapshot["reference_task"] = ref_task
+                snapshot["reference_ot_steps"] = ref_ot
+                if rt.get("last_ot_step"):
+                    snapshot["ot_progress_pct"] = round(
+                        100.0 * rt["last_ot_step"] / ref_ot, 1
+                    )
+        payload["running_snapshot"] = snapshot
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(payload, indent=2) + "\n")
     print(f"{OUT}: {conv}/{len(rows)} converged")

@@ -1,0 +1,91 @@
+{
+  "strain_pct": 3.0,
+  "n_synergy_points": 9,
+  "synergy_table": [
+    {
+      "n_molecules": 1,
+      "dopant": "B",
+      "strain_pct": 3.0,
+      "synergy_S_ha_per_atom": -0.0003078140066943,
+      "synergy_S_meV_per_atom": -8.376045828083734
+    },
+    {
+      "n_molecules": 1,
+      "dopant": "N",
+      "strain_pct": 3.0,
+      "synergy_S_ha_per_atom": 8.449032300284e-05,
+      "synergy_S_meV_per_atom": 2.299098813278564
+    },
+    {
+      "n_molecules": 1,
+      "dopant": "P",
+      "strain_pct": 3.0,
+      "synergy_S_ha_per_atom": -0.001172533121839,
+      "synergy_S_meV_per_atom": -31.906251664575134
+    },
+    {
+      "n_molecules": 2,
+      "dopant": "B",
+      "strain_pct": 3.0,
+      "synergy_S_ha_per_atom": -8.019720769781e-05,
+      "synergy_S_meV_per_atom": -2.18227719451483
+    },
+    {
+      "n_molecules": 2,
+      "dopant": "N",
+      "strain_pct": 3.0,
+      "synergy_S_ha_per_atom": 0.000251728888129,
+      "synergy_S_meV_per_atom": 6.849892004151322
+    },
+    {
+      "n_molecules": 2,
+      "dopant": "P",
+      "strain_pct": 3.0,
+      "synergy_S_ha_per_atom": -0.001039504669148,
+      "synergy_S_meV_per_atom": -28.28636305669419
+    },
+    {
+      "n_molecules": 4,
+      "dopant": "B",
+      "strain_pct": 3.0,
+      "synergy_S_ha_per_atom": -0.0002289384760221,
+      "synergy_S_meV_per_atom": -6.229733297605225
+    },
+    {
+      "n_molecules": 4,
+      "dopant": "N",
+      "strain_pct": 3.0,
+      "synergy_S_ha_per_atom": 0.0001084617279652,
+      "synergy_S_meV_per_atom": 2.9513939725683356
+    },
+    {
+      "n_molecules": 6,
+      "dopant": "P",
+      "strain_pct": 3.0,
+      "synergy_S_ha_per_atom": -0.001171795874297,
+      "synergy_S_meV_per_atom": -31.88619013695087
+    }
+  ],
+  "size_scaling_fits": {
+    "B": {
+      "S_infinity": -0.25860324140117974,
+      "A": 0.2583581606681757,
+      "alpha": -0.00022015492277656422,
+      "n_points": 3
+    },
+    "N": {
+      "S_infinity": -0.07587347896956041,
+      "A": 0.07600972659900808,
+      "alpha": -0.00022734283029525535,
+      "n_points": 3
+    },
+    "P": {
+      "S_infinity": -0.10598741478260479,
+      "A": 0.10486822818154429,
+      "alpha": 0.00010081489726174802,
+      "n_points": 3
+    }
+  },
+  "S_infinity_status": "provisional_pending_40_of_40",
+  "note": "Canonical synergy from simukit-sdc; do not cite S_infinity until Exp10 complete."
+}

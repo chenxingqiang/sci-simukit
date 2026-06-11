@@ -416,6 +416,38 @@ class SDCAnalyzer:
             )
         return records
 
+    def write_synergy_audit_json(
+        self,
+        synergy_epa: List[SynergyRecord],
+        fits: Dict[str, Dict],
+        strain_pct: float,
+    ) -> Path:
+        """Machine-readable synergy table (meV/atom) + provisional size-scaling fits."""
+        rows = []
+        for rec in sorted(synergy_epa, key=lambda r: (r.n_molecules, r.dopant)):
+            rows.append(
+                {
+                    "n_molecules": rec.n_molecules,
+                    "dopant": rec.dopant,
+                    "strain_pct": rec.strain_pct,
+                    "synergy_S_ha_per_atom": rec.synergy_S,
+                    "synergy_S_meV_per_atom": rec.synergy_S * HA_TO_EV * 1000.0,
+                }
+            )
+        audit = {
+            "strain_pct": strain_pct,
+            "n_synergy_points": len(rows),
+            "synergy_table": rows,
+            "size_scaling_fits": fits,
+            "S_infinity_status": "provisional_pending_40_of_40",
+            "note": "Canonical synergy from simukit-sdc; do not cite S_infinity until Exp10 complete.",
+        }
+        out = self.output_dir / "sdc_exp10_synergy_audit.json"
+        with open(out, "w") as f:
+            json.dump(audit, f, indent=2)
+        logger.info("Wrote synergy audit -> %s", out)
+        return out
+
     def plots_from_canonical_json(self, json_path: Path) -> Path:
         """Regenerate synergy-vs-size figures from simukit-sdc JSON only."""
         data = json.loads(json_path.read_text())
@@ -426,6 +458,7 @@ class SDCAnalyzer:
         fits = self.fit_size_scaling(synergy_epa)
         tag = f"eps{int(strain_pct)}pct_epa"
         out = self.plot_synergy_vs_size(synergy_epa, fits, tag)
+        self.write_synergy_audit_json(synergy_epa, fits, strain_pct)
         logger.info(
             "Plotted %d synergy points from %s -> %s",
             len(synergy_epa),

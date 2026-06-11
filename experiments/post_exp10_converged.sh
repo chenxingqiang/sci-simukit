@@ -20,6 +20,7 @@ fi
 n=$(grep -l 'SCF run converged' "$INPUTS"/size_*.out 2>/dev/null | wc -l | tr -d ' ')
 echo "Exp10 converged: ${n}/40"
 echo "SDC JSON: $ROOT/experiments/analysis/sdc/sdc_exp10_results.json"
+echo "SDC audit: $ROOT/experiments/analysis/sdc/sdc_exp10_synergy_audit.json"
 
 CANON="$ROOT/experiments/analysis/sdc/sdc_exp10_results.json"
 PENDING="$ROOT/paper/figures/pending"

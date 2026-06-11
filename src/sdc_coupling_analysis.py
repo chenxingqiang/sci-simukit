@@ -395,6 +395,44 @@ class SDCAnalyzer:
             json.dump(sensitivities, f, indent=2)
         return out
 
+    @staticmethod
+    def synergy_records_from_json(data: dict) -> List[SynergyRecord]:
+        strain_pct = float(data.get("strain_pct", 3.0))
+        records: List[SynergyRecord] = []
+        for row in data.get("synergy_energy_per_atom", []):
+            records.append(
+                SynergyRecord(
+                    property_name="energy_per_atom_ha",
+                    n_molecules=int(row["n_molecules"]),
+                    dopant=str(row["dopant"]),
+                    strain_pct=float(row.get("strain_pct", strain_pct)),
+                    reference=float(row["reference"]),
+                    combined=float(row["combined"]),
+                    strain_only_delta=float(row["strain_only_delta"]),
+                    doping_only_delta=float(row["doping_only_delta"]),
+                    synergy_S=float(row["synergy_S"]),
+                )
+            )
+        return records
+
+    def plots_from_canonical_json(self, json_path: Path) -> Path:
+        """Regenerate synergy-vs-size figures from simukit-sdc JSON only."""
+        data = json.loads(json_path.read_text())
+        strain_pct = float(data.get("strain_pct", 3.0))
+        synergy_epa = self.synergy_records_from_json(data)
+        if not synergy_epa:
+            raise ValueError(f"No synergy_energy_per_atom in {json_path}")
+        fits = self.fit_size_scaling(synergy_epa)
+        tag = f"eps{int(strain_pct)}pct_epa"
+        out = self.plot_synergy_vs_size(synergy_epa, fits, tag)
+        logger.info(
+            "Plotted %d synergy points from %s -> %s",
+            len(synergy_epa),
+            json_path,
+            out,
+        )
+        return out
+
     def run_exp10(self, inputs_dir: Path, strain_pct: float = 3.0) -> Dict:
         records = self.scan_exp10_directory(inputs_dir)
         converged = sum(1 for r in records.values() if r.converged)
@@ -475,6 +513,12 @@ def main():
         help="Output directory for JSON/figures",
     )
     parser.add_argument("--strain", type=float, default=3.0, help="Strain %% for synergy (default +3)")
+    parser.add_argument(
+        "--plots-from-json",
+        type=Path,
+        default=None,
+        help="Regenerate synergy figures from simukit-sdc JSON (read-only; no canonical overwrite)",
+    )
     args = parser.parse_args()
 
     repo_root = Path(__file__).resolve().parents[1]
@@ -482,6 +526,16 @@ def main():
     out_dir = args.out_dir if args.out_dir.is_absolute() else repo_root / args.out_dir
 
     analyzer = SDCAnalyzer(out_dir)
+
+    if args.plots_from_json is not None:
+        json_path = (
+            args.plots_from_json
+            if args.plots_from_json.is_absolute()
+            else repo_root / args.plots_from_json
+        )
+        analyzer.plots_from_canonical_json(json_path)
+        return
+
     payload = analyzer.run_exp10(exp10_dir, strain_pct=args.strain)
 
     n_syn = len(payload["synergy_energy_per_atom"])

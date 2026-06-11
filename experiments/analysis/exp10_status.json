@@ -144,8 +144,8 @@
     {
       "task": "size_4x60_P_pos3pct",
       "converged": false,
-      "last_ot_step": 13,
-      "last_grad": 0.0018989
+      "last_ot_step": 19,
+      "last_grad": 0.00046905
     },
     {
       "task": "size_4x60_pristine_pos0pct",

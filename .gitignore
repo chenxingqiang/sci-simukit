@@ -86,3 +86,10 @@ polaron_calculations/
 # Logs
 *.log
 dft_results_download/
+
+# C core (simukit) — build locally via `cd c && make`
+c/build/
+c/libsimukit.a
+c/simukit-run
+c/simukit-sdc
+c/src/*.o

@@ -1,0 +1,25 @@
+\subsection{\label{sec:sdc_tool}Strain--Doping Coupling (SDC) Design Operator}
+
+To turn the non-additive coupling in Eq.~\eqref{eq:coupling_term} into a reproducible materials-design tool, we define a \emph{synergy order parameter} $S$ for any observable $P$ (total energy, energy per atom, band gap, or hopping integral $J$):
+\begin{equation}
+\mathcal{S}(P;\epsilon,\delta)
+= \Delta P(\epsilon,\delta)
+- \bigl[\Delta P(\epsilon,0) + \Delta P(0,\delta)\bigr],
+\label{eq:synergy_order}
+\end{equation}
+where $\epsilon$ is biaxial strain, $\delta$ labels the dopant species (B, N, or P), and $\Delta P(\epsilon,\delta)=P(\epsilon,\delta)-P(0,0)$ at fixed system size $n\times\mathrm{C}_{60}$.
+Non-additive coupling corresponds to $\mathcal{S}\neq 0$; additive superposition gives $\mathcal{S}=0$ by construction.
+
+Operationally, $P$ is extracted from converged CP2K outputs (`SCF run converged`): total energy from the \texttt{ENERGY|} line, energy per atom from $E/N_{\mathrm{atoms}}$, and $J$ from the HOMO--HOMO$-1$ splitting of the MO eigenvalue block (same protocol as Exp.~3--4).
+All $\mathcal{S}$ values reported for finite-size validation are computed with \texttt{src/sdc\_coupling\_analysis.py}, which writes auditable JSON/CSV under \texttt{experiments/analysis/sdc/} with source \texttt{.out} paths for each term in Eq.~\eqref{eq:synergy_order}.
+
+Finite-size extrapolation of the coupling contribution uses
+\begin{equation}
+\mathcal{S}(n) = \mathcal{S}_\infty + A\, n^{-\alpha},
+\label{eq:size_scaling}
+\end{equation}
+fitted to converged Exp.~10 points at $+3$\% strain; $\mathcal{S}_\infty$ is the bulk-network design limit relevant to extended graphullerene sheets.
+% DATA: pending full Exp10 40/40; current S(n) from 28/40 converged tasks — see experiments/analysis/sdc/sdc_exp10_results.json
+
+The effective Hamiltonian parameters are not fitted ad hoc: $V_{\mathrm{doping}}$ and $V_{\mathrm{strain}}$ are identified with $\Delta P(0,\delta)$ and $\Delta P(\epsilon,0)$ from single-knob DFT, while $V_{\mathrm{coupling}}$ is proportional to $\mathcal{S}$ in Eq.~\eqref{eq:synergy_order}.
+This SDC framework provides a transferable design operator---scan $(\epsilon,\delta)$ with few DFT points, rank combinations by $|\mathcal{S}|$, and prioritize polaron-transport descriptors ($J$, $\lambda$, IPR) before Marcus mobility evaluation.

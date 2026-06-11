@@ -39,7 +39,13 @@ sci-simukit/
 │   ├── strain_generator.py         # Strain structure generation
 │   ├── doping_generator.py         # Heteroatom doping
 │   ├── strain_doping_combiner.py   # Combined strain+doping
+│   ├── sdc_coupling_analysis.py    # SDC plots (canonical analysis: c/simukit-sdc)
 │   └── graphullerene_gnn.py       # Graph neural network model
+├── ⚙️ c/                           # C DFT coupling core (CP2K parse/run/SDC)
+│   ├── include/simukit/            # Public headers
+│   ├── src/                        # libsimukit sources
+│   └── Makefile                    # `make` → simukit-run, simukit-sdc
+├── 📋 AGENTS.md                    # Dual-track optimization loop (Track A+B)
 ├── 🔬 experiments/                 # Experimental workflows
 │   ├── run_complete_experiment.py  # Full pipeline
 │   └── fullerene_strain_search.py  # Literature search tool
@@ -101,6 +107,16 @@ python experiments/run_complete_experiment.py --mode full
 ```bash
 python src/graphullerene_gnn.py
 ```
+
+### 4. C DFT Core (CP2K parse, batch run, SDC analysis)
+```bash
+cd c && make
+export CP2K_DATA=/opt/homebrew/share/cp2k/data   # adjust for your install
+./simukit-sdc ../experiments/exp_10_size_scaling/inputs
+./simukit-run --exp8-sp ../experiments/exp_10_size_scaling/inputs
+```
+
+See `AGENTS.md` for the dual-track optimization loop.
 
 ## 📊 Paper Figures and Tables
 

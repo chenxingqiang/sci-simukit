@@ -35,7 +35,7 @@
 \date{\today}
 
 \begin{abstract}
-We report the discovery of non-additive coupling between heteroatom doping and mechanical strain in two-dimensional graphullerene networks that fundamentally alters their energetic stability and electronic properties. Through first-principles DFT calculations (PBE+rVV10) on B/N/P-doped quasi-hexagonal C$_{60}$ tetramer networks under biaxial strain ($\pm$5\%), we demonstrate that different dopant types exhibit dramatically different strain sensitivities: N-doped systems show strong negative sensitivity ($-303$ meV/\%), B-doped systems show positive sensitivity ($+57$ meV/\%), while pristine networks remain nearly strain-insensitive ($-1$ meV/\%). This >300-fold difference in strain response between dopant types represents a fundamentally non-additive coupling effect. The most stable configuration is N-doped graphullerene at $+2.5$\% tensile strain, with formation energy of $-231$ eV/dopant. These findings, validated by 28 DFT calculations on systems containing up to 240 atoms, establish a new paradigm for engineering quantum materials with dynamically reconfigurable properties through simultaneous control of electronic structure and lattice geometry.
+We report the discovery of non-additive coupling between heteroatom doping and mechanical strain in two-dimensional graphullerene networks that fundamentally alters their energetic stability and electronic properties. Through first-principles DFT calculations (PBE with Grimme DFT-D3 dispersion) on B/N/P-doped quasi-hexagonal C$_{60}$ tetramer networks under biaxial strain ($\pm$5\%), we demonstrate that different dopant types exhibit dramatically different strain sensitivities: N-doped systems show strong negative sensitivity ($-303$ meV/\%), B-doped systems show positive sensitivity ($+57$ meV/\%), while pristine networks remain nearly strain-insensitive ($-1$ meV/\%). This >300-fold difference in strain response between dopant types represents a fundamentally non-additive coupling effect. The most stable configuration is N-doped graphullerene at $+2.5$\% tensile strain, with formation energy of $-231$ eV/dopant. These findings, validated by 28 DFT calculations on systems containing up to 240 atoms, establish a new paradigm for engineering quantum materials with dynamically reconfigurable properties through simultaneous control of electronic structure and lattice geometry.
 \end{abstract}
 
 \keywords{graphullerene, strain engineering, heteroatom doping, quantum transport, polaron dynamics}
@@ -54,7 +54,7 @@ Here we report the discovery of non-additive coupling between heteroatom doping 
 
 \section{\label{sec:methods}Computational Methods}
 
-Electronic structure calculations were performed using CP2K with the Perdew-Burke-Ernzerhof (PBE) exchange-correlation functional augmented with rVV10 non-local correlation~\cite{Materials2024bridging}. Koopmans-compliant hybrid functionals were employed to eliminate self-interaction errors and accurately describe polaron formation energies~\cite{Wittemeier2023first}. 
+Electronic structure calculations were performed using CP2K~\cite{cp2k2025} with the Perdew--Burke--Ernzerhof (PBE) exchange-correlation functional and Grimme DFT-D3 dispersion corrections (Becke--Johnson damping), matching the input files in \texttt{experiments/*/inputs/*.inp}. Kinetic energy cutoffs were 300~Ry (280~Ry for $n\times\mathrm{C}_{60}$ with $n\geq 6$); SCF convergence used \texttt{EPS\_SCF}$=10^{-6}$ with OT minimization. Polaronic transport analysis (Exp.~4, 7, 9) uses the same PBE+D3 baseline; Koopmans/rVV10 refinements are reserved for future validation subsets.
 
 The non-additive coupling mechanism is derived from first principles through the effective Hamiltonian
 \begin{equation}
@@ -82,6 +82,8 @@ V_{coupling} = \sum_{i,j} \frac{\langle \psi_i | V_{doping} | \psi_j \rangle \la
 \end{equation}
 
 This coupling term represents the quantum mechanical interference between doping and strain effects, which cannot be captured by simple superposition.
+
+\input{sdc_method_section.tex}
 
 Two system sizes were studied: C$_{60}$ dimers (120 atoms) for pristine strain response, and C$_{60}$ tetramers (240 atoms) for strain-doping coupling analysis. For doped systems, 6 carbon atoms were substituted with B, N, or P (2.5\% concentration). Biaxial strain was applied uniformly from $-5$\% to $+5$\% in 2.5\% increments. All calculations used the DZVP-MOLOPT-SR-GTH basis set with GTH pseudopotentials. A total of 28 DFT calculations were performed, with each calculation converging in 50-100 SCF steps.
 
@@ -162,6 +164,8 @@ The ratio of strain sensitivities quantifies the non-additive coupling strength:
 \end{equation}
 
 This 300-fold enhancement demonstrates that the strain response is not simply additive—the presence of dopants fundamentally changes how the system responds to mechanical deformation. This represents the key evidence for non-additive strain-doping coupling in graphullerene networks.
+
+\textbf{Comparison with prior graphullerene studies.} Capobianco \textit{et al.}~\cite{Capobianco2024electron} established polaron-limited transport in pristine qHP C$_{60}$ monolayers without heteroatom substitution or mechanical loading. Khan \textit{et al.}~\cite{Khan2025tuning} mapped dopant-type effects on band alignment in 2D graphullerene but did not apply biaxial strain; strain-engineering studies on qHP C$_{60}$~\cite{Li2024strain} omit controlled B/N/P substitution. Our work closes this gap by quantifying $\alpha_{B,N,P}$ under identical strain protocols and by introducing the synergy order parameter $\mathcal{S}$ [Eq.~\eqref{eq:synergy_order}], which isolates the non-additive cross term missing from additive superpositions of single-knob DFT scans.
 
 \subsection{\label{sec:formation_energy}Formation Energy Analysis}
 

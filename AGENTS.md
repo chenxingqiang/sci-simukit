@@ -1,0 +1,622 @@
+# AGENTS.md
+
+## Graphullerene 投稿无限优化闭环（Infinite Optimization Loop）
+
+本仓库的持续改进**没有终止条件**。每一轮闭环的目标不是「算完就停」，而是：
+
+**感知现状 → 选定瓶颈 → 最小落地 → 用证据验证 → 把结论写回文稿与契约 → 进入下一轮**。
+
+Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验证通过后更新本节或下方 **Gotchas** / **当前轮次笔记**。
+
+**不要**为此闭环新增独立编排脚本（例如一键跑完全部 Exp 的 orchestrator），除非用户明确要求。闭环由 Agent 按层执行现有 `experiments/` 脚本、CP2K 与测试，并把经验沉淀进文档。
+
+**投稿目标（优先级）**：**PRL** → **Nature Materials** / **Nature Communications** → **PRB** / **Carbon**（降级路径）。每一轮策略须对照目标期刊的「主张强度 vs 证据强度」。
+
+**双轨并行**：CP2K 在后台跑时，Agent **不得空等** — 同步执行 [文稿·文献闭环](#文稿文献闭环-manuscript--literature-loop)（整理、校准、配图配表、检索最新文献、创新审计）。计算轮与文稿轮交替推进，每轮结束写回 `AGENTS.md`。
+
+---
+
+### 双轨并行总览
+
+```mermaid
+flowchart TB
+  subgraph TrackA [Track A 计算 Loop]
+    CA[CP2K 后台跑] --> PA[感知完成数/OOM]
+    PA --> SA[策略选 Exp/输入]
+    SA --> IA[落地 run_pending / 修 inp]
+    IA --> VA[验证 converged]
+    VA --> EA[进化 dft_results + 笔记]
+  end
+  subgraph TrackB [Track B 文稿·文献 Loop]
+    CB[计算等待窗口] --> PB[感知文稿-计算 gap]
+    PB --> SB[策略选章节/图/文献]
+    SB --> IB[改 tex/bib/fig + 检索]
+    IB --> VB[验证引用与创新审计]
+    VB --> EB[进化 paper/ + 笔记]
+  end
+  EA --> CB
+  EB --> PA
+```
+
+| 轨道 | 何时跑 | 禁止 |
+|------|--------|------|
+| **Track A 计算** | 有 pending Exp；机器内存允许 | 无 converged 改 Results 定量 |
+| **Track B 文稿·文献** | CP2K 占用 CPU 时**默认并行**；或计算全完成后的主攻 | 无文献支撑的新主张；无 `.out` 的新数字 |
+
+用户说 **「go loops」** 或 **「继续」** 时：Agent **同时**推进 A+B（若 A 已在跑，本轮以 B 为主并抽查 A 日志）。
+
+---
+
+### 核心原则
+
+| 原则 | 含义 |
+|------|------|
+| **先算后写** | 没有收敛的 `.out` 与尺寸收敛证据，不改 Abstract / Results 中的定量主张 |
+| **文稿-计算契约** | Methods 写 PBE+D3 就只引用 PBE+D3；写 rVV10/Koopmans 须有对应输入与输出 |
+| **瓶颈驱动** | 优先：Exp10 尺寸收敛、Exp8 SP、文稿与计算不一致、静默失败/OOM；再追求 ML/新图 |
+| **最小改动** | 每轮只解决 1～2 个瓶颈，避免无关重构 |
+| **验证通过再沉淀** | `SCF run converged` / GeoOpt 完成后再更新 `paper/`、`dft_results_download/`、本文件 |
+| **分层对齐** | 借鉴顶刊材料稿结构：**结构/掺杂（Exp1–2）→ 电子/极化子（Exp3–4,7,9）→ 协同/尺寸（Exp5–6,10）→ 文稿** |
+| **执行前价值闸门** | 每轮进入「策略 → 落地」前，对照投稿目标判断本轮是否值得做（见下节） |
+| **算时写稿** | CP2K 长跑期间做 Track B；定量句标注 `[pending: Exp10 task X]` 或 `[verified: file.out]` |
+| **文献即证据** | 新引用须来自检索结果；创新声明须对照 `docs/reference_info.md` + 最新论文 |
+| **图表可审计** | 每个 panel 的数字追溯到 `.out` / `.csv` / 分析 JSON；无源数字不进 tex |
+
+---
+
+### 执行前闸门：投稿目标与优化价值（每轮必做）
+
+**在勾选检查清单第 2 步「策略」、改输入或改稿之前**，Agent 必须先完成本闸门；若结论为「价值不足」，改选 backlog 中更高优先级项，**不得**为凑 Loop 而做低价值微优化或空洞改稿。
+
+#### 顶刊框架目标（PRL / Nature Materials 对齐）
+
+| 层级 | 顶刊期望 | sci-simukit 对应 |
+|------|----------|------------------|
+| **核心主张** | 1 个可一句话说清的新物理（非加性应变-掺杂耦合） | Exp5–6 + Exp10 收敛 + 定量 dE/dε 差异 |
+| **结构证据** | 尺寸收敛、泛函/基组敏感性 | Exp10（1×60→8×60）；可选 rVV10 子集对比 |
+| **机制证据** | 极化子 / IPR / 耦合 J，非仅总能量 | Exp4, Exp7, Exp9 + 分析脚本 |
+| **可检验预测** | 可被实验或独立 DFT 复现的数值 | 最优应变、formation energy、迁移率区间 |
+| **诚实 Methods** | 与输入文件一致 | `experiments/*/inputs/*.inp` 为准，非 `.tex` 理想描述 |
+
+**借鉴要点（非照搬 Nature 模板）**：
+
+- **一条主故事**：N vs B 应变灵敏度符号相反 + 尺寸收敛 → 再谈 ML / 300% 迁移率。
+- **主张 ≤ 证据**：PRL 需要「少而硬」；Nature Materials 需要机制图 + 可扩展性；缺实验时用「predictions + comparison to Capobianco/Li/Khan」补位，不伪造已做 rVV10。
+- **尺寸收敛优先于新 Exp**：Exp10 未闭环前，不新增 Exp11。
+- **正确性优先于速度**：`SCF run converged` / `GEOMETRY OPTIMIZATION COMPLETED` 优先于并发跑满核。
+
+#### 四轮自问（策略卡片必填）
+
+在 PR 描述或本轮笔记中**用 1～2 句话**回答：
+
+1. **层级**：本轮改的是 **计算闭环**、**分析/图** 还是 **文稿**？若仅润色措辞而无新 `.out` → **拒绝或降级**。
+2. **路径**：是否落在 Exp7→8→9→10 依赖链？Exp10 未完成时是否应暂停改 Abstract？
+3. **收益**：预期收益类型 — 收敛任务数、尺寸收敛曲线、非加性定量图、Methods 诚实化？
+4. **机会成本**：同一轮是否还有更高优先级 backlog（见下方「感知」）？
+
+**计算向轮次**在感知阶段额外确认：
+
+```bash
+# 本地：已完成任务数
+grep -l 'SCF run converged' experiments/exp_10_size_scaling/inputs/size_*.out 2>/dev/null | wc -l
+
+# 本地：后台 batch 是否存活
+ps aux | grep -E 'cp2k.psmp|run_pending_local' | grep -v grep
+
+# 日志
+tail -20 experiments/local_run.log
+```
+
+---
+
+### 五层结构
+
+```mermaid
+flowchart LR
+  P[1 感知 Perceive] --> S[2 策略 Strategy]
+  S --> I[3 落地 Implement]
+  I --> V[4 验证 Verify]
+  V --> M{证据够写进稿?}
+  M -->|否| S
+  M -->|是| PR[开 PR + 合并 main]
+  PR --> E[5 进化 Evolve]
+  E --> N[扫描新瓶颈]
+  N --> P
+```
+
+---
+
+#### 第 1 层：感知（Perceive）— 我们在哪？
+
+**目标**：弄清各 Exp 完成度、本地/服务器 `.out` 是否一致、文稿声称 vs 输入文件是否一致、CP2K 是否在跑或卡死。
+
+**实验清单与完成标准**：
+
+| Exp | 目录 | 完成判据 | 投稿权重 |
+|-----|------|----------|----------|
+| Exp7 | `experiments/exp_7_electronic_structure/` | 12/12 `.out` 收敛 | 高（电子结构） |
+| Exp8 | `experiments/exp_8_geometry_opt/` | 6 GeoOpt + SP；缺 `geoopt_pristine_sp` | 高 |
+| Exp9 | `experiments/exp_9_charged_polaron/` | 12/12 polaron 收敛 | 高 |
+| Exp10 | `experiments/exp_10_size_scaling/` | 40/40；按 1×60…8×60 收敛 | **阻塞 PRL 尺寸论证** |
+
+**典型动作**：
+
+```bash
+# Exp10 分尺寸统计
+cd experiments/exp_10_size_scaling/inputs
+for s in 1x60 2x60 4x60 6x60 8x60; do
+  echo -n "$s: "
+  grep -l 'SCF run converged' size_${s}_*.out 2>/dev/null | wc -l
+done
+
+# Exp8
+grep -l 'GEOMETRY OPTIMIZATION COMPLETED\|SCF run converged' \
+  experiments/exp_8_geometry_opt/inputs/geoopt_*.out 2>/dev/null
+
+# 本地归档
+ls dft_results_download/exp_10_size_scaling/*.out | wc -l
+
+# 文稿-计算一致性（示例）
+grep -E 'rVV10|Koopmans|28 DFT' paper/strain_doped_graphullerene.tex
+grep 'VDW_POTENTIAL\|XC_FUNCTIONAL' experiments/exp_10_size_scaling/inputs/size_1x60_*.inp | head -3
+```
+
+**远程服务器**（若 SSH 可用：`root@47.76.224.134`）：
+
+```bash
+ssh root@47.76.224.134 'grep -l "SCF run converged" /root/sci-simukit/experiments/exp_10_size_scaling/inputs/size_*.out | wc -l'
+```
+
+**产出**：简短「现状快照」— Exp10 x/40、Exp8 x/6、运行中任务、文稿-计算 gap 列表、OOM/卡死任务。
+
+---
+
+#### 第 2 层：策略（Strategy）— 下一步改什么？
+
+**前置条件**：已完成 [执行前闸门](#执行前闸门投稿目标与优化价值每轮必做) 四轮自问。
+
+**决策参考（按投稿阻塞排序）**：
+
+| 信号 | 优先策略 |
+|------|----------|
+| Exp10 < 40/40 | 顺序跑 pending；Mac 36GB：**单任务或 ≤2 并发**；8×60 用 `np=1` |
+| `size_2x60_pristine_*` 300 步不收敛 | 该组 `EPS_SCF 1e-5` 或换 ATOMIC/WFT 初猜；记录于 Gotchas |
+| Exp8 缺 `geoopt_pristine_sp` | 用 `geoopt_pristine_optimized.xyz` 生成 SP；`EPS_SCF 1e-6` |
+| 文稿写 rVV10，输入为 PBE+D3 | **二选一**：改 Methods 或补算 rVV10 子集（≥4 结构） |
+| 「非加性耦合」仅定性 | 补交叉项图：E(ε,d) − E(ε,0) − E(0,d) − E(0,0) |
+| ML / 迁移率 300% 无独立验证 | 降调表述或补 `analyze_results.py` 输出与误差条 |
+| SSH 超时 | 本地 `experiments/run_pending_local.sh` 继续；不阻塞 Loop |
+
+**文档锚点**：`paper/strain_doped_graphullerene.tex`、`docs/experimental_implementation_plan.md`、`docs/reference_info.md`
+
+**产出**：本轮「策略卡片」— 1 句话目标、触及文件、预期验证命令。
+
+---
+
+#### 第 3 层：落地（Implement）— 最小正确实现
+
+**目标**：最小 patch — 输入修正、重启单任务、同步 `.out`、或文稿 Methods 一句诚实化。
+
+**常见落地点**：
+
+| 类型 | 路径 |
+|------|------|
+| Exp10 输入/输出 | `experiments/exp_10_size_scaling/inputs/` |
+| Exp10 生成 | `experiments/exp_10_size_scaling/run_size_scaling.py` |
+| Exp8 工作流 | `experiments/exp_8_geometry_opt/run_workflow.sh`、`inputs/single_point_template.inp` |
+| 本地顺序跑 | `experiments/run_pending_local.sh`（已有；勿重复造 orchestrator） |
+| 结果归档 | `dft_results_download/exp_{7,8,9,10}_*/` |
+| 文稿 | `paper/strain_doped_graphullerene.tex` |
+| 分析 | `experiments/exp_*/analyze_*.py` |
+
+**本地 CP2K 环境（Mac）**：
+
+```bash
+export CP2K_DATA=/opt/homebrew/share/cp2k/data
+CP2K=/opt/homebrew/bin/cp2k.psmp
+
+# 单任务示例
+cd experiments/exp_10_size_scaling/inputs
+mpirun -np 4 $CP2K -i size_2x60_pristine_pos0pct.inp -o size_2x60_pristine_pos0pct.out
+```
+
+**禁止**：未验证收敛就改 Abstract 定量句；为 Loop 新建 `run_all_experiments.py` 类 mega-script。
+
+**产出**：可运行增量 — 新/更新的 `.out`、或 Methods 与 `.inp` 对齐的 patch。
+
+---
+
+#### 第 4 层：验证（Verify）— 证据链
+
+**目标**：计算正确性先于文稿修辞；图表数字可追溯到 `.out`。
+
+| 层 | 机制 | 入口 |
+|----|------|------|
+| SCF/GeoOpt | CP2K 输出关键字 | `grep 'SCF run converged'` / `GEOMETRY OPTIMIZATION COMPLETED` |
+| 尺寸收敛 | Exp10 全尺寸 E/atom 趋势 | `run_size_scaling.py` 分析段 / 自建 JSON |
+| 文稿-计算 | Methods 与 inp 一致 | 人工 diff + grep |
+| 分析脚本 | 可复现图 | `python experiments/exp_10_size_scaling/run_size_scaling.py`（分析模式） |
+
+**推荐最小验证集（计算轮）**：
+
+```bash
+# 1) 完成计数
+grep -l 'SCF run converged' experiments/exp_10_size_scaling/inputs/size_*.out | wc -l   # 目标 40
+
+# 2) 无 ABORT 的 pending 任务
+for f in experiments/exp_10_size_scaling/inputs/size_*.out; do
+  grep -q 'ABORT' "$f" 2>/dev/null && echo "ABORT: $f"
+done
+
+# 3) 同步到归档
+cp experiments/exp_10_size_scaling/inputs/size_*.out dft_results_download/exp_10_size_scaling/  # 仅 converged
+
+# 4) Exp8 SP
+grep 'SCF run converged' experiments/exp_8_geometry_opt/inputs/geoopt_pristine_sp.out
+```
+
+**合并闸门**：仅当本轮声称的数字**有对应 `.out` 或分析 JSON** 时，才可合并 PR 并改 Results/Abstract。
+
+---
+
+#### 第 5 层：进化（Evolve）— 写回知识，开启下一轮
+
+**必须更新的位置（按影响面）**：
+
+1. **`AGENTS.md`** — 「当前轮次笔记」或 **Gotchas**
+2. **`paper/strain_doped_graphullerene.tex`** — Methods/Results 与证据同步
+3. **`dft_results_download/`** — 新 converged `.out`
+4. **（可选）`docs/`** — 实验状态报告，仅当用户要求
+
+**本轮结束时写清**：瓶颈 → 策略 → 改动 → 验证命令与结果 → **下一轮建议**。
+
+---
+
+## 文稿·文献闭环（Manuscript & Literature Loop）
+
+CP2K 计算在后台执行时，Agent **默认进入本闭环**。遵循 `.cursor/rules/write.mdc` 八阶段边界（Abstract→Conclusion）；**Results 定量**仍受 Track A 闸门约束。
+
+### 文稿·文献核心原则
+
+| 原则 | 含义 |
+|------|------|
+| **先本地后外网** | 先读 `paper/`、`docs/reference_info.md`、已有 `.bib`，再 Web/PubMed 补 2024–2026 新文 |
+| **校准不杜撰** | 改稿 = 对齐已有计算与文献；新创新点 = 「假设 + 待验证 Exp」写入笔记，不直接写进 Abstract |
+| **旗杆风格** | PRL：1 主图 + 1 表 + 极简正文；Nature Materials：机制 schematic + 多 panel + SI 放方法细节 |
+| **图表同源** | `paper/figures/*.csv` 与 `dft_results_download/` 或分析脚本输出一致 |
+| **创新可辩** | 每轮产出「创新审计表」：主张 / 文献是否已有 / 我方差异 / 证据等级 |
+
+### 执行前闸门（文稿轮）
+
+在改 `paper/*.tex` 或 `.bib` 前回答：
+
+1. **改哪一阶段？**（Introduction 可动叙事；Results 仅动已有 `.out` 支持的句）
+2. **目标期刊 panel 规范？** PRL 单栏图宽 3.375 in；Nature 双栏 89 mm 等（见下节）
+3. **检索问题是什么？** 一句可检索 query（英文关键词 + graphullerene / qHP C60 / strain doping）
+4. **若发现 prior art 重叠？** 降调表述或 pivot 到「非加性定量 / 尺寸收敛」差异化
+
+### 五层结构（文稿·文献）
+
+#### B1 感知 — 文稿与文献现状
+
+**典型动作**：
+
+```bash
+# 文稿-计算 diff
+grep -E 'rVV10|Koopmans|meV|cm\^2' paper/strain_doped_graphullerene.tex
+grep 'VDW_POTENTIAL\|XC_FUNCTIONAL' experiments/exp_10_size_scaling/inputs/size_1x60_*.inp | head -1
+
+# 本地文献库
+wc -l paper/strain_graphullerene_50refs.bib
+grep -i 'graphullerene\|qHP\|fullerene network' paper/strain_graphullerene_50refs.bib | head -5
+
+# 已有分析报告
+ls paper/*report*.md docs/reference_info.md
+```
+
+**外网检索（Agent 必须执行其一）**：
+
+- **WebSearch**：`graphullerene strain doping 2024 2025 2026`、`qHP C60 heteroatom`、`non-additive strain doping 2D`
+- **精读必查文献族**：Capobianco2024、Li2024 strain qHP、Khan2025 doping graphullerene、Yang2021、Peng2025 monolayer
+- **检索记录**：每轮在「当前轮次笔记」写 query + 命中 2–3 篇 + 是否已入 bib
+
+**产出**：`gap_list.md` 条目（仅写在 AGENTS 笔记中，不强制新文件）— Methods 不实项、缺引用、缺对比、图表与数字不一致。
+
+#### B2 策略 — 本轮改稿/改图优先级
+
+| 信号 | 优先策略 |
+|------|----------|
+| Methods 写 rVV10，inp 为 PBE+D3 | 改 Methods 为真实泛函 **或** 标记 `[TODO: rVV10 subset]` |
+| Abstract 数字与 Table 1 不一致 | 统一以 **已 converged `.out` 解析值** 为准 |
+| 缺非加性叙事 | Introduction + Discussion 加 1 段；Figure 草图 `[pending: synergy plot]` |
+| 文献未覆盖 2025–2026 | 补 bib + Related Work 1–2 句 |
+| 图不符合 PRL | 跑 `paper/figures/generate_prl_figures.py` 或按 PRL 规范重排版 |
+| 创新审计发现重叠 | 改写 claim 为「首次在 graphullerene 网络中…」并引证差异 |
+
+**期刊配图配表旗杆（摘要）**：
+
+| 元素 | PRL | Nature Materials |
+|------|-----|------------------|
+| 主图 | 1 张 composite ≤3.375 in 宽；线宽 ≥0.5 pt；字体 Sans 6–8 pt | 4–6 panel；scale bar / 色标；panel label **a,b,c** 粗体 |
+| 配色 | 色盲友好（蓝 #0173B2 / 橙 #DE8F05）；避免红绿 alone | 与 Nature 图例一致；SI 放完整 Methods |
+| 表 | `ruledtabular`；有效数字 3–4 位；单位 SI | 表放 SI 或 main 1 张；脚注说明 DFT 泛函 |
+| 数据 | 源数据 statement；关键图 data 可 CSV | 同左 + 实验 validation pathway 段落 |
+
+#### B3 落地 — 最小改稿
+
+**触及路径（按轮次轮换，每轮 1–2 项）**：
+
+| 类型 | 路径 |
+|------|------|
+| 主稿 | `paper/strain_doped_graphullerene.tex` |
+| 补充 | `paper/supplementary_material_theory.tex` |
+| 文献 | `paper/strain_graphullerene_50refs.bib` |
+| 图 | `paper/figures/`、`paper/prl_figure_generator.py`、`paper/paper_figures_generator.py` |
+| 表 | `paper/figures/table{1,2,3}.tex` + 对应 `.csv` |
+| 内参 | `docs/reference_info.md`、`paper/originality_analysis_report.md` |
+
+**允许在计算未完成时做的改动**：
+
+- Introduction / Literature 叙事与引用更新
+- Methods **诚实化**（与 `.inp` 一致）
+- Discussion 机制文字（定性）
+- Figure **占位**与版式（标注 pending 数据）
+- SI 推导与公式校对（`supplementary_material_theory.tex`）
+- 实验 validation pathway（`paper/experimental_validation_plan.md`）
+
+**禁止在无 `.out` 时做的改动**：
+
+- Abstract / Results 中新定量句
+- Table 中新的 Ha/meV/迁移率数字
+- 声称「已验证 N 次 DFT」超过实际 converged 数
+
+#### B4 验证 — 文稿与文献证据链
+
+| 检查项 | 方法 |
+|--------|------|
+| 数字可追溯 | 每个 `\num{}` / 表格单元格 → 标注源文件于 PR 或笔记 |
+| 引用存在 | `grep citekey paper/strain_graphullerene_50refs.bib` |
+| 无 phantom 引用 | latexmk 无 undefined citation |
+| 创新审计 | 填下表（写入 AGENTS 笔记） |
+| 图表编译 | `cd paper && latexmk -pdf strain_doped_graphullerene.tex` |
+
+**创新审计表（每文稿轮必填）**：
+
+| 主张 | 文献中是否已有 | 我方差异 | 证据等级 A/B/C |
+|------|----------------|----------|----------------|
+| 非加性 strain-doping 耦合 | | graphullerene 体系 + 定量 dE/dε | B（待 Exp10 全收敛→A） |
+| N vs B 应变灵敏度符号相反 | | 数值来自 Exp5/6 | A 若与 `.out` 一致 |
+| （新发现来自检索） | | | 标注来源 DOI |
+
+证据等级：**A**=converged DFT 或实验；**B**=部分 DFT + 文献；**C**=假设/待算，仅 Discussion/SI。
+
+#### B5 进化 — 写回文稿知识
+
+1. 更新 **`AGENTS.md`** 文稿轮笔记（检索 query、新 bib、创新审计结论）
+2. 更新 **`paper/strain_graphullerene_50refs.bib`**（新文献）
+3. 若有定性改进：更新 **`paper/originality_analysis_report.md`** 或 `docs/reference_info.md` 摘要（用户未禁止时）
+4. **下一轮 B 建议**：如「补 Khan2025 对比句」「Figure 2 synergy panel 待 Exp10 JSON」
+
+### 文献检索协议（每 2 轮 Loop 至少 1 次）
+
+1. **构造 query**（英文）：`(graphullerene OR "fullerene network" OR qHP C60) AND (strain OR doping OR polaron) after:2023`
+2. **WebSearch** 或 **PubMed**（若生物交叉则跳过）
+3. **筛选**：标题/摘要含 graphullerene、qHP、2D fullerene；排除纯 graphene 除非对比
+4. **动作**：新文 → bib 条目 + Introduction/Discussion 1 句；**撞车** → 创新审计降调或 pivot
+5. **记录**：DOI、与本文关系（support / compete / gap）、是否改 tex
+
+**高优先级跟踪关键词**：`graphullerene`, `quasi-hexagonal C60`, `fullerene monolayer`, `strain engineering 2D`, `heteroatom doping fullerene`, `polaron mobility`, `non-additive`, `Capobianco`, `Khan tuning`
+
+### 新增创新点的处理规则
+
+检索或讨论产生「可能的新贡献」时：
+
+1. 写入 AGENTS 笔记 **Innovation backlog**（不直接进 Abstract）
+2. 判断：需新 Exp 否？若需 → 转 Track A backlog，**不**擅自加 Exp11
+3. 若仅叙事/对比创新 → 可进 Introduction，须引新 bib
+4. 若定量创新 → 必须挂到 pending 任务或新分析脚本
+
+---
+
+### Cloud Agent 自主连续迭代协议
+
+用户未明确喊停时，Agent **默认连续跑多轮双轨 Loop**：
+
+- **Track A**：感知 → 策略 → 落地 → 验证 → 进化（计算）
+- **Track B**：B1→B5（文稿·文献），**与 A 并行**；单轮会话若 A 已后台运行，**至少完成 1 项 B3 落地**
+
+每一轮结束：**扫描双轨 backlog → 开 Loop R{n+1}**。
+
+仍**禁止**新建独立 orchestrator；用 `run_pending_local.sh` + 现有 `run_*.py` + `paper/` 工具串联。
+
+#### 验证通过后的 PR / 合并
+
+满足**全部**条件时，Agent 可自行开 PR（用户未说「先别合并」）：
+
+| 条件 | 要求 |
+|------|------|
+| 计算/文稿 | 本轮策略目标达成且有证据 |
+| 分支 | `cursor/<topic>-sci` 或仓库惯例 |
+| 描述 | 含策略卡片四轮自问答案 |
+
+**不自动合并**：Exp10 未增加 converged 数却改 Abstract 定量；本地 CP2K ABORT 未处理。
+
+#### 合并后立即感知（双轨 backlog 优先级）
+
+**Track A（计算）**
+
+1. Exp10 converged 数 < 40  
+2. Exp8 `geoopt_pristine_sp` 未完成  
+3. pending ABORT / OOM / 卡死 >10min 无输出更新  
+
+**Track B（文稿·文献）**
+
+4. Methods 与 `*.inp` 不一致  
+5. 缺非加性定量图 / 尺寸收敛图（可先做版式占位）  
+6. 缺 Capobianco2024 / Li2024 / Khan2025 对比句  
+7. 文献检索 >14 天未做  
+8. 创新审计存在 **C 级**主张已写入 Abstract（须降调）  
+9. 图表数字与 `.csv` / `.out` 不一致  
+
+---
+
+### Cloud Agent 单轮检查清单（双轨）
+
+```
+=== 共用 ===
+[ ] 0. 闸门：四轮自问 + 期刊主张强度（PRL / Nature Materials）
+
+=== Track A 计算（有 pending 则做）===
+[ ] A1. 感知：Exp7–10 完成数、local_run.log、OOM/ABORT
+[ ] A2. 策略：1 个计算瓶颈（Exp10 / Exp8 SP / 修 inp）
+[ ] A3. 落地：run_pending 或单任务 mpirun；Mac 勿多 8×60 并发
+[ ] A4. 验证：grep converged；同步 dft_results_download
+
+=== Track B 文稿·文献（CP2K 在跑时必做 ≥1 项）===
+[ ] B0. 闸门：改哪一阶段？是否碰 Results 定量？
+[ ] B1. 感知：tex-bib-inp diff；读 reference_info / originality 报告
+[ ] B2. 策略：1 个文稿项（Methods 诚实 / 引文 / 图 / 表 / 创新审计）
+[ ] B3. 落地：改 tex/bib/fig/csv；WebSearch 检索 2024–2026
+[ ] B4. 验证：创新审计表；latexmk；citekey 存在；图表源数据标注
+[ ] B5. 进化：更新 bib + AGENTS 笔记（query / DOI / 下一轮 B）
+
+=== 闭环 ===
+[ ] 6. （可选）PR：双轨摘要 + 证据路径
+[ ] 7. 扫描双轨 backlog → Loop R{n+1}
+```
+
+---
+
+### C 核心工程（DFT 高效耦合）
+
+**方向**：计算热路径收紧到 **C11 + POSIX**，Python 仅保留结构生成、ML 训练、作图。
+
+```
+c/
+├── include/simukit/     # 公共 API
+│   ├── cp2k_out.h       # .out 解析（能量、MO、收敛）
+│   ├── cp2k_run.h       # fork + mpirun 调 CP2K
+│   └── sdc.h            # 应变-掺杂序参量 𝒮
+├── src/                 # libsimukit.a
+├── Makefile             # 无 CMake 亦可：cd c && make
+└── CMakeLists.txt       # 可选 cmake 构建
+```
+
+| 二进制 | 替代 | 用途 |
+|--------|------|------|
+| `simukit-run` | `run_pending_local.sh` | 顺序 batch CP2K（Exp10 pending + 可选 Exp8 SP） |
+| `simukit-sdc` | `src/sdc_coupling_analysis.py`（核心计算） | 解析 `.out` → JSON `experiments/analysis/sdc/` |
+
+**构建**：
+```bash
+cd c && make
+export CP2K_DATA=/opt/homebrew/share/cp2k/data
+./simukit-sdc ../experiments/exp_10_size_scaling/inputs
+./simukit-run --exp8-sp ../experiments/exp_10_size_scaling/inputs
+```
+
+**迁移原则**：
+1. 新 DFT 耦合逻辑 **先进 C**（`cp2k_out` / `cp2k_run` / `sdc`），Python 只做 ctypes/CLI 包装或绘图。
+2. 实验脚本里重复的 `_parse_dft_output` / `_find_cp2k` **逐步删**，改调 `libsimukit`。
+3. 下一阶段 C 模块：`simukit_input`（.inp 模板 patch 应变/掺杂）、`simukit_gptg`（图 hopping 输运）。
+
+---
+
+### 现有工具索引（双轨）
+
+| 轨道 | 层 | 工具 / 路径 |
+|------|-----|-------------|
+| **A 计算** | 感知 | `experiments/exp_*/inputs/*.out`、`dft_results_download/`、`local_run.log` |
+| **A 计算** | 落地 | **`c/simukit-run`**、`run_pending_local.sh`（legacy）、`run_size_scaling.py` |
+| **A 计算** | 验证 | **`c/simukit-sdc`**、`grep 'SCF run converged'` |
+| **B 文稿** | 感知 | `paper/strain_doped_graphullerene.tex`、`strain_graphullerene_50refs.bib`、`docs/reference_info.md` |
+| **B 文稿** | 策略 | `paper/论文评审总结_CN.md`、`originality_analysis_report.md`、`.cursor/rules/write.mdc` |
+| **B 文稿** | 落地 | `paper/figures/generate_prl_figures.py`、`paper_figures_generator.py`、`figures/table*.tex` |
+| **B 文稿** | SDC 工具 | **`c/simukit-sdc`**（canonical）+ `src/sdc_coupling_analysis.py`（图） |
+| **B 文稿** | 文献 | **WebSearch**、Semantic Scholar、DOI；更新 `strain_graphullerene_50refs.bib` |
+| **B 文稿** | 验证 | `latexmk -pdf`、创新审计表、csv↔out 对照 |
+| **共用** | 进化 | **`AGENTS.md`**、`dft_results_download/`、`paper/` |
+
+---
+
+### 当前轮次笔记（由 Agent 持续追加）
+
+> **维护说明**：每完成一轮 Loop，追加 3～5 行：日期、瓶颈、验证命令、下一轮建议。勿删历史条目。
+
+- **基线（2026-06-11）**：Exp7 **12/12**、Exp9 **12/12** 已完成并归档于 `dft_results_download/`。Exp8 **5/6**（缺 `geoopt_pristine_sp`）。Exp10 **28/40**（1×60 满；2×60 缺 pristine×2；4×60 缺 P_pos3；6×60 缺 B/N pos3；8×60 仅 N_pos0）。文稿 Methods 声称 rVV10/Koopmans/28 DFT，实际输入多为 **PBE+DFT-D3** — **契约缺口**。
+- **Loop R1（2026-06-11，本地续算）**：瓶颈 Exp10 pending + SSH 超时。落地 `experiments/run_pending_local.sh`（顺序、Mac cp2k.psmp）。验证：`size_2x60_pristine_pos0pct` 运行中；`local_run.log` 有 START 记录。**下一轮**：该任务收敛后自动进入 pos3；若 300 步 ABORT → pristine 2×60 放宽 `EPS_SCF`。
+- **Loop R2 感知建议**：Exp10 达 40/40 后跑 `run_size_scaling.py` 尺寸收敛图 → 再改 Abstract「validated by … atoms」。并行起草 Methods 诚实化（PBE+D3）或补 rVV10 四结构对比。
+- **Loop R3（2026-06-11，双轨协议）**：新增 Track B 文稿·文献闭环 — CP2K 后台时并行：Methods 诚实化、文献检索 2024–2026、PRL/Nature 配图规范、创新审计表。**下一轮 B**：WebSearch graphullerene strain 2025；校准 Table 1 与 converged `.out`；Figure synergy 占位。
+- **Innovation backlog**：
+  - `(1)` **SDC 设计算符** — `src/sdc_coupling_analysis.py` + `paper/sdc_method_section.tex`；Eq.~\mathcal{S} 与 Exp10 JSON `[28/40 converged, pending 12]`。
+  - `(2)` 非加性交叉项定量图 → `experiments/analysis/sdc/figures/sdc_synergy_vs_size_*.pdf` 进 Figure 2 panel `[pending Exp10 40/40]`。
+  - `(3)` **GPTG 图极化子输运** — DFT→J/IPR→Master 方程；GNN 仅 active learning `[after SDC 参数表]`。
+  - `(4)` graphullerene 专属 strain-doping 耦合 vs Khan2025 — **Discussion 对比段已写** `[Loop R6]`；待 Table 1 校准。
+  - `(5)` 实验 validation pathway 段落 `[B only]`。
+- **Loop R4（2026-06-11，SDC 工具落地）**：
+  - **Track A**：`size_2x60_pristine_pos0pct` 仍在跑（~850 min CPU×4）；Exp10 **28/40** 未变。
+  - **Track B**：新增 `src/sdc_coupling_analysis.py`（序参量 $\mathcal{S}$、尺寸标度拟合、JSON/CSV/图）；`paper/sdc_method_section.tex` 已 `\input` 入主稿 Methods；运行命令 `python src/sdc_coupling_analysis.py`。
+  - **创新审计**：SDC 框架 = **A 级**（可复现脚本+方程）；$\mathcal{S}_\infty$ 外推 = **B 级**（需 40/40）；GPTG = **C 级**（未实现）。
+  - **下一轮 A**：pristine 2×60 收敛或 ABORT → 放宽 EPS_SCF；**优先用 `simukit-run` 续 batch**。
+- **Loop R5（2026-06-11，C 核心）**：新增 `c/` — `libsimukit` + `simukit-run` + `simukit-sdc`；DFT 解析/调度/SDC 从 Python 收到 C。**验证**：`make && ./simukit-sdc` 产出 JSON。**下一轮**：C 化 `cp2k_out` 单元测试；Python 实验脚本改调 CLI。
+- **Loop R6（2026-06-12，双轨）**：
+  - **Track A**：`size_2x60_pristine_pos0pct` SCF ~296 步、$\|\nabla\|\sim2\times10^{-3}$，**未收敛**；Exp10 **28/40**；legacy batch 仍在跑。**勿启**第二路 CP2K。
+  - **Track B**：Methods **PBE+D3 诚实化**（删 rVV10/Koopmans 主文声称）；Discussion 加 Capobianco/Khan/Li 对比 + $\mathcal{S}$；`simukit-sdc` 刷新 JSON（6 条 𝒮）。
+  - **创新审计**：Methods 契约 = **A 级**（与 `*.inp` 一致）；Khan 对比 = **A 级**；Abstract 仍写「28 DFT」= **B 级**（Exp10 目标 40）。
+  - **下一轮 A**：2×60 pristine 若 >400 步仍不收敛 → 停 job、改 `EPS_SCF 1e-5` 重跑；**下一轮 B**：Table 1 数字 vs `simukit-sdc` / tetramer `.out` 对照。
+- **Loop R Final（2026-06-12，repo tidy + commit）**：阶段性收口提交 — `c/` 源码、`AGENTS.md`、SDC 审计产物、Methods/Khan 改稿、`run_pending_local.sh`；C 二进制与 `.o` 入 `.gitignore`；Exp10 **28/40** 计算继续后台，不阻塞 push。
+- **投稿策略**：PRL 需先闭环 Exp10 + 非加性定量图；Nature Materials 需机制图（IPR/J）+ 实验路径段；未闭环前不投。
+
+---
+
+### Gotchas
+
+- **Mac 内存 36GB**：勿同时跑多个 6×60/8×60；服务器 64GB 亦曾 OOM，宜 ≤5 任务并发。
+- **CP2K 路径**：Mac `/opt/homebrew/bin/cp2k.psmp`；服务器 `/usr/local/bin/cp2k.psmp`；`run_all.sh` 里 `cp2k.popt` 在 Mac 上**不存在**。
+- **`size_2x60_pristine_*`**：收敛慢，服务器与本地均曾长时间 SCF；可考虑 `EPS_SCF 1e-5`。
+- **`geoopt_pristine_sp`**：需 `geoopt_pristine_optimized.xyz`（已在 `dft_results_download/exp_8_geometry_opt/`）；SP 用 `EPS_SCF 1e-6`。
+- **SSH `47.76.224.134`**：间歇超时/重启丢进程；本地 `run_pending_local.sh` 为主力。
+- **SCI 写作协议**：`.cursor/rules/write.mdc` — Abstract/Methods/Results 边界；改 Results 须有 `.out` 支撑。
+- **归档**：converged `.out` 同步到 `dft_results_download/`，与 `experiments/*/inputs/` 保持一致。
+- **双轨勿忘**：用户 `go loops` = A 续算 + B 至少 1 项改稿/检索；禁止只 tail 日志空转。
+- **文献勿堆**：每轮 bib 新增 ≤3 篇，且必须写进 tex 或笔记说明用途。
+- **图表 pending**：占位图须注释 `% DATA: pending size_2x60_pristine` 防误投稿。
+
+---
+
+## Cursor Cloud / 本地 Agent 说明
+
+sci-simukit 是 **DFT + 文稿** 仓库，无长期 Web 服务。
+
+### 环境（Mac 本地）
+
+```bash
+export CP2K_DATA=/opt/homebrew/share/cp2k/data
+which cp2k.psmp mpirun   # Homebrew Open MPI + CP2K 2025.1
+```
+
+### 常用命令
+
+| 任务 | 命令 |
+|------|------|
+| 续跑 pending | `nohup bash experiments/run_pending_local.sh >> experiments/local_run.log 2>&1 &` |
+| Exp10 完成数 | `grep -l 'SCF run converged' experiments/exp_10_size_scaling/inputs/size_*.out \| wc -l` |
+| 看日志 | `tail -f experiments/local_run.log` |
+| 生成 Exp10 输入 | `python experiments/exp_10_size_scaling/run_size_scaling.py` |
+| **SDC 耦合分析** | `cd c && make && ./simukit-sdc ../experiments/exp_10_size_scaling/inputs` |
+| **CP2K batch** | `./c/simukit-run --exp8-sp experiments/exp_10_size_scaling/inputs` |
+| 编译论文 | `cd paper && latexmk -pdf strain_doped_graphullerene.tex` |
+
+### 结果目录
+
+```
+dft_results_download/
+├── exp_7_electronic_structure/outputs/
+├── exp_8_geometry_opt/
+├── exp_9_charged_polaron/
+└── exp_10_size_scaling/
+```
+
+见 [README.md](README.md)、[docs/experimental_implementation_plan.md](docs/experimental_implementation_plan.md)。
+
+**持续优化闭环**：**Track A 计算** + **Track B 文稿·文献** 双轨并行；见 [双轨并行总览](#双轨并行总览) 与 [文稿·文献闭环](#文稿文献闭环-manuscript--literature-loop)。验证通过后再改定量主张，勿新建独立 Loop orchestrator。

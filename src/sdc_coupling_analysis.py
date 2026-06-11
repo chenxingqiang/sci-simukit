@@ -431,7 +431,8 @@ class SDCAnalyzer:
             },
         }
 
-        json_path = self.output_dir / "sdc_exp10_results.json"
+        json_path = self.output_dir / "sdc_exp10_results_python.json"
+        canonical = self.output_dir / "sdc_exp10_results.json"
         with open(json_path, "w") as f:
             json.dump(payload, f, indent=2)
 
@@ -444,7 +445,12 @@ class SDCAnalyzer:
                     f"{rec.synergy_S},{rec.reference},{rec.combined}\n"
                 )
 
-        logger.info("Wrote %s and %s", json_path, csv_path)
+        logger.info(
+            "Wrote %s, %s (canonical synergy JSON: ./c/simukit-sdc → %s)",
+            json_path,
+            csv_path,
+            canonical.name,
+        )
         return payload
 
 

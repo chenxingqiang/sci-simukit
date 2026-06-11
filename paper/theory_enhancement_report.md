@@ -6,6 +6,7 @@
 > | $H_{eff}$, $V_{coupling}$, 协同序参量 $\mathcal{S}$ | **[verified]** | `paper/strain_doped_graphullerene.tex`, `paper/sdc_method_section.tex` |
 > | Exp.~5 $\alpha_{B,N,P}$, Table 1 | **[verified]** | `experiments/analysis/table1_verification.json` |
 > | Exp.~10 $\mathcal{S}(n)$, $\mathcal{S}_\infty$ 外推 | **[pending: 30/40]** | `experiments/analysis/sdc/sdc_exp10_results.json` — **9** synergy pts (incl. n=2 B/N/P) |
+> | Exp.~10 `size_4x60_P_pos3pct` | **[pending, running]** | OT ~12（早期）；收敛后 SDC 增至 **10 条**（n=4 P @ +3%） |
 > | Exp.~10 `size_2x60_pristine_pos3pct` | **[verified converged]** | 190 OT 步；启用 n=2 $\mathcal{S}$ 锚点 |
 > | Figure 2 SDC size-scaling panel | **[draft: 9 pts]** | `paper/figures/pending/sdc_synergy_vs_size_eps3pct_epa.pdf`（待 40/40 后 final） |
 > | Exp.~4 IPR/J（pristine vs B+3\%） | **[verified, 与理论报告不符]** | `experiments/analysis/exp4_polaron_verification.json` — IPR 75/45，$J$ 27/37 meV；极化子转变 **未确认** |

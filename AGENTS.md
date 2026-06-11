@@ -571,9 +571,9 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 - **Loop R1（2026-06-11，本地续算）**：瓶颈 Exp10 pending + SSH 超时。落地 `experiments/run_pending_local.sh`（顺序、Mac cp2k.psmp）。验证：`size_2x60_pristine_pos0pct` 运行中；`local_run.log` 有 START 记录。**下一轮**：该任务收敛后自动进入 pos3；若 300 步 ABORT → pristine 2×60 放宽 `EPS_SCF`。
 - **Loop R2 感知建议**：Exp10 达 40/40 后跑 `run_size_scaling.py` 尺寸收敛图 → 再改 Abstract「validated by … atoms」。并行起草 Methods 诚实化（PBE+D3）或补 rVV10 四结构对比。
 - **Loop R3（2026-06-11，双轨协议）**：新增 Track B 文稿·文献闭环 — CP2K 后台时并行：Methods 诚实化、文献检索 2024–2026、PRL/Nature 配图规范、创新审计表。**下一轮 B**：WebSearch graphullerene strain 2025；校准 Table 1 与 converged `.out`；Figure synergy 占位。
-- **Innovation backlog（快照 2026-06-12 R42）**：Exp10 **30/40**；2×60 pristine **pos0+pos3 ✓**；SDC **9 条**（含 n=2 B/N/P）；batch → **`size_4x60_P_pos3pct`**；Figure pending 图已刷新（仍未接入 compile）。
+- **Innovation backlog（快照 2026-06-12 R43）**：Exp10 **30/40**；batch → **`size_4x60_P_pos3pct`**（OT ~12，早期）；SDC canonical JSON **9 条**；Python 分析改写 **`sdc_exp10_results_python.json`**（不再覆盖 simukit-sdc）。
 - **Innovation backlog**：
-  - `(1)` **SDC 设计算符** — `c/simukit-sdc` + `paper/sdc_method_section.tex`；Eq.~\mathcal{S} 与 Exp10 JSON `[29/40 converged, pending 11]`。
+  - `(1)` **SDC 设计算符** — `c/simukit-sdc` + `paper/sdc_method_section.tex`；Eq.~\mathcal{S} 与 Exp10 JSON `[30/40 converged, pending 10]`；Python 扩展输出 → `sdc_exp10_results_python.json`。
   - `(2)` 非加性交叉项定量图 → `experiments/analysis/sdc/figures/` + `paper/figures/pending/` 进 Figure 2 `[pending n=2 pristine + 40/40]`；Table 1 审计 → **done** `table1_verification.json`。
   - `(3)` **GPTG 图极化子输运** — DFT→J/IPR→Master 方程；GNN 仅 active learning `[after SDC 参数表]`。
   - `(4)` graphullerene 专属 strain-doping 耦合 vs Khan2025 — **Discussion 对比段已写** `[Loop R6]`；待 Table 1 校准。
@@ -771,6 +771,11 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
   - **Track B**：文稿 **29→30/40**、Discussion 更新；`simukit-sdc`  canonical JSON；刷新 pending SDC 图；`theory_enhancement_report.md` 审计表。
   - **创新审计**：n=2 $\mathcal{S}$ = **A− 级**（B/N/P 已入 JSON）；Figure 2 panel = **B+ 级**（9 点 draft）；$\mathcal{S}_\infty$ = **B 级**。
   - **Git**：`e927dac` — `loop R42: pos3 converged, Exp10 30/40, SDC n=2` → **pushed: origin/main**。
+- **Loop R43（2026-06-12，双轨）**：
+  - **Track A**：Exp10 **30/40**；`size_4x60_P_pos3pct` EPS 1e-6 batch 中（OT **~12**、$\|\nabla\|\sim2.7\times10^{-3}$，早期）；`update_exp10_status.py` 刷新 running OT 字段；**不干预** CP2K。
+  - **Track B**：`sdc_coupling_analysis.py` 改输出 **`sdc_exp10_results_python.json`**，保护 `simukit-sdc` canonical JSON；`AGENTS.md` backlog **30/40**；`theory_enhancement_report.md` 增 4×60 P pending 行。
+  - **创新审计**：JSON 契约 = **A 级**（canonical / Python 分离）；4×60 P $\mathcal{S}$ = **B 级**（待收敛）；Figure 2 panel = **B+ 级**（9 点 draft）。
+  - **Git**：`loop R43: protect canonical SDC JSON, exp10 OT tracking` → push。
 - **投稿策略**：PRL 需先闭环 Exp10 + 非加性定量图；Nature Materials 需机制图（IPR/J）+ 实验路径段；未闭环前不投。
 
 ---
@@ -786,7 +791,8 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 - **归档**：converged `.out` 同步到 `dft_results/`，与 `experiments/*/inputs/` 保持一致。
 - **双轨勿忘**：用户 `go loops` = A 续算 + B 至少 1 项改稿/检索 + **commit push**；禁止只 tail 日志空转。
 - **文献勿堆**：每轮 bib 新增 ≤3 篇，且必须写进 tex 或笔记说明用途。
-- **图表 pending**：占位图须注释 `% DATA: pending size_2x60_pristine` 防误投稿。
+- **SDC JSON**：canonical = **`./c/simukit-sdc`** → `sdc_exp10_results.json`；`python src/sdc_coupling_analysis.py` 仅写 **`sdc_exp10_results_python.json`** + 图，勿覆盖 canonical。
+- **图表 pending**：占位图须注释 `% DATA: pending …` 防误投稿。
 
 ---
 
@@ -810,7 +816,7 @@ which cp2k.psmp mpirun   # Homebrew Open MPI + CP2K 2025.1
 | Exp10 归档 | `bash experiments/sync_exp10_archive.sh` |
 | Exp10 converged 后 | `bash experiments/post_exp10_converged.sh`（归档 + SDC 刷新） |
 | Exp10 续跑 pending | `bash experiments/continue_exp10_pending.sh`（post + 全 batch，无 CP2K 时） |
-| Exp10 状态审计 | `experiments/analysis/exp10_status.json`（29/40 快照） |
+| Exp10 状态审计 | `experiments/analysis/exp10_status.json`（30/40 快照 + running OT） |
 | 看日志 | `tail -f experiments/local_run.log` |
 | 生成 Exp10 输入 | `python experiments/exp_10_size_scaling/run_size_scaling.py` |
 | **SDC 耦合分析** | `cd c && make && ./simukit-sdc ../experiments/exp_10_size_scaling/inputs` |

@@ -144,8 +144,8 @@
     {
       "task": "size_4x60_P_pos3pct",
       "converged": false,
-      "last_ot_step": 112,
-      "last_grad": 8.45e-06
+      "last_ot_step": 116,
+      "last_grad": 8.13e-06
     },
     {
       "task": "size_4x60_pristine_pos0pct",
@@ -258,18 +258,19 @@
   ],
   "running_task": "size_4x60_P_pos3pct",
   "running_snapshot": {
-    "last_ot_step": 112,
-    "last_grad": 8.45e-06,
+    "last_ot_step": 116,
+    "last_grad": 8.13e-06,
     "reference_task": "size_4x60_P_pos0pct",
     "reference_ot_steps": 202,
-    "ot_progress_pct": 55.4,
+    "ot_progress_pct": 57.4,
     "eps_scf": 1e-06,
-    "grad_ratio_to_eps": 8.5,
-    "time_per_ot_step_s": 16.9,
+    "grad_ratio_to_eps": 8.1,
+    "critical_zone": true,
+    "time_per_ot_step_s": 17.2,
     "eta_minutes_to_ref_ot": 25.0,
     "grad_trend": "decreasing",
-    "grad_drop_per_ot_step": 2.1142857142857134e-07,
-    "eta_minutes_to_eps": 10.0
+    "grad_drop_per_ot_step": 1.597142857142857e-06,
+    "eta_minutes_to_eps": 1.0
   },
   "pending_reference_ot": {
     "size_4x60_P_pos3pct": {

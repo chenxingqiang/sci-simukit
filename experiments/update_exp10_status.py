@@ -127,6 +127,8 @@ def main() -> None:
         snapshot["eps_scf"] = eps
         if rt.get("last_grad") is not None and eps > 0:
             snapshot["grad_ratio_to_eps"] = round(rt["last_grad"] / eps, 1)
+            if snapshot["grad_ratio_to_eps"] <= 15:
+                snapshot["critical_zone"] = True
         ot_step = rt.get("last_ot_step") or 0
         ratio = snapshot.get("grad_ratio_to_eps") or 0
         if ot_step >= 200 and ratio > 10:

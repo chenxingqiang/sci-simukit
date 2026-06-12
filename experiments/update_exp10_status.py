@@ -143,9 +143,20 @@ def main() -> None:
             snapshot["eta_minutes_to_ref_ot"] = round(remaining * avg_s / 60.0, 0)
         grads = recent_ot_grads(out_path)
         last_grad = rt.get("last_grad")
-        if avg_s and eps and last_grad is not None and len(grads) >= 3:
+        if len(grads) >= 3:
             drop_per_step = (grads[0] - grads[-1]) / max(len(grads) - 1, 1)
             if drop_per_step > 0:
+                snapshot["grad_trend"] = "decreasing"
+            else:
+                snapshot["grad_trend"] = "oscillating"
+                pos_drops = [
+                    grads[i] - grads[i + 1]
+                    for i in range(len(grads) - 1)
+                    if grads[i] > grads[i + 1]
+                ]
+                if pos_drops:
+                    drop_per_step = sum(pos_drops) / len(pos_drops)
+            if avg_s and eps and last_grad is not None and drop_per_step > 0:
                 steps_to_eps = (last_grad - eps) / drop_per_step
                 if steps_to_eps > 0:
                     snapshot["grad_drop_per_ot_step"] = drop_per_step

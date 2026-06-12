@@ -21,11 +21,13 @@ ratio_s = f"{ratio}x" if ratio is not None else "?"
 next_task = d.get("next_after_running", "none")
 eta = snap.get("eta_minutes_to_ref_ot")
 eta_s = f"~{int(eta)}min" if isinstance(eta, (int, float)) else "?"
+eta_eps = snap.get("eta_minutes_to_eps")
+eta_eps_s = f"~{int(eta_eps)}min" if isinstance(eta_eps, (int, float)) else "?"
 print(
     f"Exp10 {d['converged']}/{d['total']} | "
     f"running={d.get('running_task', 'none')} | "
     f"OT {snap.get('last_ot_step', '?')}/{ref} ({pct}%) | "
     f"grad={grad_s} ({ratio_s} EPS) | "
-    f"next={next_task} | eta_ref={eta_s}"
+    f"next={next_task} | eta_ref={eta_s} eta_eps={eta_eps_s}"
 )
 PY

@@ -58,6 +58,15 @@ def avg_ot_step_seconds(out_path: Path, last_n: int = 10) -> float | None:
     return sum(chunk) / len(chunk)
 
 
+def recent_ot_grads(out_path: Path, last_n: int = 8) -> list[float]:
+    if not out_path.is_file():
+        return []
+    text = out_path.read_text(errors="replace")
+    start = text.rfind("PROGRAM STARTED AT")
+    ot_text = text[start:] if start >= 0 else text
+    return [float(m.group(3)) for m in OT_LINE_RE.finditer(ot_text)][-last_n:]
+
+
 def main() -> None:
     rows = []
     for inp in sorted(INPUTS.glob("size_*.inp")):
@@ -127,10 +136,20 @@ def main() -> None:
             )
         avg_s = avg_ot_step_seconds(INPUTS / f"{running_task}.out")
         ref_ot = snapshot.get("reference_ot_steps")
+        out_path = INPUTS / f"{running_task}.out"
         if avg_s and ref_ot and ot_step:
             remaining = max(0, int(ref_ot) - ot_step)
             snapshot["time_per_ot_step_s"] = round(avg_s, 1)
             snapshot["eta_minutes_to_ref_ot"] = round(remaining * avg_s / 60.0, 0)
+        grads = recent_ot_grads(out_path)
+        last_grad = rt.get("last_grad")
+        if avg_s and eps and last_grad is not None and len(grads) >= 3:
+            drop_per_step = (grads[0] - grads[-1]) / max(len(grads) - 1, 1)
+            if drop_per_step > 0:
+                steps_to_eps = (last_grad - eps) / drop_per_step
+                if steps_to_eps > 0:
+                    snapshot["grad_drop_per_ot_step"] = drop_per_step
+                    snapshot["eta_minutes_to_eps"] = round(steps_to_eps * avg_s / 60.0, 0)
         payload["running_snapshot"] = snapshot
 
     by_task = {r["task"]: r for r in rows}

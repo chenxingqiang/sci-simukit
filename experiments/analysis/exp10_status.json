@@ -144,8 +144,8 @@
     {
       "task": "size_4x60_P_pos3pct",
       "converged": false,
-      "last_ot_step": 80,
-      "last_grad": 1.74e-05
+      "last_ot_step": 89,
+      "last_grad": 2.372e-05
     },
     {
       "task": "size_4x60_pristine_pos0pct",
@@ -258,15 +258,17 @@
   ],
   "running_task": "size_4x60_P_pos3pct",
   "running_snapshot": {
-    "last_ot_step": 80,
-    "last_grad": 1.74e-05,
+    "last_ot_step": 89,
+    "last_grad": 2.372e-05,
     "reference_task": "size_4x60_P_pos0pct",
     "reference_ot_steps": 202,
-    "ot_progress_pct": 39.6,
+    "ot_progress_pct": 44.1,
     "eps_scf": 1e-06,
-    "grad_ratio_to_eps": 17.4,
-    "time_per_ot_step_s": 16.4,
-    "eta_minutes_to_ref_ot": 33.0
+    "grad_ratio_to_eps": 23.7,
+    "time_per_ot_step_s": 17.4,
+    "eta_minutes_to_ref_ot": 33.0,
+    "grad_drop_per_ot_step": 5.057142857142858e-07,
+    "eta_minutes_to_eps": 13.0
   },
   "pending_reference_ot": {
     "size_4x60_P_pos3pct": {

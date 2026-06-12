@@ -20,14 +20,14 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 
 | 项 | 值 |
 |----|-----|
-| **Exp10** | **30/40** converged；**10 pending**（见 `exp10_status.json`） |
-| **运行中** | `size_4x60_P_pos3pct`（np=6 MPI，非双 batch） |
+| **Exp10** | **31/40** converged；**9 pending**（见 `exp10_status.json`） |
+| **运行中** | `size_6x60_B_pos3pct`（np=8；batch 续跑） |
 | **临界区** | `bash experiments/exp10_status_line.sh` → 见 **CRIT** / `critical_zone` |
-| **下一任务** | `size_6x60_B_pos3pct`（batch 顺序与 `simukit-run` 一致） |
+| **下一任务** | `size_6x60_N_pos3pct`（batch 顺序与 `simukit-run` 一致） |
 | **Exp8** | **5/6**（缺 `geoopt_pristine_sp`） |
-| **SDC** | canonical `sdc_exp10_results.json`（**9** synergy 点）；audit `sdc_exp10_synergy_audit.json` |
+| **SDC** | canonical JSON（**10** synergy 点，含 n=4 P）；audit `sdc_exp10_synergy_audit.json` |
 | **阻塞 PRL** | Exp10 40/40 + 非加性图 final + Methods/Abstract 最终计数 |
-| **最新 Loop** | **R56**（见下方笔记） |
+| **最新 Loop** | **R57**（见下方笔记） |
 
 **一行命令**：`bash experiments/exp10_status_line.sh`
 
@@ -928,6 +928,12 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
   - **创新审计**：Agent 可运维性 = **A 级**（单页入口 + 防文档腐化）；4×60 P $\mathcal{S}$ = **A− 级**（仍 CRIT pending）。
   - **Git**：`eaefd8f` — `loop R56: AGENTS quick entry, snapshot, perfection audit` → **pushed: origin/main**。
   - **下一轮**：`4x60_P_pos3` converged → **立即** `post_exp10_converged.sh` → **31/40** + SDC **10 条**；继续 B：Figure 2 DATA / Abstract 计数。
+- **Loop R57（2026-06-13，双轨）**：
+  - **Track A**：**4×60 P pos3 收敛** → **31/40**；`post_exp10_converged.sh` + SDC **10 条**（n=4 P）；batch 曾停 → **续跑 `6×60_B_pos3`**（np=8）。
+  - **Track B**：Abstract/Methods **30→31/40**；PRL 风格 SDC 图（10 点）；`paper/compile.sh`；`post_exp10` 改用 conda python 绘图。
+  - **创新审计**：n=4 P $\mathcal{S}$ = **A 级**；Figure 2 SDC draft = **B+ 级**（10 点）；batch 运维 = **A 级**。
+  - **Git**：`pending` — `loop R57: Exp10 31/40, SDC 10pt, PRL figures` → push 待提交。
+  - **下一轮**：`6×60_B_pos3` CRIT 收敛 → post → **32/40**；Figure 1/2 final 仍 pending。
 - **投稿策略**：PRL 需先闭环 Exp10 + 非加性定量图；Nature Materials 需机制图（IPR/J）+ 实验路径段；未闭环前不投。
 
 ---

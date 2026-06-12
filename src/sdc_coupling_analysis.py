@@ -28,6 +28,7 @@ import argparse
 import json
 import logging
 import re
+import sys
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
@@ -37,6 +38,19 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
+
+_REPO_ROOT = Path(__file__).resolve().parents[1]
+_PRL_STYLE_DIR = _REPO_ROOT / "paper" / "figures"
+if str(_PRL_STYLE_DIR) not in sys.path:
+    sys.path.insert(0, str(_PRL_STYLE_DIR))
+from prl_style import (  # noqa: E402
+    PRL_SINGLE_COL,
+    apply_prl_style,
+    finalize_axes,
+    get_color,
+    get_marker,
+    save_figure,
+)
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 logger = logging.getLogger(__name__)
@@ -316,41 +330,69 @@ class SDCAnalyzer:
     def plot_synergy_vs_size(
         self, synergy_records: List[SynergyRecord], fits: Dict[str, Dict], tag: str
     ) -> Path:
-        fig, ax = plt.subplots(figsize=(8, 5))
-        colors = {"B": "#c0392b", "N": "#2980b9", "P": "#27ae60"}
+        apply_prl_style()
+        fig, ax = plt.subplots(figsize=(PRL_SINGLE_COL, PRL_SINGLE_COL * 0.78))
+
         by_dop: Dict[str, List[SynergyRecord]] = {}
         for rec in synergy_records:
             by_dop.setdefault(rec.dopant, []).append(rec)
 
+        ha_to_meV = HA_TO_EV * 1000.0
+
         for dop, recs in sorted(by_dop.items()):
             recs.sort(key=lambda r: r.n_molecules)
-            ns = [r.n_molecules for r in recs]
-            ss = [r.synergy_S * HA_TO_EV if "Ha" in r.property_name else r.synergy_S for r in recs]
-            ax.plot(ns, ss, "o-", color=colors.get(dop, "gray"), label=f"{dop}-doped", linewidth=2)
+            ns = np.array([r.n_molecules for r in recs], dtype=float)
+            if "Ha" in recs[0].property_name:
+                ss = np.array([r.synergy_S * ha_to_meV for r in recs])
+            else:
+                ss = np.array([r.synergy_S for r in recs])
+
+            color = get_color(dop)
+            marker = get_marker(dop)
+            ax.plot(
+                ns,
+                ss,
+                linestyle="-",
+                linewidth=0.9,
+                color=color,
+                marker=marker,
+                markersize=5,
+                markerfacecolor="white",
+                markeredgecolor=color,
+                markeredgewidth=0.9,
+                label=f"{dop}",
+                zorder=3,
+            )
 
             fit = fits.get(dop)
-            if fit:
-                n_fine = np.linspace(min(ns), max(ns) * 1.2, 50)
+            if fit and len(ns) >= 2:
+                n_fine = np.linspace(max(1.0, ns.min()), ns.max() * 1.15, 80)
                 s_inf = fit["S_infinity"]
+                a_coef = fit["A"]
                 if "Ha" in recs[0].property_name:
-                    s_inf *= HA_TO_EV
-                    a = fit["A"] * HA_TO_EV
-                else:
-                    a = fit["A"]
-                s_pred = s_inf + a * np.power(n_fine, -fit["alpha"])
-                ax.plot(n_fine, s_pred, "--", color=colors.get(dop, "gray"), alpha=0.7)
+                    s_inf *= ha_to_meV
+                    a_coef *= ha_to_meV
+                s_pred = s_inf + a_coef * np.power(n_fine, -fit["alpha"])
+                ax.plot(
+                    n_fine,
+                    s_pred,
+                    linestyle="--",
+                    linewidth=0.75,
+                    color=color,
+                    alpha=0.85,
+                    zorder=2,
+                )
 
-        ax.axhline(0, color="gray", linestyle=":", linewidth=0.8)
-        ax.set_xlabel("System size (n × C$_{60}$)")
-        ax.set_ylabel("Synergy order parameter $S$")
-        ax.set_title(f"SDC synergy vs size ({tag})")
-        ax.legend()
-        ax.grid(True, alpha=0.3)
-        fig.tight_layout()
+        ax.axhline(0, color="#666666", linestyle="-", linewidth=0.5, zorder=1)
+        ax.set_xlabel(r"Supercell size $n$ ($n \times \mathrm{C}_{60}$)")
+        ax.set_ylabel(r"Synergy $\mathcal{S}$ (meV/atom)")
+        ax.set_xticks(sorted({r.n_molecules for r in synergy_records}))
+        ax.legend(loc="best", handlelength=1.8, borderpad=0.4)
+        finalize_axes(ax)
+
+        fig.tight_layout(pad=0.35)
         out = self.output_dir / "figures" / f"sdc_synergy_vs_size_{tag}.pdf"
-        fig.savefig(out, dpi=300, bbox_inches="tight")
-        fig.savefig(out.with_suffix(".png"), dpi=300, bbox_inches="tight")
-        plt.close(fig)
+        save_figure(fig, out)
         return out
 
     def plot_strain_sensitivity(self, records: Dict[str, ParsedOutput]) -> Optional[Path]:
@@ -366,8 +408,8 @@ class SDCAnalyzer:
         if not rows:
             return None
 
-        fig, ax = plt.subplots(figsize=(7, 5))
-        colors = {"pristine": "black", "B": "#c0392b", "N": "#2980b9", "P": "#27ae60"}
+        apply_prl_style()
+        fig, ax = plt.subplots(figsize=(PRL_SINGLE_COL, PRL_SINGLE_COL * 0.78))
         sensitivities: Dict[str, float] = {}
 
         for dop, pts in sorted(rows.items()):
@@ -378,19 +420,31 @@ class SDCAnalyzer:
             if len(strains) < 2:
                 continue
             means = [float(np.mean(by_strain[s])) for s in strains]
-            ax.plot(strains, means, "o-", label=dop, color=colors.get(dop, "gray"))
+            color = get_color(dop)
+            marker = get_marker(dop)
+            ax.plot(
+                strains,
+                means,
+                linestyle="-",
+                linewidth=0.9,
+                color=color,
+                marker=marker,
+                markersize=5,
+                markerfacecolor="white" if dop == "pristine" else color,
+                markeredgecolor=color,
+                markeredgewidth=0.9,
+                label=dop if dop != "pristine" else "pristine",
+            )
             coeffs = np.polyfit(strains, means, 1)
-            sensitivities[dop] = float(coeffs[0] * 1000)  # eV/% -> meV/%
+            sensitivities[dop] = float(coeffs[0] * 1000)
 
-        ax.set_xlabel("Biaxial strain (%)")
-        ax.set_ylabel("Energy per atom (eV)")
-        ax.set_title("Strain response by dopant (Exp10 converged points)")
-        ax.legend()
-        ax.grid(True, alpha=0.3)
-        fig.tight_layout()
+        ax.set_xlabel(r"Biaxial strain $\varepsilon$ (\%)")
+        ax.set_ylabel(r"Energy per atom (eV)")
+        ax.legend(loc="best", handlelength=1.8, borderpad=0.4)
+        finalize_axes(ax)
+        fig.tight_layout(pad=0.35)
         out = self.output_dir / "figures" / "sdc_strain_sensitivity_exp10.pdf"
-        fig.savefig(out, dpi=300, bbox_inches="tight")
-        plt.close(fig)
+        save_figure(fig, out)
 
         with open(self.output_dir / "strain_sensitivity_meV_per_pct.json", "w") as f:
             json.dump(sensitivities, f, indent=2)

@@ -13,57 +13,23 @@ Date: 2024
 """
 
 import json
-import numpy as np
-import matplotlib.pyplot as plt
-import matplotlib as mpl
+import sys
 from pathlib import Path
 
-# PRL Style Configuration
-plt.rcParams.update({
-    'font.family': 'serif',
-    'font.serif': ['Times New Roman', 'DejaVu Serif', 'serif'],
-    'font.size': 10,
-    'axes.labelsize': 11,
-    'axes.titlesize': 11,
-    'xtick.labelsize': 9,
-    'ytick.labelsize': 9,
-    'legend.fontsize': 9,
-    'figure.dpi': 300,
-    'savefig.dpi': 300,
-    'axes.linewidth': 0.8,
-    'xtick.major.width': 0.6,
-    'ytick.major.width': 0.6,
-    'xtick.minor.width': 0.4,
-    'ytick.minor.width': 0.4,
-    'lines.linewidth': 1.2,
-    'lines.markersize': 6,
-    'axes.grid': False,
-    'axes.spines.top': True,
-    'axes.spines.right': True,
-})
+import matplotlib.pyplot as plt
+import numpy as np
 
-# Color palette - professional and accessible
-COLORS = {
-    'pristine': '#1f77b4',  # Blue
-    'B': '#d62728',         # Red
-    'N': '#2ca02c',         # Green
-    'P': '#9467bd',         # Purple
-    'B+N': '#ff7f0e',       # Orange
-    'Li': '#8c564b',        # Brown
-    'Na': '#e377c2',        # Pink
-    'K': '#7f7f7f',         # Gray
-}
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from prl_style import (  # noqa: E402
+    COLORS,
+    MARKERS,
+    PRL_DOUBLE_COL,
+    apply_prl_style,
+    finalize_axes,
+    save_figure,
+)
 
-MARKERS = {
-    'pristine': 'o',
-    'B': 's',
-    'N': '^',
-    'P': 'D',
-    'B+N': 'p',
-    'Li': 'v',
-    'Na': '<',
-    'K': '>',
-}
+apply_prl_style()
 
 
 def load_experiment_data(exp_dir: Path) -> dict:

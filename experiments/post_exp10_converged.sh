@@ -25,7 +25,13 @@ echo "SDC audit: $ROOT/experiments/analysis/sdc/sdc_exp10_synergy_audit.json"
 CANON="$ROOT/experiments/analysis/sdc/sdc_exp10_results.json"
 PENDING="$ROOT/paper/figures/pending"
 if [[ -f "$CANON" ]] && command -v python3 >/dev/null; then
-  python3 "$ROOT/src/sdc_coupling_analysis.py" --plots-from-json "$CANON" || true
+  PLOT_PY=python3
+  if ! python3 -c "import matplotlib" 2>/dev/null; then
+    if [[ -x /opt/homebrew/Caskroom/miniconda/base/bin/python3 ]]; then
+      PLOT_PY=/opt/homebrew/Caskroom/miniconda/base/bin/python3
+    fi
+  fi
+  "$PLOT_PY" "$ROOT/src/sdc_coupling_analysis.py" --plots-from-json "$CANON" || true
   mkdir -p "$PENDING"
   cp "$ROOT/experiments/analysis/sdc/figures/sdc_synergy_vs_size_eps3pct_epa.pdf" "$PENDING/" 2>/dev/null || true
   cp "$ROOT/experiments/analysis/sdc/figures/sdc_synergy_vs_size_eps3pct_epa.png" "$PENDING/" 2>/dev/null || true

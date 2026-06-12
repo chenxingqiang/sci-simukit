@@ -1,9 +1,8 @@
 {
-  "updated": "2026-06-12",
-  "converged": 30,
+  "updated": "2026-06-13",
+  "converged": 31,
   "total": 40,
   "pending": [
-    "size_4x60_P_pos3pct",
     "size_6x60_B_pos3pct",
     "size_6x60_N_pos3pct",
     "size_8x60_B_pos0pct",
@@ -143,9 +142,9 @@
     },
     {
       "task": "size_4x60_P_pos3pct",
-      "converged": false,
-      "last_ot_step": 124,
-      "last_grad": 7.72e-06
+      "converged": true,
+      "last_ot_step": 61,
+      "last_grad": 9.8e-07
     },
     {
       "task": "size_4x60_pristine_pos0pct",
@@ -168,8 +167,8 @@
     {
       "task": "size_6x60_B_pos3pct",
       "converged": false,
-      "last_ot_step": null,
-      "last_grad": null
+      "last_ot_step": 238,
+      "last_grad": 1.19e-06
     },
     {
       "task": "size_6x60_N_pos0pct",
@@ -256,28 +255,23 @@
       "last_grad": null
     }
   ],
-  "running_task": "size_4x60_P_pos3pct",
+  "running_task": "size_6x60_B_pos3pct",
   "running_snapshot": {
-    "last_ot_step": 124,
-    "last_grad": 7.72e-06,
-    "reference_task": "size_4x60_P_pos0pct",
-    "reference_ot_steps": 202,
-    "ot_progress_pct": 61.4,
+    "last_ot_step": 238,
+    "last_grad": 1.19e-06,
+    "reference_task": "size_6x60_B_pos0pct",
+    "reference_ot_steps": 156,
+    "ot_progress_pct": 152.6,
     "eps_scf": 1e-06,
-    "grad_ratio_to_eps": 7.7,
+    "grad_ratio_to_eps": 1.2,
     "critical_zone": true,
-    "time_per_ot_step_s": 16.7,
-    "eta_minutes_to_ref_ot": 22.0,
+    "time_per_ot_step_s": 131.7,
+    "eta_minutes_to_ref_ot": 0.0,
     "grad_trend": "decreasing",
-    "grad_drop_per_ot_step": 4.857142857142859e-08,
-    "eta_minutes_to_eps": 39.0
+    "grad_drop_per_ot_step": 1.428571428571415e-09,
+    "eta_minutes_to_eps": 292.0
   },
   "pending_reference_ot": {
-    "size_4x60_P_pos3pct": {
-      "reference_task": "size_4x60_P_pos0pct",
-      "reference_ot_steps": 202,
-      "eps_scf": 1e-06
-    },
     "size_6x60_B_pos3pct": {
       "reference_task": "size_6x60_B_pos0pct",
       "reference_ot_steps": 156,
@@ -295,7 +289,6 @@
     }
   },
   "batch_queue": [
-    "size_4x60_P_pos3pct",
     "size_6x60_B_pos3pct",
     "size_6x60_N_pos3pct",
     "size_8x60_B_pos0pct",
@@ -306,5 +299,5 @@
     "size_8x60_pristine_pos0pct",
     "size_8x60_pristine_pos3pct"
   ],
-  "next_after_running": "size_6x60_B_pos3pct"
+  "next_after_running": "size_6x60_N_pos3pct"
 }

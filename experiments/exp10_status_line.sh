@@ -18,10 +18,12 @@ grad = snap.get("last_grad")
 ratio = snap.get("grad_ratio_to_eps")
 grad_s = f"{grad:.2e}" if isinstance(grad, (int, float)) else "?"
 ratio_s = f"{ratio}x" if ratio is not None else "?"
+next_task = d.get("next_after_running", "none")
 print(
     f"Exp10 {d['converged']}/{d['total']} | "
     f"running={d.get('running_task', 'none')} | "
     f"OT {snap.get('last_ot_step', '?')}/{ref} ({pct}%) | "
-    f"grad={grad_s} ({ratio_s} EPS)"
+    f"grad={grad_s} ({ratio_s} EPS) | "
+    f"next={next_task}"
 )
 PY

@@ -144,8 +144,8 @@
     {
       "task": "size_4x60_P_pos3pct",
       "converged": false,
-      "last_ot_step": 49,
-      "last_grad": 4.485e-05
+      "last_ot_step": 59,
+      "last_grad": 2.791e-05
     },
     {
       "task": "size_4x60_pristine_pos0pct",
@@ -258,13 +258,13 @@
   ],
   "running_task": "size_4x60_P_pos3pct",
   "running_snapshot": {
-    "last_ot_step": 49,
-    "last_grad": 4.485e-05,
+    "last_ot_step": 59,
+    "last_grad": 2.791e-05,
     "reference_task": "size_4x60_P_pos0pct",
     "reference_ot_steps": 202,
-    "ot_progress_pct": 24.3,
+    "ot_progress_pct": 29.2,
     "eps_scf": 1e-06,
-    "grad_ratio_to_eps": 44.9
+    "grad_ratio_to_eps": 27.9
   },
   "pending_reference_ot": {
     "size_4x60_P_pos3pct": {
@@ -287,5 +287,18 @@
       "reference_ot_steps": 250,
       "eps_scf": 1e-06
     }
-  }
+  },
+  "batch_queue": [
+    "size_4x60_P_pos3pct",
+    "size_6x60_B_pos3pct",
+    "size_6x60_N_pos3pct",
+    "size_8x60_B_pos0pct",
+    "size_8x60_B_pos3pct",
+    "size_8x60_N_pos3pct",
+    "size_8x60_P_pos0pct",
+    "size_8x60_P_pos3pct",
+    "size_8x60_pristine_pos0pct",
+    "size_8x60_pristine_pos3pct"
+  ],
+  "next_after_running": "size_6x60_B_pos3pct"
 }

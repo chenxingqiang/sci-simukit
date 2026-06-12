@@ -12,6 +12,22 @@ INPUTS = ROOT / "experiments/exp_10_size_scaling/inputs"
 OUT = ROOT / "experiments/analysis/exp10_status.json"
 OT_RE = re.compile(r"^\s+(\d+) OT \S+\s+\S+\s+\S+\s+(\S+)", re.M)
 
+# Keep in sync with c/src/main_run.c default_pending[].
+BATCH_ORDER = [
+    "size_2x60_pristine_pos0pct",
+    "size_2x60_pristine_pos3pct",
+    "size_4x60_P_pos3pct",
+    "size_6x60_B_pos3pct",
+    "size_6x60_N_pos3pct",
+    "size_8x60_B_pos0pct",
+    "size_8x60_B_pos3pct",
+    "size_8x60_N_pos3pct",
+    "size_8x60_P_pos0pct",
+    "size_8x60_P_pos3pct",
+    "size_8x60_pristine_pos0pct",
+    "size_8x60_pristine_pos3pct",
+]
+
 
 def reference_ot_task(task: str) -> str | None:
     """Map size_Nx60_D_posXpct -> size_Nx60_D_pos0pct (skip already-at-pos0)."""
@@ -112,6 +128,21 @@ def main() -> None:
             }
     if pending_refs:
         payload["pending_reference_ot"] = pending_refs
+
+    pending_set = set(payload["pending"])
+    batch_queue = [t for t in BATCH_ORDER if t in pending_set]
+    for task in payload["pending"]:
+        if task not in batch_queue:
+            batch_queue.append(task)
+    if batch_queue:
+        payload["batch_queue"] = batch_queue
+        if running_task and running_task in batch_queue:
+            idx = batch_queue.index(running_task)
+            if idx + 1 < len(batch_queue):
+                payload["next_after_running"] = batch_queue[idx + 1]
+        elif not running_task:
+            payload["next_after_running"] = batch_queue[0]
+
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(payload, indent=2) + "\n")
     print(f"{OUT}: {conv}/{len(rows)} converged")

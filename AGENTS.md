@@ -16,6 +16,88 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 
 ---
 
+### 当前状态快照（每轮 Loop 开头更新此节）
+
+| 项 | 值 |
+|----|-----|
+| **Exp10** | **30/40** converged；**10 pending**（见 `exp10_status.json`） |
+| **运行中** | `size_4x60_P_pos3pct`（np=6 MPI，非双 batch） |
+| **临界区** | `bash experiments/exp10_status_line.sh` → 见 **CRIT** / `critical_zone` |
+| **下一任务** | `size_6x60_B_pos3pct`（batch 顺序与 `simukit-run` 一致） |
+| **Exp8** | **5/6**（缺 `geoopt_pristine_sp`） |
+| **SDC** | canonical `sdc_exp10_results.json`（**9** synergy 点）；audit `sdc_exp10_synergy_audit.json` |
+| **阻塞 PRL** | Exp10 40/40 + 非加性图 final + Methods/Abstract 最终计数 |
+| **最新 Loop** | **R56**（见下方笔记） |
+
+**一行命令**：`bash experiments/exp10_status_line.sh`
+
+---
+
+### Agent 快速入口（`go loops` 标准流程）
+
+每轮 **按序执行**，勿跳步：
+
+```bash
+# 0) 感知（≤30 s）
+bash experiments/exp10_status_line.sh
+python3 experiments/update_exp10_status.py   # 若需完整 JSON
+
+# 1) 闸门 — 四轮自问（见「执行前闸门」）→ 选 1 个 A 瓶颈 + 1 个 B 项
+
+# 2) Track A — 有 running 则通常「不干预」；无 CP2K 则：
+#    bash experiments/continue_exp10_pending.sh
+#    或 ./c/simukit-run --one <task> experiments/exp_10_size_scaling/inputs
+
+# 3) Track B — 改 tex/bib/audit/图占位（≥1 项）
+
+# 4) 验证 — grep converged / 创新审计表 / 勿改无 .out 的定量
+
+# 5) 进化 — 更新本节「当前状态快照」+ Loop R{n} 笔记（3～5 行 + commit hash）
+
+# 6) Git — 1 Loop = 1 commit + push
+git status && git diff
+git add … && git commit -m "loop R{n}: …" && git push -u origin HEAD
+```
+
+**收敛瞬间（Exp10 临界区 / CRIT）**：
+
+```bash
+grep -q 'SCF run converged' experiments/exp_10_size_scaling/inputs/<task>.out \
+  && bash experiments/post_exp10_converged.sh
+```
+
+**禁止**：只 tail 日志不写笔记；跨多轮 R 攒一次 commit；用 Python SDC 覆盖 canonical JSON。
+
+---
+
+### 精益求精：AGENTS.md 自身审计（每 5～10 轮或用户要求时）
+
+| 检查项 | 典型问题 | 修复 |
+|--------|----------|------|
+| **快照 vs 现实** | 本节 Exp10 计数与 `exp10_status_line.sh` 不一致 | 更新「当前状态快照」 |
+| **工具索引** | 新脚本未进「常用命令 / 现有工具索引」 | 补 `exp10_status_line.sh`、`synergy_audit.json` 等 |
+| **Loop 笔记** | R 编号乱序、重复 Innovation backlog | 按 R 编号排序；backlog **只保留一处** |
+| **历史噪声** | R1–R40 仍写「commit R8–Rn」 | 历史条目保留；**新轮**只写「commit + push」 |
+| **感知命令** | 仍用手动 grep 代替 `exp10_status_line.sh` | 统一快速入口 |
+| **Gotchas** | 新踩坑未沉淀 | 每轮 Evolve 补 1 条（若适用） |
+| **双 batch** | 多个 `simukit-run` / legacy `run_pending_local.sh` 并行 | `ps aux \| grep simukit-run`；legacy 启动前 `pkill` |
+| **MPI 误判** | `np>1` 时多个 `cp2k.psmp` 被当成双跑 | 看是否有 **单个** `prterun -np N` 父进程 |
+
+**Loop 笔记模板（R41 起）**：
+
+```markdown
+- **Loop R{n}（日期，双轨|Track B）**：
+  - **Track A**：Exp10 x/40；running=…；CRIT?；**不干预** / 动作
+  - **Track B**：1 句话改动
+  - **创新审计**：… = **A/B/C 级**
+  - **Git**：`<hash>` — `loop R{n}: …` → **pushed: origin/main**
+  - **下一轮**：…
+```
+
+**笔记归档（可选，R≥60）**：将 R1–R40 缩为 1 段「历史摘要」，全文移 `docs/agents_loop_archive.md`（仅当用户同意减体积）。
+
+---
+
 ### 双轨并行总览
 
 ```mermaid
@@ -98,11 +180,15 @@ flowchart TB
 **计算向轮次**在感知阶段额外确认：
 
 ```bash
-# 本地：已完成任务数
+# 首选：一行快照（含 OT%、CRIT、next、eta）
+bash experiments/exp10_status_line.sh
+
+# 本地：已完成任务数（与 JSON 交叉验证）
 grep -l 'SCF run converged' experiments/exp_10_size_scaling/inputs/size_*.out 2>/dev/null | wc -l
 
-# 本地：后台 batch 是否存活
-ps aux | grep -E 'cp2k.psmp|run_pending_local' | grep -v grep
+# batch 是否存活（simukit-run 单实例；np>1 时多个 cp2k.psmp 正常）
+ps aux | grep -E 'simukit-run|run_pending_local' | grep -v grep
+ps aux | grep -E 'prterun|mpirun' | grep -v grep | head -3
 
 # 日志
 tail -20 experiments/local_run.log
@@ -490,7 +576,8 @@ ls paper/*report*.md docs/reference_info.md
 [ ] 0. 闸门：四轮自问 + 期刊主张强度（PRL / Nature Materials）
 
 === Track A 计算（有 pending 则做）===
-[ ] A1. 感知：Exp7–10 完成数、local_run.log、OOM/ABORT
+[ ] A0. 一行快照：`bash experiments/exp10_status_line.sh`（含 CRIT / next / eta）
+[ ] A1. 感知：Exp7–10 完成数、local_run.log、OOM/ABORT、simukit-run 单实例
 [ ] A2. 策略：1 个计算瓶颈（Exp10 / Exp8 SP / 修 inp）
 [ ] A3. 落地：run_pending 或单任务 mpirun；Mac 勿多 8×60 并发
 [ ] A4. 验证：grep converged；同步 dft_results_download
@@ -550,13 +637,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 | 轨道 | 层 | 工具 / 路径 |
 |------|-----|-------------|
-| **A 计算** | 感知 | `experiments/exp_*/inputs/*.out`、`dft_results/`、`local_run.log` |
+| **A 计算** | 感知 | **`experiments/exp10_status_line.sh`**、`exp10_status.json`、`local_run.log` |
 | **A 计算** | 落地 | **`c/simukit-run`**、`run_pending_local.sh`（legacy）、`run_size_scaling.py` |
 | **A 计算** | 验证 | **`c/simukit-sdc`**、`grep 'SCF run converged'` |
 | **B 文稿** | 感知 | `paper/strain_doped_graphullerene.tex`、`strain_graphullerene_50refs.bib`、`docs/reference_info.md` |
 | **B 文稿** | 策略 | `paper/论文评审总结_CN.md`、`originality_analysis_report.md`、`.cursor/rules/write.mdc` |
 | **B 文稿** | 落地 | `paper/figures/generate_prl_figures.py`、`paper_figures_generator.py`、`figures/table*.tex` |
-| **B 文稿** | SDC 工具 | **`c/simukit-sdc`**（canonical）+ `src/sdc_coupling_analysis.py`（图） |
+| **B 文稿** | SDC 工具 | **`c/simukit-sdc`** → `sdc_exp10_results.json`；`sdc_exp10_synergy_audit.json`（meV）；Python 仅图 |
 | **B 文稿** | 文献 | **WebSearch**、Semantic Scholar、DOI；更新 `strain_graphullerene_50refs.bib` |
 | **B 文稿** | 验证 | `latexmk -pdf`、创新审计表、csv↔out 对照 |
 | **共用** | 进化 | **`AGENTS.md`**、`dft_results/`、`paper/` |
@@ -565,14 +652,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 ### 当前轮次笔记（由 Agent 持续追加）
 
-> **维护说明**：每完成一轮 Loop，追加 3～5 行：日期、Track A/B 要点、验证命令、**commit short-hash + push 分支**、下一轮建议。勿删历史条目。**每轮必须 commit + push**（见上节）。
+> **维护说明**：每完成一轮 Loop，**先更新上方「当前状态快照」**，再追加 3～5 行笔记（模板见「精益求精」节）。勿删历史条目。**每轮必须 commit + push**（见上节）。R1–R40 中「commit R8–Rn」为 **R41 前历史**，已废止。
 
-- **基线（2026-06-11）**：Exp7 **12/12**、Exp9 **12/12** 已完成并归档于 `dft_results/`。Exp8 **5/6**（缺 `geoopt_pristine_sp`）。Exp10 **28/40**（1×60 满；2×60 缺 pristine×2；4×60 缺 P_pos3；6×60 缺 B/N pos3；8×60 仅 N_pos0）。文稿 Methods 声称 rVV10/Koopmans/28 DFT，实际输入多为 **PBE+DFT-D3** — **契约缺口**。
+- **基线（2026-06-11，历史）**：Exp7 **12/12**、Exp9 **12/12**；Exp8 **5/6**；Exp10 自 **28/40** 推进至 **30/40**（R42 pos3、R27 pos0）。Methods 已 **PBE+D3 诚实化**（R6）；剩余契约：**Exp10 40/40**、Figure 2 final、$\mathcal{S}_\infty$ 数值 withheld。
 - **Loop R1（2026-06-11，本地续算）**：瓶颈 Exp10 pending + SSH 超时。落地 `experiments/run_pending_local.sh`（顺序、Mac cp2k.psmp）。验证：`size_2x60_pristine_pos0pct` 运行中；`local_run.log` 有 START 记录。**下一轮**：该任务收敛后自动进入 pos3；若 300 步 ABORT → pristine 2×60 放宽 `EPS_SCF`。
 - **Loop R2 感知建议**：Exp10 达 40/40 后跑 `run_size_scaling.py` 尺寸收敛图 → 再改 Abstract「validated by … atoms」。并行起草 Methods 诚实化（PBE+D3）或补 rVV10 四结构对比。
 - **Loop R3（2026-06-11，双轨协议）**：新增 Track B 文稿·文献闭环 — CP2K 后台时并行：Methods 诚实化、文献检索 2024–2026、PRL/Nature 配图规范、创新审计表。**下一轮 B**：WebSearch graphullerene strain 2025；校准 Table 1 与 converged `.out`；Figure synergy 占位。
-- **Innovation backlog（快照 2026-06-12 R55）**：Exp10 **30/40**；OT **~116**/202；**CRIT**（8× EPS）；`eta_eps` **~1 min**（外推）；收敛后 **post → 31/40 + SDC 10 条**。
-- **Innovation backlog**：
+- **Innovation backlog（快照 — 见「当前状态快照」更新）**：
   - `(1)` **SDC 设计算符** — `c/simukit-sdc` + `paper/sdc_method_section.tex`；Eq.~\mathcal{S} 与 Exp10 JSON `[30/40 converged, pending 10]`；Python 扩展输出 → `sdc_exp10_results_python.json`。
   - `(2)` 非加性交叉项定量图 → `experiments/analysis/sdc/figures/` + `paper/figures/pending/` 进 Figure 2 `[pending n=2 pristine + 40/40]`；Table 1 审计 → **done** `table1_verification.json`。
   - `(3)` **GPTG 图极化子输运** — DFT→J/IPR→Master 方程；GNN 仅 active learning `[after SDC 参数表]`。
@@ -821,9 +907,14 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
   - **Track B**：`running_snapshot` 增 **`time_per_ot_step_s`** + **`eta_minutes_to_ref_ot`**；`exp10_status_line.sh` 显示 `eta_ref=`；Methods 增 Exp10 **simukit-run 顺序 + $n_{\mathrm{proc}}$ 缩放**。
   - **创新审计**：Methods 可复现性 = **A 级**；4×60 P $\mathcal{S}$ = **B 级**（~40% OT）。
   - **Git**：`db5ae04` — `loop R52: OT ETA snapshot and Methods simukit-run` → **pushed: origin/main**。
+- **Loop R53（2026-06-12，双轨）**：
+  - **Track A**：Exp10 **30/40**；`size_4x60_P_pos3pct` OT **~89** / ref **202**（**~44%**）；`grad_ratio_to_eps` **~24×**；`eta_minutes_to_eps` **~13 min**；**不干预** CP2K。
+  - **Track B**：`running_snapshot` 增 **`eta_minutes_to_eps`** + **`grad_drop_per_ot_step`**（近期 OT 梯度线性外推至 EPS）。
+  - **创新审计**：EPS 收敛 ETA = **A− 级**（运维用，OT 回跳会偏乐观/悲观）；4×60 P $\mathcal{S}$ = **B 级**。
+  - **Git**：`72f04f4` — `loop R53: eta_minutes_to_eps in running snapshot` → **pushed: origin/main**。
 - **Loop R54（2026-06-12，双轨）**：
   - **Track A**：Exp10 **30/40**；`size_4x60_P_pos3pct` OT **~108** / ref **202**（**~54%**）；`grad_ratio_to_eps` **~12×**；**不干预** CP2K。
-  - **Track B**：补推 R53（`72f04f4`/`fb8c13b`）；`grad_trend` + 振荡期 **positive-step** `eta_eps` 回退；`exp10_status_line` 显示 trend。
+  - **Track B**：`grad_trend` + 振荡期 **positive-step** `eta_eps` 回退；`exp10_status_line` 显示 trend。
   - **创新审计**：临界区监控 = **A− 级**（12× EPS）；4×60 P $\mathcal{S}$ = **B+ 级**（过半 OT）。
   - **Git**：`4e5fdf3` — `loop R54: grad_trend and oscillating eta_eps` → **pushed: origin/main**。
 - **Loop R55（2026-06-12，双轨）**：
@@ -831,11 +922,12 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
   - **Track B**：`running_snapshot.critical_zone`（`grad_ratio_to_eps≤15`）；`exp10_status_line` 显示 **CRIT**；Gotcha 增收敛后立即 `post_exp10_converged.sh`。
   - **创新审计**：临界区 gate = **A 级**；4×60 P $\mathcal{S}$ = **A− 级**（收敛在即，第 10 条 synergy）。
   - **Git**：`cfc3ec5` — `loop R55: critical_zone flag and post-on-converge gotcha` → **pushed: origin/main**。
-- **Loop R53（2026-06-12，双轨）**：
-  - **Track A**：Exp10 **30/40**；`size_4x60_P_pos3pct` OT **~89** / ref **202**（**~44%**）；`grad_ratio_to_eps` **~24×**；`eta_minutes_to_eps` **~13 min**；**不干预** CP2K。
-  - **Track B**：`running_snapshot` 增 **`eta_minutes_to_eps`** + **`grad_drop_per_ot_step`**（近期 OT 梯度线性外推至 EPS）。
-  - **创新审计**：EPS 收敛 ETA = **A− 级**（运维用，OT 回跳会偏乐观/悲观）；4×60 P $\mathcal{S}$ = **B 级**。
-  - **Git**：`72f04f4` — `loop R53: eta_minutes_to_eps in running snapshot` → **pushed: origin/main**（`fb8c13b` hash note）。
+- **Loop R56（2026-06-11，精益求精 · AGENTS 审计）**：
+  - **Track A（快照）**：Exp10 **30/40**；`size_4x60_P_pos3pct` OT **~124**/202（**~61%**）；**CRIT**（**~7.7× EPS**）；np=6 MPI **非双 batch**；**不干预** CP2K。
+  - **Track B**：`AGENTS.md` 增 **当前状态快照**、**go loops 快速入口**、**精益求精自检表**、Loop 笔记模板；感知/清单改用 `exp10_status_line.sh`；合并重复 Innovation backlog；R53–R55 **按编号排序**；基线标注历史。
+  - **创新审计**：Agent 可运维性 = **A 级**（单页入口 + 防文档腐化）；4×60 P $\mathcal{S}$ = **A− 级**（仍 CRIT pending）。
+  - **Git**：`pending` — `loop R56: AGENTS quick entry, snapshot, perfection audit` → push 待提交。
+  - **下一轮**：`4x60_P_pos3` converged → **立即** `post_exp10_converged.sh` → **31/40** + SDC **10 条**；继续 B：Figure 2 DATA / Abstract 计数。
 - **投稿策略**：PRL 需先闭环 Exp10 + 非加性定量图；Nature Materials 需机制图（IPR/J）+ 实验路径段；未闭环前不投。
 
 ---
@@ -853,6 +945,8 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 - **文献勿堆**：每轮 bib 新增 ≤3 篇，且必须写进 tex 或笔记说明用途。
 - **SDC JSON**：canonical = **`./c/simukit-sdc`** → `sdc_exp10_results.json`；`python src/sdc_coupling_analysis.py` 仅写 **`sdc_exp10_results_python.json`** + 图，勿覆盖 canonical。
 - **Exp10 临界区**：`running_snapshot.critical_zone=true` 当 `grad_ratio_to_eps≤15`；出现 `SCF run converged` 后**立即** `bash experiments/post_exp10_converged.sh`（勿等 batch 结束）。
+- **MPI ≠ 双 batch**：`prterun -np 6` 下 6 个 `cp2k.psmp` 属正常；异常是 **2+ 个 `simukit-run`** 或 legacy + simukit 并存。
+- **AGENTS 文档腐化**：每轮只更新「当前状态快照」+ 追加 R{n}；勿在多处重复 backlog；新工具须进「常用命令」与工具索引。
 - **图表 pending**：占位图须注释 `% DATA: pending …` 防误投稿。
 
 ---
@@ -877,8 +971,9 @@ which cp2k.psmp mpirun   # Homebrew Open MPI + CP2K 2025.1
 | Exp10 归档 | `bash experiments/sync_exp10_archive.sh` |
 | Exp10 converged 后 | `bash experiments/post_exp10_converged.sh`（归档 + SDC + **plots-from-json** → pending 图） |
 | Exp10 续跑 pending | `bash experiments/continue_exp10_pending.sh`（post + 全 batch，无 CP2K 时） |
-| Exp10 状态审计 | `experiments/analysis/exp10_status.json`（30/40 + **`running_snapshot`**） |
-| Exp10 一行快照 | `bash experiments/exp10_status_line.sh` |
+| Exp10 状态审计 | `experiments/analysis/exp10_status.json`（converged + **`running_snapshot`** + batch_queue） |
+| Exp10 一行快照 | **`bash experiments/exp10_status_line.sh`**（Loop 感知首选） |
+| SDC synergy 审计 | `experiments/analysis/sdc/sdc_exp10_synergy_audit.json`（meV/atom；$\mathcal{S}_\infty$ provisional） |
 | 看日志 | `tail -f experiments/local_run.log` |
 | 生成 Exp10 输入 | `python experiments/exp_10_size_scaling/run_size_scaling.py` |
 | **SDC 耦合分析** | `cd c && make && ./simukit-sdc ../experiments/exp_10_size_scaling/inputs` |

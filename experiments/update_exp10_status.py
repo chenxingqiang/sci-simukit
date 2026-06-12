@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 INPUTS = ROOT / "experiments/exp_10_size_scaling/inputs"
 OUT = ROOT / "experiments/analysis/exp10_status.json"
 OT_RE = re.compile(r"^\s+(\d+) OT \S+\s+\S+\s+\S+\s+(\S+)", re.M)
+OT_LINE_RE = re.compile(r"^\s+(\d+) OT \S+\s+\S+\s+([\d.]+)\s+(\S+)", re.M)
 
 # Keep in sync with c/src/main_run.c default_pending[].
 BATCH_ORDER = [
@@ -42,6 +43,19 @@ def read_eps_scf(task: str) -> float:
         return 1e-6
     m = re.search(r"EPS_SCF\s+([\d.E+-]+)", inp.read_text(errors="replace"))
     return float(m.group(1)) if m else 1e-6
+
+
+def avg_ot_step_seconds(out_path: Path, last_n: int = 10) -> float | None:
+    if not out_path.is_file():
+        return None
+    text = out_path.read_text(errors="replace")
+    start = text.rfind("PROGRAM STARTED AT")
+    ot_text = text[start:] if start >= 0 else text
+    times = [float(m.group(2)) for m in OT_LINE_RE.finditer(ot_text)]
+    if not times:
+        return None
+    chunk = times[-last_n:]
+    return sum(chunk) / len(chunk)
 
 
 def main() -> None:
@@ -111,6 +125,12 @@ def main() -> None:
                 "OT>=200 and grad>10x EPS; if no SCF converged by OT~300, "
                 "consider EPS 1e-5 rerun (see AGENTS pristine 2x60 protocol)"
             )
+        avg_s = avg_ot_step_seconds(INPUTS / f"{running_task}.out")
+        ref_ot = snapshot.get("reference_ot_steps")
+        if avg_s and ref_ot and ot_step:
+            remaining = max(0, int(ref_ot) - ot_step)
+            snapshot["time_per_ot_step_s"] = round(avg_s, 1)
+            snapshot["eta_minutes_to_ref_ot"] = round(remaining * avg_s / 60.0, 0)
         payload["running_snapshot"] = snapshot
 
     by_task = {r["task"]: r for r in rows}

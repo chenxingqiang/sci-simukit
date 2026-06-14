@@ -62,20 +62,58 @@ int simukit_cp2k_resolve_binary(simukit_run_config_t *cfg) {
     return -2;
 }
 
+static int detect_ncpu(void) {
+    long n = sysconf(_SC_NPROCESSORS_ONLN);
+    return n > 0 ? (int)n : 4;
+}
+
+int simukit_cp2k_max_nprocs(void) {
+    const char *frac_env = getenv("SIMUKIT_CPU_FRACTION");
+    const char *max_env = getenv("SIMUKIT_MAX_CORES");
+    double frac = 0.67;
+    int max_cores;
+
+    if (frac_env) {
+        frac = strtod(frac_env, NULL);
+    }
+    if (frac <= 0.0 || frac > 1.0) {
+        frac = 0.67;
+    }
+    max_cores = (int)((double)detect_ncpu() * frac);
+    if (max_cores < 1) {
+        max_cores = 1;
+    }
+    if (max_env) {
+        int override = (int)strtol(max_env, NULL, 10);
+        if (override > 0) {
+            max_cores = override;
+        }
+    }
+    return max_cores;
+}
+
+int simukit_cp2k_effective_nprocs(int suggested) {
+    int cap = simukit_cp2k_max_nprocs();
+    if (suggested < 1) {
+        suggested = 1;
+    }
+    return suggested > cap ? cap : suggested;
+}
+
 int simukit_cp2k_suggest_nprocs(const char *task_basename) {
+    int suggested = 4;
+
     if (!task_basename) {
-        return 4;
+        return simukit_cp2k_effective_nprocs(suggested);
     }
     if (simukit_starts_with(task_basename, "size_8x60_")) {
-        return 10;
+        suggested = 10;
+    } else if (simukit_starts_with(task_basename, "size_6x60_")) {
+        suggested = 8;
+    } else if (simukit_starts_with(task_basename, "size_4x60_")) {
+        suggested = 6;
     }
-    if (simukit_starts_with(task_basename, "size_6x60_")) {
-        return 8;
-    }
-    if (simukit_starts_with(task_basename, "size_4x60_")) {
-        return 6;
-    }
-    return 4;
+    return simukit_cp2k_effective_nprocs(suggested);
 }
 
 static int split_dir_base(const char *path, char *dir, size_t dir_sz, char *base, size_t base_sz) {
@@ -146,6 +184,12 @@ int simukit_cp2k_run_job(const char *inp_path, const char *out_path,
         }
         if (cfg->cp2k_data[0]) {
             setenv("CP2K_DATA", cfg->cp2k_data, 1);
+        }
+        if (!getenv("OMP_NUM_THREADS")) {
+            setenv("OMP_NUM_THREADS", "1", 1);
+        }
+        if (!getenv("OMP_STACKSIZE")) {
+            setenv("OMP_STACKSIZE", "512M", 1);
         }
         execlp(mpirun_path, mpirun_path, "-np", npbuf, cfg->cp2k_bin, "-i", inp_base, "-o", out_base,
                (char *)NULL);

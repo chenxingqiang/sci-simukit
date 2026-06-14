@@ -5,6 +5,8 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+# shellcheck source=cp2k_resource.sh
+source "$ROOT/experiments/cp2k_resource.sh"
 CP2K="/opt/homebrew/bin/cp2k.psmp"
 export CP2K_DATA="/opt/homebrew/share/cp2k/data"
 LOG="$ROOT/experiments/local_run.log"
@@ -42,7 +44,8 @@ run_cp2k() {
         return 0
     fi
 
-    log "START: $base (np=$np)"
+    np="$(cp2k_cap_np "$np")"
+    log "START: $base (np=$np, cap=${SIMUKIT_MAX_CORES}/${_ncpu})"
     cd "$dir"
     mpirun -np "$np" "$CP2K" -i "$(basename "$inp")" -o "$(basename "$out")" >> "$LOG" 2>&1
 
@@ -73,6 +76,7 @@ np_for() {
 }
 
 log "========== Local CP2K batch start =========="
+log "Resources: max_np=${SIMUKIT_MAX_CORES}/${_ncpu} (${SIMUKIT_CPU_FRACTION}), OMP_NUM_THREADS=${OMP_NUM_THREADS}"
 log "CP2K: $("$CP2K" --version 2>&1 | head -1)"
 
 EXP10="$ROOT/experiments/exp_10_size_scaling/inputs"

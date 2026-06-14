@@ -1,6 +1,6 @@
 {
   "strain_pct": 3.0,
-  "n_synergy_points": 10,
+  "n_synergy_points": 12,
   "synergy_table": [
     {
       "n_molecules": 1,
@@ -67,6 +67,20 @@
     },
     {
       "n_molecules": 6,
+      "dopant": "B",
+      "strain_pct": 3.0,
+      "synergy_S_ha_per_atom": -0.0002852278201049,
+      "synergy_S_meV_per_atom": -7.761444380975615
+    },
+    {
+      "n_molecules": 6,
+      "dopant": "N",
+      "strain_pct": 3.0,
+      "synergy_S_ha_per_atom": 8.745424831158e-05,
+      "synergy_S_meV_per_atom": 2.379751329658947
+    },
+    {
+      "n_molecules": 6,
       "dopant": "P",
       "strain_pct": 3.0,
       "synergy_S_ha_per_atom": -0.001171795874297,
@@ -75,16 +89,16 @@
   ],
   "size_scaling_fits": {
     "B": {
-      "S_infinity": -0.3123054171297257,
-      "A": 0.31206033622194185,
-      "alpha": -0.00018227543866067153,
-      "n_points": 3
+      "S_infinity": -0.049072769426030866,
+      "A": 0.04885287456614666,
+      "alpha": 0.00011940561946934237,
+      "n_points": 4
     },
     "N": {
-      "S_infinity": -0.06828585369394731,
-      "A": 0.06842210136088618,
-      "alpha": -0.00025254881316215004,
-      "n_points": 3
+      "S_infinity": -0.14242791467563887,
+      "A": 0.14257829518055343,
+      "alpha": 0.0001257236463890303,
+      "n_points": 4
     },
     "P": {
       "S_infinity": -0.27964641089003817,

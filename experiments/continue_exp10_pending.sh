@@ -18,4 +18,7 @@ if [[ ! -x "$RUN" ]]; then
 fi
 
 export CP2K_DATA="${CP2K_DATA:-/opt/homebrew/share/cp2k/data}"
+# shellcheck source=cp2k_resource.sh
+source "$ROOT/experiments/cp2k_resource.sh"
+echo "CP2K resources: ${SIMUKIT_MAX_CORES}/${_ncpu} cores (${SIMUKIT_CPU_FRACTION} fraction), OMP_NUM_THREADS=${OMP_NUM_THREADS}" >&2
 exec "$RUN" "$INPUTS"

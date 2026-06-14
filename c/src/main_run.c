@@ -78,8 +78,9 @@ int main(int argc, char **argv) {
         return 1;
     }
 
-    printf("simukit-run %s: cp2k=%s npolicy=size-scaling sequential\n", SIMUKIT_VERSION,
-           cfg.cp2k_bin);
+    printf("simukit-run %s: cp2k=%s npolicy=size-scaling sequential max_np=%d (fraction=%s)\n",
+           SIMUKIT_VERSION, cfg.cp2k_bin, simukit_cp2k_max_nprocs(),
+           getenv("SIMUKIT_CPU_FRACTION") ? getenv("SIMUKIT_CPU_FRACTION") : "0.67");
 
     if (one_task) {
         if (run_task(inputs_dir, one_task, &cfg) != 0) {

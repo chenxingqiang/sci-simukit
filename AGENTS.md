@@ -20,14 +20,14 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 
 | 项 | 值 |
 |----|-----|
-| **Exp10** | **31/40** converged；**9 pending**（见 `exp10_status.json`） |
-| **运行中** | `size_6x60_B_pos3pct`（np=8；batch 续跑） |
+| **Exp10** | **34/40** converged；**6 pending**（见 `exp10_status.json`） |
+| **运行中** | `size_8x60_B_pos3pct`（np=9；**67% CPU cap**） |
 | **临界区** | `bash experiments/exp10_status_line.sh` → 见 **CRIT** / `critical_zone` |
-| **下一任务** | `size_6x60_N_pos3pct`（batch 顺序与 `simukit-run` 一致） |
+| **下一任务** | `size_8x60_B_pos3pct` → 余下 8×60 序列 |
 | **Exp8** | **5/6**（缺 `geoopt_pristine_sp`） |
-| **SDC** | canonical JSON（**10** synergy 点，含 n=4 P）；audit `sdc_exp10_synergy_audit.json` |
-| **阻塞 PRL** | Exp10 40/40 + 非加性图 final + Methods/Abstract 最终计数 |
-| **最新 Loop** | **R57**（见下方笔记） |
+| **SDC** | canonical JSON（**12** synergy 点，n=1–6 B/N/P @+3%）；audit `sdc_exp10_synergy_audit.json` |
+| **阻塞 PRL** | Exp10 40/40 + Figure 1/2 final + Methods/Abstract 最终计数 |
+| **最新 Loop** | **R58**（见下方笔记） |
 
 **一行命令**：`bash experiments/exp10_status_line.sh`
 
@@ -934,6 +934,12 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
   - **创新审计**：n=4 P $\mathcal{S}$ = **A 级**；Figure 2 SDC draft = **B+ 级**（10 点）；batch 运维 = **A 级**。
   - **Git**：`f16bc9d` + `docs R57 hash` — pushed **origin/main**（2026-06-13）。
   - **下一轮**：`6×60_B_pos3` CRIT 收敛 → post → **32/40**；Figure 1/2 final 仍 pending。
+- **Loop R58（2026-06-14，双轨）**：
+  - **Track A**：**6×60 B/N pos3** + **8×60 B pos0** 收敛 → **34/40**；batch 曾停 → **续跑 8×60**（np≤9，2/3 CPU）；`8×60_B_pos0` **CRIT 收敛** 后 post。
+  - **Track B**：Abstract/Methods/Discussion **31→34/40**；SDC **12 点**（n=6 B/N @+3%）；`cp2k_resource.sh` + simukit-run CPU 封顶。
+  - **创新审计**：n=6 B $\mathcal{S}$ = **A 级**；8×60 batch 运维 + 资源 cap = **A 级**。
+  - **Git**：`pending` — `loop R58: Exp10 34/40, CPU cap, SDC 12pt` → push。
+  - **下一轮**：`8×60_B_pos3` 收敛 → post → **35/40** + 可能第 12 条 synergy；Figure 1/2 final 仍 pending。
 - **投稿策略**：PRL 需先闭环 Exp10 + 非加性定量图；Nature Materials 需机制图（IPR/J）+ 实验路径段；未闭环前不投。
 
 ---

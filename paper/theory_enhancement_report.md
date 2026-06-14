@@ -5,10 +5,10 @@
 > |------|------|------|
 > | $H_{eff}$, $V_{coupling}$, 协同序参量 $\mathcal{S}$ | **[verified]** | `paper/strain_doped_graphullerene.tex`, `paper/sdc_method_section.tex` |
 > | Exp.~5 $\alpha_{B,N,P}$, Table 1 | **[verified]** | `experiments/analysis/table1_verification.json` |
-> | Exp.~10 $\mathcal{S}(n)$, $\mathcal{S}_\infty$ 外推 | **[pending: 31/40]** | `sdc_exp10_results.json` — **10** pts；meV 审计表 → **`sdc_exp10_synergy_audit.json`**（$\mathcal{S}_\infty$ **provisional**） |
+> | Exp.~10 $\mathcal{S}(n)$, $\mathcal{S}_\infty$ 外推 | **[pending: 34/40]** | `sdc_exp10_results.json` — **12** pts；meV 审计表 → **`sdc_exp10_synergy_audit.json`**（$\mathcal{S}_\infty$ **provisional**） |
 > | Exp.~10 `size_4x60_P_pos3pct` | **[verified converged]** | n=4 P $\mathcal{S}$ in JSON；**~8× EPS**；收敛 → **31/40** + n=4 P $\mathcal{S}$ |
-> | Exp.~10 `size_6x60_B_pos3pct` | **[pending, batch]** | 续跑 np=8 |
-> | Figure 2 SDC size-scaling panel | **[draft: 10 pts]** | `paper/figures/pending/sdc_synergy_vs_size_eps3pct_epa.pdf`（待 40/40 后 final） |
+> | Exp.~10 `size_6x60_B/N_pos3pct` | **[verified converged]** | n=6 B $\mathcal{S}$ in JSON；n=6 N $\mathcal{S}$ in JSON |
+> | Figure 2 SDC size-scaling panel | **[draft: 12 pts]** | `paper/figures/pending/sdc_synergy_vs_size_eps3pct_epa.pdf`（待 40/40 后 final） |
 > | Exp.~4 IPR/J（pristine vs B+3\%） | **[verified, 与理论报告不符]** | `experiments/analysis/exp4_polaron_verification.json` — IPR 75/45，$J$ 27/37 meV；极化子转变 **未确认** |
 > | 理论报告 IPR 45→25, $J=135$ meV, $\mu$ 8.75× | **[discrepancy]** | 勿进 Results；`supplementary_material_theory.tex` **已对齐 Exp4** [Loop R11] |
 > | ML $R^2>0.95$, 300% 迁移率 | **[pending]** | 需独立脚本输出与误差条 |

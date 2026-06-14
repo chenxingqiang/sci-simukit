@@ -19,7 +19,7 @@ Finite-size extrapolation of the coupling contribution uses
 \label{eq:size_scaling}
 \end{equation}
 fitted to converged Exp.~10 points at $+3$\% strain; $\mathcal{S}_\infty$ is the bulk-network design limit relevant to extended graphullerene sheets.
-% DATA: pending 40/40; 31/40; 10 synergy pts; 6x60 B @+3% batch — audit: sdc_exp10_synergy_audit.json
+% DATA: pending 40/40; 34/40; 12 synergy pts; 8x60 batch np<=9 (67% CPU) — audit: sdc_exp10_synergy_audit.json
 
 The effective Hamiltonian parameters are not fitted ad hoc: $V_{\mathrm{doping}}$ and $V_{\mathrm{strain}}$ are identified with $\Delta P(0,\delta)$ and $\Delta P(\epsilon,0)$ from single-knob DFT, while $V_{\mathrm{coupling}}$ is proportional to $\mathcal{S}$ in Eq.~\eqref{eq:synergy_order}.
 This SDC framework provides a transferable design operator---scan $(\epsilon,\delta)$ with few DFT points, rank combinations by $|\mathcal{S}|$, and prioritize polaron-transport descriptors ($J$, $\lambda$, IPR) before Marcus mobility evaluation.

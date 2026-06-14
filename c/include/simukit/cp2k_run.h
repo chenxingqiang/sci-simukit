@@ -24,4 +24,7 @@ int simukit_cp2k_run_job(const char *inp_path, const char *out_path,
 /* Suggested MPI ranks from task basename (Exp10 size scaling). */
 int simukit_cp2k_suggest_nprocs(const char *task_basename);
 
+int simukit_cp2k_max_nprocs(void);
+int simukit_cp2k_effective_nprocs(int suggested);
+
 #endif

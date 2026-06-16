@@ -116,7 +116,7 @@ def process_experiment(exp_dir: Path):
 
 
 def main():
-    base_dir = Path("/Users/xingqiangchen/sci-simukit/dft_results_download")
+    base_dir = Path(__file__).resolve().parent
     
     print("=" * 60)
     print("导出实验体系XYZ坐标文件")

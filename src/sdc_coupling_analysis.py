@@ -20,6 +20,10 @@ Usage:
     python src/sdc_coupling_analysis.py --exp10 experiments/exp_10_size_scaling/inputs
     python src/sdc_coupling_analysis.py --plots-from-json experiments/analysis/sdc/sdc_exp10_results.json
     python src/sdc_coupling_analysis.py --dir experiments/exp_5_synergy
+
+Publication figure policy (Exp10):
+  - KEEP: synergy S(n) at +3% strain (Figure 2 inset).
+  - SKIP: Exp10 strain-sensitivity plots (duplicate Exp5; mixes cell sizes).
 """
 
 from __future__ import annotations
@@ -43,12 +47,14 @@ _REPO_ROOT = Path(__file__).resolve().parents[1]
 _PRL_STYLE_DIR = _REPO_ROOT / "paper" / "figures"
 if str(_PRL_STYLE_DIR) not in sys.path:
     sys.path.insert(0, str(_PRL_STYLE_DIR))
-from prl_style import (  # noqa: E402
-    PRL_SINGLE_COL,
-    apply_prl_style,
+from nature_style import (  # noqa: E402
+    NATURE_SINGLE_COL,
+    add_reference_line,
+    apply_nature_style,
     finalize_axes,
     get_color,
     get_marker,
+    nature_legend,
     save_figure,
 )
 
@@ -330,8 +336,9 @@ class SDCAnalyzer:
     def plot_synergy_vs_size(
         self, synergy_records: List[SynergyRecord], fits: Dict[str, Dict], tag: str
     ) -> Path:
-        apply_prl_style()
-        fig, ax = plt.subplots(figsize=(PRL_SINGLE_COL, PRL_SINGLE_COL * 0.78))
+        """Core Exp10 figure: non-additive synergy order parameter vs supercell size."""
+        apply_nature_style()
+        fig, ax = plt.subplots(figsize=(NATURE_SINGLE_COL, NATURE_SINGLE_COL * 0.88))
 
         by_dop: Dict[str, List[SynergyRecord]] = {}
         for rec in synergy_records:
@@ -352,103 +359,68 @@ class SDCAnalyzer:
             ax.plot(
                 ns,
                 ss,
-                linestyle="-",
-                linewidth=0.9,
+                linestyle="none",
                 color=color,
                 marker=marker,
-                markersize=5,
-                markerfacecolor="white",
-                markeredgecolor=color,
-                markeredgewidth=0.9,
-                label=f"{dop}",
+                markersize=5.5,
+                markerfacecolor=color,
+                markeredgecolor="#333333",
+                markeredgewidth=0.4,
                 zorder=3,
             )
 
-            fit = fits.get(dop)
-            if fit and len(ns) >= 2:
-                n_fine = np.linspace(max(1.0, ns.min()), ns.max() * 1.15, 80)
-                s_inf = fit["S_infinity"]
-                a_coef = fit["A"]
-                if "Ha" in recs[0].property_name:
-                    s_inf *= ha_to_meV
-                    a_coef *= ha_to_meV
-                s_pred = s_inf + a_coef * np.power(n_fine, -fit["alpha"])
+            label = dop
+            if len(ns) >= 3:
+                inv_n = 1.0 / ns
+                slope, s_inf = np.polyfit(inv_n, ss, 1)
+                n_line = np.linspace(ns.min(), max(ns.max() * 1.08, ns.max() + 0.5), 60)
+                s_line = slope / n_line + s_inf
                 ax.plot(
-                    n_fine,
-                    s_pred,
+                    n_line,
+                    s_line,
                     linestyle="--",
-                    linewidth=0.75,
+                    linewidth=0.8,
                     color=color,
                     alpha=0.85,
                     zorder=2,
                 )
+                label = rf"{dop} ($\mathcal{{S}}_\infty \approx {s_inf:.1f}$ meV)"
 
-        ax.axhline(0, color="#666666", linestyle="-", linewidth=0.5, zorder=1)
+            ax.plot(
+                [],
+                [],
+                linestyle="none",
+                marker=marker,
+                markerfacecolor=color,
+                markeredgecolor="#333333",
+                markeredgewidth=0.4,
+                label=label,
+            )
+
+        add_reference_line(
+            ax,
+            0.0,
+            r"Additive limit ($\mathcal{S}=0$)",
+            color="#333333",
+            linestyle="--",
+        )
         ax.set_xlabel(r"Supercell size $n$ ($n \times \mathrm{C}_{60}$)")
         ax.set_ylabel(r"Synergy $\mathcal{S}$ (meV/atom)")
         ax.set_xticks(sorted({r.n_molecules for r in synergy_records}))
-        ax.legend(loc="best", handlelength=1.8, borderpad=0.4)
-        finalize_axes(ax)
+        finalize_axes(ax, panel_label="a")
+        nature_legend(ax, ncol=1, loc="upper right")
 
-        fig.tight_layout(pad=0.35)
+        fig.subplots_adjust(top=0.88, bottom=0.16, left=0.18, right=0.96)
         out = self.output_dir / "figures" / f"sdc_synergy_vs_size_{tag}.pdf"
         save_figure(fig, out)
         return out
 
-    def plot_strain_sensitivity(self, records: Dict[str, ParsedOutput]) -> Optional[Path]:
-        """dE/dε per dopant from pristine 0% and +3% (meV/% per atom scale)."""
-        rows: Dict[str, List[Tuple[float, float]]] = {}
-        for key, rec in records.items():
-            if not rec.converged or rec.strain_pct is None or rec.n_molecules is None:
-                continue
-            if rec.dopant is None or rec.energy_per_atom_ha is None:
-                continue
-            rows.setdefault(rec.dopant, []).append((rec.strain_pct, rec.energy_per_atom_ha * HA_TO_EV))
-
-        if not rows:
-            return None
-
-        apply_prl_style()
-        fig, ax = plt.subplots(figsize=(PRL_SINGLE_COL, PRL_SINGLE_COL * 0.78))
-        sensitivities: Dict[str, float] = {}
-
-        for dop, pts in sorted(rows.items()):
-            by_strain: Dict[float, List[float]] = {}
-            for eps, e in pts:
-                by_strain.setdefault(eps, []).append(e)
-            strains = sorted(by_strain.keys())
-            if len(strains) < 2:
-                continue
-            means = [float(np.mean(by_strain[s])) for s in strains]
-            color = get_color(dop)
-            marker = get_marker(dop)
-            ax.plot(
-                strains,
-                means,
-                linestyle="-",
-                linewidth=0.9,
-                color=color,
-                marker=marker,
-                markersize=5,
-                markerfacecolor="white" if dop == "pristine" else color,
-                markeredgecolor=color,
-                markeredgewidth=0.9,
-                label=dop if dop != "pristine" else "pristine",
-            )
-            coeffs = np.polyfit(strains, means, 1)
-            sensitivities[dop] = float(coeffs[0] * 1000)
-
-        ax.set_xlabel(r"Biaxial strain $\varepsilon$ (\%)")
-        ax.set_ylabel(r"Energy per atom (eV)")
-        ax.legend(loc="best", handlelength=1.8, borderpad=0.4)
-        finalize_axes(ax)
-        fig.tight_layout(pad=0.35)
-        out = self.output_dir / "figures" / "sdc_strain_sensitivity_exp10.pdf"
-        save_figure(fig, out)
-
-        with open(self.output_dir / "strain_sensitivity_meV_per_pct.json", "w") as f:
-            json.dump(sensitivities, f, indent=2)
-        return out
+    def plot_strain_sensitivity(self, records: Dict[str, ParsedOutput]) -> None:
+        """Deprecated: Exp10 has only 0/+3%% and mixed cell sizes — use Exp5 for strain response."""
+        logger.info(
+            "Skipping strain-sensitivity figure (duplicate/misleading vs Exp5); "
+            "see experiments/analysis/table1_verification.json"
+        )
 
     @staticmethod
     def synergy_records_from_json(data: dict) -> List[SynergyRecord]:
@@ -533,7 +505,6 @@ class SDCAnalyzer:
         tag = f"eps{int(strain_pct)}pct_epa"
         if synergy_epa:
             self.plot_synergy_vs_size(synergy_epa, fits, tag)
-        self.plot_strain_sensitivity(records)
 
         payload = {
             "inputs_dir": str(inputs_dir),

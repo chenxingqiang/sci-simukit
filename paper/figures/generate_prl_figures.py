@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-Generate PRL-Style Publication Figures for Graphullerene Paper
+Generate Nature-style publication figures for Graphullerene Paper
 
-Creates professional figures following Physical Review Letters style:
+Creates professional figures following Nature / Nature Communications style:
 - Clean, minimalist design
 - High contrast with limited colors
 - Clear axis labels and legends
@@ -20,16 +20,16 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from prl_style import (  # noqa: E402
+from nature_style import (  # noqa: E402
     COLORS,
     MARKERS,
-    PRL_DOUBLE_COL,
-    apply_prl_style,
+    NATURE_DOUBLE_COL,
+    apply_nature_style,
     finalize_axes,
     save_figure,
 )
 
-apply_prl_style()
+apply_nature_style()
 
 
 def load_experiment_data(exp_dir: Path) -> dict:
@@ -149,7 +149,7 @@ def figure2_polaron_mechanism(data_exp4: dict, data_exp6: dict, save_path: Path)
     (b) Electronic coupling J vs strain
     (c) Activation energy vs strain
     """
-    fig, axes = plt.subplots(1, 3, figsize=(7.0, 2.5))
+    fig, axes = plt.subplots(1, 3, figsize=(NATURE_DOUBLE_COL, NATURE_DOUBLE_COL * 0.35))
     
     # Organize exp4 data (IPR and J)
     dopants_exp4 = ['pristine', 'Li', 'Na', 'K']
@@ -259,7 +259,7 @@ def figure3_comprehensive_summary(data_exp6: dict, ml_results: dict, save_path: 
     (b) Mobility  
     (c) Activation energy
     """
-    fig, axes = plt.subplots(1, 3, figsize=(7.0, 2.5))
+    fig, axes = plt.subplots(1, 3, figsize=(NATURE_DOUBLE_COL, NATURE_DOUBLE_COL * 0.35))
     
     # Collect all data
     all_data = []

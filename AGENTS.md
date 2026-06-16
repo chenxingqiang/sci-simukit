@@ -20,14 +20,14 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 
 | 项 | 值 |
 |----|-----|
-| **Exp10** | **34/40** converged；**6 pending**（见 `exp10_status.json`） |
-| **运行中** | `size_8x60_B_pos3pct`（np=9；**67% CPU cap**） |
+| **Exp10** | **39/40** converged；**1 pending** (`size_8x60_pristine_pos3pct`)（见 `exp10_status.json`） |
+| **运行中** | `size_8x60_pristine_pos3pct`（np=9；**CRIT** ~96% OT） |
 | **临界区** | `bash experiments/exp10_status_line.sh` → 见 **CRIT** / `critical_zone` |
-| **下一任务** | `size_8x60_B_pos3pct` → 余下 8×60 序列 |
+| **下一任务** | 40/40 后 post → SDC **15** synergy pts (n=8 B/N/P) |
 | **Exp8** | **5/6**（缺 `geoopt_pristine_sp`） |
 | **SDC** | canonical JSON（**12** synergy 点，n=1–6 B/N/P @+3%）；audit `sdc_exp10_synergy_audit.json` |
-| **阻塞 PRL** | Exp10 40/40 + Figure 1/2 final + Methods/Abstract 最终计数 |
-| **最新 Loop** | **R58**（见下方笔记） |
+| **阻塞 PRL** | Exp10 40/40 + SDC n=8 + 投稿叙事收紧 |
+| **最新 Loop** | **R59**（见下方笔记） |
 
 **一行命令**：`bash experiments/exp10_status_line.sh`
 
@@ -940,6 +940,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
   - **创新审计**：n=6 B $\mathcal{S}$ = **A 级**；8×60 batch 运维 + 资源 cap = **A 级**。
   - **Git**：`2a39654` — pushed **origin/main**（2026-06-14）。
   - **下一轮**：`8×60_B_pos3` 收敛 → post → **35/40** + 可能第 12 条 synergy；Figure 1/2 final 仍 pending。
+
+- **Loop R59（2026-06-16，双轨）**：
+  - **Track A**：Exp10 **39/40**；`size_8x60_pristine_pos3pct` OT **~96%** / **CRIT**（grad ~5× EPS）；**7/8** 的 8×60 已收敛；**不干预** CP2K。
+  - **Track B**：`post_exp10_converged.sh` 补跑 → 归档 39；**Figure 1/2 final**（`generate_manuscript_figures.py`）；Nature 风格 SDC 图；VMD scheme 脚本；Abstract/Methods **34→39/40**。
+  - **创新审计**：Figure 1/2 Exp5 主图 = **B+ 级**（已落地）；SDC n=8 仍 **12 点**（缺 pristine +3% ref）= **A− 级 pending**。
+  - **Git**：`loop R59: …` → **pushed: origin/main**
+  - **下一轮**：`8x60_pristine_pos3` converged → **40/40** + post → SDC **15 点** + $\mathcal{S}_\infty$ 修订。
 - **投稿策略**：PRL 需先闭环 Exp10 + 非加性定量图；Nature Materials 需机制图（IPR/J）+ 实验路径段；未闭环前不投。
 
 ---

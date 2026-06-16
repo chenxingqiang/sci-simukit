@@ -32,7 +32,9 @@ if [[ -f "$CANON" ]] && command -v python3 >/dev/null; then
     fi
   fi
   "$PLOT_PY" "$ROOT/src/sdc_coupling_analysis.py" --plots-from-json "$CANON" || true
+  "$PLOT_PY" "$ROOT/paper/figures/generate_manuscript_figures.py" || true
   mkdir -p "$PENDING"
   cp "$ROOT/experiments/analysis/sdc/figures/sdc_synergy_vs_size_eps3pct_epa.pdf" "$PENDING/" 2>/dev/null || true
   cp "$ROOT/experiments/analysis/sdc/figures/sdc_synergy_vs_size_eps3pct_epa.png" "$PENDING/" 2>/dev/null || true
 fi
+echo "Manuscript figures: $ROOT/paper/figures/final_figures/"

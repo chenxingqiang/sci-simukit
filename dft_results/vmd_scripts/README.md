@@ -81,3 +81,22 @@ mol addrep top
 | Na | 黄色 |
 | K | 紫色 |
 
+## 主文结构图（批量）
+
+1. 从 CP2K 输入导出 XYZ（已修复路径为 `dft_results/`）：
+   ```bash
+   python3 dft_results/export_xyz_files.py
+   ```
+
+2. 一键渲染 scheme 图到 `paper/figures/final_figures/`：
+   ```bash
+   bash paper/figures/render_vmd_structures.sh
+   ```
+   输出：`scheme_tetramer_doping.png`（Pristine | B | N 并排）及单结构 PNG。
+
+3. 交互式对比（Exp5 四聚体）：
+   ```bash
+   cd dft_results/exp_5_synergy && vmd -e vmd_compare.tcl
+   ```
+
+若 VMD 不在 PATH，脚本会尝试 `/Applications/VMD.app/...`；也可 `export PATH="/Applications/VMD.app/Contents/vmd:$PATH"`。

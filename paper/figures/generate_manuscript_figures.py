@@ -43,6 +43,7 @@ from structure_morphology import (  # noqa: E402
 )
 from design_space_triangle import plot_synergy_design_triangle  # noqa: E402
 from phase_diagram import plot_alpha_synergy_phase_map, plot_gap_strain_phase_diagram  # noqa: E402
+from synergy_floating_bars import plot_nonadditive_floating_bars  # noqa: E402
 
 HA_TO_MEV = 27.211386245988 * 1000.0
 EXP5_DOPANTS = ("B", "N", "P")
@@ -214,20 +215,7 @@ def figure2_synergy_combined(audit: dict, sdc: dict, table1: dict, out_dir: Path
     finalize_axes(ax_phase, panel_label="b")
 
     ax_bar = fig.add_subplot(gs[1, 0])
-    rows = [r for r in audit["synergy_table"] if r["n_molecules"] == TETRAMER_N]
-    rows.sort(key=lambda r: r["dopant"])
-    labels = [r["dopant"] for r in rows]
-    ss = [r["synergy_S_meV_per_atom"] for r in rows]
-    x = np.arange(len(labels))
-    ylo, yhi = min(ss) * 1.15, max(max(ss) * 1.35, 7.0)
-    shade_synergy_physics(ax_bar, ylo, yhi)
-    ax_bar.bar(x, ss, color=[get_color(d) for d in labels], edgecolor="#000", lw=0.9, width=0.58, zorder=3)
-    ax_bar.set_xticks(x)
-    ax_bar.set_xticklabels(labels)
-    ax_bar.set_xlabel(r"Dopant at $n=4$")
-    ax_bar.set_ylabel(r"$\mathcal{S}$ (meV/atom)")
-    ax_bar.set_ylim(ylo, yhi)
-    annotate_bar_values(ax_bar, x, ss, fontsize=8)
+    plot_nonadditive_floating_bars(ax_bar, sdc, n=TETRAMER_N, strain_pct=EXP10_STRAIN)
     finalize_axes(ax_bar, panel_label="c")
 
     ax_scale = fig.add_subplot(gs[1, 1])

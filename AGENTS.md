@@ -949,7 +949,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
   - **Track A**：Exp8 **5/6** SP OT ~120/330 — **不干预**。
   - **Track B**：**配图全面升级** — `figure_main_exp5.pdf` 2×2 合成；B/N/P 色板；α inset；SDC sign-flip 标注；Exp4 数值标签；`generate_manuscript_figures.py` 重写。
   - **创新审计**：主文 Figure 1 呈现 = **A 级**；VMD scheme 仍 pending
-  - **Git**：`<hash>` — `loop R66: publication figure upgrade` → **pushed: origin/main**
+  - **Git**：`63f2e10` — `loop R66: publication figure upgrade` → **pushed: origin/main**
   - **下一轮**：Exp8 post；VMD；可选 ionic-relax 讨论
 - **Loop R65（2026-06-18，双轨）**：
   - **Track A**：Exp8 **5/6** — SP **不干预**（OT ~103/330，lsof 确认写 `failed_partial`；N_sp 参考 ~330 OT）。

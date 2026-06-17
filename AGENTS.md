@@ -21,13 +21,13 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | 项 | 值 |
 |----|-----|
 | **Exp10** | **40/40** converged ✅（见 `exp10_status.json`） |
-| **运行中** | Exp8 `geoopt_pristine_sp`（np=4，**单 job**；R63 杀重复 2×） |
+| **运行中** | Exp8 `geoopt_pristine_sp`（np=4，OT~5；workers 100% CPU） |
 | **临界区** | `bash experiments/exp10_status_line.sh` → 见 **CRIT** / `critical_zone` |
-| **下一任务** | Exp8 SP converged → post → 6/6；VMD scheme |
+| **下一任务** | Exp8 SP converged → `post_exp8_converged.sh`；VMD scheme |
 | **Exp8** | **5/6** → `geoopt_pristine_sp` **restarted**（np=4；prior partial archived） |
 | **SDC** | **15** synergy 点（n=1–8 B/N/P @+3%）；$\mathcal{S}_\infty$ provisional；audit `sdc_exp10_synergy_audit.json` |
 | **阻塞 PRL** | 叙事/术语（非 Exp10）；机制图 + transport 主结果 |
-| **最新 Loop** | **R63**（见下方笔记） |
+| **最新 Loop** | **R64**（见下方笔记） |
 
 **一行命令**：`bash experiments/exp10_status_line.sh`
 
@@ -40,6 +40,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 ```bash
 # 0) 感知（≤30 s）
 bash experiments/exp10_status_line.sh
+bash experiments/exp8_status_line.sh
 python3 experiments/update_exp10_status.py   # 若需完整 JSON
 
 # 1) 闸门 — 四轮自问（见「执行前闸门」）→ 选 1 个 A 瓶颈 + 1 个 B 项
@@ -944,6 +945,12 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+- **Loop R64（2026-06-18，双轨）**：
+  - **Track A**：Exp10 **40/40** ✅；Exp8 **5/6** — `geoopt_pristine_sp` **不干预**（单 prterun，OT~5，输出缓冲）。
+  - **Track B**：Abstract/Conclusion **>300×→两数量级** honest wording；Methods **rigid strain** 限制；新增 `exp8_status_line.sh`。
+  - **创新审计**：叙事 honesty = **A 级**；Exp8 感知脚本 = **A 级**；SP = **B+ pending**
+  - **Git**：`<hash>` — `loop R64: exp8 status line, narrative/rigid strain` → **pushed: origin/main**
+  - **下一轮**：SP converged → post → 6/6；VMD scheme
 - **Loop R63（2026-06-18，双轨）**：
   - **Track A**：Exp10 **40/40** ✅；发现 **3× 重复** `geoopt_pristine_sp` 写同一 `.out` → 保留 pid 6979，kill 17570/20675；**5/6** SP 进行中。
   - **Track B**：Exp4 **verified** 极化子小节 + **Figure 4**（IPR/J）；keywords 去 transport oversell；Conclusion $E_f$ 术语。

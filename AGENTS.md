@@ -27,7 +27,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **下一任务** | VMD（可选，本机无 vmd）；PRL transport 主结果 |
 | **SDC** | **15** synergy 点（n=1–8 B/N/P @+3%）；audit `sdc_exp10_synergy_audit.json` |
 | **阻塞 PRL** | 机制图 + transport 主结果；叙事已收敛为「非加性耦合 + 设计含义」 |
-| **最新 Loop** | **R73**（见下方笔记） |
+| **最新 Loop** | **R74**（见下方笔记） |
 
 **一行命令**：`bash experiments/exp10_status_line.sh`
 
@@ -944,6 +944,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R74（2026-06-11，双轨）**：
+  - **Track A**：Exp10 **40/40**、Exp8 **6/6** ✅；running=none — **不干预**。
+  - **Track B**：**α–S 力学–非加性相图** — Fig.2(b) `plot_alpha_synergy_phase_map`（Exp.5 α vs Exp.10 S @ n=4,+3%）；Fig.2 改 2×2 四面板；caption 同步。
+  - **创新审计**：双参数设计相图 = **A 级**；transport = **B pending**
+  - **Git**：见本 commit — `loop R74: alpha-S phase map Fig.2b`
+  - **下一轮**：PRL transport；VMD 可选
 
 - **Loop R73（2026-06-11，双轨）**：
   - **Track A**：Exp10 **40/40**、Exp8 **6/6** ✅；running=none — **不干预**。

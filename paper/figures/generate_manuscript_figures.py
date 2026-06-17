@@ -42,7 +42,7 @@ from structure_morphology import (  # noqa: E402
     plot_tetramer_topview,
 )
 from design_space_triangle import plot_synergy_design_triangle  # noqa: E402
-from phase_diagram import plot_gap_strain_phase_diagram  # noqa: E402
+from phase_diagram import plot_alpha_synergy_phase_map, plot_gap_strain_phase_diagram  # noqa: E402
 
 HA_TO_MEV = 27.211386245988 * 1000.0
 EXP5_DOPANTS = ("B", "N", "P")
@@ -196,18 +196,22 @@ def _waterfall_row(ax, dop: str, sdc: dict) -> None:
     ax.set_title(dop, fontsize=8, fontweight="bold", color=get_color(dop))
 
 
-def figure2_synergy_combined(audit: dict, sdc: dict, out_dir: Path) -> Path:
-    """Fig. 2: design-space triangle + S bars + scaling."""
+def figure2_synergy_combined(audit: dict, sdc: dict, table1: dict, out_dir: Path) -> Path:
+    """Fig. 2: design triangle + alpha-S phase map + S bars + scaling."""
     apply_nature_style()
     by_dop = _synergy_by_dopant(audit)
     fits = audit.get("size_scaling_fits", {})
 
-    fig = plt.figure(figsize=(NATURE_DOUBLE_COL, NATURE_DOUBLE_COL * 0.82))
-    gs = fig.add_gridspec(2, 3, height_ratios=[1.15, 1.0], hspace=0.42, wspace=0.35)
+    fig = plt.figure(figsize=(NATURE_DOUBLE_COL, NATURE_DOUBLE_COL * 0.88))
+    gs = fig.add_gridspec(2, 2, height_ratios=[1.1, 1.0], hspace=0.45, wspace=0.38)
 
-    ax_tri = fig.add_subplot(gs[0, :])
+    ax_tri = fig.add_subplot(gs[0, 0])
     plot_synergy_design_triangle(ax_tri, sdc, highlight_n=TETRAMER_N)
     finalize_axes(ax_tri, panel_label="a")
+
+    ax_phase = fig.add_subplot(gs[0, 1])
+    plot_alpha_synergy_phase_map(ax_phase, table1, audit, n=TETRAMER_N, strain_pct=EXP10_STRAIN)
+    finalize_axes(ax_phase, panel_label="b")
 
     ax_bar = fig.add_subplot(gs[1, 0])
     rows = [r for r in audit["synergy_table"] if r["n_molecules"] == TETRAMER_N]
@@ -224,9 +228,9 @@ def figure2_synergy_combined(audit: dict, sdc: dict, out_dir: Path) -> Path:
     ax_bar.set_ylabel(r"$\mathcal{S}$ (meV/atom)")
     ax_bar.set_ylim(ylo, yhi)
     annotate_bar_values(ax_bar, x, ss, fontsize=8)
-    finalize_axes(ax_bar, panel_label="b")
+    finalize_axes(ax_bar, panel_label="c")
 
-    ax_scale = fig.add_subplot(gs[1, 1:])
+    ax_scale = fig.add_subplot(gs[1, 1])
     ylo_b = min(r["synergy_S_meV_per_atom"] for r in audit["synergy_table"]) * 1.08
     yhi_b = max(r["synergy_S_meV_per_atom"] for r in audit["synergy_table"]) * 1.12
     shade_synergy_physics(ax_scale, ylo_b, max(yhi_b, 8.0))
@@ -245,7 +249,7 @@ def figure2_synergy_combined(audit: dict, sdc: dict, out_dir: Path) -> Path:
     ax_scale.set_xlim(0.4, 8.6)
     ax_scale.set_ylim(ylo_b, max(yhi_b, 8.0))
     ax_scale.axvline(TETRAMER_N, color="#444", ls=(0, (2, 2)), lw=0.9)
-    finalize_axes(ax_scale, panel_label="c")
+    finalize_axes(ax_scale, panel_label="d")
     origin_legend(ax_scale, ncol=3, loc="lower right")
 
     fig.subplots_adjust(left=0.08, right=0.98, top=0.94, bottom=0.12)
@@ -316,7 +320,7 @@ def main() -> int:
     exp4 = load_json(ROOT / "experiments/analysis/exp4_polaron_verification.json")
 
     p1 = figure1_strain_coupling(exp5, table1, out_dir)
-    p2 = figure2_synergy_combined(audit, sdc, out_dir)
+    p2 = figure2_synergy_combined(audit, sdc, table1, out_dir)
     p3 = figure3_electronic_morphology(exp4, out_dir)
     print(f"Wrote {p1}")
     print(f"Wrote {p2}")

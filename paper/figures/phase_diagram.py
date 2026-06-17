@@ -87,3 +87,44 @@ def plot_gap_strain_phase_diagram(
         title="Gap regime",
         title_fontsize=6.5,
     )
+
+
+def plot_alpha_synergy_phase_map(ax, table1: dict, audit: dict, *, n: int = 4, strain_pct: float = 3.0) -> None:
+    """Mechanics (alpha) vs non-additivity (S) phase map at fixed n, strain."""
+    rows = [r for r in audit["synergy_table"] if r["n_molecules"] == n and abs(r["strain_pct"] - strain_pct) < 0.01]
+    if not rows:
+        return
+
+    alphas, ss, dops = [], [], []
+    for r in sorted(rows, key=lambda x: x["dopant"]):
+        dop = r["dopant"]
+        sys_key = dop if dop in table1["systems"] else dop
+        alphas.append(table1["systems"][sys_key]["alpha_meV_per_pct"])
+        ss.append(r["synergy_S_meV_per_atom"])
+        dops.append(dop)
+
+    xlim = (-350, 80)
+    ylim = (min(ss) * 1.2, max(ss) * 1.25)
+    if ylim[0] > -5:
+        ylim = (min(ss) * 1.15, max(max(ss) * 1.2, 5))
+
+    ax.axhline(0, color="#333", lw=0.9, zorder=1)
+    ax.axvline(0, color="#333", lw=0.9, zorder=1)
+    ax.fill_between(xlim, 0, ylim[1], color="#CC0033", alpha=0.06, zorder=0)
+    ax.fill_between(xlim, ylim[0], 0, color="#0055AA", alpha=0.06, zorder=0)
+    ax.text(0.03, 0.97, r"$\mathcal{S}>0$ (anti-cooperative)", transform=ax.transAxes, fontsize=6, color="#CC0033", va="top")
+    ax.text(0.03, 0.03, r"$\mathcal{S}<0$ (cooperative)", transform=ax.transAxes, fontsize=6, color="#0055AA", va="bottom")
+    ax.text(0.72, 0.50, r"$\alpha>0$", transform=ax.transAxes, fontsize=6, color="#444")
+    ax.text(0.08, 0.50, r"$\alpha<0$", transform=ax.transAxes, fontsize=6, color="#444")
+
+    colors = {"B": "#0055AA", "N": "#CC0033", "P": "#FF8800"}
+    for a, s, dop in zip(alphas, ss, dops):
+        ax.scatter(a, s, s=110, c=colors[dop], edgecolors="#000", linewidths=0.9, zorder=4)
+        ax.annotate(dop, (a, s), textcoords="offset points", xytext=(7, 5), fontsize=8, fontweight="bold", color=colors[dop])
+
+    ax.set_xlim(xlim)
+    ax.set_ylim(ylim)
+    ax.set_xlabel(r"Strain stiffness $\alpha$ (meV/\%)")
+    ax.set_ylabel(r"$\mathcal{S}$ at $n=4$, $\varepsilon=+3$\\% (meV/atom)")
+    ax.set_title(r"Mechanical–non-additive phase map", fontsize=8, pad=4)
+

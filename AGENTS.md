@@ -949,7 +949,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
   - **Track A**：Exp8 **5/6** — SP **不干预**（OT ~103/330，lsof 确认写 `failed_partial`；N_sp 参考 ~330 OT）。
   - **Track B**：`exp8_status_line`/`post_exp8` **修复错误 .out 路径**；Results 残余 **300×** 措辞 honest 化。
   - **创新审计**：Exp8 感知 = **A 级**（根因：归档 partial 后 CP2K fd 仍写旧路径）；SP = **B+ pending**
-  - **Git**：`<hash>` — `loop R65: exp8 out-path fix, 300x cleanup` → **pushed: origin/main**
+  - **Git**：`c731daa` — `loop R65: exp8 out-path fix, 300x cleanup` → **pushed: origin/main**
   - **下一轮**：SP converged → `post_exp8_converged.sh`（自动 consolidate）；~200 OT 剩余
 - **Loop R64（2026-06-18，双轨）**：
   - **Track A**：Exp10 **40/40** ✅；Exp8 **5/6** — `geoopt_pristine_sp` **不干预**（单 prterun，OT~5，输出缓冲）。

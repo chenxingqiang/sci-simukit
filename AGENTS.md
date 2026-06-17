@@ -948,7 +948,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
   - **Track A**：Exp10 **40/40** ✅；发现 **3× 重复** `geoopt_pristine_sp` 写同一 `.out` → 保留 pid 6979，kill 17570/20675；**5/6** SP 进行中。
   - **Track B**：Exp4 **verified** 极化子小节 + **Figure 4**（IPR/J）；keywords 去 transport oversell；Conclusion $E_f$ 术语。
   - **创新审计**：Exp4 诚实两点评述 = **A 级**；双 batch 风险 = **已缓解**；Exp8 = **B+ pending**
-  - **Git**：`<hash>` — `loop R63: Exp4 figure, kill dup SP, polaron subsection` → **pushed: origin/main**
+  - **Git**：`c677911` — `loop R63: Exp4 figure, kill dup SP, polaron subsection` → **pushed: origin/main**
   - **下一轮**：Exp8 SP converged → `post_exp8_converged.sh`；VMD scheme；勿重复 launch SP
 - **Loop R62（2026-06-18，双轨）**：
   - **Track A**：Exp10 **40/40** ✅；Exp8 SP **重启**（前次 OT~35 中断，partial `.out` 已归档）。

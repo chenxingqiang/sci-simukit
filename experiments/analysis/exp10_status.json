@@ -1,10 +1,8 @@
 {
-  "updated": "2026-06-16",
-  "converged": 39,
+  "updated": "2026-06-18",
+  "converged": 40,
   "total": 40,
-  "pending": [
-    "size_8x60_pristine_pos3pct"
-  ],
+  "pending": [],
   "tasks": [
     {
       "task": "size_1x60_B_pos0pct",
@@ -242,35 +240,9 @@
     },
     {
       "task": "size_8x60_pristine_pos3pct",
-      "converged": false,
-      "last_ot_step": 221,
-      "last_grad": 1.35e-06
+      "converged": true,
+      "last_ot_step": 250,
+      "last_grad": 8.3e-07
     }
-  ],
-  "running_task": "size_8x60_pristine_pos3pct",
-  "running_snapshot": {
-    "last_ot_step": 221,
-    "last_grad": 1.35e-06,
-    "reference_task": "size_8x60_pristine_pos0pct",
-    "reference_ot_steps": 226,
-    "ot_progress_pct": 97.8,
-    "eps_scf": 1e-06,
-    "grad_ratio_to_eps": 1.4,
-    "critical_zone": true,
-    "time_per_ot_step_s": 16.1,
-    "eta_minutes_to_ref_ot": 1.0,
-    "grad_trend": "decreasing",
-    "grad_drop_per_ot_step": 9.571428571428574e-08,
-    "eta_minutes_to_eps": 1.0
-  },
-  "pending_reference_ot": {
-    "size_8x60_pristine_pos3pct": {
-      "reference_task": "size_8x60_pristine_pos0pct",
-      "reference_ot_steps": 226,
-      "eps_scf": 1e-06
-    }
-  },
-  "batch_queue": [
-    "size_8x60_pristine_pos3pct"
   ]
 }

@@ -11,7 +11,7 @@ where $\epsilon$ is biaxial strain, $\delta$ labels the dopant species (B, N, or
 Non-additive coupling corresponds to $\mathcal{S}\neq 0$; additive superposition gives $\mathcal{S}=0$ by construction.
 
 Operationally, $P$ is extracted from converged CP2K outputs (`SCF run converged`): total energy from the \texttt{ENERGY|} line, energy per atom from $E/N_{\mathrm{atoms}}$, and $J$ from the HOMO--HOMO$-1$ splitting of the MO eigenvalue block (same protocol as Exp.~3--4).
-All $\mathcal{S}$ values reported for finite-size validation are computed with \texttt{c/simukit-sdc} (canonical; see \texttt{AGENTS.md}), which writes auditable JSON under \texttt{experiments/analysis/sdc/}; meV/atom tables and provisional size-scaling fits are summarized in \texttt{sdc\_exp10\_synergy\_audit.json} ($\mathcal{S}_\infty$ withheld until 40/40). Python plotting uses \texttt{src/sdc\_coupling\_analysis.py --plots-from-json}.
+All $\mathcal{S}$ values reported for finite-size validation are computed with \texttt{c/simukit-sdc} (canonical; see \texttt{AGENTS.md}), which writes auditable JSON under \texttt{experiments/analysis/sdc/}; meV/atom tables and size-scaling fits are summarized in \texttt{sdc\_exp10\_synergy\_audit.json} (40/40 complete; $\mathcal{S}_\infty$ provisional). Python plotting uses \texttt{src/sdc\_coupling\_analysis.py --plots-from-json}.
 
 Finite-size extrapolation of the coupling contribution uses
 \begin{equation}
@@ -19,7 +19,7 @@ Finite-size extrapolation of the coupling contribution uses
 \label{eq:size_scaling}
 \end{equation}
 fitted to converged Exp.~10 points at $+3$\% strain; $\mathcal{S}_\infty$ is the bulk-network design limit relevant to extended graphullerene sheets.
-% DATA: pending 40/40; 39/40; 12 synergy pts (n=8 B/N/P done; ref pristine +3%% pending); 8x60 batch np<=9 (67% CPU) — audit: sdc_exp10_synergy_audit.json
+% DATA: 40/40 complete; 15 synergy pts (n=1-8 B/N/P @+3%%); audit: sdc_exp10_synergy_audit.json
 
 The effective Hamiltonian parameters are not fitted ad hoc: $V_{\mathrm{doping}}$ and $V_{\mathrm{strain}}$ are identified with $\Delta P(0,\delta)$ and $\Delta P(\epsilon,0)$ from single-knob DFT, while $V_{\mathrm{coupling}}$ is proportional to $\mathcal{S}$ in Eq.~\eqref{eq:synergy_order}.
 This SDC framework provides a transferable design operator---scan $(\epsilon,\delta)$ with few DFT points, rank combinations by $|\mathcal{S}|$, and prioritize polaron-transport descriptors ($J$, $\lambda$, IPR) before Marcus mobility evaluation.

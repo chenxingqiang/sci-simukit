@@ -21,13 +21,13 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | 项 | 值 |
 |----|-----|
 | **Exp10** | **40/40** converged ✅（见 `exp10_status.json`） |
-| **运行中** | none |
+| **运行中** | Exp8 `geoopt_pristine_sp`（np=4，67% CPU cap） |
 | **临界区** | `bash experiments/exp10_status_line.sh` → 见 **CRIT** / `critical_zone` |
 | **下一任务** | Exp8 `geoopt_pristine_sp`；投稿叙事收紧 |
-| **Exp8** | **5/6**（缺 `geoopt_pristine_sp`） |
+| **Exp8** | **5/6** → `geoopt_pristine_sp` **running**（np=4） |
 | **SDC** | **15** synergy 点（n=1–8 B/N/P @+3%）；$\mathcal{S}_\infty$ provisional；audit `sdc_exp10_synergy_audit.json` |
 | **阻塞 PRL** | 叙事/术语（非 Exp10）；机制图 + transport 主结果 |
-| **最新 Loop** | **R60**（见下方笔记） |
+| **最新 Loop** | **R61**（见下方笔记） |
 
 **一行命令**：`bash experiments/exp10_status_line.sh`
 
@@ -942,6 +942,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
   - **下一轮**：`8×60_B_pos3` 收敛 → post → **35/40** + 可能第 12 条 synergy；Figure 1/2 final 仍 pending。
 
 
+
+- **Loop R61（2026-06-18，双轨）**：
+  - **Track A**：Exp10 **40/40** ✅（无动作）；启动 Exp8 **`geoopt_pristine_sp`**（120 atoms，np=4，后台）。
+  - **Track B**：主文插入 **Figure 3**（SDC scaling）；Table 1 / Abstract **$E_f$ 术语校准**（substitution energy vs pristine，no $\mu$）。
+  - **创新审计**：Figure 3 闭环 = **A 级**；术语 honesty = **A 级**（PRL 审稿风险↓）；Exp8 SP = **B+ 级 pending**。
+  - **Git**：`loop R61: …` → **pushed: origin/main**
+  - **下一轮**：Exp8 SP converged → 6/6；VMD scheme 图；transport 主图规划。
 - **Loop R60（2026-06-18，双轨）**：
   - **Track A**：**40/40** ✅；`size_8x60_pristine_pos3pct` 收敛 → `post_exp10_converged.sh`；SDC **15** synergy 点；n=8 N $\mathcal{S}$ 符号反转（$+2.4$→$-2.3$ meV/atom）。
   - **Track B**：Abstract/Methods/Discussion/Conclusion **39→40/40**；$\mathcal{S}_\infty$ provisional（B/N/P: $-0.52/-0.68/-0.13$ meV/atom）；`figure3_sdc_scaling.pdf`。

@@ -35,7 +35,7 @@
 \date{\today}
 
 \begin{abstract}
-We report the discovery of non-additive coupling between heteroatom doping and mechanical strain in two-dimensional graphullerene networks that fundamentally alters their energetic stability and electronic properties. Through first-principles DFT calculations (PBE with Grimme DFT-D3 dispersion) on B/N/P-doped quasi-hexagonal C$_{60}$ tetramer networks under biaxial strain ($\pm$5\%), we demonstrate that different dopant types exhibit dramatically different strain sensitivities: N-doped systems show strong negative sensitivity ($-303$ meV/\%), B-doped systems show positive sensitivity ($+57$ meV/\%), while pristine networks remain nearly strain-insensitive ($-1$ meV/\%). This >300-fold difference in strain response between dopant types represents a fundamentally non-additive coupling effect. The most stable configuration is N-doped graphullerene at $+2.5$\% tensile strain, with formation energy of $-231$ eV/dopant. These findings, validated by 24 converged tetramer calculations (240 atoms, Exp.~5) and finite-size scaling tests up to $8\times\mathrm{C}_{60}$ (Exp.~10; all 40 size-scaling calculations converged), establish a new paradigm for engineering quantum materials with dynamically reconfigurable properties through simultaneous control of electronic structure and lattice geometry.
+We report the discovery of non-additive coupling between heteroatom doping and mechanical strain in two-dimensional graphullerene networks that fundamentally alters their energetic stability and electronic properties. Through first-principles DFT calculations (PBE with Grimme DFT-D3 dispersion) on B/N/P-doped quasi-hexagonal C$_{60}$ tetramer networks under biaxial strain ($\pm$5\%), we demonstrate that different dopant types exhibit dramatically different strain sensitivities: N-doped systems show strong negative sensitivity ($-303$ meV/\%), B-doped systems show positive sensitivity ($+57$ meV/\%), while pristine networks remain nearly strain-insensitive ($-1$ meV/\%). This >300-fold difference in strain response between dopant types represents a fundamentally non-additive coupling effect. The most stable configuration is N-doped graphullerene at $+2.5$\% tensile strain, with relative stability $-231$~eV/dopant vs pristine (no $\mu$ reference). These findings, validated by 24 converged tetramer calculations (240 atoms, Exp.~5) and finite-size scaling tests up to $8\times\mathrm{C}_{60}$ (Exp.~10; all 40 size-scaling calculations converged), establish a new paradigm for engineering quantum materials with dynamically reconfigurable properties through simultaneous control of electronic structure and lattice geometry.
 \end{abstract}
 
 \keywords{graphullerene, strain engineering, heteroatom doping, quantum transport, polaron dynamics}
@@ -115,12 +115,18 @@ The dramatic departure from this insensitivity occurs when heteroatom doping is 
 \includegraphics[width=0.48\textwidth]{figures/final_figures/figure1_strain_doping.pdf}
 \hfill
 \includegraphics[width=0.48\textwidth]{figures/final_figures/figure2_synergy.pdf}
-% DATA: Figure 1/2 Exp5 (final_figures/). SDC scaling: figures/pending/sdc_synergy_vs_size_eps3pct_epa.pdf [40/40; 15 synergy pts; audit: sdc_exp10_synergy_audit.json]
+% DATA: Figure 1/2 Exp5; Figure 3 SDC (final_figures/figure3_sdc_scaling.pdf) [40/40; 15 pts]
 \caption{\label{fig:electronic_props}Non-additive coupling between strain and doping in graphullerene networks from DFT calculations. Left: (a) Strain response of pristine C$_{60}$ dimer (120 atoms) and tetramer (240 atoms) showing near-insensitivity; (b) Formation energy vs strain for different dopants. Right: (a) Energy change from 0\% strain for each dopant type, revealing dramatically different responses; (b) Strain sensitivity showing N-doped systems 300$\times$ more sensitive than pristine.}
 \end{figure*}
 
+\begin{figure}
+\includegraphics[width=0.62\textwidth]{figures/final_figures/figure3_sdc_scaling.pdf}
+% DATA: 40/40 Exp10; 15 synergy pts; S_infinity provisional — sdc_exp10_synergy_audit.json
+\caption{\label{fig:sdc_scaling}Synergy order parameter $\mathcal{S}$ vs supercell size $n$ at $+3$\% biaxial strain (Exp.~10, 40/40 converged). Non-zero $\mathcal{S}$ at all sizes confirms non-additive strain--doping coupling; N-doped $\mathcal{S}$ changes sign between $n=6$ and $n=8$ [see Discussion]. Dashed lines: $1/n$ extrapolation; $\mathcal{S}_\infty$ values provisional.}
+\end{figure}
+
 \begin{table}
-\caption{\label{tab:doping_results}Total energies and strain sensitivities from DFT calculations on C$_{60}$ tetramer networks (240 atoms, Exp.~5; PBE+D3). Strain sensitivity $\alpha = dE/d\epsilon$ from a linear fit to the calculated strain grid; P-doped $\alpha$ excludes the $+2.5$\% point ($E=-1369.909$~Ha) that is SCF-converged but a metastable local minimum relative to neighboring strain points. Source: \texttt{dft\_results/exp\_5\_synergy/} [verified: \texttt{table1\_verification.json}].}
+\caption{\label{tab:doping_results}Total energies and strain sensitivities from DFT calculations on C$_{60}$ tetramer networks (240 atoms, Exp.~5; PBE+D3). Strain sensitivity $\alpha = dE/d\epsilon$ from a linear fit to the calculated strain grid; P-doped $\alpha$ excludes the $+2.5$\% point ($E=-1369.909$~Ha) that is SCF-converged but a metastable local minimum relative to neighboring strain points. $E_f=(E_{\mathrm{doped}}-E_{\mathrm{pristine}})/n_{\mathrm{dopants}}$ at $\epsilon=0$ (eV/dopant; relative to pristine tetramer, no chemical-potential reference). Source: \texttt{dft\_results/exp\_5\_synergy/} [verified: \texttt{table1\_verification.json}].}
 \begin{ruledtabular}
 \begin{tabular}{lcccc}
 System & $E(0\%)$ (Ha) & $E(+5\%)$ (Ha) & $\alpha$ (meV/\%) & $E_f$ (eV/dopant) \\
@@ -172,7 +178,7 @@ Finite-size validation of the synergy order parameter $\mathcal{S}(n)$ at $+3$\%
 
 \subsection{\label{sec:formation_energy}Formation Energy Analysis}
 
-The formation energy per dopant is $E_f = (E_{doped} - E_{pristine})/n_{dopants}$, where $n_{dopants} = 6$. At 0\% strain: N-doped ($E_f = -230.5$ eV/dopant) is most stable, P-doped ($E_f = -31.5$ eV/dopant) is moderately stable, while B-doped ($E_f = +159.0$ eV/dopant) is unfavorable. Under tensile strain, N-doped systems become more stable while B-doped systems become less stable—this divergent response is the signature of non-additive coupling [verified: Table~\ref{tab:doping_results}].
+The relative substitution energy per dopant is $E_f = (E_{doped} - E_{pristine})/n_{\mathrm{dopants}}$, where $n_{dopants} = 6$. At 0\% strain: N-doped ($E_f = -230.5$ eV/dopant) is most stable, P-doped ($E_f = -31.5$ eV/dopant) is moderately stable, while B-doped ($E_f = +159.0$ eV/dopant) is unfavorable. Under tensile strain, N-doped systems become more stable while B-doped systems become less stable—this divergent response is the signature of non-additive coupling [verified: Table~\ref{tab:doping_results}].
 
 \section{\label{sec:conclusions}Conclusions}
 

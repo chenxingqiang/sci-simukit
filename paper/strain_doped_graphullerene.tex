@@ -112,17 +112,15 @@ where $E_0 = -1363.551$ Ha (for C$_{60}$ tetramer) and $\alpha = -0.97$ meV/\% i
 The dramatic departure from this insensitivity occurs when heteroatom doping is combined with strain. Table~\ref{tab:doping_results} quantifies the synergistic effects across different dopant types. Most striking is the N-doped system, which exhibits a strain sensitivity of $-303.2$ meV/\%—more than two orders of magnitude larger in magnitude than pristine networks ($|\alpha_{\mathrm{pristine}}|\approx 1$~meV/\%). Under tensile strain, N-doped systems become increasingly stable, with the most stable configuration occurring at $+2.5$\% strain ($E = -1414.408$ Ha). In contrast, B-doped systems show positive sensitivity ($+56.9$ meV/\%), becoming less stable under tension. P-doped systems exhibit intermediate behavior ($-19.1$ meV/\%).
 
 \begin{figure*}
-\includegraphics[width=0.48\textwidth]{figures/final_figures/figure1_strain_doping.pdf}
-\hfill
-\includegraphics[width=0.48\textwidth]{figures/final_figures/figure2_synergy.pdf}
-% DATA: Figure 1/2 Exp5; Figure 3 SDC (final_figures/figure3_sdc_scaling.pdf) [40/40; 15 pts]
-\caption{\label{fig:electronic_props}Non-additive coupling between strain and doping in graphullerene networks from DFT calculations. Left: (a) Strain response of pristine C$_{60}$ dimer (120 atoms) and tetramer (240 atoms) showing near-insensitivity; (b) Substitution energy $E_f$ vs strain for different dopants. Right: (a) Energy change from 0\% strain for each dopant type, revealing dramatically different responses; (b) Strain sensitivity $\alpha$; $|\alpha_N|/|\alpha_{\mathrm{pristine}}|\gg 1$.}
+\includegraphics[width=\textwidth]{figures/final_figures/figure_main_exp5.pdf}
+% DATA: Exp5 composite (figure_main_exp5.pdf); legacy panels figure1/figure2_synergy.pdf
+\caption{\label{fig:electronic_props}Non-additive strain--doping coupling in graphullerene tetramers (Exp.~5, PBE+D3). (a) Pristine $\Delta E/N_{\mathrm{atom}}$ vs biaxial strain for dimer and tetramer (near-insensitive). (b) Substitution energy $E_f$ vs strain for B/N/P dopants. (c) Total-energy change $\Delta E$ from $\varepsilon=0$. (d) Strain sensitivity $\alpha$ with inset highlighting $|\alpha_{\mathrm{pristine}}|\approx 1$~meV/\% vs $|\alpha_N|\approx 303$~meV/\%.}
 \end{figure*}
 
 \begin{figure}
 \includegraphics[width=0.62\textwidth]{figures/final_figures/figure3_sdc_scaling.pdf}
 % DATA: 40/40 Exp10; 15 synergy pts; S_infinity provisional — sdc_exp10_synergy_audit.json
-\caption{\label{fig:sdc_scaling}Synergy order parameter $\mathcal{S}$ vs supercell size $n$ at $+3$\% biaxial strain (Exp.~10, 40/40 converged). Non-zero $\mathcal{S}$ at all sizes confirms non-additive strain--doping coupling; N-doped $\mathcal{S}$ changes sign between $n=6$ and $n=8$ [see Discussion]. Dashed lines: $1/n$ extrapolation; $\mathcal{S}_\infty$ values provisional.}
+\caption{\label{fig:sdc_scaling}Synergy order parameter $\mathcal{S}$ vs supercell size $n$ at $+3$\% biaxial strain (Exp.~10, 40/40 converged). Shaded band: additive limit $\mathcal{S}=0$. Dashed curves: provisional $1/n$ extrapolations with $\mathcal{S}_\infty$ in legend [\texttt{sdc\_exp10\_synergy\_audit.json}]; N-doped $\mathcal{S}$ changes sign at $n=8$.}
 \end{figure}
 
 \begin{table}
@@ -187,7 +185,7 @@ As a complementary probe of how strain--doping coupling perturbs charge transfer
 \begin{figure}
 \includegraphics[width=0.72\textwidth]{figures/final_figures/figure4_exp4_polaron.pdf}
 % DATA: exp4_polaron_verification.json — IPR 75.0/45.0; J 26.6/37.2 meV
-\caption{\label{fig:exp4_polaron}Exp.~4 polaronic descriptors (two converged points): (a) IPR; (b) HOMO--HOMO$-1$ splitting $J$. Pristine 0\% vs B-doped $+3$\% strain; small-polaron regime retained.}
+\caption{\label{fig:exp4_polaron}Exp.~4 polaronic descriptors (two-point audit): (a) IPR; (b) intermolecular coupling $J$. Pristine 0\% vs B-doped $+3$\% strain; bar labels give audited values; annotations show relative change. Small-polaron regime retained ($J<\lambda/2$).}
 \end{figure}
 
 \section{\label{sec:conclusions}Conclusions}

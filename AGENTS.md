@@ -23,11 +23,11 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Exp10** | **40/40** converged ✅（见 `exp10_status.json`） |
 | **运行中** | Exp8 SP **OT ~103/330**（写 `failed_partial` 文件，非 canonical `.out`） |
 | **临界区** | `bash experiments/exp10_status_line.sh` → 见 **CRIT** / `critical_zone` |
-| **下一任务** | Exp8 SP converged → `post_exp8_converged.sh`；VMD scheme |
+| **下一任务** | Exp8 SP converged → post；VMD scheme 图 |
 | **Exp8** | **5/6** → `geoopt_pristine_sp` **restarted**（np=4；prior partial archived） |
 | **SDC** | **15** synergy 点（n=1–8 B/N/P @+3%）；$\mathcal{S}_\infty$ provisional；audit `sdc_exp10_synergy_audit.json` |
 | **阻塞 PRL** | 叙事/术语（非 Exp10）；机制图 + transport 主结果 |
-| **最新 Loop** | **R65**（见下方笔记） |
+| **最新 Loop** | **R66**（见下方笔记） |
 
 **一行命令**：`bash experiments/exp10_status_line.sh`
 
@@ -945,6 +945,12 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+- **Loop R66（2026-06-18，双轨）**：
+  - **Track A**：Exp8 **5/6** SP OT ~120/330 — **不干预**。
+  - **Track B**：**配图全面升级** — `figure_main_exp5.pdf` 2×2 合成；B/N/P 色板；α inset；SDC sign-flip 标注；Exp4 数值标签；`generate_manuscript_figures.py` 重写。
+  - **创新审计**：主文 Figure 1 呈现 = **A 级**；VMD scheme 仍 pending
+  - **Git**：`<hash>` — `loop R66: publication figure upgrade` → **pushed: origin/main**
+  - **下一轮**：Exp8 post；VMD；可选 ionic-relax 讨论
 - **Loop R65（2026-06-18，双轨）**：
   - **Track A**：Exp8 **5/6** — SP **不干预**（OT ~103/330，lsof 确认写 `failed_partial`；N_sp 参考 ~330 OT）。
   - **Track B**：`exp8_status_line`/`post_exp8` **修复错误 .out 路径**；Results 残余 **300×** 措辞 honest 化。

@@ -60,9 +60,9 @@ NATURE_RCPARAMS = {
 
 COLORS = {
     "pristine": "#7A7A7A",
-    "B": "#4D4D4D",
+    "B": "#0072B2",
     "N": "#5B2C83",
-    "P": "#9A9A9A",
+    "P": "#E69F00",
     "B+N": "#0072B2",
     "Li": "#56B4E9",
     "Na": "#E69F00",
@@ -167,6 +167,41 @@ def nature_legend(ax, ncol: int = 3, loc: str = "upper center") -> None:
         frameon=False,
         handlelength=1.0,
         columnspacing=0.8,
+    )
+
+
+def annotate_bar_values(ax, xs, ys, fmt="{:.1f}", dy=0.02, fontsize=5.5):
+    """Place numeric labels above bars (data coords offset)."""
+    yspan = ax.get_ylim()[1] - ax.get_ylim()[0]
+    for x, y in zip(xs, ys):
+        va = "bottom" if y >= 0 else "top"
+        offset = dy * yspan if y >= 0 else -dy * yspan
+        ax.text(
+            x,
+            y + offset,
+            fmt.format(y),
+            ha="center",
+            va=va,
+            fontsize=fontsize,
+            color="#222222",
+            clip_on=False,
+        )
+
+
+def style_line(ax, x, y, dopant: str, label: str) -> None:
+    ax.plot(
+        x,
+        y,
+        color=get_color(dopant),
+        marker=get_marker(dopant),
+        linestyle="-",
+        linewidth=1.0,
+        markersize=5.0,
+        markerfacecolor=get_color(dopant),
+        markeredgecolor="#333333",
+        markeredgewidth=0.45,
+        label=label,
+        zorder=3,
     )
 
 

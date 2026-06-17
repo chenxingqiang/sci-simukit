@@ -22,12 +22,13 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 |----|-----|
 | **Exp10** | **40/40** converged ✅（见 `exp10_status.json`） |
 | **Exp8** | **6/6** ✅ — `post_exp8_converged.sh` consolidated `geoopt_pristine_sp.out` |
+| **Exp9** | **7/12** GEO_OPT PROGRAM ENDED（见 `exp9_polaron_verification.json`）；vertical SP 输入已生成，未提交 |
 | **运行中** | none |
 | **临界区** | none |
-| **下一任务** | PRL transport 主图（Marcus grid）；VMD 可选 |
+| **下一任务** | Exp9 补跑 5 pending GEO_OPT + vertical SP → λ；PRL Marcus transport 主图 |
 | **SDC** | **15** synergy 点（n=1–8 B/N/P @+3%）；audit `sdc_exp10_synergy_audit.json` |
 | **阻塞 PRL** | 机制图 + transport 主结果；叙事已收敛为「非加性耦合 + 设计含义」 |
-| **最新 Loop** | **R80**（见下方笔记） |
+| **最新 Loop** | **R83**（见下方笔记） |
 
 **一行命令**：`bash experiments/exp10_status_line.sh`
 
@@ -945,11 +946,18 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+- **Loop R83（2026-06-11，双轨）**：
+  - **Track A**：Exp10 **40/40**、Exp8 **6/6** ✅；Exp9 **7/12** GEO_OPT 正常结束；running=none — **不干预**、不提交新 CP2K。
+  - **Track B**：`analyze_exp9_polaron.py` → `exp9_polaron_verification.json`；`generate_vertical_sp.py` 生成 **8** 个 vertical ENERGY 输入；`run_all.sh` 改为分析入口（废弃 legacy `mpirun *_qpos0.inp`）。
+  - **创新审计**：Exp9 审计契约 = **A 级**；Marcus λ = **B pending**；transport 主图仍 **B pending**
+  - **Git**：见本 commit — `loop R83: Exp9 polaron audit and vertical SP inputs`
+  - **下一轮**：用户批准后补跑 Exp9 pending + vertical SP；更新 Fig.S5 为实测 λ
+
 - **Loop R82（2026-06-18，双轨）**：
   - **Track A**：Exp10 **40/40**、Exp8 **6/6** ✅；running=none — **不干预**。
   - **Track B**：**项目精简 + SI 图流水线** — 删除过时 figure/pending/废弃 PRL 脚本；新增 Fig.S4/S5/S6；`render_supplementary_figures.sh` 一键渲染。
   - **创新审计**：SI 图 = **B 级**（S4 VMD+PDOS A；S5/S6 文献/合成）；transport = **B pending**
-  - **Git**：见本 commit — `loop R82: tidy repo and supplementary figure pipeline`
+  - **Git**：`bc617b6` — `loop R82: tidy repo and supplementary figure pipeline` → **pushed: origin/main**
   - **下一轮**：Marcus transport；MolFC 替换合成 FCWD
 
 - **Loop R81（2026-06-11，双轨）**：

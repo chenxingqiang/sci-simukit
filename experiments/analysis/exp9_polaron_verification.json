@@ -1,0 +1,143 @@
+{
+  "source": "dft_results/exp_9_charged_polaron/outputs",
+  "verified_date": "2026-06-18",
+  "converged": 7,
+  "total": 12,
+  "note": "Adiabatic IP/EA from last GEO_OPT ENERGY line. Marcus lambda requires vertical ENERGY at neutral geometry (inputs/vertical/, not yet in outputs).",
+  "systems": {
+    "pristine": {
+      "0": {
+        "project": "polaron_pristine_qpos0_opt",
+        "out_exists": true,
+        "program_ended": true,
+        "energy_ha": -681.9690682249313,
+        "xyz_exists": true
+      },
+      "1": {
+        "project": "polaron_pristine_qpos1_opt",
+        "out_exists": true,
+        "program_ended": true,
+        "energy_ha": -681.7951026818483,
+        "xyz_exists": true
+      },
+      "-1": {
+        "project": "polaron_pristine_qneg1_opt",
+        "out_exists": true,
+        "program_ended": false,
+        "energy_ha": -682.0646811647282,
+        "xyz_exists": true
+      }
+    },
+    "N": {
+      "0": {
+        "project": "polaron_N_qpos0_opt",
+        "out_exists": true,
+        "program_ended": true,
+        "energy_ha": -698.9012085617662,
+        "xyz_exists": true
+      },
+      "1": {
+        "project": "polaron_N_qpos1_opt",
+        "out_exists": true,
+        "program_ended": true,
+        "energy_ha": -698.7581443961042,
+        "xyz_exists": true
+      },
+      "-1": {
+        "project": "polaron_N_qneg1_opt",
+        "out_exists": true,
+        "program_ended": false,
+        "energy_ha": -699.0012884694249,
+        "xyz_exists": true
+      }
+    },
+    "B": {
+      "0": {
+        "project": "polaron_B_qpos0_opt",
+        "out_exists": true,
+        "program_ended": true,
+        "energy_ha": -670.4214150773064,
+        "xyz_exists": true
+      },
+      "1": {
+        "project": "polaron_B_qpos1_opt",
+        "out_exists": true,
+        "program_ended": false,
+        "energy_ha": null,
+        "xyz_exists": true
+      },
+      "-1": {
+        "project": "polaron_B_qneg1_opt",
+        "out_exists": true,
+        "program_ended": true,
+        "energy_ha": -670.5360944830358,
+        "xyz_exists": true
+      }
+    },
+    "P": {
+      "0": {
+        "project": "polaron_P_qpos0_opt",
+        "out_exists": true,
+        "program_ended": true,
+        "energy_ha": -685.4924918779375,
+        "xyz_exists": true
+      },
+      "1": {
+        "project": "polaron_P_qpos1_opt",
+        "out_exists": true,
+        "program_ended": false,
+        "energy_ha": -685.3371638020681,
+        "xyz_exists": true
+      },
+      "-1": {
+        "project": "polaron_P_qneg1_opt",
+        "out_exists": true,
+        "program_ended": false,
+        "energy_ha": -684.9049371156208,
+        "xyz_exists": true
+      }
+    }
+  },
+  "derived": {
+    "adiabatic_eV": {
+      "pristine": {
+        "IP": 4.733845979048742,
+        "EA": null
+      },
+      "N": {
+        "IP": 3.8929762374964083,
+        "EA": null
+      },
+      "B": {
+        "IP": null,
+        "EA": 3.1205871810639576
+      },
+      "P": {
+        "IP": null,
+        "EA": null
+      }
+    },
+    "fundamental_gap_eV": {}
+  },
+  "vertical_sp": {
+    "inputs_dir": "experiments/exp_9_charged_polaron/inputs/vertical",
+    "inputs_pending": [
+      "polaron_B_qneg1_vert_neutral_geom_sp",
+      "polaron_B_qpos1_vert_neutral_geom_sp",
+      "polaron_N_qneg1_vert_neutral_geom_sp",
+      "polaron_N_qpos1_vert_neutral_geom_sp",
+      "polaron_P_qneg1_vert_neutral_geom_sp",
+      "polaron_P_qpos1_vert_neutral_geom_sp",
+      "polaron_pristine_qneg1_vert_neutral_geom_sp",
+      "polaron_pristine_qpos1_vert_neutral_geom_sp"
+    ],
+    "outputs_converged": []
+  },
+  "pending_geo_opt": [
+    "polaron_pristine_qneg1_opt",
+    "polaron_N_qneg1_opt",
+    "polaron_B_qpos1_opt",
+    "polaron_P_qpos1_opt",
+    "polaron_P_qneg1_opt"
+  ]
+}

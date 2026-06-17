@@ -1,53 +1,24 @@
 #!/bin/bash
-# Run all charged polaron calculations
+# Exp9 charged polaron — analysis and input prep (does not launch CP2K by default).
+set -euo pipefail
 
-cd inputs
+ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
+cd "$ROOT"
 
-echo 'Running pristine neutral...'
-mpirun -np 8 cp2k.popt -i polaron_pristine_qpos0.inp -o polaron_pristine_qpos0.out
-echo 'Done.'
+echo "=== Experiment 9: charged polaron ==="
+echo "GEO_OPT outputs: dft_results/exp_9_charged_polaron/outputs/"
+echo ""
 
-echo 'Running pristine cation (+1)...'
-mpirun -np 8 cp2k.popt -i polaron_pristine_qpos1.inp -o polaron_pristine_qpos1.out
-echo 'Done.'
+python3 experiments/analysis/analyze_exp9_polaron.py
+echo ""
+python3 experiments/exp_9_charged_polaron/generate_vertical_sp.py
 
-echo 'Running pristine anion (-1)...'
-mpirun -np 8 cp2k.popt -i polaron_pristine_qneg1.inp -o polaron_pristine_qneg1.out
-echo 'Done.'
+cat <<'EOF'
 
-echo 'Running N neutral...'
-mpirun -np 8 cp2k.popt -i polaron_N_qpos0.inp -o polaron_N_qpos0.out
-echo 'Done.'
+Next steps (manual / on request only):
+  • Pending GEO_OPT: experiments/exp_9_charged_polaron/run_workflow.sh
+  • Vertical lambda inputs: experiments/exp_9_charged_polaron/inputs/vertical/*.inp
+  • Legacy mpirun names (*_qpos0.inp) are obsolete — use *_qpos0_opt.inp
 
-echo 'Running N cation (+1)...'
-mpirun -np 8 cp2k.popt -i polaron_N_qpos1.inp -o polaron_N_qpos1.out
-echo 'Done.'
-
-echo 'Running N anion (-1)...'
-mpirun -np 8 cp2k.popt -i polaron_N_qneg1.inp -o polaron_N_qneg1.out
-echo 'Done.'
-
-echo 'Running B neutral...'
-mpirun -np 8 cp2k.popt -i polaron_B_qpos0.inp -o polaron_B_qpos0.out
-echo 'Done.'
-
-echo 'Running B cation (+1)...'
-mpirun -np 8 cp2k.popt -i polaron_B_qpos1.inp -o polaron_B_qpos1.out
-echo 'Done.'
-
-echo 'Running B anion (-1)...'
-mpirun -np 8 cp2k.popt -i polaron_B_qneg1.inp -o polaron_B_qneg1.out
-echo 'Done.'
-
-echo 'Running P neutral...'
-mpirun -np 8 cp2k.popt -i polaron_P_qpos0.inp -o polaron_P_qpos0.out
-echo 'Done.'
-
-echo 'Running P cation (+1)...'
-mpirun -np 8 cp2k.popt -i polaron_P_qpos1.inp -o polaron_P_qpos1.out
-echo 'Done.'
-
-echo 'Running P anion (-1)...'
-mpirun -np 8 cp2k.popt -i polaron_P_qneg1.inp -o polaron_P_qneg1.out
-echo 'Done.'
-
+Do NOT start new CP2K jobs unless explicitly requested (AGENTS Track A).
+EOF

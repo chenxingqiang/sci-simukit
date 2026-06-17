@@ -949,7 +949,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
   - **Track A**：Exp10 **40/40**、Exp8 **6/6** ✅；running=none — **不干预**。
   - **Track B**：**XRD 风格 π-PDOS 瀑布图** — Fig.3(b) `plot_pdos_waterfall_stack`（12 曲线 dopant×strain 堆叠 + plasma 色标）；替代 gap 热图；caption 同步。
   - **创新审计**：电子态应变演化可视 = **A 级**；push R71 backlog + R72
-  - **Git**：见本 commit — `loop R72: XRD-style PDOS waterfall Fig.3b`
+  - **Git**：`df1951c` — `loop R72: XRD-style PDOS waterfall Fig.3b` → **pushed: origin/main** (R71–R72 batch)
   - **下一轮**：断轴 PDOS / PRL transport
 
 - **Loop R71（2026-06-11，双轨）**：

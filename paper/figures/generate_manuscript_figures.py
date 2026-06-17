@@ -44,6 +44,7 @@ from structure_morphology import (  # noqa: E402
 from design_space_triangle import plot_synergy_design_triangle  # noqa: E402
 from phase_diagram import plot_alpha_synergy_phase_map, plot_gap_strain_phase_diagram  # noqa: E402
 from synergy_floating_bars import plot_nonadditive_floating_bars  # noqa: E402
+from strain_facet_regression import plot_strain_facet_regression  # noqa: E402
 
 HA_TO_MEV = 27.211386245988 * 1000.0
 EXP5_DOPANTS = ("B", "N", "P")
@@ -103,8 +104,8 @@ def figure1_strain_coupling(exp5: dict, table1: dict, out_dir: Path) -> Path:
     """Fig. 1: morphology (structure + strain cell) + mechanical response."""
     apply_nature_style()
     grouped = group_exp5(exp5)
-    fig = plt.figure(figsize=(NATURE_DOUBLE_COL, NATURE_DOUBLE_COL * 0.72))
-    gs = fig.add_gridspec(2, 2, hspace=0.35, wspace=0.28)
+    fig = plt.figure(figsize=(NATURE_DOUBLE_COL, NATURE_DOUBLE_COL * 0.88))
+    gs = fig.add_gridspec(2, 2, hspace=0.42, wspace=0.28, height_ratios=[1.0, 1.15])
 
     ax0 = fig.add_subplot(gs[0, 0])
     plot_dopant_triptych(ax0, XYZ_DIR, strain_tag="+0.0")
@@ -118,26 +119,7 @@ def figure1_strain_coupling(exp5: dict, table1: dict, out_dir: Path) -> Path:
     )
     finalize_axes(ax1, panel_label="b")
 
-    ax = fig.add_subplot(gs[1, 0])
-    shade_strain_response_physics(ax)
-    for dop in ("pristine", *EXP5_DOPANTS):
-        recs = grouped[dop]
-        e0 = next(r["total_energy_Ha"] for r in recs if r["strain"] == 0.0)
-        n_atoms = recs[0]["n_atoms"]
-        strains, ys = [], []
-        for r in recs:
-            if dop == "P" and abs(r["strain"] - P_EXCLUDE_STRAIN) < 0.01:
-                continue
-            strains.append(r["strain"])
-            ys.append((r["total_energy_Ha"] - e0) * HA_TO_MEV / n_atoms)
-        label = "Pristine" if dop == "pristine" else dop
-        style_line(ax, np.array(strains), np.array(ys), dop, label, linewidth=1.8, markersize=7)
-    ax.axhline(0, color="#999999", linewidth=0.6, zorder=0)
-    ax.set_xlabel(r"Biaxial strain $\varepsilon$ (\%)")
-    ax.set_ylabel(r"$\Delta E/N_{\mathrm{atom}}$ (meV/atom)")
-    ax.set_xlim(-5.8, 5.8)
-    finalize_axes(ax, panel_label="c")
-    origin_legend(ax, ncol=4, loc="upper center", bbox=(0.5, 1.22))
+    plot_strain_facet_regression(fig, gs[1, 0], grouped, exclude_p_strain=P_EXCLUDE_STRAIN)
 
     ax = fig.add_subplot(gs[1, 1])
     keys = ("pristine", "B", "N", "P")

@@ -27,7 +27,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **下一任务** | PRL transport 主图（Marcus grid）；VMD 可选 |
 | **SDC** | **15** synergy 点（n=1–8 B/N/P @+3%）；audit `sdc_exp10_synergy_audit.json` |
 | **阻塞 PRL** | 机制图 + transport 主结果；叙事已收敛为「非加性耦合 + 设计含义」 |
-| **最新 Loop** | **R77**（见下方笔记） |
+| **最新 Loop** | **R78**（见下方笔记） |
 
 **一行命令**：`bash experiments/exp10_status_line.sh`
 
@@ -944,6 +944,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R78（2026-06-11，双轨）**：
+  - **Track A**：Exp10 **40/40**、Exp8 **6/6** ✅；running=none — **不干预**。
+  - **Track B**：Fig.1(c) **2×2 facet 回归** — `strain_facet_regression.py`（蓝=pristine 参考，红=掺杂；Exp.5 线性拟合方程）；caption 同步。
+  - **创新审计**：small-multiples 力学叙事 = **A 级**；transport = **B pending**
+  - **Git**：见本 commit — `loop R78: facet strain regression Fig.1c`
+  - **下一轮**：Marcus transport；S(n) facet 可选
 
 - **Loop R77（2026-06-11，双轨）**：
   - **Track A**：Exp10 **40/40**、Exp8 **6/6** ✅；running=none — **不干预**。

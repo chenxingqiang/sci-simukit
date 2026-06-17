@@ -949,7 +949,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
   - **Track A**：Exp10 **40/40**、Exp8 **6/6** ✅；running=none — **不干预**。
   - **Track B**：**XPS 风格 π-PDOS 分解** — Fig.3(d–e) C valence / dopant-site / conduction 组分 + Sum 红线 + Raw 散点；`gaussian_dos(mode=…)`；caption 同步。
   - **创新审计**：电子态化学分辨 = **A 级**（Exp7 kind-resolved PDOS）；VMD / push backlog = **B pending**
-  - **Git**：见本 commit — `loop R70: XPS-style PDOS deconvolution Fig.3`
+  - **Git**：`2cf86fa` — `loop R70: XPS-style PDOS deconvolution Fig.3` → **pushed: origin/main** (R68–R70 batch)
   - **下一轮**：push R68–R70；VMD Fig.1(a)
 
 - **Loop R69（2026-06-11，双轨）**：

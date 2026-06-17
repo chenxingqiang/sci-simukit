@@ -42,6 +42,7 @@ from structure_morphology import (  # noqa: E402
     plot_tetramer_topview,
 )
 from design_space_triangle import plot_synergy_design_triangle  # noqa: E402
+from phase_diagram import plot_gap_strain_phase_diagram  # noqa: E402
 
 HA_TO_MEV = 27.211386245988 * 1000.0
 EXP5_DOPANTS = ("B", "N", "P")
@@ -262,17 +263,8 @@ def figure3_electronic_morphology(exp4: dict, out_dir: Path) -> Path:
     gs = fig.add_gridspec(2, 3, height_ratios=[1.0, 1.05], hspace=0.48, wspace=0.38)
 
     ax = fig.add_subplot(gs[0, 0])
-    for dop in dopants:
-        gaps = []
-        for s in strains:
-            r = records_for(pdos, dopant=dop, strain_pct=s, kind="C")
-            gaps.append(r.gap_ev if r else np.nan)
-        style_line(ax, np.array(strains), np.array(gaps), dop, dop if dop != "pristine" else "Pristine", linewidth=1.8, markersize=8)
-    ax.set_xlabel(r"Biaxial strain $\varepsilon$ (\%)")
-    ax.set_ylabel(r"HOMO–LUMO gap (eV)")
-    ax.set_ylim(-0.05, 1.75)
+    plot_gap_strain_phase_diagram(ax, pdos, dopants=dopants, strains=strains)
     finalize_axes(ax, panel_label="a")
-    origin_legend(ax, ncol=2, loc="upper center", bbox=(0.5, 1.22))
 
     ax = fig.add_subplot(gs[0, 1])
     plot_pdos_waterfall_stack(ax, pdos, dopants=dopants, strains=strains)

@@ -41,6 +41,7 @@ from structure_morphology import (  # noqa: E402
     plot_strain_cell_morph,
     plot_tetramer_topview,
 )
+from design_space_triangle import plot_synergy_design_triangle  # noqa: E402
 
 HA_TO_MEV = 27.211386245988 * 1000.0
 EXP5_DOPANTS = ("B", "N", "P")
@@ -197,22 +198,17 @@ def _waterfall_row(ax, dop: str, sdc: dict) -> None:
 
 
 def figure2_synergy_combined(audit: dict, sdc: dict, out_dir: Path) -> Path:
-    """Fig. 2: energy decomposition morphology + S bars + scaling."""
+    """Fig. 2: design-space triangle + S bars + scaling."""
     apply_nature_style()
     by_dop = _synergy_by_dopant(audit)
     fits = audit.get("size_scaling_fits", {})
 
-    fig = plt.figure(figsize=(NATURE_DOUBLE_COL, NATURE_DOUBLE_COL * 0.78))
-    gs = fig.add_gridspec(2, 3, height_ratios=[1.0, 1.1], hspace=0.45, wspace=0.35)
+    fig = plt.figure(figsize=(NATURE_DOUBLE_COL, NATURE_DOUBLE_COL * 0.82))
+    gs = fig.add_gridspec(2, 3, height_ratios=[1.15, 1.0], hspace=0.42, wspace=0.35)
 
-    for j, dop in enumerate(("B", "N", "P")):
-        ax_w = fig.add_subplot(gs[0, j])
-        _waterfall_row(ax_w, dop, sdc)
-        if j == 0:
-            ax_w.set_ylabel(r"Energy per atom (meV/atom)")
-            finalize_axes(ax_w, panel_label="a")
-        else:
-            finalize_axes(ax_w)
+    ax_tri = fig.add_subplot(gs[0, :])
+    plot_synergy_design_triangle(ax_tri, sdc, highlight_n=TETRAMER_N)
+    finalize_axes(ax_tri, panel_label="a")
 
     ax_bar = fig.add_subplot(gs[1, 0])
     rows = [r for r in audit["synergy_table"] if r["n_molecules"] == TETRAMER_N]

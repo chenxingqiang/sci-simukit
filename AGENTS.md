@@ -27,7 +27,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **下一任务** | VMD scheme 图；PRL 机制/transport 主结果 |
 | **SDC** | **15** synergy 点（n=1–8 B/N/P @+3%）；audit `sdc_exp10_synergy_audit.json` |
 | **阻塞 PRL** | 机制图 + transport 主结果；叙事已收敛为「非加性耦合 + 设计含义」 |
-| **最新 Loop** | **R68**（见下方笔记） |
+| **最新 Loop** | **R69**（见下方笔记） |
 
 **一行命令**：`bash experiments/exp10_status_line.sh`
 
@@ -944,6 +944,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R69（2026-06-11，双轨）**：
+  - **Track A**：Exp10 **40/40**、Exp8 **6/6** ✅；running=none — **不干预**。
+  - **Track B**：**Origin 风格设计空间三角** — Fig.2(a) `design_space_triangle.py`（strain-only $\Delta E$ vs $\mathcal{S}$，加性极限 $\mathcal{S}=0$ 框架，$n=4$ 箭头）；caption/Results 同步；push R68+R69。
+  - **创新审计**：非加性设计空间可视化 = **A 级**（15 点 verified SDC）；VMD / transport = **B pending**
+  - **Git**：见本 commit — `loop R69: Origin-style synergy design triangle`
+  - **下一轮**：VMD Fig.1(a)；Mixing-ratio 副轴；PRL transport 缺口
 
 - **Loop R68（2026-06-11，双轨）**：
   - **Track A**：Exp8 SP **converged** → `post_exp8_converged.sh` → **6/6** ✅（consolidate `failed_partial_20260618_0115` → canonical `.out` + archive）。

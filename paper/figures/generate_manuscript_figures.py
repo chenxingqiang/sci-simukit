@@ -31,7 +31,6 @@ from nature_style import (  # noqa: E402
 )
 from pdos_parser import load_exp7_pdos, records_for  # noqa: E402
 from electronic_morphology import (  # noqa: E402
-    plot_band_edge_morph,
     plot_pdos_deconvolution_xps,
     plot_pdos_waterfall_stack,
 )
@@ -42,7 +41,11 @@ from structure_morphology import (  # noqa: E402
     plot_tetramer_topview,
 )
 from design_space_triangle import plot_synergy_design_triangle  # noqa: E402
-from phase_diagram import plot_alpha_synergy_phase_map, plot_gap_strain_phase_diagram  # noqa: E402
+from electronic_facet_regression import (  # noqa: E402
+    plot_bandedge_strain_facet_regression,
+    plot_gap_strain_facet_regression,
+)
+from phase_diagram import plot_alpha_synergy_phase_map  # noqa: E402
 from synergy_floating_bars import plot_nonadditive_floating_bars  # noqa: E402
 from strain_facet_regression import plot_strain_facet_regression  # noqa: E402
 
@@ -233,35 +236,16 @@ def figure3_electronic_morphology(exp4: dict, out_dir: Path) -> Path:
     strains = [-5.0, 0.0, 5.0]
     dopants = ("pristine", "B", "N", "P")
 
-    fig = plt.figure(figsize=(NATURE_DOUBLE_COL, NATURE_DOUBLE_COL * 0.82))
-    gs = fig.add_gridspec(2, 3, height_ratios=[1.0, 1.05], hspace=0.48, wspace=0.38)
+    fig = plt.figure(figsize=(NATURE_DOUBLE_COL, NATURE_DOUBLE_COL * 0.95))
+    gs = fig.add_gridspec(2, 3, height_ratios=[1.12, 1.0], hspace=0.50, wspace=0.38)
 
-    ax = fig.add_subplot(gs[0, 0])
-    plot_gap_strain_phase_diagram(ax, pdos, dopants=dopants, strains=strains)
-    finalize_axes(ax, panel_label="a")
+    plot_gap_strain_facet_regression(fig, gs[0, 0], pdos, strains=strains, panel_label="a")
 
     ax = fig.add_subplot(gs[0, 1])
     plot_pdos_waterfall_stack(ax, pdos, dopants=dopants, strains=strains)
     finalize_axes(ax, panel_label="b")
 
-    ax = fig.add_subplot(gs[0, 2])
-    inner = ax.inset_axes([0.0, 0.0, 1.0, 1.0])
-    inner.axis("off")
-    ax.axis("off")
-    sub = inner.inset_axes([0.02, 0.08, 0.30, 0.84])
-    r_n = records_for(pdos, dopant="N", strain_pct=0.0, kind="C")
-    if r_n:
-        plot_band_edge_morph(sub, r_n, color=get_color("N"), title=r"N, $\varepsilon=0$")
-    sub2 = inner.inset_axes([0.36, 0.08, 0.30, 0.84])
-    r_b = records_for(pdos, dopant="B", strain_pct=0.0, kind="C")
-    if r_b:
-        plot_band_edge_morph(sub2, r_b, color=get_color("B"), title=r"B, $\varepsilon=0$")
-    sub3 = inner.inset_axes([0.70, 0.08, 0.28, 0.84])
-    r_p = records_for(pdos, dopant="P", strain_pct=0.0, kind="C")
-    if r_p:
-        plot_band_edge_morph(sub3, r_p, color=get_color("P"), title=r"P, $\varepsilon=0$")
-    ax.text(0.5, 1.02, r"Band-edge morph ($E_F=0$)", transform=ax.transAxes, ha="center", fontsize=8, fontweight="bold")
-    finalize_axes(ax, panel_label="c")
+    plot_bandedge_strain_facet_regression(fig, gs[0, 2], pdos, strains=strains, panel_label="c")
 
     ax = fig.add_subplot(gs[1, 0])
     plot_pdos_deconvolution_xps(ax, pdos, dopant="N", strain_pct=5.0, e_min=-4.5, e_max=1.2)

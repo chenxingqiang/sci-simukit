@@ -7,10 +7,11 @@ from typing import Sequence
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.patches import Rectangle
+from matplotlib.transforms import blended_transform_factory
 
 HA_TO_MEV = 27.211386245988 * 1000.0
-COLOR_SEQ = "#666666"
-COLOR_SYN = "#CC0033"
+COLOR_LARGE = "#555555"
+COLOR_SMALL = "#CC0033"
 DOP_COLORS = {"B": "#0055AA", "N": "#CC0033", "P": "#FF8800"}
 
 
@@ -21,31 +22,53 @@ def _row_mev(row: dict) -> tuple[float, float, float]:
     return eps, dop, s_val
 
 
-def _draw_floating_bar(
+def _draw_bracket(ax, x0: float, x1: float, y: float, label: str, *, fs: float = 6.5) -> None:
+    trans = blended_transform_factory(ax.transData, ax.transAxes)
+    h = 0.025
+    ax.plot([x0, x0, x1, x1], [y, y + h, y + h, y], transform=trans, color="#222", lw=0.9, clip_on=False)
+    ax.text((x0 + x1) / 2, y + h + 0.012, label, transform=trans, ha="center", va="bottom", fontsize=fs, style="italic")
+
+
+def _draw_split_bar(
     ax,
     x: float,
-    y0: float,
-    y1: float,
+    eps: float,
+    y_add: float,
+    y_cpl: float,
     *,
-    color: str,
-    width: float = 0.34,
+    width: float = 0.36,
+    label_ends: bool = True,
 ) -> None:
-    lo, hi = (y0, y1) if y0 <= y1 else (y1, y0)
+    """Grey = sequential span; red = synergy gap between additive and coupled endpoints."""
+    y_bot = min(eps, y_add, y_cpl)
+    y_top = max(eps, y_add, y_cpl)
+    s_lo, s_hi = sorted([y_add, y_cpl])
+    if s_hi - s_lo < 1e-9:
+        s_hi = s_lo + 1e-6
+    if s_lo - y_bot > 1e-9:
+        ax.add_patch(Rectangle((x - width / 2, y_bot), width, s_lo - y_bot, facecolor=COLOR_LARGE, edgecolor="#111", lw=0.75, zorder=3))
+    ax.add_patch(Rectangle((x - width / 2, s_lo), width, s_hi - s_lo, facecolor=COLOR_SMALL, edgecolor="#111", lw=0.75, zorder=3))
+    if y_top - s_hi > 1e-9:
+        ax.add_patch(Rectangle((x - width / 2, s_hi), width, y_top - s_hi, facecolor=COLOR_LARGE, edgecolor="#111", lw=0.75, zorder=3))
+    ax.axhline(y_add, color="#111", lw=0.45, ls=(0, (3, 2)), zorder=4)
+    if label_ends:
+        ax.text(x, y_top, f"{y_top:.1f}", ha="center", va="bottom", fontsize=5.5, fontweight="bold")
+        ax.text(x, y_bot, f"{y_bot:.1f}", ha="center", va="top", fontsize=5.5, fontweight="bold")
+
+
+def _draw_solid_bar(ax, x: float, y0: float, y1: float, *, color: str, width: float = 0.36) -> None:
+    lo, hi = sorted([y0, y1])
     if hi - lo < 1e-9:
         hi = lo + 1e-6
-    ax.add_patch(
-        Rectangle(
-            (x - width / 2, lo),
-            width,
-            hi - lo,
-            facecolor=color,
-            edgecolor="#111111",
-            linewidth=0.75,
-            zorder=3,
-        )
-    )
+    ax.add_patch(Rectangle((x - width / 2, lo), width, hi - lo, facecolor=color, edgecolor="#111", lw=0.75, zorder=3))
     ax.text(x, hi, f"{hi:.1f}", ha="center", va="bottom", fontsize=5.5, fontweight="bold")
     ax.text(x, lo, f"{lo:.1f}", ha="center", va="top", fontsize=5.5, fontweight="bold")
+
+
+def _style_dual_y(ax) -> None:
+    ax.tick_params(axis="y", which="both", labelleft=True, labelright=True, left=True, right=True)
+    for sp in ax.spines.values():
+        sp.set_linewidth(1.0)
 
 
 def plot_nonadditive_floating_bars(
@@ -57,10 +80,9 @@ def plot_nonadditive_floating_bars(
     strain_pct: float = 3.0,
 ) -> None:
     """
-    Yield-gap style dual-panel floating bars (Origin paradigm).
+    Maize-yield-gap layout: 3 regions x (Sequential | Coupled DFT) x (R=eps, NR=delta).
 
-    Upper: sequential strain + doping legs (large energy scale).
-    Lower: synergy gap S floating from additive endpoint (meV scale, readable).
+    Broken y-axis: lower = sequential legs; upper zoom = synergy gap on coupled NR bar.
     """
     rows = {
         r["dopant"]: r
@@ -70,14 +92,17 @@ def plot_nonadditive_floating_bars(
     if not rows:
         return
 
-    ax.axis("off")
-    ax_main = ax.inset_axes([0.02, 0.46, 0.96, 0.50])
-    ax_gap = ax.inset_axes([0.02, 0.06, 0.96, 0.34])
+    ax.set_axis_off()
+    ax_lo = ax.inset_axes([0.06, 0.08, 0.90, 0.52])
+    ax_hi = ax.inset_axes([0.06, 0.68, 0.90, 0.26])
+    _style_dual_y(ax_lo)
+    _style_dual_y(ax_hi)
 
-    group_w = 5.2
+    group_w = 5.0
+    gap = 0.75
     x_base = 0.0
-    all_y: list[float] = [0.0]
-    s_by_dop: dict[str, tuple[float, float, float]] = {}
+    all_lo: list[float] = [0.0]
+    gap_ranges: list[tuple[float, float, float]] = []
 
     for dop in dopants:
         row = rows.get(dop)
@@ -86,70 +111,71 @@ def plot_nonadditive_floating_bars(
         eps, dop_m, s_val = _row_mev(row)
         y_add = eps + dop_m
         y_cpl = y_add + s_val
-        s_by_dop[dop] = (y_add, y_cpl, s_val)
-        all_y.extend([0.0, eps, y_add])
+        all_lo.extend([0.0, eps, y_add])
+        gap_ranges.append((y_add, y_cpl, s_val))
 
-        gx = x_base + np.array([0.6, 1.35, 3.0, 3.75])
-        _draw_floating_bar(ax_main, gx[0], 0.0, eps, color=COLOR_SEQ)
-        _draw_floating_bar(ax_main, gx[1], eps, y_add, color=COLOR_SEQ)
-        _draw_floating_bar(ax_main, gx[2], 0.0, eps, color=COLOR_SEQ)
-        _draw_floating_bar(ax_main, gx[3], eps, y_add, color=COLOR_SEQ)
+        xs = x_base + np.array([0.55, 1.30, 3.05, 3.80])
+        _draw_solid_bar(ax_lo, xs[0], 0.0, eps, color=COLOR_LARGE)
+        _draw_solid_bar(ax_lo, xs[1], eps, y_add, color=COLOR_LARGE)
+        _draw_solid_bar(ax_lo, xs[2], 0.0, eps, color=COLOR_LARGE)
+        _draw_split_bar(ax_lo, xs[3], eps, y_add, y_cpl)
+
+        _draw_split_bar(ax_hi, xs[3], y_add, y_add, y_cpl, label_ends=True)
+        ax_hi.text(
+            xs[3],
+            y_cpl + np.sign(s_val or 1) * 0.35,
+            rf"$\mathcal{{S}}={s_val:+.1f}$",
+            ha="center",
+            va="bottom" if s_val >= 0 else "top",
+            fontsize=5.5,
+            color=COLOR_SMALL,
+            fontweight="bold",
+        )
 
         mid = x_base + group_w / 2
-        for a, yfrac, label in [(ax_main, 1.06, dop), (ax_gap, 1.08, dop)]:
-            a.text(mid, yfrac, label, transform=a.get_xaxis_transform(), ha="center", fontsize=8, fontweight="bold", color=DOP_COLORS[dop])
+        ax_lo.text(mid, 1.11, dop, transform=ax_lo.get_xaxis_transform(), ha="center", fontsize=9, fontweight="bold", color=DOP_COLORS[dop])
+        _draw_bracket(ax_lo, x_base + 0.12, x_base + 1.75, 1.04, "Sequential")
+        _draw_bracket(ax_lo, x_base + 2.62, x_base + 4.25, 1.04, "Coupled DFT")
 
-        ax_main.plot([x_base + 0.15, x_base + 2.1], [1.0, 1.0], transform=ax_main.get_xaxis_transform(), color="#333", lw=0.8, clip_on=False)
-        ax_main.text(x_base + 1.1, 1.04, "Sequential", transform=ax_main.get_xaxis_transform(), ha="center", fontsize=6, style="italic")
-        ax_main.plot([x_base + 2.55, x_base + 4.5], [1.0, 1.0], transform=ax_main.get_xaxis_transform(), color="#333", lw=0.8, clip_on=False)
-        ax_main.text(x_base + 3.55, 1.04, "Additive total", transform=ax_main.get_xaxis_transform(), ha="center", fontsize=6, style="italic")
+        for xi, lab in zip(xs[:2], [r"$\varepsilon$", r"$\delta$"]):
+            ax_lo.text(xi, -0.10, lab, transform=ax_lo.get_xaxis_transform(), ha="center", fontsize=6)
+        for xi, lab in zip(xs[2:], [r"$\varepsilon$", r"$\delta$"]):
+            ax_lo.text(xi, -0.10, lab, transform=ax_lo.get_xaxis_transform(), ha="center", fontsize=6)
 
-        for xi, lab in zip([gx[0], gx[1]], [r"$\varepsilon$", r"$\delta$"]):
-            ax_main.text(xi, -0.12, lab, transform=ax_main.get_xaxis_transform(), ha="center", fontsize=6)
-        for xi, lab in zip([gx[2], gx[3]], [r"$\varepsilon$", r"$\delta$"]):
-            ax_main.text(xi, -0.12, lab, transform=ax_main.get_xaxis_transform(), ha="center", fontsize=6)
+        x_base += group_w + gap
 
-        x_base += group_w + 0.8
+    ypad = max(abs(min(all_lo)), abs(max(all_lo))) * 0.06 + 8
+    ax_lo.axhline(0, color="#333", lw=0.8, zorder=1)
+    ax_lo.set_xlim(-0.2, x_base - gap + 0.2)
+    ax_lo.set_ylim(min(all_lo) - ypad, max(all_lo) + ypad)
+    ax_lo.set_ylabel(r"$\Delta E/N_{\mathrm{atom}}$ (meV/atom)", fontsize=7.5)
+    ax_lo.set_xticks([])
 
-    ypad = max(abs(min(all_y)), abs(max(all_y))) * 0.08 + 5
-    ax_main.axhline(0, color="#333333", lw=0.8, zorder=1)
-    ax_main.set_xlim(-0.3, x_base - 0.5)
-    ax_main.set_ylim(min(all_y) - ypad, max(all_y) + ypad)
-    ax_main.set_ylabel(r"$\Delta E$ (meV/atom)", fontsize=7)
-    ax_main.set_xticks([])
-    ax_main.set_title(rf"Sequential decomposition @ $n={n}$, $\varepsilon=+{strain_pct:.0f}$\%", fontsize=7.5, pad=14)
+    y_adds = [g[0] for g in gap_ranges]
+    smax = max(abs(g[2]) for g in gap_ranges) if gap_ranges else 1.0
+    zoom = max(smax * 2.2, 10.0)
+    ax_hi.set_xlim(ax_lo.get_xlim())
+    ax_hi.set_ylim(min(y_adds) - zoom, max(y_adds) + zoom)
+    ax_hi.set_ylabel(r"Gap zoom", fontsize=7)
+    ax_hi.set_xticks([])
 
-    x_base = 0.0
-    s_vals = []
-    for dop in dopants:
-        if dop not in s_by_dop:
-            continue
-        y_add, y_cpl, s_val = s_by_dop[dop]
-        s_vals.append(s_val)
-        gx = x_base + np.array([1.0, 3.2])
-        _draw_floating_bar(ax_gap, gx[0], y_add, y_add, color=COLOR_SEQ, width=0.2)
-        ax_gap.text(gx[0], y_add, rf"${y_add:.0f}$", ha="center", va="top", fontsize=5, color="#444")
-        _draw_floating_bar(ax_gap, gx[1], y_add, y_cpl, color=COLOR_SYN)
-        ax_gap.text(gx[1], y_cpl + (0.8 if s_val >= 0 else -0.8), rf"$\mathcal{{S}}={s_val:+.1f}$", ha="center", va="bottom" if s_val >= 0 else "top", fontsize=6, color=COLOR_SYN, fontweight="bold")
+    for a in (ax_lo, ax_hi):
+        a.spines["top"].set_visible(False if a is ax_lo else True)
+    ax_lo.spines["top"].set_visible(False)
+    ax_hi.spines["bottom"].set_visible(False)
+    ax_lo.tick_params(labeltop=False)
+    ax_hi.tick_params(labelbottom=False)
 
-        ax_gap.plot([x_base + 0.2, x_base + 1.8], [1.0, 1.0], transform=ax_gap.get_xaxis_transform(), color="#333", lw=0.8, clip_on=False)
-        ax_gap.text(x_base + 1.0, 1.04, "Additive end", transform=ax_gap.get_xaxis_transform(), ha="center", fontsize=6, style="italic")
-        ax_gap.plot([x_base + 2.4, x_base + 4.0], [1.0, 1.0], transform=ax_gap.get_xaxis_transform(), color="#333", lw=0.8, clip_on=False)
-        ax_gap.text(x_base + 3.2, 1.04, "Coupled DFT gap", transform=ax_gap.get_xaxis_transform(), ha="center", fontsize=6, style="italic")
-
-        x_base += group_w + 0.8
-
-    smax = max(abs(v) for v in s_vals) if s_vals else 1.0
-    y_adds = [v[0] for v in s_by_dop.values()]
-    zoom = max(smax * 2.8, 12.0)
-    ax_gap.set_xlim(-0.3, x_base - 0.5)
-    ax_gap.set_ylim(min(y_adds) - zoom, max(y_adds) + zoom)
-    ax_gap.set_ylabel(r"Gap (meV/atom)", fontsize=7)
-    ax_gap.set_xticks([])
-    ax_gap.axhline(0, color="#333333", lw=0.6, zorder=1)
+    d = 0.012
+    kwargs = dict(transform=ax_lo.transAxes, color="#333", clip_on=False, lw=0.9)
+    ax_lo.plot((-d, +d), (1, 1), **kwargs)
+    ax_lo.plot((-d, +d), (0, 0), **kwargs)
+    ax_hi.plot((-d, +d), (0, 0), **kwargs)
+    ax_hi.plot((-d, +d), (1, 1), **kwargs)
 
     leg = [
-        plt.Rectangle((0, 0), 1, 1, facecolor=COLOR_SEQ, edgecolor="#111", label=r"Sequential ($\varepsilon+\delta$)"),
-        plt.Rectangle((0, 0), 1, 1, facecolor=COLOR_SYN, edgecolor="#111", label=r"Synergy gap $\mathcal{S}$"),
+        plt.Rectangle((0, 0), 1, 1, facecolor=COLOR_LARGE, edgecolor="#111", label=r"Large sequential ($\varepsilon+\delta$)"),
+        plt.Rectangle((0, 0), 1, 1, facecolor=COLOR_SMALL, edgecolor="#111", label=r"Small synergy gap $\mathcal{S}$"),
     ]
-    ax_gap.legend(handles=leg, loc="lower right", fontsize=5.5, frameon=True, edgecolor="#333")
+    ax_lo.legend(handles=leg, loc="lower right", fontsize=6, frameon=True, edgecolor="#333")
+    ax.text(0.5, 0.98, rf"Non-additive energy gap ($n={n}$, $\varepsilon=+{strain_pct:.0f}$%)", transform=ax.transAxes, ha="center", va="top", fontsize=8, fontweight="bold")

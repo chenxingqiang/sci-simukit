@@ -27,7 +27,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **下一任务** | PRL transport 主图（Marcus grid）；VMD 可选 |
 | **SDC** | **15** synergy 点（n=1–8 B/N/P @+3%）；audit `sdc_exp10_synergy_audit.json` |
 | **阻塞 PRL** | 机制图 + transport 主结果；叙事已收敛为「非加性耦合 + 设计含义」 |
-| **最新 Loop** | **R76**（见下方笔记） |
+| **最新 Loop** | **R77**（见下方笔记） |
 
 **一行命令**：`bash experiments/exp10_status_line.sh`
 
@@ -944,6 +944,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R77（2026-06-11，双轨）**：
+  - **Track A**：Exp10 **40/40**、Exp8 **6/6** ✅；running=none — **不干预**。
+  - **Track B**：Fig.2(c) **Origin 范式精修** — bracket 分组、灰/红 split 浮动柱、双 y 轴、broken-axis gap zoom；legend 对齐 yield-gap 语义。
+  - **创新审计**：参考图视觉 fidelity = **A 级**；transport = **B pending**
+  - **Git**：见本 commit — `loop R77: Origin yield-gap bar polish Fig.2c`
+  - **下一轮**：Marcus transport；VMD
 
 - **Loop R76（2026-06-11，双轨）**：
   - **Track A**：Exp10 **40/40**、Exp8 **6/6** ✅；running=none — **不干预**。

@@ -33,8 +33,7 @@ from pdos_parser import HA_TO_EV, gaussian_dos, gap_matrix, load_exp7_pdos, reco
 from electronic_morphology import (  # noqa: E402
     plot_band_edge_morph,
     plot_gap_heatmap,
-    plot_mo_stick_spectrum,
-    plot_pdos_with_gap,
+    plot_pdos_deconvolution_xps,
 )
 from structure_morphology import (  # noqa: E402
     plot_ipr_localization_morph,
@@ -303,19 +302,11 @@ def figure3_electronic_morphology(exp4: dict, out_dir: Path) -> Path:
     finalize_axes(ax, panel_label="c")
 
     ax = fig.add_subplot(gs[1, 0])
-    grid = np.linspace(-2.8, 0.9, 400)
-    for dop, ls in (("N", "-"), ("B", "--")):
-        r = records_for(pdos, dopant=dop, strain_pct=5.0, kind="C")
-        if r:
-            plot_pdos_with_gap(ax, r, color=get_color(dop), label=f"{dop} ($\\pi$)", grid_ev=grid, sigma=0.11)
-    ax.set_xlabel(r"$E-E_F$ (eV)")
-    ax.set_ylabel(r"$\pi$-PDOS (arb.)")
-    ax.set_xlim(-2.5, 0.8)
+    plot_pdos_deconvolution_xps(ax, pdos, dopant="N", strain_pct=5.0, e_min=-4.5, e_max=1.2)
     finalize_axes(ax, panel_label="d")
-    origin_legend(ax, loc="upper left")
 
     ax = fig.add_subplot(gs[1, 1])
-    plot_mo_stick_spectrum(ax, pdos, strain_pct=0.0)
+    plot_pdos_deconvolution_xps(ax, pdos, dopant="B", strain_pct=5.0, e_min=-4.5, e_max=1.2)
     finalize_axes(ax, panel_label="e")
 
     ax = fig.add_subplot(gs[1, 2])

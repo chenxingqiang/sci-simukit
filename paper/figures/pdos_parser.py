@@ -101,10 +101,13 @@ def load_exp7_pdos(results_dir: Path) -> List[PdosRecord]:
     return [parse_pdos(p) for p in sorted(Path(results_dir).glob("elec_*.pdos"))]
 
 
-def gaussian_dos(eigenvalues_ev, weights, occupations, grid_ev, sigma=0.08):
+def gaussian_dos(eigenvalues_ev, weights, occupations, grid_ev, sigma=0.08, *, mode: str = "occupied"):
+    """Broaden MO sticks. mode: occupied | unoccupied | all."""
     dos = np.zeros_like(grid_ev)
     for e, w, occ in zip(eigenvalues_ev, weights, occupations):
-        if occ < 0.5:
+        if mode == "occupied" and occ < 0.5:
+            continue
+        if mode == "unoccupied" and occ >= 0.5:
             continue
         dos += w * np.exp(-0.5 * ((grid_ev - e) / sigma) ** 2) / (sigma * np.sqrt(2 * np.pi))
     return dos

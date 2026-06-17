@@ -52,6 +52,64 @@ def plot_band_edge_morph(ax, record, *, color, title=""):
     ax.spines["bottom"].set_visible(False)
 
 
+def plot_pdos_deconvolution_xps(
+    ax,
+    records: Iterable[PdosRecord],
+    *,
+    dopant: str = "N",
+    strain_pct: float = 5.0,
+    e_min: float = -5.0,
+    e_max: float = 1.5,
+    sigma: float = 0.09,
+) -> None:
+    """XPS-style π-PDOS deconvolution: C framework + dopant site + Sum."""
+    r_c = records_for(records, dopant=dopant, strain_pct=strain_pct, kind="C")
+    r_d = records_for(records, dopant=dopant, strain_pct=strain_pct, kind=dopant)
+    if not r_c:
+        return
+    grid = np.linspace(e_min, e_max, 500)
+    ev_c = (r_c.eigenvalues_au - r_c.e_fermi_au) * HA_TO_EV
+    dos_c_val = gaussian_dos(ev_c, r_c.p_pi_weight, r_c.occupations, grid, sigma=sigma, mode="occupied")
+    dos_c_cond = gaussian_dos(ev_c, r_c.p_pi_weight, r_c.occupations, grid, sigma=sigma, mode="unoccupied")
+    dos_dop = np.zeros_like(grid)
+    if r_d:
+        ev_d = (r_d.eigenvalues_au - r_d.e_fermi_au) * HA_TO_EV
+        dos_dop = gaussian_dos(ev_d, r_d.p_pi_weight, r_d.occupations, grid, sigma=sigma, mode="all")
+    dos_sum = dos_c_val + dos_c_cond + dos_dop
+    ymax = max(dos_sum.max(), 1e-6) * 1.18
+
+    # Raw MO sticks as scatter (occupied, near window)
+    occ = r_c.occupations > 0.5
+    mask = occ & (ev_c >= e_min) & (ev_c <= e_max)
+    raw_y = r_c.p_pi_weight[mask] * ymax * 0.85
+    ax.scatter(ev_c[mask], raw_y, s=8, c="#999999", edgecolors="none", alpha=0.55, zorder=2, label="Raw")
+
+    # Component peaks with shaded fills (XPS style)
+    ax.fill_between(grid, 0, dos_c_val, color="#0055AA", alpha=0.32, zorder=3)
+    ax.plot(grid, dos_c_val, color="#0055AA", lw=1.2, label=r"C $\pi$ (valence)")
+    if r_d and dos_dop.max() > 0:
+        ax.fill_between(grid, 0, dos_dop, color="#2E8B57", alpha=0.32, zorder=4)
+        ax.plot(grid, dos_dop, color="#2E8B57", lw=1.2, label=f"{dopant} site $\\pi$")
+    ax.fill_between(grid, 0, dos_c_cond, color="#7B68EE", alpha=0.25, zorder=3)
+    ax.plot(grid, dos_c_cond, color="#7B68EE", lw=1.0, ls="--", label=r"C $\pi$ (conduction)")
+    ax.plot(grid, dos_sum, color="#CC0033", lw=2.2, label="Sum", zorder=6)
+    ax.axhline(0, color="#555555", lw=1.0, zorder=1, label="BG")
+
+    homo, lumo = homo_lumo_ev(r_c)
+    ax.axvline(0, color="#000", ls=(0, (4, 4)), lw=0.7, alpha=0.6)
+    if e_min < homo < e_max:
+        ax.axvline(homo, color="#0055AA", ls=":", lw=0.8, alpha=0.7)
+    if e_min < lumo < e_max:
+        ax.axvline(lumo, color="#7B68EE", ls=":", lw=0.8, alpha=0.7)
+
+    ax.set_xlabel(r"Binding energy $E-E_F$ (eV)")
+    ax.set_ylabel(r"Intensity (arb.)")
+    ax.set_xlim(e_min, e_max)
+    ax.set_ylim(0, ymax)
+    ax.set_title(f"{dopant}-doped, $\\varepsilon={strain_pct:+.0f}$\\%", fontsize=8, fontweight="bold", pad=3)
+    ax.legend(loc="upper right", fontsize=6, frameon=True, edgecolor="#333", ncol=2, handlelength=1.4)
+
+
 def plot_pdos_with_gap(ax, record, *, color, label, grid_ev=None, sigma=0.10):
     if grid_ev is None:
         grid_ev = np.linspace(-3.0, 1.2, 400)

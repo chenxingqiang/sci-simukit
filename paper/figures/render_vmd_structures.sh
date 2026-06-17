@@ -8,11 +8,19 @@ TCL="$ROOT/dft_results/vmd_scripts/render_scheme_panels.tcl"
 find_vmd() {
   if command -v vmd >/dev/null 2>&1; then command -v vmd; return 0; fi
   for c in \
+    /Applications/VMD.app/Contents/vmd2/lib/vmd_MACOSXARM64 \
     /Applications/VMD.app/Contents/vmd/vmd_MACARM64 \
     /Applications/VMD.app/Contents/vmd/vmd_MACOSXX86_64; do
     [[ -x "$c" ]] && { echo "$c"; return 0; }
   done
   return 1
+}
+
+vmd_env() {
+  local bin="$1"
+  if [[ "$bin" == *vmd2/lib/vmd_MACOSXARM64 ]]; then
+    export VMDDIR="/Applications/VMD.app/Contents/vmd2/lib"
+  fi
 }
 
 mkdir -p "$OUT_DIR"
@@ -34,6 +42,7 @@ VMD_BIN="$(find_vmd)" || {
   exit 0
 }
 
+vmd_env "$VMD_BIN"
 "$VMD_BIN" -dispdev text -e "$TCL" -args "$OUT_DIR" "$XYZ_EXP5"
 if command -v convert >/dev/null 2>&1 && [[ -f "$OUT_DIR/scheme_tetramer_doping.png" ]]; then
   convert "$OUT_DIR/scheme_tetramer_doping.png" "$OUT_DIR/figure0_structure_scheme.pdf"

@@ -100,3 +100,28 @@ mol addrep top
    ```
 
 若 VMD 不在 PATH，脚本会尝试 `/Applications/VMD.app/...`；也可 `export PATH="/Applications/VMD.app/Contents/vmd:$PATH"`。
+
+## VBM/CBM 补充图 (Figure S4 风格)
+
+Exp.7 pristine @ ε=0% 已有 HOMO/LUMO cube：
+- HOMO (VBM): `WFN_00240`
+- LUMO (CBM): `WFN_00241`
+
+一键渲染（VMD + matplotlib DOS）：
+
+```bash
+bash paper/figures/render_vbm_cbm_figure.sh
+```
+
+输出：`paper/figures/final_figures/figureS4_vbm_cbm_dos.pdf`
+
+### macOS VMD 路径
+
+若 `vmd` 不在 PATH，使用 App 内二进制并设置 `VMDDIR`：
+
+```bash
+export VMDDIR=/Applications/VMD.app/Contents/vmd2/lib
+$VMDDIR/vmd_MACOSXARM64 -dispdev text -e dft_results/vmd_scripts/render_vbm_cbm.tcl -args ...
+```
+
+（旧版安装脚本可能硬编码错误路径；直接调用 `vmd_MACOSXARM64` 即可。）

@@ -23,7 +23,6 @@ echo "SDC JSON: $ROOT/experiments/analysis/sdc/sdc_exp10_results.json"
 echo "SDC audit: $ROOT/experiments/analysis/sdc/sdc_exp10_synergy_audit.json"
 
 CANON="$ROOT/experiments/analysis/sdc/sdc_exp10_results.json"
-PENDING="$ROOT/paper/figures/pending"
 if [[ -f "$CANON" ]] && command -v python3 >/dev/null; then
   PLOT_PY=python3
   if ! python3 -c "import matplotlib" 2>/dev/null; then
@@ -33,8 +32,6 @@ if [[ -f "$CANON" ]] && command -v python3 >/dev/null; then
   fi
   "$PLOT_PY" "$ROOT/src/sdc_coupling_analysis.py" --plots-from-json "$CANON" || true
   "$PLOT_PY" "$ROOT/paper/figures/generate_manuscript_figures.py" || true
-  mkdir -p "$PENDING"
-  cp "$ROOT/experiments/analysis/sdc/figures/sdc_synergy_vs_size_eps3pct_epa.pdf" "$PENDING/" 2>/dev/null || true
-  cp "$ROOT/experiments/analysis/sdc/figures/sdc_synergy_vs_size_eps3pct_epa.png" "$PENDING/" 2>/dev/null || true
 fi
 echo "Manuscript figures: $ROOT/paper/figures/final_figures/"
+echo "SDC plots: $ROOT/experiments/analysis/sdc/figures/"

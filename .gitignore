@@ -95,3 +95,5 @@ c/libsimukit.a
 c/simukit-run
 c/simukit-sdc
 c/src/*.o
+# VMD render cache
+paper/figures/final_figures/_vbm_cbm_cache/

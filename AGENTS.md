@@ -945,6 +945,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+- **Loop R82（2026-06-18，双轨）**：
+  - **Track A**：Exp10 **40/40**、Exp8 **6/6** ✅；running=none — **不干预**。
+  - **Track B**：**项目精简 + SI 图流水线** — 删除过时 figure/pending/废弃 PRL 脚本；新增 Fig.S4/S5/S6；`render_supplementary_figures.sh` 一键渲染。
+  - **创新审计**：SI 图 = **B 级**（S4 VMD+PDOS A；S5/S6 文献/合成）；transport = **B pending**
+  - **Git**：见本 commit — `loop R82: tidy repo and supplementary figure pipeline`
+  - **下一轮**：Marcus transport；MolFC 替换合成 FCWD
+
 - **Loop R81（2026-06-11，双轨）**：
   - **Track A**：Exp10 **40/40**、Exp8 **6/6** ✅；running=none — **不干预**。
   - **Track B**：Fig.2(a,b) **Origin 级 polish** — `design_space_triangle.py`（#FAFAFA、n 轨迹线、n=4 标注 𝒮、分区文案）；`phase_diagram.py` α–𝒮 象限图（网格、白底标注框、ylabel 修正）。

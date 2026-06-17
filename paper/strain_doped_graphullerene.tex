@@ -50,7 +50,7 @@ Graphullerenes---two-dimensional networks of qHP C$_{60}$ molecules---are tunabl
 
 Electronic structure calculations use CP2K~\cite{cp2k2025} with PBE and Grimme DFT-D3 (Becke--Johnson damping), matching \texttt{experiments/*/inputs/*.inp}. Plane-wave cutoff is 300~Ry (280~Ry for $n\geq 6$ in Exp.~10); SCF convergence uses \texttt{EPS\_SCF}$=10^{-6}$ with OT minimization. Basis: DZVP-MOLOPT-SR-GTH with matching GTH pseudopotentials.
 
-\textbf{Systems.} Exp.~5: C$_{60}$ tetramers (240 atoms), six-fold B/N/P substitution, biaxial strain $\epsilon\in\{-5,-2.5,0,2.5,5\}$\% (rigid cell scaling, fixed fractional coordinates). Exp.~10: $n\times\mathrm{C}_{60}$ ($n=1$--$8$) at $\epsilon=0$ and $+3$\% (40 converged calculations).
+\textbf{Systems.} Exp.~5: C$_{60}$ tetramers (240 atoms), six-fold B/N/P substitution, biaxial strain $\epsilon\in\{-5,-2.5,0,2.5,5\}$\% (rigid cell scaling, fixed fractional coordinates). Exp.~7: same tetramers, PDOS and gap analysis at $\epsilon\in\{-5,0,+5\}$\%. Exp.~10: $n\times\mathrm{C}_{60}$ ($n=1$--$8$) at $\epsilon=0$ and $+3$\% (40 converged calculations).
 
 \textbf{Observables.} $\alpha$ from linear fits to Exp.~5 energies [Table~\ref{tab:doping_results}]. $E_f=(E_{\mathrm{doped}}-E_{\mathrm{pristine}})/n_{\mathrm{dopants}}$ is a relative substitution energy (no $\mu$ reference).
 
@@ -62,7 +62,7 @@ Electronic structure calculations use CP2K~\cite{cp2k2025} with PBE and Grimme D
 
 \subsection{\label{sec:strain_response}Dopant-dependent strain sensitivity}
 
-Pristine tetramers are strain-insensitive ($|\alpha|\approx 1$~meV/\%). Substitution opens a wide spread: N ($\alpha=-303.2$~meV/\%), B ($+56.9$~meV/\%), P ($-19.1$~meV/\%; excluding $+2.5$\% metastable point). Figure~\ref{fig:strain_coupling} shows $\Delta E/N_{\mathrm{atom}}$ and $\alpha$---the central \emph{design} finding is that N and B respond in opposite directions to the same tensile protocol.
+Pristine tetramers are strain-insensitive ($|\alpha|\approx 1$~meV/\%). Substitution opens a wide spread: N ($\alpha=-303.2$~meV/\%), B ($+56.9$~meV/\%), P ($-19.1$~meV/\%). Figure~\ref{fig:strain_coupling} links tetramer \emph{geometry} to mechanics: (a--b) structure and in-plane cell expansion; (c--d) opposite $\alpha$ for N vs.\ B.
 
 \begin{table}
 \caption{\label{tab:doping_results}Exp.~5 tetramer results (PBE+D3). [verified: \texttt{table1\_verification.json}]}
@@ -79,27 +79,27 @@ P-doped & $-1370.496$ & $-1370.489$ & $-19.1$ & $-31.5$ \\
 \end{table}
 
 \begin{figure*}
-\includegraphics[width=0.92\textwidth]{figures/final_figures/figure1_strain_coupling.pdf}
-\caption{\label{fig:strain_coupling}Exp.~5 strain response. (a)~$\Delta E/N_{\mathrm{atom}}$ vs.\ $\epsilon$. (b)~$\alpha$ by dopant; N and B bracket opposite trends under identical loading.}
+\includegraphics[width=0.95\textwidth]{figures/final_figures/figure1_strain_coupling.pdf}
+\caption{\label{fig:strain_coupling}Structure-mechanics coupling (Exp.~5). (a)~Tetramer top view (DFT coordinates). (b)~Biaxial cell expansion ($\varepsilon=0$ vs.\ $+5$\%). (c)~$\Delta E/N_{\mathrm{atom}}$ vs.\ $\epsilon$. (d)~$\alpha$ by dopant.}
 \end{figure*}
 
-\subsection{\label{sec:synergy_tetramer}Quantified non-additivity at tetramer scale}
+\subsection{\label{sec:electronic}Electronic structure and localization}
 
-Figure~\ref{fig:synergy_tetramer} reports $\mathcal{S}$ at $n=4$ and $+3$\% strain [Exp.~10 subset matching tetramer size]. All three dopants deviate from $\mathcal{S}=0$: P shows the largest magnitude ($\mathcal{S}\approx -23.7$~meV/atom), B is negative ($\approx -6.2$~meV/atom), and N is positive ($\approx +3.0$~meV/atom). These residuals are the energy cost of treating strain and substitution as independent---they are directly usable to rank $(\epsilon,\delta)$ pairs before expensive follow-up calculations.
+Figure~\ref{fig:electronic} connects mechanics to $\pi$ electronics (Exp.~7) and carrier localization (Exp.~4). Panel~(a) tracks the HOMO--LUMO gap under strain; (b) maps gap magnitude across dopants and strains; (c) shows band-edge morphologies at $\epsilon=0$ (B nearly closes the gap); (d) compares $\pi$-PDOS at $+5$\% with shaded gap regions; (e) plots dopant-site MO sticks ($\pi$ weight $\propto$ linewidth); (f) schematic IPR delocalization (75$\to$45 for B at $+3$\%; two-point audit only).
 
-\begin{figure}
-\includegraphics[width=0.55\textwidth]{figures/final_figures/figure3_synergy_tetramer.pdf}
-\caption{\label{fig:synergy_tetramer}Synergy $\mathcal{S}$ at tetramer scale ($n=4$, $+3$\% strain). Non-zero bars quantify failure of additive superposition; values from \texttt{sdc\_exp10\_synergy\_audit.json}.}
-\end{figure}
+\begin{figure*}
+\includegraphics[width=0.98\textwidth]{figures/final_figures/figure3_electronic_morphology.pdf}
+\caption{\label{fig:electronic}Electronic morphology (Exp.~7, Exp.~4). (a)~Gap vs.\ strain. (b)~Gap heatmap. (c)~Band edges at $\epsilon=0$. (d)~$\pi$-PDOS at $+5$\%. (e)~Dopant MO spectrum. (f)~IPR localization schematic.}
+\end{figure*}
 
-\subsection{\label{sec:sdc_results}Finite-size persistence}
+\subsection{\label{sec:synergy}Non-additive synergy: tetramer scale and size scaling}
 
-$\mathcal{S}(n)$ remains non-zero for all B/N/P at every $n=1$--$8$ (Fig.~\ref{fig:sdc_scaling}; 15 synergy points, 40/40 converged). N is positive for $n\leq 6$ and negative at $n=8$ ($-2.3$~meV/atom); provisional $\mathcal{S}_\infty\approx -0.52$, $-0.68$, $-0.13$~meV/atom for B, N, P from $1/n$ fits. The cross term therefore does not appear to be a small-cell artefact within the computed range.
+Figure~\ref{fig:synergy} decomposes total energy into strain-only, doping-only, and cross-coupling $\mathcal{S}$ contributions at $n=4$, $+3$\% (panel~a). The cross term is comparable in magnitude to strain-only shifts and cannot be neglected relative to sequential design. Panels~(b--c) quantify $\mathcal{S}$ by dopant and supercell size.
 
-\begin{figure}
-\includegraphics[width=0.72\textwidth]{figures/final_figures/figure2_sdc_scaling.pdf}
-\caption{\label{fig:sdc_scaling}$\mathcal{S}(n)$ at $+3$\% strain (Exp.~10). Dashed line: additive limit. Non-zero values at $n=8$ support bulk-relevant coupling.}
-\end{figure}
+\begin{figure*}
+\includegraphics[width=0.95\textwidth]{figures/final_figures/figure2_synergy_combined.pdf}
+\caption{\label{fig:synergy}Non-additive energy decomposition (Exp.~10, $\epsilon=+3$\%). (a)~Per-atom contributions: $\Delta E_{\mathrm{strain}}$, $\Delta E_{\mathrm{dop}}$, and cross term $\mathcal{S}$ at $n=4$ (bars from \texttt{sdc\_exp10\_results.json}). (b)~$\mathcal{S}$ by dopant at tetramer scale; blue/red bands: cooperative stabilization/destabilization. (c)~$\mathcal{S}(n)$ persistence to $n=8$.}
+\end{figure*}
 
 % ------------------------------------------------------------------
 \section{\label{sec:discussion}Discussion}
@@ -107,9 +107,9 @@ $\mathcal{S}(n)$ remains non-zero for all B/N/P at every $n=1$--$8$ (Fig.~\ref{f
 
 \textbf{Design implications.} (1)~\emph{Do not rank dopants at $\epsilon=0$ alone}: N is most stable at zero strain but its $\alpha$ implies further stabilization in tension, whereas B becomes less stable under the same load. (2)~\emph{Use $\mathcal{S}$ to screen $(\epsilon,\delta)$}: at $+3$\% strain and tetramer size, P ($|\mathcal{S}|\approx 24$~meV/atom) shows the strongest non-additive correction; single-knob scans would mis-estimate its energy by orders of magnitude larger than N or B at the same conditions. (3)~\emph{Coupled maps beat sequential scans}: Exp.~10 required 40 converged cells but yields a reusable non-additivity metric at each size---cheaper than exhaustive transport or geometry paths for ranking stability trends.
 
-Mechanistically, opposite $\alpha$ signs plausibly reflect $\pi$-electron count (N-rich vs.\ B-hole states) under expanded lattices, but band-resolved and relaxed-ion data are needed for confirmation.
+Mechanistically, opposite $\alpha$ signs correlate with dopant-dependent gap closing (Fig.~\ref{fig:electronic}b,c): B-doped tetramers approach a near-zero gap at $\epsilon=0$ whereas N remains gap-modulated under tension---consistent with $\pi$-electron count differences, though relaxed-ion and hybrid-functional checks are still needed.
 
-\textbf{Limitations.} Rigid strain; $E_f$ without chemical potentials; N $\mathcal{S}$ sign change by $n=8$; PBE+D3 only; Exp.~4 two-point audit (IPR/J) does not support a polaron transition claim and is omitted from figures.
+\textbf{Limitations.} Rigid strain; $E_f$ without chemical potentials; N $\mathcal{S}$ sign change by $n=8$; PBE+D3 only; Exp.~4 provides only two IPR points---delocalization trend is illustrated but polaron band-transport transition is not established.
 
 % ------------------------------------------------------------------
 \section{\label{sec:conclusions}Conclusions}

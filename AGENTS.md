@@ -21,13 +21,13 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | 项 | 值 |
 |----|-----|
 | **Exp10** | **40/40** converged ✅（见 `exp10_status.json`） |
-| **运行中** | Exp8 SP **OT ~185/330**（写 `failed_partial` 文件，非 canonical `.out`） |
-| **临界区** | `bash experiments/exp10_status_line.sh` → 见 **CRIT** / `critical_zone` |
-| **下一任务** | Exp8 SP converged → `post_exp8_converged.sh`；VMD scheme 图 |
-| **Exp8** | **5/6** → `geoopt_pristine_sp` running（~56% OT） |
-| **SDC** | **15** synergy 点（n=1–8 B/N/P @+3%）；$\mathcal{S}_\infty$ provisional；audit `sdc_exp10_synergy_audit.json` |
+| **Exp8** | **6/6** ✅ — `post_exp8_converged.sh` consolidated `geoopt_pristine_sp.out` |
+| **运行中** | none |
+| **临界区** | none |
+| **下一任务** | VMD scheme 图；PRL 机制/transport 主结果 |
+| **SDC** | **15** synergy 点（n=1–8 B/N/P @+3%）；audit `sdc_exp10_synergy_audit.json` |
 | **阻塞 PRL** | 机制图 + transport 主结果；叙事已收敛为「非加性耦合 + 设计含义」 |
-| **最新 Loop** | **R67**（见下方笔记） |
+| **最新 Loop** | **R68**（见下方笔记） |
 
 **一行命令**：`bash experiments/exp10_status_line.sh`
 
@@ -944,6 +944,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R68（2026-06-11，双轨）**：
+  - **Track A**：Exp8 SP **converged** → `post_exp8_converged.sh` → **6/6** ✅（consolidate `failed_partial_20260618_0115` → canonical `.out` + archive）。
+  - **Track B**：**电子形态 Fig.3** — 6 面板（gap 曲线/热图/带边/π-PDOS/MO 棒/IPR）；Fig.1 掺杂位高亮；Fig.2 $\mathcal{S}$ inset；新增 `electronic_morphology.py`、`pdos_parser.py`、`structure_morphology.py`；主文 Electronic subsection + Discussion 挂钩 gap closing。
+  - **创新审计**：电子-力学叙事链 = **A 级**（verified Exp7 PDOS）；VMD/MO cube = **B pending**
+  - **Git**：见本 commit — `loop R68: Exp8 6/6 + electronic morphology figures`
+  - **下一轮**：VMD 替换 Fig.1(a)；可选 Exp7 MO cubes；PRL transport 缺口
 
 - **Loop R67（2026-06-18，双轨）**：
   - **Track A**：Exp8 **5/6** SP OT ~185/330 — **不干预**（lsof → `failed_partial_20260618_0115`）。

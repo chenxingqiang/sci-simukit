@@ -948,7 +948,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
   - **Track A**：Exp10 **40/40** ✅；Exp8 SP **重启**（前次 OT~35 中断，partial `.out` 已归档）。
   - **Track B**：**标题/Abstract/Conclusion 叙事收紧**（去 transport-paradigm oversell；标题对齐 Exp5+10 证据）；新增 `post_exp8_converged.sh`。
   - **创新审计**：叙事 honesty = **A 级**；Exp8 SP = **B+ pending**；VMD 仍待本机 PATH。
-  - **Git**：`loop R62: …` → **pushed: origin/main**
+  - **Git**：`e14ac48` — loop R62 narrative/Exp8/post_exp8 → **pushed: origin/main**
   - **下一轮**：Exp8 SP converged → post → 6/6；`paper/compile.sh`；VMD scheme。
 - **Loop R61（2026-06-18，双轨）**：
   - **Track A**：Exp10 **40/40** ✅（无动作）；启动 Exp8 **`geoopt_pristine_sp`**（120 atoms，np=4，后台）。

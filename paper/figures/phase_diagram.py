@@ -91,6 +91,7 @@ def plot_gap_strain_phase_diagram(
 
 def plot_alpha_synergy_phase_map(ax, table1: dict, audit: dict, *, n: int = 4, strain_pct: float = 3.0) -> None:
     """Mechanics (alpha) vs non-additivity (S) phase map at fixed n, strain."""
+    ax.set_facecolor("#FAFAFA")
     rows = [r for r in audit["synergy_table"] if r["n_molecules"] == n and abs(r["strain_pct"] - strain_pct) < 0.01]
     if not rows:
         return
@@ -103,28 +104,41 @@ def plot_alpha_synergy_phase_map(ax, table1: dict, audit: dict, *, n: int = 4, s
         ss.append(r["synergy_S_meV_per_atom"])
         dops.append(dop)
 
-    xlim = (-350, 80)
-    ylim = (min(ss) * 1.2, max(ss) * 1.25)
-    if ylim[0] > -5:
-        ylim = (min(ss) * 1.15, max(max(ss) * 1.2, 5))
+    xlim = (-340, 75)
+    ylo, yhi = min(ss) * 1.15, max(max(ss) * 1.22, 4.5)
 
-    ax.axhline(0, color="#333", lw=0.9, zorder=1)
-    ax.axvline(0, color="#333", lw=0.9, zorder=1)
-    ax.fill_between(xlim, 0, ylim[1], color="#CC0033", alpha=0.06, zorder=0)
-    ax.fill_between(xlim, ylim[0], 0, color="#0055AA", alpha=0.06, zorder=0)
-    ax.text(0.03, 0.97, r"$\mathcal{S}>0$ (anti-cooperative)", transform=ax.transAxes, fontsize=6, color="#CC0033", va="top")
-    ax.text(0.03, 0.03, r"$\mathcal{S}<0$ (cooperative)", transform=ax.transAxes, fontsize=6, color="#0055AA", va="bottom")
-    ax.text(0.72, 0.50, r"$\alpha>0$", transform=ax.transAxes, fontsize=6, color="#444")
-    ax.text(0.08, 0.50, r"$\alpha<0$", transform=ax.transAxes, fontsize=6, color="#444")
+    ax.axhline(0, color="#333333", lw=0.85, zorder=1)
+    ax.axvline(0, color="#333333", lw=0.85, zorder=1)
+    ax.fill_between(xlim, 0, yhi, color="#CC0033", alpha=0.07, zorder=0)
+    ax.fill_between(xlim, ylo, 0, color="#0055AA", alpha=0.07, zorder=0)
+    ax.grid(True, color="#E8E8E8", lw=0.5, zorder=0)
+
+    ax.text(0.04, 0.96, r"$\mathcal{S}>0$ (anti-cooperative)", transform=ax.transAxes, fontsize=6, color="#CC0033", va="top", fontweight="bold")
+    ax.text(0.04, 0.04, r"$\mathcal{S}<0$ (cooperative)", transform=ax.transAxes, fontsize=6, color="#0055AA", va="bottom", fontweight="bold")
+    ax.text(0.78, 0.54, r"$\alpha>0$", transform=ax.transAxes, fontsize=6.5, color="#444", fontweight="bold")
+    ax.text(0.12, 0.54, r"$\alpha<0$", transform=ax.transAxes, fontsize=6.5, color="#444", fontweight="bold")
 
     colors = {"B": "#0055AA", "N": "#CC0033", "P": "#FF8800"}
+    offsets = {"B": (8, 4), "N": (8, -12), "P": (-42, 6)}
     for a, s, dop in zip(alphas, ss, dops):
-        ax.scatter(a, s, s=110, c=colors[dop], edgecolors="#000", linewidths=0.9, zorder=4)
-        ax.annotate(dop, (a, s), textcoords="offset points", xytext=(7, 5), fontsize=8, fontweight="bold", color=colors[dop])
+        ax.scatter(a, s, s=120, c=colors[dop], edgecolors="#000", linewidths=0.85, zorder=4)
+        ox, oy = offsets.get(dop, (7, 5))
+        ax.annotate(
+            f"{dop}\n$\\alpha={a:.0f}$\n$\\mathcal{{S}}={s:+.1f}$",
+            (a, s),
+            textcoords="offset points",
+            xytext=(ox, oy),
+            fontsize=6,
+            fontweight="bold",
+            color=colors[dop],
+            ha="left",
+            linespacing=1.05,
+            bbox=dict(boxstyle="round,pad=0.25", facecolor="white", edgecolor="#CCCCCC", alpha=0.92, lw=0.5),
+        )
 
     ax.set_xlim(xlim)
-    ax.set_ylim(ylim)
-    ax.set_xlabel(r"Strain stiffness $\alpha$ (meV/\%)")
-    ax.set_ylabel(r"$\mathcal{S}$ at $n=4$, $\varepsilon=+3$\\% (meV/atom)")
-    ax.set_title(r"Mechanical–non-additive phase map", fontsize=8, pad=4)
+    ax.set_ylim(ylo, yhi)
+    ax.set_xlabel(r"Strain stiffness $\alpha$ (meV/\%)", fontsize=8)
+    ax.set_ylabel(r"$\mathcal{S}$ at $n=4$, $\varepsilon=+3$\% (meV/atom)", fontsize=8)
+    ax.set_title(r"Mechanical–non-additive phase map", fontsize=8.5, fontweight="bold", loc="left", pad=6)
 

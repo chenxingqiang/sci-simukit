@@ -945,6 +945,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+- **Loop R81（2026-06-11，双轨）**：
+  - **Track A**：Exp10 **40/40**、Exp8 **6/6** ✅；running=none — **不干预**。
+  - **Track B**：Fig.2(a,b) **Origin 级 polish** — `design_space_triangle.py`（#FAFAFA、n 轨迹线、n=4 标注 𝒮、分区文案）；`phase_diagram.py` α–𝒮 象限图（网格、白底标注框、ylabel 修正）。
+  - **创新审计**：设计空间 + 相图 = **A 级**；transport = **B pending**
+  - **Git**：见本 commit — `loop R81: polish Fig2 design triangle and phase map`
+  - **下一轮**：push 积压 R78–R81；Marcus transport
+
 - **Loop R80（2026-06-11，双轨）**：
   - **Track A**：Exp10 **40/40**、Exp8 **6/6** ✅；running=none — **不干预**。
   - **Track B**：Fig.2(d) **S(n) facet 回归** — `synergy_size_facet_regression.py`（蓝=DFT，红=S_∞+A/n；第4格 additive S=0 对照）；push 积压 R78–R79。

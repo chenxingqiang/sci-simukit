@@ -187,8 +187,8 @@ def figure2_synergy_combined(audit: dict, sdc: dict, table1: dict, out_dir: Path
     """Fig. 2: design triangle + alpha-S phase map + S bars + scaling."""
     apply_nature_style()
 
-    fig = plt.figure(figsize=(NATURE_DOUBLE_COL, NATURE_DOUBLE_COL * 0.88))
-    gs = fig.add_gridspec(2, 2, height_ratios=[1.1, 1.0], hspace=0.45, wspace=0.38)
+    fig = plt.figure(figsize=(NATURE_DOUBLE_COL, NATURE_DOUBLE_COL * 0.92))
+    gs = fig.add_gridspec(2, 2, height_ratios=[1.08, 1.05], hspace=0.48, wspace=0.40)
 
     ax_tri = fig.add_subplot(gs[0, 0])
     plot_synergy_design_triangle(ax_tri, sdc, highlight_n=TETRAMER_N)

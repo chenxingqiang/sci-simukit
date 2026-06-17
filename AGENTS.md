@@ -949,7 +949,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
   - **Track A**：Exp10 **40/40** ✅；Exp8 **5/6** — `geoopt_pristine_sp` **不干预**（单 prterun，OT~5，输出缓冲）。
   - **Track B**：Abstract/Conclusion **>300×→两数量级** honest wording；Methods **rigid strain** 限制；新增 `exp8_status_line.sh`。
   - **创新审计**：叙事 honesty = **A 级**；Exp8 感知脚本 = **A 级**；SP = **B+ pending**
-  - **Git**：`<hash>` — `loop R64: exp8 status line, narrative/rigid strain` → **pushed: origin/main**
+  - **Git**：`538e461` — `loop R64: exp8 status line, narrative/rigid strain` → **pushed: origin/main**
   - **下一轮**：SP converged → post → 6/6；VMD scheme
 - **Loop R63（2026-06-18，双轨）**：
   - **Track A**：Exp10 **40/40** ✅；发现 **3× 重复** `geoopt_pristine_sp` 写同一 `.out` → 保留 pid 6979，kill 17570/20675；**5/6** SP 进行中。

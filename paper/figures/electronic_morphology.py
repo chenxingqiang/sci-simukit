@@ -110,6 +110,62 @@ def plot_pdos_deconvolution_xps(
     ax.legend(loc="upper right", fontsize=6, frameon=True, edgecolor="#333", ncol=2, handlelength=1.4)
 
 
+def plot_pdos_waterfall_stack(
+    ax,
+    records: Iterable[PdosRecord],
+    *,
+    dopants: Sequence[str] = ("pristine", "B", "N", "P"),
+    strains: Sequence[float] = (-5.0, 0.0, 5.0),
+    e_min: float = -4.2,
+    e_max: float = 1.2,
+    sigma: float = 0.09,
+) -> None:
+    """XRD-style stacked pi-PDOS: dopant x strain series with color gradient."""
+    grid = np.linspace(e_min, e_max, 650)
+    series: list[tuple[str, np.ndarray, str]] = []
+    dop_short = {"pristine": "Pri", "B": "B", "N": "N", "P": "P"}
+    for dop in dopants:
+        for eps in strains:
+            r = records_for(records, dopant=dop, strain_pct=float(eps), kind="C")
+            if not r:
+                continue
+            ev = (r.eigenvalues_au - r.e_fermi_au) * HA_TO_EV
+            dos = gaussian_dos(ev, r.p_pi_weight, r.occupations, grid, sigma=sigma, mode="all")
+            tag = f"{dop_short.get(dop, dop)} $\\varepsilon={eps:+.0f}$\\%"
+            series.append((tag, dos, dop))
+
+    if not series:
+        return
+
+    peak = max(float(d.max()) for _, d, _ in series) or 1.0
+    step = peak * 1.25
+    cmap = plt.cm.plasma
+    n = len(series)
+
+    for i, (tag, dos, dop) in enumerate(series):
+        y0 = i * step
+        color = cmap(i / max(n - 1, 1))
+        curve = dos / peak + y0
+        ax.plot(grid, curve, color=color, lw=0.85, solid_capstyle="round", zorder=2)
+        ax.text(e_max + 0.06, y0 + 0.45, tag, fontsize=5.2, va="center", color=color, clip_on=False)
+
+    ax.axvline(0, color="#444444", ls=(0, (4, 3)), lw=0.7, zorder=1)
+    ax.set_xlim(e_min, e_max)
+    ax.set_ylim(-step * 0.15, n * step + step * 0.35)
+    ax.set_yticks([])
+    ax.set_xlabel(r"$E-E_F$ (eV)")
+    ax.spines["left"].set_visible(False)
+    ax.tick_params(left=False)
+
+    sm = plt.cm.ScalarMappable(cmap=cmap, norm=plt.Normalize(vmin=0, vmax=n - 1))
+    sm.set_array([])
+    cbar = plt.colorbar(sm, ax=ax, fraction=0.025, pad=0.02, aspect=18)
+    cbar.set_ticks([0, n - 1])
+    cbar.set_ticklabels(["Pri $-5$\\%", f"P $+5$\\%"])
+    cbar.ax.tick_params(labelsize=6)
+    cbar.set_label("dopant $\\times$ strain", fontsize=7)
+
+
 def plot_pdos_with_gap(ax, record, *, color, label, grid_ev=None, sigma=0.10):
     if grid_ev is None:
         grid_ev = np.linspace(-3.0, 1.2, 400)

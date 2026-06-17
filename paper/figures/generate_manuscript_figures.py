@@ -29,11 +29,11 @@ from nature_style import (  # noqa: E402
     shade_synergy_physics,
     style_line,
 )
-from pdos_parser import HA_TO_EV, gaussian_dos, gap_matrix, load_exp7_pdos, records_for  # noqa: E402
+from pdos_parser import load_exp7_pdos, records_for  # noqa: E402
 from electronic_morphology import (  # noqa: E402
     plot_band_edge_morph,
-    plot_gap_heatmap,
     plot_pdos_deconvolution_xps,
+    plot_pdos_waterfall_stack,
 )
 from structure_morphology import (  # noqa: E402
     plot_dopant_triptych,
@@ -256,9 +256,7 @@ def figure3_electronic_morphology(exp4: dict, out_dir: Path) -> Path:
     apply_nature_style()
     pdos = load_exp7_pdos(PDOS_DIR)
     strains = [-5.0, 0.0, 5.0]
-    strain_labs = [r"$-5$", r"$0$", r"$+5$"]
     dopants = ("pristine", "B", "N", "P")
-    dop_labs = ["Pristine", "B", "N", "P"]
 
     fig = plt.figure(figsize=(NATURE_DOUBLE_COL, NATURE_DOUBLE_COL * 0.82))
     gs = fig.add_gridspec(2, 3, height_ratios=[1.0, 1.05], hspace=0.48, wspace=0.38)
@@ -277,8 +275,7 @@ def figure3_electronic_morphology(exp4: dict, out_dir: Path) -> Path:
     origin_legend(ax, ncol=2, loc="upper center", bbox=(0.5, 1.22))
 
     ax = fig.add_subplot(gs[0, 1])
-    gmat = gap_matrix(pdos, dopants, strains, kind="C")
-    plot_gap_heatmap(ax, gmat, dop_labs, strain_labs, vmax=1.6)
+    plot_pdos_waterfall_stack(ax, pdos, dopants=dopants, strains=strains)
     finalize_axes(ax, panel_label="b")
 
     ax = fig.add_subplot(gs[0, 2])

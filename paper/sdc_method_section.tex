@@ -1,25 +1,7 @@
-\subsection{\label{sec:sdc_tool}Strain--Doping Coupling (SDC) Design Operator}
-
-To turn the non-additive coupling in Eq.~\eqref{eq:coupling_term} into a reproducible materials-design tool, we define a \emph{synergy order parameter} $S$ for any observable $P$ (total energy, energy per atom, band gap, or hopping integral $J$):
+We quantify non-additive coupling with the synergy order parameter $\mathcal{S}$:
 \begin{equation}
-\mathcal{S}(P;\epsilon,\delta)
-= \Delta P(\epsilon,\delta)
-- \bigl[\Delta P(\epsilon,0) + \Delta P(0,\delta)\bigr],
+\mathcal{S}(\epsilon,\delta)
+= \Delta E(\epsilon,\delta) - \bigl[\Delta E(\epsilon,0) + \Delta E(0,\delta)\bigr],
 \label{eq:synergy_order}
 \end{equation}
-where $\epsilon$ is biaxial strain, $\delta$ labels the dopant species (B, N, or P), and $\Delta P(\epsilon,\delta)=P(\epsilon,\delta)-P(0,0)$ at fixed system size $n\times\mathrm{C}_{60}$.
-Non-additive coupling corresponds to $\mathcal{S}\neq 0$; additive superposition gives $\mathcal{S}=0$ by construction.
-
-Operationally, $P$ is extracted from converged CP2K outputs (`SCF run converged`): total energy from the \texttt{ENERGY|} line, energy per atom from $E/N_{\mathrm{atoms}}$, and $J$ from the HOMO--HOMO$-1$ splitting of the MO eigenvalue block (same protocol as Exp.~3--4).
-All $\mathcal{S}$ values reported for finite-size validation are computed with \texttt{c/simukit-sdc} (canonical; see \texttt{AGENTS.md}), which writes auditable JSON under \texttt{experiments/analysis/sdc/}; meV/atom tables and size-scaling fits are summarized in \texttt{sdc\_exp10\_synergy\_audit.json} (40/40 complete; $\mathcal{S}_\infty$ provisional). Python plotting uses \texttt{src/sdc\_coupling\_analysis.py --plots-from-json}.
-
-Finite-size extrapolation of the coupling contribution uses
-\begin{equation}
-\mathcal{S}(n) = \mathcal{S}_\infty + A\, n^{-\alpha},
-\label{eq:size_scaling}
-\end{equation}
-fitted to converged Exp.~10 points at $+3$\% strain; $\mathcal{S}_\infty$ is the bulk-network design limit relevant to extended graphullerene sheets.
-% DATA: 40/40 complete; 15 synergy pts (n=1-8 B/N/P @+3%%); audit: sdc_exp10_synergy_audit.json
-
-The effective Hamiltonian parameters are not fitted ad hoc: $V_{\mathrm{doping}}$ and $V_{\mathrm{strain}}$ are identified with $\Delta P(0,\delta)$ and $\Delta P(\epsilon,0)$ from single-knob DFT, while $V_{\mathrm{coupling}}$ is proportional to $\mathcal{S}$ in Eq.~\eqref{eq:synergy_order}.
-This SDC framework provides a transferable design operator---scan $(\epsilon,\delta)$ with few DFT points, rank combinations by $|\mathcal{S}|$, and prioritize polaron-transport descriptors ($J$, $\lambda$, IPR) before Marcus mobility evaluation.
+where $\epsilon$ is biaxial strain, $\delta\in\{B,N,P\}$, and $\Delta E(\epsilon,\delta)$ is the energy per atom relative to the pristine, zero-strain reference at the same supercell size $n\times\mathrm{C}_{60}$. Additive superposition gives $\mathcal{S}=0$; $\mathcal{S}\neq 0$ isolates the cross term. Exp.~10 values are from \texttt{c/simukit-sdc} (\texttt{sdc\_exp10\_results.json}).

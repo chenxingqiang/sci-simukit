@@ -946,13 +946,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
   - **Track A**：**40/40** ✅；`size_8x60_pristine_pos3pct` 收敛 → `post_exp10_converged.sh`；SDC **15** synergy 点；n=8 N $\mathcal{S}$ 符号反转（$+2.4$→$-2.3$ meV/atom）。
   - **Track B**：Abstract/Methods/Discussion/Conclusion **39→40/40**；$\mathcal{S}_\infty$ provisional（B/N/P: $-0.52/-0.68/-0.13$ meV/atom）；`figure3_sdc_scaling.pdf`。
   - **创新审计**：Exp10 尺寸标度闭环 = **A 级**；N @ n=8 符号变号 = **A 级**（需 Discussion 解释）；PRL 仍 **B 级**（缺 transport 主图）。
-  - **Git**：`loop R60: …` → **pushed: origin/main**
+  - **Git**：`765d367` — `loop R60: Exp10 40/40, SDC 15 pts` → **pushed: origin/main** (incl. R59 `55c19ee`)
   - **下一轮**：Exp8 SP；PRL 叙事收紧；VMD 结构 scheme 图。
 - **Loop R59（2026-06-16，双轨）**：
   - **Track A**：Exp10 **39/40**；`size_8x60_pristine_pos3pct` OT **~96%** / **CRIT**（grad ~5× EPS）；**7/8** 的 8×60 已收敛；**不干预** CP2K。
   - **Track B**：`post_exp10_converged.sh` 补跑 → 归档 39；**Figure 1/2 final**（`generate_manuscript_figures.py`）；Nature 风格 SDC 图；VMD scheme 脚本；Abstract/Methods **34→39/40**。
   - **创新审计**：Figure 1/2 Exp5 主图 = **B+ 级**（已落地）；SDC n=8 仍 **12 点**（缺 pristine +3% ref）= **A− 级 pending**。
-  - **Git**：`55c19ee` — `loop R59: Exp10 39/40, Figure 1/2 final` → **push pending** (GitHub 443 timeout)
+  - **Git**：`55c19ee` — `loop R59: Exp10 39/40, Figure 1/2 final` → **pushed: origin/main** (with R60)
   - **下一轮**：`8x60_pristine_pos3` converged → **40/40** + post → SDC **15 点** + $\mathcal{S}_\infty$ 修订。
 - **投稿策略**：PRL 需先闭环 Exp10 + 非加性定量图；Nature Materials 需机制图（IPR/J）+ 实验路径段；未闭环前不投。
 

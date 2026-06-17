@@ -21,13 +21,13 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | 项 | 值 |
 |----|-----|
 | **Exp10** | **40/40** converged ✅（见 `exp10_status.json`） |
-| **运行中** | Exp8 SP **OT ~103/330**（写 `failed_partial` 文件，非 canonical `.out`） |
+| **运行中** | Exp8 SP **OT ~185/330**（写 `failed_partial` 文件，非 canonical `.out`） |
 | **临界区** | `bash experiments/exp10_status_line.sh` → 见 **CRIT** / `critical_zone` |
-| **下一任务** | Exp8 SP converged → post；VMD scheme 图 |
-| **Exp8** | **5/6** → `geoopt_pristine_sp` **restarted**（np=4；prior partial archived） |
+| **下一任务** | Exp8 SP converged → `post_exp8_converged.sh`；VMD scheme 图 |
+| **Exp8** | **5/6** → `geoopt_pristine_sp` running（~56% OT） |
 | **SDC** | **15** synergy 点（n=1–8 B/N/P @+3%）；$\mathcal{S}_\infty$ provisional；audit `sdc_exp10_synergy_audit.json` |
-| **阻塞 PRL** | 叙事/术语（非 Exp10）；机制图 + transport 主结果 |
-| **最新 Loop** | **R66**（见下方笔记） |
+| **阻塞 PRL** | 机制图 + transport 主结果；叙事已收敛为「非加性耦合 + 设计含义」 |
+| **最新 Loop** | **R67**（见下方笔记） |
 
 **一行命令**：`bash experiments/exp10_status_line.sh`
 
@@ -944,6 +944,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R67（2026-06-18，双轨）**：
+  - **Track A**：Exp8 **5/6** SP OT ~185/330 — **不干预**（lsof → `failed_partial_20260618_0115`）。
+  - **Track B**：**价值导向重组** — 3 页主文；Abstract/Intro 三条可验证贡献；Results 叙事链 α 分歧 → $\mathcal{S}(n=4)$ 定量非加性 → $S(n)$ 尺度；Discussion 设计含义；新增 **Fig.3** `figure3_synergy_tetramer.pdf`。
+  - **创新审计**：主张-证据对齐 = **A 级**；VMD scheme 仍 pending
+  - **Git**：见本 commit — `loop R67: value-focused manuscript + synergy tetramer figure`
+  - **下一轮**：Exp8 post → 6/6；VMD
 
 - **Loop R66（2026-06-18，双轨）**：
   - **Track A**：Exp8 **5/6** SP OT ~120/330 — **不干预**。

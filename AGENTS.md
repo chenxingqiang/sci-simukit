@@ -21,13 +21,13 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | 项 | 值 |
 |----|-----|
 | **Exp10** | **40/40** converged ✅（见 `exp10_status.json`） |
-| **运行中** | Exp8 `geoopt_pristine_sp`（np=4，67% CPU cap） |
+| **运行中** | Exp8 `geoopt_pristine_sp`（np=4，**nohup**） |
 | **临界区** | `bash experiments/exp10_status_line.sh` → 见 **CRIT** / `critical_zone` |
 | **下一任务** | Exp8 `geoopt_pristine_sp`；投稿叙事收紧 |
-| **Exp8** | **5/6** → `geoopt_pristine_sp` **running**（np=4） |
+| **Exp8** | **5/6** → `geoopt_pristine_sp` **restarted**（np=4；prior partial archived） |
 | **SDC** | **15** synergy 点（n=1–8 B/N/P @+3%）；$\mathcal{S}_\infty$ provisional；audit `sdc_exp10_synergy_audit.json` |
 | **阻塞 PRL** | 叙事/术语（非 Exp10）；机制图 + transport 主结果 |
-| **最新 Loop** | **R61**（见下方笔记） |
+| **最新 Loop** | **R62**（见下方笔记） |
 
 **一行命令**：`bash experiments/exp10_status_line.sh`
 
@@ -943,6 +943,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R62（2026-06-18，双轨）**：
+  - **Track A**：Exp10 **40/40** ✅；Exp8 SP **重启**（前次 OT~35 中断，partial `.out` 已归档）。
+  - **Track B**：**标题/Abstract/Conclusion 叙事收紧**（去 transport-paradigm oversell；标题对齐 Exp5+10 证据）；新增 `post_exp8_converged.sh`。
+  - **创新审计**：叙事 honesty = **A 级**；Exp8 SP = **B+ pending**；VMD 仍待本机 PATH。
+  - **Git**：`loop R62: …` → **pushed: origin/main**
+  - **下一轮**：Exp8 SP converged → post → 6/6；`paper/compile.sh`；VMD scheme。
 - **Loop R61（2026-06-18，双轨）**：
   - **Track A**：Exp10 **40/40** ✅（无动作）；启动 Exp8 **`geoopt_pristine_sp`**（120 atoms，np=4，后台）。
   - **Track B**：主文插入 **Figure 3**（SDC scaling）；Table 1 / Abstract **$E_f$ 术语校准**（substitution energy vs pristine，no $\mu$）。

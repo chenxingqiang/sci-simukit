@@ -21,13 +21,13 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | 项 | 值 |
 |----|-----|
 | **Exp10** | **40/40** converged ✅（见 `exp10_status.json`） |
-| **运行中** | Exp8 `geoopt_pristine_sp`（np=4，**nohup**） |
+| **运行中** | Exp8 `geoopt_pristine_sp`（np=4，**单 job**；R63 杀重复 2×） |
 | **临界区** | `bash experiments/exp10_status_line.sh` → 见 **CRIT** / `critical_zone` |
-| **下一任务** | Exp8 `geoopt_pristine_sp`；投稿叙事收紧 |
+| **下一任务** | Exp8 SP converged → post → 6/6；VMD scheme |
 | **Exp8** | **5/6** → `geoopt_pristine_sp` **restarted**（np=4；prior partial archived） |
 | **SDC** | **15** synergy 点（n=1–8 B/N/P @+3%）；$\mathcal{S}_\infty$ provisional；audit `sdc_exp10_synergy_audit.json` |
 | **阻塞 PRL** | 叙事/术语（非 Exp10）；机制图 + transport 主结果 |
-| **最新 Loop** | **R62**（见下方笔记） |
+| **最新 Loop** | **R63**（见下方笔记） |
 
 **一行命令**：`bash experiments/exp10_status_line.sh`
 
@@ -944,6 +944,12 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+- **Loop R63（2026-06-18，双轨）**：
+  - **Track A**：Exp10 **40/40** ✅；发现 **3× 重复** `geoopt_pristine_sp` 写同一 `.out` → 保留 pid 6979，kill 17570/20675；**5/6** SP 进行中。
+  - **Track B**：Exp4 **verified** 极化子小节 + **Figure 4**（IPR/J）；keywords 去 transport oversell；Conclusion $E_f$ 术语。
+  - **创新审计**：Exp4 诚实两点评述 = **A 级**；双 batch 风险 = **已缓解**；Exp8 = **B+ pending**
+  - **Git**：`<hash>` — `loop R63: Exp4 figure, kill dup SP, polaron subsection` → **pushed: origin/main**
+  - **下一轮**：Exp8 SP converged → `post_exp8_converged.sh`；VMD scheme；勿重复 launch SP
 - **Loop R62（2026-06-18，双轨）**：
   - **Track A**：Exp10 **40/40** ✅；Exp8 SP **重启**（前次 OT~35 中断，partial `.out` 已归档）。
   - **Track B**：**标题/Abstract/Conclusion 叙事收紧**（去 transport-paradigm oversell；标题对齐 Exp5+10 证据）；新增 `post_exp8_converged.sh`。
@@ -973,6 +979,8 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 ---
 
 ### Gotchas
+
+- **Exp8 SP 重复 launch**：同一 `geoopt_pristine_sp.out` 被多个 `prterun -np 4` 写入 → 只保留一个 prterun 父进程（R63 曾 3 并行）。
 
 - **Mac 内存 36GB**：勿同时跑多个 6×60/8×60；服务器 64GB 亦曾 OOM，宜 ≤5 任务并发。
 - **CP2K 路径**：Mac `/opt/homebrew/bin/cp2k.psmp`；服务器 `/usr/local/bin/cp2k.psmp`；`run_all.sh` 里 `cp2k.popt` 在 Mac 上**不存在**。

@@ -201,6 +201,36 @@ def figure2_coupling_summary(exp5: dict, table1: dict, out_dir: Path) -> Path:
     return save_figure(fig, out_dir / "figure2_synergy.pdf")
 
 
+
+def figure4_exp4_polaron(audit: dict, out_dir: Path) -> Path:
+    """Two-point Exp4 IPR and J (verified audit JSON only)."""
+    apply_nature_style()
+    fig, axes = plt.subplots(1, 2, figsize=(NATURE_ONE_HALF_COL * 1.05, NATURE_ONE_HALF_COL * 0.62))
+    labels = ["Pristine\n(0%)", "B +3%"]
+    keys = ("pristine_0pct", "coupled_B_3pct")
+    iprs = [audit["systems"][k]["IPR"] for k in keys]
+    js = [audit["systems"][k]["J_meV"] for k in keys]
+    colors = [get_color("pristine"), get_color("B")]
+
+    ax = axes[0]
+    x = np.arange(2)
+    ax.bar(x, iprs, color=colors, edgecolor="#333333", linewidth=0.4, width=0.55, zorder=3)
+    ax.set_xticks(x)
+    ax.set_xticklabels(labels)
+    ax.set_ylabel("IPR")
+    finalize_axes(ax, panel_label="a")
+
+    ax = axes[1]
+    ax.bar(x, js, color=colors, edgecolor="#333333", linewidth=0.4, width=0.55, zorder=3)
+    ax.set_xticks(x)
+    ax.set_xticklabels(labels)
+    ax.set_ylabel(r"$J$ (meV)")
+    finalize_axes(ax, panel_label="b")
+
+    fig.subplots_adjust(wspace=0.42, top=0.92, bottom=0.22, left=0.14, right=0.96)
+    return save_figure(fig, out_dir / "figure4_exp4_polaron.pdf")
+
+
 def copy_sdc_pending(sdc_fig: Path, pending_dir: Path) -> None:
     if not sdc_fig.exists():
         return
@@ -217,11 +247,14 @@ def main() -> int:
     exp1 = load_json(ROOT / "dft_results/exp_1_structure/results/real_dft_results.json")
     exp5 = load_json(ROOT / "dft_results/exp_5_synergy/results/real_dft_results.json")
     table1 = load_json(ROOT / "experiments/analysis/table1_verification.json")
+    exp4 = load_json(ROOT / "experiments/analysis/exp4_polaron_verification.json")
 
     p1 = figure1_strain_doping(exp1, exp5, out_dir)
     p2 = figure2_coupling_summary(exp5, table1, out_dir)
+    p4 = figure4_exp4_polaron(exp4, out_dir)
     print(f"Wrote {p1}")
     print(f"Wrote {p2}")
+    print(f"Wrote {p4}")
 
     sdc_fig = ROOT / "experiments/analysis/sdc/figures/sdc_synergy_vs_size_eps3pct_epa.pdf"
     copy_sdc_pending(sdc_fig, ROOT / "paper/figures/pending")

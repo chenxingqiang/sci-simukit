@@ -38,7 +38,7 @@
 We report the discovery of non-additive coupling between heteroatom doping and mechanical strain in two-dimensional graphullerene networks that fundamentally alters their energetic stability and electronic properties. Through first-principles DFT calculations (PBE with Grimme DFT-D3 dispersion) on B/N/P-doped quasi-hexagonal C$_{60}$ tetramer networks under biaxial strain ($\pm$5\%), we demonstrate that different dopant types exhibit dramatically different strain sensitivities: N-doped systems show strong negative sensitivity ($-303$ meV/\%), B-doped systems show positive sensitivity ($+57$ meV/\%), while pristine networks remain nearly strain-insensitive ($-1$ meV/\%). This >300-fold difference in strain response between dopant types represents a fundamentally non-additive coupling effect. The most stable configuration is N-doped graphullerene at $+2.5$\% tensile strain, with relative stability $-231$~eV/dopant vs pristine (no $\mu$ reference). These findings, validated by 24 converged tetramer calculations (240 atoms, Exp.~5) and finite-size scaling tests up to $8\times\mathrm{C}_{60}$ (Exp.~10; all 40 size-scaling calculations converged), with finite-size scaling confirming bulk-limit non-additive coupling via the synergy order parameter $\mathcal{S}$.
 \end{abstract}
 
-\keywords{graphullerene, strain engineering, heteroatom doping, quantum transport, polaron dynamics}
+\keywords{graphullerene, strain engineering, heteroatom doping, non-additive coupling, polaron hopping}
 
 \maketitle
 
@@ -180,6 +180,16 @@ Finite-size validation of the synergy order parameter $\mathcal{S}(n)$ at $+3$\%
 
 The relative substitution energy per dopant is $E_f = (E_{doped} - E_{pristine})/n_{\mathrm{dopants}}$, where $n_{dopants} = 6$. At 0\% strain: N-doped ($E_f = -230.5$ eV/dopant) is most stable, P-doped ($E_f = -31.5$ eV/dopant) is moderately stable, while B-doped ($E_f = +159.0$ eV/dopant) is unfavorable. Under tensile strain, N-doped systems become more stable while B-doped systems become less stable—this divergent response is the signature of non-additive coupling [verified: Table~\ref{tab:doping_results}].
 
+\subsection{\label{sec:polaron}Polaronic descriptors (Exp.~4, two-point audit)}
+
+As a complementary probe of how strain--doping coupling perturbs charge transfer, we analyzed inverse participation ratio (IPR) and intermolecular coupling $J$ from Exp.~4 on C$_{60}$ dimers: pristine at 0\% strain versus B-doped at $+3$\% strain [verified: \texttt{exp4\_polaron\_verification.json}]. IPR decreases from $75.0$ to $45.0$ ($f_{\mathrm{deloc}}\approx 1.67$) while $J$ increases from $26.6$ to $37.2$~meV ($\approx 40\%$ enhancement). Both configurations remain in the small-polaron hopping regime ($J<\lambda/2$ with $\lambda=180$ and $158$~meV); a band-like polaron transition is \emph{not} confirmed at this strain--dopant point. Figure~\ref{fig:exp4_polaron} summarizes the audited pair; full strain--dopant transport maps are deferred to expanded Exp.~4 sampling.
+
+\begin{figure}
+\includegraphics[width=0.72\textwidth]{figures/final_figures/figure4_exp4_polaron.pdf}
+% DATA: exp4_polaron_verification.json — IPR 75.0/45.0; J 26.6/37.2 meV
+\caption{\label{fig:exp4_polaron}Exp.~4 polaronic descriptors (two converged points): (a) IPR; (b) HOMO--HOMO$-1$ splitting $J$. Pristine 0\% vs B-doped $+3$\% strain; small-polaron regime retained.}
+\end{figure}
+
 \section{\label{sec:conclusions}Conclusions}
 
 We have discovered non-additive coupling between heteroatom doping and mechanical strain in graphullerene networks that fundamentally alters their energetic stability and strain response. This establishes a quantitative framework---strain sensitivity $\alpha$ and synergy $\mathcal{S}$---for tuning stability of doped qHP C$_{60}$ networks under mechanical load.
@@ -188,7 +198,7 @@ The key findings advance our understanding of strain-doping coupling in 2D molec
 
 \textbf{Fundamental Physics Discovery:} The non-additive coupling between chemical modification and mechanical deformation produces dramatically different strain responses for different dopant types. While pristine C$_{60}$ networks show negligible strain sensitivity ($-1$ meV/\%), N-doped systems exhibit strong negative sensitivity ($-303$ meV/\%) and B-doped systems show positive sensitivity ($+57$ meV/\%). This >300-fold difference in strain response represents a fundamentally non-additive effect that cannot be predicted from individual strain or doping responses.
 
-\textbf{Energetic Stability Trends:} N-doped graphullerene networks are the most stable configuration, with formation energy of $-231$ eV/dopant at 0\% strain and further stabilization under tensile strain. The optimal configuration (N-doped at $+2.5$\% strain) has total energy $E = -1414.408$ Ha. In contrast, B-doped systems are energetically unfavorable ($E_f = +159$ eV/dopant) and become less stable under tension.
+\textbf{Energetic Stability Trends:} N-doped graphullerene networks are the most stable configuration, with substitution energy $E_f = -230.5$~eV/dopant at 0\% strain and further stabilization under tensile strain. The optimal configuration (N-doped at $+2.5$\% strain) has total energy $E = -1414.408$ Ha. In contrast, B-doped systems are energetically unfavorable ($E_f = +159$ eV/dopant) and become less stable under tension.
 
 \textbf{Physical Origin:} The contrasting strain responses arise from the electronic structure differences introduced by dopants. N-doping introduces excess electrons that favor the expanded lattice geometry of tensile strain, while B-doping creates electron deficiency that destabilizes the expanded structure. This electronic-geometric coupling represents the quantum mechanical origin of the non-additive effect.
 

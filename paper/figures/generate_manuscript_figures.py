@@ -302,9 +302,15 @@ def figure3_electronic_morphology(exp4: dict, out_dir: Path) -> Path:
     finalize_axes(ax, panel_label="e")
 
     ax = fig.add_subplot(gs[1, 2])
-    ipr0 = exp4["systems"]["pristine_0pct"]["IPR"]
-    ipr1 = exp4["systems"]["coupled_B_3pct"]["IPR"]
-    plot_ipr_localization_morph(ax, ipr0, ipr1)
+    s0 = exp4["systems"]["pristine_0pct"]
+    s1 = exp4["systems"]["coupled_B_3pct"]
+    plot_ipr_localization_morph(
+        ax,
+        s0["IPR"],
+        s1["IPR"],
+        j_pristine=s0["J_meV"],
+        j_coupled=s1["J_meV"],
+    )
     finalize_axes(ax, panel_label="f")
 
     fig.subplots_adjust(left=0.07, right=0.98, top=0.90, bottom=0.10)

@@ -104,17 +104,38 @@ def plot_strain_cell_morph(ax, xyz0: Path, xyz_strained: Path) -> None:
     ax.set_xlim(lo[0], hi[0]); ax.set_ylim(lo[1], hi[1]); ax.set_aspect("equal"); ax.axis("off")
 
 
-def plot_ipr_localization_morph(ax, ipr_pristine: float, ipr_coupled: float) -> None:
-    ax.set_xlim(0, 10); ax.set_ylim(0, 5); ax.axis("off")
-    ax.text(5, 4.6, "Carrier localization (Exp.~4 IPR)", ha="center", fontsize=8, fontweight="bold")
+def plot_ipr_localization_morph(
+    ax,
+    ipr_pristine: float,
+    ipr_coupled: float,
+    *,
+    j_pristine: float | None = None,
+    j_coupled: float | None = None,
+) -> None:
+    ax.set_xlim(0, 10)
+    ax.set_ylim(0, 5)
+    ax.axis("off")
+    ax.text(5, 4.6, "Carrier localization (Exp.~4)", ha="center", fontsize=8, fontweight="bold")
 
-    def panel(x0, ipr, cap):
+    def panel(x0, ipr, cap, j_meV=None):
         ax.add_patch(Rectangle((x0, 0.4), 4.2, 3.6, fill=False, edgecolor="#666666", lw=0.8))
-        for cx, cy in [(x0+1.2,2.2),(x0+2.2,2.2),(x0+3.2,2.2),(x0+2.2,1.2)]:
-            ax.add_patch(Circle((cx,cy),0.35,facecolor="#DDDDDD",edgecolor="#888888",lw=0.5))
-        r = np.sqrt(60.0/max(ipr,1))*0.12
-        ax.add_patch(Circle((x0+2.2,2.2),r,facecolor="#CC0033",edgecolor="#000",alpha=0.35,lw=0.8))
-        ax.text(x0+2.2,0.15,cap,ha="center",fontsize=7)
-        ax.text(x0+2.2,3.85,f"IPR={ipr:.0f}",ha="center",fontsize=8,fontweight="bold")
-    panel(0.3, ipr_pristine, "pristine")
-    panel(5.5, ipr_coupled, "B + 3% strain")
+        for cx, cy in [(x0 + 1.2, 2.2), (x0 + 2.2, 2.2), (x0 + 3.2, 2.2), (x0 + 2.2, 1.2)]:
+            ax.add_patch(Circle((cx, cy), 0.35, facecolor="#DDDDDD", edgecolor="#888888", lw=0.5))
+        r = np.sqrt(60.0 / max(ipr, 1)) * 0.12
+        ax.add_patch(Circle((x0 + 2.2, 2.2), r, facecolor="#CC0033", edgecolor="#000", alpha=0.35, lw=0.8))
+        ax.text(x0 + 2.2, 0.15, cap, ha="center", fontsize=7)
+        ax.text(x0 + 2.2, 3.85, f"IPR={ipr:.0f}", ha="center", fontsize=8, fontweight="bold")
+        if j_meV is not None:
+            ax.text(x0 + 2.2, 3.45, f"$J={j_meV:.0f}$ meV", ha="center", fontsize=6.5, color="#0055AA")
+
+    panel(0.3, ipr_pristine, "pristine", j_pristine)
+    panel(5.5, ipr_coupled, "B + 3% strain", j_coupled)
+    if j_pristine is not None and j_coupled is not None and j_pristine > 0:
+        pct = 100.0 * (j_coupled - j_pristine) / j_pristine
+        ax.annotate(
+            "",
+            xy=(7.6, 2.2),
+            xytext=(2.4, 2.2),
+            arrowprops=dict(arrowstyle="-|>", color="#0055AA", lw=1.1),
+        )
+        ax.text(5, 2.55, f"$\\Delta J=+{pct:.0f}$\\%", ha="center", fontsize=7, color="#0055AA", fontweight="bold")

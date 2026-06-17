@@ -24,10 +24,10 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Exp8** | **6/6** ✅ — `post_exp8_converged.sh` consolidated `geoopt_pristine_sp.out` |
 | **运行中** | none |
 | **临界区** | none |
-| **下一任务** | VMD（可选，本机无 vmd）；PRL transport 主结果 |
+| **下一任务** | PRL transport 主图（Marcus grid）；VMD 可选 |
 | **SDC** | **15** synergy 点（n=1–8 B/N/P @+3%）；audit `sdc_exp10_synergy_audit.json` |
 | **阻塞 PRL** | 机制图 + transport 主结果；叙事已收敛为「非加性耦合 + 设计含义」 |
-| **最新 Loop** | **R74**（见下方笔记） |
+| **最新 Loop** | **R75**（见下方笔记） |
 
 **一行命令**：`bash experiments/exp10_status_line.sh`
 
@@ -944,6 +944,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R75（2026-06-11，双轨）**：
+  - **Track A**：Exp10 **40/40**、Exp8 **6/6** ✅；running=none — **不干预**。
+  - **Track B**：Fig.3(f) **IPR+$J$ 双点 schematic**（Exp4 verified）；Discussion 增 N $\mathcal{S}$ n=8 符号反转 + 诚实 transport 展望段。
+  - **创新审计**：transport-adjacent 证据链 = **B+ 级**（2 点 IPR/J，无 mobility）；N 尺寸符号变 = **A 级**
+  - **Git**：见本 commit — `loop R75: IPR-J schematic and transport outlook`
+  - **下一轮**：Marcus mobility grid / 断轴 PDOS；VMD 可选
 
 - **Loop R74（2026-06-11，双轨）**：
   - **Track A**：Exp10 **40/40**、Exp8 **6/6** ✅；running=none — **不干预**。

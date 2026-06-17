@@ -47,6 +47,7 @@ from electronic_facet_regression import (  # noqa: E402
 )
 from phase_diagram import plot_alpha_synergy_phase_map  # noqa: E402
 from synergy_floating_bars import plot_nonadditive_floating_bars  # noqa: E402
+from synergy_size_facet_regression import plot_synergy_size_facet_regression  # noqa: E402
 from strain_facet_regression import plot_strain_facet_regression  # noqa: E402
 
 HA_TO_MEV = 27.211386245988 * 1000.0
@@ -185,8 +186,6 @@ def _waterfall_row(ax, dop: str, sdc: dict) -> None:
 def figure2_synergy_combined(audit: dict, sdc: dict, table1: dict, out_dir: Path) -> Path:
     """Fig. 2: design triangle + alpha-S phase map + S bars + scaling."""
     apply_nature_style()
-    by_dop = _synergy_by_dopant(audit)
-    fits = audit.get("size_scaling_fits", {})
 
     fig = plt.figure(figsize=(NATURE_DOUBLE_COL, NATURE_DOUBLE_COL * 0.88))
     gs = fig.add_gridspec(2, 2, height_ratios=[1.1, 1.0], hspace=0.45, wspace=0.38)
@@ -203,27 +202,7 @@ def figure2_synergy_combined(audit: dict, sdc: dict, table1: dict, out_dir: Path
     plot_nonadditive_floating_bars(ax_bar, sdc, n=TETRAMER_N, strain_pct=EXP10_STRAIN)
     finalize_axes(ax_bar, panel_label="c")
 
-    ax_scale = fig.add_subplot(gs[1, 1])
-    ylo_b = min(r["synergy_S_meV_per_atom"] for r in audit["synergy_table"]) * 1.08
-    yhi_b = max(r["synergy_S_meV_per_atom"] for r in audit["synergy_table"]) * 1.12
-    shade_synergy_physics(ax_scale, ylo_b, max(yhi_b, 8.0))
-    n_grid = np.linspace(1, 8, 80)
-    for dop in ("B", "N", "P"):
-        pts = by_dop[dop]
-        ns = np.array([p["n_molecules"] for p in pts])
-        sv = np.array([p["synergy_S_meV_per_atom"] for p in pts])
-        style_line(ax_scale, ns, sv, dop, dop, linewidth=1.8, markersize=8, highlight_n=TETRAMER_N, x_arr=ns)
-        fit = fits.get(dop)
-        if fit:
-            ax_scale.plot(n_grid, fit_curve_n(fit["S_infinity"], fit["A"], n_grid), color=get_color(dop), ls=(0, (3, 2)), lw=1.0, alpha=0.7)
-    ax_scale.set_xlabel(r"Supercell size $n$")
-    ax_scale.set_ylabel(r"$\mathcal{S}$ (meV/atom)")
-    ax_scale.set_xticks([1, 2, 4, 6, 8])
-    ax_scale.set_xlim(0.4, 8.6)
-    ax_scale.set_ylim(ylo_b, max(yhi_b, 8.0))
-    ax_scale.axvline(TETRAMER_N, color="#444", ls=(0, (2, 2)), lw=0.9)
-    finalize_axes(ax_scale, panel_label="d")
-    origin_legend(ax_scale, ncol=3, loc="lower right")
+    plot_synergy_size_facet_regression(fig, gs[1, 1], audit, panel_label="d", highlight_n=TETRAMER_N)
 
     fig.subplots_adjust(left=0.08, right=0.98, top=0.94, bottom=0.12)
     return save_figure(fig, out_dir / "figure2_synergy_combined.pdf")

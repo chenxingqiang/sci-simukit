@@ -109,14 +109,14 @@ E(\epsilon) = E_0 + \alpha \epsilon
 \end{equation}
 where $E_0 = -1363.551$ Ha (for C$_{60}$ tetramer) and $\alpha = -0.97$ meV/\% is the strain coupling parameter.
 
-The dramatic departure from this insensitivity occurs when heteroatom doping is combined with strain. Table~\ref{tab:doping_results} quantifies the synergistic effects across different dopant types. Most striking is the N-doped system, which exhibits a strain sensitivity of $-303.2$ meV/\%—more than 300 times larger than pristine networks. Under tensile strain, N-doped systems become increasingly stable, with the most stable configuration occurring at $+2.5$\% strain ($E = -1414.408$ Ha). In contrast, B-doped systems show positive sensitivity ($+56.9$ meV/\%), becoming less stable under tension. P-doped systems exhibit intermediate behavior ($-19.1$ meV/\%).
+The dramatic departure from this insensitivity occurs when heteroatom doping is combined with strain. Table~\ref{tab:doping_results} quantifies the synergistic effects across different dopant types. Most striking is the N-doped system, which exhibits a strain sensitivity of $-303.2$ meV/\%—more than two orders of magnitude larger in magnitude than pristine networks ($|\alpha_{\mathrm{pristine}}|\approx 1$~meV/\%). Under tensile strain, N-doped systems become increasingly stable, with the most stable configuration occurring at $+2.5$\% strain ($E = -1414.408$ Ha). In contrast, B-doped systems show positive sensitivity ($+56.9$ meV/\%), becoming less stable under tension. P-doped systems exhibit intermediate behavior ($-19.1$ meV/\%).
 
 \begin{figure*}
 \includegraphics[width=0.48\textwidth]{figures/final_figures/figure1_strain_doping.pdf}
 \hfill
 \includegraphics[width=0.48\textwidth]{figures/final_figures/figure2_synergy.pdf}
 % DATA: Figure 1/2 Exp5; Figure 3 SDC (final_figures/figure3_sdc_scaling.pdf) [40/40; 15 pts]
-\caption{\label{fig:electronic_props}Non-additive coupling between strain and doping in graphullerene networks from DFT calculations. Left: (a) Strain response of pristine C$_{60}$ dimer (120 atoms) and tetramer (240 atoms) showing near-insensitivity; (b) Substitution energy $E_f$ vs strain for different dopants. Right: (a) Energy change from 0\% strain for each dopant type, revealing dramatically different responses; (b) Strain sensitivity showing N-doped systems 300$\times$ more sensitive than pristine.}
+\caption{\label{fig:electronic_props}Non-additive coupling between strain and doping in graphullerene networks from DFT calculations. Left: (a) Strain response of pristine C$_{60}$ dimer (120 atoms) and tetramer (240 atoms) showing near-insensitivity; (b) Substitution energy $E_f$ vs strain for different dopants. Right: (a) Energy change from 0\% strain for each dopant type, revealing dramatically different responses; (b) Strain sensitivity $\alpha$; $|\alpha_N|/|\alpha_{\mathrm{pristine}}|\gg 1$.}
 \end{figure*}
 
 \begin{figure}
@@ -170,7 +170,7 @@ The ratio of strain sensitivities quantifies the non-additive coupling strength:
 \label{eq:coupling_ratio}
 \end{equation}
 
-This 300-fold enhancement demonstrates that the strain response is not simply additive—the presence of dopants fundamentally changes how the system responds to mechanical deformation. This represents the key evidence for non-additive strain-doping coupling in graphullerene networks.
+This orders-of-magnitude enhancement demonstrates that the strain response is not simply additive—the presence of dopants fundamentally changes how the system responds to mechanical deformation. This represents the key evidence for non-additive strain-doping coupling in graphullerene networks.
 
 Finite-size validation of the synergy order parameter $\mathcal{S}(n)$ at $+3$\% strain (Exp.~10, 40/40 converged) confirms $|\mathcal{S}|>0$ for all B/N/P dopants at every supercell size $n=1$--$8$ [\texttt{sdc\_exp10\_synergy\_audit.json}]. P-doping yields consistently negative $\mathcal{S}$ ($\approx -24$ to $-32$~meV/atom); B-doping is negative throughout ($\approx -2$ to $-11$~meV/atom). N-doping is positive at $n\le 6$ ($\approx +2$ to $+7$~meV/atom) but crosses to negative at $n=8$ ($-2.3$~meV/atom), indicating a size-dependent sign change in the cross term. Provisional bulk extrapolations $\mathcal{S}_\infty\approx -0.52$, $-0.68$, and $-0.13$~meV/atom for B, N, and P (five-point $1/n$ fits) establish non-zero bulk coupling for all three dopants.
 

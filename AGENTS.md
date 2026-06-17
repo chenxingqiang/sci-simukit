@@ -21,13 +21,13 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | 项 | 值 |
 |----|-----|
 | **Exp10** | **40/40** converged ✅（见 `exp10_status.json`） |
-| **运行中** | Exp8 `geoopt_pristine_sp`（np=4，OT~5；workers 100% CPU） |
+| **运行中** | Exp8 SP **OT ~103/330**（写 `failed_partial` 文件，非 canonical `.out`） |
 | **临界区** | `bash experiments/exp10_status_line.sh` → 见 **CRIT** / `critical_zone` |
 | **下一任务** | Exp8 SP converged → `post_exp8_converged.sh`；VMD scheme |
 | **Exp8** | **5/6** → `geoopt_pristine_sp` **restarted**（np=4；prior partial archived） |
 | **SDC** | **15** synergy 点（n=1–8 B/N/P @+3%）；$\mathcal{S}_\infty$ provisional；audit `sdc_exp10_synergy_audit.json` |
 | **阻塞 PRL** | 叙事/术语（非 Exp10）；机制图 + transport 主结果 |
-| **最新 Loop** | **R64**（见下方笔记） |
+| **最新 Loop** | **R65**（见下方笔记） |
 
 **一行命令**：`bash experiments/exp10_status_line.sh`
 
@@ -945,6 +945,12 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+- **Loop R65（2026-06-18，双轨）**：
+  - **Track A**：Exp8 **5/6** — SP **不干预**（OT ~103/330，lsof 确认写 `failed_partial`；N_sp 参考 ~330 OT）。
+  - **Track B**：`exp8_status_line`/`post_exp8` **修复错误 .out 路径**；Results 残余 **300×** 措辞 honest 化。
+  - **创新审计**：Exp8 感知 = **A 级**（根因：归档 partial 后 CP2K fd 仍写旧路径）；SP = **B+ pending**
+  - **Git**：`<hash>` — `loop R65: exp8 out-path fix, 300x cleanup` → **pushed: origin/main**
+  - **下一轮**：SP converged → `post_exp8_converged.sh`（自动 consolidate）；~200 OT 剩余
 - **Loop R64（2026-06-18，双轨）**：
   - **Track A**：Exp10 **40/40** ✅；Exp8 **5/6** — `geoopt_pristine_sp` **不干预**（单 prterun，OT~5，输出缓冲）。
   - **Track B**：Abstract/Conclusion **>300×→两数量级** honest wording；Methods **rigid strain** 限制；新增 `exp8_status_line.sh`。
@@ -987,6 +993,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 ### Gotchas
 
+- **Exp8 SP 写错 .out**：归档 partial 为 `*.failed_partial_*` 后若 CP2K 未重启，lsof 显示仍写该文件；`post_exp8`/`exp8_status_line` 须查 `geoopt_pristine_sp.out*` 全集。
 - **Exp8 SP 重复 launch**：同一 `geoopt_pristine_sp.out` 被多个 `prterun -np 4` 写入 → 只保留一个 prterun 父进程（R63 曾 3 并行）。
 
 - **Mac 内存 36GB**：勿同时跑多个 6×60/8×60；服务器 64GB 亦曾 OOM，宜 ≤5 任务并发。

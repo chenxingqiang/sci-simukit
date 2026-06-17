@@ -24,10 +24,10 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Exp8** | **6/6** ✅ — `post_exp8_converged.sh` consolidated `geoopt_pristine_sp.out` |
 | **运行中** | none |
 | **临界区** | none |
-| **下一任务** | VMD scheme 图；PRL 机制/transport 主结果 |
+| **下一任务** | VMD（可选，本机无 vmd）；PRL transport 主结果 |
 | **SDC** | **15** synergy 点（n=1–8 B/N/P @+3%）；audit `sdc_exp10_synergy_audit.json` |
 | **阻塞 PRL** | 机制图 + transport 主结果；叙事已收敛为「非加性耦合 + 设计含义」 |
-| **最新 Loop** | **R70**（见下方笔记） |
+| **最新 Loop** | **R71**（见下方笔记） |
 
 **一行命令**：`bash experiments/exp10_status_line.sh`
 
@@ -944,6 +944,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R71（2026-06-11，双轨）**：
+  - **Track A**：Exp10 **40/40**、Exp8 **6/6** ✅；running=none — **不干预**。
+  - **Track B**：**Fig.1(a) B/N/P 三联结构形态** — `plot_dopant_triptych`；XYZ 元素标签着色（B 蓝/N 红/P 橙）；re-export xyz；VMD 本机不可用。
+  - **创新审计**：掺杂位形态可辨 = **A− 级**（matplotlib 替代 VMD）；transport = **B pending**
+  - **Git**：见本 commit — `loop R71: B/N/P dopant triptych Fig.1a`
+  - **下一轮**：VMD 若可用；PRL transport
 
 - **Loop R70（2026-06-11，双轨）**：
   - **Track A**：Exp10 **40/40**、Exp8 **6/6** ✅；running=none — **不干预**。

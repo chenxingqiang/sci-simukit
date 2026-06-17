@@ -59,26 +59,36 @@ def cage_centroids(pos: np.ndarray, n_cages: int = 4) -> np.ndarray:
 
 def plot_tetramer_topview(ax, xyz_path: Path, *, inp_path: Path | None = None, title: str = "") -> None:
     syms, pos = read_xyz(xyz_path)
-    dop_idx = set(read_inp_dopant_indices(inp_path)) if inp_path and inp_path.exists() else set()
+    dop_idx_inp = set(read_inp_dopant_indices(inp_path)) if inp_path and inp_path.exists() else set()
     bonds = infer_bonds(syms, pos)
     xy = pos[:, :2]
     ctrs = cage_centroids(pos)[:, :2]
     for i, j in bonds:
         ax.plot([xy[i, 0], xy[j, 0]], [xy[i, 1], xy[j, 1]], color="#888888", lw=0.35, alpha=0.55, zorder=1)
     for k, (s, (x, y)) in enumerate(zip(syms, xy)):
-        is_dop = k in dop_idx
+        is_dop = s in DOPANT_ELEMENTS or k in dop_idx_inp
         r = 0.55 if is_dop else 0.22
-        col = ELEM_COLOR.get(s if is_dop else "C", "#666666")
-        if is_dop and s == "C":
-            col = "#CC0033"
-        ax.add_patch(Circle((x, y), r, facecolor=col, edgecolor="#111", lw=0.5 if is_dop else 0.35, zorder=4 if is_dop else 3))
+        col = ELEM_COLOR.get(s if is_dop else "C", "#505050")
+        ax.add_patch(
+            Circle((x, y), r, facecolor=col, edgecolor="#111", lw=0.5 if is_dop else 0.35, zorder=4 if is_dop else 3)
+        )
     for k, c in enumerate(ctrs):
         ax.add_patch(Circle(c, 2.8, fill=False, edgecolor="#AAAAAA", lw=0.6, linestyle=(0, (4, 3)), zorder=0))
-        ax.text(c[0], c[1], f"{k+1}", ha="center", va="center", fontsize=6, color="#666666")
+        ax.text(c[0], c[1], f"{k + 1}", ha="center", va="center", fontsize=6, color="#666666")
     ax.set_aspect("equal")
     ax.axis("off")
     if title:
-        ax.set_title(title, fontsize=8, pad=2)
+        ax.set_title(title, fontsize=8, fontweight="bold", pad=2, color=ELEM_COLOR.get(title, "#333333"))
+
+
+def plot_dopant_triptych(ax, xyz_dir: Path, *, strain_tag: str = "+0.0") -> None:
+    """B / N / P tetramer top views side-by-side (VMD-free ball-and-stick)."""
+    ax.axis("off")
+    for i, dop in enumerate(("B", "N", "P")):
+        sub = ax.inset_axes([0.01 + i * 0.33, 0.02, 0.31, 0.96])
+        xyz = xyz_dir / f"C60_strain_{strain_tag}_{dop}_doped_synergy.xyz"
+        plot_tetramer_topview(sub, xyz, title=dop)
+    ax.text(0.5, 1.02, r"$4\times\mathrm{C}_{60}$ tetramers ($\varepsilon=0$)", transform=ax.transAxes, ha="center", fontsize=8)
 
 
 def plot_strain_cell_morph(ax, xyz0: Path, xyz_strained: Path) -> None:

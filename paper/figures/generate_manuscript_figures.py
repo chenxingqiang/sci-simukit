@@ -36,6 +36,7 @@ from electronic_morphology import (  # noqa: E402
     plot_pdos_deconvolution_xps,
 )
 from structure_morphology import (  # noqa: E402
+    plot_dopant_triptych,
     plot_ipr_localization_morph,
     plot_strain_cell_morph,
     plot_tetramer_topview,
@@ -104,9 +105,7 @@ def figure1_strain_coupling(exp5: dict, table1: dict, out_dir: Path) -> Path:
     gs = fig.add_gridspec(2, 2, hspace=0.35, wspace=0.28)
 
     ax0 = fig.add_subplot(gs[0, 0])
-    xyz_n = XYZ_DIR / "C60_strain_+0.0_N_doped_synergy.xyz"
-    inp_n = INP_DIR / "C60_strain_+0.0_N_doped_synergy.inp"
-    plot_tetramer_topview(ax0, xyz_n, inp_path=inp_n, title=r"N-doped tetramer (top view)")
+    plot_dopant_triptych(ax0, XYZ_DIR, strain_tag="+0.0")
     finalize_axes(ax0, panel_label="a")
 
     ax1 = fig.add_subplot(gs[0, 1])

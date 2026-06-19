@@ -1,6 +1,9 @@
 # 论文引用完善报告
 
-**完成时间：** 2025-08-16 20:45:00  
+> **⚠️ 废止说明（2026-06-19，Loop R116）**  
+> 下文为 **2025-08-16 旧版长文** 规划快照（声称 48 篇），**不代表**当前主稿。现稿为 Electron 对齐精简稿（**12 citekey**：含 PBE/D3）；勿用本文恢复旧 transport/ML 声称。
+
+**完成时间：** 2025-08-16 *(历史，已 superseded)* 20:45:00  
 **论文标题：** "Strain-Tuned Heteroatom-Doped Graphullerene Networks: Engineering Quantum Transport Properties through Controlled Lattice Deformation"
 
 ## ✅ 引用完善总结

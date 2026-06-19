@@ -22,17 +22,17 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 |----|-----|
 | **Exp10** | **40/40** converged ✅（见 `exp10_status.json`） |
 | **Exp8** | **6/6** ✅ — `post_exp8_converged.sh` consolidated `geoopt_pristine_sp.out` |
-| **Exp9** | **7/12** GEO_OPT；qneg1 **step 63/300** OT~486（restarted-after-ABORT） |
+| **Exp9** | **7/12** GEO_OPT；qneg1 **step 63/300** OT~486 grad~$8.6\times10^{-6}$（restarted-after-ABORT） |
 | **运行中** | `polaron_pristine_qneg1_opt`（4× MPI）— **不干预** |
-| **临界区** | geo step 63/300（OT grad $\sim8.6\times10^{-6}$，内层 SCF 振荡） |
+| **临界区** | geo step 63/300（OT grad $\sim8.6\times10^{-6}$，近 EPS） |
 | **下一任务** | qneg1 PROGRAM ENDED → `post_exp9_converged.sh` |
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
 | **阻塞 PRL** | Exp9 λ + transport 主图 |
-| **文稿 P 瓶颈** | S5 λ pending（post hook ready）；transport C |
-| **下一 B 任务** | Exp9 λ 入 S5；transport 主图；MolFC 替换 S6(b) |
+| **文稿 P 瓶颈** | S5 λ pending；Methods PBE/D3 **R116 已补** |
+| **下一 B 任务** | Exp9 λ 入 S5；Qiu2025 力学对比句；MolFC 替换 S6(b) |
 | **主张-证据** | post_exp9→`render_si_figures.sh` = **A** |
 | **旗杆** | `post_exp9_converged.sh` |
-| **最新 Loop** | **R115**（见下方笔记） |
+| **最新 Loop** | **R116**（见下方笔记） |
 
 **一行命令**：`bash experiments/exp10_status_line.sh` · `bash experiments/exp9_status_line.sh`
 
@@ -1114,6 +1114,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R116（2026-06-19，双轨）**：
+ - **Track A**：Exp9 **7/12**；`polaron_pristine_qneg1_opt` step **63/300** OT~**486** grad~$8.6\times10^{-6}$ — **不干预**。
+ - **Track B（IV Methods）**：Methods 补 PBE + D3-BJ citekey（`Perdew1996generalized`, `Grimme2011effect`）；`citation_completion_report.md` 标废止。
+ - **创新审计**：Methods 泛函契约 = **A**；引用报告诚实化 = **A**；$\lambda$ = **B pending**
+ - **Git**：pending — `loop R116: Methods PBE D3 cites, citation report superseded`
+ - **下一轮**：qneg1 PROGRAM ENDED → post_exp9；Discussion 补 Qiu2025 力学句
 
 - **Loop R115（2026-06-18，双轨）**：
   - **Track A**：Exp9 batch 存活；`polaron_pristine_qneg1_opt` step **63/300** OT~**486** — **不干预**。

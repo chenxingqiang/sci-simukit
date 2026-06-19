@@ -79,7 +79,7 @@ Section~\ref{sec:methods} defines models and metrics; Sec.~\ref{sec:results} fol
 
 \subsection{Electronic-structure setup}
 
-All total-energy and electronic-structure calculations use CP2K~\cite{cp2k2025} with PBE and Grimme DFT-D3 (Becke--Johnson damping), matching \texttt{experiments/*/inputs/*.inp}.
+All total-energy and electronic-structure calculations use CP2K~\cite{cp2k2025} with PBE~\cite{Perdew1996generalized} and Grimme DFT-D3 (Becke--Johnson damping)~\cite{Grimme2011effect}, matching \texttt{experiments/*/inputs/*.inp}.
 This level is deliberately chosen for a uniform, size-converged scan of $(\epsilon,\delta)$; it differs from the Koopmans-compliant PBE($\alpha_K$)+rVV10 framework of Ref.~\citenum{Capobianco2024electron}, which targets absolute polaron binding and mobilities in pristine supercells.
 Plane-wave cutoff is 300~Ry (280~Ry for $n\geq 6$ in Exp.~10); SCF convergence uses \texttt{EPS\_SCF}$=10^{-6}$ with OT minimization.
 Basis: DZVP-MOLOPT-SR-GTH with matching GTH pseudopotentials.

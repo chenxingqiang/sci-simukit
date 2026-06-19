@@ -1119,7 +1119,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
   - **Track A**：Exp9 **7/12**；qneg1 OT~232，grad $\sim2.5\times10^{-6}$ — **不干预**（近 converged）。
   - **Track B**：**Fig.~S6** 扩展为 (a) Exp.4 $J$ + (b) synthetic FCWD envelope（Capobianco 词汇；MolFC pending）；SI caption/theory 同步。
   - **创新审计**：S6(a) $J$ = **A**；S6(b) FCWD = **B**（synthetic）；$\lambda$ = **B pending**
-  - **Git**：见 commit after amend
+  - **Git**：`edfe38c` — `loop R111: S6 J plus synthetic FCWD dual panel` → **pushed: origin/main**
   - **下一轮**：qneg1 converged → post_exp9
 
 - **Loop R110（2026-06-18，双轨）**：

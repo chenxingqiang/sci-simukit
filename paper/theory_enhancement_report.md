@@ -32,7 +32,7 @@
 | Abstract 7/12 partial Exp9 | **A−** | **[verified R120]** | audit JSON converged count |
 | 主稿 citekey 计数（精简稿） | **A** | **13** | 非 `citation_completion_report` 48 篇旧快照 |
 | `running_snapshot` OT 字段 | **A** | **[fixed R103]** | `last_ot_convergence`（非 RMS grad） |
-| Marcus $\lambda$（vertical − adiabatic） | **B** | **[pending]** | Exp9: 5 GEO_OPT + 8 vertical SP；`derived.lambda_eV` 全 null |
+| Marcus $\lambda$（vertical − adiabatic） | **B** | **[pending]** | Exp9: **9/12** GEO_OPT + **0/8** vertical SP；`derived.lambda_eV` 全 null |
 | PRL 主图 (a–d) | **A** | **[verified]** | `paper/figures/out/figure_prb_main.pdf` + audit JSON（PRB 修订版；无 inset） |
 | PRB 主图 panel (d) $n{=}4$ $\mathcal{S}$ 标注 | **A** | **[verified R135]** | `fig_prl_main.py` `build_prb_figure` |
 | Table S5 局域结构（$\bar{d}$, $\Delta r_{\mathrm{cov}}$） | **A−** | **[verified]** | `experiments/analysis/local_structure_tetramer.json` |
@@ -42,7 +42,7 @@
 | ML $R^2{>}0.95$、775%/300% $\mu$ | **C** | **[withdrawn from main]** | 勿进 Abstract/Results |
 | 下文 IPR 45→25、$J{=}135$ meV、$\mu{=}8.75\times$ | **C** | **[discrepancy]** | 仅作历史理论草稿；见 §2 |
 
-**Track A 快照（2026-06-19，R138）**：Exp9 **9/12** — `polaron_B_qpos1_opt` step **9/300**（新 geo 步）（4× MPI）；Exp10 **40/41** cutoff400 pending（勿与 Exp9 并行）；Exp8 **6/6** ✅。
+**Track A 快照（2026-06-19，R140）**：Exp9 **9/12** — `polaron_B_qpos1_opt` step **27/300** ~9%（4× MPI）；Exp10 **40/41** cutoff400 pending（勿与 Exp9 并行）；Exp8 **6/6** ✅。
 
 ---
 
@@ -55,6 +55,7 @@
 | Table S4 seed 137 (18 ENERGY) | `seed_validation/` + `run_seed137_validation.sh` | **B pending** |
 | Table S5 局域结构 | `analyze_local_structure.py` | **A− verified** |
 | PRB 验证 DFT 队列 | `experiments/run_prb_revision_dft.sh` | **B**（Exp9 空闲后顺序跑） |
+| PRB 投稿包 `compile_prb.sh` | 主图 + SI 图 + 双 PDF | **A** **[verified R139]** |
 
 ## 8. 主稿段落 ↔ JSON 映射（R103 横切）
 

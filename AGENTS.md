@@ -1119,7 +1119,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track A**：Exp9 **8/12** GEO_OPT；`polaron_N_qneg1_opt` step **4/300** OT~15 — **不干预**（qneg1 已结束/续 batch）。
  - **Track B（审稿修订 + Exp4 factorial）**：`analyze_exp4_polaron.py` → 2×2 IPR/$J$ audit；主稿审稿 P0/P1（$\mathcal{S}$ 公式括号、$|S|/|E_f|$ 量级、截断能/浓度/位点局限、Li2024strain 引文）；S6/PRL inset 四格图；删 `\texttt{exp4\_...json}`。
  - **创新审计**：Exp4 factorial = **A**；审稿 Methods 诚实化 = **A**；$\lambda$ = **B pending**；transport = **C**
- - **Git**：pending — `loop R122: Exp4 factorial audit and peer-review manuscript fixes`
+ - **Git**：`05888f8` — `loop R122: Exp4 factorial audit and peer-review manuscript fixes` → **pushed: origin/main**
  - **下一轮**：N_qneg1 PROGRAM ENDED → post_exp9；可选 $n=6$ @300 Ry
 
 - **Loop R121（2026-06-19，双轨 · PRL 版式）**：

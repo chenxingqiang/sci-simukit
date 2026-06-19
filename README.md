@@ -32,15 +32,11 @@ sci-simukit/
 │   ├── strain_doped_graphullerene.tex
 │   ├── strain_graphullerene_50refs.bib
 │   └── figures/                    # Paper figures
-├── 🧬 graphullerene/               # Base structures and CP2K inputs
-│   ├── *.xyz                       # Fullerene structures
-│   └── *.inp                       # CP2K input templates
-├── 🔧 src/                         # Core implementation
+├── 🔧 src/                         # Structure generation + SDC Python wrapper
 │   ├── strain_generator.py         # Strain structure generation
 │   ├── doping_generator.py         # Heteroatom doping
 │   ├── strain_doping_combiner.py   # Combined strain+doping
-│   ├── sdc_coupling_analysis.py    # SDC plots (canonical analysis: c/simukit-sdc)
-│   └── graphullerene_gnn.py       # Graph neural network model
+│   └── sdc_coupling_analysis.py    # SDC plots (canonical: c/simukit-sdc)
 ├── ⚙️ c/                           # C DFT coupling core (CP2K parse/run/SDC)
 │   ├── include/simukit/            # Public headers
 │   ├── src/                        # libsimukit sources
@@ -103,12 +99,7 @@ python experiments/run_complete_experiment.py --mode quick
 python experiments/run_complete_experiment.py --mode full
 ```
 
-### 3. Train ML Model
-```bash
-python src/graphullerene_gnn.py
-```
-
-### 4. C DFT Core (CP2K parse, batch run, SDC analysis)
+### 3. C DFT Core (CP2K parse, batch run, SDC analysis)
 ```bash
 cd c && make
 export CP2K_DATA=/opt/homebrew/share/cp2k/data   # adjust for your install

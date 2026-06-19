@@ -97,3 +97,5 @@ c/simukit-sdc
 c/src/*.o
 # VMD render cache
 paper/figures/final_figures/_vbm_cbm_cache/
+experiments/.exp9_batch.lock
+paper/*Notes.bib

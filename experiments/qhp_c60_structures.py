@@ -3,7 +3,7 @@
 qHP C60 Network Structure Module
 
 Provides qHP (quasi-hexagonal-planar) C60 network structures for DFT calculations.
-These structures are from validated reference files in graphullerene/ directory.
+These structures are from validated reference files in embedded coordinates in this module.
 
 Structure hierarchy:
 - 1x C60 monomer (60 atoms): Basic unit, for quick tests

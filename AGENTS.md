@@ -1210,14 +1210,14 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track A**：Exp9 batch — **不干预**。
  - **Track B**：主稿 `prl`→`prb`+`reprint`；`figure*`+`figure_prb_main`；Data Availability；`compile_prb.sh`+`revtex-tds`；`cover_letter_prb.txt`；`docs/prb_submission_guideline.md` 仓库工作流。
  - **创新审计**：PRB 版式 = **A**；D2/S3–S4 验证 = **B pending**
- - **Git**：未提交
+ - **Git**： — loop R131-R133 → **pushed: origin/main**
  - **下一轮**：Exp9 空闲 → relax/seed137/cutoff400；APS 上传三 PDF
 
 - **Loop R132（2026-06-19，Track B · 方法学硬伤修复）**：
  - **Track A**：Exp9 **8/12**；`polaron_N_qneg1_opt` ~step 119/300 — **不干预**；Table S3 弛豫待 batch 空闲后 `run_relax_validation.sh`。
  - **Track B**：**D2/D3/D4 + 格式** — Methods `sec:notation`+`sec:validation`；截断能 **400/350 Ry** 与 `*.inp` 对齐；N 尺寸符号 **撤出主结论**；$\epsilon$/$\mathcal{S}$/$\pi$-DOS 统一；Table **S4** seed137；`size_6x60_N_pos3pct_cutoff400.inp`；bib `note`→`eprint`；主图轴 $\epsilon$ 重绘。
  - **创新审计**：Methods-inp 契约 = **A**；D2/D3/D4 计算 = **B pending**（inp 已就绪）
- - **Git**：未提交
+ - **Git**： —  → **pushed: origin/main**
  - **下一轮**：Exp9 空闲 → relax + seed137 ENERGY + cutoff400 单点
 
 - **Loop R131（2026-06-19，Track B · 篇幅回升）**：

@@ -13,7 +13,7 @@ FIG_DIR = Path(__file__).resolve().parent
 sys.path.insert(0, str(FIG_DIR))
 
 from _load_audit import load_json
-from _style import COLOR_CBM, COLOR_VBM, apply_prl_style, panel_label, style_axes
+from _style import COLOR_CBM, COLOR_VBM, apply_si_style, panel_label, style_axes
 
 
 def _parabola(q, q0, e0, k):
@@ -21,11 +21,11 @@ def _parabola(q, q0, e0, k):
 
 
 def build(out_dir: Path) -> tuple[Path, Path]:
-    apply_prl_style()
+    apply_si_style()
     exp9 = load_json("experiments/analysis/exp9_polaron_verification.json")
     ad = exp9["derived"]["adiabatic_eV"]
 
-    fig, axes = plt.subplots(1, 3, figsize=(6.4, 1.75), sharey=True)
+    fig, axes = plt.subplots(1, 3, figsize=(7.0, 2.05), sharey=True)
     q = np.linspace(-1.2, 1.2, 200)
 
     panels = [

@@ -53,6 +53,39 @@ def apply_prl_style() -> None:
     )
 
 
+def apply_prb_style() -> None:
+    """PRB reprint width (~7 in) — larger type and markers for print legibility."""
+    mpl.rcParams.update(
+        {
+            "figure.dpi": 300,
+            "savefig.dpi": 300,
+            "font.family": "sans-serif",
+            "font.sans-serif": ["Helvetica", "Arial", "DejaVu Sans"],
+            "font.size": 8,
+            "mathtext.fontset": "dejavusans",
+            "axes.labelsize": 8.5,
+            "axes.titlesize": 8,
+            "xtick.labelsize": 7,
+            "ytick.labelsize": 7,
+            "legend.fontsize": 6.5,
+            "axes.linewidth": 0.65,
+            "lines.linewidth": 1.0,
+            "lines.markersize": 4.5,
+            "xtick.major.width": 0.65,
+            "ytick.major.width": 0.65,
+            "xtick.major.size": 2.8,
+            "ytick.major.size": 2.8,
+            "pdf.fonttype": 42,
+            "ps.fonttype": 42,
+        }
+    )
+
+
+def apply_si_style() -> None:
+    """Supplemental Material figures — match PRB readability."""
+    apply_prb_style()
+
+
 def style_axes(ax: Axes, grid: bool = False) -> None:
     """Nano Lett. clean axes — L/B spines only."""
     ax.spines["top"].set_visible(False)
@@ -64,14 +97,15 @@ def style_axes(ax: Axes, grid: bool = False) -> None:
     ax.set_axisbelow(True)
 
 
-def panel_label(ax: Axes, label: str) -> None:
+def panel_label(ax: Axes, label: str, *, fontsize: float | None = None) -> None:
     """Bold (a)–(d) at top-left inside panel — Electron alignment."""
+    fs = fontsize if fontsize is not None else mpl.rcParams["font.size"] + 0.5
     ax.text(
         0.03,
         0.97,
         f"({label})",
         transform=ax.transAxes,
-        fontsize=7.5,
+        fontsize=fs,
         fontweight="bold",
         va="top",
         ha="left",

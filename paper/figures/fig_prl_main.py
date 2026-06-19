@@ -26,6 +26,8 @@ from _style import (
     PRB_HEIGHT_IN,
     PRB_WIDTH_IN,
     apply_prl_style,
+    apply_prb_style,
+    apply_si_style,
     panel_label,
     style_axes,
 )
@@ -178,15 +180,20 @@ def _plot_synergy_combo(ax_main, audit, exp4, *, show_inset: bool = False, ax_in
     ax_main.margins(x=0.06, y=0.22)
     style_axes(ax_main, grid=True)
     for dopant, (xn, sv) in n4_labels.items():
+        dy = 10 if sv >= 0 else -12
+        if dopant == "P":
+            dy = -14
         ax_main.annotate(
-            f"{sv:+.1f}",
+            rf"$\mathcal{{S}}={sv:+.1f}$",
             xy=(xn, sv),
-            xytext=(6, 6 if sv >= 0 else -8),
+            xytext=(8, dy),
             textcoords="offset points",
-            fontsize=5,
+            fontsize=6,
             color=DOPANT_COLORS[dopant],
             ha="left",
-            va="bottom" if sv >= 0 else "top",
+            va="bottom" if dy > 0 else "top",
+            bbox=dict(boxstyle="round,pad=0.15", facecolor="white", edgecolor=DOPANT_COLORS[dopant], alpha=0.92, lw=0.4),
+            arrowprops=dict(arrowstyle="-", color=DOPANT_COLORS[dopant], lw=0.45, shrinkA=2, shrinkB=2),
         )
     ax_main.legend(
         frameon=True,
@@ -262,23 +269,23 @@ def build_prl_figure(out_dir: Path) -> tuple[Path, Path]:
 
 
 def build_prb_figure(out_dir: Path) -> tuple[Path, Path]:
-    apply_prl_style()
+    apply_prb_style()
     table1 = load_json("experiments/analysis/table1_verification.json")
     audit = load_json("experiments/analysis/sdc/sdc_exp10_synergy_audit.json")
     exp4 = load_json("experiments/analysis/exp4_polaron_verification.json")
     gaps = parse_exp7_gaps()
 
-    fig = plt.figure(figsize=(PRB_WIDTH_IN, PRB_HEIGHT_IN))
+    fig = plt.figure(figsize=(PRB_WIDTH_IN, PRB_HEIGHT_IN + 0.15))
     gs = GridSpec(
         1,
         4,
         figure=fig,
         width_ratios=[1.05, 0.85, 0.82, 1.05],
-        wspace=0.52,
-        left=0.07,
+        wspace=0.48,
+        left=0.08,
         right=0.98,
-        top=0.86,
-        bottom=0.26,
+        top=0.88,
+        bottom=0.30,
     )
     ax_a = fig.add_subplot(gs[0, 0])
     ax_b = fig.add_subplot(gs[0, 1])

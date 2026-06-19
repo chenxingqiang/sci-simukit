@@ -14,15 +14,15 @@ FIG_DIR = Path(__file__).resolve().parent
 sys.path.insert(0, str(FIG_DIR))
 
 from _load_audit import load_json
-from _style import COLOR_CBM, COLOR_VBM, DOPANT_COLORS, apply_prl_style, panel_label, style_axes
+from _style import COLOR_CBM, COLOR_VBM, DOPANT_COLORS, apply_si_style, panel_label, style_axes
 
 
 def build(out_dir: Path) -> tuple[Path, Path]:
-    apply_prl_style()
+    apply_si_style()
     exp4 = load_json("experiments/analysis/exp4_polaron_verification.json")
     sys_map = exp4["systems"]
 
-    fig = plt.figure(figsize=(4.6, 1.75))
+    fig = plt.figure(figsize=(6.5, 2.05))
     gs = GridSpec(1, 2, figure=fig, width_ratios=[1.15, 1.05], wspace=0.42)
     ax_j = fig.add_subplot(gs[0, 0])
     ax_f = fig.add_subplot(gs[0, 1])

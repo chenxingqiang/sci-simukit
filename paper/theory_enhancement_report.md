@@ -164,7 +164,7 @@ Legacy `analyze_results.py` → 请改用 `analyze_exp9_polaron.py` + `dft_resul
 
 ---
 
-**总结（R109）**：$\mathcal{S}$ 框架与 Exp5/10 **已对齐**；旧「8.5/10 投稿就绪」**废止**。瓶颈：**Exp9 λ + transport**。
+**检索（R137）**：`graphullerene strain doping 2025` — Wang2024 qHP/qTP 各向异性已在 bib；LopezAlcalay2025 graphendofullerene 应变+掺杂（衍生体系）入 Discussion 对比句；endohedral qHP 2026 预印本未入（偏离 B/N 替位主题）。
 
 
 ## 7. SI 图件索引（R94）

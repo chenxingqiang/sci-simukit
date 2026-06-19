@@ -22,17 +22,17 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 |----|-----|
 | **Exp10** | **40/41** — `size_6x60_N_pos3pct_cutoff400` pending（截断对照） |
 | **Exp8** | **6/6** ✅ — `post_exp8_converged.sh` consolidated `geoopt_pristine_sp.out` |
-| **Exp9** | **9/12** GEO_OPT；`polaron_B_qpos1_opt` step **300/360** ~83% — **不干预** |
+| **Exp9** | **9/12** GEO_OPT；`polaron_B_qpos1_opt` step **300/387** ~78% — **不干预** |
 | **运行中** | `polaron_B_qpos1_opt`（4× MPI）— **不干预** |
 | **临界区** | B_qpos1 GEO_OPT 末段；内层 OT ~$10^{-6}$ |
 | **下一任务** | Exp9 12/12 → `post_exp9_converged.sh`；空闲后 `run_prb_revision_dft.sh` |
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
 | **阻塞 PRB** | Table S3/S4/cutoff400 `.out`；Exp9 λ（SI S5） |
 | **文稿 P 瓶颈** | Major 1–5 文稿已落地；DFT 验证队列就绪 |
-| **下一 B 任务** | theory 台账已同步 R135；Exp9 空闲 → `run_prb_revision_dft.sh` |
+| **下一 B 任务** | 图件 PRB/SI 可读性 polish；文献 Wang/López-Alcalá 对比句 |
 | **主张-证据** | B/N/P $\mathcal{S}(n{=}4)$ = **A**；弛豫/seed137/cutoff = **B pending** |
 | **旗杆** | **PRB major revision**（`compile_prb.sh` + SM + cover letter）|
-| **最新 Loop** | **R136**（见下方笔记） |
+| **最新 Loop** | **R137**（见下方笔记） |
 
 
 ---
@@ -1202,6 +1202,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
   - **创新审计**：n=6 B $\mathcal{S}$ = **A 级**；8×60 batch 运维 + 资源 cap = **A 级**。
   - **Git**：`2a39654` — pushed **origin/main**（2026-06-14）。
   - **下一轮**：`8×60_B_pos3` 收敛 → post → **35/40** + 可能第 12 条 synergy；Figure 1/2 final 仍 pending。
+
+- **Loop R137（2026-06-19，双轨 · 图件+文献）**：
+ - **Track A**：Exp9 **9/12**；`polaron_B_qpos1_opt` ~78% — **不干预**。
+ - **Track B（III Literature + 图）**：`apply_prb_style`/`apply_si_style`；PRB 主图 $n{=}4$ $\mathcal{S}$ 标注加框；S4 共享 y 轴 + (a–d) panel；S5/S6 加宽；Discussion 引 **Wang2024simulation**、**LopezAlcalay2025**；`render_*.sh` 用 conda python。
+ - **创新审计**：图件可读性 = **A**；新文献对比 = **B+**（bib 已有）
+ - **Git**：`0b56951` — loop R137 → **pushed: (local only)**
+ - **下一轮**：Exp9 idle → `run_prb_revision_dft.sh`
 
 - **Loop R136（2026-06-19，双轨）**：
  - **Track A**：Exp9 **9/12**；`polaron_B_qpos1_opt` step **300/360** ~83% OT~$10^{-6}$ — **不干预**；勿并行 cutoff400/relax。

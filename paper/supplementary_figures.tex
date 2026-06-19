@@ -20,11 +20,14 @@ Figures follow the observables vocabulary of Capobianco \emph{et al.}~\cite{Capo
 \textbf{DATA:} Fig.~S5 Marcus $\lambda$ panels refresh from \texttt{exp9\_polaron\_verification.json} after vertical SP converge; until then literature $\lambda$ schematics only.
 
 \begin{figure*}
+\IfFileExists{figures/out/figure_s4_pdos_exp7.pdf}{%
+\includegraphics[width=0.92\textwidth]{figures/out/figure_s4_pdos_exp7.pdf}}{%
 \IfFileExists{figures/final_figures/figureS4_vbm_cbm_dos.pdf}{%
 \includegraphics[width=0.92\textwidth]{figures/final_figures/figureS4_vbm_cbm_dos.pdf}}{%
-\fbox{\parbox{0.88\textwidth}{\centering\vspace{2cm}\textbf{Fig.~S4 placeholder}\\VBM/CBM + DOS --- pending VMD render\\\texttt{bash paper/figures/render\_supplementary\_figures.sh}\vspace{2cm}}}%
-}
-\caption{\label{fig:S4}VBM/CBM isosurfaces and $\pi$-resolved DOS (Exp.~7). \textbf{[pending: VMD]} when PDF absent.}
+\fbox{\parbox{0.88\textwidth}{\centering\vspace{2cm}\textbf{Fig.~S4 placeholder}\\run \texttt{bash paper/figures/render\_si\_figures.sh}\vspace{2cm}}}%
+}}
+\caption{\label{fig:S4}$\pi$-projected DOS at $\varepsilon{=}0$ for pristine and B/N/P tetramers (Exp.~7 \texttt{.pdos}, PBE+D3).
+MO isosurfaces \textbf{[pending: VMD + cube export]}; band-edge labels follow $E_F$.}
 \end{figure*}
 
 \begin{figure*}

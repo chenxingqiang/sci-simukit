@@ -145,8 +145,8 @@ Legacy `analyze_results.py` → 请改用 `analyze_exp9_polaron.py` + `dft_resul
 
 | 图 | 路径 | 证据等级 | 备注 |
 |----|------|----------|------|
-| S4 VBM/CBM+DOS | `figures/final_figures/` (removed) | **B** | VMD pending |
+| S4 π-DOS @ ε=0 | `figures/out/figure_s4_pdos_exp7.pdf` | **A−** | Exp7 `.pdos`; MO isosurfaces pending VMD |
 | S5 Marcus λ | `figures/out/figure_s5_marcus_pending.pdf` | **B+** | IP/EA from Exp9 JSON; λ pending vertical SP |
 | S6 $J$ audit | `figures/out/figure_s6_j_exp4.pdf` | **A** | Exp4 JSON; FCWD panel pending |
 
-渲染：`bash paper/figures/render_si_transport.sh`；SI PDF：`bash paper/compile_si.sh`
+渲染：`bash paper/figures/render_si_figures.sh`；SI PDF：`bash paper/compile_si.sh`

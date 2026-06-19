@@ -22,17 +22,17 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 |----|-----|
 | **Exp10** | **40/40** converged ✅（见 `exp10_status.json`） |
 | **Exp8** | **6/6** ✅ — `post_exp8_converged.sh` consolidated `geoopt_pristine_sp.out` |
-| **Exp9** | **7/12** GEO_OPT；qneg1 **step 63/300** OT~142（restarted-after-ABORT） |
+| **Exp9** | **7/12** GEO_OPT；qneg1 **step 63/300** OT~224（restarted-after-ABORT） |
 | **运行中** | `polaron_pristine_qneg1_opt`（4× MPI）— **不干预** |
 | **临界区** | none |
 | **下一任务** | qneg1 PROGRAM ENDED → `post_exp9_converged.sh` |
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
 | **阻塞 PRL** | Exp9 λ + transport 主图 |
-| **文稿 P 瓶颈** | S5 λ 数值 pending；S5/S6 schematic **A−** |
-| **下一 B 任务** | R110 MolFC FCWD + push backlog |
-| **主张-证据** | SI S5 IP/EA↔Exp9 JSON = **A−** |
-| **旗杆** | `render_si_transport.sh` |
-| **最新 Loop** | **R109**（见下方笔记） |
+| **文稿 P 瓶颈** | S4 π-DOS **A−**；S5 λ pending |
+| **下一 B 任务** | R111 MolFC FCWD；Exp9 post on converge |
+| **主张-证据** | SI S4↔Exp7 PDOS = **A−** |
+| **旗杆** | `render_si_figures.sh` |
+| **最新 Loop** | **R110**（见下方笔记） |
 
 **一行命令**：`bash experiments/exp10_status_line.sh` · `bash experiments/exp9_status_line.sh`
 
@@ -813,7 +813,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 | **A 计算** | 验证 | **`c/simukit-sdc`**、`grep 'SCF run converged'`、`analyze_exp9_polaron.py` → `running_snapshot` |
 | **B 文稿** | 感知 | `paper/strain_doped_graphullerene.tex`、`theory_enhancement_report.md`、**[论文自动优化 · 扫描包](#自动扫描包复制即用)** |
 | **B 文稿** | 策略 | `docs/reference_info.md`、`docs/papers/Electron.pdf`（旗杆）、write.mdc 阶段轮转 |
-| **B 文稿** | 落地 | **`paper/figures/render_prl.sh`**、`fig_prl_main.py`、`_load_audit.py`、`paper/compile.sh`、`sdc_method_section.tex` |
+| **B 文稿** | 落地 | **`render_prl.sh`**、**`render_si_figures.sh`**、`fig_prl_main.py`、`_load_audit.py`、`compile_si.sh` |
 | **B 文稿** | SDC 工具 | **`c/simukit-sdc`** → `sdc_exp10_results.json`；`sdc_exp10_synergy_audit.json`（meV）；Python 仅图 |
 | **B 文稿** | 文献 | **WebSearch**、Semantic Scholar、DOI；更新 `strain_graphullerene_50refs.bib` |
 | **B 文稿** | 验证 | `latexmk -pdf`、创新审计表、csv↔out 对照 |
@@ -1114,6 +1114,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R110（2026-06-18，双轨）**：
+  - **Track A**：Exp9 **7/12**；qneg1 step **63/300** OT~224 — **不干预**。
+  - **Track B**：**Fig.~S4** Exp7 π-DOS 四联图 `fig_si_s4_pdos_exp7.py`（替代 VMD 占位；layout 字压线 fix）；`render_si_figures.sh`；SI PDF 重编译。
+  - **创新审计**：S4 π-DOS = **A−**（无 MO cube）；$\lambda$ = **B pending**
+  - **Git**：`b6aa60c` — `loop R110: SI S4 Exp7 PDOS panel, layout fix, SI PDF rebuild`
+  - **下一轮**：push backlog；qneg1 → post_exp9
 
 - **Loop R109（2026-06-18，双轨）**：
   - **Track A**：Exp9 **7/12**；qneg1 step **63/300** OT~142 — **不干预**。

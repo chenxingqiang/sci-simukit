@@ -22,17 +22,17 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 |----|-----|
 | **Exp10** | **40/40** converged ✅（见 `exp10_status.json`） |
 | **Exp8** | **6/6** ✅ — `post_exp8_converged.sh` consolidated `geoopt_pristine_sp.out` |
-| **Exp9** | **8/12** GEO_OPT；`polaron_N_qneg1_opt` **step 117/300** ~39% — **不干预** |
+| **Exp9** | **8/12** GEO_OPT；`polaron_N_qneg1_opt` **step 117/300** ~39% OT~120 — **不干预** |
 | **运行中** | `polaron_N_qneg1_opt`（4× MPI）— **不干预** |
 | **临界区** | geo 中期；内层 SCF 正常 |
 | **下一任务** | N_qneg1 PROGRAM ENDED → `post_exp9_converged.sh` |
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
 | **阻塞 PRL** | Exp9 λ + transport 主图 |
-| **文稿 P 瓶颈** | **PRL desk gate** D1/D5/D6 叙事+摘要+IPR 下沉 |
-| **下一 B 任务** | 正文词数压缩；Discussion DFT 误差段；`relax_validation` post-Exp9 |
+| **文稿 P 瓶颈** | **D2** 弛豫 Table S3；**R1** 机理定量 |
+| **下一 B 任务** | Exp9 结束→`relax_validation`；$n{=}6$@300 Ry |
 | **主张-证据** | B/N/P $\mathcal{S}(n{=}4)$ = **A**；$\alpha$–$\mathcal{S}$ 线性检验 = **B** |
 | **旗杆** | PRL desk gate → 不达标则 **PRB Rapid** |
-| **最新 Loop** | **R128**（见下方笔记） |
+| **最新 Loop** | **R129**（见下方笔记） |
 
 
 ---
@@ -102,6 +102,7 @@ print('abstract_has_cite', '\\cite' in a)
 grep -En 'IPR|\\$J\\$|Marcus' paper/strain_doped_graphullerene.tex | wc -l
 grep -c '\\mathcal\{S\}' paper/strain_doped_graphullerene.tex || true
 grep -En 'referinfo|note.*refer' paper/strain_graphullerene_50refs.bib || true
+bash paper/scripts/prl_wordcount.sh 2>/dev/null || true
 test -f experiments/analysis/relax_validation_tetramer.json && python3 -c "import json;d=json.load(open('experiments/analysis/relax_validation_tetramer.json'));print('relax',d.get('status','?'))" || echo 'relax_json missing'
 ```
 
@@ -1204,6 +1205,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R129（2026-06-19，双轨）**：
+ - **Track A**：Exp9 **8/12**；`polaron_N_qneg1_opt` step **117/300** OT~120 — **不干预**。
+ - **Track B（D7/D5/R1）**：Methods 四节→两节（~1480 词 `texcount`）；删主文 localization 小节；Discussion 去 $J$ 因子分解；三类机制 taxonomy；`paper/scripts/prl_wordcount.sh`；SI task inventory。
+ - **创新审计**：D7 篇幅 = **A**（1480/3750）；D2 弛豫 = **B pending**；叙事升格 = **B+**
+ - **Git**：`806ea8f` — `loop R129: compress Methods, mechanism taxonomy, wordcount script`
+ - **下一轮**：Exp9 结束→relax_validation；Conclusion 对齐叙事锚点句
 
 - **Loop R128（2026-06-19，双轨 · PRL desk gate）**：
  - **Track A**：Exp9 **8/12**；`polaron_N_qneg1_opt` step **117/300** — **不干预**；`relax_validation` 待 Exp9 空闲。

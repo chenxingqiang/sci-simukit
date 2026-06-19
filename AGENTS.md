@@ -22,17 +22,17 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 |----|-----|
 | **Exp10** | **40/40** converged ✅（见 `exp10_status.json`） |
 | **Exp8** | **6/6** ✅ — `post_exp8_converged.sh` consolidated `geoopt_pristine_sp.out` |
-| **Exp9** | **7/12** GEO_OPT；qneg1 **step 33/300**（~11%） |
-| **运行中** | `polaron_pristine_qneg1_opt` — **不干预** |
+| **Exp9** | **7/12** GEO_OPT；qneg1 **step 63/300** OT~44（restarted-after-ABORT） |
+| **运行中** | `polaron_pristine_qneg1_opt`（4× MPI）— **不干预** |
 | **临界区** | none |
-| **下一任务** | qneg1 PROGRAM ENDED → post_exp9 |
+| **下一任务** | qneg1 PROGRAM ENDED → `post_exp9_converged.sh` → 续 pending GEO_OPT |
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
 | **阻塞 PRL** | Exp9 λ + transport 主图 |
 | **文稿 P 瓶颈** | transport C pending |
-| **下一 B 任务** | R106 Literature 轮 |
-| **主张-证据** | Intro↔Abstract $\mathcal{S}$=**A** |
-| **旗杆** | `Electron.pdf` |
-| **最新 Loop** | **R105**（见下方笔记） |
+| **下一 B 任务** | R107 Discussion 补 Lopez-Alcalá2025 strain 对比句（可选） |
+| **主张-证据** | PRL 主图↔audit JSON = **A** |
+| **旗杆** | `Electron.pdf` + `render_prl.sh` |
+| **最新 Loop** | **R106**（见下方笔记） |
 
 **一行命令**：`bash experiments/exp10_status_line.sh` · `bash experiments/exp9_status_line.sh`
 
@@ -813,7 +813,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 | **A 计算** | 验证 | **`c/simukit-sdc`**、`grep 'SCF run converged'`、`analyze_exp9_polaron.py` → `running_snapshot` |
 | **B 文稿** | 感知 | `paper/strain_doped_graphullerene.tex`、`theory_enhancement_report.md`、**[论文自动优化 · 扫描包](#自动扫描包复制即用)** |
 | **B 文稿** | 策略 | `docs/reference_info.md`、`docs/papers/Electron.pdf`（旗杆）、write.mdc 阶段轮转 |
-| **B 文稿** | 落地 | `paper/figures/generate_manuscript_figures.py`、`paper/compile.sh`、`sdc_method_section.tex` |
+| **B 文稿** | 落地 | **`paper/figures/render_prl.sh`**、`fig_prl_main.py`、`_load_audit.py`、`paper/compile.sh`、`sdc_method_section.tex` |
 | **B 文稿** | SDC 工具 | **`c/simukit-sdc`** → `sdc_exp10_results.json`；`sdc_exp10_synergy_audit.json`（meV）；Python 仅图 |
 | **B 文稿** | 文献 | **WebSearch**、Semantic Scholar、DOI；更新 `strain_graphullerene_50refs.bib` |
 | **B 文稿** | 验证 | `latexmk -pdf`、创新审计表、csv↔out 对照 |
@@ -1114,6 +1114,14 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R106（2026-06-18，双轨）**：
+  - **Track A**：Exp9 **7/12**；`polaron_pristine_qneg1_opt` step **63/300** OT~44（restarted-after-ABORT）— **不干预**、勿启第二路 batch。
+  - **Track B**：PRL 主图 **Electron 1×4 对齐** + **字压线 layout fix** — 新 pipeline `paper/figures/render_prl.sh` → `figures/out/figure_prl_main.pdf`；Results panel 引用 (a–d) 同步。
+  - **文献检索**：query `graphullerene strain doping polaron 2025` → Lopez-Alcalá2025 graphendofullerene strain+掺杂（衍生体系，非 $(\epsilon,\delta)$ 交叉项）= **support**；未入 bib（待 R107 一句对比）。
+  - **创新审计**：PRL 主图 = **A**（audit JSON + Exp.7 PDOS）；$\lambda$ = **B pending**
+  - **Git**：`c8bb9d5` — `loop R106: PRL figure pipeline and layout fix` → **push failed** (network timeout; retry `git push`)
+  - **下一轮**：qneg1 converged → post_exp9；Marcus transport 占位图
 
 - **Loop R105（2026-06-18，双轨）**：
   - **Track A**：Exp9 step **33/300** pct~11%（+13 步 since R104）— **不干预**。

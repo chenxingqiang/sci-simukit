@@ -122,23 +122,16 @@ Results are organized parallel to Ref.~\citenum{Capobianco2024electron}: band-ed
 
 \subsection{\label{sec:electronic}Electronic structure under strain and doping}
 
-Figure~\ref{fig:electronic} connects mechanics to $\pi$ electronics (Exp.~7).
-Panel~(a) shows facet regressions of the $\pi$-gap vs.\ $\varepsilon$ (blue: pristine reference; red: dopant).
-B-doped tetramers approach near-zero gap at $\epsilon=0$ whereas N remains gap-modulated under tension---consistent with $\pi$-electron count differences.
-Panel~(b) stacks $\pi$-PDOS curves in an XRD-style waterfall; panels~(c--e) resolve HOMO/LUMO edges and XPS-style decompositions at $+5$\% strain.
-Overall, substitution and strain jointly reshape valence and conduction band edges rather than shifting a rigid gap rigidly---motivating a coupled rather than sequential design workflow~\cite{Materials2024untangling,Khan2025tuning,Li2024strain}.
-
-\begin{figure*}
-\includegraphics[width=0.98\textwidth]{figures/final_figures/figure3_electronic_morphology.pdf}
-\caption{\label{fig:electronic}Electronic morphology (Exp.~7). (a)~$\pi$-gap vs.\ $\varepsilon$ facet regression. (b)~Stacked $\pi$-PDOS waterfall. (c)~HOMO/LUMO vs.\ $\varepsilon$ facets. (d--e)~PDOS deconvolution (N, B). (f)~IPR/$J$ schematic (Exp.~4; two verified points from \texttt{exp4\_polaron\_verification.json}).}
-\end{figure*}
+Figure~\ref{fig:prl_main}(a) reports HOMO--LUMO gaps from converged Exp.~7 tetramer single-points at $\varepsilon\in\{-5,0,+5\}$\%.
+B-doped tetramers approach near-zero gap at $\epsilon=0$ [panel~(a)] whereas N and P remain more gap-modulated on the same grid---consistent with dopant-specific $\pi$-electron counting.
+Figure~\ref{fig:prl_main}(b) shows the corresponding $\pi$-DOS for B @ $\varepsilon=0$ (Exp.~7 PDOS).
 
 \subsection{\label{sec:localization}Polaron localization and electronic coupling}
 
 Capobianco \emph{et al.}~\cite{Capobianco2024electron} established that qHP electron polarons remain molecularly localized (IPR$_\mathrm{pol}\approx 30$, between delocalized and molecular limits) while $J$ increases with shorter interfullerene distances.
 Our Exp.~4 audit provides two internally consistent points at the tetramer scale (PBE+D3): pristine @ $\epsilon=0$ (IPR $=75.0$, $J=26.6$~meV) and B-doped @ $\epsilon=+3$\% (IPR $=45.0$, $J=37.2$~meV, $+40$\% enhancement) [verified: \texttt{exp4\_polaron\_verification.json}].
 Delocalization increases under the coupled load but both states remain in the \emph{small-polaron hopping} regime ($J\ll\lambda/2$ with $\lambda\sim 160$--$180$~meV from the same audit file); a polaron-to-band transition is \emph{not} confirmed.
-Figure~\ref{fig:electronic}(f) summarizes the trend; absolute $J$ is below pristine-network values because of the smaller fragment, different functional, and dopant-induced disorder---the relevant comparison is the \emph{direction} of coupling change under $(\epsilon,\delta)$, not numerical equality with Ref.~\citenum{Capobianco2024electron}.
+Figure~\ref{fig:prl_main}(d) inset summarizes the trend; absolute $J$ is below pristine-network values because of the smaller fragment, different functional, and dopant-induced disorder---the relevant comparison is the \emph{direction} of coupling change under $(\epsilon,\delta)$, not numerical equality with Ref.~\citenum{Capobianco2024electron}.
 
 Marcus reorganization energies from Exp.~9 (vertical vs.\ adiabatic charged relaxations) are pending completion of 5 geometry optimizations and 8 vertical single-points; no $\lambda$ values are quoted here.
 Among the seven converged charged GEO\_OPT runs completed so far, adiabatic ionization potentials from $q=0$/$+1$ pairs give IP$=4.73$~eV (pristine) and IP$=3.89$~eV (N); the B-doped $q=0$/$-1$ pair gives EA$=3.12$~eV [verified: \texttt{exp9\_polaron\_verification.json}].
@@ -147,7 +140,7 @@ Among the seven converged charged GEO\_OPT runs completed so far, adiabatic ioni
 
 Pristine tetramers are strain-insensitive ($|\alpha|\approx 1$~meV/\%).
 Substitution opens a wide spread: N ($\alpha=-303.2$~meV/\%), B ($+56.9$~meV/\%), P ($-19.1$~meV/\%) [Table~\ref{tab:doping_results}].
-Figure~\ref{fig:strain_coupling} links tetramer \emph{geometry} to these mechanics: (a--b) B/N/P morphologies and in-plane cell expansion; (c--d) facet regression of opposite $\alpha$ for N vs.\ B.
+Figure~\ref{fig:prl_main}(c) summarizes the opposite $\alpha$ for N vs.\ B.
 Ranking dopants by stability at $\epsilon=0$ alone is therefore misleading: N is most stable at zero strain but its negative $\alpha$ implies further stabilization in tension, whereas B becomes less stable under the same load.
 
 \begin{table}
@@ -164,20 +157,19 @@ P-doped & $-1370.496$ & $-1370.489$ & $-19.1$ & $-31.5$ \\
 \end{ruledtabular}
 \end{table}
 
-\begin{figure*}
-\includegraphics[width=0.95\textwidth]{figures/final_figures/figure1_strain_coupling.pdf}
-\caption{\label{fig:strain_coupling}Structure-mechanics coupling (Exp.~5). (a)~B/N/P tetramer top views ($\varepsilon=0$; dopant sites highlighted). (b)~Biaxial cell expansion ($\varepsilon=0$ vs.\ $+5$\%). (c)~Facet regression of $\Delta E/N$ vs.\ $\varepsilon$ (blue: pristine; red: dopant). (d)~$\alpha$ by dopant.}
-\end{figure*}
-
 \subsection{\label{sec:synergy}Non-additive strain--doping coupling}
 
-Figure~\ref{fig:synergy} maps the additive-model error using $\mathcal{S}$: (a)~strain-only shift vs.\ $\mathcal{S}$; (b)~mechanical--non-additive phase map ($\alpha$ vs.\ $\mathcal{S}$ at $n=4$, $+3$\%); (c)~floating-bar decomposition (sequential vs.\ coupled DFT; red = synergy gap); (d)~$\mathcal{S}(n)$ facet regressions to $n=8$.
-At tetramer scale and $+3$\% strain, P shows the largest correction ($|\mathcal{S}|\approx 24$~meV/atom at $n=4$, Exp.~10); the effect persists across $n=1$--$8$ (15 synergy points at $+3$\%, \texttt{sdc\_exp10\_synergy\_audit.json}).
+Figure~\ref{fig:prl_main}(d) tracks $\mathcal{S}(n)$ to $8\times\mathrm{C}_{60}$; at $n=4$ and $+3$\% strain, P shows the largest correction ($|\mathcal{S}|\approx 24$~meV/atom).
+The effect persists across $n=1$--$8$ (15 synergy points at $+3$\%, \texttt{sdc\_exp10\_synergy\_audit.json}).
 For N, $\mathcal{S}$ changes sign between $n=6$ ($+2.4$~meV/atom) and $n=8$ ($-2.3$~meV/atom) [same audit], so finite-size extrapolation must be dopant-specific.
 
 \begin{figure*}
-\includegraphics[width=0.95\textwidth]{figures/final_figures/figure2_synergy_combined.pdf}
-\caption{\label{fig:synergy}Non-additive design space (Exp.~5, Exp.~10). (a)~Design-space triangle. (b)~$\alpha$--$\mathcal{S}$ phase map at tetramer scale. (c)~Floating-bar non-additive gap (sequential vs.\ coupled). (d)~$\mathcal{S}(n)$ facet scaling to $n=8$ [15-point audit: \texttt{sdc\_exp10\_synergy\_audit.json}].}
+\includegraphics[width=\columnwidth]{figures/out/figure_prl_main.pdf}
+\caption{\label{fig:prl_main}Coupled $(\epsilon,\delta)$ response in doped qHP C$_{60}$ (PBE+D3; Capobianco-style layout).
+(a)~HOMO--LUMO gap vs.\ strain (Exp.~7; P @ $-5$\% excluded).
+(b)~$\pi$-projected DOS for B @ $\varepsilon{=}0$ [Exp.~7 \texttt{.pdos}].
+(c)~$\alpha$ from Exp.~5 [\texttt{table1\_verification.json}].
+(d)~$\mathcal{S}(n)$ at $+3$\% (15 points) [\texttt{sdc\_exp10\_synergy\_audit.json}]; inset: Exp.~4 IPR/$J$.}
 \end{figure*}
 
 % ------------------------------------------------------------------
@@ -199,7 +191,7 @@ Partial Exp.~9 adiabatic IP/EA values (pristine IP, N IP, B EA from converged ch
 
 \textbf{Design implications.}
 (1)~\emph{Couple $(\epsilon,\delta)$ in screening}: at $+3$\% strain, P incurs the largest additive-model error ($|\mathcal{S}|$ up to $\sim32$~meV/atom at $n=1,6$; $\sim24$~meV/atom at tetramer $n=4$); N and B corrections are smaller at the same conditions but opposite in sign for $\alpha$.
-(2)~\emph{Separate electronic and energetic knobs}: gap closing (Fig.~\ref{fig:electronic}) does not map one-to-one onto $\mathcal{S}$ magnitude---mechanics and cross terms must be co-optimized.
+(2)~\emph{Separate electronic and energetic knobs}: gap closing [Fig.~\ref{fig:prl_main}(a)] does not map one-to-one onto $\mathcal{S}$ magnitude---mechanics and cross terms must be co-optimized.
 (3)~\emph{Size-aware metrics}: N $\mathcal{S}$ sign reversal by $n=8$ warns against extrapolating tetramer trends to extended networks without Exp.~10-style scaling.
 
 \textbf{Limitations.}

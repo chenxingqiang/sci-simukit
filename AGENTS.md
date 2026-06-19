@@ -22,17 +22,17 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 |----|-----|
 | **Exp10** | **40/40** converged ✅（见 `exp10_status.json`） |
 | **Exp8** | **6/6** ✅ — `post_exp8_converged.sh` consolidated `geoopt_pristine_sp.out` |
-| **Exp9** | **8/12** GEO_OPT；`polaron_N_qneg1_opt` **step 4/300** OT~15（restarted-after-ABORT） |
+| **Exp9** | **8/12** GEO_OPT；`polaron_N_qneg1_opt` **step ~6/300** OT~4（restarted-after-ABORT） |
 | **运行中** | `polaron_N_qneg1_opt`（4× MPI）— **不干预** |
-| **临界区** | geo step **4/300** ~1.3%；batch 正常 |
+| **临界区** | geo step **~6/300** ~2%；batch 正常 |
 | **下一任务** | N_qneg1 PROGRAM ENDED → `post_exp9_converged.sh` |
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
 | **阻塞 PRL** | Exp9 λ + transport 主图 |
-| **文稿 P 瓶颈** | 审稿意见 P0/P1 **R122**；S5 λ pending；transport C |
-| **下一 B 任务** | $n=6$ 300 Ry 对照；$\mathcal{S}_{\mathrm{gap}}$ 可选 |
-| **主张-证据** | Exp4 2×2 factorial = **A**；post_exp9→S5 λ = **B pending** |
+| **文稿 P 瓶颈** | SI Table S2 / caption 学术化 **R123**；S5 λ pending |
+| **下一 B 任务** | $n=6$ 300 Ry 对照；机理数据支撑 |
+| **主张-证据** | Exp4 2×2 = **A**；SI ledger = **A**；λ = **B pending** |
 | **旗杆** | PRL `prl` + 单栏主图 |
-| **最新 Loop** | **R122**（见下方笔记） |
+| **最新 Loop** | **R123**（见下方笔记） |
 
 **一行命令**：`bash experiments/exp10_status_line.sh` · `bash experiments/exp9_status_line.sh`
 
@@ -1114,6 +1114,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R123（2026-06-19，双轨）**：
+ - **Track A**：Exp9 **8/12**；`polaron_N_qneg1_opt` step **~6/300** — **不干预**。
+ - **Track B（V Data / SI）**：`supplementary_figures.tex` — Table S2 Exp4 2×2、去 `\texttt{dft\_results}`/audit JSON；S6 四格 caption；修 standalone 断链 `\ref{fig:prl_main}`；SI PDF 重编译。
+ - **创新审计**：SI 契约 = **A**；$\lambda$ = **B pending**；transport = **C**
+ - **Git**：pending — `loop R123: SI Table S2 and caption academic cleanup`
+ - **下一轮**：N_qneg1 converged → post_exp9
 
 - **Loop R122（2026-06-19，双轨）**：
  - **Track A**：Exp9 **8/12** GEO_OPT；`polaron_N_qneg1_opt` step **4/300** OT~15 — **不干预**（qneg1 已结束/续 batch）。

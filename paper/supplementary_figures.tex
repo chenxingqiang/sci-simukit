@@ -36,7 +36,7 @@ P-doped & $-1370.496$ & $-1370.489$ & $-19.1$ & $-31.5$ \\
 
 
 \begin{table*}
-\caption{\label{tab:S2}DFT campaign ledger (converged tasks in \texttt{dft\_results/}; main-text use).}
+\caption{\label{tab:S2}DFT campaign ledger (converged CP2K tasks archived with inputs; main-text use).}
 \begin{ruledtabular}
 \begin{tabular}{llccp{3.2cm}}
 Campaign & Model & $N_{\mathrm{conv}}$ & Main text & Notes \\
@@ -44,13 +44,13 @@ Campaign & Model & $N_{\mathrm{conv}}$ & Main text & Notes \\
 Structure probe (Exp.~1) & 2$\times$C$_{60}$ strain & 5 & --- & superseded by tetramer grids \\
 Doping scan (Exp.~2) & single C$_{60}$ & 11 & --- & superseded \\
 Electronics (Exp.~3) & 2$\times$C$_{60}$ & 24 & --- & superseded by Exp.~7 \\
-IPR/$J$ (Exp.~4) & tetramer & 8 (2 quoted) & Fig.~\ref{fig:prl_main}(d) inset & no $2\times2$ factorial \\
+IPR/$J$ (Exp.~4) & tetramer & 8 (4 in $2\times2$) & Fig.~S6, main inset & pristine/B $\times$ $\epsilon{=}0,+3$\% \\
 Strain energies (Exp.~5) & tetramer & 24 & Table~\ref{tab:S1}, $\alpha$ & rigid strain \\
 Optimal grid (Exp.~6) & tetramer & 20 & --- & SI archive \\
-PDOS/gaps (Exp.~7) & tetramer & 22 & Fig.~\ref{fig:prl_main}(a,b) & \\
+PDOS/gaps (Exp.~7) & tetramer & 22 & Fig.~S4; main gap/DOS panels & \\
 Geometry (Exp.~8) & tetramer relax & 11 & SI inputs & reference geometries \\
 Charged (Exp.~9) & tetramer $q=\pm1$ & 23 & SI Fig.~S5 & $\lambda$ pending \\
-Size scaling (Exp.~10) & $n\times$C$_{60}$ & 40 & Fig.~\ref{fig:prl_main}(d) & 280 Ry for $n\geq6$ \\
+Size scaling (Exp.~10) & $n\times$C$_{60}$ & 40 & main $\mathcal{S}(n)$ panel & 280 Ry for $n\geq6$ \\
 \end{tabular}
 \end{ruledtabular}
 \end{table*}
@@ -58,9 +58,9 @@ Size scaling (Exp.~10) & $n\times$C$_{60}$ & 40 & Fig.~\ref{fig:prl_main}(d) & 2
 \begin{figure*}
 \IfFileExists{figures/out/figure_s4_pdos_exp7.pdf}{%
 \includegraphics[width=0.92\textwidth]{figures/out/figure_s4_pdos_exp7.pdf}}{%
-\fbox{\parbox{0.88\textwidth}{\centering\vspace{2cm}\textbf{Fig.~S4 placeholder}\\run \texttt{bash paper/figures/render\_si\_figures.sh}\vspace{2cm}}}%
+\fbox{\parbox{0.88\textwidth}{\centering\vspace{2cm}\textbf{Fig.~S4 not found} --- regenerate SI figure pipeline\vspace{2cm}}}%
 }
-\caption{\label{fig:S4}$\pi$-projected DOS at $\varepsilon{=}0$ for pristine and B/N/P tetramers (Exp.~7 \texttt{.pdos}, PBE+D3).
+\caption{\label{fig:S4}$\pi$-projected DOS at $\varepsilon{=}0$ for pristine and B/N/P tetramers (Exp.~7, PBE+D3).
 Band-edge $\pi$-DOS follows Electron SI Fig.~S4 colour scheme (VBM purple, CBM teal); MO isosurfaces \textbf{[pending: VMD + cube export]}.}
 \end{figure*}
 
@@ -70,7 +70,7 @@ Band-edge $\pi$-DOS follows Electron SI Fig.~S4 colour scheme (VBM purple, CBM t
 \fbox{\parbox{0.88\textwidth}{\centering\vspace{2cm}\textbf{Fig.~S5 placeholder}\\Marcus $\lambda$ --- pending Exp.~9 vertical SP\vspace{2cm}}}%
 }
 \caption{\label{fig:S5}Marcus configuration-coordinate schematic (Capobianco-style).
-Configuration-coordinate schematics following the Marcus vertical--adiabatic decomposition of Ref.~\citenum{Capobianco2024electron}; verified adiabatic IP/EA from converged Exp.~9 GEO\_OPT pairs (pristine IP, N IP, B EA). $\lambda^{\pm}=E_{\mathrm{vert}}^{\pm}-E_{\mathrm{opt}}^{\pm}$ remains \textbf{[pending: vertical SP at neutral geometry]}---see \texttt{derived.lambda\_eV} in audit JSON.}
+Configuration-coordinate schematics following the Marcus vertical--adiabatic decomposition of Ref.~\citenum{Capobianco2024electron}; verified adiabatic IP/EA from converged Exp.~9 GEO\_OPT pairs (pristine IP, N IP, B EA). $\lambda^{\pm}=E_{\mathrm{vert}}^{\pm}-E_{\mathrm{opt}}^{\pm}$ remains \textbf{[pending: vertical SP at neutral geometry]}.}
 \end{figure*}
 
 \begin{figure*}
@@ -78,7 +78,7 @@ Configuration-coordinate schematics following the Marcus vertical--adiabatic dec
 \includegraphics[width=0.98\textwidth]{figures/out/figure_s6_j_exp4.pdf}}{%
 \fbox{\parbox{0.88\textwidth}{\centering\vspace{1.5cm}\textbf{Fig.~S6 placeholder}\\Exp.~4 $J$ audit\vspace{1.5cm}}}%
 }
-\caption{\label{fig:S6}Transport-adjacent observables: (a)~nearest-neighbor $J$ from Exp.~4 audit (PBE+D3, two verified tetramer points); (b)~illustrative FCWD envelope (Electron SI MolFC/GF methodology \textbf{[synthetic placeholder; tetramer MolFC pending]}).}
+\caption{\label{fig:S6}Transport-adjacent observables: (a)~nearest-neighbor $J$ on the Exp.~4 $2\times2$ factorial (pristine/B $\times$ $\epsilon{=}0,+3$\%, PBE+D3); (b)~illustrative FCWD envelope (Electron SI MolFC/GF methodology \textbf{[synthetic placeholder; tetramer MolFC pending]}).}
 \end{figure*}
 
 \bibliographystyle{apsrev4-2}

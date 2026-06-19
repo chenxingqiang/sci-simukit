@@ -28,11 +28,11 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **下一任务** | qneg1 PROGRAM ENDED → `post_exp9_converged.sh` |
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
 | **阻塞 PRL** | Exp9 λ + transport 主图 |
-| **文稿 P 瓶颈** | S5 λ pending；Qiu2025 力学句 **R117 已补** |
+| **文稿 P 瓶颈** | S5 λ pending；Conclusion post_exp9 句 **R118** |
 | **下一 B 任务** | Exp9 λ 入 S5；MolFC 替换 S6(b)；transport 主图 |
 | **主张-证据** | post_exp9→`render_si_figures.sh` = **A** |
 | **旗杆** | `post_exp9_converged.sh` |
-| **最新 Loop** | **R117**（见下方笔记） |
+| **最新 Loop** | **R118**（见下方笔记） |
 
 **一行命令**：`bash experiments/exp10_status_line.sh` · `bash experiments/exp9_status_line.sh`
 
@@ -1114,6 +1114,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R118（2026-06-19，双轨）**：
+ - **Track A**：Exp9 **7/12**；qneg1 step **63/300** OT~**486**（out→`dft_results/.../outputs/`）— **不干预**。
+ - **Track B（VIII Conclusion + 横切）**：Conclusion 增 `post_exp9`→`render_si_figures` 未来闭环句；`theory_enhancement_report.md` R116–118 审计行。
+ - **创新审计**：Exp9 post 契约 = **A**；$\lambda$ = **B pending**
+ - **Git**：pending — `loop R118: Conclusion post_exp9 closure, theory report R118`
+ - **下一轮**：qneg1 PROGRAM ENDED → post_exp9
 
 - **Loop R117（2026-06-19，双轨）**：
  - **Track A**：Exp9 **7/12**；`polaron_pristine_qneg1_opt` step **63/300** OT~**486** — **不干预**。

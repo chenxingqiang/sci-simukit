@@ -1,6 +1,6 @@
 # 理论增强与证据对齐报告
 
-> **Loop R118 审计（2026-06-19）** — R116 PBE/D3；R117 Qiu2025；Conclusion post_exp9 闭环 — 与主稿 / canonical JSON / `.out` 对齐  
+> **Loop R119 审计（2026-06-19）** — R116 PBE/D3；R117 Qiu2025；Conclusion post_exp9 闭环 — 与主稿 / canonical JSON / `.out` 对齐  
 > 本文件是**活文档**：旧版「投稿准备 ✅ / 8.5/10」评分已废止；以下以 **A/B/C 证据等级** 为准。
 
 ## 证据审计表（主稿可引用边界）
@@ -28,7 +28,7 @@
 | ML $R^2{>}0.95$、775%/300% $\mu$ | **C** | **[withdrawn from main]** | 勿进 Abstract/Results |
 | 下文 IPR 45→25、$J{=}135$ meV、$\mu{=}8.75\times$ | **C** | **[discrepancy]** | 仅作历史理论草稿；见 §2 |
 
-**Track A 快照（2026-06-19，R118）**：Exp9 **7/12** — qneg1 step **63/300** OT~486（ABORT 重启；`.out` 写 `dft_results/exp_9_charged_polaron/outputs/`）；Exp10 **40/40** ✅；Exp8 **6/6** ✅。
+**Track A 快照（2026-06-19，R118）**：Exp9 **7/12** — qneg1 step **94/300**（live post-ABORT；R119 status fix）（ABORT 重启；`.out` 写 `dft_results/exp_9_charged_polaron/outputs/`）；Exp10 **40/40** ✅；Exp8 **6/6** ✅。
 
 ---
 

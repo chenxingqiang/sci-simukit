@@ -22,17 +22,17 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 |----|-----|
 | **Exp10** | **40/40** converged ✅（见 `exp10_status.json`） |
 | **Exp8** | **6/6** ✅ — `post_exp8_converged.sh` consolidated `geoopt_pristine_sp.out` |
-| **Exp9** | **7/12** GEO_OPT；qneg1 **step 63/300** OT~486 grad~$8.6\times10^{-6}$（restarted-after-ABORT） |
+| **Exp9** | **7/12** GEO_OPT；qneg1 **step 94/300**（post-ABORT；live `.out`）— **不干预** |
 | **运行中** | `polaron_pristine_qneg1_opt`（4× MPI）— **不干预** |
-| **临界区** | geo step 63/300（OT grad $\sim8.6\times10^{-6}$，近 EPS） |
+| **临界区** | geo step **94/300** ~31%；内层 OT 进行中 |
 | **下一任务** | qneg1 PROGRAM ENDED → `post_exp9_converged.sh` |
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
 | **阻塞 PRL** | Exp9 λ + transport 主图 |
-| **文稿 P 瓶颈** | S5 λ pending；Conclusion post_exp9 句 **R118** |
+| **文稿 P 瓶颈** | S5 λ pending；Exp9 状态线 **R119 live .out** |
 | **下一 B 任务** | Exp9 λ 入 S5；MolFC 替换 S6(b)；transport 主图 |
 | **主张-证据** | post_exp9→`render_si_figures.sh` = **A** |
 | **旗杆** | `post_exp9_converged.sh` |
-| **最新 Loop** | **R118**（见下方笔记） |
+| **最新 Loop** | **R119**（见下方笔记） |
 
 **一行命令**：`bash experiments/exp10_status_line.sh` · `bash experiments/exp9_status_line.sh`
 
@@ -1115,6 +1115,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+- **Loop R119（2026-06-19，双轨）**：
+ - **Track A**：Exp9 **7/12**；qneg1 **step 94/300**（JSON 曾误报 63；live post-ABORT）— **不干预**。
+ - **Track B（V Data + 横切）**：`exp9_status_line.sh` 优先 live `.out`（`parse_geo_progress`）；刷新 `exp9_polaron_verification.json`。
+ - **创新审计**：Exp9 感知 = **A**（fix stale JSON）；$\lambda$ = **B pending**
+ - **Git**：`88cea0e` — `loop R119: exp9 status line live out priority` → **pushed: origin/main**
+ - **下一轮**：qneg1 PROGRAM ENDED → post_exp9
+
 - **Loop R118（2026-06-19，双轨）**：
  - **Track A**：Exp9 **7/12**；qneg1 step **63/300** OT~**486**（out→`dft_results/.../outputs/`）— **不干预**。
  - **Track B（VIII Conclusion + 横切）**：Conclusion 增 `post_exp9`→`render_si_figures` 未来闭环句；`theory_enhancement_report.md` R116–118 审计行。
@@ -1534,6 +1541,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 - **paper/figures 误删**：工作区 `git status D paper/figures/` 时用 `git checkout HEAD -- paper/figures/` 恢复；勿手删作图脚本目录。
 
+- **Exp9 状态误报**：`exp9_status_line` 曾先读陈旧 JSON（pre-ABORT step 63）；运行中须 **live** `dft_results/.../outputs/*.out`（R119 fix）。
 - **Exp9 batch**：用 `continue_exp9_pending.sh` / `simukit-run`；**勿**并行 legacy runner。Mac 用 Homebrew `cp2k.psmp`。
 - **Exp9 CP2K 2025.1**：`&DFT &PRINT &FORCES` 会 **ABORT**；Mac 本地 inp 已移除 FORCES 块；服务器若升级 CP2K 须同步。
 - **Exp8 SP 写错 .out**：归档 partial 为 `*.failed_partial_*` 后若 CP2K 未重启，lsof 显示仍写该文件；`post_exp8`/`exp8_status_line` 须查 `geoopt_pristine_sp.out*` 全集。

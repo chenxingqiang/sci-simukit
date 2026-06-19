@@ -9,6 +9,7 @@ if ! command -v latexmk >/dev/null; then
   exit 1
 fi
 
+bash "$ROOT/figures/render_si_figures.sh"
 cd "$ROOT"
 latexmk -pdf -interaction=nonstopmode -file-line-error -f supplementary_figures.tex
 echo "OK: $ROOT/supplementary_figures.pdf"

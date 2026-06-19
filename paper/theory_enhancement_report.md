@@ -26,7 +26,7 @@
 | 极化子→带转变 $J>\lambda/2$ | **C** | **[not confirmed]** | Exp4: `polaron_transition_confirmed: false` |
 | Charged polaron adiabatic IP/EA | **A−** | **[partial 10/12, SI Fig.~S5]** | `exp9_polaron_verification.json`；主文不引 IP/EA |
 | 主稿 Conclusion 四条 ↔ Intro | **A** | **[verified R102]** | 无 transport 倍数 |
-| SI Fig S5–S6 + `compile_si.sh` | **B+** | **[S5 schematic; S6 Exp4]** | `render_si_transport.sh` → `figures/out/` |
+| SI Fig.~S5–S6 pipeline | **A** | **[verified]** | `render_si_figures.sh` + `compile_si.sh` / `compile_prb.sh` |
 | Methods PBE+D3 citekeys | **A** | **[verified R116]** | `Perdew1996generalized`, `Grimme2011effect` + `cp2k2025` |
 | Discussion Qiu2025 力学对比 | **B+** | **[verified R117]** | pristine 原子尺度 vs Tetramer strain grid $\alpha$ |
 | Abstract partial Exp9 | **N/A** | **[withdrawn R67]** | PRB 摘要无 Exp9 计数 |
@@ -38,6 +38,7 @@
 | Table S5 局域结构（$\bar{d}$, $\Delta r_{\mathrm{cov}}$） | **A−** | **[verified]** | `experiments/analysis/local_structure_tetramer.json` |
 | Major 4 论证（$E_{\mathrm{sub}}$, S–$\alpha$, B vs P） | **A** | **[verified R135]** | Discussion + Table S1 |
 | PRL transport / Marcus 主图 | **C** | **[pending]** | PRB 主文不阻塞；SI S5–S6 |
+| Conclusion 压缩去冗余 | **A** | **[R148]** | 删重复 N/B 句；保留 Tables~S2--S4 |
 | §8 mapping 废止 Results localization | **A** | **[R147]** | 改 SI Fig.~S5 |
 | Conclusion Intro 三问闭环 | **A** | **[verified R146]** | (i)--(iii) 显式回答 |
 | Khan2025 vs $\mathcal{S}$ Discussion | **B+** | **[verified R143]** | 深能级 vs 总能量交叉项 |
@@ -45,7 +46,7 @@
 | ML $R^2{>}0.95$、775%/300% $\mu$ | **C** | **[withdrawn from main]** | 勿进 Abstract/Results |
 | 下文 IPR 45→25、$J{=}135$ meV、$\mu{=}8.75\times$ | **C** | **[discrepancy]** | 仅作历史理论草稿；见 §2 |
 
-**Track A 快照（2026-06-20，R147）**：Exp9 **10/12** — `polaron_B_qpos1_opt` step **19/300** P_qpos1 ~6% restarted（快照；CP2K 不干预）（4× MPI）；Exp10 **40/41**；Exp8 **6/6** ✅。
+**Track A 快照（2026-06-20，R148 B-only）**：Exp9 **10/12** — `polaron_B_qpos1_opt` step **24/300** P_qpos1 ~8% restarted（快照；CP2K 不干预）（4× MPI）；Exp10 **40/41**；Exp8 **6/6** ✅。
 
 ---
 

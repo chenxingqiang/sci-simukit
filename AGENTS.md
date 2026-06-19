@@ -22,17 +22,17 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 |----|-----|
 | **Exp10** | **40/40** converged ✅（见 `exp10_status.json`） |
 | **Exp8** | **6/6** ✅ — `post_exp8_converged.sh` consolidated `geoopt_pristine_sp.out` |
-| **Exp9** | **7/12** GEO_OPT；qneg1 **step 63/300** OT~77（restarted-after-ABORT） |
+| **Exp9** | **7/12** GEO_OPT；qneg1 **step 63/300** OT~110（restarted-after-ABORT） |
 | **运行中** | `polaron_pristine_qneg1_opt`（4× MPI）— **不干预** |
 | **临界区** | none |
-| **下一任务** | qneg1 PROGRAM ENDED → `post_exp9_converged.sh` → 续 pending GEO_OPT |
+| **下一任务** | qneg1 PROGRAM ENDED → `post_exp9_converged.sh` |
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
 | **阻塞 PRL** | Exp9 λ + transport 主图 |
-| **文稿 P 瓶颈** | transport C pending |
-| **下一 B 任务** | R108 Marcus transport 占位图 |
-| **主张-证据** | Discussion↔2025 strain lit = **A** |
-| **旗杆** | `Electron.pdf` + `render_prl.sh` |
-| **最新 Loop** | **R107**（见下方笔记） |
+| **文稿 P 瓶颈** | S5 λ pending；S6 $J$ audit 已 JSON 驱动 |
+| **下一 B 任务** | R109 S5 Marcus pending panel + MolFC FCWD |
+| **主张-证据** | SI S6↔Exp4 JSON = **A** |
+| **旗杆** | `render_prl.sh` + `render_si_transport.sh` |
+| **最新 Loop** | **R108**（见下方笔记） |
 
 **一行命令**：`bash experiments/exp10_status_line.sh` · `bash experiments/exp9_status_line.sh`
 
@@ -1115,6 +1115,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+- **Loop R108（2026-06-18，双轨）**：
+  - **Track A**：Exp9 **7/12**；qneg1 step **63/300** OT~110 — **不干预**。
+  - **Track B**：**repo tidy commit**（移除 legacy `graphullerene/`、`ml_results/`、unused `src/*`）；SI **Fig.~S6** JSON 驱动 `fig_si_s6_exp4.py`；`supplementary_figures.tex` 占位修复。
+  - **创新审计**：S6 $J$ = **A**（Exp4 verified）；S5 $\lambda$ = **B pending**；transport 主图 = **C**
+  - **Git**：`234fb87` + `d3b6b21` (tidy) — `loop R108: legacy tidy follow-up, SI S6 Exp4 J figure`
+  - **下一轮**：qneg1 converged → post_exp9；S5 Marcus pending panel
+
 - **Loop R107（2026-06-18，双轨）**：
   - **Track A**：Exp9 **7/12**；qneg1 step **63/300** OT~77（ABORT 重启后内层 SCF 进行中）— **不干预**。
   - **Track B（Discussion）**：增 Lopez-Alcalá2025 graphendofullerene strain 对比句 + bib `LopezAlcalay2025graphendofullerene`（DOI 10.1039/D5SC01278C）；刷新 Exp9 audit JSON。
@@ -1457,7 +1464,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 - **paper/figures 误删**：工作区 `git status D paper/figures/` 时用 `git checkout HEAD -- paper/figures/` 恢复；勿手删作图脚本目录。
 
-- **`src/local_dft_runner.py`**：legacy 本地管理器（`cp2k-2025.2/` 路径）；**勿**与 `continue_exp9_pending.sh` / `simukit-run` 并行 batch。Mac 用 Homebrew `cp2k.psmp`。
+- **Exp9 batch**：用 `continue_exp9_pending.sh` / `simukit-run`；**勿**并行 legacy runner。Mac 用 Homebrew `cp2k.psmp`。
 - **Exp9 CP2K 2025.1**：`&DFT &PRINT &FORCES` 会 **ABORT**；Mac 本地 inp 已移除 FORCES 块；服务器若升级 CP2K 须同步。
 - **Exp8 SP 写错 .out**：归档 partial 为 `*.failed_partial_*` 后若 CP2K 未重启，lsof 显示仍写该文件；`post_exp8`/`exp8_status_line` 须查 `geoopt_pristine_sp.out*` 全集。
 - **`analyze_exp9_polaron.py` 慢**：全量读 1.4 MB `.out` + `ps aux` 曾 ~165 s；R102 改为 tail 3 MB + `pgrep -lf`（~5 s）。

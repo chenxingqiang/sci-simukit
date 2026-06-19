@@ -28,16 +28,23 @@ Figures follow the observables vocabulary of Capobianco \emph{et al.}~\cite{Capo
 \end{figure*}
 
 \begin{figure*}
-\includegraphics[width=0.95\textwidth]{figures/final_figures/figure5_polaron_reorganization.pdf}
+\IfFileExists{figures/final_figures/figure5_polaron_reorganization.pdf}{%
+\includegraphics[width=0.95\textwidth]{figures/final_figures/figure5_polaron_reorganization.pdf}}{%
+\IfFileExists{figures/out/figure_s5_marcus_pending.pdf}{%
+\includegraphics[width=0.95\textwidth]{figures/out/figure_s5_marcus_pending.pdf}}{%
+\fbox{\parbox{0.88\textwidth}{\centering\vspace{2cm}\textbf{Fig.~S5 placeholder}\\Marcus $\lambda$ --- pending Exp.~9 vertical SP\vspace{2cm}}}%
+}}
 \caption{\label{fig:S5}Marcus reorganization schematic (Capobianco-style configuration coordinate and vdW vs.\ qHP comparison).
 Exp.~9 DFT $\lambda$ from vertical $-$ adiabatic charged relaxations: \textbf{[pending: 5 GEO\_OPT + 8 vertical SP]}; see \texttt{derived.lambda\_eV} in audit JSON.}
 \end{figure*}
 
 \begin{figure*}
-\includegraphics[width=0.95\textwidth]{figures/final_figures/figure6_dimer_coupling_fcwd.pdf}
-\caption{\label{fig:S6}Nearest-neighbor coupling $J$ and Franck--Condon weighted density (FCWD) for vdW vs.\ qHP dimers.
-\textbf{[synthetic FCWD]} from literature mode frequencies; MolFC replacement planned.
-Exp.~4 supplies two verified $J$ points at tetramer scale (PBE+D3).}
+\IfFileExists{figures/out/figure_s6_j_exp4.pdf}{%
+\includegraphics[width=0.55\textwidth]{figures/out/figure_s6_j_exp4.pdf}}{%
+\fbox{\parbox{0.55\textwidth}{\centering\vspace{1.5cm}\textbf{Fig.~S6 placeholder}\\Exp.~4 $J$ audit\vspace{1.5cm}}}%
+}
+\caption{\label{fig:S6}Nearest-neighbor coupling $J$ from Exp.~4 audit (PBE+D3, two verified tetramer points).
+\textbf{[FCWD panel pending MolFC]}; legacy \texttt{figure6\_dimer\_coupling\_fcwd.pdf} removed in repo tidy.}
 \end{figure*}
 
 \bibliographystyle{apsrev4-2}

@@ -1,7 +1,7 @@
 {
   "source": "dft_results/exp_9_charged_polaron/outputs",
-  "verified_date": "2026-06-19",
-  "converged": 9,
+  "verified_date": "2026-06-20",
+  "converged": 10,
   "total": 12,
   "note": "Adiabatic IP/EA from last GEO_OPT ENERGY line. Marcus lambda requires vertical ENERGY at neutral geometry (inputs/vertical/, not yet in outputs).",
   "systems": {
@@ -62,8 +62,8 @@
       "1": {
         "project": "polaron_B_qpos1_opt",
         "out_exists": true,
-        "program_ended": false,
-        "energy_ha": -670.269927333097,
+        "program_ended": true,
+        "energy_ha": -670.2702378358357,
         "xyz_exists": true
       },
       "-1": {
@@ -86,7 +86,7 @@
         "project": "polaron_P_qpos1_opt",
         "out_exists": true,
         "program_ended": false,
-        "energy_ha": -685.3371638020681,
+        "energy_ha": -685.336427463826,
         "xyz_exists": true
       },
       "-1": {
@@ -109,7 +109,7 @@
         "EA": 2.766141744581283
       },
       "B": {
-        "IP": null,
+        "IP": 4.113744388555564,
         "EA": 3.1205871810639576
       },
       "P": {
@@ -119,7 +119,8 @@
     },
     "fundamental_gap_eV": {
       "pristine": 2.121846598131605,
-      "N": 1.1268344929151253
+      "N": 1.1268344929151253,
+      "B": 0.9931572074916066
     },
     "lambda_eV": {
       "pristine": {
@@ -155,19 +156,18 @@
     "outputs_converged": []
   },
   "pending_geo_opt": [
-    "polaron_B_qpos1_opt",
     "polaron_P_qpos1_opt",
     "polaron_P_qneg1_opt"
   ],
   "running_snapshot": {
-    "geo_step": 96,
+    "geo_step": 13,
     "geo_max_iter": 300,
-    "last_ot_step": 1,
-    "last_ot_convergence": 6.617e-05,
-    "abort_seen": false,
-    "restarted_after_abort": false,
-    "task": "polaron_B_qpos1_opt",
-    "geo_progress_pct": 32.0
+    "last_ot_step": 4,
+    "last_ot_convergence": 7.53e-06,
+    "abort_seen": true,
+    "restarted_after_abort": true,
+    "task": "polaron_P_qpos1_opt",
+    "geo_progress_pct": 4.3
   },
-  "running_task": "polaron_B_qpos1_opt"
+  "running_task": "polaron_P_qpos1_opt"
 }

@@ -22,17 +22,17 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 |----|-----|
 | **Exp10** | **40/40** converged ✅（见 `exp10_status.json`） |
 | **Exp8** | **6/6** ✅ — `post_exp8_converged.sh` consolidated `geoopt_pristine_sp.out` |
-| **Exp9** | **8/12** GEO_OPT；`polaron_N_qneg1_opt` **step ~6/300** OT~4（restarted-after-ABORT） |
+| **Exp9** | **8/12** GEO_OPT；`polaron_N_qneg1_opt` **step ~9/300** ~3%（restarted-after-ABORT） |
 | **运行中** | `polaron_N_qneg1_opt`（4× MPI）— **不干预** |
-| **临界区** | geo step **~6/300** ~2%；batch 正常 |
+| **临界区** | geo 早期；batch 正常 |
 | **下一任务** | N_qneg1 PROGRAM ENDED → `post_exp9_converged.sh` |
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
 | **阻塞 PRL** | Exp9 λ + transport 主图 |
-| **文稿 P 瓶颈** | SI Table S2 / caption 学术化 **R123**；S5 λ pending |
-| **下一 B 任务** | $n=6$ 300 Ry 对照；机理数据支撑 |
-| **主张-证据** | Exp4 2×2 = **A**；SI ledger = **A**；λ = **B pending** |
+| **文稿 P 瓶颈** | 第三版审稿修订 **R124**；S5 λ pending |
+| **下一 B 任务** | $n=6$ 300 Ry 对照；SI 去 Exp 编号 |
+| **主张-证据** | B/N/P $\mathcal{S}(n{=}4)$ = **A**；$\alpha$–$\mathcal{S}$ 线性检验 = **B** |
 | **旗杆** | PRL `prl` + 单栏主图 |
-| **最新 Loop** | **R123**（见下方笔记） |
+| **最新 Loop** | **R124**（见下方笔记） |
 
 **一行命令**：`bash experiments/exp10_status_line.sh` · `bash experiments/exp9_status_line.sh`
 
@@ -1115,11 +1115,18 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+- **Loop R124（2026-06-19，双轨 · 第三版审稿）**：
+ - **Track A**：Exp9 **8/12**；`polaron_N_qneg1_opt` step **~9/300** — **不干预**。
+ - **Track B（VII Discussion + Results）**：引文拆分 Li2024/Khan vs Materials2024；$n{=}4$ B/N/P $\mathcal{S}$ 三联值；$E_f$ 筛选误差=$\mathcal{S}$；$J$ vs $\mathcal{S}$ 边界 + B 杂化机理；$\alpha$–$\mathcal{S}$ 线性检验；设计启示 $\mathcal{S}$ 符号；结论降调 dominates。
+ - **创新审计**：审稿 P0/P1 = **A**；机理定量 = **B**；$\lambda$ = **B pending**
+ - **Git**：pending — `loop R124: third-round peer-review manuscript fixes`
+ - **下一轮**：push R123 backlog + N_qneg1 → post_exp9
+
 - **Loop R123（2026-06-19，双轨）**：
  - **Track A**：Exp9 **8/12**；`polaron_N_qneg1_opt` step **~6/300** — **不干预**。
  - **Track B（V Data / SI）**：`supplementary_figures.tex` — Table S2 Exp4 2×2、去 `\texttt{dft\_results}`/audit JSON；S6 四格 caption；修 standalone 断链 `\ref{fig:prl_main}`；SI PDF 重编译。
  - **创新审计**：SI 契约 = **A**；$\lambda$ = **B pending**；transport = **C**
- - **Git**：pending — `loop R123: SI Table S2 and caption academic cleanup`
+ - **Git**：`d121608` — `loop R123: SI Table S2 and caption academic cleanup` → **pushed: origin/main**
  - **下一轮**：N_qneg1 converged → post_exp9
 
 - **Loop R122（2026-06-19，双轨）**：

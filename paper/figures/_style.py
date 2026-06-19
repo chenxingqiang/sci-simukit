@@ -32,6 +32,7 @@ def apply_prl_style() -> None:
             "font.family": "sans-serif",
             "font.sans-serif": ["Helvetica", "Arial", "DejaVu Sans"],
             "font.size": 7,
+            "mathtext.fontset": "dejavusans",
             "axes.labelsize": 7,
             "axes.titlesize": 6.5,
             "xtick.labelsize": 6,

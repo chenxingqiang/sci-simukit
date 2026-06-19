@@ -31,7 +31,7 @@ Quasi-hexagonal (qHP) C$_{60}$ graphullerene hosts polaronic charge transport in
 Here we quantify how \emph{joint} B/N/P substitution and biaxial strain reshape the \emph{total-energy} landscape of finite qHP supercells, independent of a full Marcus transport closure.
 PBE+DFT-D3 calculations on tetramers ($36$ converged neutral points) and periodic $n\times\mathrm{C}_{60}$ cells ($n=1$--$8$; $40$ converged points) yield dopant-resolved $\pi$-gap evolution, opposite-sign mechanical coefficients $\alpha$ for N ($-303$~meV/\%) vs.\ B ($+57$~meV/\%), and a synergy order parameter $\mathcal{S}$ [Eq.~\eqref{eq:synergy_order}] with $|\mathcal{S}|$ up to $\sim32$~meV/atom at $+3$\% strain.
 Across $n=1$--$8$ and B/N/P dopants ($15$ coupled points at $+3$\%), the effects of simultaneous strain and substitution are \emph{not} additive when applied sequentially.
-At tetramer scale, a $2\times 2$ IPR/$J$ factorial (pristine/B $\times$ $\epsilon{=}0/+3$\%) shows B substitution dominating delocalization ($\Delta J\approx +20$~meV at $\epsilon{=}0$) while $+3$\% strain under B doping \emph{reduces} $J$ ($46\to 37$~meV); all four points remain in the small-polaron regime ($J\ll\lambda/2$).
+At tetramer scale, a $2\times 2$ factorial IPR/$J$ analysis (pristine/B-doped $\times$ $\epsilon{=}0/+3$\%) reveals that B substitution dominates delocalization ($\Delta J\approx +20$~meV at $\epsilon{=}0$), while $+3$\% tensile strain reduces $J$ under B doping ($46\to 37$~meV); all four points remain in the small-polaron regime ($J\ll\lambda/2$).
 \end{abstract}
 
 \keywords{graphullerene, polaron localization, strain engineering, heteroatom doping, non-additive coupling}
@@ -46,9 +46,9 @@ Synthetic carbon allotropes with extended $\pi$ conjugation underpin optoelectro
 The quasi-hexagonal phase (qHP C$_{60}$, graphullerene)~\cite{Yang2021two} covalently links C$_{60}$ units, shortening interfullerene distances by $\sim$0.9~\AA{} and raising mobilities by nearly two orders of magnitude over vdW C$_{60}$~\cite{Capobianco2024electron}.
 Capobianco \emph{et al.}~\cite{Capobianco2024electron} showed that the gain tracks enhanced nearest-neighbor coupling $J$ ($\sim$75--81~meV vs.\ 33~meV) within a hopping model, with similar polaron binding ($\lambda^{-}\sim 0.1$~eV) in both phases.
 
-Beyond pristine monolayers, substitution and strain tune band edges~\cite{Khan2025tuning,Li2024strain,Peng2025monolayer}.
-If formation energies or strain penalties are estimated from \emph{separate} doping-only and strain-only scans, the omitted cross term can reach tens of meV/atom in coupled cells (this work)---large enough to mis-rank dopant stability or strain set-points in screening workflows~\cite{Materials2024untangling}.
-Non-additive strain--doping coupling has been discussed in other low-dimensional networks~\cite{Materials2024untangling,Li2024strain}; a quantitative cross term $\mathcal{S}$ [Eq.~\eqref{eq:synergy_order}] has not been reported for substitutional B/N/P qHP C$_{60}$ tetramers and $n=1$--$8$ supercells under a common PBE+D3 protocol.
+Beyond pristine monolayers, strain and substitution independently tune qHP C$_{60}$ band edges~\cite{Li2024strain,Khan2025tuning,Peng2025monolayer}.
+Non-additive strain--doping coupling has been reported in other two-dimensional networks~\cite{Materials2024untangling}; a quantitative energy cross term $\mathcal{S}$ [Eq.~\eqref{eq:synergy_order}] has not been reported for substitutional B/N/P qHP C$_{60}$ tetramers and $n=1$--$8$ supercells under a common PBE+D3 protocol.
+If formation energies or strain penalties are estimated from \emph{separate} doping-only and strain-only scans, the omitted cross term can reach tens of meV/atom in coupled cells (this work)---large enough to mis-rank dopant stability or strain set-points in screening workflows.
 
 We combine Capobianco-style observables (gaps, IPR, $J$) with systematic strain--doping energy scans on shared tetramer and size-scaling grids.
 The present study establishes the \emph{energy} coupling metric $\mathcal{S}$ and band-edge trends; Marcus $\lambda$ and rate estimates are treated in Supplemental Material and are not required for the non-additivity conclusions here.
@@ -63,8 +63,9 @@ All total-energy and electronic-structure calculations use CP2K~\cite{cp2k2025} 
 This level is deliberately chosen for a uniform, size-converged scan of $(\epsilon,\delta)$; it differs from the Koopmans-compliant PBE($\alpha_K$)+rVV10 framework of Ref.~\citenum{Capobianco2024electron}, which targets absolute polaron binding and mobilities in pristine supercells.
 
 \textbf{Rigid-strain approximation.}
-Unless stated otherwise, biaxial strain is imposed by scaling the in-plane lattice vectors at \emph{fixed fractional atomic coordinates} (no atomic relaxation under load).
-This protocol upper-bounds strain energy and is applied consistently across the comparative grids below.
+Unless stated otherwise, biaxial strain is imposed by scaling the in-plane lattice vectors of the \emph{pristine} equilibrium cell at \emph{fixed fractional atomic coordinates} (no atomic relaxation under load), not by re-scaling each dopant-relaxed equilibrium lattice.
+Reported $\alpha$ therefore mixes dopant-induced changes in strain response with any equilibrium lattice offset relative to pristine.
+This protocol upper-bounds the strain energy and is applied consistently across the comparative grids below.
 In related 2D carbon networks, allowing ionic relaxation under load typically reduces strain-energy derivatives relative to rigid cells~\cite{Li2024strain}; we therefore interpret reported $\alpha$ and $\mathcal{S}$ as \emph{upper bounds} on the rigid-lattice coupling, with relaxed-ion values expected to be smaller in magnitude but not necessarily vanishing.
 
 Plane-wave cutoff is 300~Ry for cells with $n\leq 5$ fullerene units and 280~Ry for $n\geq 6$ (memory limit for $6\times$--$8\times$ cells on our hardware).
@@ -77,7 +78,7 @@ SCF convergence criterion $10^{-6}$~Eh with OT minimization; basis DZVP-MOLOPT-S
 
 Tetramer models ($4\times\mathrm{C}_{60}$, 240 C sites) use substitutional B, N, or P at 5\% of carbon sites ($\sim$12 replacements per cell), chosen by a reproducible pseudo-random protocol (fixed seed~42) over all C coordinates---not a symmetry-averaged or thermodynamic minimum.
 Periodic size-scaling cells place \textbf{one} substitutional dopant per C$_{60}$ unit (fixed count, so nominal concentration $\sim 1/60$ per molecule decreases as $n$ increases).
-The two protocols differ in \emph{nominal dopant concentration} (5\% vs.\ $\sim$1.7\% at $n=4$); tetramer $\alpha$, gaps, and IPR/$J$ are therefore trend indicators, not directly interchangeable with $n=4$ periodic energies without a matched-concentration benchmark.
+The two protocols differ in \emph{nominal dopant concentration} (5\% vs.\ $\sim$1.7\% at $n=4$); tetramer $\alpha$, gaps, and IPR/$J$ are therefore trend indicators, not directly interchangeable with $n{=}4$ periodic energies without a matched-concentration benchmark.
 We do not re-optimize dopant sites; all reported $\alpha$ and $\mathcal{S}$ refer to these fixed, reproducible configurations and should be read as site-specific trends pending tests on alternate placements or thermodynamic minima.
 
 \subsection{Computational grids}
@@ -107,7 +108,8 @@ Neutral tetramer relaxations and a pristine single-point on the relaxed cell def
 Linear strain sensitivity $\alpha=\mathrm{d}E/\mathrm{d}\epsilon$ (meV per 1\% biaxial strain, tetramer \emph{total} energy) is obtained from the 24-point grid (Table~S1).
 Positive $\alpha$ means tension \emph{raises} total energy; negative $\alpha$ means tension \emph{lowers} it under the rigid-strain protocol.
 Substitution energy $E_f=(E_{\mathrm{doped}}-E_{\mathrm{pristine}})/n_{\mathrm{dopants}}$ is reported relative to pristine tetramers at the same strain (no chemical-potential reference).
-For screening workflows, the operative error from neglecting $\mathcal{S}$ is best gauged against the substitution-energy scale: at $n=4$ and $+3$\% strain, P has $|\mathcal{S}|\approx 24$~meV/atom while the per-atom substitution scale is $|E_f|\times n_{\mathrm{dop}}/(n_{\mathrm{atoms}})\approx 0.5$~eV/atom ($|E_f|\approx 32$~eV per P site, Table~S1)---i.e.\ $|\mathcal{S}|/|E_f|_{\mathrm{per\,atom}}\sim 5$\%, large enough to reorder stability margins in sequential doping-then-strain screens even though $|\mathcal{S}|$ exceeds the rigid per-atom strain increment ($\alpha\times 3\%/N_{\mathrm{atoms}}\lesssim 0.3$~meV/atom for P).
+In sequential high-throughput screens one often estimates $E_{\mathrm{tot}}(\epsilon,\delta)\approx E_f(\epsilon{=}0)+E_{\mathrm{strain}}(\epsilon)$; the neglected term is precisely $\mathcal{S}(\epsilon,\delta)$---the absolute error in that additive estimate.
+For screening workflows, the magnitude of this error is best gauged against the substitution-energy scale: at $n=4$ and $+3$\% strain, P has $|\mathcal{S}|\approx 24$~meV/atom while the per-atom substitution scale is $|E_f|\times n_{\mathrm{dop}}/(n_{\mathrm{atoms}})\approx 0.5$~eV/atom ($|E_f|\approx 32$~eV per P site, Table~S1)---i.e.\ $|\mathcal{S}|/|E_f|_{\mathrm{per\,atom}}\sim 5$\%, large enough to reorder stability margins in sequential doping-then-strain screens even though $|\mathcal{S}|$ exceeds the rigid per-atom strain increment ($\alpha\times 3\%/N_{\mathrm{atoms}}\lesssim 0.3$~meV/atom for P).
 
 \input{sdc_method_section.tex}
 
@@ -128,6 +130,7 @@ Figure~\ref{fig:prl_main}(b) shows $\pi$-DOS for B @ $\varepsilon=0$.
 Capobianco \emph{et al.}~\cite{Capobianco2024electron} established that qHP electron polarons remain molecularly localized while $J$ grows with shorter interfullerene distances.
 A $2\times 2$ factorial separates strain-only, doping-only, and coupled contributions (Supplemental Material Fig.~S6): pristine @ $\epsilon{=}0$ (IPR $=75.0$, $J{=}26.6$~meV); pristine @ $+3$\% (IPR $=76.1$, $J{=}26.5$~meV); B @ $\epsilon{=}0$ (IPR $=24.6$, $J{=}46.4$~meV); B @ $+3$\% (IPR $=23.1$, $J{=}37.2$~meV).
 B substitution accounts for most of the IPR drop ($\Delta\mathrm{IPR}\approx -50$) and the zero-strain $J$ enhancement ($\Delta J\approx +20$~meV); $+3$\% strain on pristine is negligible, but under B doping it \emph{lowers} $J$ by $\sim 9$~meV (negative $J$ cross term).
+This transport-level non-additivity arises from orbital-coupling sensitivity to interfullerene spacing and is \emph{not} numerically equivalent to total-energy $\mathcal{S}$ (mechanical/electrostatic cross terms in $E_{\mathrm{tot}}$).
 Using literature $\lambda\sim 0.1$~eV as an order-of-magnitude bound~\cite{Capobianco2024electron}, all four points satisfy $J\ll\lambda/2$ (small-polaron hopping); this regime is inferred, not measured here.
 Figure~\ref{fig:prl_main}(d) inset and Supplemental Material Fig.~S6 summarize the grid; absolute $J$ is below pristine-network values because of fragment size and functional choice.
 
@@ -139,7 +142,8 @@ Figure~\ref{fig:prl_main}(c) highlights the opposite $\alpha$ for N vs.\ B; rank
 
 \subsection{\label{sec:synergy}Non-additive strain--doping coupling}
 
-Figure~\ref{fig:prl_main}(d) tracks $\mathcal{S}(n)$ with one dopant per C$_{60}$; at $n=4$ and $+3$\% strain, P shows the largest correction ($|\mathcal{S}|\approx 24$~meV/atom).
+Figure~\ref{fig:prl_main}(d) tracks $\mathcal{S}(n)$ with one dopant per C$_{60}$.
+At $n=4$ and $+3$\% strain, $\mathcal{S}=-6.2$~meV/atom (B), $+3.0$~meV/atom (N), and $-23.7$~meV/atom (P); P shows the largest magnitude.
 Fifteen coupled points span $n\in\{1,2,4,6,8\}$ and B/N/P at $+3$\%.
 For N, $\mathcal{S}$ changes sign between $n=6$ ($+2.4$~meV/atom) and $n=8$ ($-2.3$~meV/atom).
 Because $n=6$--$8$ use 280~Ry whereas $n\leq 5$ use 300~Ry, this reversal may partly reflect basis-set change rather than intrinsic size physics; we treat it as provisional pending a matched-cutoff $n=6$ benchmark.
@@ -150,7 +154,7 @@ Because $n=6$--$8$ use 280~Ry whereas $n\leq 5$ use 300~Ry, this reversal may pa
 (a)~HOMO--LUMO gap vs.\ strain.
 (b)~$\pi$-DOS for B @ $\varepsilon{=}0$ (Electron SI palette).
 (c)~Mechanical $\alpha$.
-(d)~$\mathcal{S}(n)$ at $+3$\%; inset: Exp.~4 IPR/$J$.}
+(d)~$\mathcal{S}(n)$ at $+3$\%; inset: polaron IPR/$J$ factorial.}
 \end{figure}
 
 % ------------------------------------------------------------------
@@ -161,30 +165,36 @@ Because $n=6$--$8$ use 280~Ry whereas $n\leq 5$ use 300~Ry, this reversal may pa
 Capobianco \emph{et al.}~\cite{Capobianco2024electron} compared \emph{pristine} vdW and qHP C$_{60}$ and identified enhanced $J$---not reduced $\lambda$---as the dominant mobility lever, with polaron hopping retained in both phases.
 Our study transfers that observables vocabulary (gap edges, IPR, $J$) to \emph{doped} tetramers under strain and adds an energy cross term $\mathcal{S}$ absent from sequential doping-only or strain-only scans~\cite{Khan2025tuning,Li2024strain}.
 Where Khan and Leuenberger~\cite{Khan2025tuning} classify impurity-engineered \emph{half-semiconductor} gaps at fixed geometry, our $\mathcal{S}$ analysis tests total-energy additivity under identical biaxial strain---complementary metrics for impurity--strain co-design~\cite{Materials2024untangling}.
-The factorial $J$ pattern (B raises $J$ at $\epsilon{=}0$ but $+3$\% strain partially reverses it) is qualitatively aligned with Capobianco's distance--coupling picture but does not, by itself, link $\mathcal{S}$ to mobility.
+The factorial $J$ pattern (B raises $J$ at $\epsilon{=}0$ but $+3$\% strain partially reverses it) is qualitatively aligned with Capobianco's distance--coupling picture: B acceptor states enhance interfullerene hybridization, making $J$ more distance-sensitive, so tensile strain that increases spacing suppresses $J$ far more under B doping than in pristine cells.
+Transport and total-energy non-additivity are related in origin but not one-to-one; $\mathcal{S}$ should not be used to infer hopping-rate changes without independent $J$/$\lambda$ data.
 
 \textbf{Mechanistic synthesis.}
 \textbf{(i) Opposite $\alpha$ for N vs.\ B.}
 N introduces excess $\pi$ electrons that strengthen bonding under tension (negative $\alpha$), whereas B creates electron deficiency and antibonding $\pi^\ast$ character that rises with lattice expansion (positive $\alpha$)---consistent with donor vs.\ acceptor $\pi$-counting and the PDOS shifts in Fig.~\ref{fig:prl_main}(a,b).
 \textbf{(ii) Large $|\mathcal{S}|$ for P despite small $|\alpha|$.}
-P's larger atomic radius and longer P--C bonds perturb the qHP cage anisotropically; rigid strain then couples to \emph{pre-existing} local distortion, producing a cross term that is weak in either single-knob scan but strong when both are applied---consistent with P's intermediate $E_f$ yet largest $|\mathcal{S}|$ at $+3$\%.
+P's covalent radius ($\sim 107$~pm vs.\ $\sim 77$~pm for C) and longer P--C bonds impose intrinsic cage distortion; rigid external strain couples to this built-in local stress, yielding a cross term that is invisible in separate scans but large when both knobs are engaged---consistent with P's intermediate $E_f$ yet largest $|\mathcal{S}|$ at $+3$\%.
 \textbf{(iii) N $\mathcal{S}$ sign change with $n$.}
 With one dopant per C$_{60}$, electrostatic and strain fields are dilute at large $n$; the sign flip between $n=6$ and $n=8$ may reflect finite-size electrostatics but is confounded with the 280~Ry cutoff introduced at $n\geq 6$---interpretation is deferred until a constant-cutoff control.
 
+\textbf{(iv) Linear $\mathcal{S}$--$\alpha$ check.}
+Using tetramer $\alpha$ (Table~S1) in $\mathcal{S}\approx(\alpha_\delta-\alpha_0)\epsilon$ at $\epsilon{=}+3$\% and dividing by 240 sites gives ${\sim}{+}0.7$, $-3.8$, and $-0.2$~meV/atom for B/N/P---far smaller than the periodic $n{=}4$ values ($-6.2$, $+3.0$, $-23.7$~meV/atom).
+The gap shows that tetramer-scale linear mechanics and 5\% doping do not quantitatively predict periodic $\mathcal{S}$; for P, nonlinear coupling dominates beyond first-order $(\alpha_\delta-\alpha_0)\epsilon$.
+
 \textbf{Design implications.}
 At $+3$\% strain, P carries the largest additive-approximation error in $\mathcal{S}$ ($|\mathcal{S}|\sim 24$--$32$~meV/atom); co-design should treat P under tension as a \emph{coupled} stability problem, not $|E_f|$ at $\epsilon=0$ alone.
-Gap closing [Fig.~\ref{fig:prl_main}(a)] does not track $|\mathcal{S}|$; we do not compute $\mathcal{S}_{\mathrm{gap}}$, so optoelectronic targets may exhibit non-additive coupling distinct from total-energy $\mathcal{S}$---electronic and energetic knobs require joint optimization.
+Where $\mathcal{S}<0$ (B and P at $n{=}4$), coupled tension can stabilize doped cells beyond additive predictions; where $\mathcal{S}>0$ (N at $n{=}4$), sequential screens overestimate stability under load.
+Gap closing [Fig.~\ref{fig:prl_main}(a)] does not track $|\mathcal{S}|$; we do not compute $\mathcal{S}_{\mathrm{gap}}$, so photonic or transport targets cannot be inferred from total-energy $\mathcal{S}$ alone.
 N $\mathcal{S}$ sign reversal by $n=8$ cautions against tetramer-only extrapolation.
 
 \textbf{Limitations and outlook.}
-Rigid strain (upper-bound $\mathcal{S}$); fixed-seed substitutional sites without thermodynamic ranking; mixed 280/300~Ry cutoffs across $n$ (N $\mathcal{S}$ sign change at $n=6$--$8$); tetramer vs.\ scaling concentration mismatch; PBE+D3 without Koopmans/rVV10; gap non-additivity ($\mathcal{S}_{\mathrm{gap}}$) not quantified; Marcus $\lambda$ and vertical transitions from charged GEO\_OPT still pending (Supplemental Material).
+Rigid strain (upper-bound on $\mathcal{S}$); fixed-seed substitutional sites without thermodynamic ranking; mixed 280/300~Ry cutoffs across $n$ (N $\mathcal{S}$ sign change at $n=6$--$8$); tetramer vs.\ scaling concentration mismatch; PBE+D3 without Koopmans/rVV10; gap non-additivity ($\mathcal{S}_{\mathrm{gap}}$) not quantified; Marcus $\lambda$ and vertical transitions from charged geometry optimization still pending (Supplemental Material).
 
 % ------------------------------------------------------------------
 \section{\label{sec:conclusions}Conclusions}
 % ------------------------------------------------------------------
 
 We quantified non-additive strain--doping coupling in heteroatom-substituted qHP C$_{60}$.
-Opposite $\alpha$ for N vs.\ B and finite $\mathcal{S}$ up to $\sim32$~meV/atom show that joint $(\epsilon,\delta)$ tuning is not equivalent to sequential strain and doping scans; for P under tension, the cross term is a few percent of the per-atom substitution-energy scale yet dominates sequential additive estimates of stability.
+Opposite $\alpha$ for N vs.\ B and finite $\mathcal{S}$ up to $\sim32$~meV/atom show that joint $(\epsilon,\delta)$ tuning is not equivalent to sequential strain and doping scans; for P under tension, the cross term is a few percent of the per-atom substitution-energy scale yet can significantly alter stability rankings in sequential screening workflows.
 These energy-landscape metrics complement---but do not replace---Marcus $\lambda$ from charged-state vertical transitions needed to connect $\mathcal{S}$ to polaron hopping rates.
 
 \begin{acknowledgments}

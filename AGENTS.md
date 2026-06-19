@@ -12,7 +12,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 
 **投稿目标（优先级）**：**PRL** → **Nature Materials** / **Nature Communications** → **PRB** / **Carbon**（降级路径）。每一轮策略须对照目标期刊的「主张强度 vs 证据强度」。
 
-**双轨并行**：CP2K 在后台跑时，Agent **不得空等** — 同步执行 [文稿·文献闭环](#文稿文献闭环-manuscript--literature-loop)（整理、校准、配图配表、检索最新文献、创新审计）。计算轮与文稿轮交替推进，每轮结束写回 `AGENTS.md` 并 **commit + push**（见 [每轮 Git 闭环](#每轮-git-闭环-commit--push)）。
+**双轨并行**：CP2K 在后台跑时，Agent **不得空等** — 同步执行 [文稿·文献闭环](#文稿文献闭环-manuscript--literature-loop)（整理、校准、配图配表、检索最新文献、创新审计）。计算轮与文稿轮交替推进，每轮结束写回 `AGENTS.md` 并 **git commit**（**push 可选**；见 [每轮 Git 闭环](#每轮-git-闭环)）。
 
 ---
 
@@ -22,17 +22,17 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 |----|-----|
 | **Exp10** | **40/40** converged ✅（见 `exp10_status.json`） |
 | **Exp8** | **6/6** ✅ — `post_exp8_converged.sh` consolidated `geoopt_pristine_sp.out` |
-| **Exp9** | **8/12** GEO_OPT；`polaron_N_qneg1_opt` **step ~9/300** ~3%（restarted-after-ABORT） |
+| **Exp9** | **8/12** GEO_OPT；`polaron_N_qneg1_opt` **step 116/300** ~39% OT~151（restarted-after-ABORT） |
 | **运行中** | `polaron_N_qneg1_opt`（4× MPI）— **不干预** |
-| **临界区** | geo 早期；batch 正常 |
+| **临界区** | geo 中期；内层 SCF 正常 |
 | **下一任务** | N_qneg1 PROGRAM ENDED → `post_exp9_converged.sh` |
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
 | **阻塞 PRL** | Exp9 λ + transport 主图 |
-| **文稿 P 瓶颈** | 第三版审稿修订 **R124**；S5 λ pending |
-| **下一 B 任务** | $n=6$ 300 Ry 对照；SI 去 Exp 编号 |
+| **文稿 P 瓶颈** | 审稿 P0 残余（SI Exp 编号、tetramer $\mathcal{S}(\epsilon)$）；S5 λ pending |
+| **下一 B 任务** | SI `Exp.~`→Supp. 编号；`relax_validation` 多应变 $\mathcal{S}$ |
 | **主张-证据** | B/N/P $\mathcal{S}(n{=}4)$ = **A**；$\alpha$–$\mathcal{S}$ 线性检验 = **B** |
 | **旗杆** | PRL `prl` + 单栏主图 |
-| **最新 Loop** | **R124**（见下方笔记） |
+| **最新 Loop** | **R126**（见下方笔记） |
 
 **一行命令**：`bash experiments/exp10_status_line.sh` · `bash experiments/exp9_status_line.sh`
 
@@ -60,9 +60,11 @@ python3 experiments/update_exp10_status.py   # 若需完整 JSON
 
 # 5) 进化 — 更新本节「当前状态快照」+ Loop R{n} 笔记（3～5 行 + commit hash）
 
-# 6) Git — 1 Loop = 1 commit + push
+# 6) Git — 1 Loop = 1 commit（push 可选）
 git status && git diff
-git add … && git commit -m "loop R{n}: …" && git push -u origin HEAD
+git add … && git commit -m "loop R{n}: …"
+# 可选：用户要求或需同步远程时
+# git push -u origin HEAD
 ```
 
 **收敛瞬间（Exp10 临界区 / CRIT）**：
@@ -160,6 +162,11 @@ grep -oE '\\\\cite\{[^}]+\}' paper/strain_doped_graphullerene.tex | sort -u | wc
 
 # D. 图件 freshness（git 脏文件 / final_figures）
 ls -lt paper/figures/final_figures/*.png 2>/dev/null | head -3
+
+# E. 第三版审稿（peer-review backlog）
+grep -En 'referinfo|32.*eV per P|~ 5\\%|knobs' paper/strain_doped_graphullerene.tex paper/strain_graphullerene_50refs.bib || true
+grep -En 'Exp\.~[0-9]|dft_results|exp[49].*json' paper/supplementary_figures.tex paper/supplementary_material_theory.tex | head -8
+python3 -c "import json; t=json.load(open('experiments/analysis/table1_verification.json')); print('P Ef', t['systems']['P']['Ef_eV_per_dopant'], 'n', t['systems']['P']['n_dopants'])"
 ```
 
 **扫描产出（写入 Loop 笔记，一行即可）**：`paper_gap: Methods泛函 | Exp9 λ pending | Fig transport C级 | Electron对齐-Intro`
@@ -171,7 +178,12 @@ ls -lt paper/figures/final_figures/*.png 2>/dev/null | head -3
 | **P0** | tex 定量与 `table1_verification.json` / SDC audit **不一致** | 以 JSON/`.out` 为准改 tex；更新 theory report |
 | **P0** | Methods 写 rVV10/Koopmans，inp 为 PBE+D3 | Methods 诚实化 **或** 标注 `[TODO: subset]` |
 | **P0** | theory report **C 级**主张出现在 Abstract/Results | 删除或降调至 Discussion/SI |
+| **P0** | **第三版审稿**：$E_f$/$n_{\mathrm{dop}}$ 与 `table1_verification.json` 不一致 | 以 JSON 改 tex/SI；重算 $|\mathcal{S}|/|E_f|_{\mathrm{per\,atom}}$ |
+| **P0** | **第三版审稿**：bib `referinfo` / 内部 note 泄漏 | 删内部路径；note 改为正式摘要句 |
+| **P0** | **第三版审稿**：$\mathcal{S}$ 符号/断词 | 全文 `\mathcal{S}`；断词处加 `$\mathcal{S}$` |
 | **P1** | 阻塞目标期刊的**缺图/缺段**（如 PRL transport、Exp9 λ Fig.5） | 占位 + caption `[pending: Exp9]`；不伪造数字 |
+| **P1** | **第三版审稿**：SI 主文 `Exp.~N` vs `Fig.~S4--S6` | 统一 Supp. 交叉引用；caption 去 audit 路径 |
+| **P1** | **第三版审稿**：tetramer 仅 $+3$\% $\mathcal{S}$ | `relax_validation/` 多应变或 Methods 声明范围 |
 | **P1** | `sdc_method_section.tex` 缺失 / `\ref{eq:synergy_order}` 断链 | 补 Methods 方程节 + `\input` |
 | **P1** | 用户指定 **Electron.pdf 对齐**且 Intro/Discussion 缺 Capobianco 对比 | 补文献线程（localization→$J$→$\mu$）；挂钩本文 $\mathcal{S}$/$(\epsilon,\delta)$ |
 | **P2** | 缺 2025–2026 bib / Khan·Li·Peng 对比句 | WebSearch → ≤3 bib → Intro/Discussion 各 1 句 |
@@ -228,8 +240,9 @@ ls -lt paper/figures/final_figures/*.png 2>/dev/null | head -3
 
 #### 与 Git / 用户 commit 规则
 
-- AGENTS 协议：Loop 结束 **commit + push**（若用户未禁止）。
-- 用户规则：无明确「commit」指令时 **不主动 commit** — Agent 完成优化后 **汇报 diff 清单**，由用户决定是否提交。
+- **AGENTS 硬规则**：每一轮 Loop 结束 **必须** `git commit`（含 `AGENTS.md` 笔记），**无需**用户再说「commit」。
+- **Push**：**不强制**；仅在用户明确要求、需备份远程、或开 PR 前再 `git push`。
+- **禁止**：跨多轮 R 攒一次 commit；只改工作区不写笔记、不 commit。
 
 #### 禁止
 
@@ -247,7 +260,7 @@ ls -lt paper/figures/final_figures/*.png 2>/dev/null | head -3
 | **快照 vs 现实** | 本节 Exp10 计数与 `exp10_status_line.sh` 不一致 | 更新「当前状态快照」 |
 | **工具索引** | 新脚本未进「常用命令 / 现有工具索引」 | 补 `exp10_status_line.sh`、`synergy_audit.json` 等 |
 | **Loop 笔记** | R 编号乱序、重复 Innovation backlog | 按 R 编号排序；backlog **只保留一处** |
-| **历史噪声** | R1–R40 仍写「commit R8–Rn」 | 历史条目保留；**新轮**只写「commit + push」 |
+| **历史噪声** | R1–R40 仍写「commit R8–Rn」 | 历史条目保留；**新轮**只写「commit 必须；push 可选」 |
 | **感知命令** | 仍用手动 grep 代替 `exp10_status_line.sh` | 统一快速入口 |
 | **Gotchas** | 新踩坑未沉淀 | 每轮 Evolve 补 1 条（若适用） |
 | **双 batch** | 多个 `simukit-run` / legacy `run_pending_local.sh` 并行 | `ps aux \| grep simukit-run`；legacy 启动前 `pkill` |
@@ -260,7 +273,7 @@ ls -lt paper/figures/final_figures/*.png 2>/dev/null | head -3
   - **Track A**：Exp10 x/40；running=…；CRIT?；**不干预** / 动作
   - **Track B**：1 句话改动
   - **创新审计**：… = **A/B/C 级**
-  - **Git**：`<hash>` — `loop R{n}: …` → **pushed: origin/main**
+  - **Git**：`commit: <short-hash>` — `loop R{n}: …`；（可选）`pushed: origin/<branch>` 或 `pushed: (local only)`
   - **下一轮**：…
 ```
 
@@ -311,7 +324,7 @@ flowchart TB
 | **分层对齐** | 借鉴顶刊材料稿结构：**结构/掺杂（Exp1–2）→ 电子/极化子（Exp3–4,7,9）→ 协同/尺寸（Exp5–6,10）→ 文稿** |
 | **执行前价值闸门** | 每轮进入「策略 → 落地」前，对照投稿目标判断本轮是否值得做（见下节） |
 | **算时写稿** | CP2K 长跑期间做 Track B；定量句标注 `[pending: Exp10 task X]` 或 `[verified: file.out]` |
-| **每轮落盘** | 每轮 Loop 结束 **必须** `git commit` + `git push`；笔记写 commit hash；禁止跨多轮 R 堆成一次提交 |
+| **每轮落盘** | 每轮 Loop 结束 **必须** `git commit`；**push 可选**；笔记写 commit hash；禁止跨多轮 R 堆成一次提交 |
 | **文献即证据** | 新引用须来自检索结果；创新声明须对照 `docs/reference_info.md` + 最新论文 |
 | **图表可审计** | 每个 panel 的数字追溯到 `.out` / `.csv` / 分析 JSON；无源数字不进 tex |
 
@@ -375,7 +388,7 @@ flowchart LR
   I --> V[4 验证 Verify]
   V --> M{证据够写进稿?}
   M -->|否| S
-  M -->|是| PR[commit + push]
+  M -->|是| PR[git commit]
   PR --> E[5 进化 Evolve]
   E --> N[扫描新瓶颈]
   N --> P
@@ -682,31 +695,31 @@ ls paper/*report*.md docs/reference_info.md
 - **Track A**：感知 → 策略 → 落地 → 验证 → 进化（计算）
 - **Track B**：B1→B5（文稿·文献），**与 A 并行**；单轮会话若 A 已后台运行，**至少完成 1 项 B3 落地**
 
-每一轮结束：**扫描双轨 backlog → 追加 Loop R{n} 笔记 → [Git 闭环](#每轮-git-闭环-commit--push)**。
+每一轮结束：**扫描双轨 backlog → 追加 Loop R{n} 笔记 → [Git 闭环](#每轮-git-闭环)**。
 
 仍**禁止**新建独立 orchestrator；用 `simukit-run` / `run_pending_local.sh`（legacy）+ 现有 `run_*.py` + `paper/` 工具串联。
 
-### 每轮 Git 闭环（Commit + Push）
+### 每轮 Git 闭环
 
-**硬规则**：每一轮 Loop（含 `go loops`、`go loops B`、Track A/B 专轮）在写回 `AGENTS.md` 笔记后 **必须** 提交并推送，**无需** 等用户再说「commit」。
+**硬规则**：每一轮 Loop（含 `go loops`、`go loops B`、Track A/B 专轮）在写回 `AGENTS.md` 笔记后 **必须** `git commit`，**无需**等用户再说「commit」。**`git push` 不强制**——仅在用户要求、需远程备份、或准备开 PR 时执行。
 
 | 步骤 | 动作 |
 |------|------|
 | 1 | `git status` + `git diff` — 确认无 `.env`、密钥、巨型 `.out` 误加入 |
 | 2 | 暂存本轮文件（代码 / `paper/` / `experiments/analysis/` / `AGENTS.md`；**勿** 提交 `c/simukit-*` 二进制若已在 `.gitignore`） |
-| 3 | `git commit -m "loop R{n}: <一句话 why>"` — 消息含 **Loop 编号** 与 Track A/B 要点 |
-| 4 | `git push -u origin HEAD` — push 失败则修复后 **新 commit**，勿 force-push `main` |
-| 5 | 在 Loop 笔记末行写 **`commit: <short-hash>`** 与 **`pushed: origin/<branch>`** |
+| 3 | **`git commit -m "loop R{n}: <一句话 why>"`** — 消息含 **Loop 编号** 与 Track A/B 要点（**必做**） |
+| 4 | （可选）`git push -u origin HEAD` — 用户要求或需同步远程时；失败则修复后 **新 commit**，勿 force-push `main` |
+| 5 | 在 Loop 笔记末行写 **`commit: <short-hash>`**；若已 push 则加 **`pushed: origin/<branch>`**，未 push 写 **`pushed: (local only)`** |
 
 **提交粒度**：
 
 - **默认**：1 Loop = 1 commit（R39 文稿、R27 pos0 收敛后处理等各自独立）。
 - **允许**：同一轮仅 Track B 微改 + 笔记 → 仍须 commit；Track A 仅监控无文件变更 → 可只更新笔记并 commit 笔记（或 `git commit --allow-empty -m "loop R{n}: Track A monitor only"` 若确无 diff）。
-- **禁止**：「R8–R40 攒一起」「用户确认后再 commit」— 旧 backlog 若未 push，下一轮优先 **拆分或单次收口 commit** 后立即 push。
+- **禁止**：「R8–R40 攒一起」「用户确认后再 commit」、跨多轮 R 无 commit。
 
-**分支**：默认当前工作分支；长期 Loop 可用 `cursor/loop-r<n>-sci` 或 `loop/sci-r<n>`，每轮 push 到 remote。
+**分支**：默认当前工作分支；长期 Loop 可用 `cursor/loop-r<n>-sci` 或 `loop/sci-r<n>`。
 
-**与 PR 的关系**：小步 commit+push 为主；攒够一个里程碑再 `gh pr create`，PR 描述链到 Loop 编号区间。
+**与 PR 的关系**：小步 **commit** 为主；push 与 `gh pr create` 可在里程碑时一并做，PR 描述链到 Loop 编号区间。
 
 #### 验证通过后的 PR / 合并
 
@@ -762,7 +775,7 @@ ls paper/*report*.md docs/reference_info.md
 [ ] B5. 进化：更新 bib + AGENTS 笔记（query / DOI / 下一轮 B）
 
 === 闭环 ===
-[ ] 6. Git：commit（消息含 Loop R{n}）+ push；笔记记录 short-hash
+[ ] 6. Git：**必须** commit（消息含 Loop R{n}）；笔记记录 `commit: <hash>`；push **可选**
 [ ] 7. （可选）PR：双轨摘要 + 证据路径
 [ ] 8. 扫描双轨 backlog → Loop R{n+1}
 ```
@@ -823,7 +836,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 ### 当前轮次笔记（由 Agent 持续追加）
 
-> **维护说明**：每完成一轮 Loop，**先更新上方「当前状态快照」**，再追加 3～5 行笔记（模板见「精益求精」节）。勿删历史条目。**每轮必须 commit + push**（见上节）。R1–R40 中「commit R8–Rn」为 **R41 前历史**，已废止。
+> **维护说明**：每完成一轮 Loop，**先更新上方「当前状态快照」**，再追加 3～5 行笔记（模板见「精益求精」节）。勿删历史条目。**每轮必须 `git commit`；`git push` 可选**（见上节）。R1–R40 中「commit R8–Rn」为 **R41 前历史**，已废止。
 
 - **基线（2026-06-11，历史）**：Exp7 **12/12**、Exp9 **12/12**；Exp8 **5/6**；Exp10 自 **28/40** 推进至 **30/40**（R42 pos3、R27 pos0）。Methods 已 **PBE+D3 诚实化**（R6）；剩余契约：**Exp10 40/40**、Figure 2 final、$\mathcal{S}_\infty$ 数值 withheld。
 - **Loop R1（2026-06-11，本地续算）**：瓶颈 Exp10 pending + SSH 超时。落地 `experiments/run_pending_local.sh`（顺序、Mac cp2k.psmp）。验证：`size_2x60_pristine_pos0pct` 运行中；`local_run.log` 有 START 记录。**下一轮**：该任务收敛后自动进入 pos3；若 300 步 ABORT → pristine 2×60 放宽 `EPS_SCF`。
@@ -1114,6 +1127,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R126（2026-06-19，双轨）**：
+ - **Track A**：Exp9 **8/12**；`polaron_N_qneg1_opt` step **116/300** ~39% OT~151 — **不干预**。
+ - **Track B（IV Methods + 横切）**：P $E_f$ 筛选比值 **32 eV/5\%→16 eV/3\%** 对齐 `table1_verification.json`；Capobianco bib 去 `referinfo`；Discussion「knobs」→正式表述；AGENTS 增审稿 P0/P1 扫描包 **§E**。
+ - **创新审计**：$|S|/|E_f|$ 契约 = **A**；bib 泄漏 = **A**；$\lambda$ = **B pending**
+ - **Git**：`02c455a` — `loop R126: P Ef screening ratio fix, peer-review scan in AGENTS`
+ - **下一轮**：N_qneg1 PROGRAM ENDED → post_exp9；SI 去 `Exp.~` 编号
 
 - **Loop R124（2026-06-19，双轨 · 第三版审稿）**：
  - **Track A**：Exp9 **8/12**；`polaron_N_qneg1_opt` step **~9/300** — **不干预**。
@@ -1641,4 +1661,4 @@ dft_results/
 
 见 [README.md](README.md)、[docs/experimental_implementation_plan.md](docs/experimental_implementation_plan.md)。
 
-**持续优化闭环**：**Track A 计算** + **Track B 文稿·文献** 双轨并行；见 [双轨并行总览](#双轨并行总览) 与 [文稿·文献闭环](#文稿文献闭环-manuscript--literature-loop)。**每轮 Loop 必须 commit + push**。验证通过后再改定量主张，勿新建独立 Loop orchestrator。
+**持续优化闭环**：**Track A 计算** + **Track B 文稿·文献** 双轨并行；见 [双轨并行总览](#双轨并行总览) 与 [文稿·文献闭环](#文稿文献闭环-manuscript--literature-loop)。**每轮 Loop 必须 `git commit`**（**push 可选**）。验证通过后再改定量主张，勿新建独立 Loop orchestrator。

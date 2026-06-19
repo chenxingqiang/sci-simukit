@@ -161,8 +161,8 @@
   "running_snapshot": {
     "geo_step": 63,
     "geo_max_iter": 300,
-    "last_ot_step": 44,
-    "last_ot_convergence": 1.069e-05,
+    "last_ot_step": 77,
+    "last_ot_convergence": 3.276e-05,
     "abort_seen": true,
     "restarted_after_abort": true,
     "task": "polaron_pristine_qneg1_opt",

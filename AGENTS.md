@@ -22,17 +22,17 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 |----|-----|
 | **Exp10** | **40/40** converged ✅（见 `exp10_status.json`） |
 | **Exp8** | **6/6** ✅ — `post_exp8_converged.sh` consolidated `geoopt_pristine_sp.out` |
-| **Exp9** | **7/12** GEO_OPT；qneg1 **step 63/300** OT~44（restarted-after-ABORT） |
+| **Exp9** | **7/12** GEO_OPT；qneg1 **step 63/300** OT~77（restarted-after-ABORT） |
 | **运行中** | `polaron_pristine_qneg1_opt`（4× MPI）— **不干预** |
 | **临界区** | none |
 | **下一任务** | qneg1 PROGRAM ENDED → `post_exp9_converged.sh` → 续 pending GEO_OPT |
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
 | **阻塞 PRL** | Exp9 λ + transport 主图 |
 | **文稿 P 瓶颈** | transport C pending |
-| **下一 B 任务** | R107 Discussion 补 Lopez-Alcalá2025 strain 对比句（可选） |
-| **主张-证据** | PRL 主图↔audit JSON = **A** |
+| **下一 B 任务** | R108 Marcus transport 占位图 |
+| **主张-证据** | Discussion↔2025 strain lit = **A** |
 | **旗杆** | `Electron.pdf` + `render_prl.sh` |
-| **最新 Loop** | **R106**（见下方笔记） |
+| **最新 Loop** | **R107**（见下方笔记） |
 
 **一行命令**：`bash experiments/exp10_status_line.sh` · `bash experiments/exp9_status_line.sh`
 
@@ -1114,6 +1114,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R107（2026-06-18，双轨）**：
+  - **Track A**：Exp9 **7/12**；qneg1 step **63/300** OT~77（ABORT 重启后内层 SCF 进行中）— **不干预**。
+  - **Track B（Discussion）**：增 Lopez-Alcalá2025 graphendofullerene strain 对比句 + bib `LopezAlcalay2025graphendofullerene`（DOI 10.1039/D5SC01278C）；刷新 Exp9 audit JSON。
+  - **创新审计**：2025 strain 文献定位 = **A**（derivative vs $(\epsilon,\delta)$ 交叉项差异化）；$\lambda$ = **B pending**
+  - **Git**：`81adc0c` — `loop R107: Discussion Lopez-Alcalay2025 contrast, Exp9 monitor`
+  - **下一轮**：qneg1 converged → post_exp9；Marcus transport 占位图
 
 - **Loop R106（2026-06-18，双轨）**：
   - **Track A**：Exp9 **7/12**；`polaron_pristine_qneg1_opt` step **63/300** OT~44（restarted-after-ABORT）— **不干预**、勿启第二路 batch。

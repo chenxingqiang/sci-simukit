@@ -22,17 +22,17 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 |----|-----|
 | **Exp10** | **40/40** converged ✅（见 `exp10_status.json`） |
 | **Exp8** | **6/6** ✅ — `post_exp8_converged.sh` consolidated `geoopt_pristine_sp.out` |
-| **Exp9** | **7/12** GEO_OPT；qneg1 **step 63/300** OT~224（restarted-after-ABORT） |
+| **Exp9** | **7/12** GEO_OPT；qneg1 **step 63/300** OT~232（restarted-after-ABORT） |
 | **运行中** | `polaron_pristine_qneg1_opt`（4× MPI）— **不干预** |
-| **临界区** | none |
+| **临界区** | **near-converged**（OT grad $\sim2.5\times10^{-6}$） |
 | **下一任务** | qneg1 PROGRAM ENDED → `post_exp9_converged.sh` |
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
 | **阻塞 PRL** | Exp9 λ + transport 主图 |
-| **文稿 P 瓶颈** | S4 π-DOS **A−**；S5 λ pending |
-| **下一 B 任务** | R111 MolFC FCWD；Exp9 post on converge |
-| **主张-证据** | SI S4↔Exp7 PDOS = **A−** |
+| **文稿 P 瓶颈** | S5 λ pending；S6 (b) synthetic FCWD |
+| **下一 B 任务** | R112 Exp9 post + S5 λ refresh on vertical SP |
+| **主张-证据** | S6(a) $J$↔Exp4 = **A** |
 | **旗杆** | `render_si_figures.sh` |
-| **最新 Loop** | **R110**（见下方笔记） |
+| **最新 Loop** | **R111**（见下方笔记） |
 
 **一行命令**：`bash experiments/exp10_status_line.sh` · `bash experiments/exp9_status_line.sh`
 
@@ -1114,6 +1114,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R111（2026-06-18，双轨）**：
+  - **Track A**：Exp9 **7/12**；qneg1 OT~232，grad $\sim2.5\times10^{-6}$ — **不干预**（近 converged）。
+  - **Track B**：**Fig.~S6** 扩展为 (a) Exp.4 $J$ + (b) synthetic FCWD envelope（Capobianco 词汇；MolFC pending）；SI caption/theory 同步。
+  - **创新审计**：S6(a) $J$ = **A**；S6(b) FCWD = **B**（synthetic）；$\lambda$ = **B pending**
+  - **Git**：见 commit after amend
+  - **下一轮**：qneg1 converged → post_exp9
 
 - **Loop R110（2026-06-18，双轨）**：
   - **Track A**：Exp9 **7/12**；qneg1 step **63/300** OT~224 — **不干预**。

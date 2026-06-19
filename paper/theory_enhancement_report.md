@@ -147,6 +147,6 @@ Legacy `analyze_results.py` → 请改用 `analyze_exp9_polaron.py` + `dft_resul
 |----|------|----------|------|
 | S4 π-DOS @ ε=0 | `figures/out/figure_s4_pdos_exp7.pdf` | **A−** | Exp7 `.pdos`; MO isosurfaces pending VMD |
 | S5 Marcus λ | `figures/out/figure_s5_marcus_pending.pdf` | **B+** | IP/EA from Exp9 JSON; λ pending vertical SP |
-| S6 $J$ audit | `figures/out/figure_s6_j_exp4.pdf` | **A** | Exp4 JSON; FCWD panel pending |
+| S6 $J$ + FCWD | `figures/out/figure_s6_j_exp4.pdf` | **B+** | (a) Exp4 $J$ **A**; (b) synthetic FCWD pending MolFC |
 
 渲染：`bash paper/figures/render_si_figures.sh`；SI PDF：`bash paper/compile_si.sh`

@@ -22,17 +22,17 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 |----|-----|
 | **Exp10** | **40/40** converged ✅（见 `exp10_status.json`） |
 | **Exp8** | **6/6** ✅ — `post_exp8_converged.sh` consolidated `geoopt_pristine_sp.out` |
-| **Exp9** | **8/12** GEO_OPT；`polaron_N_qneg1_opt` **step 116/300** ~39% OT~151（restarted-after-ABORT） |
+| **Exp9** | **8/12** GEO_OPT；`polaron_N_qneg1_opt` **step 116/300** ~39% OT~184（restarted-after-ABORT） |
 | **运行中** | `polaron_N_qneg1_opt`（4× MPI）— **不干预** |
 | **临界区** | geo 中期；内层 SCF 正常 |
 | **下一任务** | N_qneg1 PROGRAM ENDED → `post_exp9_converged.sh` |
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
 | **阻塞 PRL** | Exp9 λ + transport 主图 |
-| **文稿 P 瓶颈** | 审稿 P0 残余（SI Exp 编号、tetramer $\mathcal{S}(\epsilon)$）；S5 λ pending |
-| **下一 B 任务** | SI `Exp.~`→Supp. 编号；`relax_validation` 多应变 $\mathcal{S}$ |
+| **文稿 P 瓶颈** | tetramer $\mathcal{S}(\epsilon)$ pending；S5 λ pending；theory MD `Exp.~` 清理 |
+| **下一 B 任务** | `relax_validation` GEO_OPT（Exp9 结束后）；theory report MD 去路径 |
 | **主张-证据** | B/N/P $\mathcal{S}(n{=}4)$ = **A**；$\alpha$–$\mathcal{S}$ 线性检验 = **B** |
 | **旗杆** | PRL `prl` + 单栏主图 |
-| **最新 Loop** | **R126**（见下方笔记） |
+| **最新 Loop** | **R127**（见下方笔记） |
 
 **一行命令**：`bash experiments/exp10_status_line.sh` · `bash experiments/exp9_status_line.sh`
 
@@ -1127,6 +1127,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R127（2026-06-19，双轨）**：
+ - **Track A**：Exp9 **8/12**；`polaron_N_qneg1_opt` step **116/300** ~39% OT~184 — **不干预**。
+ - **Track B（IV Methods · SI）**：SI 全面 S 前缀（Tables/Figs S1--S3, S4--S6）；去 `Exp.~`/`experiments/` 路径；`sdc_method_section` Fig.~S6 + 断链 `fig:prl_main` 修复；新增 `si_methods_section.tex`。
+ - **创新审计**：SI 编号契约 = **A**；Table S3 relax = **B pending**；$\lambda$ = **B pending**
+ - **Git**：`677e2f7` — `loop R127: SI S-prefix cleanup and methods cross-refs`
+ - **下一轮**：N_qneg1 PROGRAM ENDED → post_exp9；theory MD 去 `Exp.~`
 
 - **Loop R126（2026-06-19，双轨）**：
  - **Track A**：Exp9 **8/12**；`polaron_N_qneg1_opt` step **116/300** ~39% OT~151 — **不干预**。

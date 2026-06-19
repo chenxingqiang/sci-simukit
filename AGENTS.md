@@ -1119,7 +1119,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
   - **Track A**：Exp9 **7/12**；`polaron_pristine_qneg1_opt` step **63/300** OT~**341** grad~$2.5\times10^{-6}$（restarted-after-ABORT）— **不干预**。
   - **Track B**：SI 去 legacy `final_figures/` 回退；Fig.~S5 扩为 **1×3**（pristine IP / N IP / B EA）；S6 全宽；`exp9_polaron_verification.json` running_snapshot 刷新。
   - **创新审计**：S5 三 verified adiabatic 箭头 = **A−**；$\lambda$ = **B pending**（vertical SP 0/8）
-  - **Git**：见 commit — `loop R113: SI pipeline-only S5 N panel`
+  - **Git**：`df19952` — `loop R113: SI pipeline-only S5 N IP panel` → **pushed: origin/main**
   - **下一轮**：qneg1 PROGRAM ENDED → `post_exp9_converged.sh` → batch 续跑
 
 - **Loop R112（2026-06-18，双轨）**：

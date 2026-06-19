@@ -1119,7 +1119,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track A**：Exp9 **7/12**；qneg1 step **63/300** OT~**486**（out→`dft_results/.../outputs/`）— **不干预**。
  - **Track B（VIII Conclusion + 横切）**：Conclusion 增 `post_exp9`→`render_si_figures` 未来闭环句；`theory_enhancement_report.md` R116–118 审计行。
  - **创新审计**：Exp9 post 契约 = **A**；$\lambda$ = **B pending**
- - **Git**：pending — `loop R118: Conclusion post_exp9 closure, theory report R118`
+ - **Git**：`94fcb78` — `loop R118: Conclusion post_exp9 closure, theory report R118` → **pushed: origin/main**
  - **下一轮**：qneg1 PROGRAM ENDED → post_exp9
 
 - **Loop R117（2026-06-19，双轨）**：

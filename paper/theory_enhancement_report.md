@@ -38,10 +38,11 @@
 | Table S5 局域结构（$\bar{d}$, $\Delta r_{\mathrm{cov}}$） | **A−** | **[verified]** | `experiments/analysis/local_structure_tetramer.json` |
 | Major 4 论证（$E_{\mathrm{sub}}$, S–$\alpha$, B vs P） | **A** | **[verified R135]** | Discussion + Table S1 |
 | PRL transport / Marcus 主图 | **C** | **[pending]** | PRB 主文不阻塞；SI S5–S6 |
+| Limitations Silva2024 输运边界 | **B+** | **[verified R138]** | Limitations + bib citekey |
 | ML $R^2{>}0.95$、775%/300% $\mu$ | **C** | **[withdrawn from main]** | 勿进 Abstract/Results |
 | 下文 IPR 45→25、$J{=}135$ meV、$\mu{=}8.75\times$ | **C** | **[discrepancy]** | 仅作历史理论草稿；见 §2 |
 
-**Track A 快照（2026-06-19，R136）**：Exp9 **9/12** — `polaron_B_qpos1_opt` step **300/360** ~83%（4× MPI）；Exp10 **40/41** cutoff400 pending（勿与 Exp9 并行）；Exp8 **6/6** ✅。
+**Track A 快照（2026-06-19，R138）**：Exp9 **9/12** — `polaron_B_qpos1_opt` step **9/300**（新 geo 步）（4× MPI）；Exp10 **40/41** cutoff400 pending（勿与 Exp9 并行）；Exp8 **6/6** ✅。
 
 ---
 

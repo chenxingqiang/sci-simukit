@@ -22,9 +22,9 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 |----|-----|
 | **Exp10** | **40/41** — `size_6x60_N_pos3pct_cutoff400` pending（截断对照） |
 | **Exp8** | **6/6** ✅ — `post_exp8_converged.sh` consolidated `geoopt_pristine_sp.out` |
-| **Exp9** | **9/12** GEO_OPT；`polaron_B_qpos1_opt` step **300/387** ~78% — **不干预** |
+| **Exp9** | **9/12** GEO_OPT；`polaron_B_qpos1_opt` step **9/300** ~3%（新步）— **不干预** |
 | **运行中** | `polaron_B_qpos1_opt`（4× MPI）— **不干预** |
-| **临界区** | B_qpos1 GEO_OPT 末段；内层 OT ~$10^{-6}$ |
+| **临界区** | B_qpos1 早期 geo 步；内层 OT 正常 |
 | **下一任务** | Exp9 12/12 → `post_exp9_converged.sh`；空闲后 `run_prb_revision_dft.sh` |
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
 | **阻塞 PRB** | Table S3/S4/cutoff400 `.out`；Exp9 λ（SI S5） |
@@ -32,7 +32,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **下一 B 任务** | 图件 PRB/SI 可读性 polish；文献 Wang/López-Alcalá 对比句 |
 | **主张-证据** | B/N/P $\mathcal{S}(n{=}4)$ = **A**；弛豫/seed137/cutoff = **B pending** |
 | **旗杆** | **PRB major revision**（`compile_prb.sh` + SM + cover letter）|
-| **最新 Loop** | **R137**（见下方笔记） |
+| **最新 Loop** | **R138**（见下方笔记） |
 
 
 ---
@@ -1202,6 +1202,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
   - **创新审计**：n=6 B $\mathcal{S}$ = **A 级**；8×60 batch 运维 + 资源 cap = **A 级**。
   - **Git**：`2a39654` — pushed **origin/main**（2026-06-14）。
   - **下一轮**：`8×60_B_pos3` 收敛 → post → **35/40** + 可能第 12 条 synergy；Figure 1/2 final 仍 pending。
+
+- **Loop R138（2026-06-19，双轨）**：
+ - **Track A**：Exp9 **9/12**；`polaron_B_qpos1_opt` step **9/300** — **不干预**；勿并行 PRB 验证 DFT。
+ - **Track B（VIII + SI）**：Limitations 引 **Silva2024large** 输运边界；Conclusion 对齐 Wang/López-Alcalá；S4 caption 共享 y 轴说明；刷新 Exp9 JSON。
+ - **创新审计**：文献边界 = **A**；λ/transport = **B pending**
+ - **Git**：`5d82673` — loop R138 → **pushed: (local only)**
+ - **下一轮**：B_qpos1 收敛 → post_exp9；batch 空闲 → `run_prb_revision_dft.sh`
 
 - **Loop R137（2026-06-19，双轨 · 图件+文献）**：
  - **Track A**：Exp9 **9/12**；`polaron_B_qpos1_opt` ~78% — **不干预**。

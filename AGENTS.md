@@ -1119,7 +1119,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track A**：Exp9 **7/12**；`polaron_pristine_qneg1_opt` step **63/300** OT~**486** — **不干预**。
  - **Track B（VII Discussion）**：Mechanistic synthesis 补 **Qiu2025atomic** 力学对比句（pristine 原子尺度 vs Exp.~5 $lpha$）。
  - **创新审计**：力学文献定位 = **A**；$\lambda$ = **B pending**
- - **Git**：pending — `loop R117: Discussion Qiu2025 mechanics contrast`
+ - **Git**：`d48c81e` — `loop R117: Discussion Qiu2025 mechanics contrast` → **pushed: origin/main**
  - **下一轮**：qneg1 PROGRAM ENDED → post_exp9
 
 - **Loop R116（2026-06-19，双轨）**：

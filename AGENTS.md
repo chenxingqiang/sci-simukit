@@ -1119,7 +1119,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track A**：Exp9 **8/12**；`polaron_N_qneg1_opt` step **~9/300** — **不干预**。
  - **Track B（VII Discussion + Results）**：引文拆分 Li2024/Khan vs Materials2024；$n{=}4$ B/N/P $\mathcal{S}$ 三联值；$E_f$ 筛选误差=$\mathcal{S}$；$J$ vs $\mathcal{S}$ 边界 + B 杂化机理；$\alpha$–$\mathcal{S}$ 线性检验；设计启示 $\mathcal{S}$ 符号；结论降调 dominates。
  - **创新审计**：审稿 P0/P1 = **A**；机理定量 = **B**；$\lambda$ = **B pending**
- - **Git**：pending — `loop R124: third-round peer-review manuscript fixes`
+ - **Git**：`23d6074` — `loop R124: third-round peer-review manuscript fixes` → **pushed: origin/main**
  - **下一轮**：push R123 backlog + N_qneg1 → post_exp9
 
 - **Loop R123（2026-06-19，双轨）**：

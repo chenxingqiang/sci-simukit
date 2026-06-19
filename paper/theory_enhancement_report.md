@@ -33,12 +33,15 @@
 | 主稿 citekey 计数（精简稿） | **A** | **13** | 非 `citation_completion_report` 48 篇旧快照 |
 | `running_snapshot` OT 字段 | **A** | **[fixed R103]** | `last_ot_convergence`（非 RMS grad） |
 | Marcus $\lambda$（vertical − adiabatic） | **B** | **[pending]** | Exp9: 5 GEO_OPT + 8 vertical SP；`derived.lambda_eV` 全 null |
-| PRL 主图 (a–d) | **A** | **[verified]** | `paper/figures/out/figure_prl_main.pdf` + audit JSON |
-| PRL transport / Marcus 主图 | **C** | **[pending]** | 阻塞投稿叙事 |
+| PRL 主图 (a–d) | **A** | **[verified]** | `paper/figures/out/figure_prb_main.pdf` + audit JSON（PRB 修订版；无 inset） |
+| PRB 主图 panel (d) $n{=}4$ $\mathcal{S}$ 标注 | **A** | **[verified R135]** | `fig_prl_main.py` `build_prb_figure` |
+| Table S5 局域结构（$\bar{d}$, $\Delta r_{\mathrm{cov}}$） | **A−** | **[verified]** | `experiments/analysis/local_structure_tetramer.json` |
+| Major 4 论证（$E_{\mathrm{sub}}$, S–$\alpha$, B vs P） | **A** | **[verified R135]** | Discussion + Table S1 |
+| PRL transport / Marcus 主图 | **C** | **[pending]** | PRB 主文不阻塞；SI S5–S6 |
 | ML $R^2{>}0.95$、775%/300% $\mu$ | **C** | **[withdrawn from main]** | 勿进 Abstract/Results |
 | 下文 IPR 45→25、$J{=}135$ meV、$\mu{=}8.75\times$ | **C** | **[discrepancy]** | 仅作历史理论草稿；见 §2 |
 
-**Track A 快照（2026-06-19，R130）**：Exp9 **8/12** — qneg1 step **117/300**（live post-ABORT；R119 status fix）（ABORT 重启；`.out` 写 `dft_results/exp_9_charged_polaron/outputs/`）；Exp10 **40/40** ✅；Exp8 **6/6** ✅。
+**Track A 快照（2026-06-19，R136）**：Exp9 **9/12** — `polaron_B_qpos1_opt` step **300/360** ~83%（4× MPI）；Exp10 **40/41** cutoff400 pending（勿与 Exp9 并行）；Exp8 **6/6** ✅。
 
 ---
 
@@ -47,8 +50,10 @@
 | 文稿声称 | inp 实际 | 状态 |
 |----------|----------|------|
 | 400 Ry $n\leq4$, 350 Ry $n\geq6$ | `size_*x60_*.inp` | **A** (R132 修复原 300/280 错误) |
-| Table S3 弛豫 | `relax_validation/` | **B pending** |
-| Table S4 seed 137 | `seed_validation/` | **B pending** |
+| Table S3 弛豫 | `relax_validation/` + `run_relax_validation.sh` | **B pending** |
+| Table S4 seed 137 (18 ENERGY) | `seed_validation/` + `run_seed137_validation.sh` | **B pending** |
+| Table S5 局域结构 | `analyze_local_structure.py` | **A− verified** |
+| PRB 验证 DFT 队列 | `experiments/run_prb_revision_dft.sh` | **B**（Exp9 空闲后顺序跑） |
 
 ## 8. 主稿段落 ↔ JSON 映射（R103 横切）
 
@@ -169,5 +174,6 @@ Legacy `analyze_results.py` → 请改用 `analyze_exp9_polaron.py` + `dft_resul
 | S4 π-DOS @ ε=0 | `figures/out/figure_s4_pdos_exp7.pdf` | **A−** | Exp7 `.pdos`; MO isosurfaces pending VMD |
 | S5 Marcus λ | `figures/out/figure_s5_marcus_pending.pdf` | **B+** | IP/EA from Exp9 JSON; λ pending vertical SP |
 | S6 $J$ + FCWD | `figures/out/figure_s6_j_exp4.pdf` | **B+** | (a) Exp4 $J$ **A**; (b) synthetic FCWD pending MolFC |
+| S5 局域结构 | Table S5 in `supplementary_figures.tex` | **A−** | `local_structure_tetramer.json` |
 
-渲染：`bash paper/figures/render_si_figures.sh`；SI PDF：`bash paper/compile_si.sh`
+渲染：`bash paper/figures/render_si_figures.sh`；PRB 包：`bash paper/compile_prb.sh`

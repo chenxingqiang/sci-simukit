@@ -162,9 +162,9 @@
   "running_snapshot": {
     "geo_step": null,
     "geo_max_iter": 300,
-    "last_ot_step": null,
-    "last_ot_convergence": null,
-    "abort_seen": true,
+    "last_ot_step": 365,
+    "last_ot_convergence": 1.35e-06,
+    "abort_seen": false,
     "restarted_after_abort": false,
     "task": "polaron_B_qpos1_opt"
   },

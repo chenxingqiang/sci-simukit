@@ -22,17 +22,17 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 |----|-----|
 | **Exp10** | **40/41** — `size_6x60_N_pos3pct_cutoff400` pending（截断对照） |
 | **Exp8** | **6/6** ✅ — `post_exp8_converged.sh` consolidated `geoopt_pristine_sp.out` |
-| **Exp9** | **9/12** GEO_OPT；`polaron_B_qpos1_opt` 运行中 — **不干预** |
+| **Exp9** | **9/12** GEO_OPT；`polaron_B_qpos1_opt` step **300/360** ~83% — **不干预** |
 | **运行中** | `polaron_B_qpos1_opt`（4× MPI）— **不干预** |
-| **临界区** | Exp9 末批 charged GEO_OPT |
+| **临界区** | B_qpos1 GEO_OPT 末段；内层 OT ~$10^{-6}$ |
 | **下一任务** | Exp9 12/12 → `post_exp9_converged.sh`；空闲后 `run_prb_revision_dft.sh` |
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
 | **阻塞 PRB** | Table S3/S4/cutoff400 `.out`；Exp9 λ（SI S5） |
 | **文稿 P 瓶颈** | Major 1–5 文稿已落地；DFT 验证队列就绪 |
-| **下一 B 任务** | Exp9 空闲后跑验证 DFT；APS 上传三 PDF |
+| **下一 B 任务** | theory 台账已同步 R135；Exp9 空闲 → `run_prb_revision_dft.sh` |
 | **主张-证据** | B/N/P $\mathcal{S}(n{=}4)$ = **A**；弛豫/seed137/cutoff = **B pending** |
 | **旗杆** | **PRB major revision**（`compile_prb.sh` + SM + cover letter）|
-| **最新 Loop** | **R135**（见下方笔记） |
+| **最新 Loop** | **R136**（见下方笔记） |
 
 
 ---
@@ -1203,11 +1203,18 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
   - **Git**：`2a39654` — pushed **origin/main**（2026-06-14）。
   - **下一轮**：`8×60_B_pos3` 收敛 → post → **35/40** + 可能第 12 条 synergy；Figure 1/2 final 仍 pending。
 
+- **Loop R136（2026-06-19，双轨）**：
+ - **Track A**：Exp9 **9/12**；`polaron_B_qpos1_opt` step **300/360** ~83% OT~$10^{-6}$ — **不干预**；勿并行 cutoff400/relax。
+ - **Track B（横切）**：`theory_enhancement_report.md` 同步 R135（PRB 主图、Table S5、验证队列）；刷新 `exp9_polaron_verification.json`（pristine EA 2.612 eV 入 JSON）。
+ - **创新审计**：台账 PRB = **A**；验证 DFT = **B pending**
+ - **Git**：`b69fc51` — loop R136 → **pushed: (local only, ahead 4)**
+ - **下一轮**：B_qpos1 PROGRAM ENDED → post_exp9；Exp9 全 idle → `run_prb_revision_dft.sh`
+
 - **Loop R135（2026-06-19，PRB major revision 计划落地）**：
  - **Track A**：Exp9 **9/12**；`polaron_B_qpos1_opt` — **不干预**；`run_prb_revision_dft.sh`（relax→seed137→cutoff400）。
  - **Track B**：Major 4 + Minor 1–3；SI Table S4/S5；PRB 图；cover letter；`compile_prb` ✅。
  - **创新审计**：论证/版式 = **A**；验证 DFT = **B pending**
- - **Git**：local diff（未 commit）
+ - **Git**：`0ba0c8d` — loop R135 → **pushed: (local only, ahead 3)**
  - **下一轮**：Exp9 空闲 → `bash experiments/run_prb_revision_dft.sh`
 
 - **Loop R134（2026-06-19，Track B · apstemplate 对齐续）**：

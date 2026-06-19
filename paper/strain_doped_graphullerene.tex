@@ -1,28 +1,34 @@
+% PRB Regular Article — REVTeX 4.2 (aligned with apstemplate.tex / apssamp.tex)
 \documentclass[%
  reprint,
+ groupedaddress,
+%superscriptaddress,
+%unsortedaddress,
+%runinaddress,
+%preprint,
+%preprintnumbers,
  amsmath,amssymb,
  aps,
  prb,
+%nobibnotes,
 ]{revtex4-2}
-% PRB Regular Article — REVTeX 4.2 (see revtex-tds/doc/latex/revtex/sample/aps/apstemplate.tex)
 
-\usepackage{graphicx}
-\usepackage{dcolumn}
-\usepackage{bm}
-\usepackage{url}
+\usepackage{graphicx}% Include figure files
+\usepackage{dcolumn}% Align table columns on decimal point
+\usepackage{bm}% bold math
+\usepackage{url}% Data Availability URLs
 
 \begin{document}
 
 \title{Non-Additive Strain--Doping Coupling in Quasi-Hexagonal C$_{60}$ Graphullerene}
 
-\author{Xingqiang Chen}
- \email{xingqiang.chen@xmu.edu.cn}
+\author{Xingqiang Chen\thanks{Contact author: xingqiang.chen@xmu.edu.cn}}
 \author{Qixing Wang}
 \affiliation{%
  Department of Physics\\
  Xiamen University\\
  Xiamen 361005, China
-}
+}%
 
 \date{\today}
 
@@ -33,7 +39,7 @@ PBE+DFT-D3 on tetramers and periodic $n\times\mathrm{C}_{60}$ supercells ($n=1$-
 The pattern warns that sequential high-throughput screens can mis-rank stability when local dopant distortion couples nonlinearly to external strain.
 \end{abstract}
 
-\keywords{graphullerene, polaron localization, strain engineering, heteroatom doping, non-additive coupling}
+%\keywords{} % optional; requires showkeys class option (apstemplate.tex)
 
 \maketitle
 
@@ -48,7 +54,7 @@ Beyond pristine monolayers, strain and substitution independently reshape band e
 Non-additive coupling is documented in other two-dimensional networks~\cite{Materials2024untangling}; a quantitative \emph{total-energy} cross term $\mathcal{S}$ [Eq.~\eqref{eq:synergy_order}] has not been reported for substitutional B/N/P qHP C$_{60}$ tetramers and $n=1$--$8$ supercells under a single PBE+D3 protocol.
 
 We address three questions on this model network: (1)~how opposite linear strain coefficients $\alpha$ emerge for donor vs.\ acceptor dopants; (2)~how large the omitted cross term $|\mathcal{S}|$ is when strain and substitution are applied jointly; and (3)~whether $|\mathcal{S}|$ tracks $|\alpha|$ or instead reflects local structural distortion.
-Using $\gtrsim 90$ converged CP2K tasks (Supplemental Material Table~S2; see Supplemental Material at [URL will be inserted by publisher] for the full DFT inventory, extended PDOS, and transport-adjacent observables), we define $\mathcal{S}$ on shared tetramer and periodic grids; Marcus $\lambda$ and hopping observables (IPR/$J$) are analyzed only in Supplemental Material Fig.~S5--S6 and are not required for the non-additivity conclusions here.
+Using $\gtrsim 90$ converged CP2K tasks~\cite{SupplementalMaterial} (Table~S2), we define $\mathcal{S}$ on shared tetramer and periodic grids; Marcus $\lambda$ and hopping observables (IPR/$J$) are analyzed only in Supplemental Material Fig.~S5--S6 and are not required for the non-additivity conclusions here.
 The central narrative anchor is that \emph{local} dopant distortion and \emph{global} biaxial strain interact nonlinearly in total energy: $|\mathcal{S}|$ can exceed what linear $\alpha$ alone would suggest, so stability rankings from $\epsilon=0$ substitution energies or from strain-only elastic increments need not survive a coupled load.
 
 % ------------------------------------------------------------------
@@ -199,7 +205,7 @@ We acknowledge computational resources and support from Xiamen University.
 The data that support the findings of this study are openly available in the \texttt{sci-simukit} repository at \url{https://github.com/chenxingqiang/graphullerene-strain-engineering}, including converged CP2K inputs and outputs under \texttt{dft\_results/}, analysis JSON under \texttt{experiments/analysis/}, and figure-generation scripts under \texttt{paper/figures/}.
 A tagged release matching the manuscript revision will be issued upon acceptance.
 
-\bibliographystyle{apsrev4-2}
+%\bibliographystyle{apsrev4-2} % selected automatically by [prb]
 \bibliography{strain_graphullerene_50refs}
 
 \end{document}

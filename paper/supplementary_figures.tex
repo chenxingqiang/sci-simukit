@@ -1,11 +1,14 @@
+% Supplemental Material — REVTeX 4.2 PRB (aligned with apstemplate.tex)
 \documentclass[%
  reprint,
+ groupedaddress,
  amsmath,amssymb,
  aps,
  prb,
 ]{revtex4-2}
 
-\usepackage{graphicx}
+\usepackage{graphicx}% Include figure files
+\usepackage{dcolumn}% Align table columns on decimal point
 
 \begin{document}
 
@@ -13,8 +16,14 @@
 \renewcommand{\thetable}{S\arabic{table}}
 \renewcommand{\thefigure}{S\arabic{figure}}
 
-\title{Supplemental Material for: Non-Additive Strain--Doping Coupling in Covalent Molecular Networks:\\Model Evidence from Quasi-Hexagonal C$_{60}$}
-\author{Xingqiang Chen}
+\title{Supplemental Material for ``Non-Additive Strain--Doping Coupling in Quasi-Hexagonal C$_{60}$ Graphullerene''}
+\author{Xingqiang Chen\thanks{Contact author: xingqiang.chen@xmu.edu.cn}}
+\author{Qixing Wang}
+\affiliation{%
+ Department of Physics\\
+ Xiamen University\\
+ Xiamen 361005, China
+}%
 \date{\today}
 \maketitle
 
@@ -138,7 +147,7 @@ Adiabatic ionization potential (IP) and electron affinity (EA) are from converge
 The horizontal axis is a dimensionless mode coordinate $Q$.}
 \end{figure*}
 
-\bibliographystyle{apsrev4-2}
+%\bibliographystyle{apsrev4-2} % selected automatically by [prb]
 \bibliography{strain_graphullerene_50refs}
 
 \end{document}

@@ -22,17 +22,17 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 |----|-----|
 | **Exp10** | **40/41** — `size_6x60_N_pos3pct_cutoff400` pending（截断对照） |
 | **Exp8** | **6/6** ✅ — `post_exp8_converged.sh` consolidated `geoopt_pristine_sp.out` |
-| **Exp9** | **8/12** GEO_OPT；`polaron_N_qneg1_opt` **step 127/300** ~42% — **不干预** |
+| **Exp9** | **8/12** GEO_OPT；`polaron_N_qneg1_opt` **step 135/300** ~45% — **不干预** |
 | **运行中** | `polaron_N_qneg1_opt`（4× MPI）— **不干预** |
 | **临界区** | geo 中期；内层 SCF 正常 |
 | **下一任务** | N_qneg1 PROGRAM ENDED → `post_exp9_converged.sh` |
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
 | **阻塞 PRB** | D2–D4 验证 `.out`；Exp9 λ（SI S5） |
 | **文稿 P 瓶颈** | **D2** Table S3 弛豫；D2/S3弛豫+S4种子+截断能控制 inp 就绪（目标 2800+） |
-| **下一 B 任务** | post_exp9 → relax_validation；theory report 同步 |
+| **下一 B 任务** | APS 上传三 PDF；Exp9 空闲 → relax_validation |
 | **主张-证据** | B/N/P $\mathcal{S}(n{=}4)$ = **A**；$\alpha$–$\mathcal{S}$ 线性检验 = **B** |
 | **旗杆** | **PRB Regular Article**（`compile_prb.sh` + SM）|
-| **最新 Loop** | **R133**（见下方笔记） |
+| **最新 Loop** | **R134**（见下方笔记） |
 
 
 ---
@@ -1205,6 +1205,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R134（2026-06-19，Track B · apstemplate 对齐续）**：
+ - **Track A**：Exp9 **8/12** step **135/300** ~45% — **不干预**；Exp10 **40/41** cutoff400 pending。
+ - **Track B**：`groupedaddress`+Contact `	hanks`；去显式 `bibliographystyle`；SI 标题/作者同步；`SupplementalMaterial` 入 `.bib`+参考文献表（PRB SM 引用规范）。
+ - **创新审计**：PRB 版式 = **A**；SM 参考文献 = **A**
+ - **Git**：pending
+ - **下一轮**：Exp9 PROGRAM ENDED → post_exp9；APS 上传 checklist
 
 - **Loop R133（2026-06-19，Track B · PRB 投稿准备）**：
  - **Track A**：Exp9 batch — **不干预**。

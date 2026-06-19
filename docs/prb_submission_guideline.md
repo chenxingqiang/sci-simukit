@@ -272,7 +272,8 @@ Publication Charges and Reprints
 | Item | Path |
 |------|------|
 | REVTeX 4.2 TDS | `revtex-tds/` — template: `revtex-tds/doc/latex/revtex/sample/aps/apstemplate.tex` |
-| Main article | `paper/strain_doped_graphullerene.tex` (`aps`, `prb`, `reprint`) |
+| Main article | `paper/strain_doped_graphullerene.tex` (`aps`, `prb`, `reprint`, `groupedaddress`) |
+| Template alignment | `groupedaddress`; Contact-author `\thanks`; auto `apsrev4-2` via `[prb]`; SM cite `SupplementalMaterial` in `.bib` |
 | Supplemental Material | `paper/supplementary_figures.tex` |
 | Full PRB build | `bash paper/compile_prb.sh` |
 | Main figure (two-column) | `paper/figures/out/figure_prb_main.pdf` |

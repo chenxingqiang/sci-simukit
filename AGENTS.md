@@ -22,7 +22,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 |----|-----|
 | **Exp10** | **40/41** — `size_6x60_N_pos3pct_cutoff400` pending（截断对照） |
 | **Exp8** | **6/6** ✅ — `post_exp8_converged.sh` consolidated `geoopt_pristine_sp.out` |
-| **Exp9** | **9/12** GEO_OPT；`polaron_B_qpos1_opt` step **81/300** ~27% — **不干预** |
+| **Exp9** | **9/12** GEO_OPT；`polaron_B_qpos1_opt` step **94/300** ~31% — **不干预** |
 | **运行中** | `polaron_B_qpos1_opt`（4× MPI）— **不干预** |
 | **临界区** | B_qpos1 早期 geo 步；内层 OT 正常 |
 | **下一任务** | Exp9 12/12 → `post_exp9_converged.sh`；空闲后 `run_prb_revision_dft.sh` |
@@ -32,7 +32,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **下一 B 任务** | PRB 投稿 checklist；Khan2025 差异化句 |
 | **主张-证据** | B/N/P $\mathcal{S}(n{=}4)$ = **A**；弛豫/seed137/cutoff = **B pending** |
 | **旗杆** | **PRB major revision**（`compile_prb.sh` + SM + cover letter）|
-| **最新 Loop** | **R143**（见下方笔记） |
+| **最新 Loop** | **R144**（Track B 专轮） |
 
 
 ---
@@ -1202,6 +1202,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
   - **创新审计**：n=6 B $\mathcal{S}$ = **A 级**；8×60 batch 运维 + 资源 cap = **A 级**。
   - **Git**：`2a39654` — pushed **origin/main**（2026-06-14）。
   - **下一轮**：`8×60_B_pos3` 收敛 → post → **35/40** + 可能第 12 条 synergy；Figure 1/2 final 仍 pending。
+
+- **Loop R144（2026-06-19，Track B 专轮）**：
+ - **Track A（快照）**：Exp9 **9/12**；`B_qpos1` step **94/300** ~31% — **不干预**。
+ - **Track B（横切 P0）**：`theory_enhancement_report` §1.4 废止「Results 已引 IP/EA」→ SI Fig.~S5；重绘 S5。
+ - **创新审计**：台账契约 = **A**；λ = **B pending**
+ - **Git**：`8752071` — loop R144 Track B → **local only**
+ - **下一轮**：VIII Conclusion 或 compile_prb 验证
 
 - **Loop R143（2026-06-19，双轨 · Literature）**：
  - **Track A**：Exp9 **9/12**；`polaron_B_qpos1_opt` step **81/300** ~27% — **不干预**。

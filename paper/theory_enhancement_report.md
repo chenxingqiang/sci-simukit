@@ -43,7 +43,7 @@
 | ML $R^2{>}0.95$、775%/300% $\mu$ | **C** | **[withdrawn from main]** | 勿进 Abstract/Results |
 | 下文 IPR 45→25、$J{=}135$ meV、$\mu{=}8.75\times$ | **C** | **[discrepancy]** | 仅作历史理论草稿；见 §2 |
 
-**Track A 快照（2026-06-19，R143）**：Exp9 **9/12** — `polaron_B_qpos1_opt` step **81/300** ~27%（4× MPI）；Exp10 **40/41**；Exp8 **6/6** ✅。
+**Track A 快照（2026-06-19，R144 B-only）**：Exp9 **9/12** — `polaron_B_qpos1_opt` step **94/300** ~31%（快照；CP2K 不干预）（4× MPI）；Exp10 **40/41**；Exp8 **6/6** ✅。
 
 ---
 
@@ -69,7 +69,7 @@
 | Limitations | 9/12 GEO, no $\lambda$ | `derived.lambda_eV` 全 null |
 | Conclusion (1–4) | 四条贡献 | 同 Intro；Exp9 transport deferred |
 
-**grep 闸门（2026-06-18）**：主稿无 775%/300%/8.75×；Koopmans/rVV10 仅 Methods 对比句 ✅
+**grep 闸门（2026-06-19，R144）**：主稿无 775%/300%/8.75×；Koopmans/rVV10 仅 Methods 对比句 ✅
 
 ---
 
@@ -93,16 +93,16 @@
 | pristine 0% | 75.0 | 26.6 | small polaron hopping |
 | B +3% | 45.0 | 37.2 (+40%) | $J < \lambda/2$ → **无** band-like 转变 |
 
-### 1.4 Exp9 charged polaron（进行中）
+### 1.4 Exp9 charged polaron（9/12 GEO_OPT）
 
 | Dopant | IP (eV) | EA (eV) | 备注 |
 |--------|---------|---------|------|
-| pristine | 4.73 | — | qneg1 pending；**Results 已引 IP** |
-| N | 3.89 | — | qneg1 pending；**Results 已引 IP** |
-| B | — | 3.12 | qpos1 pending；**Results 已引 EA** |
+| pristine | 4.73 | 2.61 | GEO converged；**SI Fig.~S5 only**（主文不引） |
+| N | 3.89 | 2.77 | GEO converged；**SI Fig.~S5** |
+| B | — | 3.12 | `B_qpos1_opt` running；EA from qneg1 |
 | P | — | — | qpos1/qneg1 pending |
 
-Marcus 重组能（待 vertical SP）→ `analyze_exp9_polaron.py` → `derived.lambda_eV`。
+Marcus 重组能（待 8× vertical SP）→ `analyze_exp9_polaron.py` → `derived.lambda_eV`；Fig.~S5 由 `fig_si_s5_marcus_pending.py` 读 JSON。
 
 ---
 

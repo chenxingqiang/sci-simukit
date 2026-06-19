@@ -22,17 +22,17 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 |----|-----|
 | **Exp10** | **40/40** converged ✅（见 `exp10_status.json`） |
 | **Exp8** | **6/6** ✅ — `post_exp8_converged.sh` consolidated `geoopt_pristine_sp.out` |
-| **Exp9** | **8/12** GEO_OPT；`polaron_N_qneg1_opt` **step 117/300** ~39% OT~120 — **不干预** |
+| **Exp9** | **8/12** GEO_OPT；`polaron_N_qneg1_opt` **step 117/300** ~39% OT~169 — **不干预** |
 | **运行中** | `polaron_N_qneg1_opt`（4× MPI）— **不干预** |
 | **临界区** | geo 中期；内层 SCF 正常 |
 | **下一任务** | N_qneg1 PROGRAM ENDED → `post_exp9_converged.sh` |
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
 | **阻塞 PRL** | Exp9 λ + transport 主图 |
-| **文稿 P 瓶颈** | **D2** 弛豫 Table S3；**R1** 机理定量 |
-| **下一 B 任务** | Exp9 结束→`relax_validation`；$n{=}6$@300 Ry |
+| **文稿 P 瓶颈** | **D2** Table S3 弛豫；Conclusion 锚点句 |
+| **下一 B 任务** | post_exp9 → relax_validation；theory report 同步 |
 | **主张-证据** | B/N/P $\mathcal{S}(n{=}4)$ = **A**；$\alpha$–$\mathcal{S}$ 线性检验 = **B** |
 | **旗杆** | PRL desk gate → 不达标则 **PRB Rapid** |
-| **最新 Loop** | **R129**（见下方笔记） |
+| **最新 Loop** | **R130**（见下方笔记） |
 
 
 ---
@@ -51,7 +51,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 
 **核心叙事锚点句**（Intro/Abstract/Conclusion 须收敛至此，qHP C$_{60}$ 为**模型体系**）：
 
-> 在离散单元构成的共价分子网络中，掺杂诱导的局域结构畸变与外应变的非线性耦合，是应变–掺杂非加性效应的重要来源；其强度不与线性应变系数 $lpha$ 简单正相关，顺序扫描的加和假设可带来显著的稳定性预测误差。
+> 在离散单元构成的共价分子网络中，掺杂诱导的局域结构畸变与外应变的非线性耦合，是应变–掺杂非加性效应的重要来源；其强度不与线性应变系数 $\alpha$ 简单正相关，顺序扫描的加和假设可带来显著的稳定性预测误差。
 
 #### Desk Reject 级（P0 — 不解决 = 不送审）
 
@@ -61,7 +61,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **D2** | 刚性应变无验证 | `experiments/exp_5_synergy/relax_validation/` → Table~S3；Methods/Limitations **upper bound** 措辞 |
 | **D3** | 固定掺杂位点无普适性 | Limitations 诚实；可选第二 seed 四聚体单点（backlog，不伪造） |
 | **D4** | $n{\geq}6$ 280 vs 300 Ry 与 N $\mathcal{S}$ 符号 | Table~S2 pending 行；$n{=}6$ @300 Ry 单点（Track A backlog） |
-| **D5** | 叙事分散（gap + $lpha$ + $\mathcal{S}$ + IPR/$J$） | **主文 IPR/$J$ 压缩至 1 段 → SI Fig.~S6**；Results 以 $\mathcal{S}$ 为主轴 |
+| **D5** | 叙事分散（gap + $\alpha$ + $\mathcal{S}$ + IPR/$J$） | **主文 IPR/$J$ 压缩至 1 段 → SI Fig.~S6**；Results 以 $\mathcal{S}$ 为主轴 |
 | **D6** | 摘要 >600 字符 / 含引用 | `wc`/脚本审计；无 `\cite`、无公式、单段 |
 | **D7** | 正文 >3750 词 | 参数下沉 SI；Methods 一句 + `si_methods_section` |
 | **D8** | $\mathcal{S}$ 符号 / π 乱码 / 断词 | grep 审计；全文 `\mathcal{S}` |
@@ -73,7 +73,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | ID | 要点 | 动作 |
 |----|------|------|
 | **R1** | 机理深度不足 | PDOS + 键长/畸变（弛豫后）入 Discussion；三类机制分类段 |
-| **R2** | $\mathcal{S}$–$lpha$ 对比不对等 | 已写浓度/边界 Limitations；勿夸大「非线性主导」 |
+| **R2** | $\mathcal{S}$–$\alpha$ 对比不对等 | 已写浓度/边界 Limitations；勿夸大「非线性主导」 |
 | **R3** | ~3% vs PBE 形成能误差 | Discussion 增 DFT 不确定度与排序反转讨论 |
 | **R4** | $J$ 与 $\mathcal{S}$ 脱节 | 主文一句边界；细节仅 SI |
 
@@ -1206,6 +1206,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+- **Loop R130（2026-06-19，双轨）**：
+ - **Track A**：Exp9 **8/12**；`polaron_N_qneg1_opt` step **117/300** OT~169 — **不干预**。
+ - **Track B（VIII Conclusion + B5）**：Conclusion 对齐 PRL **叙事锚点句**；去主文 Conclusion 中 Marcus $\lambda$ 句；`theory_enhancement_report.md` 去 `Exp.~`、刷新 Exp9 **8/12**；修 AGENTS 锚点句 `$\alpha` 乱码。
+ - **创新审计**：D1 叙事闭环 = **B+**；D2 = **B pending**；$\lambda$ = **B pending**
+ - **Git**：`4e5fd50` — `loop R130: Conclusion anchor, theory report audit sync`
+ - **下一轮**：Exp9 PROGRAM ENDED → post_exp9 → relax_validation
+
 - **Loop R129（2026-06-19，双轨）**：
  - **Track A**：Exp9 **8/12**；`polaron_N_qneg1_opt` step **117/300** OT~120 — **不干预**。
  - **Track B（D7/D5/R1）**：Methods 四节→两节（~1480 词 `texcount`）；删主文 localization 小节；Discussion 去 $J$ 因子分解；三类机制 taxonomy；`paper/scripts/prl_wordcount.sh`；SI task inventory。
@@ -1285,7 +1292,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 - **Loop R117（2026-06-19，双轨）**：
  - **Track A**：Exp9 **7/12**；`polaron_pristine_qneg1_opt` step **63/300** OT~**486** — **不干预**。
- - **Track B（VII Discussion）**：Mechanistic synthesis 补 **Qiu2025atomic** 力学对比句（pristine 原子尺度 vs Exp.~5 $lpha$）。
+ - **Track B（VII Discussion）**：Mechanistic synthesis 补 **Qiu2025atomic** 力学对比句（pristine 原子尺度 vs Exp.~5 $\alpha$）。
  - **创新审计**：力学文献定位 = **A**；$\lambda$ = **B pending**
  - **Git**：`d48c81e` — `loop R117: Discussion Qiu2025 mechanics contrast` → **pushed: origin/main**
  - **下一轮**：qneg1 PROGRAM ENDED → post_exp9

@@ -3,23 +3,32 @@
 > **Loop R119 审计（2026-06-19）** — R116 PBE/D3；R117 Qiu2025；Conclusion post_exp9 闭环 — 与主稿 / canonical JSON / `.out` 对齐  
 > 本文件是**活文档**：旧版「投稿准备 ✅ / 8.5/10」评分已废止；以下以 **A/B/C 证据等级** 为准。
 
+## PRL desk gate（R128+）
+
+| 闸门 | 状态 |
+|------|------|
+| D6 摘要 ≤600 | **closed** R128 |
+| D7 词数 ≤3750 | **closed** R129 (~1787 `texcount`) |
+| D2 弛豫 | **open** Table S3 pending |
+| D1 叙事锚点 | **partial** R130 Conclusion |
+
 ## 证据审计表（主稿可引用边界）
 
 | 主张 | 等级 | 状态 | 来源 |
 |------|------|------|------|
 | 非加性序参量 $\mathcal{S}$、$H_{eff}$ 框架 | **A** | **[verified]** | `paper/sdc_method_section.tex`, `c/simukit-sdc` |
-| Exp.~5 $\alpha_{B,N,P}$、Table 1 能量列 | **A** | **[verified]** | `experiments/analysis/table1_verification.json` |
-| Exp.~10 尺寸标度、40/40 SCF | **A** | **[verified]** | `experiments/analysis/exp10_status.json` |
-| Exp.~10 $\mathcal{S}(n)$ @ +3%（15 点） | **A** | **[verified]** | `experiments/analysis/sdc/sdc_exp10_synergy_audit.json` |
+| Tetramer strain grid $\alpha_{B,N,P}$、Table 1 能量列 | **A** | **[verified]** | `experiments/analysis/table1_verification.json` |
+| Size-scaling grid 尺寸标度、40/40 SCF | **A** | **[verified]** | `experiments/analysis/exp10_status.json` |
+| Size-scaling grid $\mathcal{S}(n)$ @ +3%（15 点） | **A** | **[verified]** | `experiments/analysis/sdc/sdc_exp10_synergy_audit.json` |
 | $\mathcal{S}_\infty$ 外推（B/N/P） | **B** | **[provisional]** | 同上 `size_scaling_fits`；N @ n=8 符号反转需 Discussion 解释 |
-| Exp.~7 PDOS / gap 叙事链 | **A** | **[verified]** | Exp7 `.out` + `fig_prl_main.py` / `render_prl.sh` |
-| Exp.~4 IPR/$J$（2 点） | **A** | **[verified, 2-point]** | `experiments/analysis/exp4_polaron_verification.json` |
+| Tetramer PDOS PDOS / gap 叙事链 | **A** | **[verified]** | Exp7 `.out` + `fig_prl_main.py` / `render_prl.sh` |
+| Polaron factorial IPR/$J$（2 点） | **A** | **[verified, 2-point]** | `experiments/analysis/exp4_polaron_verification.json` |
 | 极化子→带转变 $J>\lambda/2$ | **C** | **[not confirmed]** | Exp4: `polaron_transition_confirmed: false` |
-| Exp.~9 adiabatic IP/EA | **A−** | **[partial 7/12, in Results]** | `exp9_polaron_verification.json`；Results + Discussion |
+| Charged polaron adiabatic IP/EA | **A−** | **[partial 7/12, in Results]** | `exp9_polaron_verification.json`；Results + Discussion |
 | 主稿 Conclusion 四条 ↔ Intro | **A** | **[verified R102]** | 无 transport 倍数 |
 | SI Fig S5–S6 + `compile_si.sh` | **B+** | **[S5 schematic; S6 Exp4]** | `render_si_transport.sh` → `figures/out/` |
 | Methods PBE+D3 citekeys | **A** | **[verified R116]** | `Perdew1996generalized`, `Grimme2011effect` + `cp2k2025` |
-| Discussion Qiu2025 力学对比 | **B+** | **[verified R117]** | pristine 原子尺度 vs Exp.~5 $\alpha$ |
+| Discussion Qiu2025 力学对比 | **B+** | **[verified R117]** | pristine 原子尺度 vs Tetramer strain grid $\alpha$ |
 | Abstract 7/12 partial Exp9 | **A−** | **[verified R120]** | audit JSON converged count |
 | 主稿 citekey 计数（精简稿） | **A** | **13** | 非 `citation_completion_report` 48 篇旧快照 |
 | `running_snapshot` OT 字段 | **A** | **[fixed R103]** | `last_ot_convergence`（非 RMS grad） |
@@ -29,7 +38,7 @@
 | ML $R^2{>}0.95$、775%/300% $\mu$ | **C** | **[withdrawn from main]** | 勿进 Abstract/Results |
 | 下文 IPR 45→25、$J{=}135$ meV、$\mu{=}8.75\times$ | **C** | **[discrepancy]** | 仅作历史理论草稿；见 §2 |
 
-**Track A 快照（2026-06-19，R118）**：Exp9 **7/12** — qneg1 step **106/300**（live post-ABORT；R119 status fix）（ABORT 重启；`.out` 写 `dft_results/exp_9_charged_polaron/outputs/`）；Exp10 **40/40** ✅；Exp8 **6/6** ✅。
+**Track A 快照（2026-06-19，R130）**：Exp9 **8/12** — qneg1 step **117/300**（live post-ABORT；R119 status fix）（ABORT 重启；`.out` 写 `dft_results/exp_9_charged_polaron/outputs/`）；Exp10 **40/40** ✅；Exp8 **6/6** ✅。
 
 ---
 

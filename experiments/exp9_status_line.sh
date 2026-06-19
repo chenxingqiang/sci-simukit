@@ -29,7 +29,27 @@ geo_max="300"
 ot_step=""
 grad_hint=""
 abort_hint=""
-if [[ -f "$JSON" ]]; then
+# Live .out first (post-ABORT segment); JSON fallback when idle.
+if [[ "$running" != none && "$running" == *"_opt"* ]]; then
+  base="${running%.inp}"
+  out="$OUT/${base}.out"
+  if [[ -f "$out" ]]; then
+    read -r geo_num geo_max ot_step grad_hint abort_hint <<< "$(python3 -c "
+import sys
+sys.path.insert(0, '$ROOT/experiments/analysis')
+from analyze_exp9_polaron import parse_geo_progress, read_out_tail
+from pathlib import Path
+snap = parse_geo_progress(read_out_tail(Path('$OUT') / ('${base}.out')))
+gs = snap.get('geo_step')
+mx = snap.get('geo_max_iter') or 300
+ot = snap.get('last_ot_step')
+gr = snap.get('last_ot_convergence')
+ab = 'restarted-after-ABORT' if snap.get('restarted_after_abort') else ''
+print(gs if gs is not None else '', mx, ot or '', f'conv={gr:.2e}' if gr else '', ab)
+" 2>/dev/null || echo ' 300   ')"
+  fi
+fi
+if [[ -z "$geo_num" && -f "$JSON" ]]; then
   read -r geo_num geo_max ot_step grad_hint abort_hint <<< "$(python3 -c "
 import json
 d=json.load(open('$JSON'))
@@ -41,17 +61,6 @@ gr=s.get('last_ot_convergence') or s.get('last_grad_ha_bohr')
 ab='restarted-after-ABORT' if s.get('restarted_after_abort') else ''
 print(gs if gs is not None else '', mx, ot or '', f'conv={gr:.2e}' if gr else '', ab)
 " 2>/dev/null || echo ' 300   ')"
-fi
-if [[ -z "$geo_num" && "$running" != none && "$running" == *"_opt"* ]]; then
-  base="${running%.inp}"
-  out="$OUT/${base}.out"
-  if [[ -f "$out" ]]; then
-    geo_num="$(grep 'OPTIMIZATION STEP:' "$out" 2>/dev/null | tail -1 | awk '{print $NF}' || true)"
-    ot_step="$(grep ' OT DIIS\| OT SD ' "$out" 2>/dev/null | tail -1 | awk '{print $1}' || true)"
-    if grep -q '\[ABORT\]' "$out" 2>/dev/null; then
-      abort_hint="restarted-after-ABORT"
-    fi
-  fi
 fi
 
 next="none"
@@ -73,7 +82,7 @@ if [[ -n "$geo_num" ]]; then
   [[ -n "$ot_step" ]] && extra=" OT=${ot_step}"
   [[ -n "$grad_hint" ]] && extra="${extra} ${grad_hint}"
   [[ -n "$abort_hint" ]] && extra="${extra} ${abort_hint}"
-  pct="$(python3 -c "import json; d=json.load(open('$JSON')); print(d.get('running_snapshot',{}).get('geo_progress_pct',''))" 2>/dev/null || true)"
+  pct="$(python3 -c "g='$geo_num'; m='$geo_max'; print(round(100*float(g)/float(m),1) if g and m else '')" 2>/dev/null || true)"
   [[ -n "$pct" ]] && extra="${extra} pct=${pct}%"
   echo "Exp9 GEO_OPT ${geo_done}/${geo_total} | vertical SP ${vert_done}/${vert_total} | running=${running%.inp} step=${geo_num}/${geo_max}${extra} | next=${next}"
 else

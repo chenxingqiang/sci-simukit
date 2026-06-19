@@ -1,6 +1,6 @@
 # 理论增强与证据对齐报告
 
-> **Loop R87 审计（2026-06-18）** — 与主稿 / canonical JSON / `.out` 对齐  
+> **Loop R109 审计（2026-06-18）** — 同步 R106–R108 主图/SI pipeline — 与主稿 / canonical JSON / `.out` 对齐  
 > 本文件是**活文档**：旧版「投稿准备 ✅ / 8.5/10」评分已废止；以下以 **A/B/C 证据等级** 为准。
 
 ## 证据审计表（主稿可引用边界）
@@ -12,21 +12,21 @@
 | Exp.~10 尺寸标度、40/40 SCF | **A** | **[verified]** | `experiments/analysis/exp10_status.json` |
 | Exp.~10 $\mathcal{S}(n)$ @ +3%（15 点） | **A** | **[verified]** | `experiments/analysis/sdc/sdc_exp10_synergy_audit.json` |
 | $\mathcal{S}_\infty$ 外推（B/N/P） | **B** | **[provisional]** | 同上 `size_scaling_fits`；N @ n=8 符号反转需 Discussion 解释 |
-| Exp.~7 PDOS / gap 叙事链 | **A** | **[verified]** | Exp7 `.out` + `electronic_morphology.py` |
+| Exp.~7 PDOS / gap 叙事链 | **A** | **[verified]** | Exp7 `.out` + `fig_prl_main.py` / `render_prl.sh` |
 | Exp.~4 IPR/$J$（2 点） | **A** | **[verified, 2-point]** | `experiments/analysis/exp4_polaron_verification.json` |
 | 极化子→带转变 $J>\lambda/2$ | **C** | **[not confirmed]** | Exp4: `polaron_transition_confirmed: false` |
 | Exp.~9 adiabatic IP/EA | **A−** | **[partial 7/12, in Results]** | `exp9_polaron_verification.json`；Results + Discussion |
 | 主稿 Conclusion 四条 ↔ Intro | **A** | **[verified R102]** | 无 transport 倍数 |
-| SI Fig S5–S6 + `compile_si.sh` | **B** | **[pending λ]** | `paper/supplementary_figures.tex` |
+| SI Fig S5–S6 + `compile_si.sh` | **B+** | **[S5 schematic; S6 Exp4]** | `render_si_transport.sh` → `figures/out/` |
 | Methods Exp9 workflow | **A** | **[verified R99]** | `sec:exp9_workflow` + `*.inp` |
 | `running_snapshot` OT 字段 | **A** | **[fixed R103]** | `last_ot_convergence`（非 RMS grad） |
 | Marcus $\lambda$（vertical − adiabatic） | **B** | **[pending]** | Exp9: 5 GEO_OPT + 8 vertical SP；`derived.lambda_eV` 全 null |
-| 主文 Figure 1–3 力学/SDC/电子 | **A−** | **[verified draft]** | `paper/figures/final_figures/` |
+| PRL 主图 (a–d) | **A** | **[verified]** | `paper/figures/out/figure_prl_main.pdf` + audit JSON |
 | PRL transport / Marcus 主图 | **C** | **[pending]** | 阻塞投稿叙事 |
 | ML $R^2{>}0.95$、775%/300% $\mu$ | **C** | **[withdrawn from main]** | 勿进 Abstract/Results |
 | 下文 IPR 45→25、$J{=}135$ meV、$\mu{=}8.75\times$ | **C** | **[discrepancy]** | 仅作历史理论草稿；见 §2 |
 
-**Track A 快照（2026-06-18，R105）**：Exp9 **7/12** — step **20/300 (~6.7%)**；step **33/300 (~11%)**；Intro 贡献(4) 对齐 Abstract；Exp10 **40/40** ✅。
+**Track A 快照（2026-06-18，R109）**：Exp9 **7/12** — qneg1 step **63/300** OT~142（ABORT 重启）；Exp10 **40/40** ✅；Exp8 **6/6** ✅。
 
 ---
 
@@ -138,15 +138,15 @@ Legacy `analyze_results.py` → 请改用 `analyze_exp9_polaron.py` + `dft_resul
 
 ---
 
-**总结（R87）**：$\mathcal{S}$ 框架与 Exp5/10 **已对齐**；旧「8.5/10 投稿就绪」**废止**。瓶颈：**Exp9 λ + transport**。
+**总结（R109）**：$\mathcal{S}$ 框架与 Exp5/10 **已对齐**；旧「8.5/10 投稿就绪」**废止**。瓶颈：**Exp9 λ + transport**。
 
 
 ## 7. SI 图件索引（R94）
 
 | 图 | 路径 | 证据等级 | 备注 |
 |----|------|----------|------|
-| S4 VBM/CBM+DOS | `paper/figures/final_figures/figureS4_vbm_cbm_dos.pdf` | **B** | 需 VMD + Exp7 cube/PDOS |
-| S5 Marcus λ | `paper/figures/final_figures/figure5_polaron_reorganization.pdf` | **B pending** | Exp9 vertical SP 后刷新 |
-| S6 $J$+FCWD | `paper/figures/final_figures/figure6_dimer_coupling_fcwd.pdf` | **B** | 合成 FCWD；MolFC 待替 |
+| S4 VBM/CBM+DOS | `figures/final_figures/` (removed) | **B** | VMD pending |
+| S5 Marcus λ | `figures/out/figure_s5_marcus_pending.pdf` | **B+** | IP/EA from Exp9 JSON; λ pending vertical SP |
+| S6 $J$ audit | `figures/out/figure_s6_j_exp4.pdf` | **A** | Exp4 JSON; FCWD panel pending |
 
-渲染：`bash paper/figures/render_supplementary_figures.sh`；SI PDF：`bash paper/compile_si.sh`
+渲染：`bash paper/figures/render_si_transport.sh`；SI PDF：`bash paper/compile_si.sh`

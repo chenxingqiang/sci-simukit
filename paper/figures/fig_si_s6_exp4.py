@@ -22,7 +22,7 @@ def build(out_dir: Path) -> tuple[Path, Path]:
     p = exp4["systems"]["pristine_0pct"]
     b = exp4["systems"]["coupled_B_3pct"]
 
-    labels = ["pristine\\n$\\epsilon{=}0$", "B @\\n$\\epsilon{=}+3$\\%"]
+    labels = ["pristine\n$\\epsilon{=}0$", "B @\n$\\epsilon{=}+3$\\%"]
     j_vals = [p["J_meV"], b["J_meV"]]
     colors = [DOPANT_COLORS["pristine"], COLOR_CBM]
 

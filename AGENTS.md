@@ -22,17 +22,17 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 |----|-----|
 | **Exp10** | **40/40** converged ✅（见 `exp10_status.json`） |
 | **Exp8** | **6/6** ✅ — `post_exp8_converged.sh` consolidated `geoopt_pristine_sp.out` |
-| **Exp9** | **7/12** GEO_OPT；qneg1 **step 63/300** OT~110（restarted-after-ABORT） |
+| **Exp9** | **7/12** GEO_OPT；qneg1 **step 63/300** OT~142（restarted-after-ABORT） |
 | **运行中** | `polaron_pristine_qneg1_opt`（4× MPI）— **不干预** |
 | **临界区** | none |
 | **下一任务** | qneg1 PROGRAM ENDED → `post_exp9_converged.sh` |
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
 | **阻塞 PRL** | Exp9 λ + transport 主图 |
-| **文稿 P 瓶颈** | S5 λ pending；S6 $J$ audit 已 JSON 驱动 |
-| **下一 B 任务** | R109 S5 Marcus pending panel + MolFC FCWD |
-| **主张-证据** | SI S6↔Exp4 JSON = **A** |
-| **旗杆** | `render_prl.sh` + `render_si_transport.sh` |
-| **最新 Loop** | **R108**（见下方笔记） |
+| **文稿 P 瓶颈** | S5 λ 数值 pending；S5/S6 schematic **A−** |
+| **下一 B 任务** | R110 MolFC FCWD + push backlog |
+| **主张-证据** | SI S5 IP/EA↔Exp9 JSON = **A−** |
+| **旗杆** | `render_si_transport.sh` |
+| **最新 Loop** | **R109**（见下方笔记） |
 
 **一行命令**：`bash experiments/exp10_status_line.sh` · `bash experiments/exp9_status_line.sh`
 
@@ -1114,6 +1114,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R109（2026-06-18，双轨）**：
+  - **Track A**：Exp9 **7/12**；qneg1 step **63/300** OT~142 — **不干预**。
+  - **Track B**：**Fig.~S5** Marcus 占位 `fig_si_s5_marcus_pending.py`（verified IP/EA 标注；$\lambda$ pending）；`theory_enhancement_report.md` 同步 R106–R108 pipeline；修复 S6 labels。
+  - **创新审计**：S5 schematic = **A−**（无 $\lambda$ 数值）；S6 $J$ = **A**；transport = **C pending**
+  - **Git**：`84308d6` — `loop R109: S5 Marcus schematic, theory report sync, Exp9 monitor`
+  - **下一轮**：qneg1 converged → post_exp9；push backlog；MolFC FCWD
 
 - **Loop R108（2026-06-18，双轨）**：
   - **Track A**：Exp9 **7/12**；qneg1 step **63/300** OT~110 — **不干预**。

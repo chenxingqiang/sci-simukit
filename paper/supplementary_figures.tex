@@ -28,7 +28,7 @@
 
 \section*{Overview}
 This Supplemental Material accompanies the main PRB article on coupled $(\epsilon,\delta)$ response in qHP C$_{60}$.
-All figures and tables are labeled with prefix~\textbf{S} to match citations in the main text (Fig.~S4--S6; Tables~S1--S4).
+All figures and tables are labeled with prefix~\textbf{S} to match citations in the main text (Fig.~S4--S6; Tables~S1--S5).
 Calculations use the same PBE+DFT-D3 CP2K protocol as the main manuscript (rigid biaxial strain unless noted).
 Observables follow Capobianco \emph{et al.}~\cite{Capobianco2024electron}: $\pi$-projected DOS, inverse participation ratio (IPR), nearest-neighbor coupling $J$, and Marcus reorganization energies $\lambda^{\pm}$.
 Converged inputs, outputs, and analysis JSON are archived as described in the main-text Data Availability statement.
@@ -38,11 +38,11 @@ Converged inputs, outputs, and analysis JSON are archived as described in the ma
 \section*{Table S1}
 \begin{table}
 \caption{\label{tab:S1}Total energies, linear strain sensitivities, and substitution energies for tetramer models (PBE+D3, rigid-strain protocol).
-$E_f=(E_{\mathrm{doped}}-E_{\mathrm{pristine}})/n_{\mathrm{dopants}}$ at $\epsilon{=}0$ with no chemical-potential reference (not a standard formation enthalpy).
+$E_{\mathrm{sub}}=(E_{\mathrm{doped}}-E_{\mathrm{pristine}})/n_{\mathrm{dopants}}$ at $\epsilon{=}0$ with no chemical-potential reference (not a standard formation enthalpy).
 $n_{\mathrm{dopants}}$ is counted from archived input coordinates (nominal 5\% target; B: 13, N: 12, P: 12).}
 \begin{ruledtabular}
 \begin{tabular}{lccccc}
-System & $n_{\mathrm{dop}}$ & $E(0\%)$ (Ha) & $E(+5\%)$ (Ha) & $\alpha$ (meV/\%) & $E_f$ (eV/dopant) \\
+System & $n_{\mathrm{dop}}$ & $E(0\%)$ (Ha) & $E(+5\%)$ (Ha) & $\alpha$ (meV/\%) & $E_{\mathrm{sub}}$ (eV/dopant) \\
 \hline
 Pristine & --- & $-1363.5512$ & $-1363.5509$ & $-1.0$ & --- \\
 B-doped & 13 & $-1328.4900$ & $-1328.4090$ & $+56.9$ & $+73.4$ \\
@@ -79,15 +79,33 @@ Ionic relaxation (tetramer) & tetramer & pending & Table~S3 & fixed-cell GEO\_OP
 \section*{Table S4}
 \begin{table*}
 \caption{\label{tab:S4}Alternate random-seed dopant placement (tetramer, rigid strain, PBE+D3).
-Seed~42 is used in the main text; seed~137 repeats the $\epsilon=0,+3$\% corners for B/N/P to test whether $\alpha$ and tetramer $\mathcal{S}$ are placement-sensitive.}
+Seed~42 is used in the main text; seed~137 repeats the full B/N/P strain grid ($\epsilon\in\{-5,-2.5,0,+2.5,+3,+5\}$\%) to test whether $\alpha$ and tetramer $\mathcal{S}$ at $+3$\% are placement-sensitive.
+Periodic $n{=}4$ $\mathcal{S}$ values (seed~42) are listed for comparison only---different concentration and boundary conditions.}
+\begin{ruledtabular}
+\begin{tabular}{lccccc}
+Dopant & Seed & $\alpha$ (meV/\%) & $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ (meV/atom) & $\mathcal{S}_{+3\%}^{n=4}$ (meV/atom) & Status \\
+\hline
+B & 42 & $+56.9$ & --- & $-6.2$ & verified (Table~S1) \\
+N & 42 & $-303.2$ & --- & $+3.0$ & verified \\
+P & 42 & $-19.1$ & --- & $-23.7$ & verified \\
+B & 137 & pending & pending & --- & 6 inp / pending \\
+N & 137 & pending & pending & --- & 6 inp / pending \\
+P & 137 & pending & pending & --- & 6 inp / pending \\
+\end{tabular}
+\end{ruledtabular}
+\end{table*}
+
+\section*{Table S5}
+\begin{table*}
+\caption{\label{tab:S5}Local dopant--cage structure from archived tetramer XYZ (mean nearest C distance $\bar{d}$ in \AA; covalent-radius excess vs.\ C in pm).
+Strain-induced change $\Delta\bar{d}=\bar{d}(\epsilon{=}+3\%)-\bar{d}(\epsilon{=}0)$ summarizes how tensile load couples to pre-existing distortion (see Discussion mechanistic synthesis).}
 \begin{ruledtabular}
 \begin{tabular}{lcccc}
-Case & Seed & $\alpha$ (meV/\%) & $\mathcal{S}$ @ $+3$\% (meV/atom) & Status \\
+Dopant & $\bar{d}(\epsilon{=}0)$ (\AA) & $\bar{d}(\epsilon{=}+3\%)$ (\AA) & $\Delta\bar{d}$ (\AA) & $\Delta r_{\mathrm{cov}}$ (pm) \\
 \hline
-B-doped & 42 & $+56.9$ & (periodic $n{=}4$: $-6.2$) & verified (Table~S1) \\
-N-doped & 42 & $-303.2$ & (periodic $n{=}4$: $+3.0$) & verified \\
-P-doped & 42 & $-19.1$ & (periodic $n{=}4$: $-23.7$) & verified \\
-B/N/P & 137 & pending & pending & P corners inp ready; full grid pending \\
+B & 1.384 & 1.393 & $+0.0085$ & $+7$ \\
+N & 1.393 & 1.402 & $+0.0087$ & $-6$ \\
+P & 1.384 & 1.385 & $+0.00003$ & $+30$ \\
 \end{tabular}
 \end{ruledtabular}
 \end{table*}

@@ -1,0 +1,168 @@
+{
+  "records": [
+    {
+      "dopant": "B",
+      "strain_pct": -5.0,
+      "n_dopant": 12,
+      "mean_d_ang": 1.3844663650338846,
+      "std_d_ang": 0.0005476237564521794,
+      "radius_delta_pm": 7
+    },
+    {
+      "dopant": "B",
+      "strain_pct": -2.5,
+      "n_dopant": 12,
+      "mean_d_ang": 1.3845676869414871,
+      "std_d_ang": 0.00043168255935184844,
+      "radius_delta_pm": 7
+    },
+    {
+      "dopant": "B",
+      "strain_pct": 0.0,
+      "n_dopant": 12,
+      "mean_d_ang": 1.3844749374069865,
+      "std_d_ang": 0.00036166559865740766,
+      "radius_delta_pm": 7
+    },
+    {
+      "dopant": "B",
+      "strain_pct": 2.5,
+      "n_dopant": 12,
+      "mean_d_ang": 1.384439371341698,
+      "std_d_ang": 0.00048768014136382906,
+      "radius_delta_pm": 7
+    },
+    {
+      "dopant": "B",
+      "strain_pct": 3.0,
+      "n_dopant": 12,
+      "mean_d_ang": 1.3930038558945748,
+      "std_d_ang": 0.01913760788812436,
+      "radius_delta_pm": 7
+    },
+    {
+      "dopant": "B",
+      "strain_pct": 5.0,
+      "n_dopant": 12,
+      "mean_d_ang": 1.3844557922815193,
+      "std_d_ang": 0.0005270683704957194,
+      "radius_delta_pm": 7
+    },
+    {
+      "dopant": "N",
+      "strain_pct": -5.0,
+      "n_dopant": 12,
+      "mean_d_ang": 1.401695544528344,
+      "std_d_ang": 0.024161705138951044,
+      "radius_delta_pm": -6
+    },
+    {
+      "dopant": "N",
+      "strain_pct": -2.5,
+      "n_dopant": 12,
+      "mean_d_ang": 1.3844455508882385,
+      "std_d_ang": 0.0005247850466432478,
+      "radius_delta_pm": -6
+    },
+    {
+      "dopant": "N",
+      "strain_pct": 0.0,
+      "n_dopant": 12,
+      "mean_d_ang": 1.3929188477295031,
+      "std_d_ang": 0.01924056054702071,
+      "radius_delta_pm": -6
+    },
+    {
+      "dopant": "N",
+      "strain_pct": 2.5,
+      "n_dopant": 12,
+      "mean_d_ang": 1.3843101516943006,
+      "std_d_ang": 0.0004790944782040501,
+      "radius_delta_pm": -6
+    },
+    {
+      "dopant": "N",
+      "strain_pct": 3.0,
+      "n_dopant": 12,
+      "mean_d_ang": 1.4016263695027567,
+      "std_d_ang": 0.024127324040488934,
+      "radius_delta_pm": -6
+    },
+    {
+      "dopant": "N",
+      "strain_pct": 5.0,
+      "n_dopant": 12,
+      "mean_d_ang": 1.3930613498014492,
+      "std_d_ang": 0.01903011450387737,
+      "radius_delta_pm": -6
+    },
+    {
+      "dopant": "P",
+      "strain_pct": -5.0,
+      "n_dopant": 12,
+      "mean_d_ang": 1.384386535678601,
+      "std_d_ang": 0.00040714510487826154,
+      "radius_delta_pm": 30
+    },
+    {
+      "dopant": "P",
+      "strain_pct": -2.5,
+      "n_dopant": 12,
+      "mean_d_ang": 1.384345246868947,
+      "std_d_ang": 0.0004014923459599187,
+      "radius_delta_pm": 30
+    },
+    {
+      "dopant": "P",
+      "strain_pct": 0.0,
+      "n_dopant": 12,
+      "mean_d_ang": 1.3844734354008958,
+      "std_d_ang": 0.00038487648292844043,
+      "radius_delta_pm": 30
+    },
+    {
+      "dopant": "P",
+      "strain_pct": 2.5,
+      "n_dopant": 12,
+      "mean_d_ang": 1.3843790904924533,
+      "std_d_ang": 0.00041483434977958,
+      "radius_delta_pm": 30
+    },
+    {
+      "dopant": "P",
+      "strain_pct": 3.0,
+      "n_dopant": 12,
+      "mean_d_ang": 1.3845078547454384,
+      "std_d_ang": 0.00042432762700463723,
+      "radius_delta_pm": 30
+    },
+    {
+      "dopant": "P",
+      "strain_pct": 5.0,
+      "n_dopant": 12,
+      "mean_d_ang": 1.3843002586048003,
+      "std_d_ang": 0.0004922544387801722,
+      "radius_delta_pm": 30
+    }
+  ],
+  "summary_by_dopant": {
+    "B": {
+      "mean_d_at_eps0_ang": 1.3844749374069865,
+      "mean_d_at_eps3_ang": 1.3930038558945748,
+      "delta_d_eps0_to_eps3_ang": 0.0085289184875883,
+      "radius_delta_pm": 7
+    },
+    "N": {
+      "mean_d_at_eps0_ang": 1.3929188477295031,
+      "mean_d_at_eps3_ang": 1.4016263695027567,
+      "delta_d_eps0_to_eps3_ang": 0.008707521773253513,
+      "radius_delta_pm": -6
+    },
+    "P": {
+      "mean_d_at_eps0_ang": 1.3844734354008958,
+      "mean_d_at_eps3_ang": 1.3845078547454384,
+      "delta_d_eps0_to_eps3_ang": 3.4419344542513386e-05,
+      "radius_delta_pm": 30
+    }
+  }
+}

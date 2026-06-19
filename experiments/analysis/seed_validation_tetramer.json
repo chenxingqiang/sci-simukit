@@ -1,14 +1,22 @@
 {
   "seed_primary": 42,
   "seed_validation": 137,
-  "status": "inputs_pending",
+  "status": "pending",
   "tetramer_alpha_meV_per_pct": {
     "seed42": {
       "B": 56.9,
       "N": -303.2,
       "P": -19.1
     },
-    "seed137": null
+    "seed137": {
+      "B": null,
+      "N": null,
+      "P": null
+    }
   },
-  "notes": "Run ENERGY jobs after Exp9 batch idle; compare alpha and rigid S."
-}\n
+  "tetramer_S_meV_per_atom_at_eps3": {
+    "seed42": {},
+    "seed137": {}
+  },
+  "relative_deviation_pct": {}
+}

@@ -22,17 +22,17 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 |----|-----|
 | **Exp10** | **40/41** — `size_6x60_N_pos3pct_cutoff400` pending（截断对照） |
 | **Exp8** | **6/6** ✅ — `post_exp8_converged.sh` consolidated `geoopt_pristine_sp.out` |
-| **Exp9** | **8/12** GEO_OPT；`polaron_N_qneg1_opt` **step 135/300** ~45% — **不干预** |
-| **运行中** | `polaron_N_qneg1_opt`（4× MPI）— **不干预** |
-| **临界区** | geo 中期；内层 SCF 正常 |
-| **下一任务** | N_qneg1 PROGRAM ENDED → `post_exp9_converged.sh` |
+| **Exp9** | **9/12** GEO_OPT；`polaron_B_qpos1_opt` 运行中 — **不干预** |
+| **运行中** | `polaron_B_qpos1_opt`（4× MPI）— **不干预** |
+| **临界区** | Exp9 末批 charged GEO_OPT |
+| **下一任务** | Exp9 12/12 → `post_exp9_converged.sh`；空闲后 `run_prb_revision_dft.sh` |
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
-| **阻塞 PRB** | D2–D4 验证 `.out`；Exp9 λ（SI S5） |
-| **文稿 P 瓶颈** | **D2** Table S3 弛豫；D2/S3弛豫+S4种子+截断能控制 inp 就绪（目标 2800+） |
-| **下一 B 任务** | APS 上传三 PDF；Exp9 空闲 → relax_validation |
-| **主张-证据** | B/N/P $\mathcal{S}(n{=}4)$ = **A**；$\alpha$–$\mathcal{S}$ 线性检验 = **B** |
-| **旗杆** | **PRB Regular Article**（`compile_prb.sh` + SM）|
-| **最新 Loop** | **R134**（见下方笔记） |
+| **阻塞 PRB** | Table S3/S4/cutoff400 `.out`；Exp9 λ（SI S5） |
+| **文稿 P 瓶颈** | Major 1–5 文稿已落地；DFT 验证队列就绪 |
+| **下一 B 任务** | Exp9 空闲后跑验证 DFT；APS 上传三 PDF |
+| **主张-证据** | B/N/P $\mathcal{S}(n{=}4)$ = **A**；弛豫/seed137/cutoff = **B pending** |
+| **旗杆** | **PRB major revision**（`compile_prb.sh` + SM + cover letter）|
+| **最新 Loop** | **R135**（见下方笔记） |
 
 
 ---
@@ -1203,14 +1203,18 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
   - **Git**：`2a39654` — pushed **origin/main**（2026-06-14）。
   - **下一轮**：`8×60_B_pos3` 收敛 → post → **35/40** + 可能第 12 条 synergy；Figure 1/2 final 仍 pending。
 
-
-
+- **Loop R135（2026-06-19，PRB major revision 计划落地）**：
+ - **Track A**：Exp9 **9/12**；`polaron_B_qpos1_opt` — **不干预**；`run_prb_revision_dft.sh`（relax→seed137→cutoff400）。
+ - **Track B**：Major 4 + Minor 1–3；SI Table S4/S5；PRB 图；cover letter；`compile_prb` ✅。
+ - **创新审计**：论证/版式 = **A**；验证 DFT = **B pending**
+ - **Git**：local diff（未 commit）
+ - **下一轮**：Exp9 空闲 → `bash experiments/run_prb_revision_dft.sh`
 
 - **Loop R134（2026-06-19，Track B · apstemplate 对齐续）**：
  - **Track A**：Exp9 **8/12** step **135/300** ~45% — **不干预**；Exp10 **40/41** cutoff400 pending。
- - **Track B**：`groupedaddress`+Contact `	hanks`；去显式 `bibliographystyle`；SI 标题/作者同步；`SupplementalMaterial` 入 `.bib`+参考文献表（PRB SM 引用规范）。
+ - **Track B**：`groupedaddress`+Contact `\thanks`；去显式 `bibliographystyle`；SI 标题/作者同步；`SupplementalMaterial` 入 `.bib`+参考文献表（PRB SM 引用规范）。
  - **创新审计**：PRB 版式 = **A**；SM 参考文献 = **A**
- - **Git**：`bebeb36`+fix — loop R134 → **pushed: origin/main**
+ - **Git**：`f813a63` — loop R134 → **ahead 2, push failed (network)**
  - **下一轮**：Exp9 PROGRAM ENDED → post_exp9；APS 上传 checklist
 
 - **Loop R133（2026-06-19，Track B · PRB 投稿准备）**：

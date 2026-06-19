@@ -1,0 +1,98 @@
+#!/usr/bin/env python3
+"""Parse seed137 ENERGY outputs; compare alpha and tetramer S vs seed 42."""
+
+from __future__ import annotations
+
+import json
+import re
+from pathlib import Path
+
+import numpy as np
+
+REPO = Path(__file__).resolve().parents[3]
+INP_DIR = Path(__file__).resolve().parent / "inputs"
+OUT_JSON = REPO / "experiments/analysis/seed_validation_tetramer.json"
+TABLE1 = REPO / "experiments/analysis/table1_verification.json"
+N_ATOMS = 240
+HA_TO_MEV = 27.2114e3
+
+
+def parse_energy(out: Path) -> float | None:
+    if not out.exists():
+        return None
+    text = out.read_text(errors="replace")
+    if "SCF run converged" not in text:
+        return None
+    m = re.findall(r"ENERGY\| Total FORCE_EVAL.*?(-?\d+\.\d+)", text)
+    return float(m[-1]) if m else None
+
+
+def synergy_s(e_p0: float, e_p3: float, e_d0: float, e_d3: float) -> float:
+    delta_strain = e_p3 - e_p0
+    delta_dop = e_d0 - e_p0
+    delta_combined = e_d3 - e_p0
+    return (delta_combined - delta_strain - delta_dop) / N_ATOMS * HA_TO_MEV
+
+
+def fit_alpha(strains: list[float], energies: list[float]) -> float | None:
+    if len(strains) < 3:
+        return None
+    c = np.polyfit(strains, energies, 1)
+    return float(c[0] * HA_TO_MEV)
+
+
+def main() -> None:
+    seed42 = json.loads(TABLE1.read_text())["systems"]
+    result = {
+        "seed_primary": 42,
+        "seed_validation": 137,
+        "status": "pending",
+        "tetramer_alpha_meV_per_pct": {"seed42": {}, "seed137": {}},
+        "tetramer_S_meV_per_atom_at_eps3": {"seed42": {}, "seed137": {}},
+        "relative_deviation_pct": {},
+    }
+    for dop in ("B", "N", "P"):
+        result["tetramer_alpha_meV_per_pct"]["seed42"][dop] = seed42[dop]["alpha_meV_per_pct"]
+
+    by_dop: dict[str, dict[float, float]] = {d: {} for d in ("B", "N", "P")}
+    for inp in sorted(INP_DIR.glob("seed137_*_rigid.inp")):
+        m = re.search(r"seed137_([BNP])_strain([pm])(\d+\.\d)_rigid", inp.stem)
+        if not m:
+            continue
+        dop, sign, val = m.group(1), m.group(2), m.group(3)
+        strain = float(val) if sign == "p" else -float(val)
+        e = parse_energy(inp.with_suffix(".out"))
+        if e is not None:
+            by_dop[dop][strain] = e
+
+    pristine: dict[float, float] = {}
+    for strain in (-5.0, -2.5, 0.0, 2.5, 3.0, 5.0):
+        ref = REPO / "dft_results/exp_5_synergy" / f"C60_strain_{strain:+.1f}_pristine_synergy.out"
+        e = parse_energy(ref)
+        if e is not None:
+            pristine[strain] = e
+
+    converged = sum(len(v) for v in by_dop.values())
+    for dop in ("B", "N", "P"):
+        strains = sorted(by_dop[dop].keys())
+        es = [by_dop[dop][s] for s in strains]
+        result["tetramer_alpha_meV_per_pct"]["seed137"][dop] = fit_alpha(strains, es)
+        if 0.0 in pristine and 3.0 in pristine and 0.0 in by_dop[dop] and 3.0 in by_dop[dop]:
+            s = synergy_s(pristine[0.0], pristine[3.0], by_dop[dop][0.0], by_dop[dop][3.0])
+            result["tetramer_S_meV_per_atom_at_eps3"]["seed137"][dop] = round(s, 2)
+        a42 = result["tetramer_alpha_meV_per_pct"]["seed42"][dop]
+        a137 = result["tetramer_alpha_meV_per_pct"]["seed137"].get(dop)
+        if a42 and a137 and abs(a42) > 1e-6:
+            result["relative_deviation_pct"][f"alpha_{dop}"] = round(100 * (a137 - a42) / abs(a42), 1)
+
+    if converged >= 18:
+        result["status"] = "complete"
+    elif converged > 0:
+        result["status"] = "partial"
+
+    OUT_JSON.write_text(json.dumps(result, indent=2) + "\n")
+    print(f"Wrote {OUT_JSON} converged_points={converged}")
+
+
+if __name__ == "__main__":
+    main()

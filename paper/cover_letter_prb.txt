@@ -1,5 +1,5 @@
 ================================================================================
-PHYSICAL REVIEW B — COVER LETTER (draft)
+PHYSICAL REVIEW B — COVER LETTER (major revision response)
 Article type: Regular Article (recommended)
 Manuscript: Non-Additive Strain--Doping Coupling in Quasi-Hexagonal C60 Graphullerene
 Authors: Xingqiang Chen, Qixing Wang (Xiamen University)
@@ -8,17 +8,46 @@ Corresponding author: xingqiang.chen@xmu.edu.cn
 
 Dear Editor,
 
-We submit the enclosed manuscript for consideration as a Regular Article in Physical Review B.
+We submit the revised manuscript for consideration as a Regular Article in
+Physical Review B, together with Supplemental Material responding to the
+referee report.
 
-Context. Strain and heteroatom substitution are routinely combined in two-dimensional molecular networks, yet many pipelines superpose separate strain-only and doping-only scans. Quasi-hexagonal C60 graphullerene provides a covalent model system to quantify the omitted total-energy cross term.
+Summary of revisions (Major comments):
 
-Key findings. We define a synergy order parameter S (meV/atom) from PBE+DFT-D3 on tetramers and periodic supercells. Opposite strain coefficients for N and B coexist with |S| up to ~32 meV/atom at +3% strain (largest for P despite small |alpha|). Protocol limits and validation benchmarks (ionic relaxation, alternate dopant seed, matched cutoff) are in Supplemental Material.
+(1) Rigid-strain protocol — We added a four-corner fixed-cell ionic relaxation
+    benchmark (Table S3) with inputs and analysis scripts archived in the
+    repository. Main text and Discussion now separate periodic rigid S(n) from
+    tetramer relaxed cross terms and state explicitly when conclusions are
+    upper-bound vs. thermodynamic formation energies.
 
-Fit for PRB. Condensed-matter materials design with reproducible CP2K archives and audit JSON. Transport-adjacent observables are in Supplemental Material only.
+(2) Single dopant seed — We extended the alternate-seed validation to the full
+    B/N/P strain grid (18 ENERGY tasks at seed 137; Table S4). This tests
+    whether alpha signs and S rankings are placement-averaged trends rather than
+    seed-42 artifacts.
+
+(3) Mechanistic depth — New Table S5 quantifies dopant--cage nearest-neighbor
+    distances and covalent-radius mismatch from archived XYZ structures; Discussion
+    mechanistic synthesis now cites these numbers alongside PDOS and SDC audit data.
+
+(4) Argumentation — We rewrote the S--alpha comparison to avoid over-claiming
+    linear predictability, added a B vs. P stability ranking worked example at
+    epsilon=0 vs. +3% strain, unified substitution-energy terminology, and
+    clarified that S is a same-functional energy difference with largely
+    cancelling systematic errors.
+
+(5) Cutoff consistency — A matched 400 Ry single-point control for 6xC60 N @
+    +3% strain (Table S2) is queued; N size-scaling sign change remains
+    footnoted until that benchmark converges.
+
+Minor comments: symbol and figure cleanup (PRB composite panel without inset;
+    n=4 S annotations), compressed Methods validation table and Results electronic
+    subsection, APS sentence-case references, and Supplemental Material citation
+    per PRB guidelines.
+
+Data availability: converged inputs/outputs and audit JSON as in the manuscript;
+    https://github.com/chenxingqiang/graphullerene-strain-engineering
 
 Prior submission: none to APS journals. Not a joint submission.
-
-Data availability: see manuscript; https://github.com/chenxingqiang/graphullerene-strain-engineering
 
 Sincerely,
 Xingqiang Chen (on behalf of all authors)

@@ -142,13 +142,17 @@ def _plot_alpha(ax, table1) -> None:
         ax.text(x, i, f"{val:.0f}", va="center", ha=ha, fontsize=5, zorder=3, clip_on=True)
 
 
-def _plot_synergy_combo(ax_main, ax_inset, audit, exp4) -> None:
+def _plot_synergy_combo(ax_main, audit, exp4, *, show_inset: bool = False, ax_inset=None) -> None:
     panel_label(ax_main, "d")
     ns = np.array([1, 2, 4, 6, 8], dtype=float)
+    n4_labels: dict[str, tuple[float, float]] = {}
     for dopant in ("B", "N", "P"):
         rows = synergy_rows(audit, dopant)
         n_pts = np.array([r[0] for r in rows], dtype=float)
         s_pts = np.array([r[1] for r in rows])
+        for n, s in zip(n_pts, s_pts):
+            if int(n) == 4:
+                n4_labels[dopant] = (float(n), float(s))
         ax_main.plot(
             n_pts,
             s_pts,
@@ -171,8 +175,19 @@ def _plot_synergy_combo(ax_main, ax_inset, audit, exp4) -> None:
     ax_main.set_ylabel(r"$\mathcal{S}$ (meV/atom)", labelpad=2)
     ax_main.yaxis.set_label_coords(-0.20, 0.5)
     ax_main.set_xticks([1, 2, 4, 6, 8])
-    ax_main.margins(x=0.06, y=0.18)
+    ax_main.margins(x=0.06, y=0.22)
     style_axes(ax_main, grid=True)
+    for dopant, (xn, sv) in n4_labels.items():
+        ax_main.annotate(
+            f"{sv:+.1f}",
+            xy=(xn, sv),
+            xytext=(6, 6 if sv >= 0 else -8),
+            textcoords="offset points",
+            fontsize=5,
+            color=DOPANT_COLORS[dopant],
+            ha="left",
+            va="bottom" if sv >= 0 else "top",
+        )
     ax_main.legend(
         frameon=True,
         fancybox=False,
@@ -188,23 +203,23 @@ def _plot_synergy_combo(ax_main, ax_inset, audit, exp4) -> None:
         borderpad=0.25,
     )
 
-    # inset: IPR–J (Exp.4 factorial) — lower-right
-    keys = [
-        ("pristine_0pct", DOPANT_COLORS["pristine"], "o"),
-        ("pristine_3pct", DOPANT_COLORS["pristine"], "s"),
-        ("B_0pct", COLOR_CBM, "^"),
-        ("coupled_B_3pct", COLOR_CBM, "D"),
-    ]
-    for key, color, marker in keys:
-        pt = exp4["systems"][key]
-        ax_inset.scatter(pt["IPR"], pt["J_meV"], s=16, color=color, marker=marker, zorder=3)
-    ax_inset.axhline(50, color="#AAAAAA", ls=":", lw=0.5)  # ~lambda/2 literature bound
-    ax_inset.set_xlabel("IPR", fontsize=4.5, labelpad=1)
-    ax_inset.set_ylabel(r"$J$ (meV)", fontsize=4.5, labelpad=1)
-    ax_inset.tick_params(labelsize=4, pad=1)
-    ax_inset.set_facecolor("white")
-    for spine in ax_inset.spines.values():
-        spine.set_linewidth(0.45)
+    if show_inset and ax_inset is not None:
+        keys = [
+            ("pristine_0pct", DOPANT_COLORS["pristine"], "o"),
+            ("pristine_3pct", DOPANT_COLORS["pristine"], "s"),
+            ("B_0pct", COLOR_CBM, "^"),
+            ("coupled_B_3pct", COLOR_CBM, "D"),
+        ]
+        for key, color, marker in keys:
+            pt = exp4["systems"][key]
+            ax_inset.scatter(pt["IPR"], pt["J_meV"], s=16, color=color, marker=marker, zorder=3)
+        ax_inset.axhline(50, color="#AAAAAA", ls=":", lw=0.5)
+        ax_inset.set_xlabel("IPR", fontsize=4.5, labelpad=1)
+        ax_inset.set_ylabel(r"$J$ (meV)", fontsize=4.5, labelpad=1)
+        ax_inset.tick_params(labelsize=4, pad=1)
+        ax_inset.set_facecolor("white")
+        for spine in ax_inset.spines.values():
+            spine.set_linewidth(0.45)
 
 
 def build_prl_figure(out_dir: Path) -> tuple[Path, Path]:
@@ -235,7 +250,7 @@ def build_prl_figure(out_dir: Path) -> tuple[Path, Path]:
     _plot_electronic_row(ax_a, ax_b, gaps)
     _plot_alpha(ax_c, table1)
     inset = ax_d.inset_axes([0.50, 0.10, 0.40, 0.34])
-    _plot_synergy_combo(ax_d, inset, audit, exp4)
+    _plot_synergy_combo(ax_d, audit, exp4, show_inset=True, ax_inset=inset)
 
     out_dir.mkdir(parents=True, exist_ok=True)
     pdf = out_dir / "figure_prl_main.pdf"
@@ -271,8 +286,7 @@ def build_prb_figure(out_dir: Path) -> tuple[Path, Path]:
     ax_d = fig.add_subplot(gs[0, 3])
     _plot_electronic_row(ax_a, ax_b, gaps)
     _plot_alpha(ax_c, table1)
-    inset = ax_d.inset_axes([0.50, 0.10, 0.40, 0.34])
-    _plot_synergy_combo(ax_d, inset, audit, exp4)
+    _plot_synergy_combo(ax_d, audit, exp4, show_inset=False)
     out_dir.mkdir(parents=True, exist_ok=True)
     pdf = out_dir / "figure_prb_main.pdf"
     png = out_dir / "figure_prb_main.png"

@@ -1119,7 +1119,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
   - **Track A**：Exp9 batch 存活（pid 51938）；`polaron_pristine_qneg1_opt` step **63/300** OT~**456** — **不干预**。
   - **Track B**：SI 叙事对齐 Capobianco Electron SI（`docs/papers/ssp.pdf`）— IPR Eq.~S8、Fig.~S4 VBM/CBM 色标、MolFC FCWD 词汇；`sdc_method_section` IPR 脚注。
   - **创新审计**：SI 契约 vs Electron SI = **A**；$\lambda$ = **B pending**
-  - **Git**：见 commit — `loop R114: Capobianco SI observables alignment`
+  - **Git**：`349e167` — `loop R114: Capobianco Electron SI observables alignment` → **pushed: origin/main**
   - **下一轮**：qneg1 PROGRAM ENDED → post_exp9
 
 - **Loop R113（2026-06-18，双轨）**：

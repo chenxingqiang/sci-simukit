@@ -275,7 +275,7 @@ Publication Charges and Reprints
 | Main article | `paper/strain_doped_graphullerene.tex` (`aps`, `prb`, `reprint`, `groupedaddress`) |
 | Template alignment | `groupedaddress`; Contact-author `\thanks`; auto `apsrev4-2` via `[prb]`; SM cite `SupplementalMaterial` in `.bib` |
 | Supplemental Material | `paper/supplementary_figures.tex` |
-| Full PRB build | `bash paper/compile_prb.sh` |
+| Full PRB build | `bash paper/compile_prb.sh` (renders main + SI figures, then `latexmk` both PDFs) |
 | Main figure (two-column) | `paper/figures/out/figure_prb_main.pdf` |
 | Cover letter | `paper/cover_letter_prb.txt` |
 

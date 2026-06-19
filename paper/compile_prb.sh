@@ -13,6 +13,7 @@ if ! command -v latexmk >/dev/null; then
 fi
 
 bash "$ROOT/figures/render_prb.sh"
+bash "$ROOT/figures/render_si_figures.sh"
 cd "$ROOT"
 latexmk -pdf -interaction=nonstopmode -file-line-error -f strain_doped_graphullerene.tex
 latexmk -pdf -interaction=nonstopmode -file-line-error -f supplementary_figures.tex

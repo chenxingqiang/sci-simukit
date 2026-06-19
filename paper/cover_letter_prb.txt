@@ -39,7 +39,7 @@ Summary of revisions (Major comments):
     +3% strain (Table S2) is queued; N size-scaling sign change remains
     footnoted until that benchmark converges.
 
-Minor comments: symbol and figure cleanup (PRB composite panel without inset;
+Minor comments: improved PRB/SI figure legibility (shared y-axis S4, n=4 S labels); Discussion/Limitations literature contrast (Wang2024, Lopez-Alcala2025, Silva2024); symbol and figure cleanup (PRB composite panel without inset;
     n=4 S annotations), compressed Methods validation table and Results electronic
     subsection, APS sentence-case references, and Supplemental Material citation
     per PRB guidelines.

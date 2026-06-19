@@ -22,17 +22,17 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 |----|-----|
 | **Exp10** | **40/41** — `size_6x60_N_pos3pct_cutoff400` pending（截断对照） |
 | **Exp8** | **6/6** ✅ — `post_exp8_converged.sh` consolidated `geoopt_pristine_sp.out` |
-| **Exp9** | **10/12** GEO_OPT；`polaron_P_qpos1_opt` step **13/300** restarted — **不干预** |
+| **Exp9** | **10/12** GEO_OPT；`polaron_P_qpos1_opt` step **14/300** ~5% restarted — **不干预** |
 | **运行中** | `polaron_P_qpos1_opt`（4× MPI，restarted-after-ABORT）— **不干预** |
-| **临界区** | B_qpos1 早期 geo 步；内层 OT 正常 |
+| **临界区** | P_qpos1 restarted-after-ABORT；内层 OT 正常 |
 | **下一任务** | Exp9 12/12 → `post_exp9_converged.sh`；空闲后 `run_prb_revision_dft.sh` |
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
 | **阻塞 PRB** | Table S3/S4/cutoff400 `.out`；Exp9 λ（SI S5） |
 | **文稿 P 瓶颈** | Major 1–5 文稿已落地；DFT 验证队列就绪 |
-| **下一 B 任务** | PRB 投稿 checklist；Khan2025 差异化句 |
+| **下一 B 任务** | compile_prb 验证；Conclusion 闭环 |
 | **主张-证据** | B/N/P $\mathcal{S}(n{=}4)$ = **A**；弛豫/seed137/cutoff = **B pending** |
 | **旗杆** | **PRB major revision**（`compile_prb.sh` + SM + cover letter）|
-| **最新 Loop** | **R145**（见下方笔记） |
+| **最新 Loop** | **R146**（见下方笔记） |
 
 
 ---
@@ -1202,6 +1202,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
   - **创新审计**：n=6 B $\mathcal{S}$ = **A 级**；8×60 batch 运维 + 资源 cap = **A 级**。
   - **Git**：`2a39654` — pushed **origin/main**（2026-06-14）。
   - **下一轮**：`8×60_B_pos3` 收敛 → post → **35/40** + 可能第 12 条 synergy；Figure 1/2 final 仍 pending。
+
+- **Loop R146（2026-06-20，双轨）**：
+ - **Track A**：Exp9 **10/12**；`polaron_P_qpos1_opt` step **14/300** restarted — **不干预**。
+ - **Track B（VIII Conclusion）**：Conclusion 显式回答 Intro 三问 (i)--(iii)；`compile_prb.sh` **全绿**（主文+SI PDF）。
+ - **创新审计**：Intro--Conclusion 闭环 = **A**；λ = **B pending**
+ - **Git**：`6f08077` — loop R146 → **local only**
+ - **下一轮**：P_qpos1 converged → post_exp9
 
 - **Loop R145（2026-06-19，双轨）**：
  - **Track A**：**B_qpos1 收敛** → Exp9 **10/12**；batch → `polaron_P_qpos1_opt` step **13/300** restarted — **不干预**；已跑 `post_exp9_converged.sh`。

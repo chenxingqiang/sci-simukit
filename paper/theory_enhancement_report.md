@@ -38,12 +38,13 @@
 | Table S5 局域结构（$\bar{d}$, $\Delta r_{\mathrm{cov}}$） | **A−** | **[verified]** | `experiments/analysis/local_structure_tetramer.json` |
 | Major 4 论证（$E_{\mathrm{sub}}$, S–$\alpha$, B vs P） | **A** | **[verified R135]** | Discussion + Table S1 |
 | PRL transport / Marcus 主图 | **C** | **[pending]** | PRB 主文不阻塞；SI S5–S6 |
+| Conclusion Intro 三问闭环 | **A** | **[verified R146]** | (i)--(iii) 显式回答 |
 | Khan2025 vs $\mathcal{S}$ Discussion | **B+** | **[verified R143]** | 深能级 vs 总能量交叉项 |
 | SI Table S2 charged polaron 计数 | **A−** | **[verified R141]** | 10/12 GEO_OPT + 0/8 vertical；与 JSON 一致 |
 | ML $R^2{>}0.95$、775%/300% $\mu$ | **C** | **[withdrawn from main]** | 勿进 Abstract/Results |
 | 下文 IPR 45→25、$J{=}135$ meV、$\mu{=}8.75\times$ | **C** | **[discrepancy]** | 仅作历史理论草稿；见 §2 |
 
-**Track A 快照（2026-06-19，R144 B-only）**：Exp9 **10/12** — `polaron_B_qpos1_opt` step **13/300** P_qpos1 ~4% restarted（快照；CP2K 不干预）（4× MPI）；Exp10 **40/41**；Exp8 **6/6** ✅。
+**Track A 快照（2026-06-20，R146）**：Exp9 **10/12** — `polaron_B_qpos1_opt` step **14/300** P_qpos1 ~5% restarted（快照；CP2K 不干预）（4× MPI）；Exp10 **40/41**；Exp8 **6/6** ✅。
 
 ---
 

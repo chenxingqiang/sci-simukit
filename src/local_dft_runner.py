@@ -8,6 +8,13 @@ Local DFT Calculation Manager
 - 计算任务调度
 - 结果分析和可视化
 
+**Legacy note (2026-06):** Prefer repo-standard runners (see AGENTS.md):
+  Exp10/Exp8 batch: `./c/simukit-run` or `experiments/run_pending_local.sh`
+  Exp9 polaron:    `bash experiments/continue_exp9_pending.sh`
+  Status:          `bash experiments/exp{9,10}_status_line.sh`
+  Resource cap:    `experiments/cp2k_resource.sh`
+This module targets `cp2k-2025.2/` under project root; Mac Homebrew CP2K uses `/opt/homebrew/bin/cp2k.psmp`.
+
 作者: X.Q. Chen
 日期: 2025-01-17
 """

@@ -82,10 +82,6 @@
       &END VDW_POTENTIAL
     &END XC
     
-    &PRINT
-      &FORCES
-      &END FORCES
-    &END PRINT
   &END DFT
   
   &SUBSYS

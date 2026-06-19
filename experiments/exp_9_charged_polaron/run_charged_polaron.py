@@ -149,10 +149,6 @@ def generate_geo_opt_input(dopant, charge, output_dir):
       &END VDW_POTENTIAL
     &END XC
     
-    &PRINT
-      &FORCES
-      &END FORCES
-    &END PRINT
   &END DFT
   
   &SUBSYS

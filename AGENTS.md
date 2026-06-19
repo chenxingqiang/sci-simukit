@@ -22,15 +22,19 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 |----|-----|
 | **Exp10** | **40/40** converged ✅（见 `exp10_status.json`） |
 | **Exp8** | **6/6** ✅ — `post_exp8_converged.sh` consolidated `geoopt_pristine_sp.out` |
-| **Exp9** | **7/12** GEO_OPT PROGRAM ENDED（见 `exp9_polaron_verification.json`）；vertical SP 输入已生成，未提交 |
-| **运行中** | none |
+| **Exp9** | **7/12** GEO_OPT；qneg1 **step 33/300**（~11%） |
+| **运行中** | `polaron_pristine_qneg1_opt` — **不干预** |
 | **临界区** | none |
-| **下一任务** | Exp9 补跑 5 pending GEO_OPT + vertical SP → λ；PRL Marcus transport 主图 |
-| **SDC** | **15** synergy 点（n=1–8 B/N/P @+3%）；audit `sdc_exp10_synergy_audit.json` |
-| **阻塞 PRL** | 机制图 + transport 主结果；叙事已收敛为「非加性耦合 + 设计含义」 |
-| **最新 Loop** | **R83**（见下方笔记） |
+| **下一任务** | qneg1 PROGRAM ENDED → post_exp9 |
+| **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
+| **阻塞 PRL** | Exp9 λ + transport 主图 |
+| **文稿 P 瓶颈** | transport C pending |
+| **下一 B 任务** | R106 Literature 轮 |
+| **主张-证据** | Intro↔Abstract $\mathcal{S}$=**A** |
+| **旗杆** | `Electron.pdf` |
+| **最新 Loop** | **R105**（见下方笔记） |
 
-**一行命令**：`bash experiments/exp10_status_line.sh`
+**一行命令**：`bash experiments/exp10_status_line.sh` · `bash experiments/exp9_status_line.sh`
 
 ---
 
@@ -50,7 +54,7 @@ python3 experiments/update_exp10_status.py   # 若需完整 JSON
 #    bash experiments/continue_exp10_pending.sh
 #    或 ./c/simukit-run --one <task> experiments/exp_10_size_scaling/inputs
 
-# 3) Track B — 改 tex/bib/audit/图占位（≥1 项）
+# 3) Track B — 跑「论文自动优化」1 轮（见该节算法 + 扫描包）；声明 write.mdc 阶段；改 tex/bib/audit/图（≥1 项）
 
 # 4) 验证 — grep converged / 创新审计表 / 勿改无 .out 的定量
 
@@ -71,6 +75,170 @@ grep -q 'SCF run converged' experiments/exp_10_size_scaling/inputs/<task>.out \
 **禁止**：只 tail 日志不写笔记；跨多轮 R 攒一次 commit；用 Python SDC 覆盖 canonical JSON。
 
 ---
+
+### write.mdc ↔ Track B 映射（`go loops` 文稿轨）
+
+用户说 **`go loops`** / **`继续`** / **`@write.mdc go loops`** 时，Track B **须先声明** `.cursor/rules/write.mdc` 阶段（Phase Declaration），再选 **≥1 项** 落地。
+
+| write.mdc 阶段 | Track B | 典型路径 | 证据闸门 |
+|----------------|---------|----------|----------|
+| **I Abstract** | B3 | `paper/strain_doped_graphullerene.tex` | 无新 `.out` **不改**定量 |
+| **II Introduction** | B1+B3 | Intro、gap、结构提纲 | 新引用须入 `.bib` |
+| **III Literature** | B1+B2+B3 | `strain_graphullerene_50refs.bib` | 每 ~2 轮 WebSearch |
+| **IV Methodology** | B3 | Methods vs `experiments/*/inputs/*.inp` | 与 inp 一致 = **A** |
+| **V Data** | B1 | `exp*_status*.json`、audit JSON | 计数诚实化 |
+| **VI Results** | B3+图 | Results、`paper/figures/` | **仅** verified `.out` / JSON |
+| **VII Discussion** | B3 | 机制、文献对比 | 定量须 A/B 级 |
+| **VIII Conclusion** | B3 | Limitations、future work | 对齐 Intro 问题 |
+| **（横切）证据台账** | B4+B5 | `paper/theory_enhancement_report.md` | A/B/C 创新审计 |
+
+**交叉文档（Agent 必读）**：
+
+| 文档 | 职责 |
+|------|------|
+| **`AGENTS.md`**（本文） | 双轨 Loop、Exp 状态、Git 闭环、Loop R{n} 笔记 |
+| **`.cursor/rules/write.mdc`** | 八阶段写作边界、Pre-Modification Review、Phase Declaration |
+| **`paper/theory_enhancement_report.md`** | 主张 ↔ canonical JSON / `.out`；discrepancy 勿进 Results |
+| **[论文自动优化](#论文自动优化manuscript-auto-optimization)**（本文） | 扫描包、P0–P3 打分、Electron 旗杆、write.mdc 轮转 |
+
+**Track B 每轮最小清单**（配合上文步骤 3–5）：
+
+1. 声明阶段 — *「In the [Methodology] phase, I am …」*
+2. 执行前闸门 — 改哪一节？是否碰 Results 定量？目标期刊 panel？
+3. 落地 1–2 文件 — tex / bib / fig / audit / theory report
+4. 创新审计表 — 写入 Loop R{n} 笔记（A/B/C）
+5. 验证 — citekey、`latexmk`（可选）、数字可追溯至 `.out`
+
+---
+
+### 论文自动优化（Manuscript Auto-Optimization）
+
+Track B 的**可执行策略层**：每轮 Agent **不随机润色**，而是按扫描→打分→选 1 项→落地→验证 自动推进主稿。与 [文稿·文献闭环](#文稿文献闭环-manuscript--literature-loop) 共用证据闸门；**禁止**为此新增独立 orchestrator（沿用现有 `grep` / audit JSON / `latexmk` / 作图脚本）。
+
+#### 触发与模式
+
+| 用户指令 | 模式 | 行为 |
+|----------|------|------|
+| **`go loops`** / **`继续`** | 双轨默认 | A 不阻塞时，B 跑 **1 轮**自动优化（见下算法） |
+| **`go loops B`** / **`论文优化`** | B 专轮 | 连续多轮 B，每轮 1 项；Exp 仅快照、不启 CP2K |
+| **`@docs/papers/Electron.pdf 对齐`** | 旗杆对齐 | 叙事/章节顺序对齐 Capobianco *Nano Lett.* 2024（见「旗杆模板」）；**不**恢复无 `.out` 的 transport 倍数 |
+| **`@write.mdc`** + 阶段名 | 定向 | 跳过轮转，锁定 write.mdc 某一阶段 |
+
+#### 每轮算法（Agent 必按序）
+
+```mermaid
+flowchart LR
+  S1[1 扫描 gap] --> S2[2 打分排序]
+  S2 --> S3[3 选 Top-1 瓶颈]
+  S3 --> S4[4 最小 patch]
+  S4 --> S5[5 验证 + 审计]
+  S5 --> S6[6 写回快照/笔记]
+```
+
+1. **扫描（≤60 s）** — 运行「自动扫描包」；更新 mental backlog（也可写入 Loop 笔记 `paper_gap:` 行）。
+2. **打分** — 用下表 P0–P3；同分则：**契约违规 > 阻塞 PRL > 旗杆对齐 > 措辞润色**。
+3. **选 1 项** — 本轮只改 **1 个**主瓶颈（附最多 1 个连带小修，如 caption 同步）。
+4. **落地** — 声明 write.mdc 阶段 → 改 tex/bib/fig/audit。
+5. **验证** — 创新审计 A/B/C；可选 `bash paper/compile.sh`；figure 源数据可追溯。
+6. **进化** — 更新「当前状态快照」**文稿行** + Loop R{n} 笔记。
+
+#### 自动扫描包（复制即用）
+
+```bash
+# A. 文稿-计算契约
+grep -En 'rVV10|Koopmans|cm\^2|775|300%|8\.75' paper/strain_doped_graphullerene.tex || true
+grep -m1 'XC_FUNCTIONAL\|VDW_POTENTIAL' experiments/exp_10_size_scaling/inputs/size_1x60_*.inp
+
+# B. 证据台账（discrepancy / pending）
+grep -E 'pending|discrepancy|withdrawn|勿进' paper/theory_enhancement_report.md | head -5
+python3 -c "import json; d=json.load(open('experiments/analysis/exp4_polaron_verification.json')); print('Exp4 transition', d['derived']['polaron_transition_confirmed'])"
+python3 -c "import json; d=json.load(open('experiments/analysis/exp9_polaron_verification.json')); print('Exp9 geo', sum(1 for x in d.get('systems',{}).values() if x.get('geo_opt_converged')), '/12')"
+
+# C. 引用与编译
+grep -oE '\\\\cite\{[^}]+\}' paper/strain_doped_graphullerene.tex | sort -u | wc -l
+# 可选: cd paper && latexmk -pdf -interaction=nonstopmode strain_doped_graphullerene.tex
+
+# D. 图件 freshness（git 脏文件 / final_figures）
+ls -lt paper/figures/final_figures/*.png 2>/dev/null | head -3
+```
+
+**扫描产出（写入 Loop 笔记，一行即可）**：`paper_gap: Methods泛函 | Exp9 λ pending | Fig transport C级 | Electron对齐-Intro`
+
+#### 优先级打分（P0 最高）
+
+| 等级 | 信号 | 自动动作 |
+|------|------|----------|
+| **P0** | tex 定量与 `table1_verification.json` / SDC audit **不一致** | 以 JSON/`.out` 为准改 tex；更新 theory report |
+| **P0** | Methods 写 rVV10/Koopmans，inp 为 PBE+D3 | Methods 诚实化 **或** 标注 `[TODO: subset]` |
+| **P0** | theory report **C 级**主张出现在 Abstract/Results | 删除或降调至 Discussion/SI |
+| **P1** | 阻塞目标期刊的**缺图/缺段**（如 PRL transport、Exp9 λ Fig.5） | 占位 + caption `[pending: Exp9]`；不伪造数字 |
+| **P1** | `sdc_method_section.tex` 缺失 / `\ref{eq:synergy_order}` 断链 | 补 Methods 方程节 + `\input` |
+| **P1** | 用户指定 **Electron.pdf 对齐**且 Intro/Discussion 缺 Capobianco 对比 | 补文献线程（localization→$J$→$\mu$）；挂钩本文 $\mathcal{S}$/$(\epsilon,\delta)$ |
+| **P2** | 缺 2025–2026 bib / Khan·Li·Peng 对比句 | WebSearch → ≤3 bib → Intro/Discussion 各 1 句 |
+| **P2** | 图不符合目标期刊 panel（PRL 宽 3.375 in / Nature 多 panel） | 跑 `paper/figures/generate_manuscript_figures.py` 或子脚本 |
+| **P3** | 纯措辞、标点、章节过渡 | **仅当 P0–P2 为空** 时做；否则跳过 |
+
+#### write.mdc 阶段轮转（无用户指定时）
+
+按 **Innovation backlog + 扫描 gap** 选阶段，默认 **8 轮为一周期**：
+
+| 轮次 mod 8 | 阶段 | 典型自动任务 |
+|------------|------|--------------|
+| 0 | I Abstract | 与 Table/audit 数字对齐；删 C 级句 |
+| 1 | II Intro | gap + 贡献三条；Capobianco/Khan 锚点 |
+| 2 | III Literature | bib + 对比句；WebSearch |
+| 3 | IV Methods | inp 契约、`sdc_method_section`、Exp 计数 |
+| 4 | VI Results | **仅** A 级新证据或 fig caption |
+| 5 | VII Discussion | 机制 + 文献差异 + design rules |
+| 6 | VIII Conclusion | 对齐 Intro；limitations 诚实 |
+| 7 | 横切 | `theory_enhancement_report.md` + 全稿 grep 审计 |
+
+用户 **`@Electron.pdf 对齐`** 时：**优先 II→IV→VI→VII**（Intro 语境 → Methods 可观测量的 → Results 顺序 → Discussion 对比），Abstract/Conclusion 最后收口。
+
+#### 旗杆模板：`docs/papers/Electron.pdf`（Capobianco *Nano Lett.* 2024）
+
+对齐**叙事弧与章节功能**，不是照搬泛函或数值：
+
+| Capobianco 主文 | 本仓库对应 | 证据 |
+|-----------------|------------|------|
+| vdW vs qHP 迁移率差异；polaron 仍局域 | Intro 末段 + Discussion 首段 | 文献 + Exp4 IPR/$J$ 两点 |
+| Koopmans/rVV10 + CP2K 超胞 | Methods：**诚实** PBE+D3 + CP2K；SI 可写 Capobianco 对比 | `*.inp` |
+| IPR 量化局域；$J$ 增强驱动 $\mu$ | Results「Electronic / localization」小节 + Fig.3(f) | `exp4_polaron_verification.json` |
+| $\lambda$ + FCWD + Marcus 速率 | Results/Discussion **pending**；Fig.5/6 占位 | Exp9 7/12；`derived.lambda_eV` null |
+| **本文增量** | **非加性 $\mathcal{S}$、$\alpha$ 符号分裂、$S(n)$ 标度** | Exp5+10 **A 级** |
+
+**对齐检查清单**（Electron 模式每轮至少勾 1 项）：
+
+- [ ] Intro：qHP 网络 → 输运/局域化语境 → **$(\epsilon,\delta)$ 非加性 gap**
+- [ ] Methods：材料尺寸 + CP2K 设置 + **$\mathcal{S}$ / IPR / $J$ 定义**
+- [ ] Results 顺序：**结构/应变** → **电子/ gap** → **局域化/$J$** → **$\mathcal{S}$ 设计空间**
+- [ ] Discussion：与 Capobianco「$J$ 主导 $\mu$」对照；本文「**耦合参数 $(\epsilon,\delta)$ 改变能量与 $J$ 路径**」
+- [ ] 无 hybrid/ML/迁移率倍数 **除非** 新 `.out` 支撑
+
+#### 快照字段（「当前状态快照」扩展）
+
+每轮 Loop 开头，Agent **应更新**（可与 Exp 行并列）：
+
+| 项 | 示例 |
+|----|------|
+| **文稿 P 瓶颈** | `Methods 缺 sdc_method_section` / `Electron-Intro 未对齐` |
+| **下一 B 任务** | `P1: 补 Capobianco Discussion 段` |
+| **主张-证据** | `transport=C, SDC=A, Exp9 λ= B pending` |
+| **旗杆** | `Electron.pdf` / `PRL` / `Nature Mat` |
+
+#### 与 Git / 用户 commit 规则
+
+- AGENTS 协议：Loop 结束 **commit + push**（若用户未禁止）。
+- 用户规则：无明确「commit」指令时 **不主动 commit** — Agent 完成优化后 **汇报 diff 清单**，由用户决定是否提交。
+
+#### 禁止
+
+- 为「论文自动优化」新建 `auto_paper.py` / 一键改全 tex orchestrator。
+- 扫描未通过仍改 Abstract/Results 定量。
+- 用 `citation_completion_report.md` 恢复旧版 transport/ML 声称（与当前诚实稿冲突）。
+
+---
+
 
 ### 精益求精：AGENTS.md 自身审计（每 5～10 轮或用户要求时）
 
@@ -363,7 +531,7 @@ grep 'SCF run converged' experiments/exp_8_geometry_opt/inputs/geoopt_pristine_s
 
 ## 文稿·文献闭环（Manuscript & Literature Loop）
 
-CP2K 计算在后台执行时，Agent **默认进入本闭环**。遵循 `.cursor/rules/write.mdc` 八阶段边界（Abstract→Conclusion）；**Results 定量**仍受 Track A 闸门约束。
+CP2K 计算在后台执行时，Agent **默认进入本闭环**。遵循 [`.cursor/rules/write.mdc`](../.cursor/rules/write.mdc) 八阶段边界（Abstract→Conclusion）与 **Phase Declaration**；阶段↔Track B 映射见上文 [write.mdc ↔ Track B 映射](#writemdc--track-b-映射go-loops-文稿轨)；**自动选题与打分**见 [论文自动优化](#论文自动优化manuscript-auto-optimization)。**Results 定量**仍受 Track A 闸门约束。
 
 ### 文稿·文献核心原则
 
@@ -586,7 +754,8 @@ ls paper/*report*.md docs/reference_info.md
 
 === Track B 文稿·文献（CP2K 在跑时必做 ≥1 项）===
 [ ] B0. 闸门：改哪一阶段？是否碰 Results 定量？
-[ ] B1. 感知：tex-bib-inp diff；读 reference_info / originality 报告
+[ ] B0a. **论文自动优化**：跑扫描包 → P0–P3 选 Top-1 → 更新快照「文稿 P 瓶颈 / 下一 B 任务」
+[ ] B1. 感知：tex-bib-inp diff；读 reference_info / theory report / Electron 旗杆
 [ ] B2. 策略：1 个文稿项（Methods 诚实 / 引文 / 图 / 表 / 创新审计）
 [ ] B3. 落地：改 tex/bib/fig/csv；WebSearch 检索 2024–2026
 [ ] B4. 验证：创新审计表；latexmk；citekey 存在；图表源数据标注
@@ -641,10 +810,10 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 |------|-----|-------------|
 | **A 计算** | 感知 | **`experiments/exp10_status_line.sh`**、`exp10_status.json`、`local_run.log` |
 | **A 计算** | 落地 | **`c/simukit-run`**、`run_pending_local.sh`（legacy）、`run_size_scaling.py` |
-| **A 计算** | 验证 | **`c/simukit-sdc`**、`grep 'SCF run converged'` |
-| **B 文稿** | 感知 | `paper/strain_doped_graphullerene.tex`、`strain_graphullerene_50refs.bib`、`docs/reference_info.md` |
-| **B 文稿** | 策略 | `paper/论文评审总结_CN.md`、`originality_analysis_report.md`、`.cursor/rules/write.mdc` |
-| **B 文稿** | 落地 | `paper/figures/generate_prl_figures.py`、`paper_figures_generator.py`、`figures/table*.tex` |
+| **A 计算** | 验证 | **`c/simukit-sdc`**、`grep 'SCF run converged'`、`analyze_exp9_polaron.py` → `running_snapshot` |
+| **B 文稿** | 感知 | `paper/strain_doped_graphullerene.tex`、`theory_enhancement_report.md`、**[论文自动优化 · 扫描包](#自动扫描包复制即用)** |
+| **B 文稿** | 策略 | `docs/reference_info.md`、`docs/papers/Electron.pdf`（旗杆）、write.mdc 阶段轮转 |
+| **B 文稿** | 落地 | `paper/figures/generate_manuscript_figures.py`、`paper/compile.sh`、`sdc_method_section.tex` |
 | **B 文稿** | SDC 工具 | **`c/simukit-sdc`** → `sdc_exp10_results.json`；`sdc_exp10_synergy_audit.json`（meV）；Python 仅图 |
 | **B 文稿** | 文献 | **WebSearch**、Semantic Scholar、DOI；更新 `strain_graphullerene_50refs.bib` |
 | **B 文稿** | 验证 | `latexmk -pdf`、创新审计表、csv↔out 对照 |
@@ -946,6 +1115,158 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+- **Loop R105（2026-06-18，双轨）**：
+  - **Track A**：Exp9 step **33/300** pct~11%（+13 步 since R104）— **不干预**。
+  - **Track B（II Intro）**：Gap 增 Capobianco→$(\epsilon,\delta)$ 桥接；贡献(4) 对齐 Abstract $|\mathcal{S}|\sim32$ + 15 点 audit。
+  - **创新审计**：Intro–Abstract 契约 = **A**；$\lambda$ = **B pending**
+  - **Git**：未提交
+  - **下一轮**：R106 Literature；geo 进展
+
+- **Loop R104（2026-06-18，双轨）**：
+  - **Track A**：Exp9 step **20/300** — **不干预**。
+  - **Track B（I Abstract）**：$|\mathcal{S}|$ **7–24 → ~32 meV/atom** 对齐 `sdc_exp10_synergy_audit.json`（15 点）；末句 Exp.~9 $\lambda$ pending 诚实化。
+  - **创新审计**：Abstract 定量 = **A**（P0 契约修复）；$\lambda$ = **B pending**
+  - **Git**：未提交
+  - **下一轮**：R105 Intro；geo 进展
+
+- **Loop R103（2026-06-18，双轨）**：
+  - **Track A**：Exp9 step **20/300** — **不干预**。
+  - **Track B（横切 audit）**：`theory_enhancement_report.md` §8 主稿↔JSON 映射 + R103 创新审计；fix `last_ot_convergence`（原误标 grad=81）。
+  - **创新审计**：grep 无 C 级泄漏=**A**；λ=**B pending**
+  - **Git**：未提交
+  - **下一轮**：R104 Abstract 轮；geo 进展
+
+- **Loop R102（2026-06-18，双轨）**：
+  - **Track A**：Exp9 step **20/300** pct~6.7%；batch 51938 — **不干预**。
+  - **Track B（VIII Conclusion + 横切）**：Conclusions 四条对齐 Intro/Abstract；`analyze_exp9_polaron.py` tail-read + `pgrep -lf`（~5 s vs ~165 s）。
+  - **创新审计**：Conclusion 闭环 = **A**；Marcus $\lambda$ = **B pending**
+  - **Git**：未提交
+  - **下一轮**：geo 进展；PROGRAM ENDED → post_exp9
+
+- **Loop R101（2026-06-18，双轨）**：
+  - **Track A**：Exp9 step **19/300** pct~6.3%；batch 51938 — **不干预**（analyze_exp9 ~165s，大 `.out`）。
+  - **Track B（VII Discussion）**：新增 **Mechanistic synthesis**（$\alpha$ vs $\mathcal{S}$ 非单调；Exp9 partial IP/EA 与 transport 边界）；Limitations 同步 partial adiabatic。
+  - **创新审计**：机制叙事 = **A**（Exp5/7/10 + partial Exp9）；Marcus $\lambda$ = **B pending**
+  - **Git**：未提交
+  - **下一轮**：geo 进展；PROGRAM ENDED → post_exp9
+
+- **Loop R100（2026-06-18，双轨）**：
+  - **Track A**：Exp9 step **16/300** pct~5.3%；batch 51938 — **不干预**。
+  - **Track B（VI Results）**：Results 写入 Exp9 **partial IP/EA**（pristine 4.73/N 3.89/B EA 3.12 eV，A−）；Fig.~2--3 caption 溯源 audit JSON；$\mathcal{S}(n)$ N 符号变引 audit。
+  - **创新审计**：partial adiabatic = **A−**（7/12 GEO_OPT）；Marcus $\lambda$ = **B pending**
+  - **Git**：未提交
+  - **下一轮**：geo 进展；PROGRAM ENDED → post_exp9
+
+- **Loop R99（2026-06-18，双轨）**：
+  - **Track A**：Exp9 step **14/300** pct~4.7%；batch 51938 — **不干预**。
+  - **Track B（IV Methods）**：新增 Sec.~\ref{sec:exp9_workflow}（GEO_OPT/vertical SP/audit 脚本契约）；`sdc_method_section` 指向 synergy audit JSON + post_exp9。
+  - **创新审计**：Methods 可复现性 = **A**（与 `*.inp` + 脚本一致）；λ = **B pending**
+  - **Git**：未提交
+  - **下一轮**：geo 进展；PROGRAM ENDED → post_exp9
+
+- **Loop R98（2026-06-18，双轨）**：
+  - **Track A**：Exp9 step **12/300** pct~4%；batch 51938 — **不干预**。
+  - **Track B（III Literature）**：WebSearch 2024–26；Intro 引 **Peng2025monolayer**；Discussion 补 **Wang2024simulation** 各向异性 vs 本稿 biaxial $\mathcal{S}$；Methods Exp9 审计指针。
+  - **创新审计**：文献对比 = **B+**（已有 bib，新入 tex）；λ = **B pending**
+  - **检索**：`(graphullerene OR qHP C60) strain doping polaron 2024-2026` → Silva/Capobianco 已覆盖；Peng2025 新句
+  - **Git**：未提交
+  - **下一轮**：geo 进展；PROGRAM ENDED → post_exp9
+
+- **Loop R97（2026-06-18，双轨）**：
+  - **Track A**：Exp9 重跑 step **11/300**（post-ABORT 段）；4× cp2k — **不干预**。
+  - **Track B（II Intro + audit）**：Intro **Contributions** 四条 + Exp9/λ 诚实 defer；`parse_geo_progress` 仅解析 ABORT 后段；Fig.5 脚注读 JSON pending。
+  - **创新审计**：Intro 贡献对齐 Abstract = **A**；Exp9 step 审计 = **A**（fix 误报 pre-ABORT step）
+  - **Git**：未提交
+  - **下一轮**：geo pct 上升；PROGRAM ENDED → post_exp9
+
+- **Loop R96（2026-06-18，双轨）**：
+  - **Track A**：Exp9 step **6/300**；4× cp2k.psmp — **不干预**。
+  - **Track B（P1 Electron/SI）**：新增 `supplementary_figures.tex` + `compile_si.sh`；Discussion 指向 S5/S6；`post_exp9_converged.sh` λ 就绪时自动重绘 Fig.5；`exp9_status_line` 读 JSON `running_snapshot`。
+  - **创新审计**：SI 图件契约 = **B**（S5 λ pending；S4 placeholder）；主稿 compile OK
+  - **Git**：未提交
+  - **下一轮**：GEO_OPT 进展；PROGRAM ENDED → post_exp9
+
+- **Loop R95（2026-06-18，双轨）**：
+  - **Track A**：Exp9 step **5/300 OT~15**（ABORT 重跑）；batch pid 51938 — **不干预**。
+  - **Track B（Data/audit）**：`analyze_exp9_polaron.py` 增 `running_snapshot` + `running_task`（对齐 Exp10 JSON 契约）。
+  - **创新审计**：Exp9 审计可运维 = **A**；λ = **B pending**
+  - **Git**：未提交
+  - **下一轮**：geo 进展；PROGRAM ENDED → post_exp9
+
+- **Loop R94（2026-06-18，双轨）**：
+  - **Track A**：Exp9 step **3/300 OT~5**（ABORT 重跑后）— **不干预**。
+  - **Track B（Literature + SI）**：WebSearch → 增 **Silva2024large**（Nanoscale 大极化子/各向异性）；Discussion 1 句；`theory_enhancement_report.md` SI 图件索引。
+  - **文献检索**：`graphullerene strain doping polaron 2025` — Silva2024 入 bib；Nie2026 PRB strain magnetism 未入（偏离主题）。
+  - **创新审计**：输运文献对比 = **B+**；λ = **B pending**
+  - **Git**：未提交
+  - **下一轮**：Exp9 geo 进展；`latexmk` 验证 Silva citekey
+
+- **Loop R93（2026-06-18，双轨）**：
+  - **Track A**：step **32 ABORT**（历史 `PRINT/FORCES`，inp 已净）；**重跑 step 1/300** — **不干预**；勿 kill 4× cp2k.psmp。
+  - **Track B**：`exp9_status_line.sh` 增 `restarted-after-ABORT`；Limitations 诚实化 ABORT+重跑句。
+  - **创新审计**：Exp9 运维 = **A**；λ = **B pending**
+  - **Git**：未提交
+  - **下一轮**：PROGRAM ENDED → `post_exp9_converged.sh`
+
+- **Loop R92（2026-06-18，双轨）**：
+  - **Track A**：Exp9 **7/12** — step **32/300 OT~220**（OT↑ 但 geo step 仍 32）；4× cp2k.psmp — **不干预**（内层 SCF 长跑）。
+  - **Track B（论文自动优化 P1）**：`git checkout HEAD -- paper/figures/` 恢复 14 作图脚本；重跑 Fig.5/6 PDF。
+  - **创新审计**：作图契约 = **A**；Fig.5 λ 数据 = **B pending**；transport = **C**
+  - **Git**：未提交
+  - **下一轮**：PROGRAM ENDED → `post_exp9_converged.sh`；λ 入 JSON 后刷新 Fig.5
+
+- **Loop R91（2026-06-18，双轨）**：
+  - **Track A**：Exp10 **40/40**、Exp8 **6/6** ✅；Exp9 **7/12** — `polaron_pristine_qneg1_opt` step **32/300 OT~195**；4× cp2k.psmp（np=4 MPI）— **不干预**。
+  - **Track B（论文自动优化）**：扫描 P1=主文 Fig.1–3 PDF 误删 → `git checkout HEAD -- final_figures/*.pdf`；`latexmk` **6 页 compile ✅**；主稿已 Electron 对齐（Intro→Results 顺序→Discussion）。
+  - **paper_gap**：Fig.5/6 脚本仍 D 状态；Exp9 λ pending
+  - **创新审计**：Electron 叙事 = **A**；compile = **A**；Marcus λ = **B pending**
+  - **Git**：未提交（用户未要求 commit）
+  - **下一轮**：Exp9 step 32 结束 → post_exp9；恢复 `paper/figures/*.py` 或重跑 transport 图
+
+- **Loop R90（2026-06-18，双轨）**：
+  - **Track A**：Exp9 — step **32/300 OT~136**（内层 OT 梯度 ~$10^{-6}$ Ha/bohr）；batch 正常 — **不干预**。
+  - **Track B（Methodology）**：`local_dft_runner.py` 增 legacy 指针 → `simukit-run` / `continue_exp9_pending.sh` / status lines；AGENTS Gotcha。
+  - **创新审计**：DFT 入口契约 = **A**；λ = **B pending**
+  - **Git**：未提交
+  - **下一轮**：step 32 收敛 → 可能 step 33 或 PROGRAM ENDED → post_exp9
+
+- **Loop R89（2026-06-18，双轨）**：
+  - **Track A**：Exp9 batch — `polaron_pristine_qneg1_opt` **step 32/300 OT~125** — **不干预**。
+  - **Track B（Discussion/Limitations）**：主稿 Limitations 增 Exp9 **7/12** + vertical λ pending；`theory_enhancement_report.md` 快照刷新。
+  - **文献检索**：Khan et al. graphullerene B/N impurity half-semiconductor（arxiv 2405.16743）；López-Alcalá 2025 strain on 2D fullerene nets — 与 Exp7/9 掺杂路径对照，**未入 bib**（Khan2025 已在库）。
+  - **创新审计**：Limitations 诚实化 = **A**；Marcus λ = **B pending**
+  - **Git**：未提交
+  - **下一轮**：qneg1 PROGRAM ENDED → post_exp9
+
+- **Loop R87（2026-06-18，双轨 + theory report）**：
+  - **Track A**：Exp9 batch — `polaron_pristine_qneg1_opt` step 32/300 OT~83 — **不干预**。
+  - **Track B**：**重写** `paper/theory_enhancement_report.md` — R87 证据表（40/40、15 SDC、Exp9 λ pending）；废止 8.5/10 投稿就绪；`analyze_results.py` 指向 canonical audit。
+  - **创新审计**：理论报告诚实化 = **A 级**；PRL transport = **C pending**
+  - **Git**：未提交
+  - **下一轮**：Exp9 converged → 刷新报告 §1.4 λ 表
+
+- **Loop R86（2026-06-18，双轨）**：
+  - **Track A**：Exp9 batch — `polaron_pristine_qneg1_opt` **step 32/300 OT~76**（~7 min elapsed，正常）；**不干预**。
+  - **Track B**：`analyze_exp9_polaron.py` 增 **λ_IP/λ_EA** 字段（vertical−adiabatic，待 SP）；`exp9_status_line` 增 OT；SI S1.2 标 **[pending Exp9]** + Capobianco2024 锚点。
+  - **创新审计**：λ JSON 契约 = **A 级**（空值待填）；SI 合成 λ 分解 = **C→诚实 pending**
+  - **Git**：未提交
+  - **下一轮**：qneg1 PROGRAM ENDED → post_exp9；12/12 + 8 vertical → 打印 λ
+
+- **Loop R85（2026-06-18，双轨）**：
+  - **Track A**：Exp9 batch 运行中 — `polaron_pristine_qneg1_opt` GEO_OPT **step 32/300**；Exp10 **40/40**、Exp8 **6/6** ✅ — **不干预**。
+  - **Track B**：`run_all.sh` 对齐 `exp9_status_line` / `continue_exp9_pending`；`exp9_status_line` 增 geo step；修复 batch log 重复写入。
+  - **文献检索**：Xu et al. Nano Lett. 2024 — qHP C60 极化子 binding **≈0.1 eV**，与 Exp9 adiabatic IP/EA 路径可对照（待 vertical λ）。
+  - **创新审计**：Exp9 运维 = **A 级**；Marcus λ = **B pending**；transport = **B pending**
+  - **Git**：未提交
+  - **下一轮**：pristine_qneg1 PROGRAM ENDED → post_exp9 → 续 batch；12/12 后刷新 Fig.5 λ
+
+- **Loop R84（2026-06-18，Track A 计算）**：
+  - **Track A**：Exp10 **40/40**、Exp8 **6/6** ✅；启动 `continue_exp9_pending.sh` → **`polaron_pristine_qneg1_opt`** GEO_OPT（np=4）；修复 CP2K **2025.1** 不兼容 `&DFT &PRINT &FORCES`（12 个 inp + `run_charged_polaron.py` 模板）。
+  - **Track B**：新增 `exp9_status_line.sh`、`post_exp9_converged.sh`。
+  - **创新审计**：Exp9 batch 运维 = **A 级**；Marcus λ = **B pending**（待 5 GEO_OPT + 8 vertical SP）
+  - **Git**：未提交（用户未要求）
+  - **下一轮**：batch 收敛后 `post_exp9_converged.sh`；vertical SP → Fig.5/S5 λ
+
 - **Loop R83（2026-06-11，双轨）**：
   - **Track A**：Exp10 **40/40**、Exp8 **6/6** ✅；Exp9 **7/12** GEO_OPT 正常结束；running=none — **不干预**、不提交新 CP2K。
   - **Track B**：`analyze_exp9_polaron.py` → `exp9_polaron_verification.json`；`generate_vertical_sp.py` 生成 **8** 个 vertical ENERGY 输入；`run_all.sh` 改为分析入口（废弃 legacy `mpirun *_qpos0.inp`）。
@@ -1119,7 +1440,12 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 ### Gotchas
 
+- **paper/figures 误删**：工作区 `git status D paper/figures/` 时用 `git checkout HEAD -- paper/figures/` 恢复；勿手删作图脚本目录。
+
+- **`src/local_dft_runner.py`**：legacy 本地管理器（`cp2k-2025.2/` 路径）；**勿**与 `continue_exp9_pending.sh` / `simukit-run` 并行 batch。Mac 用 Homebrew `cp2k.psmp`。
+- **Exp9 CP2K 2025.1**：`&DFT &PRINT &FORCES` 会 **ABORT**；Mac 本地 inp 已移除 FORCES 块；服务器若升级 CP2K 须同步。
 - **Exp8 SP 写错 .out**：归档 partial 为 `*.failed_partial_*` 后若 CP2K 未重启，lsof 显示仍写该文件；`post_exp8`/`exp8_status_line` 须查 `geoopt_pristine_sp.out*` 全集。
+- **`analyze_exp9_polaron.py` 慢**：全量读 1.4 MB `.out` + `ps aux` 曾 ~165 s；R102 改为 tail 3 MB + `pgrep -lf`（~5 s）。
 - **Exp8 SP 重复 launch**：同一 `geoopt_pristine_sp.out` 被多个 `prterun -np 4` 写入 → 只保留一个 prterun 父进程（R63 曾 3 并行）。
 
 - **Mac 内存 36GB**：勿同时跑多个 6×60/8×60；服务器 64GB 亦曾 OOM，宜 ≤5 任务并发。

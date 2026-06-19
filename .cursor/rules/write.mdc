@@ -264,6 +264,50 @@ Communication Protocol
 • Example: "Please review the Results section. I'm particularly concerned whether the presentation of [specific finding] is sufficiently clear and objective."
 • Revision Documentation: When incorporating feedback, document key changes and their rationale for future reference.
 • Example: "Revised the Discussion section to address feedback by adding [specific analysis] regarding [issue raised]."
+
+⸻
+Agent Loop Integration (sci-simukit / AGENTS.md)
+
+When the user says **go loops**, **继续**, or references **@write.mdc** with loops, the Agent runs **Track B** (Manuscript & Literature Loop) in parallel with **Track A** (CP2K). This section links the eight writing phases above to the repo agent protocol.
+
+**Authority split**
+
+| Document | Role |
+|----------|------|
+| `AGENTS.md` | Dual-track workflow, experiment status, Loop R{n} notes, Git closure |
+| `write.mdc` (this file) | Eight-phase boundaries, evidence gates, phase declaration |
+| `paper/theory_enhancement_report.md` | Claim ↔ DFT JSON / `.out` ledger; discrepancies stay out of Results |
+
+**write.mdc phase ↔ AGENTS Track B (B1–B5)**
+
+| Phase | Track B layer | Typical artifacts | Evidence gate |
+|-------|---------------|-------------------|---------------|
+| I Abstract | B3 | Main `.tex` abstract | No new numbers without converged `.out` |
+| II Introduction | B1, B3 | Intro, gap, outline | New cites → `.bib` |
+| III Literature Review | B1–B3 | `.bib`, comparison sentences | WebSearch ~every 2 loops |
+| IV Methodology | B3 | Methods vs `experiments/*/inputs/*.inp` | Must match inputs |
+| V Data | B1 | `exp*_status*.json`, audit JSON | Honest DFT counts |
+| VI Results | B3, figures | Results, `paper/figures/` | **Verified `.out` / JSON only** |
+| VII Discussion | B3 | Mechanism, literature compare | Quant claims need A/B grade |
+| VIII Conclusion | B3 | Limitations, future work | Must answer Intro questions |
+| Cross-cutting | B4, B5 | `theory_enhancement_report.md` | A/B/C innovation audit in AGENTS notes |
+
+**Minimum Track B per loop (when CP2K is running or compute idle)**
+
+1. **Declare phase** — e.g. "In the Methodology phase, I am aligning Methods with Exp9 inp."
+2. **Pre-modification review** — Core Principles above; document in AGENTS Loop R{n}.
+3. **One minimal patch** — tex / bib / fig / audit / theory report (≥1 file).
+4. **Innovation audit** — A/B/C table in AGENTS notes.
+5. **Verify** — citekey exists; Results numbers trace to `.out`; theory report consistent.
+
+**Hard gates (override phase intent)**
+
+- No new Abstract/Results quantitative claims without converged CP2K output.
+- Methods must match `experiments/*/inputs/*.inp` (e.g. PBE+D3 honesty).
+- Illustrative or speculative theory → Discussion, SI, or `theory_enhancement_report.md` only—not Results.
+
+**Commands and closure**: see `AGENTS.md` § Agent 快速入口 (`go loops`) and § 文稿·文献闭环.
+
 ⸻
 Version Control
 • Each major revision of the manuscript should be saved with version numbering

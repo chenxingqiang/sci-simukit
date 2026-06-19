@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Analyze charged polaron calculation results - Adiabatic IP/EA"""
+"""Legacy Exp9 energy extractor (inputs/*.out).
+
+Prefer: python3 experiments/analysis/analyze_exp9_polaron.py
+Outputs: dft_results/exp_9_charged_polaron/outputs/
+JSON:    experiments/analysis/exp9_polaron_verification.json
+"""
 
 import os
 import re

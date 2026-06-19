@@ -1,7 +1,20 @@
-We quantify non-additive coupling with the synergy order parameter $\mathcal{S}$:
+\textbf{Non-additive coupling metric.}
+We quantify strain--doping cross terms with the synergy order parameter $\mathcal{S}$:
 \begin{equation}
 \mathcal{S}(\epsilon,\delta)
 = \Delta E(\epsilon,\delta) - \bigl[\Delta E(\epsilon,0) + \Delta E(0,\delta)\bigr],
 \label{eq:synergy_order}
 \end{equation}
-where $\epsilon$ is biaxial strain, $\delta\in\{B,N,P\}$, and $\Delta E(\epsilon,\delta)$ is the energy per atom relative to the pristine, zero-strain reference at the same supercell size $n\times\mathrm{C}_{60}$. Additive superposition gives $\mathcal{S}=0$; $\mathcal{S}<0$ means the strained, doped state is \emph{more} stable than the two-scan sum predicts (cooperative stabilization), whereas $\mathcal{S}>0$ means it is \emph{less} stable (cooperative destabilization). Exp.~10 values are from \texttt{c/simukit-sdc} (\texttt{sdc\_exp10\_results.json}).
+where $\epsilon$ is biaxial strain, $\delta\in\{B,N,P\}$, and $\Delta E(\epsilon,\delta)$ is the energy per atom relative to the pristine, zero-strain reference at the same supercell size $n\times\mathrm{C}_{60}$.
+Additive superposition gives $\mathcal{S}=0$; $\mathcal{S}<0$ indicates cooperative stabilization beyond the two-scan sum, whereas $\mathcal{S}>0$ indicates cooperative destabilization.
+Exp.~10 values are computed with \texttt{c/simukit-sdc} (\texttt{sdc\_exp10\_results.json}; synergy audit table \texttt{sdc\_exp10\_synergy\_audit.json}).
+
+\textbf{Localization and coupling (Exp.~4).}
+Following Capobianco \emph{et al.}~\cite{Capobianco2024electron}, we report the inverse participation ratio (IPR) of the charged-state frontier orbital and the nearest-neighbor electronic coupling $J$ from tetramer dimer fragments.
+IPR is evaluated as $N\sum_i|\psi_i|^4/(\sum_i|\psi_i|^2)^2$ on a Mulliken-projected orbital grid; $J$ is estimated from the ground--first-excited splitting of the anionic dimer at fixed interfullerene geometry (two-state model).
+These observables are computed at the same PBE+D3 level as the energy scans and are \emph{not} directly comparable in absolute value to the Koopmans-compliant $J\simeq 75$--$81$~meV reported for pristine qHP networks~\cite{Capobianco2024electron}, but they provide an internally consistent trend under coupled $(\epsilon,\delta)$.
+
+\textbf{Polaron binding (Exp.~9, in progress).}
+Marcus reorganization energies follow the vertical--adiabatic decomposition~\cite{Capobianco2024electron}:
+$\lambda^{\pm}=E_{\mathrm{vert}}^{\pm}-E_{\mathrm{opt}}^{\pm}$, with separate internal ($\lambda^{\pm}_{\mathrm{loc}}$) and environmental ($\lambda^{\pm}_{\mathrm{env}}$) contributions when geometry subsets are relaxed.
+At the time of writing, 7/12 charged geometry optimizations have converged; vertical single-points at neutral geometry (needed for $\lambda$) are pending---values are not quoted in Results [live counts: \texttt{exp9\_polaron\_verification.json}; refresh via \texttt{post\_exp9\_converged.sh}].

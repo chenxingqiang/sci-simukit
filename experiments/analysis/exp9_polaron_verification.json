@@ -1,6 +1,6 @@
 {
   "source": "dft_results/exp_9_charged_polaron/outputs",
-  "verified_date": "2026-06-18",
+  "verified_date": "2026-06-19",
   "converged": 7,
   "total": 12,
   "note": "Adiabatic IP/EA from last GEO_OPT ENERGY line. Marcus lambda requires vertical ENERGY at neutral geometry (inputs/vertical/, not yet in outputs).",
@@ -24,7 +24,7 @@
         "project": "polaron_pristine_qneg1_opt",
         "out_exists": true,
         "program_ended": false,
-        "energy_ha": -682.0646811647282,
+        "energy_ha": -682.0646820175962,
         "xyz_exists": true
       }
     },
@@ -117,7 +117,25 @@
         "EA": null
       }
     },
-    "fundamental_gap_eV": {}
+    "fundamental_gap_eV": {},
+    "lambda_eV": {
+      "pristine": {
+        "lambda_IP_eV": null,
+        "lambda_EA_eV": null
+      },
+      "N": {
+        "lambda_IP_eV": null,
+        "lambda_EA_eV": null
+      },
+      "B": {
+        "lambda_IP_eV": null,
+        "lambda_EA_eV": null
+      },
+      "P": {
+        "lambda_IP_eV": null,
+        "lambda_EA_eV": null
+      }
+    }
   },
   "vertical_sp": {
     "inputs_dir": "experiments/exp_9_charged_polaron/inputs/vertical",
@@ -139,5 +157,16 @@
     "polaron_B_qpos1_opt",
     "polaron_P_qpos1_opt",
     "polaron_P_qneg1_opt"
-  ]
+  ],
+  "running_snapshot": {
+    "geo_step": 33,
+    "geo_max_iter": 300,
+    "last_ot_step": 5,
+    "last_ot_convergence": 4.7e-07,
+    "abort_seen": true,
+    "restarted_after_abort": true,
+    "task": "polaron_pristine_qneg1_opt",
+    "geo_progress_pct": 11.0
+  },
+  "running_task": "polaron_pristine_qneg1_opt"
 }

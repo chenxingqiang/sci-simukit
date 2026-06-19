@@ -46,6 +46,8 @@ Minor comments: improved PRB/SI figure legibility (shared y-axis S4, n=4 S label
 
 Data availability: converged inputs/outputs and audit JSON as in the manuscript;
     https://github.com/chenxingqiang/graphullerene-strain-engineering
+    Reproduce PDFs with bash paper/compile_prb.sh; Table S3/S4/S2 control energies populate when
+    experiments/run_prb_revision_dft.sh completes (queued after charged-polaron batch).
 
 Prior submission: none to APS journals. Not a joint submission.
 

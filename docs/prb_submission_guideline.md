@@ -281,4 +281,15 @@ Publication Charges and Reprints
 
 **Article type:** Regular Article (no length limit). Word count: `bash paper/scripts/prb_wordcount.sh`.
 
+
+### Compute dependencies (before final resubmission)
+
+| Step | Command / artifact | Blocks |
+|------|-------------------|--------|
+| Exp9 charged polaron batch | `continue_exp9_pending.sh` → `post_exp9_converged.sh` | SI Fig.~S5 $\lambda$ |
+| PRB validation DFT (idle CPU) | `bash experiments/run_prb_revision_dft.sh` | Tables S2--S4 numeric cells |
+| Rebuild PDFs | `bash paper/compile_prb.sh` | Upload bundle |
+
+Do **not** run `run_prb_revision_dft.sh` while Exp9 CP2K is active (script exits if `cp2k.psmp` is running).
+
 **Upload:** `strain_doped_graphullerene.pdf` + `supplementary_figures.pdf` + cover letter on the APS Submission Server.

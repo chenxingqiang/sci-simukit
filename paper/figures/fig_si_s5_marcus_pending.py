@@ -25,11 +25,12 @@ def build(out_dir: Path) -> tuple[Path, Path]:
     exp9 = load_json("experiments/analysis/exp9_polaron_verification.json")
     ad = exp9["derived"]["adiabatic_eV"]
 
-    fig, axes = plt.subplots(1, 2, figsize=(4.6, 1.75), sharey=True)
+    fig, axes = plt.subplots(1, 3, figsize=(6.4, 1.75), sharey=True)
     q = np.linspace(-1.2, 1.2, 200)
 
     panels = [
         ("pristine", ad["pristine"]["IP"], None, "IP"),
+        ("N", ad["N"]["IP"], None, "IP"),
         ("B", ad["B"]["IP"], ad["B"]["EA"], "EA"),
     ]
 
@@ -81,7 +82,8 @@ def build(out_dir: Path) -> tuple[Path, Path]:
 
     axes[0].set_ylabel("energy (eV, schematic)")
     panel_label(axes[0], "S5")
-    fig.legend(frameon=False, loc="upper center", ncol=2, fontsize=5, bbox_to_anchor=(0.5, 1.02))
+    fig.legend(frameon=False, loc="upper center", ncol=2, fontsize=5, bbox_to_anchor=(0.5, 1.04))
+    fig.subplots_adjust(wspace=0.28)
 
     out_dir.mkdir(parents=True, exist_ok=True)
     pdf = out_dir / "figure_s5_marcus_pending.pdf"

@@ -22,17 +22,17 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 |----|-----|
 | **Exp10** | **40/40** converged ✅（见 `exp10_status.json`） |
 | **Exp8** | **6/6** ✅ — `post_exp8_converged.sh` consolidated `geoopt_pristine_sp.out` |
-| **Exp9** | **7/12** GEO_OPT；qneg1 **step 63/300** OT~338（restarted-after-ABORT） |
+| **Exp9** | **7/12** GEO_OPT；qneg1 **step 63/300** OT~341（restarted-after-ABORT） |
 | **运行中** | `polaron_pristine_qneg1_opt`（4× MPI）— **不干预** |
 | **临界区** | **near-converged**（OT grad $\sim2.5\times10^{-6}$） |
 | **下一任务** | qneg1 PROGRAM ENDED → `post_exp9_converged.sh` |
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
 | **阻塞 PRL** | Exp9 λ + transport 主图 |
 | **文稿 P 瓶颈** | S5 λ pending（post hook ready）；transport C |
-| **下一 B 任务** | R113 qneg1 post → continue_exp9 batch |
+| **下一 B 任务** | Exp9 λ 入 S5；transport 主图；MolFC 替换 S6(b) |
 | **主张-证据** | post_exp9→`render_si_figures.sh` = **A** |
 | **旗杆** | `post_exp9_converged.sh` |
-| **最新 Loop** | **R112**（见下方笔记） |
+| **最新 Loop** | **R113**（见下方笔记） |
 
 **一行命令**：`bash experiments/exp10_status_line.sh` · `bash experiments/exp9_status_line.sh`
 
@@ -1114,6 +1114,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R113（2026-06-18，双轨）**：
+  - **Track A**：Exp9 **7/12**；`polaron_pristine_qneg1_opt` step **63/300** OT~**341** grad~$2.5\times10^{-6}$（restarted-after-ABORT）— **不干预**。
+  - **Track B**：SI 去 legacy `final_figures/` 回退；Fig.~S5 扩为 **1×3**（pristine IP / N IP / B EA）；S6 全宽；`exp9_polaron_verification.json` running_snapshot 刷新。
+  - **创新审计**：S5 三 verified adiabatic 箭头 = **A−**；$\lambda$ = **B pending**（vertical SP 0/8）
+  - **Git**：见 commit — `loop R113: SI pipeline-only S5 N panel`
+  - **下一轮**：qneg1 PROGRAM ENDED → `post_exp9_converged.sh` → batch 续跑
 
 - **Loop R112（2026-06-18，双轨）**：
   - **Track A**：Exp9 **7/12**；qneg1 geo step **63/300** OT~338 — **不干预**。

@@ -22,17 +22,91 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 |----|-----|
 | **Exp10** | **40/40** converged ✅（见 `exp10_status.json`） |
 | **Exp8** | **6/6** ✅ — `post_exp8_converged.sh` consolidated `geoopt_pristine_sp.out` |
-| **Exp9** | **8/12** GEO_OPT；`polaron_N_qneg1_opt` **step 116/300** ~39% OT~184（restarted-after-ABORT） |
+| **Exp9** | **8/12** GEO_OPT；`polaron_N_qneg1_opt` **step 117/300** ~39% — **不干预** |
 | **运行中** | `polaron_N_qneg1_opt`（4× MPI）— **不干预** |
 | **临界区** | geo 中期；内层 SCF 正常 |
 | **下一任务** | N_qneg1 PROGRAM ENDED → `post_exp9_converged.sh` |
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
 | **阻塞 PRL** | Exp9 λ + transport 主图 |
-| **文稿 P 瓶颈** | tetramer $\mathcal{S}(\epsilon)$ pending；S5 λ pending；theory MD `Exp.~` 清理 |
-| **下一 B 任务** | `relax_validation` GEO_OPT（Exp9 结束后）；theory report MD 去路径 |
+| **文稿 P 瓶颈** | **PRL desk gate** D1/D5/D6 叙事+摘要+IPR 下沉 |
+| **下一 B 任务** | 正文词数压缩；Discussion DFT 误差段；`relax_validation` post-Exp9 |
 | **主张-证据** | B/N/P $\mathcal{S}(n{=}4)$ = **A**；$\alpha$–$\mathcal{S}$ 线性检验 = **B** |
-| **旗杆** | PRL `prl` + 单栏主图 |
-| **最新 Loop** | **R127**（见下方笔记） |
+| **旗杆** | PRL desk gate → 不达标则 **PRB Rapid** |
+| **最新 Loop** | **R128**（见下方笔记） |
+
+
+---
+
+### PRL Desk Review Gate（审稿升格 · 通用闸门）
+
+> **来源**：第三版 PRL 级别详细审稿（2026-06-19）。本节为**投稿策略与 Loop 优先级**的权威清单；每轮 `go loops` 须在执行前闸门中对照 **Desk Reject** 行，未闭合前**禁止**恢复 transport/ML 夸大表述或未经弛豫验证的绝对定量主张。
+
+#### 总体判定与期刊路径
+
+| 路径 | 条件 | Agent 默认 |
+|------|------|------------|
+| **PRL** | 叙事升格为「共价分子网络普适规律」+ 弛豫验证 Table~S3 收敛 + 摘要≤600 字符 + 正文≤3750 词 + 单核心贡献（$\mathcal{S}$ 能量非加性） | 仅当上表 **Track A 必补** 完成且 P0 格式全绿 |
+| **PRB Rapid** | 无全弛豫、保留体系专论叙事 | **当前完成度最匹配**；AGENTS 诚实稿默认降级锚点 |
+| **PR Materials** | 材料调控 + 设计规则；可保留部分 IPR/$J$ 于 SI | 并行备选 |
+
+**核心叙事锚点句**（Intro/Abstract/Conclusion 须收敛至此，qHP C$_{60}$ 为**模型体系**）：
+
+> 在离散单元构成的共价分子网络中，掺杂诱导的局域结构畸变与外应变的非线性耦合，是应变–掺杂非加性效应的重要来源；其强度不与线性应变系数 $lpha$ 简单正相关，顺序扫描的加和假设可带来显著的稳定性预测误差。
+
+#### Desk Reject 级（P0 — 不解决 = 不送审）
+
+| ID | 审稿要点 | 仓库动作 / 证据 |
+|----|----------|-----------------|
+| **D1** | 广泛物理兴趣：体系拓展非原理突破 | Intro/Abstract/Discussion 升格至「共价分子网络」；cite 2D 非加性先例；qHP 作验证 |
+| **D2** | 刚性应变无验证 | `experiments/exp_5_synergy/relax_validation/` → Table~S3；Methods/Limitations **upper bound** 措辞 |
+| **D3** | 固定掺杂位点无普适性 | Limitations 诚实；可选第二 seed 四聚体单点（backlog，不伪造） |
+| **D4** | $n{\geq}6$ 280 vs 300 Ry 与 N $\mathcal{S}$ 符号 | Table~S2 pending 行；$n{=}6$ @300 Ry 单点（Track A backlog） |
+| **D5** | 叙事分散（gap + $lpha$ + $\mathcal{S}$ + IPR/$J$） | **主文 IPR/$J$ 压缩至 1 段 → SI Fig.~S6**；Results 以 $\mathcal{S}$ 为主轴 |
+| **D6** | 摘要 >600 字符 / 含引用 | `wc`/脚本审计；无 `\cite`、无公式、单段 |
+| **D7** | 正文 >3750 词 | 参数下沉 SI；Methods 一句 + `si_methods_section` |
+| **D8** | $\mathcal{S}$ 符号 / π 乱码 / 断词 | grep 审计；全文 `\mathcal{S}` |
+| **D9** | bib 重复编号 / `note` 泄漏 | 删 `referinfo`；编译查 `.bbl` 无 `[2] [2]` |
+| **D10** | $E_f$ 与 $n_{\mathrm{dop}}$ 矛盾 | `table1_verification.json` 为 canonical |
+
+#### 外审级（P1 — 送审后仍可能拒）
+
+| ID | 要点 | 动作 |
+|----|------|------|
+| **R1** | 机理深度不足 | PDOS + 键长/畸变（弛豫后）入 Discussion；三类机制分类段 |
+| **R2** | $\mathcal{S}$–$lpha$ 对比不对等 | 已写浓度/边界 Limitations；勿夸大「非线性主导」 |
+| **R3** | ~3% vs PBE 形成能误差 | Discussion 增 DFT 不确定度与排序反转讨论 |
+| **R4** | $J$ 与 $\mathcal{S}$ 脱节 | 主文一句边界；细节仅 SI |
+
+#### Track A 必补计算（PRL 送审最低集）
+
+| 任务 | 路径 | 阻塞 |
+|------|------|------|
+| P@+3% 四聚体 fixed-cell GEO_OPT 四角 | `relax_validation/` | Exp9 batch 空闲后顺序跑；**勿并行** |
+| $n{=}6$ N @+3% @300 Ry 单点 | Exp10 式 inp 或 backlog | 尺寸/截断对照 |
+| （可选）第二掺杂 seed 四聚体 | 新 inp 模板 | P1 |
+
+#### 扫描包 §F（PRL desk gate）
+
+```bash
+# F. PRL 格式与叙事
+python3 -c "
+import re
+tex=open('paper/strain_doped_graphullerene.tex').read()
+m=re.search(r'\\begin\{abstract\}(.*?)\\end\{abstract\}', tex, re.S)
+a=m.group(1) if m else ''
+plain=re.sub(r'\\[a-zA-Z]+(\{[^}]*\}|\[[^]]*\])?','',a)
+plain=re.sub(r'[{}$]','',plain)
+print('abstract_chars', len(plain.replace(' ','').replace('\n','')))
+print('abstract_has_cite', '\\cite' in a)
+"
+grep -En 'IPR|\\$J\\$|Marcus' paper/strain_doped_graphullerene.tex | wc -l
+grep -c '\\mathcal\{S\}' paper/strain_doped_graphullerene.tex || true
+grep -En 'referinfo|note.*refer' paper/strain_graphullerene_50refs.bib || true
+test -f experiments/analysis/relax_validation_tetramer.json && python3 -c "import json;d=json.load(open('experiments/analysis/relax_validation_tetramer.json'));print('relax',d.get('status','?'))" || echo 'relax_json missing'
+```
+
+**Loop 笔记必填**：`prl_gate: D? open | narrative=Y/N | abstract_NNN | relax=pending|done`
+
 
 **一行命令**：`bash experiments/exp10_status_line.sh` · `bash experiments/exp9_status_line.sh`
 
@@ -180,6 +254,9 @@ python3 -c "import json; t=json.load(open('experiments/analysis/table1_verificat
 | **P0** | theory report **C 级**主张出现在 Abstract/Results | 删除或降调至 Discussion/SI |
 | **P0** | **第三版审稿**：$E_f$/$n_{\mathrm{dop}}$ 与 `table1_verification.json` 不一致 | 以 JSON 改 tex/SI；重算 $|\mathcal{S}|/|E_f|_{\mathrm{per\,atom}}$ |
 | **P0** | **第三版审稿**：bib `referinfo` / 内部 note 泄漏 | 删内部路径；note 改为正式摘要句 |
+| **P0** | **PRL desk D5**：主文 IPR/$J$ 叙事分散 | 压缩至 SI Fig.~S6；Results 以 $\mathcal{S}$ 为主 |
+| **P0** | **PRL desk D6**：摘要 >600 字符或含 `\cite` | 重写摘要；§F 字符审计 |
+| **P0** | **PRL desk D2**：刚性应变无弛豫对照 | Table~S3 `relax_validation/`；upper-bound 措辞 |
 | **P0** | **第三版审稿**：$\mathcal{S}$ 符号/断词 | 全文 `\mathcal{S}`；断词处加 `$\mathcal{S}$` |
 | **P1** | 阻塞目标期刊的**缺图/缺段**（如 PRL transport、Exp9 λ Fig.5） | 占位 + caption `[pending: Exp9]`；不伪造数字 |
 | **P1** | **第三版审稿**：SI 主文 `Exp.~N` vs `Fig.~S4--S6` | 统一 Supp. 交叉引用；caption 去 audit 路径 |
@@ -1127,6 +1204,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R128（2026-06-19，双轨 · PRL desk gate）**：
+ - **Track A**：Exp9 **8/12**；`polaron_N_qneg1_opt` step **117/300** — **不干预**；`relax_validation` 待 Exp9 空闲。
+ - **Track B**：`AGENTS.md` 增 **PRL Desk Review Gate**（D1–D10/R1–R4/§F/必补计算）；主文摘要 **≤600 字符、无 cite**；IPR/$J$ 压缩→SI；Intro 共价分子网络升格；Discussion PBE 误差与排序意义。
+ - **创新审计**：PRL desk P0 格式 = **B+**（摘要/叙事）；弛豫 Table S3 = **B pending**；$\lambda$ = **B pending**
+ - **Git**：`2f72050` — `loop R128: PRL desk review gate in AGENTS, abstract and narrative P0`
+ - **下一轮**：正文词数审计；Exp9 结束→`relax_validation`；$n{=}6$ 300 Ry
 
 - **Loop R127（2026-06-19，双轨）**：
  - **Track A**：Exp9 **8/12**；`polaron_N_qneg1_opt` step **116/300** ~39% OT~184 — **不干预**。

@@ -120,6 +120,7 @@ SI S1.2 合成 $\lambda$ 分解：**[illustrative, pending Exp9]**；Capobianco2
 ## 5. 工具入口
 
 ```bash
+bash experiments/post_exp9_converged.sh   # after each GEO_OPT / vertical SP
 bash experiments/exp9_status_line.sh
 python3 experiments/analysis/analyze_exp9_polaron.py
 ./c/simukit-sdc experiments/exp_10_size_scaling/inputs

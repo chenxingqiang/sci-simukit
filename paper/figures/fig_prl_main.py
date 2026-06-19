@@ -23,6 +23,8 @@ from _style import (
     DOPANT_MARKERS,
     PRL_HEIGHT_IN,
     PRL_WIDTH_IN,
+    PRB_HEIGHT_IN,
+    PRB_WIDTH_IN,
     apply_prl_style,
     panel_label,
     style_axes,
@@ -66,7 +68,7 @@ def _plot_electronic_row(ax_gap, ax_dos, gaps) -> None:
         arrowprops=dict(arrowstyle="-|>", color=COLOR_CBM, lw=0.5, shrinkA=2, shrinkB=2),
         annotation_clip=True,
     )
-    ax_gap.set_xlabel(r"strain $\varepsilon$ (%)")
+    ax_gap.set_xlabel(r"strain $\epsilon$ (%)")
     ax_gap.set_ylabel(r"energy gap (eV)")
     ax_gap.set_xlim(-5.5, 5.5)
     ax_gap.set_ylim(-0.22, 1.62)
@@ -105,7 +107,7 @@ def _plot_electronic_row(ax_gap, ax_dos, gaps) -> None:
     ax_dos.text(
         0.97,
         0.95,
-        "B, $\\varepsilon{=}0$",
+        "B, $\\epsilon{=}0$",
         transform=ax_dos.transAxes,
         fontsize=5.5,
         va="top",
@@ -244,8 +246,49 @@ def build_prl_figure(out_dir: Path) -> tuple[Path, Path]:
     return pdf, png
 
 
+def build_prb_figure(out_dir: Path) -> tuple[Path, Path]:
+    apply_prl_style()
+    table1 = load_json("experiments/analysis/table1_verification.json")
+    audit = load_json("experiments/analysis/sdc/sdc_exp10_synergy_audit.json")
+    exp4 = load_json("experiments/analysis/exp4_polaron_verification.json")
+    gaps = parse_exp7_gaps()
+
+    fig = plt.figure(figsize=(PRB_WIDTH_IN, PRB_HEIGHT_IN))
+    gs = GridSpec(
+        1,
+        4,
+        figure=fig,
+        width_ratios=[1.05, 0.85, 0.82, 1.05],
+        wspace=0.52,
+        left=0.07,
+        right=0.98,
+        top=0.86,
+        bottom=0.26,
+    )
+    ax_a = fig.add_subplot(gs[0, 0])
+    ax_b = fig.add_subplot(gs[0, 1])
+    ax_c = fig.add_subplot(gs[0, 2])
+    ax_d = fig.add_subplot(gs[0, 3])
+    _plot_electronic_row(ax_a, ax_b, gaps)
+    _plot_alpha(ax_c, table1)
+    inset = ax_d.inset_axes([0.50, 0.10, 0.40, 0.34])
+    _plot_synergy_combo(ax_d, inset, audit, exp4)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    pdf = out_dir / "figure_prb_main.pdf"
+    png = out_dir / "figure_prb_main.png"
+    fig.savefig(pdf, bbox_inches="tight", pad_inches=0.02)
+    fig.savefig(png, bbox_inches="tight", pad_inches=0.02, dpi=300)
+    plt.close(fig)
+    return pdf, png
+
+
 def main() -> None:
-    pdf, png = build_prl_figure(FIG_DIR / "out")
+    import sys
+    out = FIG_DIR / "out"
+    if len(sys.argv) > 1 and sys.argv[1] == "--prb":
+        pdf, png = build_prb_figure(out)
+    else:
+        pdf, png = build_prl_figure(out)
     print(f"Wrote {pdf}\nWrote {png}")
 
 

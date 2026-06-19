@@ -1,4 +1,4 @@
-基于提供的文档内容，我将为您总结这篇文章的核心主题、主要内容和关键发现。文档标题为“Electron Localization and Mobility in Monolayer Fullerene Networks”（单层富勒烯网络中的电子局域化和迁移率），发表于Nano Letters期刊2024年第24卷。文章由Amedeo Capobianco等人撰写，主要探讨了两种碳同素异形体（vdW C₆₀和qHP C₆₀）的电子性质，特别是电子局域化和迁移率的差异及其机制。以下是我的详细分析，结构分为几个关键部分，并在相关位置嵌入文档中的图片以增强理解（图片位置严格遵循文档原始描述）。
+qu基于提供的文档内容，我将为您总结这篇文章的核心主题、主要内容和关键发现。文档标题为“Electron Localization and Mobility in Monolayer Fullerene Networks”（单层富勒烯网络中的电子局域化和迁移率），发表于Nano Letters期刊2024年第24卷。文章由Amedeo Capobianco等人撰写，主要探讨了两种碳同素异形体（vdW C₆₀和qHP C₆₀）的电子性质，特别是电子局域化和迁移率的差异及其机制。以下是我的详细分析，结构分为几个关键部分，并在相关位置嵌入文档中的图片以增强理解（图片位置严格遵循文档原始描述）。
 
 1. 文章核心主题
 

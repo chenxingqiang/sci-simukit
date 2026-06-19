@@ -42,6 +42,14 @@
 
 ---
 
+## 7b. Methods 截断能契约 (R132)
+
+| 文稿声称 | inp 实际 | 状态 |
+|----------|----------|------|
+| 400 Ry $n\leq4$, 350 Ry $n\geq6$ | `size_*x60_*.inp` | **A** (R132 修复原 300/280 错误) |
+| Table S3 弛豫 | `relax_validation/` | **B pending** |
+| Table S4 seed 137 | `seed_validation/` | **B pending** |
+
 ## 8. 主稿段落 ↔ JSON 映射（R103 横切）
 
 | 主稿位置 | 关键量 | JSON / 脚本 |
@@ -61,14 +69,14 @@
 
 ### 1.1 应变—掺杂非加性（核心贡献）
 
-- **序参量**：$\mathcal{S} = E(\varepsilon,\delta) - E(\varepsilon,0) - E(0,\delta) + E(0,0)$（meV/atom，Exp5+Exp10）。
+- **序参量**：$\mathcal{S} = E(\epsilon,\delta) - E(\epsilon,0) - E(0,\delta) + E(0,0)$（meV/atom，Exp5+Exp10）。
 - **尺寸标度**：$S(n) \approx S_\infty + A/n$；@+3% strain，15 点 DFT（n=1,2,4,6,8 × B/N/P）。
 - **Provisional $S_\infty$**（meV/atom）：B **−0.52**，N **−0.68**，P **−0.13**（`sdc_exp10_synergy_audit.json`）。
 - **设计含义**：N vs B 应变灵敏度符号相反（Exp5 $\alpha$）；n=8 N 的 $\mathcal{S}$ 符号反转 — 尺寸依赖非加性。
 
 ### 1.2 电子结构（Exp7 + 图 3）
 
-- Gap closing、π-PDOS 应变演化、HOMO/LUMO vs $\varepsilon$ — 与 Exp7 converged PDOS 一致。
+- Gap closing、π-PDOS 应变演化、HOMO/LUMO vs $\epsilon$ — 与 Exp7 converged PDOS 一致。
 
 ### 1.3 极化子邻域证据（Exp4，两点）
 
@@ -121,7 +129,7 @@ SI S1.2 合成 $\lambda$ 分解：**[illustrative, pending Exp9]**；Capobianco2
 |------|------|
 | graphullerene 非加性 $\mathcal{S}$ + 40/40 | **A** |
 | N vs B $\alpha$ 符号相反 | **A** |
-| N @ n=8 $\mathcal{S}$ 符号反转 | **A** |
+| N @ n=8 $\mathcal{S}$ 符号反转 | **B pending** | cutoff400 + Table S4 |
 | Exp9 partial IP/EA in Results | **A−** |
 | Intro–Conclusion 四条闭环 | **A** |
 | Marcus $\lambda$ | **B pending** |

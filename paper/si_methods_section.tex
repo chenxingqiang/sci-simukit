@@ -2,11 +2,12 @@
 
 All total-energy and electronic-structure calculations use CP2K~\cite{cp2k2025} with PBE~\cite{Perdew1996generalized} and Grimme DFT-D3 (Becke--Johnson damping)~\cite{Grimme2011effect}.
 Unless stated otherwise, biaxial strain scales the in-plane lattice vectors of the pristine equilibrium cell at fixed fractional coordinates (rigid-strain protocol), providing an upper bound on strain--doping coupling until ionic-relaxation benchmarks in Table~S3 converge.
-Plane-wave cutoff is 300~Ry for $n\leq 5$ and 280~Ry for $n\geq 6$; $\mathcal{S}(n)$ comparisons at fixed $n$ use identical cutoffs.
+Plane-wave cutoff is 400~Ry for $n\leq 4$ and 350~Ry for $n\geq 6$ in archived Exp10 inputs (Table~S2); $\mathcal{S}(n)$ comparisons at fixed $n$ use identical cutoffs.
 
 Tetramer models ($4\times\mathrm{C}_{60}$, 240 sites) use B/N/P substitution at nominal 5\% (12--13 dopants from archived coordinates, seed~42).
 Periodic scaling cells contain one dopant per C$_{60}$ ($n=1$--$8$).
 Dopant sites are not re-optimized thermodynamically; fixed configurations probe mechanism rather than ensemble averages.
+A second random seed~137 tetramer grid (Table~S4) bounds placement sensitivity.
 
 Grids: 24 tetramer strain points ($\epsilon\in\{-5,-2.5,0,2.5,5\}$\%); 12 tetramer electronic points; 40 periodic neutral-energy points at $\epsilon\in\{0,+3\}$\%; charged-state optimizations for Marcus schematics (Fig.~S5); IPR/$J$ factorial (Fig.~S6).
 Linear $\alpha=\mathrm{d}E/\mathrm{d}\epsilon$ and substitution energies $E_f$ are defined in Table~S1.

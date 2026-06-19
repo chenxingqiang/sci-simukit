@@ -19,8 +19,8 @@
 \maketitle
 
 \section*{Overview}
-This Supplemental Material accompanies the main Letter on coupled $(\epsilon,\delta)$ response in qHP C$_{60}$.
-All figures and tables are labeled with prefix~\textbf{S} to match citations in the main text (Fig.~S4--S6; Tables~S1--S3).
+This Supplemental Material accompanies the main PRB article on coupled $(\epsilon,\delta)$ response in qHP C$_{60}$.
+All figures and tables are labeled with prefix~\textbf{S} to match citations in the main text (Fig.~S4--S6; Tables~S1--S4).
 Calculations use the same PBE+DFT-D3 CP2K protocol as the main manuscript (rigid biaxial strain unless noted).
 Observables follow Capobianco \emph{et al.}~\cite{Capobianco2024electron}: $\pi$-projected DOS, inverse participation ratio (IPR), nearest-neighbor coupling $J$, and Marcus reorganization energies $\lambda^{\pm}$.
 Converged inputs, outputs, and analysis JSON are archived as described in the main-text Data Availability statement.
@@ -61,9 +61,25 @@ Optimal-design grid & tetramer & 20 & not used & archive only \\
 Tetramer PDOS/gaps & tetramer & 12 & Fig.~S4; main panels & \\
 Geometry references & tetramer relax & 6 & charged-state inputs & reference geometries \\
 Charged polarons & tetramer $q=\pm1$ & partial & Fig.~S5 & $\lambda$ pending vertical SP \\
-Size scaling & $n\times$C$_{60}$ & 40 & main $\mathcal{S}(n)$ & 280~Ry for $n\geq6$ \\
-$n{=}6$ cutoff control & $6\times$C$_{60}$ & pending & N sign benchmark & 300~Ry matched run \\
+Size scaling & $n\times$C$_{60}$ & 40 & main $\mathcal{S}(n)$ & 400~Ry ($n\leq4$), 350~Ry ($n\geq6$) \\
+$n{=}6$ cutoff control & $6\times$C$_{60}$ N @+3\% & pending & N sign benchmark & 400~Ry (\texttt{cutoff400} inp) \\
 Ionic relaxation (tetramer) & tetramer & pending & Table~S3 & fixed-cell GEO\_OPT \\
+\end{tabular}
+\end{ruledtabular}
+\end{table*}
+
+\section*{Table S4}
+\begin{table*}
+\caption{\label{tab:S4}Alternate random-seed dopant placement (tetramer, rigid strain, PBE+D3).
+Seed~42 is used in the main text; seed~137 repeats the $\epsilon=0,+3$\% corners for B/N/P to test whether $\alpha$ and tetramer $\mathcal{S}$ are placement-sensitive.}
+\begin{ruledtabular}
+\begin{tabular}{lcccc}
+Case & Seed & $\alpha$ (meV/\%) & $\mathcal{S}$ @ $+3$\% (meV/atom) & Status \\
+\hline
+B-doped & 42 & $+56.9$ & (periodic $n{=}4$: $-6.2$) & verified (Table~S1) \\
+N-doped & 42 & $-303.2$ & (periodic $n{=}4$: $+3.0$) & verified \\
+P-doped & 42 & $-19.1$ & (periodic $n{=}4$: $-23.7$) & verified \\
+B/N/P & 137 & pending & pending & P corners inp ready; full grid pending \\
 \end{tabular}
 \end{ruledtabular}
 \end{table*}
@@ -94,7 +110,7 @@ Sign vs.\ periodic $n{=}4$ $\mathcal{S}_P$ ($-23.7$~meV/atom) & \multicolumn{2}{
 \includegraphics[width=0.92\textwidth]{figures/out/figure_s4_pdos_exp7.pdf}}{%
 \fbox{\parbox{0.88\textwidth}{\centering\vspace{2cm}\textbf{Fig.~S4 not found} --- regenerate SI figure pipeline\vspace{2cm}}}%
 }
-\caption{\label{fig:S4}$\pi$-projected density of states ($\pi$-DOS) for pristine and B/N/P-doped tetramers at $\varepsilon{=}0$ (PBE+D3).
+\caption{\label{fig:S4}$\pi$-projected density of states ($\pi$-DOS) for pristine and B/N/P-doped tetramers at $\epsilon{=}0$ (PBE+D3).
 Valence band edges (purple) and conduction band edges (teal) follow the color scheme of Capobianco \emph{et al.}~\cite{Capobianco2024electron}.
 Energy is relative to the Fermi level at 0~eV. Molecular-orbital isosurfaces are pending cube export.}
 \end{figure*}

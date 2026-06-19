@@ -1,5 +1,5 @@
 #!/bin/bash
-# Compile main manuscript PDF — PRB target (REVTeX prb + reprint).
+# PRB submission bundle: REVTeX from revtex-tds + main + SI PDFs.
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")" && pwd)"
 REPO="$(cd "$ROOT/.." && pwd)"
@@ -12,10 +12,9 @@ if ! command -v latexmk >/dev/null; then
   exit 1
 fi
 
-if [[ ! -f "$ROOT/figures/out/figure_prb_main.pdf" ]]; then
-  bash "$ROOT/figures/render_prb.sh" || echo "WARN: run render_prb.sh manually"
-fi
-
+bash "$ROOT/figures/render_prb.sh"
 cd "$ROOT"
 latexmk -pdf -interaction=nonstopmode -file-line-error -f strain_doped_graphullerene.tex
-echo "OK: $ROOT/strain_doped_graphullerene.pdf (PRB)"
+latexmk -pdf -interaction=nonstopmode -file-line-error -f supplementary_figures.tex
+bash "$ROOT/scripts/prb_wordcount.sh" 2>/dev/null || true
+echo "OK: $ROOT/strain_doped_graphullerene.pdf (PRB) + supplementary_figures.pdf"

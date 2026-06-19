@@ -1,0 +1,34 @@
+{
+  "n_atoms": 240,
+  "dopant": "P",
+  "strain_pct": 3.0,
+  "rigid_protocol": "PBE, no D3, RUN_TYPE ENERGY (archived Exp5 synergy)",
+  "relaxed_protocol": "PBE+D3, fixed cell GEO_OPT, CUTOFF 300 Ry",
+  "energies_ha": {
+    "rigid": {
+      "pristine_eps0": -1363.5511561701337,
+      "pristine_eps3": -1363.55216466392,
+      "P_eps0": -1370.4964658215977,
+      "P_eps3": -1370.4890031550478
+    },
+    "relaxed": {
+      "pristine_eps0": null,
+      "pristine_eps3": null,
+      "P_eps0": null,
+      "P_eps3": null
+    }
+  },
+  "geo_opt_completed": {
+    "pristine_eps0": false,
+    "pristine_eps3": false,
+    "P_eps0": false,
+    "P_eps3": false
+  },
+  "S_rigid": {
+    "S_ha_per_atom": 3.5296501400241403e-05,
+    "S_meV_per_atom": 0.9604667327340252,
+    "delta_strain_ha": -4.202057442626028e-06,
+    "delta_doping_ha": -0.02893879021443316,
+    "delta_combined_ha": -0.028907695770475545
+  }
+}

@@ -8,6 +8,8 @@ from matplotlib.axes import Axes
 # Single-column PRL width
 PRL_WIDTH_IN = 3.375
 PRL_HEIGHT_IN = 1.95
+PRB_WIDTH_IN = 7.0
+PRB_HEIGHT_IN = 2.15
 
 # Electron Fig. 2 palette — valence purple, conduction teal
 COLOR_VBM = "#7B4FB3"

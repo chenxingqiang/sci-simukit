@@ -22,17 +22,17 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 |----|-----|
 | **Exp10** | **40/40** converged ✅（见 `exp10_status.json`） |
 | **Exp8** | **6/6** ✅ — `post_exp8_converged.sh` consolidated `geoopt_pristine_sp.out` |
-| **Exp9** | **8/12** GEO_OPT；`polaron_N_qneg1_opt` **step 117/300** ~39% OT~169 — **不干预** |
+| **Exp9** | **8/12** GEO_OPT；`polaron_N_qneg1_opt` **step 118/300** ~39% — **不干预** |
 | **运行中** | `polaron_N_qneg1_opt`（4× MPI）— **不干预** |
 | **临界区** | geo 中期；内层 SCF 正常 |
 | **下一任务** | N_qneg1 PROGRAM ENDED → `post_exp9_converged.sh` |
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
 | **阻塞 PRL** | Exp9 λ + transport 主图 |
-| **文稿 P 瓶颈** | **D2** Table S3 弛豫；Conclusion 锚点句 |
+| **文稿 P 瓶颈** | **D2** Table S3 弛豫；D2/S3弛豫+S4种子+截断能控制 inp 就绪（目标 2800+） |
 | **下一 B 任务** | post_exp9 → relax_validation；theory report 同步 |
 | **主张-证据** | B/N/P $\mathcal{S}(n{=}4)$ = **A**；$\alpha$–$\mathcal{S}$ 线性检验 = **B** |
-| **旗杆** | PRL desk gate → 不达标则 **PRB Rapid** |
-| **最新 Loop** | **R130**（见下方笔记） |
+| **旗杆** | **PRB Regular Article**（`compile_prb.sh` + SM）|
+| **最新 Loop** | **R133**（见下方笔记） |
 
 
 ---
@@ -63,7 +63,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **D4** | $n{\geq}6$ 280 vs 300 Ry 与 N $\mathcal{S}$ 符号 | Table~S2 pending 行；$n{=}6$ @300 Ry 单点（Track A backlog） |
 | **D5** | 叙事分散（gap + $\alpha$ + $\mathcal{S}$ + IPR/$J$） | **主文 IPR/$J$ 压缩至 1 段 → SI Fig.~S6**；Results 以 $\mathcal{S}$ 为主轴 |
 | **D6** | 摘要 >600 字符 / 含引用 | `wc`/脚本审计；无 `\cite`、无公式、单段 |
-| **D7** | 正文 >3750 词 | 参数下沉 SI；Methods 一句 + `si_methods_section` |
+| **D7** | 正文 >3750 词（硬顶）；**目标带 2500–3500 词**（勿为压字数删机理） | 参数下沉 SI；`si_methods_section`；`prl_wordcount.sh` |
 | **D8** | $\mathcal{S}$ 符号 / π 乱码 / 断词 | grep 审计；全文 `\mathcal{S}` |
 | **D9** | bib 重复编号 / `note` 泄漏 | 删 `referinfo`；编译查 `.bbl` 无 `[2] [2]` |
 | **D10** | $E_f$ 与 $n_{\mathrm{dop}}$ 矛盾 | `table1_verification.json` 为 canonical |
@@ -1205,6 +1205,27 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R133（2026-06-19，Track B · PRB 投稿准备）**：
+ - **Track A**：Exp9 batch — **不干预**。
+ - **Track B**：主稿 `prl`→`prb`+`reprint`；`figure*`+`figure_prb_main`；Data Availability；`compile_prb.sh`+`revtex-tds`；`cover_letter_prb.txt`；`docs/prb_submission_guideline.md` 仓库工作流。
+ - **创新审计**：PRB 版式 = **A**；D2/S3–S4 验证 = **B pending**
+ - **Git**：未提交
+ - **下一轮**：Exp9 空闲 → relax/seed137/cutoff400；APS 上传三 PDF
+
+- **Loop R132（2026-06-19，Track B · 方法学硬伤修复）**：
+ - **Track A**：Exp9 **8/12**；`polaron_N_qneg1_opt` ~step 119/300 — **不干预**；Table S3 弛豫待 batch 空闲后 `run_relax_validation.sh`。
+ - **Track B**：**D2/D3/D4 + 格式** — Methods `sec:notation`+`sec:validation`；截断能 **400/350 Ry** 与 `*.inp` 对齐；N 尺寸符号 **撤出主结论**；$\epsilon$/$\mathcal{S}$/$\pi$-DOS 统一；Table **S4** seed137；`size_6x60_N_pos3pct_cutoff400.inp`；bib `note`→`eprint`；主图轴 $\epsilon$ 重绘。
+ - **创新审计**：Methods-inp 契约 = **A**；D2/D3/D4 计算 = **B pending**（inp 已就绪）
+ - **Git**：未提交
+ - **下一轮**：Exp9 空闲 → relax + seed137 ENERGY + cutoff400 单点
+
+- **Loop R131（2026-06-19，Track B · 篇幅回升）**：
+ - **Track A**：Exp9 **8/12**；`polaron_N_qneg1_opt` step **118/300** — **不干预**。
+ - **Track B（VI Results + Discussion）**：R129 过度压缩后正文回升 — 恢复电子/应变/$\mathcal{S}(n)$ 叙事；Intro 锚点句；$E_f$/$\alpha$ 定量；修复 `$|\alpha|$` 乱码；`texcount` **~2640** 词（<3750）。
+ - **创新审计**：篇幅充实度 = **B+**（较 R129 +1100 词）；D2 弛豫 = **B pending**
+ - **Git**：未提交（待用户确认）
+ - **下一轮**：可选再加 ~200 词 Discussion 案例；Exp9 post → relax_validation
 
 - **Loop R130（2026-06-19，双轨）**：
  - **Track A**：Exp9 **8/12**；`polaron_N_qneg1_opt` step **117/300** OT~169 — **不干预**。

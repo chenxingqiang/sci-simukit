@@ -1,7 +1,8 @@
 {
   "source": "dft_results/exp_5_synergy/results/real_dft_results.json",
-  "verified_date": "2026-06-12",
+  "verified_date": "2026-06-19",
   "n_atoms": 240,
+  "Ef_definition": "(E_doped - E_pristine) / n_dopants at epsilon=0; no chemical-potential reference; n_dopants counted from archived .inp coordinates",
   "systems": {
     "pristine": {
       "E_0pct_Ha": -1363.551156,
@@ -14,7 +15,8 @@
       "E_0pct_Ha": -1328.48998,
       "E_5pct_Ha": -1328.408959,
       "alpha_meV_per_pct": 56.9,
-      "Ef_eV_per_dopant": 159.0,
+      "n_dopants": 13,
+      "Ef_eV_per_dopant": 73.4,
       "out_0": "C60_strain_+0.0_B_doped_synergy.out",
       "out_5": "C60_strain_+5.0_B_doped_synergy.out"
     },
@@ -22,7 +24,8 @@
       "E_0pct_Ha": -1414.381232,
       "E_5pct_Ha": -1414.40526,
       "alpha_meV_per_pct": -303.2,
-      "Ef_eV_per_dopant": -230.5,
+      "n_dopants": 12,
+      "Ef_eV_per_dopant": -115.3,
       "out_0": "C60_strain_+0.0_N_doped_synergy.out",
       "out_5": "C60_strain_+5.0_N_doped_synergy.out"
     },
@@ -30,7 +33,8 @@
       "E_0pct_Ha": -1370.496466,
       "E_5pct_Ha": -1370.488849,
       "alpha_meV_per_pct": -19.1,
-      "Ef_eV_per_dopant": -31.5,
+      "n_dopants": 12,
+      "Ef_eV_per_dopant": -15.8,
       "alpha_note": "Linear fit excludes +2.5% point (E=-1369.909 Ha; C60_strain_+2.5_P_doped_synergy.out): SCF converged in 85 steps but metastable/local minimum vs rest of strain grid",
       "out_0": "C60_strain_+0.0_P_doped_synergy.out",
       "out_5": "C60_strain_+5.0_P_doped_synergy.out"

@@ -61,7 +61,7 @@ def build(out_dir: Path) -> tuple[Path, Path]:
 
     fig, axes = plt.subplots(2, 2, figsize=(4.9, 2.95), sharex=True, sharey=False)
     for ax, (name, path) in zip(axes.ravel(), panels):
-        _plot_dos(ax, path, f"{name}, $\\varepsilon{{=}}0$")
+        _plot_dos(ax, path, f"{name}, $\\epsilon{{=}}0$")
     axes[0, 0].set_ylabel(r"$\pi$-DOS (a.u.)")
     axes[1, 0].set_ylabel(r"$\pi$-DOS (a.u.)")
     panel_label(axes[0, 0], "S4")

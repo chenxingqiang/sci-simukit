@@ -1,0 +1,24 @@
+================================================================================
+PHYSICAL REVIEW B — COVER LETTER (draft)
+Article type: Regular Article (recommended)
+Manuscript: Non-Additive Strain--Doping Coupling in Quasi-Hexagonal C60 Graphullerene
+Authors: Xingqiang Chen, Qixing Wang (Xiamen University)
+Corresponding author: xingqiang.chen@xmu.edu.cn
+================================================================================
+
+Dear Editor,
+
+We submit the enclosed manuscript for consideration as a Regular Article in Physical Review B.
+
+Context. Strain and heteroatom substitution are routinely combined in two-dimensional molecular networks, yet many pipelines superpose separate strain-only and doping-only scans. Quasi-hexagonal C60 graphullerene provides a covalent model system to quantify the omitted total-energy cross term.
+
+Key findings. We define a synergy order parameter S (meV/atom) from PBE+DFT-D3 on tetramers and periodic supercells. Opposite strain coefficients for N and B coexist with |S| up to ~32 meV/atom at +3% strain (largest for P despite small |alpha|). Protocol limits and validation benchmarks (ionic relaxation, alternate dopant seed, matched cutoff) are in Supplemental Material.
+
+Fit for PRB. Condensed-matter materials design with reproducible CP2K archives and audit JSON. Transport-adjacent observables are in Supplemental Material only.
+
+Prior submission: none to APS journals. Not a joint submission.
+
+Data availability: see manuscript; https://github.com/chenxingqiang/graphullerene-strain-engineering
+
+Sincerely,
+Xingqiang Chen (on behalf of all authors)

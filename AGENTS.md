@@ -28,11 +28,11 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **下一任务** | qneg1 PROGRAM ENDED → `post_exp9_converged.sh` |
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
 | **阻塞 PRL** | Exp9 λ + transport 主图 |
-| **文稿 P 瓶颈** | S5 λ pending；Methods PBE/D3 **R116 已补** |
-| **下一 B 任务** | Exp9 λ 入 S5；Qiu2025 力学对比句；MolFC 替换 S6(b) |
+| **文稿 P 瓶颈** | S5 λ pending；Qiu2025 力学句 **R117 已补** |
+| **下一 B 任务** | Exp9 λ 入 S5；MolFC 替换 S6(b)；transport 主图 |
 | **主张-证据** | post_exp9→`render_si_figures.sh` = **A** |
 | **旗杆** | `post_exp9_converged.sh` |
-| **最新 Loop** | **R116**（见下方笔记） |
+| **最新 Loop** | **R117**（见下方笔记） |
 
 **一行命令**：`bash experiments/exp10_status_line.sh` · `bash experiments/exp9_status_line.sh`
 
@@ -1114,6 +1114,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R117（2026-06-19，双轨）**：
+ - **Track A**：Exp9 **7/12**；`polaron_pristine_qneg1_opt` step **63/300** OT~**486** — **不干预**。
+ - **Track B（VII Discussion）**：Mechanistic synthesis 补 **Qiu2025atomic** 力学对比句（pristine 原子尺度 vs Exp.~5 $lpha$）。
+ - **创新审计**：力学文献定位 = **A**；$\lambda$ = **B pending**
+ - **Git**：pending — `loop R117: Discussion Qiu2025 mechanics contrast`
+ - **下一轮**：qneg1 PROGRAM ENDED → post_exp9
 
 - **Loop R116（2026-06-19，双轨）**：
  - **Track A**：Exp9 **7/12**；`polaron_pristine_qneg1_opt` step **63/300** OT~**486** grad~$8.6\times10^{-6}$ — **不干预**。

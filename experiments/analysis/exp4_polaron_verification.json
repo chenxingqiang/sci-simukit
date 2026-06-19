@@ -1,34 +1,63 @@
 {
-  "source": "dft_results/exp_4_polaron/results/polaron_transition.json",
-  "verified_date": "2026-06-12",
-  "note": "Theory report (IPR 45/25, J 75/135 meV) does NOT match this Exp4 audit file.",
+  "source": "dft_results/exp_4_polaron/outputs (factorial 2x2)",
+  "verified_date": "2026-06-19",
+  "note": "Four converged neutral SP points; factorial cross terms in derived.",
   "systems": {
     "pristine_0pct": {
+      "strain_pct": 0.0,
+      "dopant": "pristine",
       "IPR": 75.03,
       "J_meV": 26.56,
-      "lambda_meV": 180.0,
+      "total_energy_Ha": -681.8104708114665,
       "regime": "small polaron hopping",
-      "converged": true
+      "converged": true,
+      "source_out": "dft_results/exp_4_polaron/outputs/polaron_+0.0_pristine_q0.out"
+    },
+    "pristine_3pct": {
+      "strain_pct": 3.0,
+      "dopant": "pristine",
+      "IPR": 76.07,
+      "J_meV": 26.48,
+      "total_energy_Ha": -681.8104849185642,
+      "regime": "small polaron hopping",
+      "converged": true,
+      "source_out": "dft_results/exp_4_polaron/outputs/polaron_+3.0_pristine_q0.out"
+    },
+    "B_0pct": {
+      "strain_pct": 0.0,
+      "dopant": "B",
+      "IPR": 24.62,
+      "J_meV": 46.38,
+      "total_energy_Ha": -664.2957185492166,
+      "regime": "small polaron hopping",
+      "converged": true,
+      "source_out": "dft_results/exp_4_polaron/outputs/polaron_+0.0_B_q0.out"
     },
     "coupled_B_3pct": {
-      "IPR": 45.0,
+      "strain_pct": 3.0,
+      "dopant": "B",
+      "IPR": 23.08,
       "J_meV": 37.17,
-      "lambda_meV": 158.0,
+      "total_energy_Ha": -664.2556395723993,
       "regime": "small polaron hopping",
-      "converged": true
+      "converged": true,
+      "source_out": "dft_results/exp_4_polaron/outputs/polaron_+3.0_B_q0.out"
     }
   },
   "derived": {
-    "IPR_ratio_pristine_over_coupled": 1.67,
-    "J_enhancement_percent": 39.9,
+    "J_meV": {
+      "strain_on_pristine": -0.08,
+      "doping_at_zero_strain": 19.82,
+      "coupled_minus_pristine": 10.61,
+      "interaction_cross_term": -9.13
+    },
+    "IPR": {
+      "strain_on_pristine": 1.04,
+      "doping_at_zero_strain": -50.41,
+      "coupled_minus_pristine": -51.95,
+      "interaction_cross_term": -2.58
+    },
     "polaron_transition_confirmed": false,
     "validation_J_coupled_gt_lambda_half": false
-  },
-  "theory_report_claims": {
-    "IPR_pristine": 45,
-    "IPR_coupled": 25,
-    "J_total_meV": 135,
-    "J0_meV": 75,
-    "status": "discrepancy — do not cite in Results until reconciled"
   }
 }

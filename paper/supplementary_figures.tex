@@ -18,7 +18,42 @@
 Companion to the main manuscript on coupled $(\epsilon,\delta)$ response in qHP C$_{60}$.
 Figures adopt the observables vocabulary of Capobianco \emph{et al.}~\cite{Capobianco2024electron} and its Supplementary Information (Electron SI): band-edge $\pi$-DOS (SI Fig.~S4, purple valence / teal conduction), inverse participation ratio IPR (SI Eq.~S8), electronic coupling $J$ (SI Eq.~S11), Marcus $\lambda$ (vertical--adiabatic split), and Franck--Condon weighted density FCWD (MolFC generating-function approach, SI Sec.~S11).
 Our tetramer Exp.~4--9 audits use the same labels at PBE+D3; absolute $J$ and $\lambda$ are \emph{not} directly comparable to the Koopmans-compliant periodic supercells of Ref.~\citenum{Capobianco2024electron}, but provide internally consistent $(\epsilon,\delta)$ trends.
-\textbf{DATA:} Fig.~S5 $\lambda$ panels refresh from \texttt{exp9\_polaron\_verification.json} after vertical SP converge; until then adiabatic IP/EA only.
+\textbf{DATA:} Fig.~S5 $\lambda$ panels update when vertical single-points converge; until then adiabatic IP/EA only.
+
+\begin{table}
+\caption{\label{tab:S1}Exp.~5 tetramer energies and strain sensitivities (PBE+D3).}
+\begin{ruledtabular}
+\begin{tabular}{lcccc}
+System & $E(0\%)$ (Ha) & $E(+5\%)$ (Ha) & $\alpha$ (meV/\%) & $E_f$ (eV/dopant) \\
+\hline
+Pristine & $-1363.551$ & $-1363.551$ & $-1.0$ & --- \\
+B-doped & $-1328.490$ & $-1328.409$ & $+56.9$ & $+159.0$ \\
+N-doped & $-1414.381$ & $-1414.405$ & $-303.2$ & $-230.5$ \\
+P-doped & $-1370.496$ & $-1370.489$ & $-19.1$ & $-31.5$ \\
+\end{tabular}
+\end{ruledtabular}
+\end{table}
+
+
+\begin{table*}
+\caption{\label{tab:S2}DFT campaign ledger (converged tasks in \texttt{dft\_results/}; main-text use).}
+\begin{ruledtabular}
+\begin{tabular}{llccp{3.2cm}}
+Campaign & Model & $N_{\mathrm{conv}}$ & Main text & Notes \\
+\hline
+Structure probe (Exp.~1) & 2$\times$C$_{60}$ strain & 5 & --- & superseded by tetramer grids \\
+Doping scan (Exp.~2) & single C$_{60}$ & 11 & --- & superseded \\
+Electronics (Exp.~3) & 2$\times$C$_{60}$ & 24 & --- & superseded by Exp.~7 \\
+IPR/$J$ (Exp.~4) & tetramer & 8 (2 quoted) & Fig.~\ref{fig:prl_main}(d) inset & no $2\times2$ factorial \\
+Strain energies (Exp.~5) & tetramer & 24 & Table~\ref{tab:S1}, $\alpha$ & rigid strain \\
+Optimal grid (Exp.~6) & tetramer & 20 & --- & SI archive \\
+PDOS/gaps (Exp.~7) & tetramer & 22 & Fig.~\ref{fig:prl_main}(a,b) & \\
+Geometry (Exp.~8) & tetramer relax & 11 & SI inputs & reference geometries \\
+Charged (Exp.~9) & tetramer $q=\pm1$ & 23 & SI Fig.~S5 & $\lambda$ pending \\
+Size scaling (Exp.~10) & $n\times$C$_{60}$ & 40 & Fig.~\ref{fig:prl_main}(d) & 280 Ry for $n\geq6$ \\
+\end{tabular}
+\end{ruledtabular}
+\end{table*}
 
 \begin{figure*}
 \IfFileExists{figures/out/figure_s4_pdos_exp7.pdf}{%

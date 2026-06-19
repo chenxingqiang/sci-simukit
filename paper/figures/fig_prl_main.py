@@ -98,7 +98,7 @@ def _plot_electronic_row(ax_gap, ax_dos, gaps) -> None:
     ax_dos.plot(grid, dos, color=COLOR_TOTAL, lw=0.5, alpha=0.6)
     ax_dos.axvline(0, color="#333333", lw=0.55)
     ax_dos.set_xlabel("energy (eV)")
-    ax_dos.set_ylabel("π-DOS (a.u.)")
+    ax_dos.set_ylabel(r"$\pi$-DOS (a.u.)")
     ax_dos.set_xlim(-2.0, 2.0)
     ax_dos.set_ylim(0, dos.max() * 1.08)
     style_axes(ax_dos)
@@ -186,12 +186,17 @@ def _plot_synergy_combo(ax_main, ax_inset, audit, exp4) -> None:
         borderpad=0.25,
     )
 
-    # inset: IPR–J (Exp.4) — lower-right, away from S(n) traces
-    p = exp4["systems"]["pristine_0pct"]
-    b = exp4["systems"]["coupled_B_3pct"]
-    ax_inset.scatter(p["IPR"], p["J_meV"], s=18, color=DOPANT_COLORS["pristine"], zorder=3)
-    ax_inset.scatter(b["IPR"], b["J_meV"], s=18, color=COLOR_CBM, marker="^", zorder=3)
-    ax_inset.axhline(p["lambda_meV"] / 2, color="#AAAAAA", ls=":", lw=0.5)
+    # inset: IPR–J (Exp.4 factorial) — lower-right
+    keys = [
+        ("pristine_0pct", DOPANT_COLORS["pristine"], "o"),
+        ("pristine_3pct", DOPANT_COLORS["pristine"], "s"),
+        ("B_0pct", COLOR_CBM, "^"),
+        ("coupled_B_3pct", COLOR_CBM, "D"),
+    ]
+    for key, color, marker in keys:
+        pt = exp4["systems"][key]
+        ax_inset.scatter(pt["IPR"], pt["J_meV"], s=16, color=color, marker=marker, zorder=3)
+    ax_inset.axhline(50, color="#AAAAAA", ls=":", lw=0.5)  # ~lambda/2 literature bound
     ax_inset.set_xlabel("IPR", fontsize=4.5, labelpad=1)
     ax_inset.set_ylabel(r"$J$ (meV)", fontsize=4.5, labelpad=1)
     ax_inset.tick_params(labelsize=4, pad=1)

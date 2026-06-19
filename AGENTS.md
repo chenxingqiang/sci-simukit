@@ -22,17 +22,17 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 |----|-----|
 | **Exp10** | **40/40** converged ✅（见 `exp10_status.json`） |
 | **Exp8** | **6/6** ✅ — `post_exp8_converged.sh` consolidated `geoopt_pristine_sp.out` |
-| **Exp9** | **7/12** GEO_OPT；qneg1 **step 106/300** ~35%（post-ABORT live）— **不干预** |
-| **运行中** | `polaron_pristine_qneg1_opt`（4× MPI）— **不干预** |
-| **临界区** | geo step **106/300**；batch pid 51938 |
-| **下一任务** | qneg1 PROGRAM ENDED → `post_exp9_converged.sh` |
+| **Exp9** | **8/12** GEO_OPT；`polaron_N_qneg1_opt` **step 4/300** OT~15（restarted-after-ABORT） |
+| **运行中** | `polaron_N_qneg1_opt`（4× MPI）— **不干预** |
+| **临界区** | geo step **4/300** ~1.3%；batch 正常 |
+| **下一任务** | N_qneg1 PROGRAM ENDED → `post_exp9_converged.sh` |
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
 | **阻塞 PRL** | Exp9 λ + transport 主图 |
-| **文稿 P 瓶颈** | S5 λ pending；Abstract 7/12 honest **R120** |
-| **下一 B 任务** | Exp9 λ 入 S5；MolFC 替换 S6(b)；transport 主图 |
-| **主张-证据** | post_exp9→`render_si_figures.sh` = **A** |
-| **旗杆** | `post_exp9_converged.sh` |
-| **最新 Loop** | **R120**（见下方笔记） |
+| **文稿 P 瓶颈** | 审稿意见 P0/P1 **R122**；S5 λ pending；transport C |
+| **下一 B 任务** | $n=6$ 300 Ry 对照；$\mathcal{S}_{\mathrm{gap}}$ 可选 |
+| **主张-证据** | Exp4 2×2 factorial = **A**；post_exp9→S5 λ = **B pending** |
+| **旗杆** | PRL `prl` + 单栏主图 |
+| **最新 Loop** | **R122**（见下方笔记） |
 
 **一行命令**：`bash experiments/exp10_status_line.sh` · `bash experiments/exp9_status_line.sh`
 
@@ -1114,6 +1114,20 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R122（2026-06-19，双轨）**：
+ - **Track A**：Exp9 **8/12** GEO_OPT；`polaron_N_qneg1_opt` step **4/300** OT~15 — **不干预**（qneg1 已结束/续 batch）。
+ - **Track B（审稿修订 + Exp4 factorial）**：`analyze_exp4_polaron.py` → 2×2 IPR/$J$ audit；主稿审稿 P0/P1（$\mathcal{S}$ 公式括号、$|S|/|E_f|$ 量级、截断能/浓度/位点局限、Li2024strain 引文）；S6/PRL inset 四格图；删 `\texttt{exp4\_...json}`。
+ - **创新审计**：Exp4 factorial = **A**；审稿 Methods 诚实化 = **A**；$\lambda$ = **B pending**；transport = **C**
+ - **Git**：pending — `loop R122: Exp4 factorial audit and peer-review manuscript fixes`
+ - **下一轮**：N_qneg1 PROGRAM ENDED → post_exp9；可选 $n=6$ @300 Ry
+
+- **Loop R121（2026-06-19，双轨 · PRL 版式）**：
+ - **Track A**：Exp9 **7/12**；qneg1 **step 111/300** ~37% — **不干预**。
+ - **Track B（PRL letter）**：`prl` document class；压缩 Abstract/Intro/Discussion/Conclusion；Table~1 → SI Table~S1；主图 `figure` 单栏 `\linewidth`；删主文 repo/JSON 路径；Methods 诚实 PBE+D3。
+ - **创新审计**：PRL 叙事密度 = **A**；$\lambda$ = **B pending**；transport = **C**
+ - **Git**：pending — `loop R121: PRL letter format, Table S1 to SI`
+ - **下一轮**：qneg1 PROGRAM ENDED → post_exp9
 
 - **Loop R120（2026-06-19，双轨）**：
  - **Track A**：Exp9 **7/12**；qneg1 **step 106/300** ~35% — **不干预**（batch 51938）。

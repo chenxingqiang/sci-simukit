@@ -20,21 +20,30 @@ from _style import COLOR_CBM, COLOR_VBM, DOPANT_COLORS, apply_prl_style, panel_l
 def build(out_dir: Path) -> tuple[Path, Path]:
     apply_prl_style()
     exp4 = load_json("experiments/analysis/exp4_polaron_verification.json")
-    p = exp4["systems"]["pristine_0pct"]
-    b = exp4["systems"]["coupled_B_3pct"]
+    sys_map = exp4["systems"]
 
     fig = plt.figure(figsize=(4.6, 1.75))
-    gs = GridSpec(1, 2, figure=fig, width_ratios=[1.0, 1.05], wspace=0.42)
+    gs = GridSpec(1, 2, figure=fig, width_ratios=[1.15, 1.05], wspace=0.42)
     ax_j = fig.add_subplot(gs[0, 0])
     ax_f = fig.add_subplot(gs[0, 1])
 
-    labels = ["pristine\n$\\epsilon{=}0$", "B @\n$\\epsilon{=}+3$\\%"]
-    j_vals = [p["J_meV"], b["J_meV"]]
-    colors = [DOPANT_COLORS["pristine"], COLOR_CBM]
-    x = np.arange(len(labels))
+    keys = [
+        ("pristine_0pct", "pristine\n$\\epsilon{=}0$"),
+        ("pristine_3pct", "pristine\n$\\epsilon{=}+3$\\%"),
+        ("B_0pct", "B\n$\\epsilon{=}0$"),
+        ("coupled_B_3pct", "B\n$\\epsilon{=}+3$\\%"),
+    ]
+    j_vals = [sys_map[k]["J_meV"] for k, _ in keys]
+    colors = [
+        DOPANT_COLORS["pristine"],
+        DOPANT_COLORS["pristine"],
+        COLOR_CBM,
+        COLOR_CBM,
+    ]
+    x = np.arange(len(keys))
     ax_j.bar(x, j_vals, color=colors, width=0.55, edgecolor="none")
     ax_j.set_xticks(x)
-    ax_j.set_xticklabels(labels, fontsize=6)
+    ax_j.set_xticklabels([lab for _, lab in keys], fontsize=5.5)
     ax_j.set_ylabel(r"$J$ (meV)")
     ax_j.set_ylim(0, max(j_vals) * 1.28)
     style_axes(ax_j, grid=True)

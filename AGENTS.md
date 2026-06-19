@@ -1210,7 +1210,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track A**：Exp9 **8/12** step **135/300** ~45% — **不干预**；Exp10 **40/41** cutoff400 pending。
  - **Track B**：`groupedaddress`+Contact `	hanks`；去显式 `bibliographystyle`；SI 标题/作者同步；`SupplementalMaterial` 入 `.bib`+参考文献表（PRB SM 引用规范）。
  - **创新审计**：PRB 版式 = **A**；SM 参考文献 = **A**
- - **Git**：pending
+ - **Git**：`bebeb36`+fix — loop R134 → **pushed: origin/main**
  - **下一轮**：Exp9 PROGRAM ENDED → post_exp9；APS 上传 checklist
 
 - **Loop R133（2026-06-19，Track B · PRB 投稿准备）**：

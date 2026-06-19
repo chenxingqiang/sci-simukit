@@ -1119,7 +1119,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
   - **Track A**：Exp9 batch 存活；`polaron_pristine_qneg1_opt` step **63/300** OT~**486** — **不干预**。
   - **Track B**：PRL 主图 (b) 统一 `dft_results` PDOS 路径 + VBM/CBM 标签；主稿 Limitations/caption 指向 Supp.~S4--S6 Electron SI 契约。
   - **创新审计**：主图–SI 色标一致 = **A**；$\lambda$ = **B pending**
-  - **Git**：见 commit — `loop R115: PRL DOS canonical path and S4-S6 cross-ref`
+  - **Git**：`2c165e6` — `loop R115: PRL DOS canonical path and S4-S6 cross-ref` → **push pending** (network)
   - **下一轮**：qneg1 PROGRAM ENDED → post_exp9
 
 - **Loop R114（2026-06-18，双轨）**：

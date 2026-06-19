@@ -22,9 +22,9 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 |----|-----|
 | **Exp10** | **40/40** converged ✅（见 `exp10_status.json`） |
 | **Exp8** | **6/6** ✅ — `post_exp8_converged.sh` consolidated `geoopt_pristine_sp.out` |
-| **Exp9** | **7/12** GEO_OPT；qneg1 **step 63/300** OT~456（restarted-after-ABORT） |
+| **Exp9** | **7/12** GEO_OPT；qneg1 **step 63/300** OT~486（restarted-after-ABORT） |
 | **运行中** | `polaron_pristine_qneg1_opt`（4× MPI）— **不干预** |
-| **临界区** | **near-converged**（OT grad $\sim2.5\times10^{-6}$） |
+| **临界区** | geo step 63/300（OT grad $\sim8.6\times10^{-6}$，内层 SCF 振荡） |
 | **下一任务** | qneg1 PROGRAM ENDED → `post_exp9_converged.sh` |
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
 | **阻塞 PRL** | Exp9 λ + transport 主图 |
@@ -32,7 +32,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **下一 B 任务** | Exp9 λ 入 S5；transport 主图；MolFC 替换 S6(b) |
 | **主张-证据** | post_exp9→`render_si_figures.sh` = **A** |
 | **旗杆** | `post_exp9_converged.sh` |
-| **最新 Loop** | **R114**（见下方笔记） |
+| **最新 Loop** | **R115**（见下方笔记） |
 
 **一行命令**：`bash experiments/exp10_status_line.sh` · `bash experiments/exp9_status_line.sh`
 
@@ -1114,6 +1114,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R115（2026-06-18，双轨）**：
+  - **Track A**：Exp9 batch 存活；`polaron_pristine_qneg1_opt` step **63/300** OT~**486** — **不干预**。
+  - **Track B**：PRL 主图 (b) 统一 `dft_results` PDOS 路径 + VBM/CBM 标签；主稿 Limitations/caption 指向 Supp.~S4--S6 Electron SI 契约。
+  - **创新审计**：主图–SI 色标一致 = **A**；$\lambda$ = **B pending**
+  - **Git**：见 commit — `loop R115: PRL DOS canonical path and S4-S6 cross-ref`
+  - **下一轮**：qneg1 PROGRAM ENDED → post_exp9
 
 - **Loop R114（2026-06-18，双轨）**：
   - **Track A**：Exp9 batch 存活（pid 51938）；`polaron_pristine_qneg1_opt` step **63/300** OT~**456** — **不干预**。

@@ -87,7 +87,7 @@ def _plot_electronic_row(ax_gap, ax_dos, gaps) -> None:
     )
 
     panel_label(ax_dos, "b")
-    pdos_path = repo_root() / "experiments/exp_7_electronic_structure/results/elec_pos0p0_B-k1-1.pdos"
+    pdos_path = repo_root() / "dft_results/exp_7_electronic_structure/outputs/elec_pos0p0_B-k1-1.pdos"
     series = parse_pdos(pdos_path)
     grid = np.linspace(-2.5, 2.5, 400)
     dos = gaussian_dos(series.energy_ev, series.pi_weight, grid, sigma_ev=0.07)

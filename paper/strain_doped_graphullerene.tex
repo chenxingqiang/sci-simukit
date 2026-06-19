@@ -70,7 +70,7 @@ No published qHP C$_{60}$ study quantifies the residual synergy $\mathcal{S}$ of
 (2)~A verified two-point IPR/$J$ audit in the small-polaron regime (Exp.~4).
 (3)~Opposite-sign mechanical sensitivities $\alpha$ for N vs.\ B (Exp.~5).
 (4)~Quantitative non-additivity via $\mathcal{S}$ to $8\times\mathrm{C}_{60}$ (Exp.~10: 40/40 converged points; $|\mathcal{S}|$ up to $\sim32$~meV/atom at $+3$\% strain over a 15-point synergy audit).
-Marcus $\lambda$ and FCWD transport closure (Exp.~9) are in progress and deferred to supplementary figures without quoted $\lambda$ values until vertical single-points converge.
+Marcus $\lambda$ and FCWD transport closure (Exp.~9) are in progress and deferred to Supplementary Figs.~S4--S6 (Electron SI-aligned $\pi$-DOS, Marcus, and $J$/FCWD panels) without quoted $\lambda$ values until vertical single-points converge.
 Section~\ref{sec:methods} defines models and metrics; Sec.~\ref{sec:results} follows the logic electronic structure $\to$ localization/coupling $\to$ mechanics $\to$ non-additivity; Sec.~\ref{sec:discussion} compares with Ref.~\citenum{Capobianco2024electron} and states design limits.
 
 % ------------------------------------------------------------------
@@ -167,7 +167,7 @@ For N, $\mathcal{S}$ changes sign between $n=6$ ($+2.4$~meV/atom) and $n=8$ ($-2
 \includegraphics[width=\columnwidth]{figures/out/figure_prl_main.pdf}
 \caption{\label{fig:prl_main}Coupled $(\epsilon,\delta)$ response in doped qHP C$_{60}$ (PBE+D3; Capobianco-style layout).
 (a)~HOMO--LUMO gap vs.\ strain (Exp.~7; P @ $-5$\% excluded).
-(b)~$\pi$-projected DOS for B @ $\varepsilon{=}0$ [Exp.~7 \texttt{.pdos}].
+(b)~$\pi$-projected DOS for B @ $\varepsilon{=}0$ [Exp.~7 \texttt{.pdos}; Electron SI valence purple / conduction teal].
 (c)~$\alpha$ from Exp.~5 [\texttt{table1\_verification.json}].
 (d)~$\mathcal{S}(n)$ at $+3$\% (15 points) [\texttt{sdc\_exp10\_synergy\_audit.json}]; inset: Exp.~4 IPR/$J$.}
 \end{figure*}
@@ -198,7 +198,7 @@ Partial Exp.~9 adiabatic IP/EA values (pristine IP, N IP, B EA from converged ch
 \textbf{Limitations.}
 Rigid strain; $E_f$ without chemical potentials; PBE+D3 only (no Koopmans/rVV10 subset); Exp.~4 is a two-point IPR/$J$ audit; Exp.~9 Marcus $\lambda$ incomplete (7/12 GEO\_OPT converged; partial adiabatic IP/EA only; \texttt{polaron\_pristine\_qneg1\_opt} rerun after CP2K~2025 \texttt{PRINT/FORCES} abort; vertical SP pending).
 Full transport rates in the Capobianco FCWD framework require converged $\lambda$, broader IPR/$J$ grids, and functional alignment---left as future work once Exp.~9 closes.
-Supplementary Figs.~S5--S6 (Marcus configuration coordinate and $J$+FCWD schematic) document the intended transport observables pipeline; Fig.~S5 DFT $\lambda$ panels remain \textbf{[pending: Exp.~9 vertical SP]} [compile: \texttt{supplementary\_figures.tex}].
+Supplementary Figs.~S4--S6 document band-edge $\pi$-DOS (Electron SI Fig.~S4 palette), Marcus configuration coordinates, and $J$+FCWD observables; Fig.~S5 DFT $\lambda$ panels remain \textbf{[pending: Exp.~9 vertical SP]} [compile: \texttt{supplementary\_figures.tex}].
 
 % ------------------------------------------------------------------
 \section{\label{sec:conclusions}Conclusions}

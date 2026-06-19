@@ -86,7 +86,7 @@
         "project": "polaron_P_qpos1_opt",
         "out_exists": true,
         "program_ended": false,
-        "energy_ha": -685.3371637983715,
+        "energy_ha": -685.3377778775467,
         "xyz_exists": true
       },
       "-1": {
@@ -160,14 +160,14 @@
     "polaron_P_qneg1_opt"
   ],
   "running_snapshot": {
-    "geo_step": 16,
+    "geo_step": 21,
     "geo_max_iter": 300,
-    "last_ot_step": 7,
-    "last_ot_convergence": 8.7e-07,
+    "last_ot_step": 3,
+    "last_ot_convergence": 5.84e-06,
     "abort_seen": true,
     "restarted_after_abort": true,
     "task": "polaron_P_qpos1_opt",
-    "geo_progress_pct": 5.3
+    "geo_progress_pct": 7.0
   },
   "running_task": "polaron_P_qpos1_opt"
 }

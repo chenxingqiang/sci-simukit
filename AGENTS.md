@@ -1119,7 +1119,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
   - **Track A**：Exp9 **7/12**；qneg1 geo step **63/300** OT~338 — **不干预**。
   - **Track B**：`post_exp9_converged.sh` 契约修复（删 `polaron_lambda_diagram.py` → `render_si_figures.sh`）；S5 脚本在 `lambda_eV` 非 null 时自动标注 $\lambda$。
   - **创新审计**：Exp9 post 闭环 = **A**；$\lambda$ 数值 = **B pending**
-  - **Git**：见 commit hash after push
+  - **Git**：`5b4bbf8` — `loop R112: post_exp9 SI refresh contract and S5 lambda hook` → **pushed: origin/main**
   - **下一轮**：qneg1 PROGRAM ENDED → post_exp9 → continue batch
 
 - **Loop R111（2026-06-18，双轨）**：

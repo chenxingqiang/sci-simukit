@@ -1119,7 +1119,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track A**：Exp9 **7/12**；qneg1 **step 106/300** ~35% — **不干预**（batch 51938）。
  - **Track B（I Abstract）**：Abstract 末句 **7/12** partial Exp9 诚实化；刷新 `exp9_polaron_verification.json` + SI S4–S6。
  - **创新审计**：Abstract partial Exp9 = **A−**（JSON 计数）；$\lambda$ = **B pending**
- - **Git**：pending — `loop R120: Abstract 7-12 partial Exp9, refresh SI figures`
+ - **Git**：`9bdb019` — `loop R120: Abstract 7-12 partial Exp9, refresh SI figures` → **pushed: origin/main**
  - **下一轮**：qneg1 PROGRAM ENDED → post_exp9
 
 - **Loop R119（2026-06-19，双轨）**：

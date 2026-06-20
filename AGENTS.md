@@ -1207,7 +1207,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track A**：Exp9 **11/12**；`P_qneg1` step **222/300** ~74% — **不干预**。
  - **Track B（IV Methods）**：Energy observables $|\mathcal{S}|$ $\approx 24$→**23.7** meV；`post_exp9`→`render_si_figures.sh` 主文契约。
  - **创新审计**：Methods–audit = **A**；λ = **B pending**
- - **Git**：待 commit R187；（local only）
+ - **Git**：`e9954fb` — loop R187 → **local only**
  - **下一轮**：R188 Results；P_qneg1 ENDED → post_exp9
 
 - **Loop R186（2026-06-20，双轨）**：

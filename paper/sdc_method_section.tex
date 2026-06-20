@@ -12,6 +12,7 @@ Additive superposition gives $\mathcal{S}=0$; $\mathcal{S}<0$ indicates cooperat
 To first order in strain, $\mathcal{S}(\epsilon,\delta)\approx(\alpha_\delta-\alpha_0)\,\epsilon$ when $\alpha_\delta=\mathrm{d}E/\mathrm{d}\epsilon$ is evaluated for the doped cell and $\alpha_0$ for the pristine reference at the same $n$ (rigid-strain protocol); this links the mechanical coefficient $\alpha$ to the cross term at small $\epsilon$.
 
 Periodic-cell $\mathcal{S}$ values are obtained from converged CP2K outputs with \texttt{c/simukit-sdc} (Supplemental Material Table~S2).
+The fifteen-point $+3$\% strain audit is archived as \texttt{experiments/analysis/sdc/sdc\_exp10\_synergy\_audit.json} (\texttt{synergy\_S\_meV\_per\_atom}), refreshed by \texttt{experiments/post\_exp10\_converged.sh} after each converged periodic task.
 We report $\mathcal{S}$ for total energy only; an analogous gap cross term $\mathcal{S}_{\mathrm{gap}}$ is not computed here---main-text panel~(a) shows that gap slopes need not track $|\mathcal{S}|$.
 
 \textbf{Localization and coupling (Supplemental Material Fig.~S6).}

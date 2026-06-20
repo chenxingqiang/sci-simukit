@@ -162,7 +162,7 @@
     "geo_step": 213,
     "geo_max_iter": 300,
     "last_ot_step": 6,
-    "last_ot_convergence": 8.9e-07,
+    "last_ot_convergence": 7.8e-07,
     "abort_seen": false,
     "restarted_after_abort": false,
     "task": "polaron_P_qneg1_opt",

@@ -52,7 +52,7 @@
 | Conclusion Marcus/SI defer | **A** | **[R158]** | 与 Discussion R157 边界一致 |
 | Results $\mathcal{S}(n)$ audit 溯源 | **A** | **[R164; R172 max 31.9]** | `sdc_exp10_synergy_audit.json` + Fig.~caption (d) |
 | Fig.~caption (c) $\alpha$ | Table~S1 | **R180** |
-| Discussion design rules ↔ audit | **A** | **[R165; R173 23.7--31.9]** | HT reranking + P $|\mathcal{S}|$ 范围 vs audit |
+| Discussion design rules ↔ audit | **A** | **[R165; R173; R181 n=4 23.7/6.2]** | HT reranking + verified $n{=}4$ values |
 | Discussion Makov2023 baseline | **B+** | **[R173; R178 Context cite]** | 内禀应变 + 刚性外载衔接 |
 | Conclusion + Data availability audit | **A** | **[R166; R174 (ii) 31.9]** | machine-readable reranking + DA 路径 |
 | Results adiabatic IP/EA 边界 | **A** | **[R156]** | 主文不引；11/12 → audit JSON |
@@ -67,7 +67,7 @@
 | ML $R^2{>}0.95$、775%/300% $\mu$ | **C** | **[withdrawn from main]** | 勿进 Abstract/Results |
 | 下文 IPR 45→25、$J{=}135$ meV、$\mu{=}8.75\times$ | **C** | **[discrepancy]** | 仅作历史理论草稿；见 §2 |
 
-**Track A 快照（2026-06-20，R180）**：Exp9 **11/12** — `polaron_P_qneg1_opt` step **212/300** ~71%（CP2K 不干预）；Exp10 **40/41**；Exp8 **6/6** ✅。
+**Track A 快照（2026-06-20，R181）**：Exp9 **11/12** — `polaron_P_qneg1_opt` step **213/300** ~71%（CP2K 不干预）；Exp10 **40/41**；Exp8 **6/6** ✅。
 
 ---
 

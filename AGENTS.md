@@ -1207,7 +1207,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track A**：Exp9 **11/12**；`P_qneg1` step **210/300** ~70% — **不干预**。
  - **Track B（IV Methods）**：`sdc_method_section` 增 `post_exp9`→`render_si_figures`；SI Methods 增 `post_exp10`/audit 行。
  - **创新审计**：Methods 钩子 = **A**；λ = **B pending**
- - **Git**：待 commit R179；（local only）
+ - **Git**：`eaaffa4` — loop R179 → **local only**
  - **下一轮**：R180 Results；P_qneg1 ENDED → post_exp9
 
 - **Loop R178（2026-06-20，双轨）**：

@@ -38,6 +38,7 @@
 | Table S5 局域结构（$\bar{d}$, $\Delta r_{\mathrm{cov}}$） | **A−** | **[verified]** | `experiments/analysis/local_structure_tetramer.json` |
 | Major 4 论证（$E_{\mathrm{sub}}$, S–$\alpha$, B vs P） | **A** | **[verified R135]** | Discussion + Table S1 |
 | PRL transport / Marcus 主图 | **C** | **[pending]** | PRB 主文不阻塞；SI S5–S6 |
+| Fig.~S5 P panel | **A−** | **[R150]** | 1$\times$4；P IP 4.07 eV |
 | Conclusion 压缩去冗余 | **A** | **[R148]** | 删重复 N/B 句；保留 Tables~S2--S4 |
 | §8 mapping 废止 Results localization | **A** | **[R147]** | 改 SI Fig.~S5 |
 | Conclusion Intro 三问闭环 | **A** | **[verified R146]** | (i)--(iii) 显式回答 |
@@ -46,7 +47,7 @@
 | ML $R^2{>}0.95$、775%/300% $\mu$ | **C** | **[withdrawn from main]** | 勿进 Abstract/Results |
 | 下文 IPR 45→25、$J{=}135$ meV、$\mu{=}8.75\times$ | **C** | **[discrepancy]** | 仅作历史理论草稿；见 §2 |
 
-**Track A 快照（2026-06-20，R149）**：Exp9 **11/12** — `polaron_B_qpos1_opt` step **102/300** P_qneg1 ~34% restarted（快照；CP2K 不干预）（4× MPI）；Exp10 **40/41**；Exp8 **6/6** ✅。
+**Track A 快照（2026-06-20，R150）**：Exp9 **11/12** — `polaron_B_qpos1_opt` step **104/300** P_qneg1 ~35% restarted（快照；CP2K 不干预）（4× MPI）；Exp10 **40/41**；Exp8 **6/6** ✅。
 
 ---
 

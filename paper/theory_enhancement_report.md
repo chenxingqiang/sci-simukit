@@ -35,7 +35,7 @@
 | SI Overview Exp9 诚实化 | **A−** | **[R161]** | 11/12 + vertical pending |
 | Discussion Qiu2025 力学对比 | **B+** | **[verified R154]** | `strain_doped_graphullerene.tex` Context 段 cite `Qiu2025atomic` |
 | Abstract partial Exp9 | **N/A** | **[withdrawn R67]** | PRB 摘要无 Exp9 计数 |
-| Abstract $\alpha$/|$\mathcal{S}$| vs audit | **A** | **[R175 P0]** | Abstract max $31.9$ 与 Results/Conclusion 一致 |
+| Abstract $\alpha$/|$\mathcal{S}$| vs audit | **A** | **[R175--R176 P0]** | Abstract max $31.9$ 已落盘 `strain_doped_graphullerene.tex` |
 | Abstract PBE+D3 术语 | **A** | **[R168]** | 与 Methods/Intro `PBE+D3` 一致 |
 | Abstract Marcus defer | **A** | **[R160]** | 末句 SI-only；无 $\lambda$ 数值 |
 | 主稿 citekey 计数（精简稿） | **A** | **13** | 非 `citation_completion_report` 48 篇旧快照 |
@@ -65,7 +65,7 @@
 | ML $R^2{>}0.95$、775%/300% $\mu$ | **C** | **[withdrawn from main]** | 勿进 Abstract/Results |
 | 下文 IPR 45→25、$J{=}135$ meV、$\mu{=}8.75\times$ | **C** | **[discrepancy]** | 仅作历史理论草稿；见 §2 |
 
-**Track A 快照（2026-06-20，R175）**：Exp9 **11/12** — `polaron_P_qneg1_opt` step **206/300** ~69%（CP2K 不干预）；Exp10 **40/41**；Exp8 **6/6** ✅。
+**Track A 快照（2026-06-20，R176）**：Exp9 **11/12** — `polaron_P_qneg1_opt` step **207/300** ~69%（CP2K 不干预）；Exp10 **40/41**；Exp8 **6/6** ✅。
 
 ---
 

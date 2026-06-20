@@ -88,6 +88,7 @@ Periodic scaling cells place one dopant per C$_{60}$ ($n=1$--$8$), so nominal co
 Tetramer $\alpha$, gaps, and Supplemental Material IPR/$J$ trends are therefore not directly interchangeable with periodic $\mathcal{S}(n)$ without a matched-concentration benchmark; all $\mathcal{S}$ claims use the periodic protocol.
 In total, $\gtrsim 90$ converged neutral tasks support the quantitative claims below (Table~S2).
 Charged polaron geometry optimizations and vertical single-points for Marcus reorganization energies follow the same functional and basis choices but are reported separately in Supplemental Material Fig.~S5 once converged; they do not enter the $\mathcal{S}$ definition in Eq.~\eqref{eq:synergy_order}.
+Batch workflow: \texttt{experiments/continue\_exp9\_pending.sh} (twelve charged GEO\_OPT, then eight vertical single-points at the neutral geometry); \texttt{post\_exp9\_converged.sh} refreshes \texttt{experiments/analysis/exp9\_polaron\_verification.json} and SI Fig.~S5 (11/12 GEO\_OPT at revision).
 
 \subsection{Energy observables}
 
@@ -114,6 +115,7 @@ Seed~137 grid (Table~S4) & 18 inp / pending & $\alpha$, tetramer $\mathcal{S}$ v
 \end{tabular}
 \end{ruledtabular}
 \end{table}
+Exp.~9 Marcus benchmarks (Fig.~S5) are gated on the same audit JSON; the PRB validation queue in \texttt{experiments/run\_prb\_revision\_dft.sh} runs only after Exp.~9 and CP2K are idle.
 Substitution energy $E_{\mathrm{sub}}$ is \emph{not} a thermodynamic formation enthalpy: it omits elemental chemical potentials and reports $(E_{\mathrm{doped}}-E_{\mathrm{pristine}})/n_{\mathrm{dopants}}$ at fixed strain only.
 
 % ------------------------------------------------------------------

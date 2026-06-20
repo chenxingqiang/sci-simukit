@@ -1207,7 +1207,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track A**：Exp9 **11/12**；`P_qneg1` step **236/300** ~79% — **不干预**。
  - **Track B（VI Results）**：应变段 foreshadow → $|\mathcal{S}|=23.7$ @ $n{=}4$ P；Results  opener 主文不引 IP/EA。
  - **创新审计**：Results 叙事链 = **A**（无新 `.out`）；λ = **B pending**
- - **Git**：待 commit R196；（local only）
+ - **Git**：`b7fdf3c` — loop R196 → **local only**
  - **下一轮**：R197 Discussion；P_qneg1 ENDED → post_exp9
 
 - **Loop R195（2026-06-20，双轨）**：

@@ -1208,7 +1208,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track B（III Literature）**：Discussion Context 增 `Makov2023graphullerene`。
  - **文献检索**：arxiv:2603.10142 endohedral qHP — 封装体非 B/N/P 取代，未入 bib。
  - **创新审计**：文献谱系 = **B+**；λ = **B pending**
- - **Git**：待 commit R178；（local only）
+ - **Git**：`b6683f9` — loop R178 → **local only**
  - **下一轮**：R179 Methods；P_qneg1 ENDED → post_exp9
 
 - **Loop R177（2026-06-20，双轨）**：

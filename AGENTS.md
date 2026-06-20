@@ -1207,7 +1207,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track A**：Exp9 **11/12**；`P_qneg1` step **207/300** ~69% — **不干预**。
  - **Track B（I Abstract）**：**落盘** R175 P0 — Abstract `$\sim 32$`→`31.9` meV/atom。
  - **创新审计**：Abstract 契约 = **A**；λ = **B pending**
- - **Git**：`5c19330` — loop R176 → **local only**
+ - **Git**：`872742d` — loop R176 → **local only**
  - **下一轮**：R177 Intro；P_qneg1 ENDED → post_exp9
 
 - **Loop R175（2026-06-20，双轨）**：

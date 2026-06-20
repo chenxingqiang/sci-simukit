@@ -89,7 +89,7 @@ Periodic scaling cells place one dopant per C$_{60}$ ($n=1$--$8$), so nominal co
 Tetramer $\alpha$, gaps, and Supplemental Material IPR/$J$ trends are therefore not directly interchangeable with periodic $\mathcal{S}(n)$ without a matched-concentration benchmark; all $\mathcal{S}$ claims use the periodic protocol.
 In total, $\gtrsim 90$ converged neutral tasks support the quantitative claims below (Table~S2).
 Charged polaron geometry optimizations and vertical single-points for Marcus reorganization energies follow the same functional and basis choices but are reported separately in Supplemental Material Fig.~S5 once converged; they do not enter the $\mathcal{S}$ definition in Eq.~\eqref{eq:synergy_order}.
-Batch workflow: \texttt{experiments/continue\_exp9\_pending.sh} (twelve charged GEO\_OPT, then eight vertical single-points at the neutral geometry); \texttt{post\_exp9\_converged.sh} refreshes \texttt{experiments/analysis/exp9\_polaron\_verification.json} and SI Fig.~S5 (11/12 GEO\_OPT at revision).
+Batch workflow: \texttt{experiments/continue\_exp9\_pending.sh} (twelve charged GEO\_OPT, then eight vertical single-points at the neutral geometry); \texttt{post\_exp9\_converged.sh} refreshes \texttt{experiments/analysis/exp9\_polaron\_verification.json} and SI Fig.~S5 via \texttt{paper/figures/render\_si\_figures.sh} (11/12 GEO\_OPT at revision).
 
 \subsection{Energy observables}
 
@@ -97,7 +97,7 @@ Linear strain sensitivity $\alpha=\mathrm{d}E/\mathrm{d}\epsilon$ (meV per 1\% b
 Positive $\alpha$ means tension \emph{raises} total energy; negative $\alpha$ means tension \emph{lowers} it under the rigid-strain protocol.
 Substitution energy $E_{\mathrm{sub}}=(E_{\mathrm{doped}}-E_{\mathrm{pristine}})/n_{\mathrm{dopants}}$ is reported relative to pristine tetramers at the same strain (no chemical-potential reference).
 In sequential high-throughput screens one often estimates $E_{\mathrm{tot}}(\epsilon,\delta)\approx E_{\mathrm{sub}}(\epsilon{=}0)+E_{\mathrm{strain}}(\epsilon)$; the neglected term is precisely $\mathcal{S}(\epsilon,\delta)$---the absolute error in that additive estimate.
-For screening workflows, the magnitude of this error is best gauged against the substitution-energy scale: at $n=4$ and $+3$\% strain, P has $|\mathcal{S}|\approx 24$~meV/atom while the per-atom substitution scale is $|E_{\mathrm{sub}}|\times n_{\mathrm{dop}}/n_{\mathrm{atoms}}\approx 0.79$~eV/atom ($|E_{\mathrm{sub}}|\approx 16$~eV per P site, $n_{\mathrm{dop}}{=}12$, Table~S1)---i.e.\ $|\mathcal{S}|/|E_{\mathrm{sub}}|_{\mathrm{per\,atom}}\sim 3$\%, large enough to reorder stability margins in sequential doping-then-strain screens even though $|\mathcal{S}|$ exceeds the rigid per-atom strain increment ($\alpha\times 3\%/N_{\mathrm{atoms}}\lesssim 0.3$~meV/atom for P).
+For screening workflows, the magnitude of this error is best gauged against the substitution-energy scale: at $n=4$ and $+3$\% strain, P has $|\mathcal{S}|=23.7$~meV/atom while the per-atom substitution scale is $|E_{\mathrm{sub}}|\times n_{\mathrm{dop}}/n_{\mathrm{atoms}}\approx 0.79$~eV/atom ($|E_{\mathrm{sub}}|\approx 16$~eV per P site, $n_{\mathrm{dop}}{=}12$, Table~S1)---i.e.\ $|\mathcal{S}|/|E_{\mathrm{sub}}|_{\mathrm{per\,atom}}\sim 3$\%, large enough to reorder stability margins in sequential doping-then-strain screens even though $|\mathcal{S}|$ exceeds the rigid per-atom strain increment ($\alpha\times 3\%/N_{\mathrm{atoms}}\lesssim 0.3$~meV/atom for P).
 
 \input{sdc_method_section.tex}
 

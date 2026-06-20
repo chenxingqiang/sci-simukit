@@ -1208,7 +1208,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track B（III Literature）**：WebSearch → bib `Shi2023strainC60`（DOI 10.1088/1361-648X/acc4a3）；Discussion 应变–$\mu$ vs $\mathcal{S}$ 对比句。
  - **检索**：`graphullerene strain doping DFT 2025 2026` → Shi2023 qHP **support/compete**（迁移率，无联合 $\mathcal{S}$）
  - **创新审计**：文献对比 = **B+**；λ = **B pending**
- - **Git**：待 commit R194；（local only）
+ - **Git**：`eb15c5f` — loop R194 → **local only**
  - **下一轮**：R195 Methods；P_qneg1 ENDED → post_exp9
 
 - **Loop R193（2026-06-20，双轨）**：

@@ -1207,7 +1207,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track A**：Exp9 **11/12**；`P_qneg1` step **226/300** ~75% — **不干预**。
  - **Track B（VII Discussion）**：(ii) P $|\\mathcal{S}|$ 明确 $n{=}4$ 23.7 / max 31.9；Polaron 段 endohedral vs $\mathcal{S}$ 正交轴；Abstract fifteen-point 漂移修复。
  - **创新审计**：Discussion 定量 = **A**；λ = **B pending**
- - **Git**：待 commit R189；（local only）
+ - **Git**：`2d9011d` — loop R189 → **local only**
  - **下一轮**：R190 Conclusion；P_qneg1 ENDED → post_exp9
 
 - **Loop R188（2026-06-20，双轨）**：

@@ -1207,7 +1207,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track A**：Exp9 **11/12**；`P_qneg1` step **231/300** ~77% — **不干预**。
  - **Track B（II Intro）**：gap 段补 `Pereira2026endohedral`（endohedral vs 双轴 $\mathcal{S}$）。
  - **创新审计**：Intro 文献线 = **B+**；λ = **B pending**
- - **Git**：待 commit R193；（local only）
+ - **Git**：`2a40eea` — loop R193 → **local only**
  - **下一轮**：R194 Literature；P_qneg1 ENDED → post_exp9
 
 - **Loop R192（2026-06-20，双轨）**：

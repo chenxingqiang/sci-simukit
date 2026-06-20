@@ -1,6 +1,6 @@
 # 理论增强与证据对齐报告
 
-> **Loop R159 横切审计（2026-06-20）** — R155 Methods Exp9；R156 Results/SI 边界；R157 Discussion Marcus；R158 Conclusion defer — R116 PBE/D3；R117 Qiu2025；Conclusion post_exp9 闭环 — 与主稿 / canonical JSON / `.out` 对齐  
+> **Loop R167 横切审计（2026-06-20）** — R165 Discussion design↔audit；R166 Conclusion+DA 路径 — R155 Methods Exp9；R156 Results/SI 边界；R157 Discussion Marcus；R158 Conclusion defer — R116 PBE/D3；R117 Qiu2025；Conclusion post_exp9 闭环 — 与主稿 / canonical JSON / `.out` 对齐  
 > 本文件是**活文档**：旧版「投稿准备 ✅ / 8.5/10」评分已废止；以下以 **A/B/C 证据等级** 为准。
 
 ## PRL desk gate（R128+）
@@ -47,6 +47,8 @@
 | Conclusion 压缩去冗余 | **A** | **[R148]** | 删重复 N/B 句；保留 Tables~S2--S4 |
 | Conclusion Marcus/SI defer | **A** | **[R158]** | 与 Discussion R157 边界一致 |
 | Results $\mathcal{S}(n)$ audit 溯源 | **A** | **[R164]** | `sdc_exp10_synergy_audit.json` |
+| Discussion design rules ↔ audit | **A** | **[R165]** | HT reranking 句 → `synergy_table` (15 点) |
+| Conclusion + Data availability audit | **A** | **[R166]** | machine-readable reranking + DA 路径 |
 | Results adiabatic IP/EA 边界 | **A** | **[R156]** | 主文不引；11/12 → audit JSON |
 | Discussion polaron transport 段 | **A−** | **[R157]** | Capobianco 协议 vs PBE+D3 |
 | sdc_method simukit-sdc 点名 | **A** | **[R163]** | `c/simukit-sdc` + `generate_vertical_sp` |
@@ -59,7 +61,7 @@
 | ML $R^2{>}0.95$、775%/300% $\mu$ | **C** | **[withdrawn from main]** | 勿进 Abstract/Results |
 | 下文 IPR 45→25、$J{=}135$ meV、$\mu{=}8.75\times$ | **C** | **[discrepancy]** | 仅作历史理论草稿；见 §2 |
 
-**Track A 快照（2026-06-20，R166）**：Exp9 **11/12** — `polaron_P_qneg1_opt` step **196/300** ~65%（CP2K 不干预）；Exp10 **40/41**；Exp8 **6/6** ✅。
+**Track A 快照（2026-06-20，R167）**：Exp9 **11/12** — `polaron_P_qneg1_opt` step **197/300** ~66%（CP2K 不干预）；Exp10 **40/41**；Exp8 **6/6** ✅。
 
 ---
 
@@ -86,8 +88,9 @@
 | Limitations | 11/12 GEO, no $\lambda$ | `derived.lambda_eV` 全 null |
 | Conclusion (i)–(iii) | Intro 三问显式闭环 | **R146**；Marcus $\lambda$ deferred to SI (**R158** 末句) |
 | Data availability synergy audit | `sdc_exp10_synergy_audit.json` | **R166** Conclusion + DA 路径 |
+| Discussion design rules | fifteen-point audit HT reranking | `sdc_exp10_synergy_audit.json` (**R165**) |
 
-**grep 闸门（2026-06-20，R159）**：主稿无 775%/300%/8.75×；Koopmans/rVV10 仅 Methods 对比句 ✅
+**grep 闸门（2026-06-20，R167）**：主稿无 775%/300%/8.75×；Koopmans/rVV10 仅 Methods/Limitations 对比句 ✅；`synergy_table` max $|\mathcal{S}|\approx 31.9$ meV/atom vs Abstract ✅
 
 ---
 
@@ -96,7 +99,7 @@
 ### 1.1 应变—掺杂非加性（核心贡献）
 
 - **序参量**：$\mathcal{S} = E(\epsilon,\delta) - E(\epsilon,0) - E(0,\delta) + E(0,0)$（meV/atom，Exp5+Exp10）。
-- **尺寸标度**：$S(n) \approx S_\infty + A/n$；@+3% strain，15 点 DFT（n=1,2,4,6,8 × B/N/P）。
+- **尺寸标度**：$S(n) \approx S_\infty + A/n$；@+3% strain，15 点 DFT（n=1,2,4,6,8 × B/N/P）；JSON 字段 `synergy_S_meV_per_atom`。
 - **Provisional $S_\infty$**（meV/atom）：B **−0.52**，N **−0.68**，P **−0.13**（`sdc_exp10_synergy_audit.json`）。
 - **设计含义**：N vs B 应变灵敏度符号相反（Exp5 $\alpha$）；n=8 N 的 $\mathcal{S}$ 符号反转 — 尺寸依赖非加性。
 
@@ -149,7 +152,7 @@ SI S1.2 合成 $\lambda$ 分解：**[illustrative, pending Exp9]**；Capobianco2
 
 ---
 
-## 4. 创新审计（R103）
+## 4. 创新审计（R167）
 
 | 主张 | 等级 |
 |------|------|
@@ -157,6 +160,8 @@ SI S1.2 合成 $\lambda$ 分解：**[illustrative, pending Exp9]**；Capobianco2
 | N vs B $\alpha$ 符号相反 | **A** |
 | N @ n=8 $\mathcal{S}$ 符号反转 | **B pending** | cutoff400 + Table S4 |
 | Exp9 partial IP/EA (SI Fig.~S5) | **A−** | 11/12 GEO\_OPT |
+| Discussion HT reranking ↔ audit | **A** | **R165** |
+| Conclusion DA synergy path | **A** | **R166** |
 | Intro–Conclusion 四条闭环 + Marcus defer | **A** |
 | Marcus $\lambda$ | **B pending** |
 | 300%/775% mobility | **C** |

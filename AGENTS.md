@@ -1207,7 +1207,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track A**：Exp9 **12/12** GEO；vertical SP **0/8** — `B_qneg1_vert` — **不干预**。
  - **Track B（II Intro）**：Marcus 句 ↔ Abstract R200 vertical SP defer。
  - **创新审计**：Intro–Abstract 契约 = **A**；λ = **B pending**
- - **Git**：待 commit R201；（local only）
+ - **Git**：`942d74f` — loop R201 → **local only**
  - **下一轮**：R202 Literature；vertical SP → post_exp9
 
 - **Loop R200（2026-06-20，双轨）**：

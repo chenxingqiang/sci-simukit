@@ -47,7 +47,8 @@ Minor comments: Conclusions now answer explicitly the three Introduction questio
 Data availability: converged inputs/outputs and audit JSON as in the manuscript;
     https://github.com/chenxingqiang/graphullerene-strain-engineering
     Reproduce PDFs with bash paper/compile_prb.sh; Table S3/S4/S2 control energies populate when
-    experiments/run_prb_revision_dft.sh completes (queued after charged-polaron batch).
+    experiments/run_prb_revision_dft.sh completes (queued after Exp.~9 charged-polaron batch:
+    11/12 geometry optimizations converged, eight vertical single-points for Marcus lambda pending).
 
 Prior submission: none to APS journals. Not a joint submission.
 

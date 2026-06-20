@@ -22,17 +22,17 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 |----|-----|
 | **Exp10** | **40/41** — `size_6x60_N_pos3pct_cutoff400` pending（截断对照） |
 | **Exp8** | **6/6** ✅ — `post_exp8_converged.sh` consolidated `geoopt_pristine_sp.out` |
-| **Exp9** | **11/12** GEO_OPT；`polaron_P_qneg1_opt` step **104/300** ~35% restarted — **不干预** |
+| **Exp9** | **11/12** GEO_OPT；`polaron_P_qneg1_opt` step **181/300** ~60% — **不干预** |
 | **运行中** | `polaron_P_qneg1_opt`（4× MPI，restarted-after-ABORT）— **不干预** |
-| **临界区** | P_qneg1 geo step 102/300；内层 OT 正常 |
+| **临界区** | P_qneg1 step 181/300 ~60%；内层 OT 正常 |
 | **下一任务** | Exp9 12/12 → `post_exp9_converged.sh`；空闲后 `run_prb_revision_dft.sh` |
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
 | **阻塞 PRB** | Table S3/S4/cutoff400 `.out`；Exp9 λ（SI S5） |
 | **文稿 P 瓶颈** | Major 1–5 文稿已落地；DFT 验证队列就绪 |
-| **下一 B 任务** | Fig.~S5 P panel；compile_prb 重编 |
+| **下一 B 任务** | P_qneg1 → 12/12；PRB 验证 DFT 队列 |
 | **主张-证据** | B/N/P $\mathcal{S}(n{=}4)$ = **A**；弛豫/seed137/cutoff = **B pending** |
 | **旗杆** | **PRB major revision**（`compile_prb.sh` + SM + cover letter）|
-| **最新 Loop** | **R150**（见下方笔记） |
+| **最新 Loop** | **R151**（见下方笔记） |
 
 
 ---
@@ -1202,6 +1202,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
   - **创新审计**：n=6 B $\mathcal{S}$ = **A 级**；8×60 batch 运维 + 资源 cap = **A 级**。
   - **Git**：`2a39654` — pushed **origin/main**（2026-06-14）。
   - **下一轮**：`8×60_B_pos3` 收敛 → post → **35/40** + 可能第 12 条 synergy；Figure 1/2 final 仍 pending。
+
+- **Loop R151（2026-06-20，双轨）**：
+ - **Track A**：Exp9 **11/12**；`P_qneg1` step **181/300** ~60% restarted — **不干预**。
+ - **Track B（投稿包验证）**：`compile_prb.sh` 全绿（主文+SI 含 R150 四 panel S5）；`prb_submission_guideline` 标注。
+ - **创新审计**：compile_prb = **A**；λ = **B pending**
+ - **Git**：`81ec0d7` — loop R151 → **local only**
+ - **下一轮**：P_qneg1 PROGRAM ENDED → post_exp9 → **12/12**
 
 - **Loop R150（2026-06-20，双轨）**：
  - **Track A**：Exp9 **11/12**；`P_qneg1` step **104/300** ~35% restarted — **不干预**。

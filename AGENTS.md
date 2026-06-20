@@ -1207,7 +1207,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track A**：Exp9 **11/12**；`P_qneg1` step **219/300** ~73% — **不干预**。
  - **Track B（II Intro）**：`Wang2024simulation` 力学各向异性 vs 双轴 $\mathcal{S}$ gap；**R184 Abstract fifteen-point 落盘**。
  - **创新审计**：Intro 文献定位 = **B+**；Abstract = **A**
- - **Git**：待 commit R185；（local only）
+ - **Git**：`ad259cb` — loop R185 → **local only**
  - **下一轮**：R186 Literature；P_qneg1 ENDED → post_exp9
 
 - **Loop R184（2026-06-20，双轨）**：

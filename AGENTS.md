@@ -32,7 +32,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **下一 B 任务** | 12/12 → vertical SP batch；Tables S3--S4 |
 | **主张-证据** | B/N/P $\mathcal{S}(n{=}4)$ = **A**；弛豫/seed137/cutoff = **B pending** |
 | **旗杆** | **PRB major revision**（`compile_prb.sh` + SM + cover letter）|
-| **最新 Loop** | **R198**（见下方笔记） |
+| **最新 Loop** | **R199**（见下方笔记） |
 
 
 ---
@@ -1202,6 +1202,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
   - **创新审计**：n=6 B $\mathcal{S}$ = **A 级**；8×60 batch 运维 + 资源 cap = **A 级**。
   - **Git**：`2a39654` — pushed **origin/main**（2026-06-14）。
   - **下一轮**：`8×60_B_pos3` 收敛 → post → **35/40** + 可能第 12 条 synergy；Figure 1/2 final 仍 pending。
+
+- **Loop R199（2026-06-20，双轨）**：
+ - **Track A**：Exp9 **12/12** GEO；vertical SP **0/8** — `B_qneg1_vert` — **不干预**。
+ - **Track B（横切 audit）**：`theory_enhancement_report.md` 11→12/12 台账；§8 P EA 2.96；grep 闸门 R199。
+ - **创新审计**：台账一致性 = **A**；λ = **B pending**
+ - **Git**：待 commit R199；（local only）
+ - **下一轮**：R200 Abstract 轮；vertical SP 收敛 → post_exp9
 
 - **Loop R198（2026-06-20，双轨）**：
  - **Track A**：**P_qneg1 收敛** → Exp9 **12/12** GEO ✅；`post_exp9_converged.sh`（P EA **2.96 eV**）；vertical SP batch `B_qneg1_vert` — **不干预**。

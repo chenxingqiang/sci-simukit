@@ -1207,7 +1207,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track A**：Exp9 **11/12**；`P_qneg1` step **229/300** ~76% — **不干预**。
  - **Track B（横切 audit）**：grep 全稿 $|\\mathcal{S}|$ ↔ audit；theory §8 R191；`cover_letter_prb` fifteen-point/31.9；AGENTS gotcha Abstract 漂移。
  - **创新审计**：契约 grep = **A**；λ = **B pending**
- - **Git**：待 commit R191；（local only）
+ - **Git**：`0671a51` — loop R191 → **local only**
  - **下一轮**：R192 Abstract；P_qneg1 ENDED → post_exp9
 
 - **Loop R190（2026-06-20，双轨）**：

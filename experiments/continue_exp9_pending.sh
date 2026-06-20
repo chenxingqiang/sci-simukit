@@ -115,27 +115,26 @@ run_vertical_sp() {
   return 1
 }
 
-PENDING_GEO=(
-  polaron_pristine_qneg1_opt
-  polaron_N_qneg1_opt
-  polaron_B_qpos1_opt
-  polaron_P_qpos1_opt
-  polaron_P_qneg1_opt
-)
+mapfile -t PENDING_GEO < <(python3 -c "
+import json
+d = json.load(open('$ROOT/experiments/analysis/exp9_polaron_verification.json'))
+for p in d.get('pending_geo_opt') or []:
+    print(p)
+" 2>/dev/null || true)
 
-PENDING_VERT=(
-  polaron_B_qneg1_vert_neutral_geom_sp
-  polaron_B_qpos1_vert_neutral_geom_sp
-  polaron_N_qneg1_vert_neutral_geom_sp
-  polaron_N_qpos1_vert_neutral_geom_sp
-  polaron_P_qneg1_vert_neutral_geom_sp
-  polaron_P_qpos1_vert_neutral_geom_sp
-  polaron_pristine_qneg1_vert_neutral_geom_sp
-  polaron_pristine_qpos1_vert_neutral_geom_sp
-)
+mapfile -t PENDING_VERT < <(python3 -c "
+import json
+d = json.load(open('$ROOT/experiments/analysis/exp9_polaron_verification.json'))
+vs = d.get('vertical_sp') or {}
+done = set(vs.get('outputs_converged') or [])
+for p in vs.get('inputs_pending') or []:
+    if p not in done:
+        print(p)
+" 2>/dev/null || true)
 
 log "========== Exp9 batch start (max_np=${SIMUKIT_MAX_CORES}/${_ncpu}) =========="
 python3 "$ROOT/experiments/analysis/analyze_exp9_polaron.py" >> "$LOG" 2>&1 || true
+log "Pending GEO_OPT: ${PENDING_GEO[*]:-none} | vertical SP: ${PENDING_VERT[*]:-none}"
 
 for base in "${PENDING_GEO[@]}"; do
   run_geo_opt "$base" || true

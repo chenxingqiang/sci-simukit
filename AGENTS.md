@@ -22,17 +22,17 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 |----|-----|
 | **Exp10** | **40/41** — `size_6x60_N_pos3pct_cutoff400` pending（截断对照） |
 | **Exp8** | **6/6** ✅ — `post_exp8_converged.sh` consolidated `geoopt_pristine_sp.out` |
-| **Exp9** | **11/12** GEO_OPT；`polaron_P_qneg1_opt` step **181/300** ~60% — **不干预** |
+| **Exp9** | **11/12** GEO_OPT；`polaron_P_qneg1_opt` step **182/300** ~61% — **不干预** |
 | **运行中** | `polaron_P_qneg1_opt`（4× MPI，restarted-after-ABORT）— **不干预** |
-| **临界区** | P_qneg1 step 181/300 ~60%；内层 OT 正常 |
+| **临界区** | P_qneg1 step 182/300 ~61%；内层 OT 正常 |
 | **下一任务** | Exp9 12/12 → `post_exp9_converged.sh`；空闲后 `run_prb_revision_dft.sh` |
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
 | **阻塞 PRB** | Table S3/S4/cutoff400 `.out`；Exp9 λ（SI S5） |
 | **文稿 P 瓶颈** | Major 1–5 文稿已落地；DFT 验证队列就绪 |
-| **下一 B 任务** | P_qneg1 → 12/12；PRB 验证 DFT 队列 |
+| **下一 B 任务** | 12/12 → vertical SP batch；Tables S3--S4 |
 | **主张-证据** | B/N/P $\mathcal{S}(n{=}4)$ = **A**；弛豫/seed137/cutoff = **B pending** |
 | **旗杆** | **PRB major revision**（`compile_prb.sh` + SM + cover letter）|
-| **最新 Loop** | **R151**（见下方笔记） |
+| **最新 Loop** | **R152**（见下方笔记） |
 
 
 ---
@@ -1203,6 +1203,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
   - **Git**：`2a39654` — pushed **origin/main**（2026-06-14）。
   - **下一轮**：`8×60_B_pos3` 收敛 → post → **35/40** + 可能第 12 条 synergy；Figure 1/2 final 仍 pending。
 
+- **Loop R152（2026-06-20，双轨）**：
+ - **Track A**：Exp9 **11/12**；`P_qneg1` step **182/300** ~61% — **不干预**。
+ - **Track B（IV Methods / 运维）**：修复 `post_exp9_converged.sh` GEO/vertical 计数（`converged` + `outputs_converged`）；`continue_exp9_pending.sh` 改 JSON 驱动 pending 队列；SI Methods 补 post hook 说明。
+ - **创新审计**：Exp9 post gate = **A**；λ = **B pending**
+ - **Git**：`b566ffa` — loop R152 → **local only**
+ - **下一轮**：P_qneg1 ENDED → post_exp9 → **12/12** → vertical SP
+
 - **Loop R151（2026-06-20，双轨）**：
  - **Track A**：Exp9 **11/12**；`P_qneg1` step **181/300** ~60% restarted — **不干预**。
  - **Track B（投稿包验证）**：`compile_prb.sh` 全绿（主文+SI 含 R150 四 panel S5）；`prb_submission_guideline` 标注。
@@ -1849,6 +1856,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 - **paper/figures 误删**：工作区 `git status D paper/figures/` 时用 `git checkout HEAD -- paper/figures/` 恢复；勿手删作图脚本目录。
 
 - **Exp9 状态误报**：`exp9_status_line` 曾先读陈旧 JSON（pre-ABORT step 63）；运行中须 **live** `dft_results/.../outputs/*.out`（R119 fix）。
+- **`post_exp9_converged.sh` geo 计数**：R152 前误用 `systems.*.geo_opt_converged`（字段不存在），12/12+8/8 闸门永不触发；已改读 JSON `converged` 与 `vertical_sp.outputs_converged`。
 - **Exp9 batch**：用 `continue_exp9_pending.sh` / `simukit-run`；**勿**并行 legacy runner。Mac 用 Homebrew `cp2k.psmp`。
 - **Exp9 CP2K 2025.1**：`&DFT &PRINT &FORCES` 会 **ABORT**；Mac 本地 inp 已移除 FORCES 块；服务器若升级 CP2K 须同步。
 - **Exp8 SP 写错 .out**：归档 partial 为 `*.failed_partial_*` 后若 CP2K 未重启，lsof 显示仍写该文件；`post_exp8`/`exp8_status_line` 须查 `geoopt_pristine_sp.out*` 全集。

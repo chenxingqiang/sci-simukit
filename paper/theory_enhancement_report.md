@@ -29,6 +29,7 @@
 | SI Fig.~S5–S6 pipeline | **A** | **[verified]** | `render_si_figures.sh` + `compile_si.sh` / `compile_prb.sh` |
 | Methods PBE+D3 citekeys | **A** | **[verified R116]** | `Perdew1996generalized`, `Grimme2011effect` + `cp2k2025` |
 | Intro Katiyar2025strain cite | **B+** | **[R162]** | 2D strain review 语境 |
+| Intro LopezAlcalay2025 cite | **B+** | **[R169]** | 衍生网络 strain+掺杂 vs $(\epsilon,\delta)$ 交叉项 |
 | Intro 去重复 separate scans | **A** | **[R161]** | joint $(\epsilon,\delta)$ 动机句 |
 | SI Overview Exp9 诚实化 | **A−** | **[R161]** | 11/12 + vertical pending |
 | Discussion Qiu2025 力学对比 | **B+** | **[verified R154]** | `strain_doped_graphullerene.tex` Context 段 cite `Qiu2025atomic` |
@@ -62,7 +63,7 @@
 | ML $R^2{>}0.95$、775%/300% $\mu$ | **C** | **[withdrawn from main]** | 勿进 Abstract/Results |
 | 下文 IPR 45→25、$J{=}135$ meV、$\mu{=}8.75\times$ | **C** | **[discrepancy]** | 仅作历史理论草稿；见 §2 |
 
-**Track A 快照（2026-06-20，R168）**：Exp9 **11/12** — `polaron_P_qneg1_opt` step **198/300** ~66%（CP2K 不干预）；Exp10 **40/41**；Exp8 **6/6** ✅。
+**Track A 快照（2026-06-20，R169）**：Exp9 **11/12** — `polaron_P_qneg1_opt` step **199/300** ~66%（CP2K 不干预）；Exp10 **40/41**；Exp8 **6/6** ✅。
 
 ---
 

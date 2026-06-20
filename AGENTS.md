@@ -1207,7 +1207,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track A**：Exp9 **11/12**；`P_qneg1` step **208/300** ~69% — **不干预**。
  - **Track B（II Intro）**：Silva2024 极化子各向异性 cite；gap 段 15 periodic 点诚实化。
  - **创新审计**：Intro 文献 = **B+**；λ = **B pending**
- - **Git**：待 commit R177；（local only）
+ - **Git**：`d2ed7e4` — loop R177 → **local only**
  - **下一轮**：R178 Literature；P_qneg1 ENDED → post_exp9
 
 - **Loop R176（2026-06-20，双轨）**：

@@ -1207,7 +1207,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track A**：Exp9 **12/12** GEO；vertical SP **0/8** — `B_qneg1_vert` — **不干预**。
  - **Track B（横切 audit）**：`theory_enhancement_report.md` 11→12/12 台账；§8 P EA 2.96；grep 闸门 R199。
  - **创新审计**：台账一致性 = **A**；λ = **B pending**
- - **Git**：待 commit R199；（local only）
+ - **Git**：`51b57ef` — loop R199 → **local only**
  - **下一轮**：R200 Abstract 轮；vertical SP 收敛 → post_exp9
 
 - **Loop R198（2026-06-20，双轨）**：

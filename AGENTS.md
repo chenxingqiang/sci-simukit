@@ -1207,7 +1207,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track A**：Exp9 **11/12**；`P_qneg1` step **215/300** ~72%（grad $\sim7.5\times10^{-7}$）— **不干预**。
  - **Track B（横切 audit）**：P0 `cover_letter_prl.txt` ~32→**31.9** meV/atom；theory §8 + grep R183。
  - **创新审计**：全稿 $|\\mathcal{S}|$ 契约 = **A**；λ = **B pending**
- - **Git**：待 commit R183；（local only）
+ - **Git**：`58c9338` — loop R183 → **local only**
  - **下一轮**：R184 Abstract 轮；P_qneg1 ENDED → post_exp9
 
 - **Loop R182（2026-06-20，双轨）**：

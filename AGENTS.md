@@ -1207,7 +1207,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track A**：Exp9 **11/12**；`P_qneg1` step **228/300** ~76% — **不干预**。
  - **Track B（VIII Conclusion）**：(ii) max $|\\mathcal{S}|$ 标注 P $n{=}1$；展望句补 Pereira2026 正交轴；Abstract fifteen-point 再修复。
  - **创新审计**：Conclusion = **A**；λ = **B pending**
- - **Git**：待 commit R190；（local only）
+ - **Git**：`4f3cd5c` — loop R190 → **local only**
  - **下一轮**：R191 横切 audit；P_qneg1 ENDED → post_exp9
 
 - **Loop R189（2026-06-20，双轨）**：

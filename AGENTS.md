@@ -32,7 +32,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **下一 B 任务** | 12/12 → vertical SP batch；Tables S3--S4 |
 | **主张-证据** | B/N/P $\mathcal{S}(n{=}4)$ = **A**；弛豫/seed137/cutoff = **B pending** |
 | **旗杆** | **PRB major revision**（`compile_prb.sh` + SM + cover letter）|
-| **最新 Loop** | **R173**（见下方笔记） |
+| **最新 Loop** | **R174**（见下方笔记） |
 
 
 ---
@@ -1202,6 +1202,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
   - **创新审计**：n=6 B $\mathcal{S}$ = **A 级**；8×60 batch 运维 + 资源 cap = **A 级**。
   - **Git**：`2a39654` — pushed **origin/main**（2026-06-14）。
   - **下一轮**：`8×60_B_pos3` 收敛 → post → **35/40** + 可能第 12 条 synergy；Figure 1/2 final 仍 pending。
+
+- **Loop R174（2026-06-20，双轨）**：
+ - **Track A**：Exp9 **11/12**；`P_qneg1` step **205/300** ~68% — **不干预**。
+ - **Track B（VIII Conclusion）**：(ii) max $|\mathcal{S}|$ $32$→$31.9$ meV/atom（audit 对齐 R172--R173）。
+ - **创新审计**：Conclusion 定量 = **A**；λ = **B pending**
+ - **Git**：`749b157` — loop R174 → **local only**
+ - **下一轮**：R175 横切 audit；P_qneg1 ENDED → post_exp9
 
 - **Loop R173（2026-06-20，双轨）**：
  - **Track A**：Exp9 **11/12**；`P_qneg1` step **205/300** ~68% — **不干预**。

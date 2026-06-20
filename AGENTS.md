@@ -1207,7 +1207,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track A**：Exp9 **11/12**；`P_qneg1` step **212/300** ~71% — **不干预**。
  - **Track B（VI Results）**：Fig.~caption (c) 增 Table~S1 $\alpha$ 溯源。
  - **创新审计**：Results 图注溯源 = **A**；λ = **B pending**
- - **Git**：待 commit R180；（local only）
+ - **Git**：`b3db95f` — loop R180 → **local only**
  - **下一轮**：R181 Discussion；P_qneg1 ENDED → post_exp9
 
 - **Loop R179（2026-06-20，双轨）**：

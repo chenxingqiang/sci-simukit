@@ -47,7 +47,7 @@
 | ML $R^2{>}0.95$、775%/300% $\mu$ | **C** | **[withdrawn from main]** | 勿进 Abstract/Results |
 | 下文 IPR 45→25、$J{=}135$ meV、$\mu{=}8.75\times$ | **C** | **[discrepancy]** | 仅作历史理论草稿；见 §2 |
 
-**Track A 快照（2026-06-20，R157）**：Exp9 **11/12** — `polaron_P_qneg1_opt` step **189/300** ~63%（CP2K 不干预）；Exp10 **40/41**；Exp8 **6/6** ✅。
+**Track A 快照（2026-06-20，R158）**：Exp9 **11/12** — `polaron_P_qneg1_opt` step **190/300** ~63%（CP2K 不干预）；Exp10 **40/41**；Exp8 **6/6** ✅。
 
 ---
 
@@ -143,7 +143,7 @@ SI S1.2 合成 $\lambda$ 分解：**[illustrative, pending Exp9]**；Capobianco2
 | N vs B $\alpha$ 符号相反 | **A** |
 | N @ n=8 $\mathcal{S}$ 符号反转 | **B pending** | cutoff400 + Table S4 |
 | Exp9 partial IP/EA (SI Fig.~S5) | **A−** | 11/12 GEO\_OPT |
-| Intro–Conclusion 四条闭环 | **A** |
+| Intro–Conclusion 四条闭环 + Marcus defer | **A** |
 | Marcus $\lambda$ | **B pending** |
 | 300%/775% mobility | **C** |
 

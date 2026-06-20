@@ -48,8 +48,23 @@ ab = 'restarted-after-ABORT' if snap.get('restarted_after_abort') else ''
 print(gs if gs is not None else '', mx, ot or '', f'conv={gr:.2e}' if gr else '', ab)
 " 2>/dev/null || echo ' 300   ')"
   fi
+elif [[ "$running" != none && "$running" == *"_vert"* ]]; then
+  base="${running%.inp}"
+  out="$OUT/${base}.out"
+  if [[ -f "$out" ]]; then
+    read -r ot_step grad_hint <<< "$(python3 -c "
+import sys
+sys.path.insert(0, '$ROOT/experiments/analysis')
+from analyze_exp9_polaron import parse_scf_progress, read_out_tail
+from pathlib import Path
+snap = parse_scf_progress(read_out_tail(Path('$OUT') / ('${base}.out')))
+ot = snap.get('last_ot_step')
+gr = snap.get('last_ot_convergence')
+print(ot or '', f'conv={gr:.2e}' if gr else '')
+" 2>/dev/null || echo '  ')"
+  fi
 fi
-if [[ -z "$geo_num" && -f "$JSON" ]]; then
+if [[ -z "$geo_num" && "$running" == none && -f "$JSON" ]]; then
   read -r geo_num geo_max ot_step grad_hint abort_hint <<< "$(python3 -c "
 import json
 d=json.load(open('$JSON'))
@@ -77,7 +92,12 @@ else:
 ")"
 fi
 
-if [[ -n "$geo_num" ]]; then
+if [[ "$running" != none && "$running" == *"_vert"* ]]; then
+  extra=""
+  [[ -n "$ot_step" ]] && extra=" OT=${ot_step}"
+  [[ -n "$grad_hint" ]] && extra="${extra} ${grad_hint}"
+  echo "Exp9 GEO_OPT ${geo_done}/${geo_total} | vertical SP ${vert_done}/${vert_total} | running=${running%.inp}${extra} | next=${next}"
+elif [[ -n "$geo_num" ]]; then
   extra=""
   [[ -n "$ot_step" ]] && extra=" OT=${ot_step}"
   [[ -n "$grad_hint" ]] && extra="${extra} ${grad_hint}"

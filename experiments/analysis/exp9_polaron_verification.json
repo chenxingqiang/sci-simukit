@@ -126,19 +126,19 @@
     "lambda_eV": {
       "pristine": {
         "lambda_IP_eV": null,
-        "lambda_EA_eV": null
+        "lambda_EA_eV": 0.04171948394219269
       },
       "N": {
-        "lambda_IP_eV": null,
-        "lambda_EA_eV": null
+        "lambda_IP_eV": 0.05835026266030355,
+        "lambda_EA_eV": 0.06512325590607378
       },
       "B": {
-        "lambda_IP_eV": null,
+        "lambda_IP_eV": 0.050950576519263886,
         "lambda_EA_eV": null
       },
       "P": {
-        "lambda_IP_eV": null,
-        "lambda_EA_eV": null
+        "lambda_IP_eV": 0.20024942900017195,
+        "lambda_EA_eV": 0.3150609096075208
       }
     }
   },
@@ -154,7 +154,21 @@
       "polaron_pristine_qneg1_vert_neutral_geom_sp",
       "polaron_pristine_qpos1_vert_neutral_geom_sp"
     ],
-    "outputs_converged": []
+    "outputs_converged": [
+      "polaron_B_qpos1_vert_neutral_geom_sp",
+      "polaron_N_qneg1_vert_neutral_geom_sp",
+      "polaron_N_qpos1_vert_neutral_geom_sp",
+      "polaron_P_qneg1_vert_neutral_geom_sp",
+      "polaron_P_qpos1_vert_neutral_geom_sp",
+      "polaron_pristine_qneg1_vert_neutral_geom_sp"
+    ]
   },
-  "pending_geo_opt": []
+  "pending_geo_opt": [],
+  "running_snapshot": {
+    "kind": "vertical_sp",
+    "last_ot_step": 288,
+    "last_ot_convergence": 3.9e-07,
+    "task": "polaron_pristine_qpos1_vert_neutral_geom_sp"
+  },
+  "running_task": "polaron_pristine_qpos1_vert_neutral_geom_sp"
 }

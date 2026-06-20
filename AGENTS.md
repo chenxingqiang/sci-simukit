@@ -22,17 +22,17 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 |----|-----|
 | **Exp10** | **40/41** — `size_6x60_N_pos3pct_cutoff400` pending（截断对照） |
 | **Exp8** | **6/6** ✅ — `post_exp8_converged.sh` consolidated `geoopt_pristine_sp.out` |
-| **Exp9** | **12/12** GEO_OPT ✅；vertical SP **0/8** — `B_qneg1_vert` 运行中 — **不干预** |
-| **运行中** | `polaron_P_qneg1_opt`（4× MPI，restarted-after-ABORT）— **不干预** |
-| **临界区** | P_qneg1 step 186/300 ~62%；内层 OT 正常 |
-| **下一任务** | Exp9 12/12 → `post_exp9_converged.sh`；空闲后 `run_prb_revision_dft.sh` |
+| **Exp9** | **12/12** GEO_OPT ✅；vertical SP **6/8** — `pristine_qpos1_vert_neutral_geom_sp` OT≈310 — **不干预** |
+| **运行中** | `polaron_pristine_qpos1_vert_neutral_geom_sp` OT≈310（vertical SP）— **不干预** |
+| **临界区** | `pristine_qpos1_vert` conv≈2×10⁻⁷ |
+| **下一任务** | each vertical SP converged → `post_exp9_converged.sh`；CP2K 空闲 → `run_prb_revision_dft.sh` + Exp10 cutoff400 |
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
 | **阻塞 PRB** | Table S3/S4/cutoff400 `.out`；Exp9 λ（SI S5） |
-| **文稿 P 瓶颈** | Major 1–5 文稿已落地；DFT 验证队列就绪 |
-| **下一 B 任务** | 12/12 → vertical SP batch；Tables S3--S4 |
+| **文稿 P 瓶颈** | `response_to_referees.md` 就绪；Major 1–2 DFT pending |
+| **下一 B 任务** | vertical SP → λ 入 S5；PRB queue S3/S4/cutoff400 |
 | **主张-证据** | B/N/P $\mathcal{S}(n{=}4)$ = **A**；弛豫/seed137/cutoff = **B pending** |
 | **旗杆** | **PRB major revision**（`compile_prb.sh` + SM + cover letter）|
-| **最新 Loop** | **R201**（见下方笔记） |
+| **最新 Loop** | **R232**（见下方笔记） |
 
 
 ---
@@ -1202,6 +1202,214 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
   - **创新审计**：n=6 B $\mathcal{S}$ = **A 级**；8×60 batch 运维 + 资源 cap = **A 级**。
   - **Git**：`2a39654` — pushed **origin/main**（2026-06-14）。
   - **下一轮**：`8×60_B_pos3` 收敛 → post → **35/40** + 可能第 12 条 synergy；Figure 1/2 final 仍 pending。
+
+
+- **Loop R232（2026-06-20，双轨）**：
+ - **Track A**：vertical **6/8**；`pristine_qpos1_vert` OT≈310 — **不干预**。
+ - **Track B（I Abstract）**：grep 审计 — Abstract 保持 incomplete（无 6/8、无 λ）；fifteen periodic + rigid upper-bound + seed~42 ✅；**无 tex 改动**。
+ - **创新审计**：Abstract 契约 = **A**；λ partial = **A−**（6/8）
+ - **Git**：未提交
+ - **下一轮**：`pristine_qpos1_vert` converged → post_exp9；R233 Intro
+
+- **Loop R231（2026-06-20，双轨）**：
+ - **Track A**：`post_exp9` → vertical **6/8**；`pristine_qpos1_vert` 运行中 — **不干预**。
+ - **Track B（横切 audit）**：全稿 **6/8**；SI six λ± 表；theory report grep R231。
+ - **创新审计**：partial λ = **A−**（6/8）；PRB queue after 8/8
+ - **Git**：未提交
+ - **下一轮**：8/8 → `run_prb_revision_dft`；R232 Abstract 保持 incomplete
+
+- **Loop R230（2026-06-20，双轨）**：
+ - **Track A**：vertical **2/8**；`N_qpos1_vert` OT≈41 — **不干预**。
+ - **Track B（VIII Conclusion）**：Marcus 2/8 通道验证句；与 Discussion R229 闭环。
+ - **创新审计**：Conclusion 闭环 = **A**；λ 6/8 = **B pending**
+ - **Git**：未提交
+ - **下一轮**：vertical converged → post_exp9；R231 横切 audit
+
+- **Loop R229（2026-06-20，双轨）**：
+ - **Track A**：vertical **2/8**；`N_qpos1_vert` OT≈35 — **不干预**。
+ - **Track B（VII Discussion）**：Polaron 段 2/8 工作流验证句（无 λ 数值）。
+ - **创新审计**：Discussion transport 边界 = **A**；λ 6/8 = **B pending**
+ - **Git**：未提交
+ - **下一轮**：vertical converged → post_exp9；R230 Conclusion
+
+- **Loop R228（2026-06-20，双轨）**：
+ - **Track A**：vertical **2/8**；`N_qpos1_vert` OT≈26 — **不干预**。
+ - **Track B（VI Results）**：Results 开篇正交分句；Fig.~1(d) 2/8；`fig_si_s5` 显示 λ⁺/λ⁻。
+ - **创新审计**：Results 无 λ 数值 = **A**；S5 图 = **A−**
+ - **Git**：未提交
+ - **下一轮**：vertical converged → post_exp9；R229 Discussion
+
+- **Loop R227（2026-06-20，双轨）**：
+ - **Track A**：vertical **2/8**；`N_qpos1_vert` OT≈16 — **不干预**。
+ - **Track B（IV Methods）**：主文/SI Marcus vertical 协议（q±1, 400 Ry, EPS 1e-7）；S5 caption 2/8 fix。
+ - **创新审计**：Methods–inp 契约 = **A**；λ 6/8 = **B pending**
+ - **Git**：未提交
+ - **下一轮**：vertical converged → post_exp9；R228 Results
+
+- **Loop R226（2026-06-20，双轨）**：
+ - **Track A**：`N_qneg1_vert` converged → `post_exp9` → vertical **2/8**（B λ⁺=0.051, N λ⁻=0.065 eV）；`N_qpos1_vert` 运行中 — **不干预**。
+ - **Track B（III Literature）**：`Xu2025C70network` bib + Discussion Context；全稿 **1/8→2/8**（Abstract 无 1/8）；SI S5 caption。
+ - **创新审计**：Xu2025 带边设计 vs $\mathcal{S}$ = **B+**；partial λ = **A−**（SI only）
+ - **Git**：未提交
+ - **下一轮**：vertical converged → post_exp9；R227 Methods
+
+- **Loop R225（2026-06-20，双轨）**：
+ - **Track A**：Exp9 vertical **1/8**；`N_qneg1_vert` OT≈270 conv≈1.0×10⁻⁷ — **不干预**。
+ - **Track B（II Intro）**：Marcus 正交 + 1/8；transport 句去双 yet。
+ - **创新审计**：Intro–Abstract Marcus 契约 = **A**；λ 7/8 = **B pending**
+ - **Git**：未提交
+ - **下一轮**：N vert converged → post_exp9；R226 Literature
+
+- **Loop R224（2026-06-20，双轨）**：
+ - **Track A**：Exp9 vertical **1/8**；`N_qneg1_vert` OT≈265 conv≈1.1×10⁻⁷ — **不干预**。
+ - **Track B（I Abstract）**：Marcus 正交 + SI-only + incomplete（无 1/8、无 λ 数）。
+ - **创新审计**：Abstract ↔ grep R223 = **A**；λ 7/8 = **B pending**
+ - **Git**：未提交
+ - **下一轮**：N vert converged → post_exp9；R225 Intro
+
+- **Loop R223（2026-06-20，双轨）**：
+ - **Track A**：Exp9 vertical **1/8**；`N_qneg1_vert` OT≈257 — **不干预**；`analyze_exp9` 刷新 JSON。
+ - **Track B（横切 audit）**：theory report λ 台账修正；grep R223；response Marcus 正交行。
+ - **创新审计**：全稿 grep = **A**；$\mathcal{S}$ 锚点 ↔ JSON = **A**；λ 7/8 = **B pending**
+ - **Git**：未提交
+ - **下一轮**：N vert converged → post_exp9；R224 Abstract
+
+- **Loop R222（2026-06-20，双轨）**：
+ - **Track A**：Exp9 vertical **1/8**；`N_qneg1_vert` OT≈237 — **不干预**。
+ - **Track B（VIII Conclusion）**：Marcus 正交 + 1/8 + SI-only λ；future work 八 vertical 句。
+ - **创新审计**：Conclusion 闭环 = **A**；λ 7/8 = **B pending**
+ - **Git**：未提交
+ - **下一轮**：N vert converged → post_exp9；R223 横切 audit
+
+- **Loop R221（2026-06-20，双轨）**：
+ - **Track A**：Exp9 vertical **1/8**；`N_qneg1_vert` OT≈222 — **不干预**。
+ - **Track B（VII Discussion）**：Polaron 段 Capobianco $J$/IPR vs $\mathcal{S}$ 正交；theory report Limitations 行 1/8。
+ - **创新审计**：Discussion transport 边界 = **A**；λ 7/8 = **B pending**
+ - **Git**：未提交
+ - **下一轮**：N vert converged → post_exp9
+
+- **Loop R220（2026-06-20，双轨）**：
+ - **Track A**：Exp9 vertical **1/8**；`N_qneg1_vert` OT≈207 conv≈2.5×10⁻⁷ — **不干预**。
+ - **Track B（VI Results）**：Results Marcus SI-only 边界句；Fig.~1(d) caption 补 S5 partial；`render_si_figures.sh` 刷新 S5。
+ - **创新审计**：Results 无 λ 数值 = **A**；S5 B λ⁺ = **A−**（SI only）
+ - **Git**：未提交
+ - **下一轮**：N vert converged → post_exp9 → 2/8
+
+- **Loop R219（2026-06-20，双轨）**：
+ - **Track A**：Exp9 vertical **1/8**；`N_qneg1_vert` OT≈190 — **不干预**。
+ - **Track B（IV Methods）**：主文 Methods 1/8 λ 契约；SI Methods Marcus vertical 400 Ry PBE+D3 句。
+ - **创新审计**：Methods–inp 契约 = **A**；Marcus 7/8 = **B pending**
+ - **Git**：未提交
+ - **下一轮**：vertical converged → post_exp9
+
+- **Loop R218（2026-06-20，双轨）**：
+ - **Track A**：Exp9 vertical **1/8**；`N_qneg1_vert` OT≈172 **CRIT** — **不干预**。
+ - **Track B（III Literature）**：WebSearch → **Santra2024strain**（npj 2D Mater.）入 bib；Discussion Context 1 对比句。
+ - **创新审计**：2D defect/strain 文献定位 = **B+**；Marcus 7/8 = **B pending**
+ - **Git**：未提交
+ - **下一轮**：`N_qneg1_vert` converged → post_exp9
+
+- **Loop R217（2026-06-20，双轨）**：
+ - **Track A**：Exp9 vertical **1/8**；`N_qneg1_vert` OT≈158 conv≈1.2×10⁻⁶ **CRIT** — **不干预**。
+ - **Track B（II Intro）**：Intro 补 transport vs $\mathcal{S}$ gap + Shi2023/Qiu2025；cover letter 1/8 λ；theory S2 行修正。
+ - **文献检索**：graphullerene 2025–26 — 无新 bib（Khan/Qiu/Shi/Capobianco 已覆盖）。
+ - **创新审计**：Intro 文献定位 = **A**；Marcus 7/8 = **B pending**
+ - **Git**：未提交
+ - **下一轮**：`N_qneg1_vert` converged → post_exp9
+
+- **Loop R216（2026-06-20，双轨）**：
+ - **Track A**：`B_qpos1_vert` **converged** → `post_exp9_converged.sh`；vertical **1/8**；B $\lambda^{+}$=**0.051 eV**；`N_qneg1_vert` 运行中 — **不干预**。
+ - **Track B（I Abstract 闸门）**：Abstract **无** λ 数值；SI Table S2 / Fig.~S5 / Methods / Limitations → **1/8** 诚实化；S5 图刷新。
+ - **创新审计**：B $\lambda^{+}$ = **A−**（单点 verified）；Marcus 完整 = **B pending**
+ - **Git**：未提交
+ - **下一轮**：vertical 2/8 → post_exp9
+
+- **Loop R215（2026-06-20，双轨）**：
+ - **Track A**：Exp9 vertical SP **0/8** — `B_qpos1_vert` OT≈387 **CRIT** — **不干预**；`analyze_exp9` 刷新 JSON。
+ - **Track B（横切 audit）**：`theory_enhancement_report.md` R215 快照 + PRB response pending 行；SI Overview vertical 归档路径一句。
+ - **创新审计**：Exp9 CRIT 监控 = **A**；λ/S3/S4 = **B pending**
+ - **Git**：未提交
+ - **下一轮**：`B_qpos1_vert` converged → **立即** `post_exp9_converged.sh`
+
+- **Loop R214（2026-06-20，双轨）**：
+ - **Track A**：Exp9 vertical SP **0/8** — `B_qpos1_vert` 内层 SCF 进行中 — **不干预**；fix `exp9_status_line` + `analyze_exp9` vertical OT 快照（去 stale geo step=300/）。
+ - **Track B（VIII Conclusion）**：Conclusions 补 seed~42 + future work（seed137 periodic/Mayer/Bader/λ）。
+ - **文献检索**：`graphullerene strain doping 2025` — Qiu2025 已在 Discussion；无新 bib。
+ - **创新审计**：Exp9 运维 = **A**；Conclusion 闭环 = **A**；λ/S3/S4 = **B pending**
+ - **Git**：未提交
+ - **下一轮**：vertical SP converged → post_exp9
+
+- **Loop R213（2026-06-20，双轨 · PRB）**：
+ - **Track A**：Exp9 vertical SP **0/8** — `B_qpos1_vert` — **不干预**。
+ - **Track B**：SI Table **S1→S5** 顺序修正；删 `sdc_method_section` 幻影 **Eq.~(S8)**；si_methods 40+1 对齐。
+ - **创新审计**：SI 交叉引用 = **A**；λ/S3/S4/cutoff = **B pending**
+ - **Git**：未提交
+ - **下一轮**：vertical SP → post_exp9
+
+- **Loop R212（2026-06-20，双轨 · PRB）**：
+ - **Track A**：Exp9 vertical SP **0/8** — `B_qpos1_vert` — **不干预**。
+ - **Track B**：Table S2 40(+1 pending) + 去 stale「main inset」；Intro seed42；cover/response Mayer；主文 citekeys bib sentence case 补扫。
+ - **创新审计**：文稿契约 = **A**；λ/S3/S4/cutoff = **B pending**
+ - **Git**：未提交
+ - **下一轮**：vertical SP → post_exp9
+
+- **Loop R211（2026-06-20，双轨 · PRB）**：
+ - **Track A**：Exp9 vertical SP **0/8** — `B_qpos1_vert` step 300/ — **不干预**。
+ - **Track B**：Abstract rigid upper-bound + seed42；Limitations Mayer/Bader 诚实化；`response_to_referees.md` 去内部脚本路径；Table S5 caption 几何-only 脚注。
+ - **创新审计**：Major 3 机制边界 = **A**（Table S5 几何 vs Mayer pending）；λ/S3/S4 = **B pending**
+ - **Git**：未提交
+ - **下一轮**：vertical SP converged → post_exp9；λ 入 Fig.~S5
+
+- **Loop R210（2026-06-20，双轨）**：
+ - **Track A**：Exp9 vertical SP **0/8** — `B_qpos1_vert` — **不干预**。
+ - **Track B**：新增 `paper/response_to_referees.md`（Major/Minor 逐条回复）；Table S4 18 ENERGY 诚实化；SI Overview→Table S5；Methods seed137 计数。
+ - **创新审计**：审稿回复文档 = **A**；S3/S4/cutoff = **B pending**
+ - **Git**：未提交
+ - **下一轮**：vertical SP → post_exp9；空闲 → `run_prb_revision_dft.sh`
+
+- **Loop R209（2026-06-20，双轨 · PRB 诚实化）**：
+ - **Track A**：Exp9 vertical SP **0/8** — `B_qpos1_vert` — **不干预**。
+ - **Track B**：`cover_letter_prb.txt` 重写（S3/S4/cutoff pending 诚实）；Discussion (i)+S4；Methods rigid vs Table S3 符号对照；Fig S5 caption 修。
+ - **创新审计**：cover letter 契约 = **A**；Major 1–2 DFT = **B pending**
+ - **Git**：未提交
+ - **下一轮**：`run_prb_revision_dft.sh`（CP2K 空闲）；post_exp9
+
+- **Loop R208（2026-06-20，双轨 · PRB Minor 2–4）**：
+ - **Track A**：Exp9 vertical SP **0/8** — `B_qpos1_vert` — **不干预**。
+ - **Track B**：bib sentence case（Katiyar/Wang/Materials/Pereira preprint）；Fig.(d) n=4 合并标注 + P max；Results 首次 $E_{\mathrm{sub}}$ 非形成焓句；`compile_prb` ✅。
+ - **创新审计**：bib/fig Minor = **A**；Major 1–3 DFT = **B pending**
+ - **Git**：未提交
+ - **下一轮**：Major 1 relax GEO；vertical SP → post_exp9
+
+- **Loop R207（2026-06-20，双轨 · PRB Minor 修复）**：
+ - **Track A**：Exp9 vertical SP **0/8** — `B_qpos1_vert` — **不干预**。
+ - **Track B（横切）**：SI `si_methods`/`supplementary_figures` 去内部路径；Discussion Context 压缩；Data Availability 简化为仓库级描述；Discussion (ii) 去 audit 口语。
+ - **创新审计**：审稿 Minor 1 SI = **A**；Discussion 冗余 = **A**；bib sentence case = **pending**
+ - **Git**：未提交
+ - **下一轮**：`compile_prb.sh`；bib 格式专轮；vertical SP → post_exp9
+
+- **Loop R206（2026-06-20，双轨）**：
+ - **Track A**：Exp9 vertical SP **0/8** — `B_qpos1_vert` 4× MPI — **不干预**；Exp10 **40/41**。
+ - **Track B（VIII Conclusion）**：审稿 Minor 4 — 删 31.9/23.7 复述；保留三问闭环 + rigid upper bound + Tables S2--S4 defer；`fifteen-point` 在位。
+ - **创新审计**：Conclusion 凝练 = **A**；λ = **B pending**；弛豫/seed = **B pending**
+ - **Git**：未提交
+ - **下一轮**：R207 横切 audit / Minor 2 grep $\mathcal{S}$；vertical SP → post_exp9
+
+- **Loop R205（2026-06-20，双轨 · PRB Major 回复）**：
+ - **Track A**：Exp9 vertical SP **0/8** — `B_qpos1_vert` 运行中 — **不干预**；Exp10 **40/41** cutoff400 pending。
+ - **Track B（VII Discussion + P0）**：应审稿意见删正文 `experiments/`/`simukit` 路径（仅留 Data Availability）；弱化稳定性「重排」表述；强化 $E_{\mathrm{sub}}$ 非形成焓、seed~42、$n{\leq}4$ 边界；`sdc_method_section` 同步。
+ - **paper_gap**：Table S3/S4 DFT pending（Major 1–2）；机理定量（Major 3）部分靠 Table S5
+ - **创新审计**：审稿 P0 路径清理 = **A**；论证严谨性修订 = **A**；弛豫/seed137 = **B pending**
+ - **Git**：未提交
+ - **下一轮**：R206 Conclusion 凝练；vertical SP → post_exp9
+
+- **Loop R204（2026-06-20，双轨）**：
+ - **Track A**：Exp9 **12/12** GEO ✅；vertical SP **0/8** — `B_qneg1_vert_neutral_geom_sp` 4× MPI — **不干预**；Exp10 **40/41** cutoff400 pending（勿并行）。
+ - **Track B（VI Results + 横切）**：删主文 Table I（用户）；`sec:validation` → SI Table S2 prose；Results/Limitations N 符号 defer 指向 Supplemental Table~S2。
+ - **paper_gap**：transport=C；λ=B pending；PRB DFT queue=B pending
+ - **创新审计**：Table I 删除 = **A**（去重 S2）；$\mathcal{S}(n)$ defer 句 = **A**；λ = **B pending**
+ - **Git**：未提交（待用户）
+ - **下一轮**：vertical SP converged → post_exp9；R205 Discussion
 
 - **Loop R201（2026-06-20，双轨）**：
  - **Track A**：Exp9 **12/12** GEO；vertical SP **0/8** — `B_qneg1_vert` — **不干预**。

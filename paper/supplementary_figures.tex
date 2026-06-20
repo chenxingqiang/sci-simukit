@@ -31,8 +31,9 @@ This Supplemental Material accompanies the main PRB article on coupled $(\epsilo
 All figures and tables are labeled with prefix~\textbf{S} to match citations in the main text (Fig.~S4--S6; Tables~S1--S5).
 Calculations use the same PBE+DFT-D3 CP2K protocol as the main manuscript (rigid biaxial strain unless noted).
 Observables follow Capobianco \emph{et al.}~\cite{Capobianco2024electron}: $\pi$-projected DOS, inverse participation ratio (IPR), nearest-neighbor coupling $J$, and Marcus reorganization energies $\lambda^{\pm}$.
-Marcus $\lambda^{\pm}$ in Fig.~S5 follow the adiabatic plus vertical protocol of Ref.~\citenum{Capobianco2024electron} at the main-text PBE+D3 level (12/12 charged geometry optimizations converged at revision; eight vertical single-points in progress).
-Converged inputs, outputs, and analysis JSON are archived as described in the main-text Data Availability statement.
+Marcus $\lambda^{\pm}$ in Fig.~S5 follow the adiabatic plus vertical protocol of Ref.~\citenum{Capobianco2024electron} at the main-text PBE+D3 level (12/12 charged geometry optimizations converged at revision; eight vertical single-points; 6/8 converged at revision).
+Converged inputs, outputs, and analysis JSON are archived as described in the main-text Data Availability statement (charged-polaron vertical single-points write to the Exp.~9 output archive under the open repository).
+Local dopant--cage metrics supporting the mechanistic synthesis are in Table~S5.
 
 \input{si_methods_section.tex}
 
@@ -64,49 +65,15 @@ Calculation set & Model & Converged tasks & Main-text usage & Notes \\
 Early strain probe & 2$\times$C$_{60}$ & 5 & not used & superseded by tetramer grids \\
 Single-molecule doping & C$_{60}$ & 11 & not used & superseded \\
 Early electronics & 2$\times$C$_{60}$ & 24 & not used & superseded by tetramer PDOS \\
-Polaron IPR/$J$ factorial & tetramer & 4 & Fig.~S6; main inset & pristine/B $\times$ $\epsilon{=}0,+3$\% \\
+Polaron IPR/$J$ factorial & tetramer & 4 & Fig.~S6 & pristine/B $\times$ $\epsilon{=}0,+3$\% \\
 Tetramer strain energies & tetramer & 24 & Table~S1, $\alpha$ & rigid strain \\
 Optimal-design grid & tetramer & 20 & not used & archive only \\
 Tetramer PDOS/gaps & tetramer & 12 & Fig.~S4; main panels & \\
 Geometry references & tetramer relax & 6 & charged-state inputs & reference geometries \\
-Charged polarons & tetramer $q=\pm1$ & 12/12 GEO\_OPT & Fig.~S5 & 0/8 vertical SP; $\lambda$ pending \\
-Size scaling & $n\times$C$_{60}$ & 40 & main $\mathcal{S}(n)$ & 400~Ry ($n\leq4$), 350~Ry ($n\geq6$) \\
-$n{=}6$ cutoff control & $6\times$C$_{60}$ N @+3\% & pending & N sign benchmark & 400~Ry (\texttt{cutoff400} inp) \\
+Charged polarons & tetramer $q=\pm1$ & 12/12 GEO\_OPT & Fig.~S5 & 6/8 vertical SP converged; verified $\lambda^{\pm}$ in Fig.~S5 (pristine $\lambda^{-}{=}0.042$, B $\lambda^{+}{=}0.051$, N $\lambda^{+}{=}0.058$/ $\lambda^{-}{=}0.065$, P $\lambda^{+}{=}0.200$/ $\lambda^{-}{=}0.315$~eV); two pending \\
+Size scaling & $n\times$C$_{60}$ & 40 (+1 pending) & main $\mathcal{S}(n)$ & 400~Ry ($n\leq4$), 350~Ry ($n\geq6$); cutoff400 control pending \\
+$n{=}6$ cutoff control & $6\times$C$_{60}$ N @+3\% & pending & N sign benchmark & 400~Ry matched control (pending) \\
 Ionic relaxation (tetramer) & tetramer & pending & Table~S3 & fixed-cell GEO\_OPT \\
-\end{tabular}
-\end{ruledtabular}
-\end{table*}
-
-\section*{Table S4}
-\begin{table*}
-\caption{\label{tab:S4}Alternate random-seed dopant placement (tetramer, rigid strain, PBE+D3).
-Seed~42 is used in the main text; seed~137 repeats the full B/N/P strain grid ($\epsilon\in\{-5,-2.5,0,+2.5,+3,+5\}$\%) to test whether $\alpha$ and tetramer $\mathcal{S}$ at $+3$\% are placement-sensitive.
-Periodic $n{=}4$ $\mathcal{S}$ values (seed~42) are listed for comparison only---different concentration and boundary conditions.}
-\begin{ruledtabular}
-\begin{tabular}{lccccc}
-Dopant & Seed & $\alpha$ (meV/\%) & $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ (meV/atom) & $\mathcal{S}_{+3\%}^{n=4}$ (meV/atom) & Status \\
-\hline
-B & 42 & $+56.9$ & --- & $-6.2$ & verified (Table~S1) \\
-N & 42 & $-303.2$ & --- & $+3.0$ & verified \\
-P & 42 & $-19.1$ & --- & $-23.7$ & verified \\
-B & 137 & pending & pending & --- & 6 inp / pending \\
-N & 137 & pending & pending & --- & 6 inp / pending \\
-P & 137 & pending & pending & --- & 6 inp / pending \\
-\end{tabular}
-\end{ruledtabular}
-\end{table*}
-
-\section*{Table S5}
-\begin{table*}
-\caption{\label{tab:S5}Local dopant--cage structure from archived tetramer XYZ (mean nearest C distance $\bar{d}$ in \AA; covalent-radius excess vs.\ C in pm).
-Strain-induced change $\Delta\bar{d}=\bar{d}(\epsilon{=}+3\%)-\bar{d}(\epsilon{=}0)$ summarizes how tensile load couples to pre-existing distortion (see Discussion mechanistic synthesis).}
-\begin{ruledtabular}
-\begin{tabular}{lcccc}
-Dopant & $\bar{d}(\epsilon{=}0)$ (\AA) & $\bar{d}(\epsilon{=}+3\%)$ (\AA) & $\Delta\bar{d}$ (\AA) & $\Delta r_{\mathrm{cov}}$ (pm) \\
-\hline
-B & 1.384 & 1.393 & $+0.0085$ & $+7$ \\
-N & 1.393 & 1.402 & $+0.0087$ & $-6$ \\
-P & 1.384 & 1.385 & $+0.00003$ & $+30$ \\
 \end{tabular}
 \end{ruledtabular}
 \end{table*}
@@ -131,6 +98,41 @@ Sign vs.\ periodic $n{=}4$ $\mathcal{S}_P$ ($-23.7$~meV/atom) & \multicolumn{2}{
 \end{ruledtabular}
 \end{table*}
 
+\section*{Table S4}
+\begin{table*}
+\caption{\label{tab:S4}Alternate random-seed dopant placement (tetramer, rigid strain, PBE+D3).
+Seed~42 is used in the main text; seed~137 repeats the full B/N/P strain grid ($\epsilon\in\{-5,-2.5,0,+2.5,+3,+5\}$\%; 18 ENERGY tasks total) to test whether $\alpha$ and tetramer $\mathcal{S}$ at $+3$\% are placement-sensitive.
+Periodic $n{=}4$ $\mathcal{S}$ values (seed~42) are listed for comparison only---different concentration and boundary conditions.}
+\begin{ruledtabular}
+\begin{tabular}{lccccc}
+Dopant & Seed & $\alpha$ (meV/\%) & $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ (meV/atom) & $\mathcal{S}_{+3\%}^{n=4}$ (meV/atom) & Status \\
+\hline
+B & 42 & $+56.9$ & --- & $-6.2$ & verified (Table~S1) \\
+N & 42 & $-303.2$ & --- & $+3.0$ & verified \\
+P & 42 & $-19.1$ & --- & $-23.7$ & verified \\
+B & 137 & pending & pending & --- & 6 inp / pending \\
+N & 137 & pending & pending & --- & 6 inp / pending \\
+P & 137 & pending & pending & --- & 6 inp / pending \\
+\end{tabular}
+\end{ruledtabular}
+\end{table*}
+
+\section*{Table S5}
+\begin{table*}
+\caption{\label{tab:S5}Local dopant--cage structure from archived tetramer XYZ (mean nearest C distance $\bar{d}$ in \AA; covalent-radius excess vs.\ C in pm).
+Strain-induced change $\Delta\bar{d}=\bar{d}(\epsilon{=}+3\%)-\bar{d}(\epsilon{=}0)$ summarizes how tensile load couples to pre-existing distortion (see Discussion mechanistic synthesis).
+Values are computed from archived tetramer XYZ coordinates (seed~42) in the open data release; they do not include Mayer bond order or Bader charges.}
+\begin{ruledtabular}
+\begin{tabular}{lcccc}
+Dopant & $\bar{d}(\epsilon{=}0)$ (\AA) & $\bar{d}(\epsilon{=}+3\%)$ (\AA) & $\Delta\bar{d}$ (\AA) & $\Delta r_{\mathrm{cov}}$ (pm) \\
+\hline
+B & 1.384 & 1.393 & $+0.0085$ & $+7$ \\
+N & 1.393 & 1.402 & $+0.0087$ & $-6$ \\
+P & 1.384 & 1.385 & $+0.00003$ & $+30$ \\
+\end{tabular}
+\end{ruledtabular}
+\end{table*}
+
 \section*{Figure S4}
 \begin{figure*}
 \IfFileExists{figures/out/figure_s4_pdos_exp7.pdf}{%
@@ -150,8 +152,8 @@ Energy is relative to the Fermi level at 0~eV. Molecular-orbital isosurfaces are
 \fbox{\parbox{0.88\textwidth}{\centering\vspace{2cm}\textbf{Fig.~S5 placeholder}\\Marcus $\lambda$ --- pending vertical single-points\vspace{2cm}}}%
 }
 \caption{\label{fig:S5}Schematic configuration-coordinate diagrams for Marcus reorganization energies, following Ref.~\citenum{Capobianco2024electron}.
-Panels: pristine and N (hole, $\lambda^{+}$), B (electron, $\lambda^{-}$, IP+EA), and P (hole IP; EA pending $q=-1$ GEO\_OPT).
-Adiabatic ionization potential (IP) and electron affinity (EA) are from converged charged-state geometry optimizations (12/12 complete at revision; see \texttt{exp9\_polaron\_verification.json}); $\lambda^{\pm}=E_{\mathrm{vert}}^{\pm}-E_{\mathrm{opt}}^{\pm}$ remains pending eight vertical single-points at the neutral geometry.}
+Panels: pristine and N (hole, $\lambda^{+}$), B (electron, $\lambda^{-}$, IP+EA), and P (hole IP + EA; all four dopants from 12/12 charged GEO\_OPT).
+Adiabatic ionization potential (IP) and electron affinity (EA) are from converged charged-state geometry optimizations (12/12 complete at revision); $\lambda^{\pm}=E_{\mathrm{vert}}^{\pm}-E_{\mathrm{opt}}^{\pm}$: pristine $\lambda^{-}{=}0.042$, B $\lambda^{+}{=}0.051$, N $\lambda^{+}{=}0.058$/ $\lambda^{-}{=}0.065$, P $\lambda^{+}{=}0.200$/ $\lambda^{-}{=}0.315$~eV verified (6/8 vertical single-points converged); two tasks in progress at revision.}
 \end{figure*}
 
 \section*{Figure S6}

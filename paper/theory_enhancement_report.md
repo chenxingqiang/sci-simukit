@@ -1,6 +1,6 @@
 # 理论增强与证据对齐报告
 
-> **Loop R201 Intro（2026-06-20）** — Intro Marcus 句 ↔ Abstract R200 vertical SP defer — Marcus 末句 ↔ SI Fig.~S5--S6 + vertical SP defer（无 Exp9 计数） — theory report 12/12 台账；§8 P EA 2.96；grep 闸门 R199 — Exp9 **12/12** GEO；P EA 2.96 eV；vertical SP batch 运行中 — (ii) 闭合 Sec.~strain_response foreshadow；Polaron 段 ↔ Results IP 边界 — Results 应变→synergy 23.7 承接；主文/SI IP 边界 — SI Methods Exp10 40/41 + post_exp9$\rightarrow$render_si — Shi2023 qHP strain–$\mu$ vs $\mathcal{S}$（JPCM 225701） — Intro gap 段 Pereira2026 与 Discussion 对齐 — Abstract max $|\\mathcal{S}|$ 标注 P $n{=}1$（对齐 Conclusion） — 全稿 $|\\mathcal{S}|$ grep ✅；Abstract fifteen-point 在位；cover_letter_prb 31.9 — (ii) P $n{=}1$ max 31.9；endohedral 正交句；Abstract 漂移修复 — (ii) P $|\\mathcal{S}|$ $n{=}4$/max；endohedral vs $\mathcal{S}$ 边界 — Fig.~caption (d) audit 数值落盘 — Methods $|\mathcal{S}|$ 23.7 + post_exp9$\rightarrow$render_si 契约 — Pereira2026 endohedral arXiv:2603.10142 vs substitutional $\mathcal{S}$ — Wang2024simulation 入 Intro；R184 Abstract fifteen-point **落盘** — fifteen-point grid 入 Abstract 对齐 Intro/audit — R183 cover_letter 31.9 — R182 Conclusion (iii) 23.7 — R175--R176 Abstract 31.9 — cover_letter_prl P0 ~32→31.9 — R172--R174 $|\\mathcal{S}|$ 全稿 31.9 对齐；Abstract P0 修复 — R165 Discussion design↔audit；R166 Conclusion+DA 路径 — R155 Methods Exp9；R156 Results/SI 边界；R157 Discussion Marcus；R158 Conclusion defer — R116 PBE/D3；R117 Qiu2025；Conclusion post_exp9 闭环 — 与主稿 / canonical JSON / `.out` 对齐  
+> **Loop R231 横切 audit（2026-06-20）** — vertical **6/8** + SI six λ± 全表 — **Loop R230 Conclusion（2026-06-20）** — Conclusion 2/8 通道验证收口 — **Loop R229 Discussion（2026-06-20）** — Polaron 2/8 工作流验证句（主文无 λ 数）— **Loop R228 Results（2026-06-20）** — Results 正交开篇 + S5 λ± 图 fix — **Loop R227 Methods（2026-06-20）** — Marcus vertical q±1/EPS 句；主文 Methods 正交 — **Loop R226 Literature（2026-06-20）** — Xu2025C70network bib + Discussion；vertical **2/8**（B/N λ SI）— **Loop R225 Intro（2026-06-20）** — Intro Marcus 正交 + 1/8；去双 yet — **Loop R224 Abstract（2026-06-20）** — Abstract Marcus 正交/SI-only（无 1/8、无 λ 数）— **Loop R223 横切 audit（2026-06-20）** — theory report λ 台账 + grep R223 — **Loop R222 Conclusion（2026-06-20）** — Conclusion Marcus 1/8 正交收口 — **Loop R221 Discussion（2026-06-20）** — Capobianco $J$/IPR vs $\mathcal{S}$ 正交段 — **Loop R220 Results（2026-06-20）** — Results Marcus SI-only 边界 + Fig.~1(d) caption S5 — **Loop R219 Methods（2026-06-20）** — 主文/SI Methods 1/8 λ 契约 + vertical 400 Ry 句 — **Loop R218 Literature（2026-06-20）** — Santra2024strain bib + Discussion 对比句 — **Loop R217 Intro（2026-06-20）** — Capobianco/力学 gap 句；Shi2023+Qiu2025 cite；cover 1/8 λ — **Loop R216（2026-06-20）** — `post_exp9` + B λ⁺=0.051 eV；SI 1/8 诚实化；Abstract 无新 λ 数 — **Loop R215 横切（2026-06-20）** — theory report 快照 R214 vertical OT fix；PRB response 台账 — **Loop R214** — Exp9 `parse_scf_progress` + Conclusion future work — **Loop R213 PRB（2026-06-20）** — SI Table S1--S5 order；删 Eq S8 幻影引用 — **Loop R212 PRB（2026-06-20）** — Table S2 40+1；bib sentence case；cover Mayer — **Loop R211 PRB（2026-06-20）** — Abstract upper-bound/seed42；Limitations Mayer/Bader；response 去路径 — **Loop R206 Conclusion（2026-06-20）** — Minor 4 凝练；无新定量 — **Loop R205 PRB Major（2026-06-20）** — 正文去内部路径；稳定性表述收紧；seed42/$n≤4$ 边界 — **Loop R204 Results（2026-06-20）** — 主文 Table I 删除；Results/Limitations → Supplemental Table~S2；Methods `sec:validation` prose — **Loop R201 Intro（2026-06-20）** — Intro Marcus 句 ↔ Abstract R200 vertical SP defer — Marcus 末句 ↔ SI Fig.~S5--S6 + vertical SP defer（无 Exp9 计数） — theory report 12/12 台账；§8 P EA 2.96；grep 闸门 R199 — Exp9 **12/12** GEO；P EA 2.96 eV；vertical SP batch 运行中 — (ii) 闭合 Sec.~strain_response foreshadow；Polaron 段 ↔ Results IP 边界 — Results 应变→synergy 23.7 承接；主文/SI IP 边界 — SI Methods Exp10 40/41 + post_exp9$\rightarrow$render_si — Shi2023 qHP strain–$\mu$ vs $\mathcal{S}$（JPCM 225701） — Intro gap 段 Pereira2026 与 Discussion 对齐 — Abstract max $|\\mathcal{S}|$ 标注 P $n{=}1$（对齐 Conclusion） — 全稿 $|\\mathcal{S}|$ grep ✅；Abstract fifteen-point 在位；cover_letter_prb 31.9 — (ii) P $n{=}1$ max 31.9；endohedral 正交句；Abstract 漂移修复 — (ii) P $|\\mathcal{S}|$ $n{=}4$/max；endohedral vs $\mathcal{S}$ 边界 — Fig.~caption (d) audit 数值落盘 — Methods $|\mathcal{S}|$ 23.7 + post_exp9$\rightarrow$render_si 契约 — Pereira2026 endohedral arXiv:2603.10142 vs substitutional $\mathcal{S}$ — Wang2024simulation 入 Intro；R184 Abstract fifteen-point **落盘** — fifteen-point grid 入 Abstract 对齐 Intro/audit — R183 cover_letter 31.9 — R182 Conclusion (iii) 23.7 — R175--R176 Abstract 31.9 — cover_letter_prl P0 ~32→31.9 — R172--R174 $|\\mathcal{S}|$ 全稿 31.9 对齐；Abstract P0 修复 — R165 Discussion design↔audit；R166 Conclusion+DA 路径 — R155 Methods Exp9；R156 Results/SI 边界；R157 Discussion Marcus；R158 Conclusion defer — R116 PBE/D3；R117 Qiu2025；Conclusion post_exp9 闭环 — 与主稿 / canonical JSON / `.out` 对齐  
 > 本文件是**活文档**：旧版「投稿准备 ✅ / 8.5/10」评分已废止；以下以 **A/B/C 证据等级** 为准。
 
 ## PRL desk gate（R128+）
@@ -18,7 +18,7 @@
 |------|------|------|------|
 | 非加性序参量 $\mathcal{S}$、$H_{eff}$ 框架 | **A** | **[verified]** | `paper/sdc_method_section.tex`, `c/simukit-sdc` |
 | Tetramer strain grid $\alpha_{B,N,P}$、Table 1 能量列 | **A** | **[verified]** | `experiments/analysis/table1_verification.json` |
-| Size-scaling grid 尺寸标度、40/40 SCF | **A** | **[verified]** | `experiments/analysis/exp10_status.json` |
+| Size-scaling grid 尺寸标度、40/41 SCF | **A** | **[verified]** | `experiments/analysis/exp10_status.json` |
 | Size-scaling grid $\mathcal{S}(n)$ @ +3%（15 点） | **A** | **[verified]** | `experiments/analysis/sdc/sdc_exp10_synergy_audit.json` |
 | $\mathcal{S}_\infty$ 外推（B/N/P） | **B** | **[provisional]** | 同上 `size_scaling_fits`；N @ n=8 符号反转需 Discussion 解释 |
 | Tetramer PDOS PDOS / gap 叙事链 | **A** | **[verified]** | Exp7 `.out` + `fig_prl_main.py` / `render_prl.sh` |
@@ -39,6 +39,7 @@
 | Intro 去重复 separate scans | **A** | **[R161]** | joint $(\epsilon,\delta)$ 动机句 |
 | Intro Marcus ↔ Abstract defer | **A** | **[R201]** | Fig.~S5--S6 + vertical SP pending |
 | SI Overview Exp9 诚实化 | **A** | **[R161; R198]** | 12/12 GEO + vertical SP in progress |
+| Discussion Santra2024 formation-energy strain | **B+** | **[R218]** | npj 2D Mater. DOI 10.1038/s41699-024-00472-x vs $\mathcal{S}$ cross term |
 | Discussion Qiu2025 力学对比 | **B+** | **[verified R154]** | `strain_doped_graphullerene.tex` Context 段 cite `Qiu2025atomic` |
 | Abstract partial Exp9 | **N/A** | **[withdrawn R67]** | PRB 摘要无 Exp9 计数 |
 | Abstract $\alpha$/|$\mathcal{S}$| vs audit | **A** | **[R175--R176; R192 (P,$n{=}1$)]** | Abstract max $31.9$ + fifteen-point grid |
@@ -47,7 +48,7 @@
 | Abstract Marcus defer | **A** | **[R160; R200]** | Fig.~S5--S6 + vertical SP defer；无 $\lambda$ 数值 |
 | 主稿 citekey 计数（精简稿） | **A** | **13** | 非 `citation_completion_report` 48 篇旧快照 |
 | `running_snapshot` OT 字段 | **A** | **[fixed R103]** | `last_ot_convergence`（非 RMS grad） |
-| Marcus $\lambda$（vertical − adiabatic） | **B** | **[pending]** | Exp9: **12/12** GEO_OPT + **0/8** vertical SP；`derived.lambda_eV` 全 null |
+| Marcus $\lambda$（vertical − adiabatic） | **A−** | **[partial 6/8]** | six channels in JSON; P $\lambda$ largest; 2/8 pending |
 | PRL 主图 (a–d) | **A** | **[verified]** | `paper/figures/out/figure_prb_main.pdf` + audit JSON（PRB 修订版；无 inset） |
 | PRB 主图 panel (d) $n{=}4$ $\mathcal{S}$ 标注 | **A** | **[verified R135]** | `fig_prl_main.py` `build_prb_figure` |
 | Table S5 局域结构（$\bar{d}$, $\Delta r_{\mathrm{cov}}$） | **A−** | **[verified]** | `experiments/analysis/local_structure_tetramer.json` |
@@ -76,11 +77,11 @@
 | §8 mapping 废止 Results localization | **A** | **[R147]** | 改 SI Fig.~S5 |
 | Conclusion Intro 三问闭环 | **A** | **[verified R146]** | (i)--(iii) 显式回答 |
 | Khan2025 vs $\mathcal{S}$ Discussion | **B+** | **[verified R143]** | 深能级 vs 总能量交叉项 |
-| SI Table S2 charged polaron 计数 | **A** | **[R141; R198]** | 12/12 GEO_OPT + 0/8 vertical；与 JSON 一致 |
+| SI Table S2 charged polaron 计数 | **A** | **[R216]** | 12/12 GEO_OPT + **6/8** vertical；six $\lambda^{\pm}$ in SI Fig.~S5 |
 | ML $R^2{>}0.95$、775%/300% $\mu$ | **C** | **[withdrawn from main]** | 勿进 Abstract/Results |
 | 下文 IPR 45→25、$J{=}135$ meV、$\mu{=}8.75\times$ | **C** | **[discrepancy]** | 仅作历史理论草稿；见 §2 |
 
-**Track A 快照（2026-06-20，R201）**：Exp9 **12/12** GEO ✅；vertical SP **0/8** — `B_qneg1_vert` step 300/ — **不干预** — **不干预**（CP2K 不干预）；Exp10 **40/41**；Exp8 **6/6** ✅。
+**Track A 快照（2026-06-20，R231）**：vertical **6/8**；`pristine_qpos1_vert` OT≈310 — **不干预**
 
 ---
 
@@ -93,6 +94,8 @@
 | Table S4 seed 137 (18 ENERGY) | `seed_validation/` + `run_seed137_validation.sh` | **B pending** |
 | Table S5 局域结构 | `analyze_local_structure.py` | **A− verified** |
 | PRB 验证 DFT 队列 | `experiments/run_prb_revision_dft.sh` | **B**（Exp9 空闲后顺序跑） |
+| PRB `response_to_referees.md` | **A** | **[verified R210]** | Major/Minor 映射；pending S2--S4 + λ |
+| Exp9 vertical OT 快照 | **A** | **[R214]** | `parse_scf_progress` + `exp9_status_line`（非 stale geo step） |
 | PRB 投稿包 `compile_prb.sh` | 主图 + SI 图 + 双 PDF | **A** **[verified R151]** |
 
 ## 8. 主稿段落 ↔ JSON 映射（R103 横切）
@@ -104,15 +107,15 @@
 | Table 1 | $\alpha$, $E$ | `table1_verification.json` |
 | Results §synergy $\mathcal{S}(n)$ | 15 点 `synergy_table` | `sdc_exp10_synergy_audit.json` (**R164--R165**) |
 | Fig.~2 caption | 15 点 $\mathcal{S}$ | `sdc_exp10_synergy_audit.json` |
-| Limitations | 12/12 GEO, vertical SP pending | `derived.lambda_eV` 全 null |
-| Conclusion (i)–(iii) | Intro 三问显式闭环 | **R146**；Marcus $\lambda$ deferred to SI (**R158** 末句) |
+| Limitations / Conclusion Marcus | 12/12 GEO; vertical SP 6/8 | six $\lambda^{\pm}$ verified (**SI only**); pristine_qpos1 + B_qneg1 pending |
+| Conclusion (i)–(iii) | Intro 三问显式闭环 | **R146**；Marcus 正交 + 6/8 SI-only (**R231**) |
 | Conclusion (ii) max $|\mathcal{S}|$ | 31.9 meV/atom (P, $n{=}1$) | **R174--R190** |
 | Conclusion (iii) $n{=}4$ P $|\mathcal{S}|$ | 23.7 meV/atom | **R182** |
 | Fig.~main caption (d) | audit JSON | **R172** |
 | Data availability synergy audit | `sdc_exp10_synergy_audit.json` | **R166** Conclusion + DA 路径 |
 | Discussion design rules | fifteen-point audit HT reranking | `sdc_exp10_synergy_audit.json` (**R165**) |
 
-**grep 闸门（2026-06-20，R199）**：主稿 + `cover_letter_prl.txt` + `cover_letter_prb.txt` 无 ~32/775%/300%/8.75× ✅；Abstract **fifteen periodic** 在位 ✅；Koopmans/rVV10 仅 Methods/Limitations ✅；$|\mathcal{S}|$ 锚点 31.9 / 23.7 / $n{=}4$ (−6.2,+3.0,−23.7) ↔ `sdc_exp10_synergy_audit.json` ✅；`paper/*.tex` 无 stale **11/12** ✅；Exp9 JSON `converged=12` ✅
+**grep 闸门（2026-06-20，R231）**：主稿无 λ 数值 ✅；Abstract incomplete（无 6/8）✅；主文/SI **6/8** ✅；six λ± 仅 SI ✅；$|\mathcal{S}|$ 锚点 ↔ JSON ✅
 
 ---
 
@@ -145,7 +148,7 @@
 | B | 4.11 | 3.12 | GEO converged；**SI Fig.~S5** |
 | P | 4.07 | 2.96 | 12/12 GEO converged；**SI Fig.~S5** |
 
-Marcus 重组能（待 8× vertical SP）→ `analyze_exp9_polaron.py` → `derived.lambda_eV`；Fig.~S5 由 `fig_si_s5_marcus_pending.py` 读 JSON。
+Marcus 重组能（vertical SP **6/8**；six λ± SI only）→ `analyze_exp9_polaron.py` → `derived.lambda_eV`；Fig.~S5 由 `fig_si_s5_marcus_pending.py` 读 JSON。
 
 ---
 

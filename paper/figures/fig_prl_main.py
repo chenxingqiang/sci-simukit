@@ -179,21 +179,33 @@ def _plot_synergy_combo(ax_main, audit, exp4, *, show_inset: bool = False, ax_in
     ax_main.set_xticks([1, 2, 4, 6, 8])
     ax_main.margins(x=0.06, y=0.22)
     style_axes(ax_main, grid=True)
-    for dopant, (xn, sv) in n4_labels.items():
-        dy = 10 if sv >= 0 else -12
-        if dopant == "P":
-            dy = -14
-        ax_main.annotate(
-            rf"$\mathcal{{S}}={sv:+.1f}$",
-            xy=(xn, sv),
-            xytext=(8, dy),
-            textcoords="offset points",
-            fontsize=6,
-            color=DOPANT_COLORS[dopant],
+    # Compact n=4 legend box (avoids overlapping point labels on panel d)
+    if n4_labels:
+        parts = [rf"{d} ${n4_labels[d][1]:+.1f}$" for d in ("B", "N", "P") if d in n4_labels]
+        ax_main.text(
+            0.03,
+            0.97,
+            r"$n{=}4$: " + ", ".join(parts) + r" meV/atom",
+            transform=ax_main.transAxes,
+            fontsize=5.2,
+            va="top",
             ha="left",
-            va="bottom" if dy > 0 else "top",
-            bbox=dict(boxstyle="round,pad=0.15", facecolor="white", edgecolor=DOPANT_COLORS[dopant], alpha=0.92, lw=0.4),
-            arrowprops=dict(arrowstyle="-", color=DOPANT_COLORS[dopant], lw=0.45, shrinkA=2, shrinkB=2),
+            bbox=dict(boxstyle="round,pad=0.22", facecolor="white", edgecolor="#CCCCCC", alpha=0.96, lw=0.45),
+        )
+    p_rows = synergy_rows(audit, "P")
+    p_n1 = next((s for n, s in p_rows if int(n) == 1), None)
+    if p_n1 is not None:
+        ax_main.annotate(
+            rf"max $|\mathcal{{S}}|={abs(p_n1):.1f}$",
+            xy=(1.0, p_n1),
+            xytext=(14, 6),
+            textcoords="offset points",
+            fontsize=5.5,
+            color=DOPANT_COLORS["P"],
+            ha="left",
+            va="bottom",
+            bbox=dict(boxstyle="round,pad=0.15", facecolor="white", edgecolor=DOPANT_COLORS["P"], alpha=0.92, lw=0.4),
+            arrowprops=dict(arrowstyle="-", color=DOPANT_COLORS["P"], lw=0.45, shrinkA=2, shrinkB=2),
         )
     ax_main.legend(
         frameon=True,

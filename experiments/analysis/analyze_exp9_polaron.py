@@ -40,6 +40,22 @@ def extract_energy(text: str) -> float | None:
     return float(matches[-1]) if matches else None
 
 
+
+def parse_scf_progress(text: str) -> dict:
+    """Last inner OT progress for ENERGY / vertical SP (no GEO_OPT steps)."""
+    ot_lines = re.findall(
+        r"^\s+(\d+)\s+OT (?:DIIS|SD)\s+\S+\s+\S+\s+([\d.E+-]+)\s+-?\d+\.\d+",
+        text,
+        re.MULTILINE,
+    )
+    last_ot = int(ot_lines[-1][0]) if ot_lines else None
+    last_conv = float(ot_lines[-1][1]) if ot_lines else None
+    return {
+        "kind": "vertical_sp",
+        "last_ot_step": last_ot,
+        "last_ot_convergence": last_conv,
+    }
+
 def parse_geo_progress(text: str) -> dict:
     """Last GEO_OPT block progress from CP2K output (handles restarts after ABORT)."""
     abort_seen = "[ABORT]" in text
@@ -67,12 +83,10 @@ def parse_geo_progress(text: str) -> dict:
     }
 
 
-def detect_running_task(pending: list[str]) -> str | None:
-    """Return pending GEO_OPT task name if cp2k.psmp is running it."""
+def detect_running_task(candidates: list[str]) -> str | None:
+    """Return polaron task stem if cp2k.psmp is running it; else first candidate."""
     import subprocess
 
-    if not pending:
-        return None
     try:
         r = subprocess.run(
             ["pgrep", "-lf", "cp2k.psmp.*polaron_"],
@@ -86,12 +100,10 @@ def detect_running_task(pending: list[str]) -> str | None:
             parts = line.split(None, 1)[-1].split() if line else []
             for i, tok in enumerate(parts):
                 if tok == "-i" and i + 1 < len(parts):
-                    base = Path(parts[i + 1]).stem
-                    if base in pending:
-                        return base
+                    return Path(parts[i + 1]).stem
     except OSError:
         pass
-    return pending[0]
+    return candidates[0] if candidates else None
 
 
 def load_run(dopant: str, charge: int) -> dict:
@@ -211,16 +223,20 @@ def main() -> None:
         ],
     }
 
-    pending = payload["pending_geo_opt"]
-    running = detect_running_task(pending)
+    pending_vert = [x for x in vertical_pending if x not in vertical_done]
+    candidates = payload["pending_geo_opt"] + pending_vert
+    running = detect_running_task(candidates)
     if running:
         out_path = OUT_DIR / f"{running}.out"
         if out_path.exists():
-            snap = parse_geo_progress(read_out_tail(out_path))
+            if "_vert_" in running:
+                snap = parse_scf_progress(read_out_tail(out_path))
+            else:
+                snap = parse_geo_progress(read_out_tail(out_path))
+                gs, gmax = snap.get("geo_step"), snap.get("geo_max_iter") or 300
+                if gs is not None and gmax:
+                    snap["geo_progress_pct"] = round(100.0 * gs / gmax, 1)
             snap["task"] = running
-            gs, gmax = snap.get("geo_step"), snap.get("geo_max_iter") or 300
-            if gs is not None and gmax:
-                snap["geo_progress_pct"] = round(100.0 * gs / gmax, 1)
             payload["running_snapshot"] = snap
             payload["running_task"] = running
 

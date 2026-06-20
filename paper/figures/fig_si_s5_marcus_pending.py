@@ -50,17 +50,7 @@ def build(out_dir: Path) -> tuple[Path, Path]:
                 arrowprops=dict(arrowstyle="<->", color="#333333", lw=0.55),
             )
             ax.text(0.42, (e0 + e1) / 2, f"IP={ip:.2f} eV", fontsize=5.5, va="center")
-        if ea is None and name == "P":
-            ax.text(
-                0.02,
-                0.20,
-                "EA [pending $q=-1$ GEO]",
-                transform=ax.transAxes,
-                fontsize=5,
-                color="#888888",
-                style="italic",
-            )
-        if ea is not None and focus == "EA":
+        if ea is not None and (focus == "EA" or name == "P"):
             ax.annotate(
                 "",
                 xy=(0.0, e0),
@@ -69,9 +59,15 @@ def build(out_dir: Path) -> tuple[Path, Path]:
             )
             ax.text(-0.72, (e0 + e1) / 2 - 0.05, f"EA={ea:.2f} eV", fontsize=5.5, va="center")
         lam_block = exp9["derived"]["lambda_eV"].get(name, {})
-        lam_val = lam_block.get("lambda_IP_eV") if focus == "IP" else lam_block.get("lambda_EA_eV")
-        if lam_val is not None:
-            lam_txt = rf"$\lambda={lam_val:.2f}$ eV"
+        lam_ip = lam_block.get("lambda_IP_eV")
+        lam_ea = lam_block.get("lambda_EA_eV")
+        parts = []
+        if lam_ip is not None:
+            parts.append(rf"$\lambda^{{+}}={lam_ip:.2f}$")
+        if lam_ea is not None:
+            parts.append(rf"$\lambda^{{-}}={lam_ea:.2f}$")
+        if parts:
+            lam_txt = "; ".join(parts) + " eV"
             lam_color = "#333333"
         else:
             lam_txt = r"$\lambda$ [pending Exp.~9 SP]"

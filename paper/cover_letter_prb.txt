@@ -14,41 +14,51 @@ referee report.
 
 Summary of revisions (Major comments):
 
-(1) Rigid-strain protocol — We added a four-corner fixed-cell ionic relaxation
-    benchmark (Table S3) with inputs and analysis scripts archived in the
-    repository. Main text and Discussion now separate periodic rigid S(n) from
-    tetramer relaxed cross terms and state explicitly when conclusions are
-    upper-bound vs. thermodynamic formation energies.
+(1) Rigid-strain protocol — We state explicitly that rigid-cell $\alpha$ and
+    $\mathcal{S}$ are upper bounds until ionic relaxation completes. Table~S3
+    defines a four-corner fixed-cell GEO\_OPT benchmark for the tetramer
+    $P@+3$\% synergy corner (relaxed energies pending; rigid reference values
+    archived). The main text separates periodic rigid $\mathcal{S}(n)$ from
+    tetramer relaxed cross terms and clarifies that $E_{\mathrm{sub}}$ is not
+    a thermodynamic formation enthalpy.
 
-(2) Single dopant seed — We extended the alternate-seed validation to the full
-    B/N/P strain grid (18 ENERGY tasks at seed 137; Table S4). This tests
-    whether alpha signs and S rankings are placement-averaged trends rather than
-    seed-42 artifacts.
+(2) Single dopant seed — Table~S4 documents an alternate seed~137 tetramer
+    strain grid (18 ENERGY tasks; pending) to test whether $\alpha$ signs and
+    $|\mathcal{S}|$ rankings at $+3$\% are robust to dopant placement. Periodic
+    $\mathcal{S}$ claims remain on the seed~42 protocol until seed~137 periodic
+    points are added.
 
-(3) Mechanistic depth — New Table S5 quantifies dopant--cage nearest-neighbor
-    distances and covalent-radius mismatch from archived XYZ structures; Discussion
-    mechanistic synthesis now cites these numbers alongside PDOS and SDC audit data.
+(3) Mechanistic depth — Table~S5 quantifies dopant--cage nearest-neighbor
+    distances and covalent-radius mismatch from archived XYZ structures
+    (geometric metrics only; Mayer bond order and Bader charges are not
+    computed). Discussion mechanistic synthesis cites these numbers together
+    with gap-vs-strain slopes (main Fig.~1a), $\pi$-DOS panels (main Fig.~1b;
+    Supplemental Fig.~S4), and the fifteen-point synergy audit.
 
-(4) Argumentation — We rewrote the S--alpha comparison to avoid over-claiming
-    linear predictability, added a B vs. P stability ranking worked example at
-    epsilon=0 vs. +3% strain, unified substitution-energy terminology, and
-    clarified that S is a same-functional energy difference with largely
+(4) Argumentation — We rewrote the $\mathcal{S}$--$\alpha$ comparison as a
+    qualitative sanity check only (concentration mismatch), tightened stability
+    language to \emph{relative} margins among comparable chemistries (without
+    claiming reordering of widely separated $E_{\mathrm{sub}}$), and clarified
+    that $\mathcal{S}$ is a same-functional energy difference with largely
     cancelling systematic errors.
 
-(5) Cutoff consistency — A matched 400 Ry single-point control for 6xC60 N @
-    +3% strain (Table S2) is queued; N size-scaling sign change remains
-    footnoted until that benchmark converges.
+(5) Cutoff consistency — A matched 400~Ry single-point control for
+    $6\times\mathrm{C}_{60}$ N @ $+3$\% strain (Table~S2; pending) is
+    documented; the reported N $\mathcal{S}(n)$ sign change between $n=6$ and
+    $n=8$ is excluded from design rules until that benchmark and Tables~S3--S4
+    converge.
 
-Minor comments: Conclusions now answer explicitly the three Introduction questions (i)--(iii) with audit-verified $|\\mathcal{S}|$ (max 31.9 meV/atom at $n=1$, fifteen periodic points); improved PRB/SI figure legibility (shared y-axis S4, n=4 S labels); Discussion/Limitations literature contrast (Wang2024, Lopez-Alcala2025, Silva2024); symbol and figure cleanup (PRB composite panel without inset;
-    n=4 S annotations), compressed Methods validation table and Results electronic
-    subsection, APS sentence-case references, and Supplemental Material citation
-    per PRB guidelines.
+Minor comments: Removed internal repository paths from the main text (Data
+Availability only); compressed Discussion background; condensed Conclusions;
+improved Fig.~1(c)--(d) numeric legibility ($\alpha$ bar labels; compact $n=4$
+$\mathcal{S}$ box on panel~d); APS sentence-case titles for cited references;
+Pereira2026 arXiv entry marked as preprint.
 
-Data availability: converged inputs/outputs and audit JSON as in the manuscript;
-    https://github.com/chenxingqiang/graphullerene-strain-engineering
-    Reproduce PDFs with bash paper/compile_prb.sh; Table S3/S4/S2 control energies populate when
-    experiments/run_prb_revision_dft.sh completes (queued after Exp.~9 charged-polaron batch:
-    12/12 charged geometry optimizations converged; eight vertical single-points for Marcus lambda in progress).
+Data availability: converged inputs/outputs and audit tables at
+https://github.com/chenxingqiang/graphullerene-strain-engineering
+Pending validation energies (Tables~S2--S4) remain in the PRB queue.
+Marcus $\lambda$ (Supplemental Fig.~S5): 12/12 charged geometry optimizations
+converged; vertical single-points are populating $\lambda$ (6/8 converged at revision; six verified channels in Supplemental Fig.~S5; two pending).
 
 Prior submission: none to APS journals. Not a joint submission.
 

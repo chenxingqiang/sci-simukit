@@ -1208,7 +1208,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track B（III Literature）**：WebSearch → bib `Pereira2026endohedral`（arXiv:2603.10142）；Discussion Context 笼内 vs 置换 $\mathcal{S}$ 对比句。
  - **检索**：`graphullerene strain doping polaron 2025 2026` → endohedral qHPC60 **compete/support**（能带光学，无双轴 $\mathcal{S}$）
  - **创新审计**：文献差异化 = **B+**；λ = **B pending**
- - **Git**：待 commit R186；（local only）
+ - **Git**：`3cd3b54` — loop R186 → **local only**
  - **下一轮**：R187 Methods；P_qneg1 ENDED → post_exp9
 
 - **Loop R185（2026-06-20，双轨）**：

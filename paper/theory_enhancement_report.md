@@ -24,7 +24,7 @@
 | Tetramer PDOS PDOS / gap 叙事链 | **A** | **[verified]** | Exp7 `.out` + `fig_prl_main.py` / `render_prl.sh` |
 | Polaron factorial IPR/$J$（2 点） | **A** | **[verified, 2-point]** | `experiments/analysis/exp4_polaron_verification.json` |
 | 极化子→带转变 $J>\lambda/2$ | **C** | **[not confirmed]** | Exp4: `polaron_transition_confirmed: false` |
-| Charged polaron adiabatic IP/EA | **A−** | **[partial 10/12, SI Fig.~S5]** | `exp9_polaron_verification.json`；主文不引 IP/EA |
+| Charged polaron adiabatic IP/EA | **A−** | **[partial 11/12, SI Fig.~S5]** | `exp9_polaron_verification.json`；主文不引 IP/EA |
 | 主稿 Conclusion 四条 ↔ Intro | **A** | **[verified R102]** | 无 transport 倍数 |
 | SI Fig.~S5–S6 pipeline | **A** | **[verified]** | `render_si_figures.sh` + `compile_si.sh` / `compile_prb.sh` |
 | Methods PBE+D3 citekeys | **A** | **[verified R116]** | `Perdew1996generalized`, `Grimme2011effect` + `cp2k2025` |
@@ -32,7 +32,7 @@
 | Abstract partial Exp9 | **N/A** | **[withdrawn R67]** | PRB 摘要无 Exp9 计数 |
 | 主稿 citekey 计数（精简稿） | **A** | **13** | 非 `citation_completion_report` 48 篇旧快照 |
 | `running_snapshot` OT 字段 | **A** | **[fixed R103]** | `last_ot_convergence`（非 RMS grad） |
-| Marcus $\lambda$（vertical − adiabatic） | **B** | **[pending]** | Exp9: **10/12** GEO_OPT + **0/8** vertical SP；`derived.lambda_eV` 全 null |
+| Marcus $\lambda$（vertical − adiabatic） | **B** | **[pending]** | Exp9: **11/12** GEO_OPT + **0/8** vertical SP；`derived.lambda_eV` 全 null |
 | PRL 主图 (a–d) | **A** | **[verified]** | `paper/figures/out/figure_prb_main.pdf` + audit JSON（PRB 修订版；无 inset） |
 | PRB 主图 panel (d) $n{=}4$ $\mathcal{S}$ 标注 | **A** | **[verified R135]** | `fig_prl_main.py` `build_prb_figure` |
 | Table S5 局域结构（$\bar{d}$, $\Delta r_{\mathrm{cov}}$） | **A−** | **[verified]** | `experiments/analysis/local_structure_tetramer.json` |
@@ -42,11 +42,11 @@
 | §8 mapping 废止 Results localization | **A** | **[R147]** | 改 SI Fig.~S5 |
 | Conclusion Intro 三问闭环 | **A** | **[verified R146]** | (i)--(iii) 显式回答 |
 | Khan2025 vs $\mathcal{S}$ Discussion | **B+** | **[verified R143]** | 深能级 vs 总能量交叉项 |
-| SI Table S2 charged polaron 计数 | **A−** | **[verified R141]** | 10/12 GEO_OPT + 0/8 vertical；与 JSON 一致 |
+| SI Table S2 charged polaron 计数 | **A−** | **[verified R141]** | 11/12 GEO_OPT + 0/8 vertical；与 JSON 一致 |
 | ML $R^2{>}0.95$、775%/300% $\mu$ | **C** | **[withdrawn from main]** | 勿进 Abstract/Results |
 | 下文 IPR 45→25、$J{=}135$ meV、$\mu{=}8.75\times$ | **C** | **[discrepancy]** | 仅作历史理论草稿；见 §2 |
 
-**Track A 快照（2026-06-20，R148 B-only）**：Exp9 **10/12** — `polaron_B_qpos1_opt` step **24/300** P_qpos1 ~8% restarted（快照；CP2K 不干预）（4× MPI）；Exp10 **40/41**；Exp8 **6/6** ✅。
+**Track A 快照（2026-06-20，R149）**：Exp9 **11/12** — `polaron_B_qpos1_opt` step **102/300** P_qneg1 ~34% restarted（快照；CP2K 不干预）（4× MPI）；Exp10 **40/41**；Exp8 **6/6** ✅。
 
 ---
 
@@ -69,7 +69,7 @@
 | SI Fig.~S5 adiabatic IP/EA | pristine/N/B verified；P pending | `exp9_polaron_verification.json` → `derived.adiabatic_eV`（**非主文 Results**） |
 | Table 1 | $\alpha$, $E$ | `table1_verification.json` |
 | Fig.~2 caption | 15 点 $\mathcal{S}$ | `sdc_exp10_synergy_audit.json` |
-| Limitations | 10/12 GEO, no $\lambda$ | `derived.lambda_eV` 全 null |
+| Limitations | 11/12 GEO, no $\lambda$ | `derived.lambda_eV` 全 null |
 | Conclusion (i)–(iii) | Intro 三问显式闭环 | **R146**；Marcus $\lambda$ deferred to SI |
 
 **grep 闸门（2026-06-20，R147）**：主稿无 775%/300%/8.75×；Koopmans/rVV10 仅 Methods 对比句 ✅
@@ -96,14 +96,14 @@
 | pristine 0% | 75.0 | 26.6 | small polaron hopping |
 | B +3% | 45.0 | 37.2 (+40%) | $J < \lambda/2$ → **无** band-like 转变 |
 
-### 1.4 Exp9 charged polaron（10/12 GEO_OPT）
+### 1.4 Exp9 charged polaron（11/12 GEO_OPT）
 
 | Dopant | IP (eV) | EA (eV) | 备注 |
 |--------|---------|---------|------|
 | pristine | 4.73 | 2.61 | GEO converged；**SI Fig.~S5 only**（主文不引） |
 | N | 3.89 | 2.77 | GEO converged；**SI Fig.~S5** |
 | B | 4.11 | 3.12 | GEO converged；**SI Fig.~S5** |
-| P | — | — | qpos1/qneg1 pending |
+| P | 4.07 | — | qpos1 converged；qneg1 pending |
 
 Marcus 重组能（待 8× vertical SP）→ `analyze_exp9_polaron.py` → `derived.lambda_eV`；Fig.~S5 由 `fig_si_s5_marcus_pending.py` 读 JSON。
 
@@ -141,7 +141,7 @@ SI S1.2 合成 $\lambda$ 分解：**[illustrative, pending Exp9]**；Capobianco2
 | graphullerene 非加性 $\mathcal{S}$ + 40/40 | **A** |
 | N vs B $\alpha$ 符号相反 | **A** |
 | N @ n=8 $\mathcal{S}$ 符号反转 | **B pending** | cutoff400 + Table S4 |
-| Exp9 partial IP/EA (SI Fig.~S5) | **A−** | 10/12 GEO\_OPT |
+| Exp9 partial IP/EA (SI Fig.~S5) | **A−** | 11/12 GEO\_OPT |
 | Intro–Conclusion 四条闭环 | **A** |
 | Marcus $\lambda$ | **B pending** |
 | 300%/775% mobility | **C** |

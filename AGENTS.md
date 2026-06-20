@@ -22,9 +22,9 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 |----|-----|
 | **Exp10** | **40/41** — `size_6x60_N_pos3pct_cutoff400` pending（截断对照） |
 | **Exp8** | **6/6** ✅ — `post_exp8_converged.sh` consolidated `geoopt_pristine_sp.out` |
-| **Exp9** | **10/12** GEO_OPT；`polaron_P_qpos1_opt` step **24/300** ~8% restarted — **不干预** |
-| **运行中** | `polaron_P_qpos1_opt`（4× MPI，restarted-after-ABORT）— **不干预** |
-| **临界区** | P_qpos1 restarted-after-ABORT；内层 OT 正常 |
+| **Exp9** | **11/12** GEO_OPT；`polaron_P_qneg1_opt` step **102/300** ~34% restarted — **不干预** |
+| **运行中** | `polaron_P_qneg1_opt`（4× MPI，restarted-after-ABORT）— **不干预** |
+| **临界区** | P_qneg1 geo step 102/300；内层 OT 正常 |
 | **下一任务** | Exp9 12/12 → `post_exp9_converged.sh`；空闲后 `run_prb_revision_dft.sh` |
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
 | **阻塞 PRB** | Table S3/S4/cutoff400 `.out`；Exp9 λ（SI S5） |
@@ -32,7 +32,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **下一 B 任务** | theory §8 映射；cover letter 同步 |
 | **主张-证据** | B/N/P $\mathcal{S}(n{=}4)$ = **A**；弛豫/seed137/cutoff = **B pending** |
 | **旗杆** | **PRB major revision**（`compile_prb.sh` + SM + cover letter）|
-| **最新 Loop** | **R148**（Track B 专轮） |
+| **最新 Loop** | **R149**（见下方笔记） |
 
 
 ---
@@ -1202,6 +1202,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
   - **创新审计**：n=6 B $\mathcal{S}$ = **A 级**；8×60 batch 运维 + 资源 cap = **A 级**。
   - **Git**：`2a39654` — pushed **origin/main**（2026-06-14）。
   - **下一轮**：`8×60_B_pos3` 收敛 → post → **35/40** + 可能第 12 条 synergy；Figure 1/2 final 仍 pending。
+
+- **Loop R149（2026-06-20，双轨）**：
+ - **Track A**：**P_qpos1 收敛** → Exp9 **11/12**；batch → `polaron_P_qneg1_opt` step **102/300** restarted — **不干预**；`post_exp9_converged.sh` 已跑。
+ - **Track B（VI Results/SI）**：Limitations/Table S2/S5/si_methods/theory **10→11/12**；P adiabatic IP **4.07 eV** 入台账。
+ - **创新审计**：Exp9 11/12 = **A−**；λ = **B pending**
+ - **Git**：`0b10ae1` — loop R149 → **local only**
+ - **下一轮**：P_qneg1 converged → **12/12** → post_exp9
 
 - **Loop R148（2026-06-20，Track B 专轮）**：
  - **Track A（快照）**：Exp9 **10/12**；`P_qpos1` step **24/300** ~8% — **不干预**。

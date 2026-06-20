@@ -1207,7 +1207,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track A**：**P_qneg1 收敛** → Exp9 **12/12** GEO ✅；`post_exp9_converged.sh`（P EA **2.96 eV**）；vertical SP batch `B_qneg1_vert` — **不干预**。
  - **Track B（VIII Conclusion + 横切）**：全稿 **11→12/12**；Conclusion/Limitations/Discussion Polaron 段；SI S5 重绘。
  - **创新审计**：Exp9 adiabatic IP/EA = **A**（12/12）；λ = **B pending**（0/8 vertical）
- - **Git**：待 commit R198；（local only）
+ - **Git**：`e541609` — loop R198 → **local only**
  - **下一轮**：vertical SP 进展；R199 横切 audit
 
 - **Loop R197（2026-06-20，双轨）**：

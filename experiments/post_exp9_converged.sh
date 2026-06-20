@@ -22,6 +22,14 @@ vert = len((d.get('vertical_sp') or {}).get('outputs_converged') or [])
 print(geo, vert, n_lam)
 " 2>/dev/null || echo '0 0 0')"
 echo "Exp9 audit refreshed; GEO_OPT ${geo}/12 | vertical SP ${vert}/8 | lambda values: ${n_lambda:-0}"
+if [[ "$geo" == "12" && "$vert" -lt 8 ]]; then
+  if ! pgrep -f 'cp2k\.psmp' >/dev/null 2>&1; then
+    echo "GEO_OPT 12/12 — next: bash $ROOT/experiments/continue_exp9_pending.sh (vertical SP queue)"
+  else
+    echo "GEO_OPT 12/12 — wait for CP2K idle, then: bash $ROOT/experiments/continue_exp9_pending.sh"
+  fi
+fi
+
 if [[ "$geo" == "12" && "$vert" == "8" ]] && ! pgrep -f 'cp2k\.psmp' >/dev/null 2>&1; then
   echo "Exp9 complete and CP2K idle — next: bash $ROOT/experiments/run_prb_revision_dft.sh"
 fi

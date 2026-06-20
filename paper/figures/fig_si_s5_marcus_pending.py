@@ -50,6 +50,16 @@ def build(out_dir: Path) -> tuple[Path, Path]:
                 arrowprops=dict(arrowstyle="<->", color="#333333", lw=0.55),
             )
             ax.text(0.42, (e0 + e1) / 2, f"IP={ip:.2f} eV", fontsize=5.5, va="center")
+        if ea is None and name == "P":
+            ax.text(
+                0.02,
+                0.20,
+                "EA [pending $q=-1$ GEO]",
+                transform=ax.transAxes,
+                fontsize=5,
+                color="#888888",
+                style="italic",
+            )
         if ea is not None and focus == "EA":
             ax.annotate(
                 "",

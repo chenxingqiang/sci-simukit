@@ -286,7 +286,7 @@ Publication Charges and Reprints
 
 | Step | Command / artifact | Blocks |
 |------|-------------------|--------|
-| Exp9 charged polaron batch | `continue_exp9_pending.sh` → `post_exp9_converged.sh` | SI Fig.~S5 $\lambda$ |
+| Exp9 GEO\_OPT + vertical SP | `continue_exp9_pending.sh` → `post_exp9_converged.sh` (12/12 → vertical queue) | SI Fig.~S5 $\lambda$ |
 | PRB validation DFT (idle CPU) | `bash experiments/run_prb_revision_dft.sh` | Tables S2--S4 numeric cells |
 | Rebuild PDFs | `bash paper/compile_prb.sh` | Upload bundle（**verified R151**: 1$\times$4 S5） |
 

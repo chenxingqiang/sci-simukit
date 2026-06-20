@@ -1207,7 +1207,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track A**：Exp9 **11/12**；`P_qneg1` step **217/300** ~72% — **不干预**。
  - **Track B（I Abstract）**：摘要补 **fifteen periodic** $(n,\delta)$ 网格，对齐 Intro/15 点 audit。
  - **创新审计**：Abstract 定量 = **A**（无新数字）；λ = **B pending**
- - **Git**：待 commit R184；（local only）
+ - **Git**：`de6f8b3` — loop R184 → **local only**
  - **下一轮**：R185 Intro；P_qneg1 ENDED → post_exp9
 
 - **Loop R183（2026-06-20，双轨）**：

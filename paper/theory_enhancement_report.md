@@ -1,6 +1,6 @@
 # 理论增强与证据对齐报告
 
-> **Loop R195 Methods + R196 Results（2026-06-20）** — Results 应变→synergy 23.7 承接；主文/SI IP 边界 — SI Methods Exp10 40/41 + post_exp9$\rightarrow$render_si — Shi2023 qHP strain–$\mu$ vs $\mathcal{S}$（JPCM 225701） — Intro gap 段 Pereira2026 与 Discussion 对齐 — Abstract max $|\\mathcal{S}|$ 标注 P $n{=}1$（对齐 Conclusion） — 全稿 $|\\mathcal{S}|$ grep ✅；Abstract fifteen-point 在位；cover_letter_prb 31.9 — (ii) P $n{=}1$ max 31.9；endohedral 正交句；Abstract 漂移修复 — (ii) P $|\\mathcal{S}|$ $n{=}4$/max；endohedral vs $\mathcal{S}$ 边界 — Fig.~caption (d) audit 数值落盘 — Methods $|\mathcal{S}|$ 23.7 + post_exp9$\rightarrow$render_si 契约 — Pereira2026 endohedral arXiv:2603.10142 vs substitutional $\mathcal{S}$ — Wang2024simulation 入 Intro；R184 Abstract fifteen-point **落盘** — fifteen-point grid 入 Abstract 对齐 Intro/audit — R183 cover_letter 31.9 — R182 Conclusion (iii) 23.7 — R175--R176 Abstract 31.9 — cover_letter_prl P0 ~32→31.9 — R172--R174 $|\\mathcal{S}|$ 全稿 31.9 对齐；Abstract P0 修复 — R165 Discussion design↔audit；R166 Conclusion+DA 路径 — R155 Methods Exp9；R156 Results/SI 边界；R157 Discussion Marcus；R158 Conclusion defer — R116 PBE/D3；R117 Qiu2025；Conclusion post_exp9 闭环 — 与主稿 / canonical JSON / `.out` 对齐  
+> **Loop R197 Discussion（2026-06-20）** — (ii) 闭合 Sec.~strain_response foreshadow；Polaron 段 ↔ Results IP 边界 — Results 应变→synergy 23.7 承接；主文/SI IP 边界 — SI Methods Exp10 40/41 + post_exp9$\rightarrow$render_si — Shi2023 qHP strain–$\mu$ vs $\mathcal{S}$（JPCM 225701） — Intro gap 段 Pereira2026 与 Discussion 对齐 — Abstract max $|\\mathcal{S}|$ 标注 P $n{=}1$（对齐 Conclusion） — 全稿 $|\\mathcal{S}|$ grep ✅；Abstract fifteen-point 在位；cover_letter_prb 31.9 — (ii) P $n{=}1$ max 31.9；endohedral 正交句；Abstract 漂移修复 — (ii) P $|\\mathcal{S}|$ $n{=}4$/max；endohedral vs $\mathcal{S}$ 边界 — Fig.~caption (d) audit 数值落盘 — Methods $|\mathcal{S}|$ 23.7 + post_exp9$\rightarrow$render_si 契约 — Pereira2026 endohedral arXiv:2603.10142 vs substitutional $\mathcal{S}$ — Wang2024simulation 入 Intro；R184 Abstract fifteen-point **落盘** — fifteen-point grid 入 Abstract 对齐 Intro/audit — R183 cover_letter 31.9 — R182 Conclusion (iii) 23.7 — R175--R176 Abstract 31.9 — cover_letter_prl P0 ~32→31.9 — R172--R174 $|\\mathcal{S}|$ 全稿 31.9 对齐；Abstract P0 修复 — R165 Discussion design↔audit；R166 Conclusion+DA 路径 — R155 Methods Exp9；R156 Results/SI 边界；R157 Discussion Marcus；R158 Conclusion defer — R116 PBE/D3；R117 Qiu2025；Conclusion post_exp9 闭环 — 与主稿 / canonical JSON / `.out` 对齐  
 > 本文件是**活文档**：旧版「投稿准备 ✅ / 8.5/10」评分已废止；以下以 **A/B/C 证据等级** 为准。
 
 ## PRL desk gate（R128+）
@@ -64,7 +64,8 @@
 | cover_letter_prb synergy 计数 | **A−** | **[R191]** | 11/12 GEO + fifteen-point / 31.9 诚实化 |
 | Results adiabatic IP/EA 边界 | **A** | **[R156; R196 opener]** | 主文不引；11/12 → audit JSON |
 | Results $\alpha$→$\mathcal{S}$ narrative link | **A** | **[R196]** | P $n{=}4$ 23.7 meV 承接 Sec.~synergy |
-| Discussion polaron transport 段 | **A−** | **[R157]** | Capobianco 协议 vs PBE+D3 |
+| Discussion polaron transport 段 | **A−** | **[R157; R197]** | Capobianco 协议 vs PBE+D3；主文不引 IP/EA |
+| Discussion $\alpha$ vs $\mathcal{S}$ closure | **A** | **[R197]** | (ii) 承接 Sec.~strain_response foreshadow |
 | sdc_method simukit-sdc 点名 | **A** | **[R163; R171; R179 SI hooks]** | `c/simukit-sdc` + `post_exp9/10` + `render_si_figures.sh` |
 | Methods Exp9 batch 契约 | **A** | **[R155; R187 render_si]** | `continue_exp9` + `post_exp9` + `render_si_figures.sh` |
 | Methods screening $|\\mathcal{S}|$ @ $n{=}4$ P | **A** | **[R187]** | 23.7 meV/atom vs audit（原 $\approx 24$） |
@@ -76,7 +77,7 @@
 | ML $R^2{>}0.95$、775%/300% $\mu$ | **C** | **[withdrawn from main]** | 勿进 Abstract/Results |
 | 下文 IPR 45→25、$J{=}135$ meV、$\mu{=}8.75\times$ | **C** | **[discrepancy]** | 仅作历史理论草稿；见 §2 |
 
-**Track A 快照（2026-06-20，R196）**：Exp9 **11/12** — `polaron_P_qneg1_opt` step **236/300** ~79%（CP2K 不干预）；Exp10 **40/41**；Exp8 **6/6** ✅。
+**Track A 快照（2026-06-20，R197）**：Exp9 **11/12** — `polaron_P_qneg1_opt` step **238/300** ~79%（CP2K 不干预）；Exp10 **40/41**；Exp8 **6/6** ✅。
 
 ---
 

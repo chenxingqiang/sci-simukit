@@ -1207,7 +1207,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track A**：Exp9 **11/12**；`P_qneg1` step **214/300** ~71% — **不干预**。
  - **Track B（VIII Conclusion）**：(iii) 补 $n{=}4$ P $|\mathcal{S}|=23.7$ meV/atom。
  - **创新审计**：Conclusion 定量 = **A**；λ = **B pending**
- - **Git**：待 commit R182；（local only）
+ - **Git**：`71bc1d0` — loop R182 → **local only**
  - **下一轮**：R183 横切 audit；P_qneg1 ENDED → post_exp9
 
 - **Loop R181（2026-06-20，双轨）**：

@@ -1207,7 +1207,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track A**：Exp9 **11/12**；`P_qneg1` step **238/300** ~79% — **不干预**。
  - **Track B（VII Discussion）**：(ii) 闭合 Sec.~strain_response foreshadow；Polaron 段 ↔ Results IP 边界。
  - **创新审计**：Discussion 叙事闭环 = **A**；λ = **B pending**
- - **Git**：待 commit R197；（local only）
+ - **Git**：`fc7f95a` — loop R197 → **local only**
  - **下一轮**：R198 Conclusion；P_qneg1 ENDED → post_exp9
 
 - **Loop R196（2026-06-20，双轨）**：

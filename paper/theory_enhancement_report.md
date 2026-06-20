@@ -1,6 +1,6 @@
 # 理论增强与证据对齐报告
 
-> **Loop R188 Results（2026-06-20）** — Fig.~caption (d) audit 数值落盘 — Methods $|\mathcal{S}|$ 23.7 + post_exp9$\rightarrow$render_si 契约 — Pereira2026 endohedral arXiv:2603.10142 vs substitutional $\mathcal{S}$ — Wang2024simulation 入 Intro；R184 Abstract fifteen-point **落盘** — fifteen-point grid 入 Abstract 对齐 Intro/audit — R183 cover_letter 31.9 — R182 Conclusion (iii) 23.7 — R175--R176 Abstract 31.9 — cover_letter_prl P0 ~32→31.9 — R172--R174 $|\\mathcal{S}|$ 全稿 31.9 对齐；Abstract P0 修复 — R165 Discussion design↔audit；R166 Conclusion+DA 路径 — R155 Methods Exp9；R156 Results/SI 边界；R157 Discussion Marcus；R158 Conclusion defer — R116 PBE/D3；R117 Qiu2025；Conclusion post_exp9 闭环 — 与主稿 / canonical JSON / `.out` 对齐  
+> **Loop R188 Results + R189 Discussion（2026-06-20）** — (ii) P $|\\mathcal{S}|$ $n{=}4$/max；endohedral vs $\mathcal{S}$ 边界 — Fig.~caption (d) audit 数值落盘 — Methods $|\mathcal{S}|$ 23.7 + post_exp9$\rightarrow$render_si 契约 — Pereira2026 endohedral arXiv:2603.10142 vs substitutional $\mathcal{S}$ — Wang2024simulation 入 Intro；R184 Abstract fifteen-point **落盘** — fifteen-point grid 入 Abstract 对齐 Intro/audit — R183 cover_letter 31.9 — R182 Conclusion (iii) 23.7 — R175--R176 Abstract 31.9 — cover_letter_prl P0 ~32→31.9 — R172--R174 $|\\mathcal{S}|$ 全稿 31.9 对齐；Abstract P0 修复 — R165 Discussion design↔audit；R166 Conclusion+DA 路径 — R155 Methods Exp9；R156 Results/SI 边界；R157 Discussion Marcus；R158 Conclusion defer — R116 PBE/D3；R117 Qiu2025；Conclusion post_exp9 闭环 — 与主稿 / canonical JSON / `.out` 对齐  
 > 本文件是**活文档**：旧版「投稿准备 ✅ / 8.5/10」评分已废止；以下以 **A/B/C 证据等级** 为准。
 
 ## PRL desk gate（R128+）
@@ -56,7 +56,7 @@
 | Fig.~caption (c) $\alpha$ | Table~S1 | **R180** |
 | Discussion design rules ↔ audit | **A** | **[R165; R173; R181 n=4 23.7/6.2]** | HT reranking + verified $n{=}4$ values |
 | Discussion Makov2023 baseline | **B+** | **[R173; R178 Context cite]** | 内禀应变 + 刚性外载衔接 |
-| Discussion Pereira2026 endohedral | **B+** | **[R186]** | 笼内掺杂 vs 置换 $(\epsilon,\delta)$ $\mathcal{S}$ |
+| Discussion Pereira2026 endohedral | **B+** | **[R186; R189 Polaron 段]** | 笼内 vs 置换正交控制轴 |
 | Conclusion + Data availability audit | **A** | **[R166; R174; R182 (iii) 23.7]** | machine-readable reranking + DA 路径 |
 | cover_letter_prl $|\\mathcal{S}|$ max | **A** | **[R183 P0]** | 31.9 meV/atom 对齐主稿/audit |
 | Results adiabatic IP/EA 边界 | **A** | **[R156]** | 主文不引；11/12 → audit JSON |
@@ -72,7 +72,7 @@
 | ML $R^2{>}0.95$、775%/300% $\mu$ | **C** | **[withdrawn from main]** | 勿进 Abstract/Results |
 | 下文 IPR 45→25、$J{=}135$ meV、$\mu{=}8.75\times$ | **C** | **[discrepancy]** | 仅作历史理论草稿；见 §2 |
 
-**Track A 快照（2026-06-20，R188）**：Exp9 **11/12** — `polaron_P_qneg1_opt` step **224/300** ~75%（CP2K 不干预）；Exp10 **40/41**；Exp8 **6/6** ✅。
+**Track A 快照（2026-06-20，R189）**：Exp9 **11/12** — `polaron_P_qneg1_opt` step **226/300** ~75%（CP2K 不干预）；Exp10 **40/41**；Exp8 **6/6** ✅。
 
 ---
 

@@ -122,7 +122,7 @@ Substitution energy $E_{\mathrm{sub}}$ is \emph{not} a thermodynamic formation e
 \section{\label{sec:results}Results}
 % ------------------------------------------------------------------
 
-We organize the results around total-energy non-additivity: Sec.~\ref{sec:electronic} summarizes band-edge context; Sec.~\ref{sec:strain_response} reports linear strain coefficients and $E_{\mathrm{sub}}$; Sec.~\ref{sec:synergy} gives $\mathcal{S}(n)$ at $+3$\% strain across dopants and supercell sizes (IPR/$J$ and Marcus $\lambda$ remain in Supplemental Material Fig.~S5--S6).
+We organize the results around total-energy non-additivity: Sec.~\ref{sec:electronic} summarizes band-edge context; Sec.~\ref{sec:strain_response} reports linear strain coefficients and $E_{\mathrm{sub}}$; Sec.~\ref{sec:synergy} gives $\mathcal{S}(n)$ at $+3$\% strain across dopants and supercell sizes (Marcus schematics and IPR/$J$ diagnostics are in Supplemental Material Fig.~S5--S6 only; adiabatic IP/EA at revision come from eleven of twelve charged geometry optimizations---audit \texttt{exp9\_polaron\_verification.json}).
 
 \subsection{\label{sec:electronic}Electronic structure under strain and doping}
 
@@ -218,6 +218,7 @@ We acknowledge computational resources and support from Xiamen University.
 \section*{Data availability}
 The data that support the findings of this study are openly available in the \texttt{sci-simukit} repository at \url{https://github.com/chenxingqiang/graphullerene-strain-engineering}, including converged CP2K inputs and outputs under \texttt{dft\_results/}, analysis JSON under \texttt{experiments/analysis/}, and figure-generation scripts under \texttt{paper/figures/}.
 Pending validation tasks (ionic relaxation, alternate-seed grid, and matched-cutoff control; Tables~S2--S4) are queued in \texttt{experiments/run\_prb\_revision\_dft.sh} with inputs under \texttt{experiments/exp\_5\_synergy/} and \texttt{experiments/exp\_10\_size\_scaling/inputs/}.
+Charged-polaron Marcus tasks and the audit JSON are under \texttt{experiments/exp\_9\_charged\_polaron/} and \texttt{experiments/analysis/exp9\_polaron\_verification.json} (refreshed by \texttt{post\_exp9\_converged.sh}).
 The PRB submission bundle is reproduced by \texttt{bash paper/compile\_prb.sh} (main and Supplemental Material figures plus \texttt{latexmk}).
 A tagged release matching the manuscript revision will be issued upon acceptance.
 

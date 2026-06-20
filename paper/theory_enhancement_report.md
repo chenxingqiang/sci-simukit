@@ -59,7 +59,7 @@
 | ML $R^2{>}0.95$、775%/300% $\mu$ | **C** | **[withdrawn from main]** | 勿进 Abstract/Results |
 | 下文 IPR 45→25、$J{=}135$ meV、$\mu{=}8.75\times$ | **C** | **[discrepancy]** | 仅作历史理论草稿；见 §2 |
 
-**Track A 快照（2026-06-20，R165）**：Exp9 **11/12** — `polaron_P_qneg1_opt` step **195/300** ~65%（CP2K 不干预）；Exp10 **40/41**；Exp8 **6/6** ✅。
+**Track A 快照（2026-06-20，R166）**：Exp9 **11/12** — `polaron_P_qneg1_opt` step **196/300** ~65%（CP2K 不干预）；Exp10 **40/41**；Exp8 **6/6** ✅。
 
 ---
 
@@ -85,6 +85,7 @@
 | Fig.~2 caption | 15 点 $\mathcal{S}$ | `sdc_exp10_synergy_audit.json` |
 | Limitations | 11/12 GEO, no $\lambda$ | `derived.lambda_eV` 全 null |
 | Conclusion (i)–(iii) | Intro 三问显式闭环 | **R146**；Marcus $\lambda$ deferred to SI (**R158** 末句) |
+| Data availability synergy audit | `sdc_exp10_synergy_audit.json` | **R166** Conclusion + DA 路径 |
 
 **grep 闸门（2026-06-20，R159）**：主稿无 775%/300%/8.75×；Koopmans/rVV10 仅 Methods 对比句 ✅
 

@@ -22,7 +22,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 |----|-----|
 | **Exp10** | **40/41** — `size_6x60_N_pos3pct_cutoff400` pending（截断对照） |
 | **Exp8** | **6/6** ✅ — `post_exp8_converged.sh` consolidated `geoopt_pristine_sp.out` |
-| **Exp9** | **11/12** GEO_OPT；`polaron_P_qneg1_opt` step **195/300** ~65% — **不干预** |
+| **Exp9** | **11/12** GEO_OPT；`polaron_P_qneg1_opt` step **196/300** ~65% — **不干预** |
 | **运行中** | `polaron_P_qneg1_opt`（4× MPI，restarted-after-ABORT）— **不干预** |
 | **临界区** | P_qneg1 step 186/300 ~62%；内层 OT 正常 |
 | **下一任务** | Exp9 12/12 → `post_exp9_converged.sh`；空闲后 `run_prb_revision_dft.sh` |
@@ -32,7 +32,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **下一 B 任务** | 12/12 → vertical SP batch；Tables S3--S4 |
 | **主张-证据** | B/N/P $\mathcal{S}(n{=}4)$ = **A**；弛豫/seed137/cutoff = **B pending** |
 | **旗杆** | **PRB major revision**（`compile_prb.sh` + SM + cover letter）|
-| **最新 Loop** | **R165**（见下方笔记） |
+| **最新 Loop** | **R166**（见下方笔记） |
 
 
 ---
@@ -1202,6 +1202,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
   - **创新审计**：n=6 B $\mathcal{S}$ = **A 级**；8×60 batch 运维 + 资源 cap = **A 级**。
   - **Git**：`2a39654` — pushed **origin/main**（2026-06-14）。
   - **下一轮**：`8×60_B_pos3` 收敛 → post → **35/40** + 可能第 12 条 synergy；Figure 1/2 final 仍 pending。
+
+- **Loop R166（2026-06-20，双轨）**：
+ - **Track A**：Exp9 **11/12**；`P_qneg1` step **196/300** ~65% — **不干预**。
+ - **Track B（VIII Conclusion）**：Data availability 增 `sdc_exp10_synergy_audit.json`；Conclusions 设计闭环句。
+ - **创新审计**：Conclusion↔audit = **A**；λ = **B pending**
+ - **Git**：`69a90f2` — loop R166 → **local only**
+ - **下一轮**：P_qneg1 ENDED → post_exp9
 
 - **Loop R165（2026-06-20，双轨）**：
  - **Track A**：Exp9 **11/12**；`P_qneg1` step **195/300** ~65% — **不干预**。

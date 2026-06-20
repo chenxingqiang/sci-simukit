@@ -89,7 +89,7 @@ Periodic scaling cells place one dopant per C$_{60}$ ($n=1$--$8$), so nominal co
 Tetramer $\alpha$, gaps, and Supplemental Material IPR/$J$ trends are therefore not directly interchangeable with periodic $\mathcal{S}(n)$ without a matched-concentration benchmark; all $\mathcal{S}$ claims use the periodic protocol.
 In total, $\gtrsim 90$ converged neutral tasks support the quantitative claims below (Table~S2).
 Charged polaron geometry optimizations and vertical single-points for Marcus reorganization energies follow the same functional and basis choices but are reported separately in Supplemental Material Fig.~S5 once converged; they do not enter the $\mathcal{S}$ definition in Eq.~\eqref{eq:synergy_order}.
-Batch workflow: \texttt{experiments/continue\_exp9\_pending.sh} (twelve charged GEO\_OPT, then eight vertical single-points at the neutral geometry); \texttt{post\_exp9\_converged.sh} refreshes \texttt{experiments/analysis/exp9\_polaron\_verification.json} and SI Fig.~S5 via \texttt{paper/figures/render\_si\_figures.sh} (11/12 GEO\_OPT at revision).
+Batch workflow: \texttt{experiments/continue\_exp9\_pending.sh} (twelve charged GEO\_OPT, then eight vertical single-points at the neutral geometry); \texttt{post\_exp9\_converged.sh} refreshes \texttt{experiments/analysis/exp9\_polaron\_verification.json} and SI Fig.~S5 via \texttt{paper/figures/render\_si\_figures.sh} (12/12 GEO\_OPT converged; vertical SP batch in progress at revision).
 
 \subsection{Energy observables}
 
@@ -123,7 +123,7 @@ Substitution energy $E_{\mathrm{sub}}$ is \emph{not} a thermodynamic formation e
 \section{\label{sec:results}Results}
 % ------------------------------------------------------------------
 
-We organize the results around total-energy non-additivity: Sec.~\ref{sec:electronic} summarizes band-edge context; Sec.~\ref{sec:strain_response} reports linear strain coefficients and $E_{\mathrm{sub}}$; Sec.~\ref{sec:synergy} gives $\mathcal{S}(n)$ at $+3$\% strain across dopants and supercell sizes (Marcus schematics and IPR/$J$ diagnostics are in Supplemental Material Fig.~S5--S6 only; adiabatic IP/EA at revision come from eleven of twelve charged geometry optimizations---audit \texttt{exp9\_polaron\_verification.json}).
+We organize the results around total-energy non-additivity: Sec.~\ref{sec:electronic} summarizes band-edge context; Sec.~\ref{sec:strain_response} reports linear strain coefficients and $E_{\mathrm{sub}}$; Sec.~\ref{sec:synergy} gives $\mathcal{S}(n)$ at $+3$\% strain across dopants and supercell sizes (Marcus schematics and IPR/$J$ diagnostics are in Supplemental Material Fig.~S5--S6 only; adiabatic IP/EA at revision come from all twelve charged geometry optimizations---audit \texttt{exp9\_polaron\_verification.json}).
 
 \subsection{\label{sec:electronic}Electronic structure under strain and doping}
 
@@ -206,12 +206,12 @@ N $\mathcal{S}$ vs.\ $n$ is reported for completeness but excluded from design r
 
 \textbf{Polaron transport (Supplemental Material only).}
 The Marcus workflow in Fig.~S5--S6 parallels Ref.~\citenum{Capobianco2024electron}---adiabatic charged-state energies plus vertical evaluations at the neutral geometry---but at the uniform PBE+D3 level used for $\mathcal{S}$; it does not enter the total-energy non-additivity conclusions (adiabatic IP/EA are reported only in Supplemental Material, not in Sec.~\ref{sec:results}).
-At revision, one charged geometry optimization (P, $q=-1$) remains in progress before eight vertical single-points populate $\lambda$.
+All twelve charged geometry optimizations are converged; eight vertical single-points at the neutral geometry are in progress to populate $\lambda$ (audit \texttt{exp9\_polaron\_verification.json}).
 Endohedral band-gap tuning~\cite{Pereira2026endohedral} and substitutional $\mathcal{S}$ address orthogonal knobs (cage filling vs.\ cage substitution) and are not interchangeable for sequential-screen corrections.
 
 \textbf{Limitations and outlook.}
 Three protocol limits are actively benchmarked (Sec.~\ref{sec:validation}): rigid strain (Table~S3), fixed-seed ensembles (Table~S4), and mixed 400/350~Ry cutoffs across $n$ (Table~S2 control task).
-Additional limits: tetramer vs.\ periodic concentration mismatch; PBE+D3 without Koopmans/rVV10; $\mathcal{S}_{\mathrm{gap}}$ not quantified; charged-state geometry optimizations for Marcus $\lambda$ are incomplete (11/12 converged, vertical single-points pending); mobility tensors are not computed---polaron transport anisotropy in related fullerene networks is treated only comparatively~\cite{Silva2024large,Capobianco2024electron} (Supplemental Material Fig.~S5--S6).
+Additional limits: tetramer vs.\ periodic concentration mismatch; PBE+D3 without Koopmans/rVV10; $\mathcal{S}_{\mathrm{gap}}$ not quantified; Marcus $\lambda$ awaits eight vertical single-points (12/12 charged geometry optimizations converged); mobility tensors are not computed---polaron transport anisotropy in related fullerene networks is treated only comparatively~\cite{Silva2024large,Capobianco2024electron} (Supplemental Material Fig.~S5--S6).
 
 % ------------------------------------------------------------------
 \section{\label{sec:conclusions}Conclusions}
@@ -223,7 +223,7 @@ The three questions posed in the Introduction are answered as follows: (i)~donor
 Additive scans can mis-rank stability at the few-percent level of the substitution-energy scale.
 The machine-readable synergy audit tabulates every $(n,\delta)$ pair for independent reranking under the rigid protocol.
 Size-dependent N trends and the rigid-strain upper-bound protocol await ionic-relaxation, alternate-seed, and matched-cutoff benchmarks (Tables~S2--S4); coupled $(\epsilon,\delta)$ design rules complement strain-only mechanical anisotropy~\cite{Wang2024simulation}, derivative-network doping~\cite{LopezAlcalay2025graphendofullerene}, and endohedral band-edge tuning~\cite{Pereira2026endohedral}---orthogonal to substitutional total-energy $\mathcal{S}$ under biaxial load.
-Supplemental Marcus $\lambda$ and hopping schematics (Fig.~S5--S6) are reported separately from $\mathcal{S}$ and remain incomplete until the charged-polaron geometry and vertical single-point batch finishes.
+Supplemental Marcus $\lambda$ and hopping schematics (Fig.~S5--S6) are reported separately from $\mathcal{S}$ and remain incomplete until the vertical single-point batch finishes (12/12 charged geometry optimizations converged).
 
 \begin{acknowledgments}
 We acknowledge computational resources and support from Xiamen University.

@@ -31,7 +31,7 @@ This Supplemental Material accompanies the main PRB article on coupled $(\epsilo
 All figures and tables are labeled with prefix~\textbf{S} to match citations in the main text (Fig.~S4--S6; Tables~S1--S5).
 Calculations use the same PBE+DFT-D3 CP2K protocol as the main manuscript (rigid biaxial strain unless noted).
 Observables follow Capobianco \emph{et al.}~\cite{Capobianco2024electron}: $\pi$-projected DOS, inverse participation ratio (IPR), nearest-neighbor coupling $J$, and Marcus reorganization energies $\lambda^{\pm}$.
-Marcus $\lambda^{\pm}$ in Fig.~S5 follow the adiabatic plus vertical protocol of Ref.~\citenum{Capobianco2024electron} at the main-text PBE+D3 level (11/12 charged geometry optimizations converged at revision; eight vertical single-points pending).
+Marcus $\lambda^{\pm}$ in Fig.~S5 follow the adiabatic plus vertical protocol of Ref.~\citenum{Capobianco2024electron} at the main-text PBE+D3 level (12/12 charged geometry optimizations converged at revision; eight vertical single-points in progress).
 Converged inputs, outputs, and analysis JSON are archived as described in the main-text Data Availability statement.
 
 \input{si_methods_section.tex}
@@ -69,7 +69,7 @@ Tetramer strain energies & tetramer & 24 & Table~S1, $\alpha$ & rigid strain \\
 Optimal-design grid & tetramer & 20 & not used & archive only \\
 Tetramer PDOS/gaps & tetramer & 12 & Fig.~S4; main panels & \\
 Geometry references & tetramer relax & 6 & charged-state inputs & reference geometries \\
-Charged polarons & tetramer $q=\pm1$ & 11/12 GEO\_OPT & Fig.~S5 & 0/8 vertical SP; $\lambda$ pending \\
+Charged polarons & tetramer $q=\pm1$ & 12/12 GEO\_OPT & Fig.~S5 & 0/8 vertical SP; $\lambda$ pending \\
 Size scaling & $n\times$C$_{60}$ & 40 & main $\mathcal{S}(n)$ & 400~Ry ($n\leq4$), 350~Ry ($n\geq6$) \\
 $n{=}6$ cutoff control & $6\times$C$_{60}$ N @+3\% & pending & N sign benchmark & 400~Ry (\texttt{cutoff400} inp) \\
 Ionic relaxation (tetramer) & tetramer & pending & Table~S3 & fixed-cell GEO\_OPT \\
@@ -151,7 +151,7 @@ Energy is relative to the Fermi level at 0~eV. Molecular-orbital isosurfaces are
 }
 \caption{\label{fig:S5}Schematic configuration-coordinate diagrams for Marcus reorganization energies, following Ref.~\citenum{Capobianco2024electron}.
 Panels: pristine and N (hole, $\lambda^{+}$), B (electron, $\lambda^{-}$, IP+EA), and P (hole IP; EA pending $q=-1$ GEO\_OPT).
-Adiabatic ionization potential (IP) and electron affinity (EA) are from converged charged-state geometry optimizations (11/12 complete at revision; see \texttt{exp9\_polaron\_verification.json}); $\lambda^{\pm}=E_{\mathrm{vert}}^{\pm}-E_{\mathrm{opt}}^{\pm}$ remains pending eight vertical single-points at the neutral geometry.}
+Adiabatic ionization potential (IP) and electron affinity (EA) are from converged charged-state geometry optimizations (12/12 complete at revision; see \texttt{exp9\_polaron\_verification.json}); $\lambda^{\pm}=E_{\mathrm{vert}}^{\pm}-E_{\mathrm{opt}}^{\pm}$ remains pending eight vertical single-points at the neutral geometry.}
 \end{figure*}
 
 \section*{Figure S6}

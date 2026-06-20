@@ -1217,6 +1217,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Git**：`e456bbe` — loop R200 → **local only**
  - **下一轮**：R201 Intro；vertical SP → post_exp9
 
+- **Loop R203（2026-06-20，双轨）**：
+ - **Track A**：Exp9 **12/12** GEO；vertical SP **0/8** — `B_qneg1_vert` — **不干预**。
+ - **Track B（IV Methods）**：L91 ``once converged''→12/12 GEO + λ pending；sdc polaron 段 adiabatic 状态。
+ - **创新审计**：Methods Exp9 契约 = **A**；λ = **B pending**
+ - **Git**：待 commit R203；（local only）
+ - **下一轮**：R204 Results；vertical SP → post_exp9
+
 - **Loop R202（2026-06-20，双轨）**：
  - **Track A**：Exp9 **12/12** GEO；vertical SP **0/8** — `B_qneg1_vert` — **不干预**。
  - **Track B（III Literature）**：Peng2025 bib 页码 P0 fix；Discussion qHP review vs $\mathcal{S}$ 对比句。

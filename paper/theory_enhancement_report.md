@@ -70,7 +70,7 @@
 | Discussion polaron transport 段 | **A−** | **[R157; R197]** | Capobianco 协议 vs PBE+D3；主文不引 IP/EA |
 | Discussion $\alpha$ vs $\mathcal{S}$ closure | **A** | **[R197]** | (ii) 承接 Sec.~strain_response foreshadow |
 | sdc_method simukit-sdc 点名 | **A** | **[R163; R171; R179 SI hooks]** | `c/simukit-sdc` + `post_exp9/10` + `render_si_figures.sh` |
-| Methods Exp9 batch 契约 | **A** | **[R155; R187 render_si]** | `continue_exp9` + `post_exp9` + `render_si_figures.sh` |
+| Methods Exp9 batch 契约 | **A** | **[R155; R187; R203 12/12 GEO]** | `continue_exp9` + `post_exp9` + `render_si_figures.sh` |
 | Methods screening $|\\mathcal{S}|$ @ $n{=}4$ P | **A** | **[R187]** | 23.7 meV/atom vs audit（原 $\approx 24$） |
 | Exp9 post hook geo 计数 | **A** | **[R152]** | `converged` + `outputs_converged` |
 | §8 mapping 废止 Results localization | **A** | **[R147]** | 改 SI Fig.~S5 |

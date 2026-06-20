@@ -1,6 +1,6 @@
 # 理论增强与证据对齐报告
 
-> **Loop R175 横切审计（2026-06-20）** — R172--R174 $|\\mathcal{S}|$ 全稿 31.9 对齐；Abstract P0 修复 — R165 Discussion design↔audit；R166 Conclusion+DA 路径 — R155 Methods Exp9；R156 Results/SI 边界；R157 Discussion Marcus；R158 Conclusion defer — R116 PBE/D3；R117 Qiu2025；Conclusion post_exp9 闭环 — 与主稿 / canonical JSON / `.out` 对齐  
+> **Loop R183 横切审计（2026-06-20）** — R182 Conclusion (iii) 23.7 — R175--R176 Abstract 31.9 — cover_letter_prl P0 ~32→31.9 — R172--R174 $|\\mathcal{S}|$ 全稿 31.9 对齐；Abstract P0 修复 — R165 Discussion design↔audit；R166 Conclusion+DA 路径 — R155 Methods Exp9；R156 Results/SI 边界；R157 Discussion Marcus；R158 Conclusion defer — R116 PBE/D3；R117 Qiu2025；Conclusion post_exp9 闭环 — 与主稿 / canonical JSON / `.out` 对齐  
 > 本文件是**活文档**：旧版「投稿准备 ✅ / 8.5/10」评分已废止；以下以 **A/B/C 证据等级** 为准。
 
 ## PRL desk gate（R128+）
@@ -55,6 +55,7 @@
 | Discussion design rules ↔ audit | **A** | **[R165; R173; R181 n=4 23.7/6.2]** | HT reranking + verified $n{=}4$ values |
 | Discussion Makov2023 baseline | **B+** | **[R173; R178 Context cite]** | 内禀应变 + 刚性外载衔接 |
 | Conclusion + Data availability audit | **A** | **[R166; R174; R182 (iii) 23.7]** | machine-readable reranking + DA 路径 |
+| cover_letter_prl $|\\mathcal{S}|$ max | **A** | **[R183 P0]** | 31.9 meV/atom 对齐主稿/audit |
 | Results adiabatic IP/EA 边界 | **A** | **[R156]** | 主文不引；11/12 → audit JSON |
 | Discussion polaron transport 段 | **A−** | **[R157]** | Capobianco 协议 vs PBE+D3 |
 | sdc_method simukit-sdc 点名 | **A** | **[R163; R171; R179 SI hooks]** | `c/simukit-sdc` + `post_exp9/10` + `render_si_figures.sh` |
@@ -67,7 +68,7 @@
 | ML $R^2{>}0.95$、775%/300% $\mu$ | **C** | **[withdrawn from main]** | 勿进 Abstract/Results |
 | 下文 IPR 45→25、$J{=}135$ meV、$\mu{=}8.75\times$ | **C** | **[discrepancy]** | 仅作历史理论草稿；见 §2 |
 
-**Track A 快照（2026-06-20，R182）**：Exp9 **11/12** — `polaron_P_qneg1_opt` step **214/300** ~71%（CP2K 不干预）；Exp10 **40/41**；Exp8 **6/6** ✅。
+**Track A 快照（2026-06-20，R183）**：Exp9 **11/12** — `polaron_P_qneg1_opt` step **215/300** ~72%（CP2K 不干预）；Exp10 **40/41**；Exp8 **6/6** ✅。
 
 ---
 
@@ -94,11 +95,12 @@
 | Limitations | 11/12 GEO, no $\lambda$ | `derived.lambda_eV` 全 null |
 | Conclusion (i)–(iii) | Intro 三问显式闭环 | **R146**；Marcus $\lambda$ deferred to SI (**R158** 末句) |
 | Conclusion (ii) max $|\mathcal{S}|$ | 31.9 meV/atom | **R174--R175** |
+| Conclusion (iii) $n{=}4$ P $|\mathcal{S}|$ | 23.7 meV/atom | **R182** |
 | Fig.~main caption (d) | audit JSON | **R172** |
 | Data availability synergy audit | `sdc_exp10_synergy_audit.json` | **R166** Conclusion + DA 路径 |
 | Discussion design rules | fifteen-point audit HT reranking | `sdc_exp10_synergy_audit.json` (**R165**) |
 
-**grep 闸门（2026-06-20，R175）**：主稿无 775%/300%/8.75×；Koopmans/rVV10 仅 Methods/Limitations 对比句 ✅；$|\mathcal{S}|$ 全稿 max **31.9** meV/atom（Abstract/Results/Discussion/Conclusion）✅
+**grep 闸门（2026-06-20，R183）**：主稿 + `cover_letter_prl.txt` 无 ~32/775%/300%/8.75× ✅；Koopmans/rVV10 仅 Methods/Limitations 对比句 ✅；$|\mathcal{S}|$ max **31.9** meV/atom（主稿 + PRL cover letter）✅
 
 ---
 

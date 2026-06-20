@@ -1,0 +1,60 @@
+================================================================================
+PHYSICAL REVIEW LETTERS — COVER LETTER (draft)
+Manuscript: Non-Additive Strain--Doping Coupling in Covalent Molecular Networks:
+           Model Evidence from Quasi-Hexagonal C60
+Authors: Xingqiang Chen, Qixing Wang (Xiamen University)
+Corresponding author: xingqiang.chen@xmu.edu.cn
+================================================================================
+
+Dear Editor,
+
+We submit the enclosed Letter for consideration in Physical Review Letters.
+
+Context.
+Strain and heteroatom substitution are standard levers in materials design, yet high-throughput pipelines almost always superpose separate strain-only and doping-only scans. That additivity assumption is rarely tested for discrete covalent pi-networks---fullerene frameworks, COF-like sheets, and molecular crystals---where sequential screens can mis-rank dopants or strain set-points. Quasi-hexagonal (qHP) C60 graphullerene provides a rigorous model platform with experimentally accessible synthesis and well-defined pi connectivity.
+
+Key findings.
+We introduce a synergy order parameter S that quantifies the total-energy cross term when biaxial strain and B/N/P substitution are applied jointly. In periodic qHP cells, |S| reaches 31.9 meV/atom for P at +3% tension---enough to reorder sequential-screening margins---yet does not track the linear strain coefficient alpha (opposite signs for N vs. B; smallest |alpha| but largest |S| for P). Three mechanistic classes (electronic B/N, structural P, finite-size N) support a general correction principle for strain-doping co-design beyond a single material. IPR/J transport-adjacent checks are confined to Supplemental Material.
+
+Audience and fit.
+The Letter addresses a cross-cutting assumption in condensed-matter and materials physics, not a niche graphullerene parameter study. The correction principle is posed for discrete pi-networks generally; qHP C60 supplies converged model evidence. We believe the result merits PRL's broad readership rather than a specialty materials journal.
+
+
+Prior submission history.
+This manuscript has not previously been submitted to Physical Review Letters or any other APS journal.
+
+Conflict of interest.
+The authors declare no competing financial or non-financial interests.
+
+Joint submission.
+This is not a joint submission with another Physical Review journal.
+
+Supplemental Material.
+A Supplemental Material PDF provides energy tables (including ionic-relaxation benchmarks, Table S3), the DFT campaign ledger, pi-DOS panels, Marcus schematics (lambda partially pending), and the J factorial. All core non-additivity conclusions are stated in the main Letter.
+
+Data availability.
+Converged CP2K inputs/outputs and analysis JSON are archived in a public GitHub repository (URL in the Data Availability statement); a tagged release will be issued upon acceptance.
+
+Suggested referees (optional — edit before submission).
+[Referee 1: strain engineering / 2D molecular networks]
+[Referee 2: covalent organic frameworks or fullerene networks]
+[Referee 3: high-throughput materials design / DFT methodology]
+
+Excluded referees (if any).
+[None / list]
+
+We confirm that this manuscript has not been published elsewhere and is not under consideration by another journal. All authors have approved the submission.
+
+Sincerely,
+
+Xingqiang Chen
+Department of Physics, Xiamen University
+xingqiang.chen@xmu.edu.cn
+
+================================================================================
+100-WORD JUSTIFICATION FOR PRL (paste into submission form)
+================================================================================
+
+This Letter challenges a default assumption in materials design: that strain and doping increments are additive. In a covalent molecular network used as a model platform, we quantify a large total-energy cross term and show that its magnitude does not follow linear strain sensitivity, with structural dopants dominating electronic ones. The result yields a general correction for coupled strain-doping workflows in discrete pi-networks, including COFs and molecular crystals, and should interest readers across condensed-matter and materials physics beyond one specific allotrope.
+
+(Word count: 100)

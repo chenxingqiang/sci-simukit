@@ -1,6 +1,6 @@
 # 理论增强与证据对齐报告
 
-> **Loop R119 审计（2026-06-19）** — R116 PBE/D3；R117 Qiu2025；Conclusion post_exp9 闭环 — 与主稿 / canonical JSON / `.out` 对齐  
+> **Loop R159 横切审计（2026-06-20）** — R155 Methods Exp9；R156 Results/SI 边界；R157 Discussion Marcus；R158 Conclusion defer — R116 PBE/D3；R117 Qiu2025；Conclusion post_exp9 闭环 — 与主稿 / canonical JSON / `.out` 对齐  
 > 本文件是**活文档**：旧版「投稿准备 ✅ / 8.5/10」评分已废止；以下以 **A/B/C 证据等级** 为准。
 
 ## PRL desk gate（R128+）
@@ -40,6 +40,11 @@
 | PRL transport / Marcus 主图 | **C** | **[pending]** | PRB 主文不阻塞；SI S5–S6 |
 | Fig.~S5 P panel | **A−** | **[R150]** | 1$\times$4；P IP 4.07 eV |
 | Conclusion 压缩去冗余 | **A** | **[R148]** | 删重复 N/B 句；保留 Tables~S2--S4 |
+| Conclusion Marcus/SI defer | **A** | **[R158]** | 与 Discussion R157 边界一致 |
+| Results adiabatic IP/EA 边界 | **A** | **[R156]** | 主文不引；11/12 → audit JSON |
+| Discussion polaron transport 段 | **A−** | **[R157]** | Capobianco 协议 vs PBE+D3 |
+| Methods Exp9 batch 契约 | **A** | **[R155]** | `continue_exp9` + `post_exp9` |
+| Exp9 post hook geo 计数 | **A** | **[R152]** | `converged` + `outputs_converged` |
 | §8 mapping 废止 Results localization | **A** | **[R147]** | 改 SI Fig.~S5 |
 | Conclusion Intro 三问闭环 | **A** | **[verified R146]** | (i)--(iii) 显式回答 |
 | Khan2025 vs $\mathcal{S}$ Discussion | **B+** | **[verified R143]** | 深能级 vs 总能量交叉项 |
@@ -47,7 +52,7 @@
 | ML $R^2{>}0.95$、775%/300% $\mu$ | **C** | **[withdrawn from main]** | 勿进 Abstract/Results |
 | 下文 IPR 45→25、$J{=}135$ meV、$\mu{=}8.75\times$ | **C** | **[discrepancy]** | 仅作历史理论草稿；见 §2 |
 
-**Track A 快照（2026-06-20，R158）**：Exp9 **11/12** — `polaron_P_qneg1_opt` step **190/300** ~63%（CP2K 不干预）；Exp10 **40/41**；Exp8 **6/6** ✅。
+**Track A 快照（2026-06-20，R159）**：Exp9 **11/12** — `polaron_P_qneg1_opt` step **190/300** ~63%（CP2K 不干预）；Exp10 **40/41**；Exp8 **6/6** ✅。
 
 ---
 
@@ -71,9 +76,9 @@
 | Table 1 | $\alpha$, $E$ | `table1_verification.json` |
 | Fig.~2 caption | 15 点 $\mathcal{S}$ | `sdc_exp10_synergy_audit.json` |
 | Limitations | 11/12 GEO, no $\lambda$ | `derived.lambda_eV` 全 null |
-| Conclusion (i)–(iii) | Intro 三问显式闭环 | **R146**；Marcus $\lambda$ deferred to SI |
+| Conclusion (i)–(iii) | Intro 三问显式闭环 | **R146**；Marcus $\lambda$ deferred to SI (**R158** 末句) |
 
-**grep 闸门（2026-06-20，R147）**：主稿无 775%/300%/8.75×；Koopmans/rVV10 仅 Methods 对比句 ✅
+**grep 闸门（2026-06-20，R159）**：主稿无 775%/300%/8.75×；Koopmans/rVV10 仅 Methods 对比句 ✅
 
 ---
 

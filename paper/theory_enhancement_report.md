@@ -33,7 +33,8 @@
 | SI Overview Exp9 诚实化 | **A−** | **[R161]** | 11/12 + vertical pending |
 | Discussion Qiu2025 力学对比 | **B+** | **[verified R154]** | `strain_doped_graphullerene.tex` Context 段 cite `Qiu2025atomic` |
 | Abstract partial Exp9 | **N/A** | **[withdrawn R67]** | PRB 摘要无 Exp9 计数 |
-| Abstract $\alpha$/|$\mathcal{S}$| vs audit | **A** | **[verified R160]** | N $-303$/B $+57$/max $|\mathcal{S}|\sim 32$ vs `table1` + `sdc_exp10_synergy_audit` |
+| Abstract $\alpha$/|$\mathcal{S}$| vs audit | **A** | **[verified R160; R168 re-check]** | N $-303.2$/B $+56.9$/max $|\mathcal{S}|=31.9$ (P, $n{=}1$) vs `table1` + `sdc_exp10_synergy_audit` |
+| Abstract PBE+D3 术语 | **A** | **[R168]** | 与 Methods/Intro `PBE+D3` 一致 |
 | Abstract Marcus defer | **A** | **[R160]** | 末句 SI-only；无 $\lambda$ 数值 |
 | 主稿 citekey 计数（精简稿） | **A** | **13** | 非 `citation_completion_report` 48 篇旧快照 |
 | `running_snapshot` OT 字段 | **A** | **[fixed R103]** | `last_ot_convergence`（非 RMS grad） |
@@ -61,7 +62,7 @@
 | ML $R^2{>}0.95$、775%/300% $\mu$ | **C** | **[withdrawn from main]** | 勿进 Abstract/Results |
 | 下文 IPR 45→25、$J{=}135$ meV、$\mu{=}8.75\times$ | **C** | **[discrepancy]** | 仅作历史理论草稿；见 §2 |
 
-**Track A 快照（2026-06-20，R167）**：Exp9 **11/12** — `polaron_P_qneg1_opt` step **197/300** ~66%（CP2K 不干预）；Exp10 **40/41**；Exp8 **6/6** ✅。
+**Track A 快照（2026-06-20，R168）**：Exp9 **11/12** — `polaron_P_qneg1_opt` step **198/300** ~66%（CP2K 不干预）；Exp10 **40/41**；Exp8 **6/6** ✅。
 
 ---
 

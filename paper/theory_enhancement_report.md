@@ -49,7 +49,7 @@
 | Fig.~S5 P panel | **A−** | **[R150]** | 1$\times$4；P IP 4.07 eV |
 | Conclusion 压缩去冗余 | **A** | **[R148]** | 删重复 N/B 句；保留 Tables~S2--S4 |
 | Conclusion Marcus/SI defer | **A** | **[R158]** | 与 Discussion R157 边界一致 |
-| Results $\mathcal{S}(n)$ audit 溯源 | **A** | **[R164]** | `sdc_exp10_synergy_audit.json` |
+| Results $\mathcal{S}(n)$ audit 溯源 | **A** | **[R164; R172 max 31.9]** | `sdc_exp10_synergy_audit.json` + Fig.~caption (d) |
 | Discussion design rules ↔ audit | **A** | **[R165]** | HT reranking 句 → `synergy_table` (15 点) |
 | Conclusion + Data availability audit | **A** | **[R166]** | machine-readable reranking + DA 路径 |
 | Results adiabatic IP/EA 边界 | **A** | **[R156]** | 主文不引；11/12 → audit JSON |
@@ -64,7 +64,7 @@
 | ML $R^2{>}0.95$、775%/300% $\mu$ | **C** | **[withdrawn from main]** | 勿进 Abstract/Results |
 | 下文 IPR 45→25、$J{=}135$ meV、$\mu{=}8.75\times$ | **C** | **[discrepancy]** | 仅作历史理论草稿；见 §2 |
 
-**Track A 快照（2026-06-20，R171）**：Exp9 **11/12** — `polaron_P_qneg1_opt` step **201/300** ~67%（CP2K 不干预）；Exp10 **40/41**；Exp8 **6/6** ✅。
+**Track A 快照（2026-06-20，R172）**：Exp9 **11/12** — `polaron_P_qneg1_opt` step **204/300** ~68%（CP2K 不干预）；Exp10 **40/41**；Exp8 **6/6** ✅。
 
 ---
 

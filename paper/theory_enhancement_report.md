@@ -1,6 +1,6 @@
 # 理论增强与证据对齐报告
 
-> **Loop R167 横切审计（2026-06-20）** — R165 Discussion design↔audit；R166 Conclusion+DA 路径 — R155 Methods Exp9；R156 Results/SI 边界；R157 Discussion Marcus；R158 Conclusion defer — R116 PBE/D3；R117 Qiu2025；Conclusion post_exp9 闭环 — 与主稿 / canonical JSON / `.out` 对齐  
+> **Loop R175 横切审计（2026-06-20）** — R172--R174 $|\\mathcal{S}|$ 全稿 31.9 对齐；Abstract P0 修复 — R165 Discussion design↔audit；R166 Conclusion+DA 路径 — R155 Methods Exp9；R156 Results/SI 边界；R157 Discussion Marcus；R158 Conclusion defer — R116 PBE/D3；R117 Qiu2025；Conclusion post_exp9 闭环 — 与主稿 / canonical JSON / `.out` 对齐  
 > 本文件是**活文档**：旧版「投稿准备 ✅ / 8.5/10」评分已废止；以下以 **A/B/C 证据等级** 为准。
 
 ## PRL desk gate（R128+）
@@ -35,7 +35,7 @@
 | SI Overview Exp9 诚实化 | **A−** | **[R161]** | 11/12 + vertical pending |
 | Discussion Qiu2025 力学对比 | **B+** | **[verified R154]** | `strain_doped_graphullerene.tex` Context 段 cite `Qiu2025atomic` |
 | Abstract partial Exp9 | **N/A** | **[withdrawn R67]** | PRB 摘要无 Exp9 计数 |
-| Abstract $\alpha$/|$\mathcal{S}$| vs audit | **A** | **[verified R160; R168 re-check]** | N $-303.2$/B $+56.9$/max $|\mathcal{S}|=31.9$ (P, $n{=}1$) vs `table1` + `sdc_exp10_synergy_audit` |
+| Abstract $\alpha$/|$\mathcal{S}$| vs audit | **A** | **[R175 P0]** | Abstract max $31.9$ 与 Results/Conclusion 一致 |
 | Abstract PBE+D3 术语 | **A** | **[R168]** | 与 Methods/Intro `PBE+D3` 一致 |
 | Abstract Marcus defer | **A** | **[R160]** | 末句 SI-only；无 $\lambda$ 数值 |
 | 主稿 citekey 计数（精简稿） | **A** | **13** | 非 `citation_completion_report` 48 篇旧快照 |
@@ -65,7 +65,7 @@
 | ML $R^2{>}0.95$、775%/300% $\mu$ | **C** | **[withdrawn from main]** | 勿进 Abstract/Results |
 | 下文 IPR 45→25、$J{=}135$ meV、$\mu{=}8.75\times$ | **C** | **[discrepancy]** | 仅作历史理论草稿；见 §2 |
 
-**Track A 快照（2026-06-20，R174）**：Exp9 **11/12** — `polaron_P_qneg1_opt` step **205/300** ~68%（CP2K 不干预）；Exp10 **40/41**；Exp8 **6/6** ✅。
+**Track A 快照（2026-06-20，R175）**：Exp9 **11/12** — `polaron_P_qneg1_opt` step **206/300** ~69%（CP2K 不干预）；Exp10 **40/41**；Exp8 **6/6** ✅。
 
 ---
 
@@ -91,10 +91,12 @@
 | Fig.~2 caption | 15 点 $\mathcal{S}$ | `sdc_exp10_synergy_audit.json` |
 | Limitations | 11/12 GEO, no $\lambda$ | `derived.lambda_eV` 全 null |
 | Conclusion (i)–(iii) | Intro 三问显式闭环 | **R146**；Marcus $\lambda$ deferred to SI (**R158** 末句) |
+| Conclusion (ii) max $|\mathcal{S}|$ | 31.9 meV/atom | **R174--R175** |
+| Fig.~main caption (d) | audit JSON | **R172** |
 | Data availability synergy audit | `sdc_exp10_synergy_audit.json` | **R166** Conclusion + DA 路径 |
 | Discussion design rules | fifteen-point audit HT reranking | `sdc_exp10_synergy_audit.json` (**R165**) |
 
-**grep 闸门（2026-06-20，R167）**：主稿无 775%/300%/8.75×；Koopmans/rVV10 仅 Methods/Limitations 对比句 ✅；`synergy_table` max $|\mathcal{S}|\approx 31.9$ meV/atom vs Abstract ✅
+**grep 闸门（2026-06-20，R175）**：主稿无 775%/300%/8.75×；Koopmans/rVV10 仅 Methods/Limitations 对比句 ✅；$|\mathcal{S}|$ 全稿 max **31.9** meV/atom（Abstract/Results/Discussion/Conclusion）✅
 
 ---
 
@@ -156,7 +158,7 @@ SI S1.2 合成 $\lambda$ 分解：**[illustrative, pending Exp9]**；Capobianco2
 
 ---
 
-## 4. 创新审计（R167）
+## 4. 创新审计（R175）
 
 | 主张 | 等级 |
 |------|------|

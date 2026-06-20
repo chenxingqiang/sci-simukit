@@ -34,6 +34,8 @@
 | Intro Silva2024 transport | **B+** | **[R177]** | 极化子各向异性语境；Marcus 仍 SI-only |
 | Intro Wang2024simulation mechanics | **B+** | **[R185]** | 单轴力学 vs 双轴 $(\epsilon,\delta)$ $\mathcal{S}$ 差异化 |
 | Intro Pereira2026 endohedral gap | **B+** | **[R193]** | 笼内能带 vs 置换双轴 $\mathcal{S}$ |
+| Peng2025monolayer bib pages | **A** | **[R202 P0]** | Chem.\ Commun.\ **10287--10302** (was 1234--1237) |
+| Discussion Peng2025 vs $\mathcal{S}$ | **B+** | **[R202]** | qHP 力学综述 vs 联合双轴总能量审计 |
 | Intro 去重复 separate scans | **A** | **[R161]** | joint $(\epsilon,\delta)$ 动机句 |
 | Intro Marcus ↔ Abstract defer | **A** | **[R201]** | Fig.~S5--S6 + vertical SP pending |
 | SI Overview Exp9 诚实化 | **A** | **[R161; R198]** | 12/12 GEO + vertical SP in progress |

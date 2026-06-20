@@ -1217,6 +1217,14 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Git**：`e456bbe` — loop R200 → **local only**
  - **下一轮**：R201 Intro；vertical SP → post_exp9
 
+- **Loop R202（2026-06-20，双轨）**：
+ - **Track A**：Exp9 **12/12** GEO；vertical SP **0/8** — `B_qneg1_vert` — **不干预**。
+ - **Track B（III Literature）**：Peng2025 bib 页码 P0 fix；Discussion qHP review vs $\mathcal{S}$ 对比句。
+ - **文献检索**：`graphullerene strain doping 2025` → Peng2025 Feature Article 已在 bib；页码校正。
+ - **创新审计**：bib 契约 = **A**；Discussion 文献对比 = **B+**
+ - **Git**：待 commit R202；（local only）
+ - **下一轮**：R203 Methods；vertical SP → post_exp9
+
 - **Loop R199（2026-06-20，双轨）**：
  - **Track A**：Exp9 **12/12** GEO；vertical SP **0/8** — `B_qneg1_vert` — **不干预**。
  - **Track B（横切 audit）**：`theory_enhancement_report.md` 11→12/12 台账；§8 P EA 2.96；grep 闸门 R199。

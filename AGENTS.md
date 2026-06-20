@@ -1207,7 +1207,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track A**：Exp9 **11/12**；`P_qneg1` step **234/300** ~78% — **不干预**。
  - **Track B（IV Methods）**：`si_methods_section.tex` Exp10 **40 converged + cutoff400 pending**；`post_exp9`→`render_si_figures.sh`。
  - **创新审计**：Methods 计数诚实化 = **A**；λ = **B pending**
- - **Git**：待 commit R195；（local only）
+ - **Git**：`b535f69` — loop R195 → **local only**
  - **下一轮**：R196 Results；P_qneg1 ENDED → post_exp9
 
 - **Loop R194（2026-06-20，双轨）**：

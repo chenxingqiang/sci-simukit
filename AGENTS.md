@@ -1222,7 +1222,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track B（III Literature）**：Peng2025 bib 页码 P0 fix；Discussion qHP review vs $\mathcal{S}$ 对比句。
  - **文献检索**：`graphullerene strain doping 2025` → Peng2025 Feature Article 已在 bib；页码校正。
  - **创新审计**：bib 契约 = **A**；Discussion 文献对比 = **B+**
- - **Git**：待 commit R202；（local only）
+ - **Git**：`4a7bec5` — loop R202 → **local only**
  - **下一轮**：R203 Methods；vertical SP → post_exp9
 
 - **Loop R199（2026-06-20，双轨）**：

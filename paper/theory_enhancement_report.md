@@ -28,6 +28,7 @@
 | 主稿 Conclusion 四条 ↔ Intro | **A** | **[verified R102]** | 无 transport 倍数 |
 | SI Fig.~S5–S6 pipeline | **A** | **[verified]** | `render_si_figures.sh` + `compile_si.sh` / `compile_prb.sh` |
 | Methods PBE+D3 citekeys | **A** | **[verified R116]** | `Perdew1996generalized`, `Grimme2011effect` + `cp2k2025` |
+| Intro Katiyar2025strain cite | **B+** | **[R162]** | 2D strain review 语境 |
 | Intro 去重复 separate scans | **A** | **[R161]** | joint $(\epsilon,\delta)$ 动机句 |
 | SI Overview Exp9 诚实化 | **A−** | **[R161]** | 11/12 + vertical pending |
 | Discussion Qiu2025 力学对比 | **B+** | **[verified R154]** | `strain_doped_graphullerene.tex` Context 段 cite `Qiu2025atomic` |
@@ -56,7 +57,7 @@
 | ML $R^2{>}0.95$、775%/300% $\mu$ | **C** | **[withdrawn from main]** | 勿进 Abstract/Results |
 | 下文 IPR 45→25、$J{=}135$ meV、$\mu{=}8.75\times$ | **C** | **[discrepancy]** | 仅作历史理论草稿；见 §2 |
 
-**Track A 快照（2026-06-20，R161）**：Exp9 **11/12** — `polaron_P_qneg1_opt` step **191/300** ~64%（CP2K 不干预）；Exp10 **40/41**；Exp8 **6/6** ✅。
+**Track A 快照（2026-06-20，R162）**：Exp9 **11/12** — `polaron_P_qneg1_opt` step **192/300** ~64%（CP2K 不干预）；Exp10 **40/41**；Exp8 **6/6** ✅。
 
 ---
 
@@ -180,6 +181,7 @@ Legacy `analyze_results.py` → 请改用 `analyze_exp9_polaron.py` + `dft_resul
 
 ---
 
+**检索（R162）**：`graphullerene B N P doping strain DFT 2025` — Khan/Lopez/Qiu 已覆盖；Intro 入 `Katiyar2025strain`（2D strain review，非 $\mathcal{S}$）。
 **检索（R157）**：`graphullerene polaron reorganization DFT 2025` — Capobianco2024/Khan2025 已覆盖；无新 bib。
 **检索（R137）**：`graphullerene strain doping 2025` — Wang2024 qHP/qTP 各向异性已在 bib；LopezAlcalay2025 graphendofullerene 应变+掺杂（衍生体系）入 Discussion 对比句；endohedral qHP 2026 预印本未入（偏离 B/N 替位主题）。
 

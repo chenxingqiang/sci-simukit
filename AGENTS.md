@@ -1207,7 +1207,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track A**：Exp9 **12/12** GEO；vertical SP **0/8** — `B_qneg1_vert` — **不干预**。
  - **Track B（I Abstract）**：Marcus 末句 ↔ Fig.~S5--S6 + vertical SP defer；`fifteen periodic` ✅。
  - **创新审计**：Abstract Marcus = **A**（无 λ 数值）；λ = **B pending**
- - **Git**：待 commit R200；（local only）
+ - **Git**：`e456bbe` — loop R200 → **local only**
  - **下一轮**：R201 Intro；vertical SP → post_exp9
 
 - **Loop R199（2026-06-20，双轨）**：

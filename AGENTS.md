@@ -1403,7 +1403,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track B（VII Discussion）**：Design implications + Conclusions → 四隅 pristine/$P$ 表述与 Results Sec.~\ref{sec:synergy} 对齐
  - **Track C（C-M1）**：`response_to_referees` MC3 + checklist §VI Discussion 行
  - **创新审计**：Discussion–Results 链 = **A**；Table III 填数 = **B pending**
- - **Git**：待 commit
+ - **Git**：`f1aea08` — `loop R300: Discussion-Conclusions Table III sync` → **pushed: (local only)**
  - **下一轮**：`relax_P_eps0_geo` GEO ENDED → `analyze_relax_s.py` + Table III 行 3
 
 - **Loop R299（2026-06-21，双轨 + Loop C）**：

@@ -1,0 +1,15 @@
+{
+  "source": "dft_results/exp_5_synergy/results/real_dft_results.json",
+  "verified_date": "2026-06-21",
+  "n_atoms": 240,
+  "functional": "legacy PBE rigid (no D3)",
+  "strain_pct": 3.0,
+  "equation": "S = (E(eps,d) - E(eps,0) - E(0,d) + E(0,0)) / N",
+  "S_meV_per_atom": {
+    "B": 3.8,
+    "N": 5.7,
+    "P": 1.0
+  },
+  "table": "paper/tables/tab_IV.tex reference placement rows",
+  "note": "Tetramer-only placement audit; not comparable to periodic PBE+D3 S(n) in Table II (concentration and boundary conditions differ)."
+}

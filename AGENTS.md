@@ -23,13 +23,13 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Exp10** | **40/41** — `size_6x60_N_pos3pct_cutoff400` pending（截断对照） |
 | **Exp8** | **6/6** ✅ |
 | **Exp9** | **12/12** GEO_OPT ✅；vertical SP **8/8** ✅ — λ 全表入 Fig.~3（B $\lambda^{-}$ 负值已标注） |
-| **运行中** | `relax_P_eps0_geo`（Table III **2/4**；**CRIT** OT~101，grad~$1.5\times10^{-6}$）— **不干预** |
+| **运行中** | `relax_P_eps0_geo`（Table III **2/4**；离子步 **5/300**；内层 SCF **CRIT** OT~109）— **不干预** |
 | **临界区** | `relax_P_eps0_geo`（内层 SCF **CRIT**） |
 | **下一任务** | Table III 4/4 → $\mathcal{S}_{\mathrm{relaxed}}$ sign row；**勿并行** cutoff400 与 relax |
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
 | **阻塞 PRB** | Table III/IV DFT；Exp10 cutoff400 |
 | **文稿 P 瓶颈** | Table III **2/4** → GEO ENDED 填数 |
-| **最新 Loop** | **R290**（见下方笔记） |
+| **最新 Loop** | **R291**（见下方笔记） |
 | **下一 C 任务** | Table III GEO ENDED → 第三行 + `analyze_relax_s.py` |
 | **下一 B 任务** | $P@\epsilon{=}0$ ENDED → Results/Table III 填数 |
 | **主张-证据** | Marcus λ = **A−**（8/8）；弛豫 III = **B**（2/4）；IV = **B** |
@@ -1396,6 +1396,15 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
   - **Git**：`2a39654` — pushed **origin/main**（2026-06-14）。
   - **下一轮**：`8×60_B_pos3` 收敛 → post → **35/40** + 可能第 12 条 synergy；Figure 1/2 final 仍 pending。
 
+
+- **Loop R291（2026-06-21，双轨 + Loop C）**：
+ - **Track A**：Table III **2/4**；`relax_P_eps0_geo` 离子步 **5/300**，内层 SCF CRIT OT~109 — **不干预**；刷新 `relax_validation_tetramer.json`
+ - **Track B（V Data）**：`main_extended_tables*.tex` 与 canonical Table~II/III 契约对齐（legacy PBE、Sec.~`methods_s3_relax`、ongoing 措辞）
+ - **Track C（C-M1）**：`response_to_referees` MC1 增离子步 5/300 + OT~109
+ - **创新审计**：extended tables 契约 = **A**；弛豫 = **B pending**
+ - **Git**：待 commit
+ - **paper_gap**：GEO ENDED → Table III 行 3
+ - **下一轮**：`relax_P_eps0_geo` converged → `analyze_relax_s.py` + 填数
 
 - **Loop R290（2026-06-21，双轨 + Loop C）**：
  - **Track A**：Table III **2/4**；`relax_P_eps0_geo` **CRIT** OT~101 — **不干预**

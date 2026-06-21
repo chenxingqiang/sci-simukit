@@ -1405,7 +1405,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track B（VI Results + 横切）**：Fig.~\ref{fig:main} caption (a) $E_g$ / (d) peak $|\mathcal{S}|$ 读图键；`compile_prb.sh` 收口 R308 图件 PDF
  - **Track C（C-m4）**：response Minor Fig.~1 行 R309
  - **创新审计**：Fig.~1 caption = **A**；compile 契约 = **A**；Table III = **B**（2/4）
- - **Git**：待 commit
+ - **Git**：`9222265` — `loop R309: Fig.1 caption, compile PRB PDFs` → **pushed: (local only)**
  - **下一轮**：`relax_P_eps0_geo` GEO ENDED → Table III 行 3；R310 Literature
 
 - **Loop R308（2026-06-21，双轨 + Loop C）**：

@@ -1404,7 +1404,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track B（横切 B4/B5）**：提交 R302–R306 积压（Fig.~3 EA 竖直箭头、Methods/Results Marcus 读图、Discussion LopezAlcalay 分调句、P0 grep）；`theory_enhancement_report` §8 → R307
  - **Track C**：response checklist R307 + Minor Fig.~3 行
  - **创新审计**：grep 洁净度 + Fig.~3 = **A**；Table III = **B**（2/4）
- - **Git**：待 commit（R302–R306 batch）
+ - **Git**：`f6314bb` — `loop R302-R307: Fig.3 Marcus, Discussion, grep audit` → **pushed: (local only)**
  - **下一轮**：GEO ENDED → Table III 行 3
 
 - **Loop R306（2026-06-21，双轨 + Loop C）**：

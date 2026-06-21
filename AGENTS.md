@@ -1405,7 +1405,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track B（Fig.~3 + C-m4）**：`fig_si_s2_marcus.py` 跨掺杂剂列对比 + legend/$\lambda$ 框；`fig_prl_main.py` 统一 dopant legend；caption/Methods/Results 同步
  - **Track C（C-m4）**：response Minor Fig.~3 行 R308
  - **创新审计**：Fig.~3 可读性 = **A**；Table III = **B**（2/4）
- - **Git**：待 commit
+ - **Git**：`86bba36` — `loop R308: Fig.3 Marcus + PRB main legend` → **pushed: (local only)**
  - **下一轮**：GEO ENDED → Table III 行 3
 
 - **Loop R307（2026-06-21，双轨 + Loop C）**：

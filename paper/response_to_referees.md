@@ -80,6 +80,7 @@
 | References sentence case | **R252**: APS sentence case on all 22 cited keys; [15] = unique SM entry |
 | $E_\mathrm{sub}$ definition | **R252**: single Methods definition; Validation cross-ref (not formation enthalpy; no $\mu$) |
 | Fig.~1(c)--(d) legibility | **R250**: N $\alpha$ in-bar label; $n{=}4$ box lower-left; max $|\mathcal{S}|$ at $n{=}1$ P |
+| Fig.~3 Marcus EA arrow | **R303**: vertical EA at $Q{=}0$ (fixes empty left-pointing arrow); caption clarifies schematic |
 | Discussion / Conclusions length | Context compressed; Conclusions condensed (no numeric repeat) |
 | Supplemental citations | Overview + Tables I--V cited; table order I--V |
 | Mayer/Bader mechanism | Limitations: not computed; Table~V geometry only |
@@ -105,14 +106,14 @@
 |--------------|-------------------------|
 | **§I Abstract** | Covalent-network framing; sign-qualitative Table~III **2/4**; ``at fixed coordinates'' on max $|\mathcal{S}|$; Marcus Fig.~3 boundary |
 | **§II Introduction** | Periodic PBE+D3 $\mathcal{S}$ vs.\ legacy PBE tetramer $\alpha$ (Table~I) separated; upper-bound + Table~III **2/4** partial; Intro $|\mathcal{S}|$ capped at $31.9$~meV/atom **at fixed coordinates** (P $n{=}1$); Marcus Fig.~3; **Lv2026** survey gap vs.\ $(\epsilon,\delta)$ $\mathcal{S}$ |
-| **§III Methods** | Table~I legacy PBE vs.\ periodic PBE+D3 explicit; Table~III four-corner grid + BFGS force/displacement thresholds (Sec.~\ref{sec:methods_s3_relax}); Tables~II--IV in Methods; Marcus $E_{\mathrm{vert}}$ vs $E_{\mathrm{opt}}$ |
+| **§III Methods** | Table~I legacy PBE vs periodic PBE+D3; Table~III four-corner + BFGS thresholds; Fig.~3 Marcus IP/vertical-$Q{=}0$ schematic in Sec.~\ref{sec:methods_marcus} |
 | **§III.C Doping concentration** | Clarified: one substituent per C$_{60}$ $\Rightarrow$ $n$ in $60n$ atoms (${\sim}1.67$ at.\%); explicitly \emph{not} $1/240{=}0.42$ at.\% single-dopant/supercell counting |
 | **§III.E Table~III** | Sign-only; PBE rigid vs PBE+D3 relaxed; four corners = pristine + $P$ at $\epsilon{=}0,+3$\% |
 | **§IV Structure** | No standalone Section IV; transport in Results |
 | **§IV Fig.~4** | FCWD placeholder removed from main text |
-| **§V Results** | Fifteen-point $\mathcal{S}(n)$ audit (Table~II); Table~IV reference $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ (+3.8/+5.7/+1.0 meV/atom, legacy PBE); partial III pristine checkpoint |
-| **§VI Discussion** | Factor of four; design implications + four-corner Table~III pristine checkpoint cross-ref Sec.~\ref{sec:synergy}; Table~III sign-only criterion; **Katiyar2025strain** 2D roadmap vs $\mathcal{S}$ audit |
+| **§V Results** | Fifteen-point $\mathcal{S}(n)$ (Table~II); Table~IV reference $\mathcal{S}^{\mathrm{tet}}$; Fig.~3 IP/vertical-$Q{=}0$ schematic cross-ref Methods |
+| **§VI Discussion** | Factor of four; Table~III/IV；**Katiyar2025** + **LopezAlcalay2025** 分调 vs 四隅 $\mathcal{S}$ |
 | **§VIII Conclusions** | Three Intro questions (1)--(3); upper-bound opening; Table~III four-corner sign-only; Table~IV reference $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ archived; alternate placement pending in future work |
 
-*Document version: PRB Major Revision + Chinese checklist (Loop R301, 2026-06-21). Align with `cover_letter_prb.txt`.*
+*Document version: PRB Major Revision + Chinese checklist (Loop R307, 2026-06-21). Align with `cover_letter_prb.txt`.*
 

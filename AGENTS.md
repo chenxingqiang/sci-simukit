@@ -29,7 +29,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
 | **阻塞 PRB** | Table III/IV DFT；Exp10 cutoff400 |
 | **文稿 P 瓶颈** | Table III **2/4** → GEO ENDED 填数 |
-| **最新 Loop** | **R301**（见下方笔记） |
+| **最新 Loop** | **R307**（见下方笔记） |
 | **下一 B 任务** | Table III GEO ENDED → 填数 |
 | **主张-证据** | Table IV reference $\mathcal{S}$ = **A**；弛豫 III = **B**（2/4） |
 | **旗杆** | **PRB Regular Article** major revision |
@@ -1398,21 +1398,62 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
-- **Loop R301（2026-06-21，双轨 + Loop C）**：
- - **Track A**：Table III **2/4**；`relax_P_eps0_geo` **CRIT** OT~**252** — **不干预**
- - **Track B（VII Discussion）**：Validation protocol Table~IV 写入 reference $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ 基准（+3.8/+5.7/+1.0）并重申不外推 periodic；MC2 response 同步
- - **Track C**：checklist §VI Discussion 行 + MC2 item 2
- - **创新审计**：Table IV placement 边界 = **A**；alternate ENERGY = **B pending**
- - **Git**：未提交
- - **下一轮**：GEO ENDED → Table III 行 3；R302 Conclusion
+
+- **Loop R307（2026-06-21，双轨 + Loop C）**：
+ - **Track A**：Table III **2/4**；`relax_P_eps0_geo` **CRIT** OT~**28** — **不干预**；刷新 JSON
+ - **Track B（横切 B4/B5）**：提交 R302–R306 积压（Fig.~3 EA 竖直箭头、Methods/Results Marcus 读图、Discussion LopezAlcalay 分调句、P0 grep）；`theory_enhancement_report` §8 → R307
+ - **Track C**：response checklist R307 + Minor Fig.~3 行
+ - **创新审计**：grep 洁净度 + Fig.~3 = **A**；Table III = **B**（2/4）
+ - **Git**：待 commit（R302–R306 batch）
+ - **下一轮**：GEO ENDED → Table III 行 3
+
+- **Loop R306（2026-06-21，双轨 + Loop C）**：
+ - **Track A**：Table III **2/4**；`relax_P_eps0_geo` **CRIT** OT~**21** — **不干预**
+ - **Track B（VI Results）**：`sec:transport_obs` 链 Fig.~3 示意读图 → Sec.~\ref{sec:methods_marcus}（R305 契约入 Results）
+ - **Track C**：response §V Results 行
+ - **创新审计**：Results–Methods–Fig.~3 = **A**；$\mathcal{S}$ 数 = **A**（audit JSON）
+ - **Git**：含于 R307 commit batch
+ - **下一轮**：GEO ENDED → Table III；R307 Discussion
+
+- **Loop R305（2026-06-21，双轨 + Loop C）**：
+ - **Track A**：Table III **2/4**；`relax_P_eps0_geo` **CRIT** OT~**12** — **不干预**
+ - **Track B（IV Methods）**：`methods_extended` Sec.~\ref{sec:methods_marcus} 补 Fig.~3 IP/vertical-$Q{=}0$ 示意读图契约；Validation 链 Table~IV reference $\mathcal{S}^{\mathrm{tet}}$ → Sec.~\ref{sec:synergy}（无 repo 路径）
+ - **Track C**：response §III Methods 行
+ - **创新审计**：Methods–Fig.~3 = **A**；inp BFGS = **A**（已对齐）
+ - **Git**：含于 R307 commit batch
+ - **下一轮**：GEO ENDED → Table III；R306 Results
+
+- **Loop R304（2026-06-21，双轨 + Loop C）**：
+ - **Track A**：Table III **2/4**；`relax_P_eps0_geo` **CRIT**（OT 快照偏低，疑内层 SCF 重启）— **不干预**
+ - **Track B（III Literature）**：WebSearch `graphullerene strain doping 2025`；Discussion 增 LopezAlcalay2025 **strain vs electrostatic 分调** vs 四隅 $\mathcal{S}$ 对比句（已有 bib）
+ - **检索**：Khan/Lopez/Nie 已覆盖；无新 bib
+ - **创新审计**：文献定位 = **B+**；$\mathcal{S}$ 差异化 = **A**
+ - **Git**：含于 R307 commit batch
+ - **下一轮**：GEO ENDED → Table III；R305 Methods
+
+- **Loop R303（2026-06-21，双轨 + Loop C）**：
+ - **Track A**：Table III **2/4**；`relax_P_eps0_geo` **CRIT** OT~**298** — **不干预**
+ - **Track B（Fig.~3）**：`fig_si_s2_marcus.py` EA 箭头改为 $Q{=}0$ 竖直（vertical-SP 示意）；caption 说明 IP/EA 箭头语义；重跑 compile
+ - **Track C**：response Minor Fig.~3 行
+ - **创新审计**：Fig.~3 示意 = **A**；$\lambda$ 数值 = **A−**（JSON 不变）
+ - **Git**：含于 R307 commit batch
+ - **下一轮**：GEO ENDED → Table III；R304 Literature
+
+- **Loop R302（2026-06-21，双轨 + Loop C）**：
+ - **Track A**：Table III **2/4**；`relax_P_eps0_geo` **CRIT** OT~**280** — **不干预**
+ - **Track B（VIII Conclusion + 横切）**：删主文 ``Major Comment~1'' 泄漏；Conclusions future work 区分 Table~IV reference 已归档 vs alternate pending；`verify_reliability.sh` **294** pass / **2** warn
+ - **Track C**：response 版本 R302
+ - **创新审计**：主文洁净度 = **A**（P0）；Table III = **B**（2/4）
+ - **Git**：含于 R307 commit batch
+ - **下一轮**：GEO ENDED → Table III 行 3；R303 横切/Abstract
 
 - **Loop R301（2026-06-21，双轨 + Loop C）**：
- - **Track A**：Table III **2/4**；`relax_P_eps0_geo` **CRIT** OT~**252** — **不干预**；刷新 JSON
- - **Track B（VIII Conclusion）**：future work 区分 Table~IV reference $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ 已归档 vs alternate ENERGY pending
- - **Track C（C-M2）**：`response_to_referees` MC2 补 reference 行 + checklist §VIII
- - **创新审计**：Conclusion–Table IV = **A**；alternate placement = **B pending**
- - **Git**：`d76de83` — `loop R301: Conclusion Table IV reference vs alternate` → **pushed: (local only)**
- - **下一轮**：Table III GEO ENDED → 填数；R302 横切 audit
+ - **Track A**：Table III **2/4**；`relax_P_eps0_geo` **CRIT** OT~**252** — **不干预**
+ - **Track B（VII Discussion + VIII Conclusion）**：Validation Table~IV reference $\mathcal{S}^{\mathrm{tet}}$；future work MC2；`d76de83`
+ - **Track C**：checklist §VI + MC2 item 2
+ - **创新审计**：Table IV placement 边界 = **A**；alternate ENERGY = **B pending**
+ - **Git**：`d76de83` + `0ca3ff0` → **pushed: origin/main**
+ - **下一轮**：GEO ENDED → Table III 行 3；R303 Abstract
 
 - **Loop R300（2026-06-21，双轨 + Loop C）**：
  - **Track A**：Table III **2/4**；`relax_P_eps0_geo` **CRIT** OT~**240** — **不干预**；刷新 JSON

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fig. S2 — Marcus configuration coordinate (adiabatic IP/EA verified; lambda pending)."""
+"""Fig.~3 / S2 — Marcus configuration coordinate (adiabatic IP; vertical EA at Q=0)."""
 
 from __future__ import annotations
 
@@ -37,8 +37,11 @@ def build(out_dir: Path) -> tuple[Path, Path]:
 
     for ax, (name, ip, ea, focus) in zip(axes, panels):
         e0, e1 = 0.0, 0.35
-        neutral = _parabola(q, 0.0, e0, 1.1)
-        charged = _parabola(q, 0.35, e1, 1.1)
+        q0_charged = 0.35
+        k = 1.1
+        neutral = _parabola(q, 0.0, e0, k)
+        charged = _parabola(q, q0_charged, e1, k)
+        e_vert_charged = _parabola(0.0, q0_charged, e1, k)
         ax.plot(q, neutral, color=COLOR_VBM, lw=0.9, label="neutral")
         ax.plot(q, charged, color=COLOR_CBM, lw=0.9, label="$q=\\pm1$")
         ax.axvspan(-0.15, 0.15, color="#EEEEEE", zorder=0, alpha=0.6)
@@ -46,18 +49,19 @@ def build(out_dir: Path) -> tuple[Path, Path]:
             ax.annotate(
                 "",
                 xy=(0.0, e0),
-                xytext=(0.35, e1),
+                xytext=(q0_charged, e1),
                 arrowprops=dict(arrowstyle="<->", color="#333333", lw=0.55),
             )
             ax.text(0.42, (e0 + e1) / 2, f"IP={ip:.2f} eV", fontsize=5.5, va="center")
         if ea is not None and (focus == "EA" or name == "P"):
+            # Vertical EA at neutral geometry Q=0 (adiabatic value annotated; matches vertical-SP protocol).
             ax.annotate(
                 "",
                 xy=(0.0, e0),
-                xytext=(-0.35, e1 - 0.05),
-                arrowprops=dict(arrowstyle="<->", color="#333333", lw=0.55),
+                xytext=(0.0, e_vert_charged),
+                arrowprops=dict(arrowstyle="<->", color="#555555", lw=0.55),
             )
-            ax.text(-0.72, (e0 + e1) / 2 - 0.05, f"EA={ea:.2f} eV", fontsize=5.5, va="center")
+            ax.text(-0.10, (e0 + e_vert_charged) / 2, f"EA={ea:.2f} eV", fontsize=5.5, ha="right", va="center")
         lam_block = exp9["derived"]["lambda_eV"].get(name, {})
         lam_ip = lam_block.get("lambda_IP_eV")
         lam_ea = lam_block.get("lambda_EA_eV")

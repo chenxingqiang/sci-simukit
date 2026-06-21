@@ -234,7 +234,7 @@ Legacy `analyze_results.py` → 请改用 `analyze_exp9_polaron.py` + `dft_resul
 
 **检索（R162）**：`graphullerene B N P doping strain DFT 2025` — Khan/Lopez/Qiu 已覆盖；Intro 入 `Katiyar2025strain`（2D strain review，非 $\mathcal{S}$）。
 **检索（R157）**：`graphullerene polaron reorganization DFT 2025` — Capobianco2024/Khan2025 已覆盖；无新 bib。
-**检索（R137）**：`graphullerene strain doping 2025` — Wang2024 qHP/qTP 各向异性已在 bib；LopezAlcalay2025 graphendofullerene 应变+掺杂（衍生体系）入 Discussion 对比句；endohedral qHP 2026 预印本未入（偏离 B/N 替位主题）。
+**检索（R304）**：`(graphullerene OR qHP C60) strain doping 2025` — LopezAlcalay2025 graphendofullerene strain \emph{or} electrostatic doping（分调 $T_C$）→ Discussion 对比句；Khan/Nie 已在稿。
 
 
 ## 7. SI 图件索引（R94）
@@ -242,7 +242,7 @@ Legacy `analyze_results.py` → 请改用 `analyze_exp9_polaron.py` + `dft_resul
 | 图 | 路径 | 证据等级 | 备注 |
 |----|------|----------|------|
 | Fig.~2 π-DOS @ ε=0 | `figures/out/figure_s1_pdos_exp7.pdf` | **A−** | Exp7 `.pdos`; MO isosurfaces pending VMD |
-| Fig.~3 Marcus λ | `figures/out/figure_s2_marcus.pdf` | **A−** | Exp9 **8/8** vertical；B $\lambda^{-}$ excluded |
+| Fig.~3 Marcus λ | `figures/out/figure_s2_marcus.pdf` | **A−** | Exp9 **8/8** vertical；EA 竖直箭头 **R303**；B $\lambda^{-}$ excluded |
 | Fig.~4 $J$ + FCWD | `figures/out/figure_s3_j_exp4.pdf` | **B+** | (a) Exp4 $J$ **A**; (b) synthetic FCWD pending MolFC |
 | Table V 局域结构 | Table V in `supplementary_figures.tex` | **A−** | `local_structure_tetramer.json` |
 
@@ -250,16 +250,17 @@ Legacy `analyze_results.py` → 请改用 `analyze_exp9_polaron.py` + `dft_resul
 
 ---
 
-## 8. R294 横切 grep 审计（2026-06-21）
+## 8. R307 横切 grep 审计（2026-06-21）
 
 | 检查项 | 结果 |
 |--------|------|
 | `paper/*.tex` 内 `Table~S` / `tab:S` 残留 | **0**（Tables I--V 契约 **A**） |
-| 主文 `7/8` / `at revision` / `experiments/` 路径 | **0** |
+| 主文 `7/8` / `at revision` / `experiments/` / `Major Comment` | **0** |
 | 主文 `300%` / `775%` / `8.75` mobility 泄漏 | **0**（**C** 级已 withdrawn） |
 | Abstract/Results $\lambda$ 数值 | **无**（Fig.~3 边界 **A**） |
-| $|\mathcal{S}|=31.9$ (P, $n{=}1$) / $-23.7$ (P, $n{=}4$) vs `sdc_exp10_synergy_audit.json` | **一致** |
+| $|\mathcal{S}|=31.9$ / $-23.7$ vs `sdc_exp10_synergy_audit.json` | **一致** |
+| Table IV reference $\mathcal{S}^{\mathrm{tet}}$ vs `tetramer_s_reference_placement.json` | **一致**（+3.8/+5.7/+1.0 meV/atom） |
 | Koopmans/rVV10 主文声称 | Methods 诚实否定 only（**A**） |
 | `verify_reliability.sh` | **294** pass / **2** warn（Table I legacy PBE；Table III cross-functional） |
 
-**创新审计（R301）**：Table IV reference 入 Conclusion future work = **A**；alternate = **B pending**；Table III = **B**（2/4）。
+**创新审计（R307）**：主文洁净度 + Fig.~3 示意契约 = **A**；Table III = **B**（2/4）；Table IV alternate = **B pending**。

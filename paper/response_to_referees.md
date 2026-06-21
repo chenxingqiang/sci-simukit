@@ -11,7 +11,7 @@
 
 **Referee concern:** All $\alpha$ and $\mathcal{S}$ use fixed fractional coordinates; no relax benchmark; reported $|\mathcal{S}|$ may be an upper bound.
 
-**Response:** We agree that fixed fractional coordinates can overestimate strain coupling and that equilibrium relevance must be demonstrated. We have (i) relabeled all main-text $|\mathcal{S}|$ magnitudes as **protocol upper bounds** at fixed coordinates (Abstract, Methods, Results, Discussion design language); (ii) **removed** the prior rhetorical contrast between the archived rigid tetramer Table~III entry ($\mathcal{S}=+0.96$~meV/atom) and periodic $n{=}4$ $P$ ($-23.7$~meV/atom), which the referee correctly notes is **not** a valid control because concentration and boundary conditions differ; and (iii) reframed **Table~III** as a **sign-qualitative** tetramer benchmark only: rigid references use legacy PBE (no D3) whereas relaxed corners use PBE+D3, so a quantitative $|\mathcal{S}_{\mathrm{relaxed}}|/|\mathcal{S}_{\mathrm{rigid}}|$ ratio is **not** claimed until a matched-functional rigid grid exists. Fixed-cell geometry optimization is **in progress** (2/4 corners converged: pristine $\epsilon{=}0$ and $+3$\%; $P@\epsilon{=}0$ fixed-cell ionic relaxation ongoing with inner SCF OT${\sim}94$ and oscillating gradient ${\sim}4\times10^{-5}$~Ha/bohr). Marcus vertical SP (8/8) is complete; the relax queue continues without parallel size-scaling jobs.
+**Response:** We agree that fixed fractional coordinates can overestimate strain coupling and that equilibrium relevance must be demonstrated. We have (i) relabeled all main-text $|\mathcal{S}|$ magnitudes as **protocol upper bounds** at fixed coordinates (Abstract, Methods, Results, Discussion design language); (ii) **removed** the prior rhetorical contrast between the archived rigid tetramer Table~III entry ($\mathcal{S}=+0.96$~meV/atom) and periodic $n{=}4$ $P$ ($-23.7$~meV/atom), which the referee correctly notes is **not** a valid control because concentration and boundary conditions differ; and (iii) reframed **Table~III** as a **sign-qualitative** tetramer benchmark only: rigid references use legacy PBE (no D3) whereas relaxed corners use PBE+D3, so a quantitative $|\mathcal{S}_{\mathrm{relaxed}}|/|\mathcal{S}_{\mathrm{rigid}}|$ ratio is **not** claimed until a matched-functional rigid grid exists. Fixed-cell geometry optimization is **in progress** (2/4 corners converged: pristine $\epsilon{=}0$ and $+3$\%; $P@\epsilon{=}0$ in the inner-SCF critical zone, OT${\sim}101$, gradient ${\sim}1.5\times10^{-6}$~Ha/bohr). Marcus vertical SP (8/8) is complete; the relax queue continues without parallel size-scaling jobs.
 
 **Manuscript:** Abstract; Methods rigid-strain subsection; Results $\mathcal{S}(n)$; Discussion (design implications); Table~III caption; Methods validation.
 
@@ -91,7 +91,7 @@
 
 | Task | Table | Status |
 |------|-------|--------|
-| Ionic relaxation geometry opt. | III | **running** 2/4 (`relax_P_eps0_geo`; OT${\sim}94$, grad${\sim}4\times10^{-5}$~Ha/bohr, SCF oscillating) |
+| Ionic relaxation geometry opt. | III | **running** 2/4 (`relax_P_eps0_geo` **CRIT**; OT${\sim}101$, grad${\sim}1.5\times10^{-6}$~Ha/bohr) |
 | Alternate-placement ENERGY grid | IV | 18 inp (alternate archive); **pending** |
 | 400~Ry $n{=}6$ N SP (Exp10 40/41) | II | **pending** |
 | Marcus vertical SP (8) | Fig.~3 | **8/8** converged; eight $\lambda^{\pm}$ in Fig.~3; B $\lambda^{-}{=}{-}0.173$~eV flagged non-physical (Limitations) |
@@ -99,7 +99,7 @@
 
 ---
 
-*Document version: PRB Major 1 response (Loop R289) (2026-06-21). Align with `cover_letter_prb.txt`.*
+*Document version: PRB Major 1 response (Loop R290) (2026-06-21). Align with `cover_letter_prb.txt`.*
 ---
 
 ## Detailed Chinese peer-review checklist (Major Revision, 2026-06-20)
@@ -113,7 +113,7 @@
 | **§III.E Table~III** | Sign-only; PBE rigid vs PBE+D3 relaxed mismatch explicit |
 | **§IV structure** | No standalone Section IV; transport in Results |
 | **§IV Fig.~4** | FCWD placeholder removed from main text |
-| **§V Results** | Fifteen-point $\mathcal{S}(n)$ audit via Table~II; partial III pristine checkpoint (order-of-magnitude $\Delta E$); $P@\epsilon{=}0$ OT~94 grad oscillating |
+| **§V Results** | Fifteen-point $\mathcal{S}(n)$ audit via Table~II; partial III pristine checkpoint (order-of-magnitude $\Delta E$); $P@\epsilon{=}0$ inner SCF CRIT OT~101 |
 | **§VI Discussion** | Factor of four; characterize; Table~III sign-only criterion |
 | **§VIII Conclusions** | Three Intro questions closed; (2) cites max $|\mathcal{S}|=31.9$~meV/atom (P, $n{=}1$); III sign-qualitative checkpoint; future work lists Table~III P corners |
 

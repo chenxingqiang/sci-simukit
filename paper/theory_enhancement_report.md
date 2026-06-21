@@ -262,4 +262,4 @@ Legacy `analyze_results.py` → 请改用 `analyze_exp9_polaron.py` + `dft_resul
 | Koopmans/rVV10 主文声称 | Methods 诚实否定 only（**A**） |
 | `verify_reliability.sh` | **294** pass / **2** warn（Table I legacy PBE；Table III cross-functional） |
 
-**创新审计（R300）**：Table IV reference $\mathcal{S}^{\mathrm{tet}}$ Results 入文 = **A**；alternate placement = **B pending**；Table III = **B**（2/4）。
+**创新审计（R301）**：Table IV reference 入 Conclusion future work = **A**；alternate = **B pending**；Table III = **B**（2/4）。

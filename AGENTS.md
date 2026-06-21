@@ -29,12 +29,12 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
 | **阻塞 PRB** | Table III/IV DFT；Exp10 cutoff400 |
 | **文稿 P 瓶颈** | Table III **2/4** → GEO ENDED 填数 |
-| **最新 Loop** | **R300**（见下方笔记） |
-| **下一 C 任务** | Table III GEO ENDED → 第三行 + `analyze_relax_s.py` |
-| **下一 B 任务** | Table III GEO ENDED → 填数；Discussion–Results III 链已闭合 |
+| **最新 Loop** | **R301**（见下方笔记） |
+| **下一 B 任务** | Table III GEO ENDED → 填数 |
 | **主张-证据** | Table IV reference $\mathcal{S}$ = **A**；弛豫 III = **B**（2/4） |
 | **旗杆** | **PRB Regular Article** major revision |
-| **Loop C** | C-M1 DFT **running**（Table III 2/4） |
+| **下一 C 任务** | Table III GEO ENDED → 第三行 + `analyze_relax_s.py` |
+| **Loop C** | C-M2 文稿 **partial**（reference Table IV ✅）；C-M1 DFT **running**（Table III 2/4） |
 
 ---
 
@@ -1397,6 +1397,22 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
   - **下一轮**：`8×60_B_pos3` 收敛 → post → **35/40** + 可能第 12 条 synergy；Figure 1/2 final 仍 pending。
 
 
+
+- **Loop R301（2026-06-21，双轨 + Loop C）**：
+ - **Track A**：Table III **2/4**；`relax_P_eps0_geo` **CRIT** OT~**252** — **不干预**
+ - **Track B（VII Discussion）**：Validation protocol Table~IV 写入 reference $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ 基准（+3.8/+5.7/+1.0）并重申不外推 periodic；MC2 response 同步
+ - **Track C**：checklist §VI Discussion 行 + MC2 item 2
+ - **创新审计**：Table IV placement 边界 = **A**；alternate ENERGY = **B pending**
+ - **Git**：未提交
+ - **下一轮**：GEO ENDED → Table III 行 3；R302 Conclusion
+
+- **Loop R301（2026-06-21，双轨 + Loop C）**：
+ - **Track A**：Table III **2/4**；`relax_P_eps0_geo` **CRIT** OT~**252** — **不干预**；刷新 JSON
+ - **Track B（VIII Conclusion）**：future work 区分 Table~IV reference $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ 已归档 vs alternate ENERGY pending
+ - **Track C（C-M2）**：`response_to_referees` MC2 补 reference 行 + checklist §VIII
+ - **创新审计**：Conclusion–Table IV = **A**；alternate placement = **B pending**
+ - **Git**：待 commit
+ - **下一轮**：Table III GEO ENDED → 填数；R302 横切 audit
 
 - **Loop R300（2026-06-21，双轨 + Loop C）**：
  - **Track A**：Table III **2/4**；`relax_P_eps0_geo` **CRIT** OT~**240** — **不干预**；刷新 JSON

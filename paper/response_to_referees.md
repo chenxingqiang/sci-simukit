@@ -23,7 +23,7 @@
 
 **Response:** We agree and have separated **qualitative** element trends from **quantitative** placement-specific magnitudes:
 1. Periodic $\mathcal{S}(n)$ and the fifteen-point grid use a **fixed reference dopant-site map** (one substituent per C$_{60}$); main text no longer foregrounds RNG seed labels (Abstract, Methods, Results, Conclusions).
-2. **Table~IV** is **tetramer-only** (**reference** vs.\ **alternate** placement): we **removed** any periodic $n{=}4$ column, which mixed concentrations and boundary conditions with tetramer placement controls (parallel to Major Comment~1).
+2. **Table~IV** is **tetramer-only** (**reference** vs.\ **alternate** placement): we **removed** any periodic $n{=}4$ column, which mixed concentrations and boundary conditions with tetramer placement controls (parallel to Major Comment~1). Reference-placement $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ on the legacy rigid grid is now reported in Results ($+3.8$, $+5.7$, $+1.0$~meV/atom for B, N, and P) as a placement-audit baseline only.
 3. Tetramer $\alpha$ opposite signs for N vs.\ B are reported for the **reference** placement at fixed 5\% nominal doping, with Table~IV pending to test slope sensitivity; we do **not** claim placement-averaged magnitudes for the B/N/P networks.
 4. Qualitative ranking statements (P largest $|\mathcal{S}|$ at $n{=}4$ on this map; N vs.\ B $\alpha$ sign) are framed as **configuration-specific audits**, not universal dopant laws, until the alternate-placement grid converges and periodic alternate placements are added (Conclusions, future work).
 
@@ -112,7 +112,7 @@
 | **§IV Fig.~4** | FCWD placeholder removed from main text |
 | **§V Results** | Fifteen-point $\mathcal{S}(n)$ audit (Table~II); Table~IV reference $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ (+3.8/+5.7/+1.0 meV/atom, legacy PBE); partial III pristine checkpoint |
 | **§VI Discussion** | Factor of four; design implications + four-corner Table~III pristine checkpoint cross-ref Sec.~\ref{sec:synergy}; Table~III sign-only criterion; **Katiyar2025strain** 2D roadmap vs $\mathcal{S}$ audit |
-| **§VIII Conclusions** | Three Intro questions closed explicitly (1)--(3); upper-bound framing in opening; Table~III sign-only + Table~IV future work |
+| **§VIII Conclusions** | Three Intro questions (1)--(3); upper-bound opening; Table~III four-corner sign-only; Table~IV reference $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ archived; alternate placement pending in future work |
 
-*Document version: PRB Major Revision + Chinese checklist (Loop R300, 2026-06-21). Align with `cover_letter_prb.txt`.*
+*Document version: PRB Major Revision + Chinese checklist (Loop R301, 2026-06-21). Align with `cover_letter_prb.txt`.*
 

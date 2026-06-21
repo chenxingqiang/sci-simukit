@@ -1400,6 +1400,14 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+- **Loop R319（2026-06-21，双轨 + Loop C）**：
+ - **Track A**：Table III **2/4**；`relax_P_eps0_geo` OT~**119** — **不干预**；JSON 刷新
+ - **Track B（VI Results）**：Results opener Tables III--IV gate；$n{=}4$ reference/alternate 措辞；Table III partial sign-only 句；**无新定量**
+ - **Track C**：response §V checklist R319
+ - **创新审计**：Results 边界 = **A**；Table III = **B**（2/4）
+ - **Git**：待 commit
+ - **下一轮**：GEO ENDED → Table III 行 3；R320 Discussion
+
 - **Loop R318（2026-06-21，双轨 + Loop C）**：
  - **Track A**：Table III **2/4**；`relax_P_eps0_geo` OT~**107** — **不干预**；JSON 刷新
  - **Track B（IV Methods）**：`sec:notation` Tables III--IV gate + `methods_extended` Table IV $\mathcal{S}^{\mathrm{tet}}$ 边界句；`compile_prb.sh` ✅

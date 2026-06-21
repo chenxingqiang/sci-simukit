@@ -266,4 +266,4 @@ Legacy `analyze_results.py` → 请改用 `analyze_exp9_polaron.py` + `dft_resul
 | `verify_reliability.sh` | **294** pass / **2** warn（Table I legacy PBE；Table III cross-functional） |
 | `compile_prb.sh` | **OK**（主文 PDF 含 R308--R309 Fig.~1/3）
 
-**创新审计（R313）**：Discussion/Limitations Table IV 泛函边界 = **A**；compile_prb = **A**；Table III = **B**（2/4）。
+**创新审计（R314）**：Conclusion future-work Table III/IV 解耦 = **A**；compile_prb = **A**；Table III = **B**（2/4）。

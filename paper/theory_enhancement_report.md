@@ -268,4 +268,4 @@ Legacy `analyze_results.py` → 请改用 `analyze_exp9_polaron.py` + `dft_resul
 | `compile_prb.sh` | **OK**（主文 PDF 含 R308--R309 Fig.~1/3） |
 | `response_to_referees.md` Fig.~1/3 checklist | **R315** slanted-IP + callout 契约 |
 
-**创新审计（R320）**：Discussion Tables III--IV + Results 交叉引用 = **A**；无新定量 = **A**；Table III = **B**（2/4）。
+**创新审计（R321）**：Conclusion--Abstract Tables III--IV = **A**；全文 upper-bound 闭环 = **A**；Table III = **B**（2/4）。

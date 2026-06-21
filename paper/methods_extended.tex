@@ -9,6 +9,12 @@ The plane-wave cutoff is 400~Ry for $n\leq 4$ and 350~Ry for $n\geq 6$ (Table~\r
 Tetramer models ($4\times\mathrm{C}_{60}$, 240 atoms) use B/N/P substitution at nominal 5\% (12--13 dopant sites from archived coordinates).
 Periodic supercells place one substituent per C$_{60}$ unit ($n=1$--$8$), giving $n$ dopants among $60n$ lattice atoms (${\sim}1.67$~at.\% for all $n$).
 
+\subsubsection{Alternate-placement benchmark (Table~\ref{tab:IV})}
+\label{sec:methods_s4_seed}
+The \emph{reference} placement in Table~\ref{tab:IV} is the archived rigid tetramer map underlying Table~\ref{tab:I} (legacy PBE without D3).
+The \emph{alternate} placement repeats the full B/N/P strain grid ($\epsilon\in\{-5,-2.5,0,+2.5,+3,+5\}$\%; 18 rigid single-point tasks) with an independently rerolled substitution map at the same nominal 5\% doping level (seed~137).
+Alternate tasks use PBE+D3 rigid \texttt{RUN\_TYPE ENERGY} at 400~Ry with $\mathrm{EPS\_SCF}=10^{-6}$~$E_{\mathrm{h}}$; they are \emph{not} on the same exchange-correlation treatment as the reference $\alpha$ column, so only within-placement trends are compared once the grid converges.
+
 \subsubsection{Ionic-relaxation benchmark (Table~\ref{tab:III})}
 \label{sec:methods_s3_relax}
 The four tetramer corners in Table~\ref{tab:III} are pristine and $P$-substituted cells at $\epsilon{=}0$ and $+3$\% biaxial strain (the Eq.~\eqref{eq:synergy_order} grid for $P$).

@@ -23,7 +23,7 @@
 
 **Response:** We agree and have separated **qualitative** element trends from **quantitative** placement-specific magnitudes:
 1. Periodic $\mathcal{S}(n)$ and the fifteen-point grid use a **fixed reference dopant-site map** (one substituent per C$_{60}$); main text no longer foregrounds RNG seed labels (Abstract, Methods, Results, Conclusions).
-2. **Table~IV** is **tetramer-only** (**reference** vs.\ **alternate** placement): we **removed** any periodic $n{=}4$ column, which mixed concentrations and boundary conditions with tetramer placement controls (parallel to Major Comment~1). Reference-placement $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ on the legacy rigid grid is now reported in Results ($+3.8$, $+5.7$, $+1.0$~meV/atom for B, N, and P) as a placement-audit baseline only.
+2. **Table~IV** is **tetramer-only** (**reference** vs.\ **alternate** placement): we **removed** any periodic $n{=}4$ column, which mixed concentrations and boundary conditions with tetramer placement controls (parallel to Major Comment~1). Reference-placement $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ on the legacy rigid grid is now reported in Results ($+3.8$, $+5.7$, $+1.0$~meV/atom for B, N, and P) as a placement-audit baseline only. The pending alternate grid uses PBE+D3 rigid single-points on an independent seed-137 map (Methods Sec.~\ref{sec:methods_s4_seed}), not the legacy-PBE archive of Table~\ref{tab:I}.
 3. Tetramer $\alpha$ opposite signs for N vs.\ B are reported for the **reference** placement at fixed 5\% nominal doping, with Table~IV pending to test slope sensitivity; we do **not** claim placement-averaged magnitudes for the B/N/P networks.
 4. Qualitative ranking statements (P largest $|\mathcal{S}|$ at $n{=}4$ on this map; N vs.\ B $\alpha$ sign) are framed as **configuration-specific audits**, not universal dopant laws, until the alternate-placement grid converges and periodic alternate placements are added (Conclusions, future work).
 
@@ -106,7 +106,7 @@
 |--------------|-------------------------|
 | **§I Abstract** | Covalent-network framing; sign-qualitative Table~III **2/4**; ``at fixed coordinates'' on max $|\mathcal{S}|$; Marcus Fig.~3 boundary |
 | **§II Introduction** | Periodic PBE+D3 $\mathcal{S}$ vs.\ legacy PBE tetramer $\alpha$ (Table~I) separated; upper-bound + Table~III **2/4** partial; Intro $|\mathcal{S}|$ capped at $31.9$~meV/atom **at fixed coordinates** (P $n{=}1$); Marcus Fig.~3; **Lv2026** survey gap vs.\ $(\epsilon,\delta)$ $\mathcal{S}$; **Alihosseini2023** COF 非加性先例 |
-| **§III Methods** | Table~I legacy PBE vs periodic PBE+D3; Table~III four-corner + BFGS thresholds; Fig.~3 Marcus IP/vertical-$Q{=}0$ schematic in Sec.~\ref{sec:methods_marcus} |
+| **§III Methods** | Table~I legacy PBE vs periodic PBE+D3; Table~III four-corner + BFGS thresholds; **Table~IV** reference legacy-PBE vs alternate PBE+D3 seed~137 (`sec:methods_s4_seed`); Fig.~3 Marcus IP/vertical-$Q{=}0$ schematic |
 | **§III.C Doping concentration** | Clarified: one substituent per C$_{60}$ $\Rightarrow$ $n$ in $60n$ atoms (${\sim}1.67$ at.\%); explicitly \emph{not} $1/240{=}0.42$ at.\% single-dopant/supercell counting |
 | **§III.E Table~III** | Sign-only; PBE rigid vs PBE+D3 relaxed; four corners = pristine + $P$ at $\epsilon{=}0,+3$\% |
 | **§IV Structure** | No standalone Section IV; transport in Results |
@@ -115,5 +115,5 @@
 | **§VI Discussion** | Factor of four; Table~III/IV；**Katiyar2025** + **LopezAlcalay2025** 分调 vs 四隅 $\mathcal{S}$ |
 | **§VIII Conclusions** | Three Intro questions (1)--(3); upper-bound opening; Table~III four-corner sign-only; Table~IV reference $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ archived; alternate placement pending in future work |
 
-*Document version: PRB Major Revision + Chinese checklist (Loop R310, 2026-06-21). Align with `cover_letter_prb.txt`.*
+*Document version: PRB Major Revision + Chinese checklist (Loop R311, 2026-06-21). Align with `cover_letter_prb.txt`.*
 

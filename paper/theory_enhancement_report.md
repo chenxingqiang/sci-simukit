@@ -96,6 +96,7 @@
 | Table I tetramer $\alpha$/$E_{\mathrm{sub}}$ | `table1_verification.json` (legacy PBE, no D3) | **A−** (R270; 主文/S1 caption；勿与 periodic PBE+D3 $\mathcal{S}$ 混比) |
 | Table III 弛豫 | `relax_validation/` + `relax_P_eps0_geo.inp` + `exp5_relax_status_line.sh` | **B** 2/4 GEO；$P$-doped corners in progress；Methods §`sec:methods_s3_relax` = **A** |
 | Table IV reference $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ | `tetramer_s_reference_placement.json` | **A**（B +3.8, N +5.7, P +1.0 meV/atom） |
+| Table IV alternate placement | `seed_validation/*.inp` (PBE+D3) vs reference legacy PBE | **B** pending；R311 Methods `sec:methods_s4_seed` = **A** |
 | Table V 局域结构 | `analyze_local_structure.py` | **A− verified** |
 | PRB 验证 DFT 队列 | `experiments/run_prb_revision_dft.sh` | **B**（Table III/IV pending） |
 | PRB `response_to_referees.md` | Major/Minor 映射 | **A** (R210; R271 Table I 泛函行) |

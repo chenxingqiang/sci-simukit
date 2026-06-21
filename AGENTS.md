@@ -1405,7 +1405,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track B（IV Methods）**：新增 `sec:methods_s4_seed`；Table IV caption 诚实化 reference legacy-PBE vs alternate PBE+D3 seed~137
  - **Track C（C-M2）**：response MC2 + checklist §III R311
  - **创新审计**：Methods–inp Table IV = **A**；Table III = **B**（2/4）
- - **Git**：待 commit
+ - **Git**：`3aa119f` — `loop R311: Table IV Methods inp honesty` → **pushed: (local only)**
  - **下一轮**：GEO ENDED → Table III 行 3；R312 Results
 
 - **Loop R310（2026-06-21，双轨 + Loop C）**：

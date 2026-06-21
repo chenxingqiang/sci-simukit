@@ -1405,7 +1405,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track B（VI Results）**：Ionic-relaxation checkpoint → 四隅 pristine+$P$ @ $\epsilon{=}0,+3$\% 表述与 Table~III caption 对齐
  - **Track C**：response checklist §V Results 行与主文一致
  - **创新审计**：Results–Table III 契约 = **A**；弛豫填数 = **B pending**
- - **Git**：待 commit（含 R295–R298 backlog）
+ - **Git**：`eb5faa2` — `loop R295-R299: Table III four-corner sync` → **pushed: (local only)**
  - **下一轮**：`relax_P_eps0_geo` GEO ENDED → `analyze_relax_s.py` + Table III 行 3
 
 - **Loop R298（2026-06-21，双轨 + Loop C）**：

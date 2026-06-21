@@ -251,6 +251,18 @@ Legacy `analyze_results.py` → 请改用 `analyze_exp9_polaron.py` + `dft_resul
 
 ---
 
+## 8. R323 Abstract 审计（2026-06-21）
+
+| 检查项 | 结果 |
+|--------|------|
+| Abstract opener ``periodic coupling magnitudes'' 歧义 | **已修** → ``reported periodic $|\mathcal{S}|$ magnitudes bound---rather than predict---''（对齐 Intro L65 / Conclusion） |
+| Tables III--IV gate + 2/4 | **保持**（无新 `.out` 定量） |
+| `grep` 主文边界 | **0** `7/8` / `experiments/` |
+
+**创新审计（R323）**：Abstract 契约 = **A**（措辞对齐）；Table III = **B**（2/4）。
+
+---
+
 ## 8. R322 横切 grep 审计（2026-06-21）
 
 | 检查项 | 结果 |

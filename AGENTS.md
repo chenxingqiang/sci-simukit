@@ -1400,12 +1400,20 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+- **Loop R323（2026-06-21，双轨 + Loop C）**：
+ - **Track A**：Table III **2/4**；`relax_P_eps0_geo` OT~**185** — **不干预**
+ - **Track B（I Abstract）**：首句 ``periodic coupling magnitudes'' → ``reported periodic $|\mathcal{S}|$ magnitudes bound/predict''；对齐 Intro/Conclusion；**无新定量**
+ - **Track C**：response §I Abstract 行 R323
+ - **创新审计**：Abstract 契约 = **A**；Table III = **B**（2/4）
+ - **Git**：待 commit
+ - **下一轮**：GEO ENDED → Table III 行 3；R324 Intro 轮
+
 - **Loop R322（2026-06-21，双轨 + Loop C）**：
  - **Track A**：Table III **2/4**；`relax_P_eps0_geo` OT~**178** — **不干预**；JSON 刷新
  - **Track B（横切 B4/B5）**：全文 Tables III--IV gate grep **10** 处一致；theory report §8 R322；`cover_letter_prb` Tables III--IV + 2/4
  - **Track C**：response 版本 R322；cover letter Major (1)(2) 同步 R311 Table IV 泛函分裂
  - **创新审计**：全文闸门 grep = **A**；JSON 31.9/-23.7 = **A**；Table III = **B**（2/4）
- - **Git**：待 commit
+ - **Git**：`08478ac` — `loop R322: horizontal audit + cover letter` → **pushed: (local only)**
  - **下一轮**：GEO ENDED → Table III 行 3；R323 Abstract 轮（mod 8）
 
 - **Loop R321（2026-06-21，双轨 + Loop C）**：

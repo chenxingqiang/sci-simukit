@@ -1400,6 +1400,14 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+- **Loop R314（2026-06-21，双轨 + Loop C）**：
+ - **Track A**：Table III **2/4**；`relax_P_eps0_geo` **CRIT** OT~**220** — **不干预**
+ - **Track B（VIII Conclusion）**：future work 句拆分 Table III matched-functional + Table IV placement/XC 解耦；`compile_prb.sh` ✅ (~5013 body words)
+ - **Track C**：response §VIII checklist R314
+ - **创新审计**：Conclusion 闭环 = **A**；Table III = **B**（2/4）
+ - **Git**：`e530c56` — `loop R314: Conclusion Table III/IV decoupling` → **pushed: (local only)**
+ - **下一轮**：`relax_P_eps0_geo` GEO ENDED → Table III 行 3；R315 横切 audit
+
 - **Loop R313（2026-06-21，双轨 + Loop C）**：
  - **Track A**：Table III **2/4**；`relax_P_eps0_geo` **CRIT** OT~**212** — **不干预**；JSON 刷新
  - **Track B（VII Discussion）**：Validation protocol Table IV + Limitations 同步 R311 reference legacy-PBE vs alternate PBE+D3；`compile_prb.sh` ✅

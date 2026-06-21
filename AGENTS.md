@@ -23,19 +23,18 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Exp10** | **40/41** — `size_6x60_N_pos3pct_cutoff400` pending（截断对照） |
 | **Exp8** | **6/6** ✅ |
 | **Exp9** | **12/12** GEO_OPT ✅；vertical SP **8/8** ✅ — λ 全表入 Fig.~S2（B $\lambda^{-}$ 负值已标注） |
-| **运行中** | `relax_P_eps0_geo`（Table S3 **2/4**；geo step ~5+，内层 OT~105）— **不干预** |
-| **临界区** | —（grad ~$2\times10^{-5}$，OT 振荡） |
+| **运行中** | `relax_P_eps0_geo`（Table S3 **2/4**；OT~**237** **CRIT** grad~$9\times10^{-6}$）— **不干预** |
+| **临界区** | `relax_P_eps0_geo` **CRIT** |
 | **下一任务** | S3 4/4 → $\mathcal{S}_{\mathrm{relaxed}}$ sign row；**勿并行** cutoff400 与 relax |
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
 | **阻塞 PRB** | Table S3/S4 DFT；Exp10 cutoff400 |
-| **文稿 P 瓶颈** | Table S3 填数 2/4；Exp10 cutoff400 |
+| **文稿 P 瓶颈** | S3 **2/4** CRIT → GEO ENDED 填数；R270–R280 积压未 commit |
+| **最新 Loop** | **R280**（见下方笔记） |
 | **下一 C 任务** | S3/S4 `.out` → Table S3/S4 填数 |
-| **下一 B 任务** | S3 4/4 → sign row；勿并行 cutoff400 与 relax batch |
-| **主张-证据** | Marcus λ = **A−**（8/8）；弛豫 S3 = **B**（2/4）；S4 = **B**（reference/alternate 措辞） |
+| **下一 B 任务** | $P@\epsilon{=}0$ GEO ENDED → Table S3 第三行 |
+| **主张-证据** | Marcus λ = **A−**（8/8）；弛豫 S3 = **B**（2/4）；S4 = **B** |
 | **旗杆** | **PRB Regular Article** major revision |
-| **Loop C** | C-M1 DFT **running**（S3 2/4） |
-| **最新 Loop** | **R269**（见下方笔记） |
-
+| **Loop C** | C-M1 DFT **running**（S3 2/4 CRIT OT~237） |
 
 ---
 
@@ -2309,6 +2308,107 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **创新审计**：力学文献定位 = **A**；$\lambda$ = **B pending**
  - **Git**：`d48c81e` — `loop R117: Discussion Qiu2025 mechanics contrast` → **pushed: origin/main**
  - **下一轮**：qneg1 PROGRAM ENDED → post_exp9
+
+- **Loop R280（2026-06-21，双轨 + Loop C）**：
+  - **Track A**：Table S3 **2/4**；`relax_P_eps0_geo` OT~**237** **CRIT** grad~$9\times10^{-6}$ — **不干预**
+  - **Track B（I Abstract）**：§F 审计 — 169 词、无 `\cite`；$\alpha$/|$\mathcal{S}$| vs JSON ✅；theory 台账 R280 行
+  - **Track C**：`cover_letter_prb` Major (2) → reference/alternate（对齐主稿）；response OT~237 CRIT
+  - **创新审计**：Abstract = **A**；cover letter = **A**；S3 = **B**（2/4 CRIT）
+  - **Git**：未提交（R270–R280 积压）
+  - **下一轮**：GEO ENDED → 填 `tab_s3` 行 3；R281 II Intro
+
+- **Loop R279（2026-06-21，双轨 + Loop C）**：
+  - **Track A**：Table S3 **2/4**；`relax_P_eps0_geo` **CRIT** OT~229–232 — **不干预**
+  - **Track B（横切 B4/B5）**：`theory_enhancement_report` 台账刷新 — Exp9 **8/8** λ、reliability **294** pass；删 stale「vertical pending」；§8 ionic checkpoint 映射
+  - **Track C**：MC1 CRIT 快照；grep 主文无 C 级泄漏（Koopmans 仅 Limitations）
+  - **创新审计**：台账契约 = **A**；S3 = **B**；Marcus λ = **A−**（8/8）
+  - **paper_gap**：GEO ENDED → 填 `tab_s3`；S4 ENERGY pending
+  - **Git**：未提交（R270–R279 积压）
+  - **下一轮**：R280 Abstract 轮转
+
+- **Loop R278（2026-06-21，双轨 + Loop C）**：
+  - **Track A**：Table S3 **2/4**；`relax_P_eps0_geo` OT~**222**（grad 回跳）— **不干预**
+  - **Track B（VIII Conclusion）**：三问闭环 + validation/interim S3 定性句；future work 补 Table~S3 P 角
+  - **Track C**：checklist §VIII；MC1 OT 快照
+  - **创新审计**：Conclusion 闭环 = **A**；S3 sign = **B pending**
+  - **Git**：未提交（R270–R278 积压）
+  - **下一轮**：R279 横切 audit；GEO ENDED → 填 `tab_s3`
+
+- **Loop R277（2026-06-21，双轨 + Loop C）**：
+  - **Track A**：Table S3 **2/4**；`relax_P_eps0_geo` OT~**215** **CRIT** — **不干预**
+  - **Track B（VII Discussion）**：Validation 段链入 Results pristine checkpoint（$\Delta E$ 上界叙事）；Context 准谐 vs 固定坐标措辞
+  - **Track C**：MC1 OT~215 快照
+  - **创新审计**：Discussion–Results S3 链 = **A−**；$\mathcal{S}_{\mathrm{relaxed}}$ = **B pending**
+  - **Git**：未提交（R270–R277 积压）
+  - **下一轮**：R278 Conclusion；GEO ENDED → 填 `tab_s3`
+
+- **Loop R276（2026-06-21，双轨 + Loop C）**：
+  - **Track A**：Table S3 **2/4**；`relax_P_eps0_geo` OT~**209** **CRIT** — **不干预**
+  - **Track B（VI Results）**：synergy 段增 **Ionic-relaxation checkpoint**（pristine 2/4 verified $\Delta E\approx1.2\times10^{-4}$~$E_h$）；Fig.~1(c) legacy PBE 标注
+  - **Track C**：MC1 CRIT 快照
+  - **创新审计**：S3 partial Results = **A−**（2/4 `.out`）；$\mathcal{S}_{\mathrm{relaxed}}$ = **B pending**
+  - **Git**：未提交（R270–R276 积压）
+  - **下一轮**：R277 Discussion；GEO ENDED → 填 `tab_s3` 行 3
+
+- **Loop R275（2026-06-21，双轨 + Loop C）**：
+  - **Track A**：Table S3 **2/4**；`relax_P_eps0_geo` OT~**202** — **不干预**
+  - **Track B（IV Methods）**：`methods_extended` 增 Table~S3 fixed-cell GEO\_OPT 小节（400~Ry, EPS $10^{-6}$, BFGS）；`tab_s2`/`tab_s3` 进度；validation → `sec:methods_s3_relax`
+  - **Track C**：response §III checklist 补 S3 inp 契约
+  - **创新审计**：Methods S3 = **A**（与 `relax_*.inp` 一致）；S3 数据 = **B**（2/4）
+  - **Git**：未提交（R270–R275 积压）
+  - **下一轮**：R276 Results；GEO ENDED → 填 `tab_s3`
+
+- **Loop R274（2026-06-21，双轨 + Loop C）**：
+  - **Track A**：Table S3 **2/4**；`relax_P_eps0_geo` OT~**190**（grad 回跳 ~$5\times10^{-5}$，非 CRIT）— **不干预**
+  - **Track B（III Literature）**：WebSearch `graphullerene strain doping 2025` → Khan2025 已入 bib；Intro/Discussion 拆分 **spin half-semiconductor** vs **neutral $\mathcal{S}$** 对比句
+  - **Track C**：MC1 OT 振荡快照；`tab_s3` 进度注
+  - **创新审计**：Khan 文献定位 = **A**（已有 bib，差异化句）；S3 = **B**；λ = **A−**
+  - **检索**：Khan PRM 9,034001 / Qiu Tribol — 无新 bib（Cai2025 CNT 偏离主题）
+  - **Git**：未提交（R270–R274 积压）
+  - **下一轮**：R275 Methods；S3 GEO ENDED → 填数
+
+- **Loop R274（2026-06-21，双轨 + Loop C）**：
+  - **Track A**：Table S3 **2/4**；`relax_P_eps0_geo` OT~192（4× MPI 正常；SCF 振荡）— **不干预**；Exp10 cutoff400 **勿并行**
+  - **Track B（III Literature + 横切）**：WebSearch graphullerene 2025–26 — Khan2025 已覆盖，无新 bib；`main_extended_tables_{methods,results}` 对齐 S1 legacy PBE / S3 2/4 / S4 reference–alternate
+  - **Track C**：`response_to_referees` pending 表 S3 OT 快照
+  - **创新审计**：扩展表契约 = **A**；文献 = **B+**（无新篇）；S3 = **B**（2/4）
+  - **检索**：`(graphullerene OR qHP C60) strain doping 2025` → Khan2025 support；MDPI qHP 弹性已覆盖
+  - **Git**：未提交（R270–R274 积压）
+  - **下一轮**：$P@\epsilon{=}0$ GEO ENDED → `analyze_relax_s` → Table S3 行 3
+
+- **Loop R273（2026-06-21，双轨 + Loop C）**：
+  - **Track A**：Table S3 **2/4**；`relax_P_eps0_geo` OT~**185** **CRIT** grad~$1.9\times10^{-6}$ — **不干预**
+  - **Track B（II Introduction）**：删 Intro「identical XC」误导句；改为 periodic PBE+D3 vs Table~S1 legacy PBE 分层
+  - **Track C**：MC1 OT 快照；Methods validation 段 CRIT 措辞
+  - **创新审计**：Intro 泛函契约 = **A**；S3 = **B**；λ = **A−**
+  - **paper_gap**：$P@\epsilon{=}0$ GEO ENDED → 填 `tab_s3` 行 3
+  - **Git**：未提交（R270–R273 积压）
+  - **下一轮**：R274 Literature；GEO ENDED → 填数
+
+- **Loop R272（2026-06-21，双轨 + Loop C）**：
+  - **Track A**：Table S3 **2/4**；`relax_P_eps0_geo` OT~**174** **CRIT** grad~$1.5\times10^{-6}$ — **不干预**；Exp10 idle
+  - **Track B（I Abstract）**：Abstract Table~S1 溯源；`tab_s3` CRIT 进度注
+  - **Track C**：MC1 CRIT 快照；MC3 Table~S1 legacy PBE 标注
+  - **创新审计**：Abstract 契约 = **A**；S3 = **B**（近收敛）；λ = **A−**
+  - **paper_gap**：$P@\epsilon{=}0$ GEO ENDED → 填 Table S3 行 3
+  - **Git**：未提交（R270–R272 积压）
+  - **下一轮**：GEO ENDED → post/填数 → `relax_P_eps3_geo`
+
+- **Loop R271（2026-06-21，双轨 + Loop C）**：
+  - **Track A**：Table S3 **2/4**；`relax_P_eps0_geo` OT~155 **CRIT** — **不干预**；Exp10 cutoff400 **勿并行**
+  - **Track B（横切 B4/B5）**：`theory_enhancement_report` §7b 表列修复 + Marcus **8/8**；`response` checklist Table S1 泛函分层
+  - **Track C**：reliability **294** pass；修回清单 §II/§III 对齐 R270
+  - **创新审计**：台账契约 = **A**；S3 = **B**（2/4 CRIT）；λ = **A−**（8/8）
+  - **paper_gap**：S3 4/4 → $\mathcal{S}_{\mathrm{relaxed}}$ sign；S4 ENERGY pending
+  - **Git**：未提交（R270 tex 积压 + 本轮回 audit）
+  - **下一轮**：$P@\epsilon{=}0$ GEO ENDED → Table S3 填数 → 4/4 sign row
+
+- **Loop R270（2026-06-21，双轨 + Loop C）**：
+  - **Track A**：Table S3 **2/4**；`relax_P_eps0_geo` **CRIT** OT~136 — **不干预**；Exp10 idle
+  - **Track B（IV Methods + VIII Conclusion）**：**P0** Table S1 legacy PBE vs periodic PBE+D3 诚实化（Abstract/Methods/Conclusion/tab S1--S2）；$E_{\mathrm{sub}}$ 比值句修正（15.8 eV/dopant）
+  - **创新审计**：Methods 契约 = **A**；S3 = **B**（2/4 CRIT）
+  - **Git**：未提交
+  - **下一轮**：$P@\epsilon{=}0$ GEO ENDED → S3 填数
 
 - **Loop R269（2026-06-21，双轨 + Loop C · commit）**：
   - **Track A**：Table S3 **2/4**；`relax_P_eps0_geo` geo step ~5+ OT~105 — **不干预**；Exp10 idle

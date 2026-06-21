@@ -22,11 +22,11 @@ Summary of revisions (Major comments):
     tetramer relaxed cross terms and clarifies that $E_{\mathrm{sub}}$ is not
     a thermodynamic formation enthalpy.
 
-(2) Single dopant seed — Table~S4 documents an alternate seed~137 tetramer
-    strain grid (18 ENERGY tasks; pending) to test whether $\alpha$ signs and
-    $|\mathcal{S}|$ rankings at $+3$\% are robust to dopant placement. Periodic
-    $\mathcal{S}$ claims remain on the seed~42 protocol until seed~137 periodic
-    points are added.
+(2) Alternate dopant placement — Table~S4 documents an alternate tetramer
+    placement (18 ENERGY tasks; pending) to test whether $\alpha$ signs and
+    $|\mathcal{S}|$ rankings at $+3$\% are robust to dopant configuration at
+    ${\sim}5$\% nominal doping. Periodic $\mathcal{S}$ magnitudes remain
+    configuration-specific until alternate periodic placements are computed.
 
 (3) Mechanistic depth — Table~S5 quantifies dopant--cage nearest-neighbor
     distances and covalent-radius mismatch from archived XYZ structures

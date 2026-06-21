@@ -9,7 +9,7 @@
 |------|------|
 | D6 摘要 ≤600 | **closed** R128 |
 | D7 词数 | **N/A (PRB Regular)** | ~3572 `texcount` 信息性；无 APS 硬顶 |
-| D2 弛豫 | **B** upper-bound 措辞已强化；Table S3 GEO_OPT **2/4** (pristine $\epsilon{=}0,3$\% verified; $P@\epsilon{=}0$ running) |
+| D2 弛豫 | **B** Results/Discussion interim S3 pristine；$P@\epsilon{=}0$ **CRIT** OT~237 |
 | D1 叙事锚点 | **partial** R130 Conclusion |
 
 ## 证据审计表（主稿可引用边界）
@@ -17,7 +17,7 @@
 | 主张 | 等级 | 状态 | 来源 |
 |------|------|------|------|
 | 非加性序参量 $\mathcal{S}$、$H_{eff}$ 框架 | **A** | **[verified]** | `paper/sdc_method_section.tex`, `c/simukit-sdc` |
-| Tetramer strain grid $\alpha_{B,N,P}$、Table 1 能量列 | **A** | **[verified]** | `experiments/analysis/table1_verification.json` |
+| Tetramer strain grid $\alpha_{B,N,P}$、Table S1 | **A** | **[verified; legacy PBE]** | `table1_verification.json`; **not** PBE+D3 (R270 主文诚实化) |
 | Size-scaling grid 尺寸标度、40/41 SCF | **A** | **[verified]** | `experiments/analysis/exp10_status.json` |
 | Size-scaling grid $\mathcal{S}(n)$ @ +3%（15 点） | **A** | **[verified]** | `experiments/analysis/sdc/sdc_exp10_synergy_audit.json` |
 | $\mathcal{S}_\infty$ 外推（B/N/P） | **B** | **[provisional]** | 同上 `size_scaling_fits`；N @ n=8 符号反转需 Discussion 解释 |
@@ -27,7 +27,7 @@
 | Charged polaron adiabatic IP/EA | **A** | **[12/12 GEO, SI Fig.~S2]** | `exp9_polaron_verification.json`；主文不引 IP/EA |
 | 主稿 Conclusion 四条 ↔ Intro | **A** | **[verified R102]** | 无 transport 倍数 |
 | SI Fig.~S2–S3 pipeline | **A** | **[verified]** | `render_si_figures.sh` + `compile_si.sh` / `compile_prb.sh` |
-| Three-layer reliability audit (setup+coords→process→result) | **A** | **[verified R258]** | `experiments/verify_reliability.sh` → `reliability_audit.json` (293 checks) |
+| Three-layer reliability audit (setup+coords→process→result) | **A** | **[verified R279]** | `verify_reliability.sh` → **294** pass / 2 warn |
 | Methods PBE+D3 citekeys | **A** | **[verified R116]** | `Perdew1996generalized`, `Grimme2011effect` + `cp2k2025` |
 | Intro Katiyar2025strain cite | **B+** | **[R162]** | 2D strain review 语境 |
 | Intro LopezAlcalay2025 cite | **B+** | **[R169]** | 衍生网络 strain+掺杂 vs $(\epsilon,\delta)$ 交叉项 |
@@ -38,16 +38,16 @@
 | Peng2025monolayer bib pages | **A** | **[R202 P0]** | Chem.\ Commun.\ **10287--10302** (was 1234--1237) |
 | Discussion Peng2025 vs $\mathcal{S}$ | **B+** | **[R202]** | qHP 力学综述 vs 联合双轴总能量审计 |
 | Intro 去重复 separate scans | **A** | **[R161]** | joint $(\epsilon,\delta)$ 动机句 |
-| Intro Marcus ↔ Abstract defer | **A** | **[R201]** | Fig.~S2--S3 + vertical SP pending |
+| Intro Marcus ↔ Abstract defer | **A** | **[R201; R279]** | Fig.~S2--S3；vertical SP **8/8**；主文无 λ 数 |
 | Falletta2025 charged vs neutral polaron DFT | **B+** | **[R259 Literature]** | Discussion context; Marcus path unchanged |
-| SI Overview Exp9 诚实化 | **A** | **[R161; R198]** | 12/12 GEO + vertical SP in progress |
+| SI Overview Exp9 诚实化 | **A** | **[R161; R279]** | 12/12 GEO + **8/8** vertical |
 | Discussion Santra2024 formation-energy strain | **B+** | **[R218]** | npj 2D Mater. DOI 10.1038/s41699-024-00472-x vs $\mathcal{S}$ cross term |
 | Discussion Qiu2025 力学对比 | **B+** | **[verified R154]** | `strain_doped_graphullerene.tex` Context 段 cite `Qiu2025atomic` |
 | Abstract partial Exp9 | **N/A** | **[withdrawn R67]** | PRB 摘要无 Exp9 计数 |
 | Abstract $\alpha$/|$\mathcal{S}$| vs audit | **A** | **[R175--R176; R192 (P,$n{=}1$)]** | Abstract max $31.9$ + fifteen-point grid |
-| Abstract fifteen-point grid | **A** | **[R184; R185 落盘]** | 与 Intro Eq.~$\\mathcal{S}$ / `sdc_exp10_synergy_audit.json` 一致 |
+| Abstract PRL gate (169 w, 1072 chars, no cite) | **A** | **[R280]** | PRB 无硬顶；legacy PBE vs periodic PBE+D3 分层 |
 | Abstract PBE+D3 术语 | **A** | **[R168]** | 与 Methods/Intro `PBE+D3` 一致 |
-| Abstract Marcus defer | **A** | **[R240]** | Fig.~S2--S3 + incomplete；mobility-centric 正交；无 7/8/λ |
+| Abstract Marcus defer | **A** | **[R240; R279]** | Fig.~S2--S3；**8/8** λ in SI；mobility-centric 正交；主文无 λ |
 | 主稿 citekey 计数（精简稿） | **A** | **13** | 非 `citation_completion_report` 48 篇旧快照 |
 | `running_snapshot` OT 字段 | **A** | **[fixed R103]** | `last_ot_convergence`（非 RMS grad） |
 | Marcus $\lambda$（vertical − adiabatic） | **A−** | **[8/8 R260]** | eight vertical `.out`; B $\lambda^{-}{=}{-}0.173$~eV excluded; P $\lambda$ largest |
@@ -83,7 +83,7 @@
 | ML $R^2{>}0.95$、775%/300% $\mu$ | **C** | **[withdrawn from main]** | 勿进 Abstract/Results |
 | 下文 IPR 45→25、$J{=}135$ meV、$\mu{=}8.75\times$ | **C** | **[discrepancy]** | 仅作历史理论草稿；见 §2 |
 
-**Track A 快照（2026-06-20，R260）**：Exp9 **12/12** GEO + **8/8** vertical ✅；`run_prb_revision_dft.sh` 启动（S3/S4/cutoff400）
+**Track A 快照（2026-06-21，R279）**：Exp9 **12/12** GEO + **8/8** vertical ✅；Table S3 **2/4**（`relax_P_eps0_geo` **CRIT** OT~229）；Exp10 **40/41** idle
 
 ---
 
@@ -92,12 +92,13 @@
 | 文稿声称 | inp 实际 | 状态 |
 |----------|----------|------|
 | 400 Ry $n\leq4$, 350 Ry $n\geq6$ | `size_*x60_*.inp` | **A** (R132 修复原 300/280 错误) |
-| Table S3 弛豫 | `relax_validation/` + `exp5_relax_status_line.sh` + `relax_validation_tetramer.json` | **B** 2/4 GEO（pristine $\epsilon{=}0,3$\% verified）；$\mathcal{S}_{\mathrm{relaxed}}$ pending |
-| Table S4 alternate placement (18 ENERGY, tetramer; inp still seed~137) | `seed_validation/` + `run_seed137_validation.sh` | **B pending**; main text **reference/alternate** labels (R269) |
+| Table S1 tetramer $\alpha$/$E_{\mathrm{sub}}$ | `table1_verification.json` (legacy PBE, no D3) | **A−** (R270; 主文/S1 caption；勿与 periodic PBE+D3 $\mathcal{S}$ 混比) |
+| Table S3 弛豫 | `relax_validation/` + `relax_P_eps0_geo.inp` + `exp5_relax_status_line.sh` | **B** 2/4 GEO；$P@\epsilon{=}0$ **CRIT** OT~229；Methods §`sec:methods_s3_relax` = **A** |
+| Table S4 alternate placement (18 ENERGY, tetramer) | `seed_validation/` + `run_seed137_validation.sh` | **B pending** (reference/alternate labels, R269) |
 | Table S5 局域结构 | `analyze_local_structure.py` | **A− verified** |
-| PRB 验证 DFT 队列 | `experiments/run_prb_revision_dft.sh` | **B**（Exp9 空闲后顺序跑） |
-| PRB `response_to_referees.md` | **A** | **[verified R210]** | Major/Minor 映射；pending S2--S4 + λ |
-| Exp9 vertical OT 快照 | **A** | **[R214]** | `parse_scf_progress` + `exp9_status_line`（非 stale geo step） |
+| PRB 验证 DFT 队列 | `experiments/run_prb_revision_dft.sh` | **B**（S3/S4 pending） |
+| PRB `response_to_referees.md` | Major/Minor 映射 | **A** (R210; R271 Table S1 泛函行) |
+| Exp9 vertical OT 快照 | `parse_scf_progress` + `exp9_status_line` | **A** (R214) |
 | PRB 投稿包 `compile_prb.sh` | 主图 + SI 图 + 双 PDF | **A** **[verified R151]** |
 
 ## 8. 主稿段落 ↔ JSON 映射（R103 横切）
@@ -106,11 +107,12 @@
 |----------|--------|-------------|
 | Abstract $|\mathcal{S}|$ @ +3% | **A** | **[verified R104]** | audit max 31.9 meV/atom (P, $n=1$)；15 点 |
 | SI Fig.~S2 adiabatic IP/EA | pristine/N/B/P verified (12/12 GEO) | `exp9_polaron_verification.json` → `derived.adiabatic_eV`（**非主文 Results**）；P EA 2.96 eV |
-| Table 1 | $\alpha$, $E$ | `table1_verification.json` |
+| Table S1 | $\alpha$, $E$ (legacy PBE) | `table1_verification.json` |
 | Results §synergy $\mathcal{S}(n)$ | 15 点 `synergy_table` | `sdc_exp10_synergy_audit.json` (**R164--R165**) |
+| Results §synergy ionic checkpoint | pristine 2/4 $\Delta E$ | `relax_validation_tetramer.json` (**R276--R279**) |
 | Fig.~2 caption | 15 点 $\mathcal{S}$ | `sdc_exp10_synergy_audit.json` |
-| Limitations / Conclusion Marcus | 12/12 GEO; vertical SP 7/8 | seven $\lambda^{\pm}$ channels (**SI only**); `B_qneg1_vert` pending |
-| Conclusion (i)–(iii) | Intro 三问显式闭环 | **R146**；Marcus 正交 + 7/8 SI-only (**R238**) |
+| Limitations / Conclusion Marcus | 12/12 GEO; vertical SP **8/8** | eight $\lambda^{\pm}$ channels (**SI Fig.~S2**); B $\lambda^{-}$ excluded (Limitations) |
+| Conclusion (i)–(iii) | Intro 三问显式闭环 | **R146**；Marcus 正交 + **8/8** SI-only (**R260**) |
 | Conclusion (ii) max $|\mathcal{S}|$ | 31.9 meV/atom (P, $n{=}1$) | **R174--R190** |
 | Conclusion (iii) $n{=}4$ P $|\mathcal{S}|$ | 23.7 meV/atom | **R182** |
 | Fig.~main caption (d) | audit JSON | **R172** |
@@ -172,7 +174,7 @@ Marcus 重组能（vertical SP **8/8**；eight λ± assignments SI only）→ `a
 | $\mu{=}8.75\times$ | 无独立 $\mu$ 验证 | 主文已降调 |
 | 极化子转变已证明 | false | Discussion 定性 only |
 
-SI S1.2 合成 $\lambda$ 分解：**[illustrative, pending Exp9]**；Capobianco2024 ≈0.1 eV 文献锚点。
+SI S1.2 合成 $\lambda$ 分解：**[illustrative only]**；eight-channel $\lambda^{\pm}$ in SI Fig.~S2 from Exp9 **8/8** vertical SP (**R279**).
 
 ---
 
@@ -180,9 +182,10 @@ SI S1.2 合成 $\lambda$ 分解：**[illustrative, pending Exp9]**；Capobianco2
 
 | 优先级 | 缺口 | 动作 |
 |--------|------|------|
-| **P0** | Exp9 12/12 + 8 vertical SP | `continue_exp9_pending.sh`（运行中） |
-| **P0** | $\lambda$ → Fig.5 | JSON 契约已就绪 |
-| **P1** | Transport 主图 | 待 $\lambda$ + $J$ 网格 |
+| **P0** | Exp9 12/12 + 8 vertical SP | **closed R279** ✅ |
+| **P0** | Table S3 4/4 GEO_OPT | `relax_P_eps0_geo` **CRIT**（2/4 done） |
+| **P1** | Table S4 alternate placement | 18 ENERGY pending |
+| **P1** | Transport 主图 | **C**；PRB 不阻塞 |
 
 **叙事强度**：NC/PRB 级非加性 **已够**；**PRL** 仍阻塞 transport。
 
@@ -199,7 +202,7 @@ SI S1.2 合成 $\lambda$ 分解：**[illustrative, pending Exp9]**；Capobianco2
 | Discussion HT reranking ↔ audit | **A** | **R165** |
 | Conclusion DA synergy path | **A** | **R166** |
 | Intro–Conclusion 四条闭环 + Marcus defer | **A** |
-| Marcus $\lambda$ | **B pending** |
+| Marcus $\lambda$ | **A−** | **8/8** vertical；B $\lambda^{-}$ excluded |
 | 300%/775% mobility | **C** |
 
 ---
@@ -221,7 +224,7 @@ Legacy `analyze_results.py` → 请改用 `analyze_exp9_polaron.py` + `dft_resul
 
 - [x] Exp10 40/40 + SDC 15 点
 - [x] Exp4 两点 IPR/$J$，转变未声称
-- [ ] Exp9 12/12 + 8 vertical SP → $\lambda$
+- [x] Exp9 12/12 + 8 vertical SP → $\lambda$ in SI Fig.~S2
 - [ ] Transport 主图（PRL）
 
 ---
@@ -236,7 +239,7 @@ Legacy `analyze_results.py` → 请改用 `analyze_exp9_polaron.py` + `dft_resul
 | 图 | 路径 | 证据等级 | 备注 |
 |----|------|----------|------|
 | S1 π-DOS @ ε=0 | `figures/out/figure_s1_pdos_exp7.pdf` | **A−** | Exp7 `.pdos`; MO isosurfaces pending VMD |
-| S2 Marcus λ | `figures/out/figure_s2_marcus.pdf` | **B+** | IP/EA from Exp9 JSON; λ pending vertical SP |
+| S2 Marcus λ | `figures/out/figure_s2_marcus.pdf` | **A−** | Exp9 **8/8** vertical；B $\lambda^{-}$ excluded |
 | S3 $J$ + FCWD | `figures/out/figure_s3_j_exp4.pdf` | **B+** | (a) Exp4 $J$ **A**; (b) synthetic FCWD pending MolFC |
 | Table S5 局域结构 | Table S5 in `supplementary_figures.tex` | **A−** | `local_structure_tetramer.json` |
 

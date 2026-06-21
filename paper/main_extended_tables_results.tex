@@ -1,7 +1,7 @@
 % Results tables (S1, S3--S5); calculation inventory (S2) is in Methods.
 
 \begin{table}[!ht]
-\caption{\label{tab:S1}Total energies, linear strain sensitivities, and substitution energies for tetramer models (PBE+D3, rigid-strain protocol).
+\caption{\label{tab:S1}Linear strain sensitivities and substitution energies for tetramer models (archived rigid-strain grid, legacy PBE without D3; not mixed with periodic PBE+D3 $\mathcal{S}$ in Table~\ref{tab:S2}).
 $E_{\mathrm{sub}}=(E_{\mathrm{doped}}-E_{\mathrm{pristine}})/n_{\mathrm{dopants}}$ at $\epsilon{=}0$ with no chemical-potential reference (not a standard formation enthalpy).
 $n_{\mathrm{dopants}}$ is counted from archived input coordinates (nominal 5\% target; B: 13, N: 12, P: 12).}
 \begin{ruledtabular}
@@ -26,30 +26,30 @@ $\mathcal{S}$ follows Eq.~\eqref{eq:synergy_order} with $N{=}240$ atoms.}
 Quantity & Rigid (legacy tetramer) & Relaxed (geometry opt.) \\
 \hline
 $E$(pristine, $\epsilon{=}0$) ($E_{\mathrm{h}}$) & $-1363.5512$ & $-1363.9551$ \\
-$E$(pristine, $\epsilon{=}3$\%) ($E_{\mathrm{h}}$) & $-1363.5522$ & pending \\
+$E$(pristine, $\epsilon{=}3$\%) ($E_{\mathrm{h}}$) & $-1363.5522$ & $-1363.9550$ \\
 $E$(P, $\epsilon{=}0$) ($E_{\mathrm{h}}$) & $-1370.4965$ & pending \\
 $E$(P, $\epsilon{=}3$\%) ($E_{\mathrm{h}}$) & $-1370.4890$ & pending \\
 $\mathcal{S}$ (meV/atom) & $+0.96$ & pending \\
-Sign of $\mathcal{S}$ vs.\ rigid & \multicolumn{2}{c}{pending (1/4 geometry opt.; queue running)} \\
+Sign of $\mathcal{S}$ vs.\ rigid & \multicolumn{2}{c}{pending (2/4 geometry opt.; $P@\epsilon{=}0$ running)} \\
 \end{tabular}
 \end{ruledtabular}
 \end{table}
 
 \begin{table}[!ht]
-\caption{\label{tab:S4}Alternate random-seed dopant placement (\emph{tetramer only}, rigid strain, PBE+D3).
-Seed~42 defines all main-text tetramer $\alpha$ and the periodic supercell site map (one substituent per C$_{60}$).
-Seed~137 repeats the full B/N/P strain grid ($\epsilon\in\{-5,-2.5,0,+2.5,+3,+5\}$\%; 18 single-point energy tasks) to test whether tetramer $\alpha$ and $\mathcal{S}$ at $+3$\% are placement-sensitive at ${\sim}5$\% nominal doping.
-Periodic $\mathcal{S}(n)$ is \emph{not} tabulated here because concentration and boundary conditions differ; main-text periodic magnitudes remain seed~42-specific until alternate periodic placements are computed.}
+\caption{\label{tab:S4}Alternate dopant-placement sensitivity (\emph{tetramer only}, rigid strain, PBE+D3).
+The \emph{reference} placement defines all main-text tetramer $\alpha$ and the periodic supercell site map (one substituent per C$_{60}$).
+An \emph{alternate} independent placement repeats the full B/N/P strain grid ($\epsilon\in\{-5,-2.5,0,+2.5,+3,+5\}$\%; 18 single-point tasks) to test whether tetramer $\alpha$ and $\mathcal{S}$ at $+3$\% are placement-sensitive at ${\sim}5$\% nominal doping.
+Periodic $\mathcal{S}(n)$ is \emph{not} tabulated here because concentration and boundary conditions differ; main-text periodic magnitudes are configuration-specific until alternate periodic placements are computed.}
 \begin{ruledtabular}
 \begin{tabular}{lcccc}
-Dopant & Seed & $\alpha$ (meV/\%) & $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ (meV/atom) & Status \\
+Dopant & Placement & $\alpha$ (meV/\%) & $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ (meV/atom) & Status \\
 \hline
-B & 42 & $+56.9$ & ${\sim}{+}0.7$ & verified (Table~\ref{tab:S1}) \\
-N & 42 & $-303.2$ & ${\sim}{-}3.8$ & verified \\
-P & 42 & $-19.1$ & ${\sim}{-}0.2$ & verified \\
-B & 137 & pending & pending & 6 inp / pending \\
-N & 137 & pending & pending & 6 inp / pending \\
-P & 137 & pending & pending & 6 inp / pending \\
+B & reference & $+56.9$ & ${\sim}{+}0.7$ & verified (Table~\ref{tab:S1}) \\
+N & reference & $-303.2$ & ${\sim}{-}3.8$ & verified \\
+P & reference & $-19.1$ & ${\sim}{-}0.2$ & verified \\
+B & alternate & pending & pending & pending \\
+N & alternate & pending & pending & pending \\
+P & alternate & pending & pending & pending \\
 \end{tabular}
 \end{ruledtabular}
 \end{table}
@@ -57,7 +57,7 @@ P & 137 & pending & pending & 6 inp / pending \\
 \begin{table}[!ht]
 \caption{\label{tab:S5}Local dopant--cage structure from archived tetramer XYZ (mean nearest C distance $\bar{d}$ in \AA; standard deviation $\sigma(\bar{d})$ across dopant sites; covalent-radius excess vs.\ C in pm).
 Strain-induced change $\Delta\bar{d}=\bar{d}(\epsilon{=}+3\%)-\bar{d}(\epsilon{=}0)$ summarizes how tensile load couples to pre-existing distortion (Discussion mechanistic synthesis (ii),(vi)).
-Values are computed from archived tetramer XYZ coordinates (seed~42) in the open data release; Mayer bond order and Bader charges are not included.}
+Values are computed from archived tetramer coordinates in the open data release; Mayer bond order and Bader charges are not included.}
 \begin{ruledtabular}
 \begin{tabular}{lccccc}
 Dopant & $\bar{d}(\epsilon{=}0)$ (\AA) & $\bar{d}(\epsilon{=}+3\%)$ (\AA) & $\Delta\bar{d}$ (\AA) & $\sigma(\bar{d})$ @ $+3$\% (\AA) & $\Delta r_{\mathrm{cov}}$ (pm) \\

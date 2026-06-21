@@ -11,7 +11,7 @@
 
 **Referee concern:** All $\alpha$ and $\mathcal{S}$ use fixed fractional coordinates; no relax benchmark; reported $|\mathcal{S}|$ may be an upper bound.
 
-**Response:** We agree that fixed fractional coordinates can overestimate strain coupling and that equilibrium relevance must be demonstrated. We have (i) relabeled all main-text $|\mathcal{S}|$ magnitudes as **protocol upper bounds** at fixed coordinates (Abstract, Methods, Results, Discussion design language); (ii) **removed** the prior rhetorical contrast between the archived rigid tetramer Table~S3 entry ($\mathcal{S}=+0.96$~meV/atom) and periodic $n{=}4$ $P$ ($-23.7$~meV/atom), which the referee correctly notes is **not** a valid control because concentration and boundary conditions differ; and (iii) reframed **Table~S3** as a **sign-qualitative** tetramer benchmark only: rigid references use legacy PBE (no D3) whereas relaxed corners use PBE+D3, so a quantitative $|\mathcal{S}_{\mathrm{relaxed}}|/|\mathcal{S}_{\mathrm{rigid}}|$ ratio is **not** claimed until a matched-functional rigid grid exists. Fixed-cell geometry optimization is **in progress** (2/4 corners converged: pristine $\epsilon{=}0$ and $+3$\%; $P@\epsilon{=}0$ running). Marcus vertical SP (8/8) is complete; the relax queue continues without parallel size-scaling jobs.
+**Response:** We agree that fixed fractional coordinates can overestimate strain coupling and that equilibrium relevance must be demonstrated. We have (i) relabeled all main-text $|\mathcal{S}|$ magnitudes as **protocol upper bounds** at fixed coordinates (Abstract, Methods, Results, Discussion design language); (ii) **removed** the prior rhetorical contrast between the archived rigid tetramer Table~S3 entry ($\mathcal{S}=+0.96$~meV/atom) and periodic $n{=}4$ $P$ ($-23.7$~meV/atom), which the referee correctly notes is **not** a valid control because concentration and boundary conditions differ; and (iii) reframed **Table~S3** as a **sign-qualitative** tetramer benchmark only: rigid references use legacy PBE (no D3) whereas relaxed corners use PBE+D3, so a quantitative $|\mathcal{S}_{\mathrm{relaxed}}|/|\mathcal{S}_{\mathrm{rigid}}|$ ratio is **not** claimed until a matched-functional rigid grid exists. Fixed-cell geometry optimization is **in progress** (2/4 corners converged: pristine $\epsilon{=}0$ and $+3$\%; $P@\epsilon{=}0$ in the SCF critical zone, OT${\sim}237$, gradient ${\sim}9\times10^{-6}$~Ha/bohr). Marcus vertical SP (8/8) is complete; the relax queue continues without parallel size-scaling jobs.
 
 **Manuscript:** Abstract; Methods rigid-strain subsection; Results $\mathcal{S}(n)$; Discussion (design implications); Table~S3 caption; SI Methods.
 
@@ -38,7 +38,7 @@
 **Referee concern:** N/B/P coupling classes are qualitative; need bond/charge metrics and decomposition of geometric vs.\ electronic nonlinearity.
 
 **Response:**
-1. **Electronic (N vs.\ B):** Results Sec.~\ref{sec:electronic} now reports verified $\epsilon{=}0$ gaps from the Exp.~7 archive ($E_g^{\mathrm{B}}\approx 0.03$, $E_g^{\mathrm{N}}\approx -0.14$, $E_g^{\mathrm{P}}\approx 0.05$~eV) and links them to opposite $\alpha$ signs (Table~S1; ${\sim}360$~meV/\% span). Fig.~1(a,b) and Supplemental Fig.~S1 provide the $\pi$-DOS context.
+1. **Electronic (N vs.\ B):** Results Sec.~\ref{sec:electronic} now reports verified $\epsilon{=}0$ gaps from the Exp.~7 archive ($E_g^{\mathrm{B}}\approx 0.03$, $E_g^{\mathrm{N}}\approx -0.14$, $E_g^{\mathrm{P}}\approx 0.05$~eV) and links them to opposite $\alpha$ signs on the legacy PBE rigid tetramer grid (Table~S1; ${\sim}360$~meV/\% span). Fig.~1(a,b) and Supplemental Fig.~S1 provide the $\pi$-DOS context.
 2. **Structural (P):** Table~S5 expanded with $\sigma(\bar{d})$ at $+3$\% strain, showing P's frozen local environment ($\Delta\bar{d}\approx 3\times 10^{-5}$~\AA; $\sigma\approx 4\times 10^{-4}$~\AA) vs.\ B/N (${\sim}8.5\times 10^{-3}$~\AA\ mean shift; $\sigma{\sim}0.02$~\AA).
 3. **Nonlinearity decomposition:** Discussion (iv)--(vi) quantify Table~S5 $\Delta\bar{d}$ vs.\ $|\mathcal{S}|$ contrasts, exclude tetramer--periodic $\alpha$ extrapolation (v), and state decomposition outlook (vi); Mayer bond order / Bader partitioning along the strain path remain **future work** (Limitations), so relative electronic vs.\ geometric weights are not quantified in this revision.
 
@@ -91,11 +91,11 @@
 
 | Task | Table | Status |
 |------|-------|--------|
-| Ionic relaxation geometry opt. | S3 | **running** 2/4 (`relax_P_eps0_geo`; pristine $\epsilon{=}0,+3$\% in Table~S3; $P@\epsilon{=}0$ near EPS intermittently) |
-| Alternate-placement ENERGY grid | S4 | 18 inp (`seed137` archive); **pending** |
+| Ionic relaxation geometry opt. | S3 | **running** 2/4 (`relax_P_eps0_geo`; OT~237, **CRIT** grad~$9\times10^{-6}$) |
+| Alternate-placement ENERGY grid | S4 | 18 inp (alternate archive); **pending** |
 | 400~Ry $n{=}6$ N SP (Exp10 40/41) | S2 | **pending** |
 | Marcus vertical SP (8) | Fig.~S2 | **8/8** converged; eight $\lambda^{\pm}$ in SI Fig.~S2; B $\lambda^{-}{=}{-}0.173$~eV flagged non-physical (Limitations) |
-| Setup/process/result audit | `reliability_audit.json` | `bash experiments/verify_reliability.sh` (293 checks; coords+inp+workflow) |
+| Setup/process/result audit | `reliability_audit.json` | `bash experiments/verify_reliability.sh` (**294** pass / 2 warn; coords+inp+workflow) |
 
 ---
 
@@ -107,13 +107,14 @@
 | Review theme | Action in this revision |
 |--------------|-------------------------|
 | **§I Abstract** | Rigid-strain upfront; ``not necessarily additive''; synergy $\mathcal{S}$ defined; $\alpha$ named; Marcus sentence simplified |
-| **§II Introduction** | Identical XC level; additive superposition; $\alpha$/$\mathcal{S}$ defined at first use |
-| **§III Methods** | Table~S2--S4 in Methods; Marcus $E_{\mathrm{vert}}$ vs $E_{\mathrm{opt}}$; no internal repo paths |
+| **§II Introduction** | Periodic PBE+D3 $\mathcal{S}$ vs.\ legacy PBE tetramer $\alpha$ (Table~S1) separated; additive superposition; $\alpha$/$\mathcal{S}$ defined at first use |
+| **§III Methods** | Table~S1 legacy PBE vs.\ periodic PBE+D3 explicit; Table~S3 fixed-cell GEO\_OPT (400~Ry, $\mathrm{EPS\_SCF}=10^{-6}$); Table~S2--S4 in Methods; Marcus $E_{\mathrm{vert}}$ vs $E_{\mathrm{opt}}$ |
 | **§III.C doping %** | Clarified: one substituent per C$_{60}$ $\Rightarrow$ ${\sim}1.67$ at.\% (not reviewer's 0.42% one-dopant/supercell) |
 | **§III.E Table~S3** | Sign-only; PBE rigid vs PBE+D3 relaxed mismatch explicit |
 | **§IV structure** | No standalone Section IV; transport in Results |
 | **§IV Fig.~S3** | FCWD placeholder removed from main text |
 | **§VI Discussion** | Factor of four; characterize; Table~S3 sign-only criterion |
+| **§VIII Conclusions** | Three Intro questions closed; validation controls + interim S3 pristine checkpoint (qualitative); future work lists Table~S3 P corners |
 
-*Document version: PRB Major Revision + Chinese checklist (2026-06-20).*
+*Document version: PRB Major Revision + Chinese checklist (Loop R279, 2026-06-21).*
 

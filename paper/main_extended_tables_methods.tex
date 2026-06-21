@@ -44,20 +44,28 @@ Sign of $\mathcal{S}$ vs.\ rigid & \multicolumn{2}{c}{pending (2/4 geometry opt.
 \end{table}
 
 \begin{table}[!ht]
-\caption{\label{tab:S4}Alternate random-seed dopant placement (\emph{tetramer only}, rigid strain, PBE+D3).
-Seed~42 defines all main-text tetramer $\alpha$ and the periodic supercell site map (one substituent per C$_{60}$).
-Seed~137 repeats the full B/N/P strain grid ($\epsilon\in\{-5,-2.5,0,+2.5,+3,+5\}$\%; 18 single-point energy tasks) to test whether tetramer $\alpha$ and $\mathcal{S}$ at $+3$\% are placement-sensitive at ${\sim}5$\% nominal doping.
-Periodic $\mathcal{S}(n)$ is \emph{not} tabulated here because concentration and boundary conditions differ; main-text periodic magnitudes remain seed~42-specific until alternate periodic placements are computed.}
+\caption{\label{tab:S4}Alternate dopant-placement sensitivity (\emph{tetramer only}, rigid strain, PBE+D3).
+The \emph{reference} placement defines all main-text tetramer $\alpha$ and the periodic supercell site map (one substituent per C$_{60}$).
+An \emph{alternate} independent placement repeats the full B/N/P strain grid ($\epsilon\in\{-5,-2.5,0,+2.5,+3,+5\}$\%; 18 single-point tasks) to test whether tetramer $\alpha$ and $\mathcal{S}$ at $+3$\% are placement-sensitive at ${\sim}5$\% nominal doping.
+Periodic $\mathcal{S}(n)$ is \emph{not} tabulated here because concentration and boundary conditions differ; main-text periodic magnitudes are configuration-specific until alternate periodic placements are computed.}
 \begin{ruledtabular}
 \begin{tabular}{lcccc}
-Dopant & Seed & $\alpha$ (meV/\%) & $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ (meV/atom) & Status \\
+Dopant & Placement & $\alpha$ (meV/\%) & $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ (meV/atom) & Status \\
 \hline
-B & 42 & $+56.9$ & ${\sim}{+}0.7$ & verified (Table~\ref{tab:S1}) \\
-N & 42 & $-303.2$ & ${\sim}{-}3.8$ & verified \\
-P & 42 & $-19.1$ & ${\sim}{-}0.2$ & verified \\
-B & 137 & pending & pending & 6 inp / pending \\
-N & 137 & pending & pending & 6 inp / pending \\
-P & 137 & pending & pending & 6 inp / pending \\
+B & reference & $+56.9$ & ${\sim}{+}0.7$ & verified (Table~\ref{tab:S1}) \\
+N & reference & $-303.2$ & ${\sim}{-}3.8$ & verified \\
+P & reference & $-19.1$ & ${\sim}{-}0.2$ & verified \\
+B & alternate & pending & pending & pending \\
+N & alternate & pending & pending & pending \\
+P & alternate & pending & pending & pending \\
+\end{tabular}
+\end{ruledtabular}
+\end{table}
+N & reference & $-303.2$ & ${\sim}{-}3.8$ & verified \\
+P & reference & $-19.1$ & ${\sim}{-}0.2$ & verified \\
+B & alternate & pending & pending & pending \\
+N & alternate & pending & pending & pending \\
+P & alternate & pending & pending & pending \\
 \end{tabular}
 \end{ruledtabular}
 \end{table}

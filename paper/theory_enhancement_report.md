@@ -9,7 +9,7 @@
 |------|------|
 | D6 摘要 ≤600 | **closed** R128 |
 | D7 词数 | **N/A (PRB Regular)** | ~3572 `texcount` 信息性；无 APS 硬顶 |
-| D2 弛豫 | **B** Table III 2/4；$P@\epsilon{=}0$ ionic step 5/300，内层 SCF **CRIT** OT~109 |
+| D2 弛豫 | **B** Results–Discussion III pristine $\Delta E$ 链；$P@\epsilon{=}0$ ionic step 5/300 |
 | D1 叙事锚点 | **partial** R130 Conclusion |
 
 ## 证据审计表（主稿可引用边界）
@@ -83,7 +83,7 @@
 | ML $R^2{>}0.95$、775%/300% $\mu$ | **C** | **[withdrawn from main]** | 勿进 Abstract/Results |
 | 下文 IPR 45→25、$J{=}135$ meV、$\mu{=}8.75\times$ | **C** | **[discrepancy]** | 仅作历史理论草稿；见 §2 |
 
-**Track A 快照（2026-06-21，R291）**：Exp9 **12/12** + **8/8** ✅；Table III **2/4**（`relax_P_eps0_geo` ionic **5/300**，内层 SCF CRIT OT~109）；Exp10 **40/41** idle
+**Track A 快照（2026-06-21，R292）**：Exp9 **12/12** + **8/8** ✅；Table III **2/4**（`relax_P_eps0_geo` ionic **5/300**，内层 SCF OT~117）；Exp10 **40/41** idle
 
 ---
 

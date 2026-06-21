@@ -1400,12 +1400,20 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+- **Loop R316（2026-06-21，双轨 + Loop C）**：
+ - **Track A**：Table III **2/4**；`relax_P_eps0_geo` **CRIT** OT~**112** — **不干预**
+ - **Track B（I Abstract）**：首句并入 Tables III--IV upper-bound gate；`compile_prb.sh` ✅
+ - **Track C**：response §I checklist R316
+ - **创新审计**：Abstract 契约 = **A**（无新定量）；Table III = **B**（2/4）
+ - **Git**：`8b6ce0d` — `loop R316: Abstract Tables III-IV gate` → **pushed: (local only)**
+ - **下一轮**：GEO ENDED → Table III 行 3；R317 Intro
+
 - **Loop R315（2026-06-21，双轨 + Loop C）**：
  - **Track A**：Table III **2/4**；`relax_P_eps0_geo` **CRIT** OT~**112** grad~$2.6\times10^{-5}$ — **不干预**；JSON 刷新
  - **Track B（横切 B4/B5）**：`response_to_referees.md` checklist §III/V 同步 Fig.~3 slanted-IP + Fig.~1 callout；theory report R315 grep；`supplementary_material_theory.tex` 去仓库路径
  - **Track C**：checklist 版本 R315
  - **创新审计**：response–主稿 Fig 契约 = **A**；Table III = **B**（2/4）
- - **Git**：未提交
+ - **Git**：`68aa2b1` — `loop R315: horizontal audit + SI path cleanup` → **pushed: (local only)**
  - **下一轮**：GEO ENDED → Table III 行 3 + `analyze_relax_s.py`；R316 Abstract
 
 - **Loop R314（2026-06-21，双轨 + Loop C）**：

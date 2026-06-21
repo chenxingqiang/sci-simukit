@@ -13,6 +13,7 @@ Periodic supercells place one substituent per C$_{60}$ unit ($n=1$--$8$), giving
 \label{sec:methods_s4_seed}
 The \emph{reference} placement in Table~\ref{tab:IV} is the archived rigid tetramer map underlying Table~\ref{tab:I} (legacy PBE without D3).
 The \emph{alternate} placement repeats the full B/N/P strain grid ($\epsilon\in\{-5,-2.5,0,+2.5,+3,+5\}$\%; 18 rigid single-point tasks) with an independently rerolled substitution map at the same nominal 5\% doping level (seed~137).
+Reference-placement $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ for B/N/P is tabulated in Table~\ref{tab:IV} and Sec.~\ref{sec:synergy}; periodic $\mathcal{S}(n)$ is not inferred from either tetramer map.
 Alternate tasks use PBE+D3 rigid \texttt{RUN\_TYPE ENERGY} at 400~Ry with $\mathrm{EPS\_SCF}=10^{-6}$~$E_{\mathrm{h}}$; they are \emph{not} on the same exchange-correlation treatment as the reference $\alpha$ column, so only within-placement trends are compared once the grid converges.
 
 \subsubsection{Ionic-relaxation benchmark (Table~\ref{tab:III})}

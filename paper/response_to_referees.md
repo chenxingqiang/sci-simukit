@@ -112,8 +112,8 @@
 | **§IV Structure** | No standalone Section IV; transport in Results |
 | **§IV Fig.~4** | FCWD placeholder removed from main text |
 | **§V Results** | Fifteen-point $\mathcal{S}(n)$ (Table~II); Table~IV reference $\mathcal{S}^{\mathrm{tet}}$ + alternate PBE+D3 pending (Sec.~\ref{sec:methods_s4_seed}); Fig.~3 IP/vertical-$Q{=}0$ schematic cross-ref Methods |
-| **§VI Discussion** | Factor of four; Table~III/IV；**Katiyar2025** + **LopezAlcalay2025** 分调 vs 四隅 $\mathcal{S}$ |
+| **§VI Discussion** | Factor of four; Table~III/IV；**Katiyar2025** + **LopezAlcalay2025** 分调 vs 四隅 $\mathcal{S}$；Table~IV validation 段 reference legacy-PBE vs alternate PBE+D3（R313） |
 | **§VIII Conclusions** | Three Intro questions (1)--(3); upper-bound opening; Table~III four-corner sign-only; Table~IV reference $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ archived; alternate placement pending in future work |
 
-*Document version: PRB Major Revision + Chinese checklist (Loop R312, 2026-06-21). Align with `cover_letter_prb.txt`.*
+*Document version: PRB Major Revision + Chinese checklist (Loop R313, 2026-06-21). Align with `cover_letter_prb.txt`.*
 

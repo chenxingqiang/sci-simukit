@@ -18,10 +18,10 @@ Summary of revisions (Major comments):
 
 (1) Rigid-strain protocol — We state explicitly that rigid-cell $\alpha$ and
     $\mathcal{S}$ are upper bounds until ionic relaxation completes. Table~III
-    defines a four-corner fixed-cell GEO\_OPT benchmark for the tetramer
-    $P@+3$\% synergy corner (relaxed energies pending; rigid reference values
-    archived). The main text separates periodic rigid $\mathcal{S}(n)$ from
-    tetramer relaxed cross terms and clarifies that $E_{\mathrm{sub}}$ is not
+    defines a four-corner fixed-cell GEO\_OPT benchmark (pristine and $P$ at
+    $\epsilon{=}0$ and $+3$\%; relaxed energies pending for $P$ corners; rigid
+    references archived). The main text separates periodic rigid $\mathcal{S}(n)$
+    from tetramer relaxed cross terms and clarifies that $E_{\mathrm{sub}}$ is not
     a thermodynamic formation enthalpy.
 
 (2) Alternate dopant placement — Table~IV documents an alternate tetramer
@@ -35,7 +35,7 @@ Summary of revisions (Major comments):
     (geometric metrics only; Mayer bond order and Bader charges are not
     computed). Discussion mechanistic synthesis cites these numbers together
     with gap-vs-strain slopes (main Fig.~1a), $\pi$-DOS panels (main Fig.~1b;
-    Fig.~2), and the fifteen-point synergy audit.
+    standalone Fig.~2), and the fifteen-point synergy audit.
 
 (4) Argumentation — We rewrote the $\mathcal{S}$--$\alpha$ comparison as a
     qualitative sanity check only (concentration mismatch), tightened stability
@@ -53,8 +53,8 @@ Summary of revisions (Major comments):
 Minor comments: Removed internal repository paths from the main text (Data
 Availability only); merged former Supplemental tables/figures into standard
 PRB sections (Methods validation + Results subsections; no standalone
-Section~IV); removed FCWD placeholder from main-text Fig.~4; APS journal
-abbreviations for cited references; Pereira2026 and ShaikhPeng2025 arXiv
+Section~IV); removed synthetic FCWD placeholder from the transport figure;
+APS journal abbreviations for cited references; Pereira2026 and ShaikhPeng2025 arXiv
 entries marked as preprints.
 
 Data availability: converged inputs/outputs and audit tables at

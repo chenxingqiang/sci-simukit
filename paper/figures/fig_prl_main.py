@@ -9,6 +9,7 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.gridspec import GridSpec
+from matplotlib.lines import Line2D
 
 FIG_DIR = Path(__file__).resolve().parent
 sys.path.insert(0, str(FIG_DIR))
@@ -33,6 +34,46 @@ from _style import (
 )
 
 
+def _dopant_legend_handles() -> list[Line2D]:
+    """Shared pristine / B / N / P legend for the full composite figure."""
+    handles: list[Line2D] = []
+    for dopant in ("pristine", "B", "N", "P"):
+        ls = "--" if dopant == "pristine" else "-"
+        lw = 0.7 if dopant == "pristine" else 0.85
+        handles.append(
+            Line2D(
+                [0],
+                [0],
+                ls=ls,
+                lw=lw,
+                marker=DOPANT_MARKERS.get(dopant, "o"),
+                color=DOPANT_COLORS[dopant],
+                label=dopant,
+            )
+        )
+    return handles
+
+
+def _add_unified_dopant_legend(fig: plt.Figure) -> None:
+    handles = _dopant_legend_handles()
+    fig.legend(
+        handles,
+        [h.get_label() for h in handles],
+        frameon=True,
+        fancybox=False,
+        edgecolor="#CCCCCC",
+        facecolor="white",
+        framealpha=0.95,
+        loc="upper left",
+        ncol=4,
+        fontsize=5,
+        handlelength=1.2,
+        columnspacing=0.9,
+        borderpad=0.3,
+        bbox_to_anchor=(0.08, 1.0),
+    )
+
+
 def _plot_electronic_row(ax_gap, ax_dos, gaps) -> None:
     """(a) Gap vs strain + (b) aligned π-DOS @ B, ε=0 — Electron energy axis."""
     panel_label(ax_gap, "a")
@@ -53,42 +94,38 @@ def _plot_electronic_row(ax_gap, ax_dos, gaps) -> None:
             lw=lw,
             marker=DOPANT_MARKERS.get(dopant, "o"),
             color=DOPANT_COLORS[dopant],
-            label=dopant if dopant != "pristine" else "pristine",
+            label="_nolegend_",
             clip_on=False,
         )
-    # Direct-gap annotation (B @ 0%) — offset from data lines
+    # Direct-gap annotation (B @ 0%) — upper-right corner, arrow to data (avoid line overlap).
     b0 = next(p for p in gaps if p.dopant == "B" and p.converged and p.strain_pct == 0.0)
     ax_gap.axhline(0, color="#DDDDDD", lw=0.4, zorder=0)
     ax_gap.annotate(
         rf"$E_g={b0.gap_ev:.2f}$ eV",
         xy=(0, b0.gap_ev),
-        xytext=(2.0, 0.14),
-        fontsize=5.5,
+        xytext=(0.97, 0.90),
+        textcoords=ax_gap.transAxes,
+        fontsize=5.3,
         color=COLOR_CBM,
-        ha="left",
-        va="center",
-        arrowprops=dict(arrowstyle="-|>", color=COLOR_CBM, lw=0.5, shrinkA=2, shrinkB=2),
+        ha="right",
+        va="top",
+        bbox=dict(boxstyle="round,pad=0.2", facecolor="white", edgecolor=COLOR_CBM, alpha=0.95, lw=0.4),
+        arrowprops=dict(
+            arrowstyle="-|>",
+            color=COLOR_CBM,
+            lw=0.45,
+            shrinkA=2,
+            shrinkB=4,
+            connectionstyle="arc3,rad=0.25",
+        ),
         annotation_clip=True,
+        zorder=5,
     )
     ax_gap.set_xlabel(r"strain $\epsilon$ (%)")
     ax_gap.set_ylabel(r"energy gap (eV)")
     ax_gap.set_xlim(-5.5, 5.5)
     ax_gap.set_ylim(-0.22, 1.62)
     style_axes(ax_gap)
-    ax_gap.legend(
-        frameon=True,
-        fancybox=False,
-        edgecolor="#CCCCCC",
-        facecolor="white",
-        framealpha=0.95,
-        loc="upper center",
-        bbox_to_anchor=(0.5, 1.01),
-        ncol=2,
-        fontsize=4.8,
-        handlelength=1.0,
-        borderpad=0.25,
-        columnspacing=0.6,
-    )
 
     panel_label(ax_dos, "b")
     pdos_path = repo_root() / "dft_results/exp_7_electronic_structure/outputs/elec_pos0p0_B-k1-1.pdos"
@@ -177,7 +214,7 @@ def _plot_synergy_combo(ax_main, audit, exp4, *, show_inset: bool = False, ax_in
             s_pts,
             marker=DOPANT_MARKERS[dopant],
             color=DOPANT_COLORS[dopant],
-            label=dopant,
+            label="_nolegend_",
             clip_on=False,
         )
         fit = audit["size_scaling_fits"][dopant]
@@ -215,29 +252,23 @@ def _plot_synergy_combo(ax_main, audit, exp4, *, show_inset: bool = False, ax_in
         ax_main.annotate(
             rf"max $|\mathcal{{S}}|={abs(p_n1):.1f}$",
             xy=(1.0, p_n1),
-            xytext=(2.15, p_n1 + 7.5),
-            textcoords="data",
+            xytext=(0.97, 0.92),
+            textcoords=ax_main.transAxes,
             fontsize=5.3,
             color=DOPANT_COLORS["P"],
-            ha="left",
-            va="bottom",
-            bbox=dict(boxstyle="round,pad=0.15", facecolor="white", edgecolor=DOPANT_COLORS["P"], alpha=0.92, lw=0.4),
-            arrowprops=dict(arrowstyle="-|>", color=DOPANT_COLORS["P"], lw=0.45, shrinkA=3, shrinkB=3),
+            ha="right",
+            va="top",
+            bbox=dict(boxstyle="round,pad=0.15", facecolor="white", edgecolor=DOPANT_COLORS["P"], alpha=0.95, lw=0.4),
+            arrowprops=dict(
+                arrowstyle="-|>",
+                color=DOPANT_COLORS["P"],
+                lw=0.45,
+                shrinkA=4,
+                shrinkB=5,
+                connectionstyle="arc3,rad=-0.3",
+            ),
+            zorder=5,
         )
-    ax_main.legend(
-        frameon=True,
-        fancybox=False,
-        edgecolor="#CCCCCC",
-        facecolor="white",
-        framealpha=0.92,
-        ncol=3,
-        loc="upper center",
-        bbox_to_anchor=(0.5, -0.32),
-        fontsize=5,
-        handlelength=1.0,
-        columnspacing=0.8,
-        borderpad=0.25,
-    )
 
     if show_inset and ax_inset is not None:
         keys = [
@@ -275,7 +306,7 @@ def build_prl_figure(out_dir: Path) -> tuple[Path, Path]:
         wspace=0.52,
         left=0.09,
         right=0.98,
-        top=0.84,
+        top=0.86,
         bottom=0.28,
     )
     ax_a = fig.add_subplot(gs[0, 0])
@@ -287,6 +318,7 @@ def build_prl_figure(out_dir: Path) -> tuple[Path, Path]:
     _plot_alpha(ax_c, table1)
     inset = ax_d.inset_axes([0.50, 0.10, 0.40, 0.34])
     _plot_synergy_combo(ax_d, audit, exp4, show_inset=True, ax_inset=inset)
+    _add_unified_dopant_legend(fig)
 
     out_dir.mkdir(parents=True, exist_ok=True)
     pdf = out_dir / "figure_prl_main.pdf"
@@ -313,7 +345,7 @@ def build_prb_figure(out_dir: Path) -> tuple[Path, Path]:
         wspace=0.48,
         left=0.08,
         right=0.98,
-        top=0.88,
+        top=0.90,
         bottom=0.34,
     )
     ax_a = fig.add_subplot(gs[0, 0])
@@ -323,6 +355,7 @@ def build_prb_figure(out_dir: Path) -> tuple[Path, Path]:
     _plot_electronic_row(ax_a, ax_b, gaps)
     _plot_alpha(ax_c, table1)
     _plot_synergy_combo(ax_d, audit, exp4, show_inset=False)
+    _add_unified_dopant_legend(fig)
     out_dir.mkdir(parents=True, exist_ok=True)
     pdf = out_dir / "figure_prb_main.pdf"
     png = out_dir / "figure_prb_main.png"

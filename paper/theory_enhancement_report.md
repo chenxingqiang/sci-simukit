@@ -263,4 +263,4 @@ Legacy `analyze_results.py` → 请改用 `analyze_exp9_polaron.py` + `dft_resul
 | Koopmans/rVV10 主文声称 | Methods 诚实否定 only（**A**） |
 | `verify_reliability.sh` | **294** pass / **2** warn（Table I legacy PBE；Table III cross-functional） |
 
-**创新审计（R307）**：主文洁净度 + Fig.~3 示意契约 = **A**；Table III = **B**（2/4）；Table IV alternate = **B pending**。
+**创新审计（R308）**：Fig.~3 跨掺杂剂对比 + PRB 主图 legend = **A**；$\lambda$ JSON = **A−**；Table III = **B**（2/4）。

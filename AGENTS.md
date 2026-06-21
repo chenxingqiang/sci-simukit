@@ -29,7 +29,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
 | **阻塞 PRB** | Table III/IV DFT；Exp10 cutoff400 |
 | **文稿 P 瓶颈** | Table III **2/4** → GEO ENDED 填数 |
-| **最新 Loop** | **R307**（见下方笔记） |
+| **最新 Loop** | **R308**（见下方笔记） |
 | **下一 B 任务** | Table III GEO ENDED → 填数 |
 | **主张-证据** | Table IV reference $\mathcal{S}$ = **A**；弛豫 III = **B**（2/4） |
 | **旗杆** | **PRB Regular Article** major revision |
@@ -1398,6 +1398,15 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+
+- **Loop R308（2026-06-21，双轨 + Loop C）**：
+ - **Track A**：Table III **2/4**；`relax_P_eps0_geo` **CRIT** OT~**144** — **不干预**；刷新 JSON
+ - **Track B（Fig.~3 + C-m4）**：`fig_si_s2_marcus.py` 跨掺杂剂列对比 + legend/$\lambda$ 框；`fig_prl_main.py` 统一 dopant legend；caption/Methods/Results 同步
+ - **Track C（C-m4）**：response Minor Fig.~3 行 R308
+ - **创新审计**：Fig.~3 可读性 = **A**；Table III = **B**（2/4）
+ - **Git**：待 commit
+ - **下一轮**：GEO ENDED → Table III 行 3
 
 - **Loop R307（2026-06-21，双轨 + Loop C）**：
  - **Track A**：Table III **2/4**；`relax_P_eps0_geo` **CRIT** OT~**28** — **不干预**；刷新 JSON

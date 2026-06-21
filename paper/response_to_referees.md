@@ -80,7 +80,7 @@
 | References sentence case | **R252**: APS sentence case on all 22 cited keys; [15] = unique SM entry |
 | $E_\mathrm{sub}$ definition | **R252**: single Methods definition; Validation cross-ref (not formation enthalpy; no $\mu$) |
 | Fig.~1(c)--(d) legibility | **R250**: N $\alpha$ in-bar label; $n{=}4$ box lower-left; max $|\mathcal{S}|$ at $n{=}1$ P |
-| Fig.~3 Marcus EA arrow | **R303**: vertical EA at $Q{=}0$ (fixes empty left-pointing arrow); caption clarifies schematic |
+| Fig.~3 Marcus EA arrow | **R303/R308**: cross-dopant column legend; adiabatic IP arrow + EA text (B/P); $\lambda^{\pm}$ boxes; neutral-$Q$ band for vertical SP |
 | Discussion / Conclusions length | Context compressed; Conclusions condensed (no numeric repeat) |
 | Supplemental citations | Overview + Tables I--V cited; table order I--V |
 | Mayer/Bader mechanism | Limitations: not computed; Table~V geometry only |
@@ -115,5 +115,5 @@
 | **§VI Discussion** | Factor of four; Table~III/IV；**Katiyar2025** + **LopezAlcalay2025** 分调 vs 四隅 $\mathcal{S}$ |
 | **§VIII Conclusions** | Three Intro questions (1)--(3); upper-bound opening; Table~III four-corner sign-only; Table~IV reference $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ archived; alternate placement pending in future work |
 
-*Document version: PRB Major Revision + Chinese checklist (Loop R307, 2026-06-21). Align with `cover_letter_prb.txt`.*
+*Document version: PRB Major Revision + Chinese checklist (Loop R308, 2026-06-21). Align with `cover_letter_prb.txt`.*
 

@@ -66,16 +66,17 @@ We thank the referee for recognizing the corrections to doping concentration, Ma
 
 ## R2-Minor / Technical (summary)
 
-| ID | Issue | Action (R324) |
+| ID | Issue | Action (R316) |
 |----|-------|----------------|
-| R2-m1 | Duplicate refs [9],[19],[22] | Recompile + verify `.bbl`; no duplicate `\bibitem` keys in source `.bib` |
+| R2-m1 | Duplicate refs [9],[19],[22] | Clean `latexmk` rebuild: **27** unique `\bibitem` entries in `.bbl`; no duplicate keys in `.bib` |
 | R2-m2 | $|\mathcal{S}|/E_{\mathrm{sub}}$ scale mismatch | Moved ratio from Methods to Discussion (vii) as **rough estimate only** |
 | R2-m3 | Table I/II formatting | Table~II IPR/$J$ row split; Table~I structure unchanged (already ruledtabular) |
-| R2-m4 | Sign-conflict physics | Expanded Discussion (iii) + Design implications (B/N) |
+| R2-m4 | Sign-conflict physics | Expanded Discussion (N $\mathcal{S}$ sign change) + Design implications (B/N) |
 | R2-t1 | Typography / hyphenation | Added `\hyphenation{stress-related, placement-sensitive, sign-change}` |
 | R2-t2 | ``gate interpretation'' | → ``govern interpretation'' (Methods validation) |
-| R2-t3 | Abstract awkward bound/predict | → ``serve as upper bounds---not predictions---'' |
+| R2-t3 | Abstract awkward bound/predict | Unified **serve as upper bounds---not predictions---** (Abstract, Methods L86, Conclusions) |
 | R2-t4 | Fig.~4 $J$ without IPR | Fig.~\ref{fig:j} caption + Methods: IPR in open data; $J$ in figure |
+| R2-t5 | Discussion `\textbf{(i)}` / `\textbf{Table~}` blocks | → `\paragraph{}` + enumerated Conclusions (1)--(3) |
 
 ---
 
@@ -191,8 +192,8 @@ We thank the referee for recognizing the corrections to doping concentration, Ma
 | **§IV Structure** | No standalone Section IV; transport in Results |
 | **§IV Fig.~4** | FCWD placeholder removed from main text |
 | **§V Results** | Fifteen-point $\mathcal{S}(n)$ (Table~II); opener Tables~III--IV gate（R319）；$n{=}4$ reference vs seed-137 alternate 措辞；Table~III partial sign-only cross-functional 句；Fig.~3 cross-dopant Marcus schematic; Fig.~1 (a) $E_g$ / (d) peak $|\mathcal{S}|$ callouts (R309) |
-| **§VI Discussion** | Factor of four; Table~III/IV gate 与 Results R319 交叉引用；**Katiyar2025** + **LopezAlcalay2025** 分调 vs 四隅 $\mathcal{S}$；Table~IV validation 段 reference legacy-PBE vs alternate PBE+D3（R313）；Design implications Tables~III--IV（R320） |
-| **§VIII Conclusions** | Three Intro questions (1)--(3); upper-bound opening Tables~III--IV + 2/4（R321）；Table~III four-corner sign-only; Table~IV reference $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ archived; future work decouples Table~IV placement vs.\ XC (R314) |
+| **§VI Discussion** | Factor of four; Table~III/IV gate 与 Results R319 交叉引用；**Katiyar2025** + **LopezAlcalay2025** 分调 vs 四隅 $\mathcal{S}$；Validation 段 `\paragraph{Table III/IV/II}` 层级（R316）；Mechanistic synthesis `\paragraph{}` 替代 `\textbf{(i)}`（R316）；Design implications Tables~III--IV（R320） |
+| **§VIII Conclusions** | `enumerate` 三条对应 Intro；upper-bound **serve as upper bounds---not predictions---**（R316）；Table~III four-corner sign-only; Table~IV reference $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ archived; future work decouples Table~IV placement vs.\ XC (R314) |
 
-*Document version: PRB Major Revision + Chinese checklist (Loop R322, 2026-06-21). Align with `cover_letter_prb.txt`.*
+*Document version: PRB Major Revision + Chinese checklist (Loop R316, 2026-06-19). Align with `cover_letter_prb.txt`.*
 

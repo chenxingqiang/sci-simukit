@@ -23,13 +23,13 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Exp10** | **40/41** — `size_6x60_N_pos3pct_cutoff400` pending（截断对照） |
 | **Exp8** | **6/6** ✅ |
 | **Exp9** | **12/12** GEO_OPT ✅；vertical SP **8/8** ✅ — λ 全表入 Fig.~3（B $\lambda^{-}$ 负值已标注） |
-| **运行中** | `relax_P_eps0_geo`（Table III **2/4**；外循环离子步，内层 SCF 振荡）— **不干预** |
+| **运行中** | `relax_P_eps0_geo`（Table III **2/4**；OT~94，内层 SCF 梯度振荡）— **不干预** |
 | **临界区** | — |
 | **下一任务** | Table III 4/4 → $\mathcal{S}_{\mathrm{relaxed}}$ sign row；**勿并行** cutoff400 与 relax |
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
 | **阻塞 PRB** | Table III/IV DFT；Exp10 cutoff400 |
-| **文稿 P 瓶颈** | Table III **2/4** → GEO ENDED 填数；表/图编号已统一 I–V / Fig.~1–4 |
-| **最新 Loop** | **R288**（见下方笔记） |
+| **文稿 P 瓶颈** | Table III **2/4** → GEO ENDED 填数 |
+| **最新 Loop** | **R289**（见下方笔记） |
 | **下一 C 任务** | Table III GEO ENDED → 第三行 + `analyze_relax_s.py` |
 | **下一 B 任务** | $P@\epsilon{=}0$ ENDED → Results/Table III 填数 |
 | **主张-证据** | Marcus λ = **A−**（8/8）；弛豫 III = **B**（2/4）；IV = **B** |

@@ -59,4 +59,4 @@ if [[ -n "$grad" ]]; then
   fi
 fi
 
-echo "TableS3 relax ${done}/${total} | running=${running}${crit} | next=${next_task}${extra}"
+echo "TableIII relax ${done}/${total} | running=${running}${crit} | next=${next_task}${extra}"

@@ -1397,6 +1397,14 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
   - **下一轮**：`8×60_B_pos3` 收敛 → post → **35/40** + 可能第 12 条 synergy；Figure 1/2 final 仍 pending。
 
 
+- **Loop R289（2026-06-21，双轨 + Loop C）**：
+ - **Track A**：Table III **2/4**；`relax_P_eps0_geo` OT~94 grad~$4\times10^{-5}$（SCF 振荡，非 CRIT）— **不干预**
+ - **Track B（横切 B4/B5）**：theory report Marcus→主文 Fig.~3--4；`exp5_relax_status_line` 输出 TableIII
+ - **Track C（C-M1）**：`response_to_referees` MC1/pending 表去 CRIT 误标；OT~94 振荡诚实化
+ - **创新审计**：Table III 运维 = **A**；弛豫填数 = **B pending**（2/4）
+ - **Git**：待 commit
+ - **下一轮**：GEO OPT COMPLETED → `analyze_relax_s.py` → Table III 行 3
+
 - **Loop R288（2026-06-21，双轨 + Loop C）**：
  - **Track A**：Table III **2/4**；`relax_P_eps0_geo` **CRIT** OT~85 grad~$1.6\times10^{-6}$ — **不干预**；Exp10 **40/41** idle
  - **Track B（横切 B4/B5）**：`analyze_relax_s.py` 刷新 JSON；theory report D2/快照 R288；Fig.~3--4 pipeline 笔误修
@@ -1409,7 +1417,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track A（快照）**：Table III **2/4**；`relax_P_eps0_geo` — **不干预**
  - **Track B**：Table S1–S5 → **Table I–V** 全链统一（`\label{tab:I…V}`、`tab_I.tex`…`tab_V.tex`）；`theory_enhancement_report` / `response_to_referees` / `cover_letter` / `si_methods` / `verify_reliability` 同步；`compile_prb.sh` ✅
  - **创新审计**：编号契约 = **A**（主文 Tables I–V，Figs.~1–4）
- - **Git**：未提交
+ - **Git**：`5cb1808`（含于 R288 batch）— **pushed: local only**
  - **下一轮**：Table III GEO ENDED → 填数
 
 - **Loop R245（2026-06-20，双轨）**：

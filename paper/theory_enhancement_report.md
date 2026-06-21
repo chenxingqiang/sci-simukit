@@ -9,7 +9,7 @@
 |------|------|
 | D6 摘要 ≤600 | **closed** R128 |
 | D7 词数 | **N/A (PRB Regular)** | ~3572 `texcount` 信息性；无 APS 硬顶 |
-| D2 弛豫 | **B** Table III 2/4；$P@\epsilon{=}0$ **CRIT** OT~85 |
+| D2 弛豫 | **B** Table III 2/4；$P@\epsilon{=}0$ OT~94 grad oscillating |
 | D1 叙事锚点 | **partial** R130 Conclusion |
 
 ## 证据审计表（主稿可引用边界）
@@ -47,7 +47,7 @@
 | Abstract $\alpha$/|$\mathcal{S}$| vs audit | **A** | **[R175--R176; R192 (P,$n{=}1$)]** | Abstract max $31.9$ + fifteen-point grid |
 | Abstract PRL gate (169 w, 1072 chars, no cite) | **A** | **[R280]** | PRB 无硬顶；legacy PBE vs periodic PBE+D3 分层 |
 | Abstract PBE+D3 术语 | **A** | **[R168]** | 与 Methods/Intro `PBE+D3` 一致 |
-| Abstract Marcus defer | **A** | **[R240; R280]** | **Supplemental** Figs.~3--4；**8/8** λ in SI；主文无 λ |
+| Abstract Marcus boundary | **A** | **[R240; R289]** | Fig.~3--4 in main text；**8/8** $\lambda$；Abstract/Results **无** $\lambda$ 数值 |
 | 主稿 citekey 计数（精简稿） | **A** | **13** | 非 `citation_completion_report` 48 篇旧快照 |
 | `running_snapshot` OT 字段 | **A** | **[fixed R103]** | `last_ot_convergence`（非 RMS grad） |
 | Marcus $\lambda$（vertical − adiabatic） | **A−** | **[8/8 R260]** | eight vertical `.out`; B $\lambda^{-}{=}{-}0.173$~eV excluded; P $\lambda$ largest |
@@ -55,7 +55,7 @@
 | PRB 主图 panel (d) $n{=}4$ $\mathcal{S}$ 标注 | **A** | **[verified R135]** | `fig_prl_main.py` `build_prb_figure` |
 | Table V 局域结构（$\bar{d}$, $\Delta r_{\mathrm{cov}}$） | **A−** | **[verified]** | `experiments/analysis/local_structure_tetramer.json` |
 | Major 4 论证（$E_{\mathrm{sub}}$, S–$\alpha$, B vs P） | **A** | **[verified R135]** | Discussion + Table I |
-| PRL transport / Marcus 主图 | **C** | **[pending]** | PRB 主文不阻塞；Fig.~3–S3 |
+| PRL transport / Marcus 主图 | **C** | **[pending]** | PRB 主文不阻塞；Fig.~3--4 |
 | Fig.~3 P panel | **A** | **[R150; R198]** | 1$\times$4；P IP 4.07 / EA 2.96 eV |
 | Conclusion 压缩去冗余 | **A** | **[R148]** | 删重复 N/B 句；保留 Tables~II--IV |
 | Conclusion Marcus/SI defer | **A** | **[R158]** | 与 Discussion R157 边界一致 |
@@ -83,7 +83,7 @@
 | ML $R^2{>}0.95$、775%/300% $\mu$ | **C** | **[withdrawn from main]** | 勿进 Abstract/Results |
 | 下文 IPR 45→25、$J{=}135$ meV、$\mu{=}8.75\times$ | **C** | **[discrepancy]** | 仅作历史理论草稿；见 §2 |
 
-**Track A 快照（2026-06-21，R288）**：Exp9 **12/12** GEO + **8/8** vertical ✅；Table III **2/4**（`relax_P_eps0_geo` **CRIT** OT~85）；Exp10 **40/41** idle（勿并行 cutoff400）
+**Track A 快照（2026-06-21，R289）**：Exp9 **12/12** + **8/8** vertical ✅；Table III **2/4**（`relax_P_eps0_geo` OT~94，grad~$4\times10^{-5}$ 振荡）；Exp10 **40/41** idle
 
 ---
 

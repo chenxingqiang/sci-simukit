@@ -9,7 +9,7 @@
 |------|------|
 | D6 摘要 ≤600 | **closed** R128 |
 | D7 词数 | **N/A (PRB Regular)** | ~3572 `texcount` 信息性；无 APS 硬顶 |
-| D2 弛豫 | **B** Results–Discussion III pristine $\Delta E$ 链；$P@\epsilon{=}0$ ionic step 5/300 |
+| D2 弛豫 | **B** Table III 2/4；$P@\epsilon{=}0$ ionic step 5/300 |
 | D1 叙事锚点 | **partial** R130 Conclusion |
 
 ## 证据审计表（主稿可引用边界）
@@ -83,7 +83,7 @@
 | ML $R^2{>}0.95$、775%/300% $\mu$ | **C** | **[withdrawn from main]** | 勿进 Abstract/Results |
 | 下文 IPR 45→25、$J{=}135$ meV、$\mu{=}8.75\times$ | **C** | **[discrepancy]** | 仅作历史理论草稿；见 §2 |
 
-**Track A 快照（2026-06-21，R292）**：Exp9 **12/12** + **8/8** ✅；Table III **2/4**（`relax_P_eps0_geo` ionic **5/300**，内层 SCF OT~117）；Exp10 **40/41** idle
+**Track A 快照（2026-06-21，R293）**：Exp9 **12/12** + **8/8** ✅；Table III **2/4**（`relax_P_eps0_geo` ionic **5/300**，内层 SCF OT~133 振荡）；Exp10 **40/41** idle
 
 ---
 
@@ -96,7 +96,7 @@
 | Table III 弛豫 | `relax_validation/` + `relax_P_eps0_geo.inp` + `exp5_relax_status_line.sh` | **B** 2/4 GEO；$P@\epsilon{=}0$ ionic step 5/300；Methods §`sec:methods_s3_relax` = **A** |
 | Table IV alternate placement (18 ENERGY, tetramer) | `seed_validation/` + `run_seed137_validation.sh` | **B pending** (reference/alternate labels, R269) |
 | Table V 局域结构 | `analyze_local_structure.py` | **A− verified** |
-| PRB 验证 DFT 队列 | `experiments/run_prb_revision_dft.sh` | **B**（S3/S4 pending） |
+| PRB 验证 DFT 队列 | `experiments/run_prb_revision_dft.sh` | **B**（Table III/IV pending） |
 | PRB `response_to_referees.md` | Major/Minor 映射 | **A** (R210; R271 Table I 泛函行) |
 | Exp9 vertical OT 快照 | `parse_scf_progress` + `exp9_status_line` | **A** (R214) |
 | PRB 投稿包 `compile_prb.sh` | 主图 + SI 图 + 双 PDF | **A** **[verified R151]** |
@@ -183,7 +183,7 @@ SI S1.2 合成 $\lambda$ 分解：**[illustrative only]**；eight-channel $\lamb
 | 优先级 | 缺口 | 动作 |
 |--------|------|------|
 | **P0** | Exp9 12/12 + 8 vertical SP | **closed R279** ✅ |
-| **P0** | Table III 4/4 GEO_OPT | `relax_P_eps0_geo` **CRIT**（2/4 done） |
+| **P0** | Table III 4/4 GEO_OPT | `relax_P_eps0_geo` ionic step 5/300（2/4 done） |
 | **P1** | Table IV alternate placement | 18 ENERGY pending |
 | **P1** | Transport 主图 | **C**；PRB 不阻塞 |
 
@@ -225,6 +225,8 @@ Legacy `analyze_results.py` → 请改用 `analyze_exp9_polaron.py` + `dft_resul
 - [x] Exp10 40/40 + SDC 15 点
 - [x] Exp4 两点 IPR/$J$，转变未声称
 - [x] Exp9 12/12 + 8 vertical SP → $\lambda$ in Fig.~3
+- [ ] Table III 4/4 ionic-relaxation corners（2/4；$P@\epsilon{=}0$ running）
+- [ ] Table IV alternate-placement ENERGY grid
 - [ ] Transport 主图（PRL）
 
 ---

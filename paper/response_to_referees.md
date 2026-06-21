@@ -115,7 +115,7 @@
 | **§IV Fig.~4** | FCWD placeholder removed from main text |
 | **§V Results** | Fifteen-point $\mathcal{S}(n)$ audit via Table~II; partial III pristine checkpoint (order-of-magnitude $\Delta E$); $P@\epsilon{=}0$ ionic step 5/300 |
 | **§VI Discussion** | Factor of four; design implications + interim Table~III pristine $\Delta E$ upper-bound link; Table~III sign-only criterion |
-| **§VIII Conclusions** | Three Intro questions closed; (2) cites max $|\mathcal{S}|=31.9$~meV/atom (P, $n{=}1$); III sign-qualitative checkpoint; future work lists Table~III P corners |
+| **§VIII Conclusions** | Three Intro questions closed explicitly (1)--(3); upper-bound framing in opening; Table~III sign-only + Table~IV future work |
 
-*Document version: PRB Major Revision + Chinese checklist (Loop R292, 2026-06-21).*
+*Document version: PRB Major Revision + Chinese checklist (Loop R294, 2026-06-21).*
 

@@ -23,18 +23,18 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Exp10** | **40/41** — `size_6x60_N_pos3pct_cutoff400` pending（截断对照） |
 | **Exp8** | **6/6** ✅ |
 | **Exp9** | **12/12** GEO_OPT ✅；vertical SP **8/8** ✅ — λ 全表入 Fig.~3（B $\lambda^{-}$ 负值已标注） |
-| **运行中** | `relax_P_eps0_geo`（Table III **2/4**；离子步 **5/300**；内层 SCF OT~117）— **不干预** |
-| **临界区** | `relax_P_eps0_geo`（内层 SCF **CRIT**） |
+| **运行中** | `relax_P_eps0_geo`（Table III **2/4**；内层 SCF OT~**125**，grad 振荡 ~$3.3\times10^{-5}$）— **不干预** |
+| **临界区** | —（SCF 回跳，非 CRIT） |
 | **下一任务** | Table III 4/4 → $\mathcal{S}_{\mathrm{relaxed}}$ sign row；**勿并行** cutoff400 与 relax |
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
 | **阻塞 PRB** | Table III/IV DFT；Exp10 cutoff400 |
 | **文稿 P 瓶颈** | Table III **2/4** → GEO ENDED 填数 |
-| **最新 Loop** | **R292**（见下方笔记） |
+| **最新 Loop** | **R294**（见下方笔记） |
 | **下一 C 任务** | Table III GEO ENDED → 第三行 + `analyze_relax_s.py` |
 | **下一 B 任务** | $P@\epsilon{=}0$ ENDED → Results/Table III 填数 |
 | **主张-证据** | Marcus λ = **A−**（8/8）；弛豫 III = **B**（2/4）；IV = **B** |
 | **旗杆** | **PRB Regular Article** major revision |
-| **Loop C** | C-M1 DFT **running**（Table III 2/4；内层 SCF CRIT） |
+| **Loop C** | C-M1 DFT **running**（Table III 2/4 CRIT OT~131） |
 
 ---
 
@@ -1396,6 +1396,22 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
   - **Git**：`2a39654` — pushed **origin/main**（2026-06-14）。
   - **下一轮**：`8×60_B_pos3` 收敛 → post → **35/40** + 可能第 12 条 synergy；Figure 1/2 final 仍 pending。
 
+
+- **Loop R294（2026-06-21，双轨 + Loop C）**：
+ - **Track A**：Table III **2/4**；`relax_P_eps0_geo` **CRIT** OT~**131** — **不干预**
+ - **Track B（横切 B4/B5）**：`theory_enhancement_report.md` §8 R294 grep 审计；`verify_reliability.sh` **294/2**；S3/S4→Table III/IV 台账修正
+ - **Track C**：无 MC 改写（运维数不进主表）
+ - **创新审计**：grep 无 C 级泄漏 = **A**；Table III = **B pending**
+ - **Git**：未提交（叠 R291–R293）
+ - **下一轮**：R295 Abstract；GEO ENDED → Table III 行 3
+
+- **Loop R293（2026-06-21，双轨 + Loop C）**：
+ - **Track A**：Table III **2/4**；`relax_P_eps0_geo` OT~**125**（grad 回跳）— **不干预**
+ - **Track B（VIII Conclusion）**：三问 (1)--(3) 显式闭环；开篇 upper-bound；future work 点名 Table~IV
+ - **Track C**：checklist §VIII
+ - **创新审计**：Intro–Conclusion 闭环 = **A**；Table III = **B pending**
+ - **Git**：待 commit
+ - **下一轮**：R294 横切 audit；GEO ENDED → Table III 行 3
 
 - **Loop R292（2026-06-21，双轨 + Loop C）**：
  - **Track A**：Table III **2/4**；`relax_P_eps0_geo` 离子步 **5/300**，内层 SCF OT~117 — **不干预**；刷新 JSON

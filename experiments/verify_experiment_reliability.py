@@ -500,7 +500,7 @@ def audit_setup(checks: list[Check]) -> None:
         add(
             checks,
             "setup",
-            "table_s1_legacy_functional",
+            "table_I_legacy_functional",
             "warn",
             "Table I tetramer alpha/E_sub from legacy PBE (no D3) archive — do not mix with periodic PBE+D3 S",
             str(legacy.relative_to(REPO)),
@@ -511,7 +511,7 @@ def audit_setup(checks: list[Check]) -> None:
         add(
             checks,
             "setup",
-            "table_s3_cross_functional",
+            "table_III_cross_functional",
             "warn",
             "Table III rigid=PBE vs relaxed=PBE+D3 — retention ratio sign-only (documented in analyze_relax_s)",
             "relax_validation/analyze_relax_s.py",

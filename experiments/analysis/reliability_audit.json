@@ -487,14 +487,14 @@
     },
     {
       "layer": "setup",
-      "check_id": "table_s1_legacy_functional",
+      "check_id": "table_I_legacy_functional",
       "status": "warn",
       "message": "Table I tetramer alpha/E_sub from legacy PBE (no D3) archive \u2014 do not mix with periodic PBE+D3 S",
       "evidence": "dft_results/exp_5_synergy/C60_strain_+0.0_B_doped_synergy.inp"
     },
     {
       "layer": "setup",
-      "check_id": "table_s3_cross_functional",
+      "check_id": "table_III_cross_functional",
       "status": "warn",
       "message": "Table III rigid=PBE vs relaxed=PBE+D3 \u2014 retention ratio sign-only (documented in analyze_relax_s)",
       "evidence": "relax_validation/analyze_relax_s.py"

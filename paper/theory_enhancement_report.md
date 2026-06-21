@@ -83,7 +83,7 @@
 | ML $R^2{>}0.95$、775%/300% $\mu$ | **C** | **[withdrawn from main]** | 勿进 Abstract/Results |
 | 下文 IPR 45→25、$J{=}135$ meV、$\mu{=}8.75\times$ | **C** | **[discrepancy]** | 仅作历史理论草稿；见 §2 |
 
-**Track A 快照（2026-06-21，R293）**：Exp9 **12/12** + **8/8** ✅；Table III **2/4**（`relax_P_eps0_geo` ionic **5/300**，内层 SCF OT~133 振荡）；Exp10 **40/41** idle
+**Track A 快照（2026-06-21，R294）**：Exp9 **12/12** + **8/8** ✅；Table III **2/4**（`relax_P_eps0_geo` ionic **5/300**，OT~141）；Exp10 **40/41** idle
 
 ---
 
@@ -246,3 +246,19 @@ Legacy `analyze_results.py` → 请改用 `analyze_exp9_polaron.py` + `dft_resul
 | Table V 局域结构 | Table V in `supplementary_figures.tex` | **A−** | `local_structure_tetramer.json` |
 
 渲染：`bash paper/figures/render_si_figures.sh`；PRB 包：`bash paper/compile_prb.sh`
+
+---
+
+## 8. R294 横切 grep 审计（2026-06-21）
+
+| 检查项 | 结果 |
+|--------|------|
+| `paper/*.tex` 内 `Table~S` / `tab:S` 残留 | **0**（Tables I--V 契约 **A**） |
+| 主文 `7/8` / `at revision` / `experiments/` 路径 | **0** |
+| 主文 `300%` / `775%` / `8.75` mobility 泄漏 | **0**（**C** 级已 withdrawn） |
+| Abstract/Results $\lambda$ 数值 | **无**（Fig.~3 边界 **A**） |
+| $|\mathcal{S}|=31.9$ (P, $n{=}1$) / $-23.7$ (P, $n{=}4$) vs `sdc_exp10_synergy_audit.json` | **一致** |
+| Koopmans/rVV10 主文声称 | Methods 诚实否定 only（**A**） |
+| `verify_reliability.sh` | **294** pass / **2** warn（Table I legacy PBE；Table III cross-functional） |
+
+**创新审计（R294）**：全稿编号 + 定量 grep = **A**；Table III 填数 = **B pending**（2/4；$P@\epsilon{=}0$ ionic step 5/300）。

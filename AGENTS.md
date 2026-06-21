@@ -1411,7 +1411,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track B（VIII Conclusion）**：future work 区分 Table~IV reference $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ 已归档 vs alternate ENERGY pending
  - **Track C（C-M2）**：`response_to_referees` MC2 补 reference 行 + checklist §VIII
  - **创新审计**：Conclusion–Table IV = **A**；alternate placement = **B pending**
- - **Git**：待 commit
+ - **Git**：`d76de83` — `loop R301: Conclusion Table IV reference vs alternate` → **pushed: (local only)**
  - **下一轮**：Table III GEO ENDED → 填数；R302 横切 audit
 
 - **Loop R300（2026-06-21，双轨 + Loop C）**：

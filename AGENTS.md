@@ -22,19 +22,19 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 |----|-----|
 | **Exp10** | **40/41** — `size_6x60_N_pos3pct_cutoff400` pending（截断对照） |
 | **Exp8** | **6/6** ✅ |
-| **Exp9** | **12/12** GEO_OPT ✅；vertical SP **8/8** ✅ — λ 全表入 Fig.~S2（B $\lambda^{-}$ 负值已标注） |
-| **运行中** | `relax_P_eps0_geo`（Table S3 **2/4**；OT~**237** **CRIT** grad~$9\times10^{-6}$）— **不干预** |
-| **临界区** | `relax_P_eps0_geo` **CRIT** |
-| **下一任务** | S3 4/4 → $\mathcal{S}_{\mathrm{relaxed}}$ sign row；**勿并行** cutoff400 与 relax |
+| **Exp9** | **12/12** GEO_OPT ✅；vertical SP **8/8** ✅ — λ 全表入 Fig.~3（B $\lambda^{-}$ 负值已标注） |
+| **运行中** | `relax_P_eps0_geo`（Table III **2/4**；外循环离子步，内层 SCF 振荡）— **不干预** |
+| **临界区** | — |
+| **下一任务** | Table III 4/4 → $\mathcal{S}_{\mathrm{relaxed}}$ sign row；**勿并行** cutoff400 与 relax |
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
-| **阻塞 PRB** | Table S3/S4 DFT；Exp10 cutoff400 |
-| **文稿 P 瓶颈** | S3 **2/4** CRIT → GEO ENDED 填数；R270–R280 积压未 commit |
-| **最新 Loop** | **R280**（见下方笔记） |
-| **下一 C 任务** | S3/S4 `.out` → Table S3/S4 填数 |
-| **下一 B 任务** | $P@\epsilon{=}0$ GEO ENDED → Table S3 第三行 |
-| **主张-证据** | Marcus λ = **A−**（8/8）；弛豫 S3 = **B**（2/4）；S4 = **B** |
+| **阻塞 PRB** | Table III/IV DFT；Exp10 cutoff400 |
+| **文稿 P 瓶颈** | Table III **2/4** → GEO ENDED 填数；表/图编号已统一 I–V / Fig.~1–4 |
+| **最新 Loop** | **R288**（见下方笔记） |
+| **下一 C 任务** | Table III GEO ENDED → 第三行 + `analyze_relax_s.py` |
+| **下一 B 任务** | $P@\epsilon{=}0$ ENDED → Results/Table III 填数 |
+| **主张-证据** | Marcus λ = **A−**（8/8）；弛豫 III = **B**（2/4）；IV = **B** |
 | **旗杆** | **PRB Regular Article** major revision |
-| **Loop C** | C-M1 DFT **running**（S3 2/4 CRIT OT~237） |
+| **Loop C** | C-M1 DFT **running**（Table III 2/4 外循环离子步） |
 
 ---
 
@@ -46,8 +46,8 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 
 | 路径 | 条件 | Agent 默认 |
 |------|------|------------|
-| **PRL** | 叙事升格为「共价分子网络普适规律」+ 弛豫验证 Table~S3 收敛 + 摘要≤600 字符 + 正文≤3750 词 + 单核心贡献（$\mathcal{S}$ 能量非加性） | 仅当上表 **Track A 必补** 完成且 P0 格式全绿 |
-| **PRB Regular Article** | 无字数硬顶；完整机理 + SI Tables S1--S5 | **当前投稿锚点**（major revision 修回） |
+| **PRL** | 叙事升格为「共价分子网络普适规律」+ 弛豫验证 Table~III 收敛 + 摘要≤600 字符 + 正文≤3750 词 + 单核心贡献（$\mathcal{S}$ 能量非加性） | 仅当上表 **Track A 必补** 完成且 P0 格式全绿 |
+| **PRB Regular Article** | 无字数硬顶；完整机理 + 主文 Tables I--V | **当前投稿锚点**（major revision 修回） |
 | **PR Materials** | 材料调控 + 设计规则；可保留部分 IPR/$J$ 于 SI | 并行备选 |
 
 **核心叙事锚点句**（Intro/Abstract/Conclusion 须收敛至此，qHP C$_{60}$ 为**模型体系**）：
@@ -59,10 +59,10 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | ID | 审稿要点 | 仓库动作 / 证据 |
 |----|----------|-----------------|
 | **D1** | 广泛物理兴趣：体系拓展非原理突破 | Intro/Abstract/Discussion 升格至「共价分子网络」；cite 2D 非加性先例；qHP 作验证 |
-| **D2** | 刚性应变无验证 | `experiments/exp_5_synergy/relax_validation/` → Table~S3；Methods/Limitations **upper bound** 措辞 |
+| **D2** | 刚性应变无验证 | `relax_validation/` → Table~III；Methods/Limitations **upper bound** 措辞 |
 | **D3** | 固定掺杂位点无普适性 | Limitations 诚实；可选第二 seed 四聚体单点（backlog，不伪造） |
-| **D4** | $n{\geq}6$ 280 vs 300 Ry 与 N $\mathcal{S}$ 符号 | Table~S2 pending 行；$n{=}6$ @300 Ry 单点（Track A backlog） |
-| **D5** | 叙事分散（gap + $\alpha$ + $\mathcal{S}$ + IPR/$J$） | **主文 IPR/$J$ 压缩至 1 段 → SI Fig.~S3**；Results 以 $\mathcal{S}$ 为主轴 |
+| **D4** | $n{\geq}6$ 280 vs 300 Ry 与 N $\mathcal{S}$ 符号 | Table~II pending 行；$n{=}6$ @300 Ry 单点（Track A backlog） |
+| **D5** | 叙事分散（gap + $\alpha$ + $\mathcal{S}$ + IPR/$J$） | **主文 IPR/$J$ 压缩至 Fig.~4**；Results 以 $\mathcal{S}$ 为主轴 |
 | **D6** | 摘要 >600 字符 / 含引用 | `wc`/脚本审计；无 `\cite`、无公式、单段 |
 | **D7** | 正文词数（**PRL** ≤3750 硬顶；**PRB Regular** 无限制，仅可读性） | PRB：`prb_wordcount.sh` 信息性；**禁止**为压字数删机理 |
 | **D8** | $\mathcal{S}$ 符号 / π 乱码 / 断词 | grep 审计；全文 `\mathcal{S}` |
@@ -288,9 +288,9 @@ python3 -c "import json; t=json.load(open('experiments/analysis/table1_verificat
 | **P0** | theory report **C 级**主张出现在 Abstract/Results | 删除或降调至 Discussion/SI |
 | **P0** | **第三版审稿**：$E_f$/$n_{\mathrm{dop}}$ 与 `table1_verification.json` 不一致 | 以 JSON 改 tex/SI；重算 $|\mathcal{S}|/|E_f|_{\mathrm{per\,atom}}$ |
 | **P0** | **第三版审稿**：bib `referinfo` / 内部 note 泄漏 | 删内部路径；note 改为正式摘要句 |
-| **P0** | **PRL desk D5**：主文 IPR/$J$ 叙事分散 | 压缩至 SI Fig.~S3；Results 以 $\mathcal{S}$ 为主 |
+| **P0** | **PRL desk D5**：主文 IPR/$J$ 叙事分散 | 压缩至 Fig.~4；Results 以 $\mathcal{S}$ 为主 |
 | **P0** | **PRL desk D6**：摘要 >600 字符或含 `\cite` | 重写摘要；§F 字符审计 |
-| **P0** | **PRL desk D2**：刚性应变无弛豫对照 | Table~S3 `relax_validation/`；upper-bound 措辞 |
+| **P0** | **PRL desk D2**：刚性应变无弛豫对照 | Table~III `relax_validation/`；upper-bound 措辞 |
 | **P0** | **第三版审稿**：$\mathcal{S}$ 符号/断词 | 全文 `\mathcal{S}`；断词处加 `$\mathcal{S}$` |
 | **P1** | 阻塞目标期刊的**缺图/缺段**（如 PRL transport、Exp9 λ Fig.5） | 占位 + caption `[pending: Exp9]`；不伪造数字 |
 | **P1** | **第三版审稿**：SI 主文 `Exp.~N` vs `Fig.~S1--S3` | 统一 Supp. 交叉引用；caption 去 audit 路径 |
@@ -452,7 +452,7 @@ flowchart TB
 | 仓库目录路径（`experiments/`、`dft_results/`、`experiments/analysis/`） | `AGENTS.md`、`theory_enhancement_report.md`、Data Availability **仅**给公开 URL |
 | 脚本/钩子名（`post_exp9_converged.sh`、`generate_vertical_sp.py`、`run_prb_revision_dft.sh`） | `AGENTS.md`、Loop 笔记 |
 | CP2K 运维关键字（`SCF run converged`、`PROGRAM ENDED`、`.inp`/`.out` 扩展名作复现说明） | 仓库 README 或独立 `docs/reproducibility.md`（若用户要求） |
-| Loop 编号、Agent 笔记、`[pending: Exp9]` 内部标记 | `AGENTS.md`；主稿用「at revision」「Supplemental Table~S2」等**读者语言** |
+| Loop 编号、Agent 笔记、`[pending: Exp9]` 内部标记 | `AGENTS.md`；主稿用「at revision」「Table~II」等**读者语言** |
 | 审稿回复用语（`referee Major Comment`、`response_to_referees`） | **仅** `paper/response_to_referees.md`（或 cover letter），**不进**正文 Discussion |
 | 内部仓库名 `sci-simukit`（除 Data Availability 可选一句公开仓库名外，宜省略） | GitHub 公开页；主稿只保留 DOI/URL |
 
@@ -460,7 +460,7 @@ flowchart TB
 
 - Methods / SI：**物理协议**（泛函、截断、k 点、应变定义、$\mathcal{S}$ 公式）— 与 `*.inp` **一致**，但不必罗列文件名。
 - Data availability：**一句**公开数据 URL + 概括性说明（inputs/outputs、图表复现材料），**不**展开目录树。
-- Supplemental Table~S2：可写**科学**任务范围（如 vertical Marcus 八通道），**禁止**「7/8 converged at revision」「one pending」「at revision」等**修回进度**（Loop C Minor #3 → 仅 Limitations/outlook 定性写 incomplete vertical λ，或 SI 在**定稿后**更新）。
+- Table~II：可写**科学**任务范围（如 vertical Marcus 八通道），**禁止**「7/8 converged at revision」「one pending」「at revision」等**修回进度**（Loop C Minor #3 → 仅 Limitations/outlook 定性写 incomplete vertical λ）。
 - Limitations：**科学**局限（刚性应变、单 seed、未做 Mayer/Bader），**不**写「queue pending」。
 
 **Track B 改稿前自问（与 write.mdc 并列）**：
@@ -551,9 +551,9 @@ Substantial improvements in validation, mechanistic depth, and argument rigor re
 
 | ID | 审稿要点 | 轨道 | 仓库动作 / 证据 | 文稿（读者语言） | 状态 |
 |----|----------|------|-----------------|------------------|------|
-| **C-M1** | 刚性应变缺弛豫验证 | **A** + B | `relax_validation/` → Table~S3；`run_prb_revision_dft.sh`（Exp9 空闲后） | 全文 $|\mathcal{S}|$ = **upper bound**；设计语气弱化 | **文稿 ✅** / **DFT pending** |
-| **C-M2** | 单 seed 周期性 | **A** + B | `seed_validation/` Table~S4（tetramer）；periodic alt-placement = future | seed~42 标注；不宣称普适 | **文稿 ✅** / **DFT pending** |
-| **C-M3** | 机理定量 | B (+A 可选) | Table~S5 $\Delta\bar{d}$, $\sigma(\bar{d})$；Mayer/Bader = future | Discussion (i)(ii)(iv)；Limitations 诚实 | **部分 ✅** |
+| **C-M1** | 刚性应变缺弛豫验证 | **A** + B | `relax_validation/` → Table~III；`run_prb_revision_dft.sh`（Exp9 空闲后） | 全文 $|\mathcal{S}|$ = **upper bound**；设计语气弱化 | **文稿 ✅** / **DFT pending** |
+| **C-M2** | 单 seed 周期性 | **A** + B | `seed_validation/` Table~IV（tetramer）；periodic alt-placement = future | seed~42 标注；不宣称普适 | **文稿 ✅** / **DFT pending** |
+| **C-M3** | 机理定量 | B (+A 可选) | Table~V $\Delta\bar{d}$, $\sigma(\bar{d})$；Mayer/Bader = future | Discussion (i)(ii)(iv)；Limitations 诚实 | **部分 ✅** |
 | **C-M4** | $\alpha$ vs $\mathcal{S}$ 错配 | B | 已删并列数值；仅 Eq.(1) 四角落 | Discussion 无 concentration-matched 对比 | **文稿 ✅** |
 | **C-m1** | $\mathcal{S}$ / $\pi$ / 断词 | B | R251：PDOS→$\pi$-DOS；order parameter；`\hyphenation` | 主稿+SI 无 bare PDOS | **✅** |
 | **C-m2** | 参考文献格式 | B | R252： cited keys APS sentence case；[15]=SM 唯一 | **✅** |
@@ -561,7 +561,7 @@ Substantial improvements in validation, mechanistic depth, and argument rigor re
 | **C-m4** | 图 1(c)(d) | B | `fig_prl_main.py` / `figure_prb_main`（R250） | N 柱内标签；$n{=}4$ 左下；max $|\mathcal{S}|$ @ $n{=}1$ | **✅** |
 | **C-m5** | $E_\mathrm{sub}$ 定义 | B | R252：Validation 指回 Methods 定义 | 非形成焓、无 $\mu$ | **✅** |
 
-**闭环判据（送 PRB 二修）**：C-M1 **DFT** 有 retention 比 **或** 设计主张已全部 upper-bound；C-M2 seed137 tetramer **或** 周期性限定措辞全覆盖；C-M3 Mayer/Bader **或** Limitations 明确缺口 + Table~S5 已引用；C-M4 **closed**；C-m1–m5 **全绿**。
+**闭环判据（送 PRB 二修）**：C-M1 **DFT** 有 retention 比 **或** 设计主张已全部 upper-bound；C-M2 seed137 tetramer **或** 周期性限定措辞全覆盖；C-M3 Mayer/Bader **或** Limitations 明确缺口 + Table~V 已引用；C-M4 **closed**；C-m1–m5 **全绿**。
 
 ---
 
@@ -1396,6 +1396,21 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
   - **Git**：`2a39654` — pushed **origin/main**（2026-06-14）。
   - **下一轮**：`8×60_B_pos3` 收敛 → post → **35/40** + 可能第 12 条 synergy；Figure 1/2 final 仍 pending。
 
+
+- **Loop R288（2026-06-21，双轨 + Loop C）**：
+ - **Track A**：Table III **2/4**；`relax_P_eps0_geo` **CRIT** OT~85 grad~$1.6\times10^{-6}$ — **不干预**；Exp10 **40/41** idle
+ - **Track B（横切 B4/B5）**：`analyze_relax_s.py` 刷新 JSON；theory report D2/快照 R288；Fig.~3--4 pipeline 笔误修
+ - **Track C（C-M1）**：`response_to_referees` MC1 + pending 表 OT~85 CRIT；checklist Marcus→Fig.~3
+ - **创新审计**：Table III 运维 = **A**；弛豫填数 = **B pending**（2/4）；编号 I–V = **A**（R287）
+ - **Git**：待 commit
+ - **下一轮**：`relax_P_eps0_geo` GEO ENDED → 填 Table III 行 3 → `analyze_relax_s.py`
+
+- **Loop R287（2026-06-21，Track B）**：
+ - **Track A（快照）**：Table III **2/4**；`relax_P_eps0_geo` — **不干预**
+ - **Track B**：Table S1–S5 → **Table I–V** 全链统一（`\label{tab:I…V}`、`tab_I.tex`…`tab_V.tex`）；`theory_enhancement_report` / `response_to_referees` / `cover_letter` / `si_methods` / `verify_reliability` 同步；`compile_prb.sh` ✅
+ - **创新审计**：编号契约 = **A**（主文 Tables I–V，Figs.~1–4）
+ - **Git**：未提交
+ - **下一轮**：Table III GEO ENDED → 填数
 
 - **Loop R245（2026-06-20，双轨）**：
  - **Track A**：vertical **7/8**；`B_qneg1_vert` OT≈149 — **不干预**。
@@ -2309,13 +2324,62 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Git**：`d48c81e` — `loop R117: Discussion Qiu2025 mechanics contrast` → **pushed: origin/main**
  - **下一轮**：qneg1 PROGRAM ENDED → post_exp9
 
+- **Loop R286（2026-06-21，双轨 + Loop C）**：
+  - **Track A**：Table S3 **2/4**；`relax_P_eps0_geo` 外循环离子步 — **不干预**
+  - **Track B（VIII Conclusion）**：三问 (2) 补 max $|\mathcal{S}|=31.9$（P, $n{=}1$）；S3 sign-qualitative 收口；Discussion Polaron 删 ``uniform PBE+D3''
+  - **Track C**：response checklist §VIII 同步
+  - **创新审计**：Conclusion 定量 = **A**（audit JSON）；S3 = **B**（2/4）
+  - **Git**：未提交（R281–R286 积压）
+  - **下一轮**：S3 ENDED → Table S3 填数；R287 横切 audit
+
+- **Loop R285（2026-06-21，双轨 + Loop C）**：
+  - **Track A**：Table S3 **2/4**；`relax_P_eps0_geo` 外循环离子步（内层 MAX_SCF=300 振荡）— **不干预**
+  - **Track B（VII Discussion）**：Context 补 **Lv2026covalent**；Validation 段 upper-bound 链收紧；Methods `sec:validation` 去运维措辞；`tab_s3` 去 OT
+  - **Track C**：response pending 表 → 外循环离子步
+  - **创新审计**：Discussion S3 叙事 = **A**（pristine ΔE JSON）；S3 DFT = **B**（2/4）
+  - **Git**：未提交（R281–R285 积压）
+  - **下一轮**：`relax_P_eps0_geo` ENDED → `analyze_relax_s.py` + Table S3 第三行；R286 Conclusion
+
+- **Loop R284（2026-06-21，双轨 + Loop C）**：
+  - **Track A**：Table S3 **2/4**；`relax_P_eps0_geo` OT~**294** **CRIT** grad~$10^{-5}$ — **不干预**
+  - **Track B（VI Results）**：Results 组织句 + S3 partial checkpoint（~10× $\Delta E$ 定性）；无新 $\mathcal{S}$ 数
+  - **Track C**：checklist §V；MC1 CRIT OT~294
+  - **创新审计**：partial S3 = **A−**（2/4 verified）；$\mathcal{S}(n)$ = **A**（audit JSON）
+  - **Git**：未提交（R270–R284 积压）
+  - **下一轮**：R285 Discussion；GEO ENDED → 填 `tab_s3`
+
+- **Loop R283（2026-06-21，双轨 + Loop C）**：
+  - **Track A**：Table S3 **2/4**；`relax_P_eps0_geo` OT~**274**（grad 回跳 ~$3.4\times10^{-5}$）— **不干预**
+  - **Track B（IV Methods）**：`sec:methods_s3_relax` 增 BFGS 力阈值 + OT/outer SCF；`tab_s2`/`tab_s3` 进度
+  - **Track C**：checklist §III；MC1 OT~274
+  - **创新审计**：Methods–inp 契约 = **A**；S3 = **B**
+  - **Git**：未提交（R270–R283 积压）
+  - **下一轮**：R284 Results；GEO ENDED → 填 `tab_s3`
+
+- **Loop R282（2026-06-21，双轨 + Loop C）**：
+  - **Track A**：Table S3 **2/4**；`relax_P_eps0_geo` OT~**265** **CRIT** grad~$5.8\times10^{-6}$ — **不干预**
+  - **Track B（III Literature）**：WebSearch 2025–26 → **Lv2026covalent** bib + Intro 一句（survey vs.\ $(\epsilon,\delta)$ $\mathcal{S}$ gap）
+  - **Track C**：checklist §II；MC1 OT~265
+  - **创新审计**：文献差异化 = **A**；S3 = **B**
+  - **检索**：`graphullerene strain doping polaron 2025 2026` → Lv2026 入 bib；Nie2026/Xu2025 已覆盖
+  - **Git**：未提交（R270–R282 积压）
+  - **下一轮**：R283 Methods；GEO ENDED → 填 `tab_s3`
+
+- **Loop R281（2026-06-21，双轨 + Loop C）**：
+  - **Track A**：Table S3 **2/4**；`relax_P_eps0_geo` OT~**259** **CRIT** — **不干预**
+  - **Track B（II Introduction）**：upper-bound + Table~S3 **2/4** 句；Marcus → **Supplemental** Figs.
+  - **Track C**：checklist §II；MC1 CRIT 快照
+  - **创新审计**：Intro–Abstract 契约 = **A**；S3 = **B**
+  - **Git**：未提交（R270–R281 积压）
+  - **下一轮**：R282 Literature；GEO ENDED → 填 `tab_s3`
+
 - **Loop R280（2026-06-21，双轨 + Loop C）**：
-  - **Track A**：Table S3 **2/4**；`relax_P_eps0_geo` OT~**237** **CRIT** grad~$9\times10^{-6}$ — **不干预**
-  - **Track B（I Abstract）**：§F 审计 — 169 词、无 `\cite`；$\alpha$/|$\mathcal{S}$| vs JSON ✅；theory 台账 R280 行
-  - **Track C**：`cover_letter_prb` Major (2) → reference/alternate（对齐主稿）；response OT~237 CRIT
-  - **创新审计**：Abstract = **A**；cover letter = **A**；S3 = **B**（2/4 CRIT）
+  - **Track A**：Table S3 **2/4**；`relax_P_eps0_geo` OT~**252**（grad 回跳）— **不干预**
+  - **Track B（I Abstract）**：Table~S3 **2/4** partial；Marcus → **Supplemental** Figs.~S2--S3
+  - **Track C**：checklist §I；MC1 OT 快照
+  - **创新审计**：Abstract 契约 = **A**（31.9/α 对齐 audit）；S3 = **B**
   - **Git**：未提交（R270–R280 积压）
-  - **下一轮**：GEO ENDED → 填 `tab_s3` 行 3；R281 II Intro
+  - **下一轮**：R281 Intro；GEO ENDED → 填 `tab_s3`
 
 - **Loop R279（2026-06-21，双轨 + Loop C）**：
   - **Track A**：Table S3 **2/4**；`relax_P_eps0_geo` **CRIT** OT~229–232 — **不干预**

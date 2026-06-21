@@ -1,5 +1,5 @@
 #!/bin/bash
-# One-line Table S3 ionic-relaxation snapshot (four fixed-cell GEO_OPT corners).
+# One-line Table III ionic-relaxation snapshot (four fixed-cell GEO_OPT corners).
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 INP="$ROOT/experiments/exp_5_synergy/relax_validation/inputs"

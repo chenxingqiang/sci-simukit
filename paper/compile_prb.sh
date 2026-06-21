@@ -16,6 +16,7 @@ bash "$ROOT/figures/render_prb.sh"
 bash "$ROOT/figures/render_si_figures.sh"
 cd "$ROOT"
 latexmk -pdf -interaction=nonstopmode -file-line-error -f strain_doped_graphullerene.tex
-latexmk -pdf -interaction=nonstopmode -file-line-error -f supplementary_figures.tex
+# SI stub optional (content merged into main); skip unless APS requests a deposit URL placeholder:
+# latexmk -pdf -interaction=nonstopmode -file-line-error -f supplementary_figures.tex
 bash "$ROOT/scripts/prb_wordcount.sh" 2>/dev/null || true
-echo "OK: $ROOT/strain_doped_graphullerene.pdf (PRB) + supplementary_figures.pdf"
+echo "OK: $ROOT/strain_doped_graphullerene.pdf (PRB main only; tables/figures in-text)"

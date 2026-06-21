@@ -9,13 +9,13 @@ if pgrep -f 'cp2k\.psmp' >/dev/null 2>&1; then
   exit 1
 fi
 
-echo "=== PRB revision DFT: ionic relaxation (Table S3) ==="
+echo "=== PRB revision DFT: ionic relaxation (Table III) ==="
 bash "$ROOT/experiments/exp_5_synergy/relax_validation/run_relax_validation.sh"
 
-echo "=== PRB revision DFT: seed137 full grid (Table S4) ==="
+echo "=== PRB revision DFT: seed137 full grid (Table IV) ==="
 bash "$ROOT/experiments/exp_5_synergy/seed_validation/run_seed137_validation.sh"
 
-echo "=== PRB revision DFT: 6x60 N cutoff400 control (Table S2) ==="
+echo "=== PRB revision DFT: 6x60 N cutoff400 control (Table II) ==="
 export CP2K_DATA="${CP2K_DATA:-/opt/homebrew/share/cp2k/data}"
 if [[ -x "$ROOT/c/simukit-run" ]]; then
   "$ROOT/c/simukit-run" --one size_6x60_N_pos3pct_cutoff400 \

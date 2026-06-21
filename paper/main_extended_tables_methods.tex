@@ -1,7 +1,7 @@
-% Calculation inventory (Table S2) — Methods section.
+% Calculation inventory (Table II) — Methods section.
 
 \begin{table}[!ht]
-\caption{\label{tab:S2}Summary of converged DFT calculations and correspondence to main-text results.
+\caption{\label{tab:II}Summary of converged DFT calculations and correspondence to main-text results.
 The $\sim 90$ tasks cited in the main text are the converged calculations that directly support quantitative claims; the full archive includes additional preliminary grids (rows marked ``not used'').}
 \begin{ruledtabular}
 \begin{tabular}{llccl}
@@ -10,21 +10,21 @@ Calculation set & Model & Converged tasks & Main-text usage & Notes \\
 Early strain probe & 2$\times$C$_{60}$ & 5 & not used & superseded by tetramer grids \\
 Single-molecule doping & C$_{60}$ & 11 & not used & superseded \\
 Early electronics & 2$\times$C$_{60}$ & 24 & not used & superseded by tetramer $\pi$-DOS \\
-Polaron IPR/$J$ tetramer dimer & tetramer & 4 & Fig.~\ref{fig:S3} & pristine/B $\times$ $\epsilon{=}0,+3$\% \\
-Tetramer strain energies & tetramer & 24 & Table~\ref{tab:S1}, $\alpha$ & rigid strain \\
+Polaron IPR/$J$ tetramer dimer & tetramer & 4 & Fig.~\ref{fig:j} & pristine/B $\times$ $\epsilon{=}0,+3$\% \\
+Tetramer strain energies & tetramer & 24 & Table~\ref{tab:I}, $\alpha$ & rigid strain \\
 Optimal-design grid & tetramer & 20 & not used & archive only \\
-Tetramer $\pi$-DOS/gaps & tetramer & 12 & Fig.~\ref{fig:S1}; main panels & \\
+Tetramer $\pi$-DOS/gaps & tetramer & 12 & Fig.~\ref{fig:pdos}; main panels & \\
 Geometry references & tetramer relax & 6 & charged-state inputs & reference geometries \\
-Charged polarons & tetramer $q=\pm1$ & 12 geometry opt. & Fig.~\ref{fig:S2} & Marcus $\lambda^{\pm}$ and adiabatic IP/EA \\
+Charged polarons & tetramer $q=\pm1$ & 12 geometry opt. & Fig.~\ref{fig:marcus} & Marcus $\lambda^{\pm}$ and adiabatic IP/EA \\
 Size scaling & $n\times$C$_{60}$ & 40 (+1 pending) & main $\mathcal{S}(n)$ & 400~Ry ($n\leq4$), 350~Ry ($n\geq6$); cutoff400 control pending \\
 $n{=}6$ cutoff control & $6\times$C$_{60}$ N @+3\% & pending & N sign benchmark & 400~Ry matched control (pending) \\
-Ionic relaxation (tetramer) & tetramer & 2/4 geometry opt. & Table~\ref{tab:S3} & fixed-cell; pristine $\epsilon{=}0,+3$\% converged \\
+Ionic relaxation (tetramer) & tetramer & 2/4 geometry opt. & Table~\ref{tab:III} & fixed-cell; pristine $\epsilon{=}0,+3$\% converged \\
 \end{tabular}
 \end{ruledtabular}
 \end{table}
 
 \begin{table}[!ht]
-\caption{\label{tab:S3}Ionic-relaxation benchmark for tetramer $P@+3$\% (four fixed-cell geometry-optimization corners, same biaxial cell).
+\caption{\label{tab:III}Ionic-relaxation benchmark for tetramer $P@+3$\% (four fixed-cell geometry-optimization corners, same biaxial cell).
 This benchmark is \emph{sign-qualitative only}: the rigid reference uses legacy PBE without D3, whereas relaxed corners use PBE+D3, so $|\mathcal{S}_{\mathrm{relaxed}}|/|\mathcal{S}_{\mathrm{rigid}}|$ is \emph{not} a quantitative retention ratio until a matched-functional rigid grid is recomputed.
 We test whether $\mathcal{S}$ retains \emph{sign} after ionic relaxation \emph{within the tetramer grid only}; it does \emph{not} calibrate periodic main-text $\mathcal{S}(n)$, which uses different dopant concentration and boundary conditions.
 Relaxed energies: PBE+D3 fixed-cell geometry optimization (400~Ry) from archived inputs in the open repository.
@@ -44,7 +44,7 @@ Sign of $\mathcal{S}$ vs.\ rigid & \multicolumn{2}{c}{pending (2/4 geometry opt.
 \end{table}
 
 \begin{table}[!ht]
-\caption{\label{tab:S4}Alternate dopant-placement sensitivity (\emph{tetramer only}, rigid strain, PBE+D3).
+\caption{\label{tab:IV}Alternate dopant-placement sensitivity (\emph{tetramer only}, rigid strain, PBE+D3).
 The \emph{reference} placement defines all main-text tetramer $\alpha$ and the periodic supercell site map (one substituent per C$_{60}$).
 An \emph{alternate} independent placement repeats the full B/N/P strain grid ($\epsilon\in\{-5,-2.5,0,+2.5,+3,+5\}$\%; 18 single-point tasks) to test whether tetramer $\alpha$ and $\mathcal{S}$ at $+3$\% are placement-sensitive at ${\sim}5$\% nominal doping.
 Periodic $\mathcal{S}(n)$ is \emph{not} tabulated here because concentration and boundary conditions differ; main-text periodic magnitudes are configuration-specific until alternate periodic placements are computed.}
@@ -52,7 +52,7 @@ Periodic $\mathcal{S}(n)$ is \emph{not} tabulated here because concentration and
 \begin{tabular}{lcccc}
 Dopant & Placement & $\alpha$ (meV/\%) & $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ (meV/atom) & Status \\
 \hline
-B & reference & $+56.9$ & ${\sim}{+}0.7$ & verified (Table~\ref{tab:S1}) \\
+B & reference & $+56.9$ & ${\sim}{+}0.7$ & verified (Table~\ref{tab:I}) \\
 N & reference & $-303.2$ & ${\sim}{-}3.8$ & verified \\
 P & reference & $-19.1$ & ${\sim}{-}0.2$ & verified \\
 B & alternate & pending & pending & pending \\

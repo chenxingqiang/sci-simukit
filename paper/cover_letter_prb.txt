@@ -9,31 +9,33 @@ Corresponding author: xingqiang.chen@xmu.edu.cn
 Dear Editor,
 
 We submit the revised manuscript for consideration as a Regular Article in
-Physical Review B, together with Supplemental Material responding to the
-referee report.
+Physical Review B in response to the referee report. All former supplemental
+tables and figures are incorporated in the main text (Methods validation and
+Results subsections); no separate Supplemental Material file accompanies this
+revision.
 
 Summary of revisions (Major comments):
 
 (1) Rigid-strain protocol — We state explicitly that rigid-cell $\alpha$ and
-    $\mathcal{S}$ are upper bounds until ionic relaxation completes. Table~S3
+    $\mathcal{S}$ are upper bounds until ionic relaxation completes. Table~III
     defines a four-corner fixed-cell GEO\_OPT benchmark for the tetramer
     $P@+3$\% synergy corner (relaxed energies pending; rigid reference values
     archived). The main text separates periodic rigid $\mathcal{S}(n)$ from
     tetramer relaxed cross terms and clarifies that $E_{\mathrm{sub}}$ is not
     a thermodynamic formation enthalpy.
 
-(2) Alternate dopant placement — Table~S4 documents an alternate tetramer
+(2) Alternate dopant placement — Table~IV documents an alternate tetramer
     placement (18 ENERGY tasks; pending) to test whether $\alpha$ signs and
     $|\mathcal{S}|$ rankings at $+3$\% are robust to dopant configuration at
     ${\sim}5$\% nominal doping. Periodic $\mathcal{S}$ magnitudes remain
     configuration-specific until alternate periodic placements are computed.
 
-(3) Mechanistic depth — Table~S5 quantifies dopant--cage nearest-neighbor
+(3) Mechanistic depth — Table~V quantifies dopant--cage nearest-neighbor
     distances and covalent-radius mismatch from archived XYZ structures
     (geometric metrics only; Mayer bond order and Bader charges are not
     computed). Discussion mechanistic synthesis cites these numbers together
     with gap-vs-strain slopes (main Fig.~1a), $\pi$-DOS panels (main Fig.~1b;
-    Supplemental Fig.~S1), and the fifteen-point synergy audit.
+    Fig.~2), and the fifteen-point synergy audit.
 
 (4) Argumentation — We rewrote the $\mathcal{S}$--$\alpha$ comparison as a
     qualitative sanity check only (concentration mismatch), tightened stability
@@ -43,22 +45,22 @@ Summary of revisions (Major comments):
     cancelling systematic errors.
 
 (5) Cutoff consistency — A matched 400~Ry single-point control for
-    $6\times\mathrm{C}_{60}$ N @ $+3$\% strain (Table~S2; pending) is
+    $6\times\mathrm{C}_{60}$ N @ $+3$\% strain (Table~II; pending) is
     documented; the reported N $\mathcal{S}(n)$ sign change between $n=6$ and
-    $n=8$ is excluded from design rules until that benchmark and Tables~S3--S4
+    $n=8$ is excluded from design rules until that benchmark and Tables~III--IV
     converge.
 
 Minor comments: Removed internal repository paths from the main text (Data
 Availability only); merged former Supplemental tables/figures into standard
 PRB sections (Methods validation + Results subsections; no standalone
-Section~IV); removed FCWD placeholder from main-text Fig.~S3; APS journal
+Section~IV); removed FCWD placeholder from main-text Fig.~4; APS journal
 abbreviations for cited references; Pereira2026 and ShaikhPeng2025 arXiv
 entries marked as preprints.
 
 Data availability: converged inputs/outputs and audit tables at
 https://github.com/chenxingqiang/graphullerene-strain-engineering
-Pending validation energies (Tables~S2--S4) remain in the PRB queue.
-Marcus $\lambda$ (Supplemental Fig.~S2): eight vertical single-points at the neutral geometry are converged; B electron-channel $\lambda^{-}$ is negative and excluded (Limitations).
+Pending validation energies (Tables~II--IV) remain in the PRB queue.
+Marcus $\lambda$ (Fig.~3): eight vertical single-points at the neutral geometry are converged; B electron-channel $\lambda^{-}$ is negative and excluded (Limitations).
 
 Prior submission: none to APS journals. Not a joint submission.
 

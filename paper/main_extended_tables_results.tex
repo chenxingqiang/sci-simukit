@@ -1,7 +1,7 @@
-% Results tables (S1, S3--S5); calculation inventory (S2) is in Methods.
+% Results tables (I, III--V); calculation inventory (II) is in Methods.
 
 \begin{table}[!ht]
-\caption{\label{tab:S1}Linear strain sensitivities and substitution energies for tetramer models (archived rigid-strain grid, legacy PBE without D3; not mixed with periodic PBE+D3 $\mathcal{S}$ in Table~\ref{tab:S2}).
+\caption{\label{tab:I}Linear strain sensitivities and substitution energies for tetramer models (archived rigid-strain grid, legacy PBE without D3; not mixed with periodic PBE+D3 $\mathcal{S}$ in Table~\ref{tab:II}).
 $E_{\mathrm{sub}}=(E_{\mathrm{doped}}-E_{\mathrm{pristine}})/n_{\mathrm{dopants}}$ at $\epsilon{=}0$ with no chemical-potential reference (not a standard formation enthalpy).
 $n_{\mathrm{dopants}}$ is counted from archived input coordinates (nominal 5\% target; B: 13, N: 12, P: 12).}
 \begin{ruledtabular}
@@ -17,7 +17,7 @@ P-doped & 12 & $-1370.4965$ & $-1370.4888$ & $-19.1$ & $-15.8$ \\
 \end{table}
 
 \begin{table}[!ht]
-\caption{\label{tab:S3}Ionic-relaxation benchmark for tetramer $P@+3$\% (four fixed-cell geometry-optimization corners, same biaxial cell).
+\caption{\label{tab:III}Ionic-relaxation benchmark for tetramer $P@+3$\% (four fixed-cell geometry-optimization corners, same biaxial cell).
 This table tests whether the $\mathcal{S}$ cross term retains \emph{sign} after ionic relaxation \emph{within the tetramer grid only}; magnitude ratios are \emph{not} quantitative because the archived rigid reference uses legacy PBE without D3 while relaxed corners use PBE+D3---a matched PBE+D3 rigid reference is queued for a future revision.
 Relaxed energies: PBE+D3 fixed-cell geometry optimization (400~Ry) from archived inputs in the open repository.
 $\mathcal{S}$ follows Eq.~\eqref{eq:synergy_order} with $N{=}240$ atoms.}
@@ -36,7 +36,7 @@ Sign of $\mathcal{S}$ vs.\ rigid & \multicolumn{2}{c}{pending (2/4 geometry opt.
 \end{table}
 
 \begin{table}[!ht]
-\caption{\label{tab:S4}Alternate dopant-placement sensitivity (\emph{tetramer only}, rigid strain, PBE+D3).
+\caption{\label{tab:IV}Alternate dopant-placement sensitivity (\emph{tetramer only}, rigid strain, PBE+D3).
 The \emph{reference} placement defines all main-text tetramer $\alpha$ and the periodic supercell site map (one substituent per C$_{60}$).
 An \emph{alternate} independent placement repeats the full B/N/P strain grid ($\epsilon\in\{-5,-2.5,0,+2.5,+3,+5\}$\%; 18 single-point tasks) to test whether tetramer $\alpha$ and $\mathcal{S}$ at $+3$\% are placement-sensitive at ${\sim}5$\% nominal doping.
 Periodic $\mathcal{S}(n)$ is \emph{not} tabulated here because concentration and boundary conditions differ; main-text periodic magnitudes are configuration-specific until alternate periodic placements are computed.}
@@ -44,7 +44,7 @@ Periodic $\mathcal{S}(n)$ is \emph{not} tabulated here because concentration and
 \begin{tabular}{lcccc}
 Dopant & Placement & $\alpha$ (meV/\%) & $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ (meV/atom) & Status \\
 \hline
-B & reference & $+56.9$ & ${\sim}{+}0.7$ & verified (Table~\ref{tab:S1}) \\
+B & reference & $+56.9$ & ${\sim}{+}0.7$ & verified (Table~\ref{tab:I}) \\
 N & reference & $-303.2$ & ${\sim}{-}3.8$ & verified \\
 P & reference & $-19.1$ & ${\sim}{-}0.2$ & verified \\
 B & alternate & pending & pending & pending \\
@@ -55,7 +55,7 @@ P & alternate & pending & pending & pending \\
 \end{table}
 
 \begin{table}[!ht]
-\caption{\label{tab:S5}Local dopant--cage structure from archived tetramer XYZ (mean nearest C distance $\bar{d}$ in \AA; standard deviation $\sigma(\bar{d})$ across dopant sites; covalent-radius excess vs.\ C in pm).
+\caption{\label{tab:V}Local dopant--cage structure from archived tetramer XYZ (mean nearest C distance $\bar{d}$ in \AA; standard deviation $\sigma(\bar{d})$ across dopant sites; covalent-radius excess vs.\ C in pm).
 Strain-induced change $\Delta\bar{d}=\bar{d}(\epsilon{=}+3\%)-\bar{d}(\epsilon{=}0)$ summarizes how tensile load couples to pre-existing distortion (Discussion mechanistic synthesis (ii),(vi)).
 Values are computed from archived tetramer coordinates in the open data release; Mayer bond order and Bader charges are not included.}
 \begin{ruledtabular}

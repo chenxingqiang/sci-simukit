@@ -30,7 +30,7 @@ Joint submission.
 This is not a joint submission with another Physical Review journal.
 
 Supplemental Material.
-A Supplemental Material PDF provides energy tables (including ionic-relaxation benchmarks, Table S3), the DFT campaign ledger, pi-DOS panels, Marcus schematics (lambda partially pending), and the J factorial. All core non-additivity conclusions are stated in the main Letter.
+A Supplemental Material PDF provides energy tables (including ionic-relaxation benchmarks, Table III), the DFT campaign ledger, pi-DOS panels, Marcus schematics (lambda partially pending), and the J factorial. All core non-additivity conclusions are stated in the main Letter.
 
 Data availability.
 Converged CP2K inputs/outputs and analysis JSON are archived in a public GitHub repository (URL in the Data Availability statement); a tagged release will be issued upon acceptance.

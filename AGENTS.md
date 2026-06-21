@@ -2314,7 +2314,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
   - **Track A**：Table S3 **2/4**；`relax_P_eps0_geo` **CRIT** OT~277 grad~$1.6\times10^{-6}$ — **不干预**；Exp10 cutoff400 仍 idle
   - **Track B/C**：收口 R204–R266 积压 — PRB 主文 SI 合并、Marcus 8/8、Table S3 2/4、reliability audit、`exp5_relax_status_line` + JSON 契约
   - **创新审计**：PRB 结构 = **A**；Marcus λ = **A−**；S3 = **B**（2/4 CRIT）
-  - **Git**：`8dfb43f` — `loop R267: PRB major revision manuscript merge and Table S3 relax audit`
+  - **Git**：`7f2148f` — `loop R267: PRB major revision manuscript merge and Table S3 relax audit`
   - **下一轮**：$P@\epsilon{=}0$ GEO ENDED → S3 填数 → 4/4 sign row
 
 - **Loop R266（2026-06-21，双轨 + Loop C）**：

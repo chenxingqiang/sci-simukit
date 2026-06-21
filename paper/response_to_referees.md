@@ -106,14 +106,14 @@
 |--------------|-------------------------|
 | **§I Abstract** | Covalent-network framing; sign-qualitative Table~III **2/4**; ``at fixed coordinates'' on max $|\mathcal{S}|$; Marcus Fig.~3 boundary |
 | **§II Introduction** | Periodic PBE+D3 $\mathcal{S}$ vs.\ legacy PBE tetramer $\alpha$ (Table~I) separated; upper-bound + Table~III **2/4** partial; Intro $|\mathcal{S}|$ capped at $31.9$~meV/atom **at fixed coordinates** (P $n{=}1$); Marcus Fig.~3; **Lv2026** survey gap vs.\ $(\epsilon,\delta)$ $\mathcal{S}$; **Alihosseini2023** COF 非加性先例 |
-| **§III Methods** | Table~I legacy PBE vs periodic PBE+D3; Table~III four-corner + BFGS thresholds; **Table~IV** reference legacy-PBE vs alternate PBE+D3 seed~137 (`sec:methods_s4_seed`); Fig.~3 Marcus IP/vertical-$Q{=}0$ schematic |
+| **§III Methods** | Table~I legacy PBE vs periodic PBE+D3; Table~III four-corner + BFGS thresholds; **Table~IV** reference legacy-PBE vs alternate PBE+D3 seed~137 (`sec:methods_s4_seed`); Fig.~3 Marcus slanted IP + neutral-$Q$ band schematic (R308--R315) |
 | **§III.C Doping concentration** | Clarified: one substituent per C$_{60}$ $\Rightarrow$ $n$ in $60n$ atoms (${\sim}1.67$ at.\%); explicitly \emph{not} $1/240{=}0.42$ at.\% single-dopant/supercell counting |
 | **§III.E Table~III** | Sign-only; PBE rigid vs PBE+D3 relaxed; four corners = pristine + $P$ at $\epsilon{=}0,+3$\% |
 | **§IV Structure** | No standalone Section IV; transport in Results |
 | **§IV Fig.~4** | FCWD placeholder removed from main text |
-| **§V Results** | Fifteen-point $\mathcal{S}(n)$ (Table~II); Table~IV reference $\mathcal{S}^{\mathrm{tet}}$ + alternate PBE+D3 pending (Sec.~\ref{sec:methods_s4_seed}); Fig.~3 IP/vertical-$Q{=}0$ schematic cross-ref Methods |
+| **§V Results** | Fifteen-point $\mathcal{S}(n)$ (Table~II); Table~IV reference $\mathcal{S}^{\mathrm{tet}}$ + alternate PBE+D3 pending (Sec.~\ref{sec:methods_s4_seed}); Fig.~3 cross-dopant Marcus schematic; Fig.~1 (a) $E_g$ / (d) peak $|\mathcal{S}|$ callouts (R309) |
 | **§VI Discussion** | Factor of four; Table~III/IV；**Katiyar2025** + **LopezAlcalay2025** 分调 vs 四隅 $\mathcal{S}$；Table~IV validation 段 reference legacy-PBE vs alternate PBE+D3（R313） |
 | **§VIII Conclusions** | Three Intro questions (1)--(3); upper-bound opening; Table~III four-corner sign-only; Table~IV reference $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ archived; future work decouples Table~IV placement vs.\ XC (R314) |
 
-*Document version: PRB Major Revision + Chinese checklist (Loop R313, 2026-06-21). Align with `cover_letter_prb.txt`.*
+*Document version: PRB Major Revision + Chinese checklist (Loop R315, 2026-06-21). Align with `cover_letter_prb.txt`.*
 

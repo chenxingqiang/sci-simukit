@@ -257,6 +257,7 @@ Legacy `analyze_results.py` → 请改用 `analyze_exp9_polaron.py` + `dft_resul
 |--------|------|
 | `paper/*.tex` 内 `Table~S` / `tab:S` 残留 | **0**（Tables I--V 契约 **A**） |
 | 主文 `7/8` / `at revision` / `experiments/` / `Major Comment` | **0** |
+| `supplementary_material_theory.tex` 仓库路径 | **0**（R315 清理） |
 | 主文 `300%` / `775%` / `8.75` mobility 泄漏 | **0**（**C** 级已 withdrawn） |
 | Abstract/Results $\lambda$ 数值 | **无**（Fig.~3 边界 **A**） |
 | $|\mathcal{S}|=31.9$ / $-23.7$ vs `sdc_exp10_synergy_audit.json` | **一致** |
@@ -264,6 +265,7 @@ Legacy `analyze_results.py` → 请改用 `analyze_exp9_polaron.py` + `dft_resul
 | Table III $E$ vs `relax_validation_tetramer.json` | **一致**（2/4；$P$ rows pending） |
 | Koopmans/rVV10 主文声称 | Methods 诚实否定 only（**A**） |
 | `verify_reliability.sh` | **294** pass / **2** warn（Table I legacy PBE；Table III cross-functional） |
-| `compile_prb.sh` | **OK**（主文 PDF 含 R308--R309 Fig.~1/3）
+| `compile_prb.sh` | **OK**（主文 PDF 含 R308--R309 Fig.~1/3） |
+| `response_to_referees.md` Fig.~1/3 checklist | **R315** slanted-IP + callout 契约 |
 
-**创新审计（R314）**：Conclusion future-work Table III/IV 解耦 = **A**；compile_prb = **A**；Table III = **B**（2/4）。
+**创新审计（R315）**：response checklist ↔ Fig.~1/3 契约 = **A**；grep 31.9 / Exp9 8/8 = **A**；Table III = **B**（2/4，CRIT）。

@@ -29,7 +29,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
 | **阻塞 PRB** | Table III/IV DFT；Exp10 cutoff400 |
 | **文稿 P 瓶颈** | Table III **2/4** → GEO ENDED 填数 |
-| **最新 Loop** | **R314**（见下方笔记） |
+| **最新 Loop** | **R315**（见下方笔记） |
 | **下一 B 任务** | Table III GEO ENDED → 填数；Fig.~1/3 版式已收口 |
 | **主张-证据** | Table IV reference $\mathcal{S}$ = **A**；弛豫 III = **B**（2/4） |
 | **旗杆** | **PRB Regular Article** major revision |
@@ -1399,6 +1399,14 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R315（2026-06-21，双轨 + Loop C）**：
+ - **Track A**：Table III **2/4**；`relax_P_eps0_geo` **CRIT** OT~**112** grad~$2.6\times10^{-5}$ — **不干预**；JSON 刷新
+ - **Track B（横切 B4/B5）**：`response_to_referees.md` checklist §III/V 同步 Fig.~3 slanted-IP + Fig.~1 callout；theory report R315 grep；`supplementary_material_theory.tex` 去仓库路径
+ - **Track C**：checklist 版本 R315
+ - **创新审计**：response–主稿 Fig 契约 = **A**；Table III = **B**（2/4）
+ - **Git**：未提交
+ - **下一轮**：GEO ENDED → Table III 行 3 + `analyze_relax_s.py`；R316 Abstract
 
 - **Loop R314（2026-06-21，双轨 + Loop C）**：
  - **Track A**：Table III **2/4**；`relax_P_eps0_geo` **CRIT** OT~**220** — **不干预**

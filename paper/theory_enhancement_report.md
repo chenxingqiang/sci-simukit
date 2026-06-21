@@ -234,7 +234,7 @@ Legacy `analyze_results.py` → 请改用 `analyze_exp9_polaron.py` + `dft_resul
 
 **检索（R162）**：`graphullerene B N P doping strain DFT 2025` — Khan/Lopez/Qiu 已覆盖；Intro 入 `Katiyar2025strain`（2D strain review，非 $\mathcal{S}$）。
 **检索（R157）**：`graphullerene polaron reorganization DFT 2025` — Capobianco2024/Khan2025 已覆盖；无新 bib。
-**检索（R304）**：`(graphullerene OR qHP C60) strain doping 2025` — LopezAlcalay2025 graphendofullerene strain \emph{or} electrostatic doping（分调 $T_C$）→ Discussion 对比句；Khan/Nie 已在稿。
+**检索（R310）**：`(graphullerene OR qHP C60) strain doping DFT 2025 2026` — 无新 graphullerene-specific bib（Khan/Lv/Nie 已覆盖）；Intro 补 `Alihosseini2023strain`（COF 双层应变--组分非加性先例，**support**）。
 
 
 ## 7. SI 图件索引（R94）

@@ -29,7 +29,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
 | **阻塞 PRB** | Table III/IV DFT；Exp10 cutoff400 |
 | **文稿 P 瓶颈** | Table III **2/4** → GEO ENDED 填数 |
-| **最新 Loop** | **R309**（见下方笔记） |
+| **最新 Loop** | **R310**（见下方笔记） |
 | **下一 B 任务** | Table III GEO ENDED → 填数；Fig.~1/3 版式已收口 |
 | **主张-证据** | Table IV reference $\mathcal{S}$ = **A**；弛豫 III = **B**（2/4） |
 | **旗杆** | **PRB Regular Article** major revision |
@@ -1399,6 +1399,14 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R310（2026-06-21，双轨 + Loop C）**：
+ - **Track A**：Table III **2/4**；`relax_P_eps0_geo` **CRIT** OT~**179** grad~$1.6\times10^{-6}$ — **不干预**；JSON 快照刷新
+ - **Track B（III Literature）**：WebSearch 无新 graphullerene bib；Intro 补 `Alihosseini2023strain`（COF 双层非加性先例，D1 共价网络）
+ - **Track C**：response checklist §II R310
+ - **创新审计**：COF 文献定位 = **B+**（bib 已有）；Table III = **B**（2/4）
+ - **Git**：待 commit
+ - **下一轮**：GEO ENDED → Table III 行 3；R311 Methods
 
 - **Loop R309（2026-06-21，双轨 + Loop C）**：
  - **Track A**：Table III **2/4**；`relax_P_eps0_geo` **CRIT** OT~**165** grad~$1.5\times10^{-6}$ — **不干预**；JSON 快照刷新

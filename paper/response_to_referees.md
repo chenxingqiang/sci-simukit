@@ -40,7 +40,7 @@
 **Response:**
 1. **Electronic (N vs.\ B):** Results Sec.~\ref{sec:electronic} now reports verified $\epsilon{=}0$ gaps from the Exp.~7 archive ($E_g^{\mathrm{B}}\approx 0.03$, $E_g^{\mathrm{N}}\approx -0.14$, $E_g^{\mathrm{P}}\approx 0.05$~eV) and links them to opposite $\alpha$ signs on the legacy PBE rigid tetramer grid (Table~I; ${\sim}360$~meV/\% span). Fig.~1(a,b) and Fig.~2 provide the $\pi$-DOS context.
 2. **Structural (P):** Table~V expanded with $\sigma(\bar{d})$ at $+3$\% strain, showing P's frozen local environment ($\Delta\bar{d}\approx 3\times 10^{-5}$~\AA; $\sigma\approx 4\times 10^{-4}$~\AA) vs.\ B/N (${\sim}8.5\times 10^{-3}$~\AA\ mean shift; $\sigma{\sim}0.02$~\AA).
-3. **Nonlinearity decomposition:** Discussion (iv)--(vi) quantify Table~V $\Delta\bar{d}$ vs.\ $|\mathcal{S}|$ contrasts, exclude tetramer--periodic $\alpha$ extrapolation (v), and state decomposition outlook (vi); Mayer bond order / Bader partitioning along the strain path remain **future work** (Limitations), so relative electronic vs.\ geometric weights are not quantified in this revision.
+3. **Nonlinearity decomposition:** Discussion (iv)--(vi) quantify Table~V $\Delta\bar{d}$ vs.\ $|\mathcal{S}|$ contrasts, exclude tetramer--periodic $\alpha$ extrapolation (v), and state decomposition outlook (vi); Design implications now link interim Table~III pristine $\Delta E$ to the upper-bound reading of protocol $|\mathcal{S}|$ (Major Comment~1); Mayer bond order / Bader partitioning along the strain path remain **future work** (Limitations), so relative electronic vs.\ geometric weights are not quantified in this revision.
 
 **Manuscript:** Results electronic subsection; Discussion (i)--(vi), validation protocol; Table~V; Fig.~2.
 
@@ -117,5 +117,5 @@
 | **§VI Discussion** | Factor of four; design implications + interim Table~III pristine $\Delta E$ upper-bound link; Table~III sign-only criterion |
 | **§VIII Conclusions** | Three Intro questions closed; (2) cites max $|\mathcal{S}|=31.9$~meV/atom (P, $n{=}1$); III sign-qualitative checkpoint; future work lists Table~III P corners |
 
-*Document version: PRB Major Revision + Chinese checklist (Loop R284, 2026-06-21).*
+*Document version: PRB Major Revision + Chinese checklist (Loop R291, 2026-06-21).*
 

@@ -1402,7 +1402,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track B（IV Methods）**：Table~II 删 stale OT~294 运维数 →「in progress」；文献检索 Khan/Pereira/Lv 已覆盖，无新 bib
  - **Track C（C-M1）**：`response_to_referees` MC1/pending OT~101 CRIT
  - **创新审计**：Table II 契约 = **A**（无 volatile OT in main table）；弛豫 = **B pending**
- - **Git**：待 commit
+ - **Git**：`a466697` — `loop R290: Table II drop stale OT; C-M1 CRIT OT~101` → **pushed: (local only)**
  - **paper_gap**：GEO ENDED → Table III 行 3
  - **下一轮**：`relax_P_eps0_geo` converged → `analyze_relax_s.py`
 

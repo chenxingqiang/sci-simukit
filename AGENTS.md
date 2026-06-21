@@ -1405,7 +1405,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track A**：Table III **2/4**；`relax_P_eps0_geo` OT~**213** — **不干预**
  - **Track B + Loop C**：Report No. 2 入 `response_to_referees.md`（R2-M1–M5）；Methods 子节层级；Abstract upper bounds/not predictions；$|\mathcal{S}|/E_{\mathrm{sub}}$→Discussion；sign-conflict 物理；Fig J/IPR 分工
  - **创新审计**：R2-M2/M1 文稿 = **A−**；R2-M3/M5 DFT = **B open**（2/4）
- - **Git**：待 commit
+ - **Git**：`1952d6b` — `loop R324: PRB Report No. 2` → **pushed: (local only)**
  - **下一轮**：Table III 3/4；R2-m1 bib 编译核对；Mayer backlog
 
 - **Loop R323（2026-06-21，双轨 + Loop C）**：

@@ -1405,7 +1405,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track B（VIII Conclusion）**：首句 Tables III--IV + 2/4 对齐 Abstract/Intro；`compile_prb.sh` ✅
  - **Track C**：response §VIII checklist R321
  - **创新审计**：Abstract--Conclusion 闭环 = **A**；Table III = **B**（2/4）
- - **Git**：待 commit
+ - **Git**：`592aa0a` — `loop R321: Conclusion Tables III-IV gate` → **pushed: (local only)**
  - **下一轮**：GEO ENDED → Table III 行 3；R322 横切 audit
 
 - **Loop R320（2026-06-21，双轨 + Loop C）**：

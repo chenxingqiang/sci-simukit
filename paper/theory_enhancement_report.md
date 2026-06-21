@@ -251,21 +251,23 @@ Legacy `analyze_results.py` → 请改用 `analyze_exp9_polaron.py` + `dft_resul
 
 ---
 
-## 8. R309 横切 grep 审计（2026-06-21）
+## 8. R322 横切 grep 审计（2026-06-21）
 
 | 检查项 | 结果 |
 |--------|------|
 | `paper/*.tex` 内 `Table~S` / `tab:S` 残留 | **0**（Tables I--V 契约 **A**） |
 | 主文 `7/8` / `at revision` / `experiments/` / `Major Comment` | **0** |
 | `supplementary_material_theory.tex` 仓库路径 | **0**（R315 清理） |
-| 主文 `300%` / `775%` / `8.75` mobility 泄漏 | **0**（**C** 级已 withdrawn） |
+| 主文 `300%` / `775%` / `8.75` mobility 泄漏 | **0**（archive comment only） |
+| Abstract--Conclusion Tables III--IV upper-bound gate | **10** 处一致（含 2/4×3） |
+| 孤立 `until Table III`（无 Table IV） | **0** |
 | Abstract/Results $\lambda$ 数值 | **无**（Fig.~3 边界 **A**） |
-| $|\mathcal{S}|=31.9$ / $-23.7$ vs `sdc_exp10_synergy_audit.json` | **一致** |
+| $|\mathcal{S}|=31.9$ / $-23.7$ vs `sdc_exp10_synergy_audit.json` | **一致**（P $n{=}1$ / $n{=}4$） |
 | Table IV reference $\mathcal{S}^{\mathrm{tet}}$ vs `tetramer_s_reference_placement.json` | **一致**（+3.8/+5.7/+1.0 meV/atom） |
 | Table III $E$ vs `relax_validation_tetramer.json` | **一致**（2/4；$P$ rows pending） |
 | Koopmans/rVV10 主文声称 | Methods 诚实否定 only（**A**） |
-| `verify_reliability.sh` | **294** pass / **2** warn（Table I legacy PBE；Table III cross-functional） |
-| `compile_prb.sh` | **OK**（主文 PDF 含 R308--R309 Fig.~1/3） |
-| `response_to_referees.md` Fig.~1/3 checklist | **R315** slanted-IP + callout 契约 |
+| `verify_reliability.sh` | **294** pass / **2** warn |
+| `compile_prb.sh` | **OK**（R321 PDF） |
+| `cover_letter_prb.txt` Tables III--IV | **R322** 同步 |
 
-**创新审计（R321）**：Conclusion--Abstract Tables III--IV = **A**；全文 upper-bound 闭环 = **A**；Table III = **B**（2/4）。
+**创新审计（R322）**：全文 Tables III--IV 闸门 grep = **A**；JSON 对照 = **A**；Table III = **B**（2/4）。

@@ -17,17 +17,20 @@ revision.
 Summary of revisions (Major comments):
 
 (1) Rigid-strain protocol — We state explicitly that rigid-cell $\alpha$ and
-    $\mathcal{S}$ are upper bounds until ionic relaxation completes. Table~III
-    defines a four-corner fixed-cell GEO\_OPT benchmark (pristine and $P$ at
-    $\epsilon{=}0$ and $+3$\%; relaxed energies pending for $P$ corners; rigid
-    references archived). The main text separates periodic rigid $\mathcal{S}(n)$
+    $\mathcal{S}$ are upper bounds until ionic-relaxation and alternate-placement
+    benchmarks complete (Tables~III--IV). Table~III defines a four-corner
+    fixed-cell GEO\_OPT benchmark (pristine and $P$ at $\epsilon{=}0$ and $+3$\%;
+    2/4 pristine corners converged; $P$-doped corners pending; rigid references
+    archived). The main text separates periodic rigid $\mathcal{S}(n)$ from
     from tetramer relaxed cross terms and clarifies that $E_{\mathrm{sub}}$ is not
     a thermodynamic formation enthalpy.
 
-(2) Alternate dopant placement — Table~IV documents an alternate tetramer
-    placement (18 ENERGY tasks; pending) to test whether $\alpha$ signs and
-    $|\mathcal{S}|$ rankings at $+3$\% are robust to dopant configuration at
-    ${\sim}5$\% nominal doping. Periodic $\mathcal{S}$ magnitudes remain
+(2) Alternate dopant placement — Table~IV documents reference-placement
+    $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ on the archived legacy-PBE grid and a
+    pending alternate seed-137 map (18 PBE+D3 rigid ENERGY tasks) to test whether
+    $\alpha$ signs and $|\mathcal{S}|$ rankings at $+3$\% are robust to dopant
+    configuration at ${\sim}5$\% nominal doping without cross-functional comparison
+    to the reference column. Periodic $\mathcal{S}$ magnitudes remain
     configuration-specific until alternate periodic placements are computed.
 
 (3) Mechanistic depth — Table~V quantifies dopant--cage nearest-neighbor

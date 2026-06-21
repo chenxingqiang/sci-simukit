@@ -115,5 +115,5 @@
 | **§VI Discussion** | Factor of four; Table~III/IV gate 与 Results R319 交叉引用；**Katiyar2025** + **LopezAlcalay2025** 分调 vs 四隅 $\mathcal{S}$；Table~IV validation 段 reference legacy-PBE vs alternate PBE+D3（R313）；Design implications Tables~III--IV（R320） |
 | **§VIII Conclusions** | Three Intro questions (1)--(3); upper-bound opening Tables~III--IV + 2/4（R321）；Table~III four-corner sign-only; Table~IV reference $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ archived; future work decouples Table~IV placement vs.\ XC (R314) |
 
-*Document version: PRB Major Revision + Chinese checklist (Loop R321, 2026-06-21). Align with `cover_letter_prb.txt`.*
+*Document version: PRB Major Revision + Chinese checklist (Loop R322, 2026-06-21). Align with `cover_letter_prb.txt`.*
 

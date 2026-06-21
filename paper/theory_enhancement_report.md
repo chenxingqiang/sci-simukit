@@ -266,4 +266,4 @@ Legacy `analyze_results.py` → 请改用 `analyze_exp9_polaron.py` + `dft_resul
 | `verify_reliability.sh` | **294** pass / **2** warn（Table I legacy PBE；Table III cross-functional） |
 | `compile_prb.sh` | **OK**（主文 PDF 含 R308--R309 Fig.~1/3）
 
-**创新审计（R309）**：Fig.~1 caption 读图键 = **A**；Fig.~3 Marcus **R308** = **A**；Table III = **B**（2/4；`relax_P_eps0_geo` CRIT）。
+**创新审计（R312）**：Results Table IV 泛函边界 = **A**（对齐 R311 Methods）；Table III = **B**（2/4）。

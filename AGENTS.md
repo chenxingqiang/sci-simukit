@@ -29,7 +29,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
 | **阻塞 PRB** | Table III/IV DFT；Exp10 cutoff400 |
 | **文稿 P 瓶颈** | Table III **2/4** → GEO ENDED 填数 |
-| **最新 Loop** | **R311**（见下方笔记） |
+| **最新 Loop** | **R312**（见下方笔记） |
 | **下一 B 任务** | Table III GEO ENDED → 填数；Fig.~1/3 版式已收口 |
 | **主张-证据** | Table IV reference $\mathcal{S}$ = **A**；弛豫 III = **B**（2/4） |
 | **旗杆** | **PRB Regular Article** major revision |
@@ -1399,6 +1399,14 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R312（2026-06-21，双轨 + Loop C）**：
+ - **Track A**：Table III **2/4**；`relax_P_eps0_geo` **CRIT** OT~**203** — **不干预**；JSON 刷新
+ - **Track B（VI Results）**：`sec:synergy` + Discussion (i) 同步 R311 Table IV reference vs alternate PBE+D3 读法；**无新定量**
+ - **Track C**：response checklist §V R312
+ - **创新审计**：Results–Methods Table IV 契约 = **A**；Table III = **B**（2/4）
+ - **Git**：待 commit
+ - **下一轮**：GEO ENDED → Table III 行 3；R313 Discussion
 
 - **Loop R311（2026-06-21，双轨 + Loop C）**：
  - **Track A**：Table III **2/4**；`relax_P_eps0_geo` **CRIT** OT~**185** — **不干预**；JSON 刷新

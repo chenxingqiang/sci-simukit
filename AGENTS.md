@@ -1402,7 +1402,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track B（横切 B4/B5）**：`analyze_relax_s.py` 刷新 JSON；theory report D2/快照 R288；Fig.~3--4 pipeline 笔误修
  - **Track C（C-M1）**：`response_to_referees` MC1 + pending 表 OT~85 CRIT；checklist Marcus→Fig.~3
  - **创新审计**：Table III 运维 = **A**；弛豫填数 = **B pending**（2/4）；编号 I–V = **A**（R287）
- - **Git**：待 commit
+ - **Git**：`5cb1808` — loop R288 Tables I–V + relax CRIT；（**pushed: local only**）
  - **下一轮**：`relax_P_eps0_geo` GEO ENDED → 填 Table III 行 3 → `analyze_relax_s.py`
 
 - **Loop R287（2026-06-21，Track B）**：

@@ -23,8 +23,8 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Exp10** | **40/41** — `size_6x60_N_pos3pct_cutoff400` pending（截断对照） |
 | **Exp8** | **6/6** ✅ |
 | **Exp9** | **12/12** GEO_OPT ✅；vertical SP **8/8** ✅ — λ 全表入 Fig.~S2（B $\lambda^{-}$ 负值已标注） |
-| **运行中** | `relax_P_eps0_geo`（Table S3 **2/4**；OT~277，**CRIT** grad~$1.6\times10^{-6}$）— **不干预** |
-| **临界区** | `relax_P_eps0_geo` **CRIT**（near GEO_OPT EPS） |
+| **运行中** | `relax_P_eps0_geo`（Table S3 **2/4**；geo step ~5，**CRIT**）— **不干预** |
+| **临界区** | `relax_P_eps0_geo` **CRIT**（内层 OT grad~$1.6\times10^{-6}$） |
 | **下一任务** | S3 4/4 → $\mathcal{S}_{\mathrm{relaxed}}$ sign row；**勿并行** cutoff400 与 relax |
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
 | **阻塞 PRB** | Table S3/S4 DFT；Exp10 cutoff400 |
@@ -34,7 +34,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **主张-证据** | Marcus λ = **A−**（8/8）；弛豫 S3 = **B**（2/4 sign-only）；seed137 = **B pending** |
 | **旗杆** | **PRB Regular Article** major revision |
 | **Loop C** | C-M1 DFT **running**（S3 2/4） |
-| **最新 Loop** | **R267**（见下方笔记） |
+| **最新 Loop** | **R268**（见下方笔记） |
 
 
 ---
@@ -2309,6 +2309,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **创新审计**：力学文献定位 = **A**；$\lambda$ = **B pending**
  - **Git**：`d48c81e` — `loop R117: Discussion Qiu2025 mechanics contrast` → **pushed: origin/main**
  - **下一轮**：qneg1 PROGRAM ENDED → post_exp9
+
+- **Loop R268（2026-06-21，双轨 + Loop C）**：
+  - **Track A**：Table S3 **2/4**；`relax_P_eps0_geo` geo step ~5 **CRIT** — **不干预**；Exp10 cutoff400 idle
+  - **Track B（VI Results）**：`floatfix` + 去 Results 末重复 `fig:main`；`main_extended_figures` 去 transport 重复段；Fig.~S1--S3 `PRB_WIDTH_IN` 版式
+  - **创新审计**：Results 图序 = **A**；S3 = **B**（2/4 CRIT）
+  - **Git**：未提交
+  - **下一轮**：$P@\epsilon{=}0$ GEO ENDED → Table S3 填数
 
 - **Loop R267（2026-06-21，双轨 + Loop C · commit）**：
   - **Track A**：Table S3 **2/4**；`relax_P_eps0_geo` **CRIT** OT~277 grad~$1.6\times10^{-6}$ — **不干预**；Exp10 cutoff400 仍 idle

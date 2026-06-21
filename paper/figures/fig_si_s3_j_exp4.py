@@ -13,7 +13,7 @@ FIG_DIR = Path(__file__).resolve().parent
 sys.path.insert(0, str(FIG_DIR))
 
 from _load_audit import load_json
-from _style import COLOR_CBM, DOPANT_COLORS, apply_si_style, panel_label, style_axes
+from _style import COLOR_CBM, DOPANT_COLORS, PRB_WIDTH_IN, apply_si_style, panel_label, style_axes
 
 
 def build(out_dir: Path) -> tuple[Path, Path]:
@@ -21,7 +21,7 @@ def build(out_dir: Path) -> tuple[Path, Path]:
     exp4 = load_json("experiments/analysis/exp4_polaron_verification.json")
     sys_map = exp4["systems"]
 
-    fig, ax_j = plt.subplots(figsize=(3.6, 2.2))
+    fig, ax_j = plt.subplots(figsize=(PRB_WIDTH_IN, 2.35))
 
     keys = [
         ("pristine_0pct", "pristine\n$\\epsilon{=}0$"),

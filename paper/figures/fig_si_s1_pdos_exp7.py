@@ -13,7 +13,7 @@ FIG_DIR = Path(__file__).resolve().parent
 sys.path.insert(0, str(FIG_DIR))
 
 from _pdos import gaussian_dos, parse_pdos
-from _style import COLOR_CBM, COLOR_TOTAL, COLOR_VBM, apply_si_style, panel_label, style_axes
+from _style import COLOR_CBM, COLOR_TOTAL, COLOR_VBM, PRB_WIDTH_IN, apply_si_style, panel_label, style_axes
 
 
 def _plot_dos(ax, pdos_path: Path, title: str, *, dos=None, ymax: float | None = None) -> None:
@@ -71,7 +71,7 @@ def build(out_dir: Path) -> tuple[Path, Path]:
         dos_cache.append((name, path, dos))
     ymax *= 1.12
 
-    fig, axes = plt.subplots(2, 2, figsize=(6.75, 3.35), sharex=True, sharey=True)
+    fig, axes = plt.subplots(2, 2, figsize=(PRB_WIDTH_IN, 3.45), sharex=True, sharey=True)
     labels = "abcd"
     for ax, (name, path, dos), plab in zip(axes.ravel(), dos_cache, labels):
         _plot_dos(ax, path, f"{name}, $\\epsilon{{=}}0$", dos=dos, ymax=ymax)

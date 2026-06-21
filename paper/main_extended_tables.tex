@@ -1,6 +1,6 @@
-% Legacy merge file — canonical sources: paper/tables/tab_s*.tex
+% Legacy merge — synced from paper/tables/
 
-\begin{table}[!ht]
+\begin{table*}[t]
 \caption{\label{tab:S1}Total energies, linear strain sensitivities, and substitution energies for tetramer models (PBE+D3, rigid-strain protocol).
 $E_{\mathrm{sub}}=(E_{\mathrm{doped}}-E_{\mathrm{pristine}})/n_{\mathrm{dopants}}$ at $\epsilon{=}0$ with no chemical-potential reference (not a standard formation enthalpy).
 $n_{\mathrm{dopants}}$ is counted from archived input coordinates (nominal 5\% target; B: 13, N: 12, P: 12).}
@@ -14,9 +14,9 @@ N-doped & 12 & $-1414.3812$ & $-1414.4053$ & $-303.2$ & $-115.3$ \\
 P-doped & 12 & $-1370.4965$ & $-1370.4888$ & $-19.1$ & $-15.8$ \\
 \end{tabular}
 \end{ruledtabular}
-\end{table}
+\end{table*}
 
-\begin{table}[!ht]
+\begin{table*}[t]
 \caption{\label{tab:S2}Summary of converged DFT calculations and correspondence to main-text results.
 The $\sim 90$ tasks cited in the main text are the converged calculations that directly support quantitative claims; the full archive includes additional preliminary grids (rows marked ``not used'').}
 \begin{ruledtabular}
@@ -37,9 +37,9 @@ $n{=}6$ cutoff control & $6\times$C$_{60}$ N @+3\% & pending & N sign benchmark 
 Ionic relaxation (tetramer) & tetramer & 2/4 geometry opt. & Table~\ref{tab:S3} & fixed-cell; pristine $\epsilon{=}0,+3$\% converged \\
 \end{tabular}
 \end{ruledtabular}
-\end{table}
+\end{table*}
 
-\begin{table}[!ht]
+\begin{table*}[t]
 \caption{\label{tab:S3}Ionic-relaxation benchmark for tetramer $P@+3$\% (four fixed-cell geometry-optimization corners, same biaxial cell).
 This benchmark is \emph{sign-qualitative only}: the rigid reference uses legacy PBE without D3, whereas relaxed corners use PBE+D3, so $|\mathcal{S}_{\mathrm{relaxed}}|/|\mathcal{S}_{\mathrm{rigid}}|$ is \emph{not} a quantitative retention ratio until a matched-functional rigid grid is recomputed. We test whether $\mathcal{S}$ retains \emph{sign} \emph{within the tetramer grid only}; it does \emph{not} calibrate periodic main-text $\mathcal{S}(n)$, which uses different dopant concentration and boundary conditions.
 Rigid reference energies: archived fixed-coordinate tetramer single-point grid (legacy PBE, no D3). Relaxed energies: PBE+D3 fixed-cell geometry optimization (400~Ry) from archived inputs in the open repository.
@@ -56,9 +56,9 @@ $\mathcal{S}$ (meV/atom) & $+0.96$ & pending \\
 Sign of $\mathcal{S}$ vs.\ rigid & \multicolumn{2}{c}{pending (2/4 geometry opt.; $P@\epsilon{=}0$ running)} \\
 \end{tabular}
 \end{ruledtabular}
-\end{table}
+\end{table*}
 
-\begin{table}[!ht]
+\begin{table*}[t]
 \caption{\label{tab:S4}Alternate random-seed dopant placement (\emph{tetramer only}, rigid strain, PBE+D3).
 Seed~42 defines all main-text tetramer $\alpha$ and the periodic supercell site map (one substituent per C$_{60}$).
 Seed~137 repeats the full B/N/P strain grid ($\epsilon\in\{-5,-2.5,0,+2.5,+3,+5\}$\%; 18 single-point tasks) to test whether tetramer $\alpha$ and $\mathcal{S}$ at $+3$\% are placement-sensitive at ${\sim}5$\% nominal doping.
@@ -75,9 +75,9 @@ N & 137 & pending & pending & 6 inp / pending \\
 P & 137 & pending & pending & 6 inp / pending \\
 \end{tabular}
 \end{ruledtabular}
-\end{table}
+\end{table*}
 
-\begin{table}[!ht]
+\begin{table*}[t]
 \caption{\label{tab:S5}Local dopant--cage structure from archived tetramer XYZ (mean nearest C distance $\bar{d}$ in \AA; standard deviation $\sigma(\bar{d})$ across dopant sites; covalent-radius excess vs.\ C in pm).
 Strain-induced change $\Delta\bar{d}=\bar{d}(\epsilon{=}+3\%)-\bar{d}(\epsilon{=}0)$ summarizes how tensile load couples to pre-existing distortion (Discussion mechanistic synthesis (ii),(vi)).
 Values are computed from archived tetramer XYZ coordinates (seed~42) in the open data release; Mayer bond order and Bader charges are not included.}
@@ -90,5 +90,5 @@ N & 1.393 & 1.402 & $+0.0087$ & 0.024 & $-6$ \\
 P & 1.384 & 1.385 & $+0.00003$ & 0.0004 & $+30$ \\
 \end{tabular}
 \end{ruledtabular}
-\end{table}
+\end{table*}
 

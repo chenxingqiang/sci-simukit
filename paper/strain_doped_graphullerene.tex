@@ -10,6 +10,7 @@
  amsmath,amssymb,
  aps,
  prb,
+ floatfix,
 %nobibnotes,
 ]{revtex4-2}
 
@@ -166,15 +167,6 @@ We report provisional $\mathcal{S}(n)\approx \mathcal{S}_\infty + A/n$ fits in t
 All periodic $\mathcal{S}$ values quoted in this subsection use the seed~42 dopant-site map and are tabulated in Table~\ref{tab:S2} (fifteen $n\times$ dopant points at $+3$\% strain).
 Negative $\mathcal{S}$ (B, P at $n=4$) means coupled tension \emph{stabilizes} the doped cell relative to the additive estimate; positive $\mathcal{S}$ (N at $n=4$) means sequential screens \emph{overestimate} stability under load.
 
-\begin{figure*}
-\includegraphics[width=\textwidth]{figures/out/figure_prb_main.pdf}
-\caption{\label{fig:main}Coupled $(\epsilon,\delta)$ response in doped qHP C$_{60}$ (PBE+D3).
-(a)~HOMO--LUMO gap vs.\ strain.
-(b)~$\pi$-DOS for B @ $\epsilon{=}0$ (color scheme follows Ref.~\citenum{Capobianco2024electron}).
-(c)~Mechanical $\alpha$ (Table~\ref{tab:S1}).
-(d)~Seed~42 protocol $\mathcal{S}(n)$ at $+3$\% (max $|\mathcal{S}|{=}31.9$~meV/atom for P @ $n{=}1$; at $n{=}4$: $-6.2$, $+3.0$, $-23.7$~meV/atom for B/N/P); Marcus $\lambda$ and IPR/$J$ in Figs.~\ref{fig:S2} and \ref{fig:S3}.}
-\end{figure*}
-
 \subsection{\label{sec:transport_obs}Polaron transport diagnostics}
 
 Figure~\ref{fig:S2} reports Marcus reorganization energies from twelve charged-state geometry optimizations and eight vertical single-points at the neutral geometry (Sec.~\ref{sec:methods_marcus}).
@@ -182,7 +174,6 @@ Figure~\ref{fig:S2} reports Marcus reorganization energies from twelve charged-s
 \input{tables/fig_transport.tex}
 \input{tables/transport_text.tex}
 
-\FloatBarrier
 % ------------------------------------------------------------------
 \section{\label{sec:discussion}Discussion}
 % ------------------------------------------------------------------

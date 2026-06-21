@@ -1,6 +1,85 @@
-> **Loop C 索引**：`AGENTS.md` § PRB Report No. 1 — IDs **C-M1…C-M4**, **C-m1…C-m5**.
+> **Loop C 索引**：**Report No. 2** (2026) — IDs **R2-M1…R2-M5**, **R2-m1…R2-m4**; Report No. 1 retained below as **C-M1…C-m5**.
 
-# Response to Referees — PRB Major Revision
+# Response to Referees — PRB Major Revision (Report No. 2)
+
+**Manuscript:** Non-Additive Strain--Doping Coupling in Quasi-Hexagonal C$_{60}$ Graphullerene  
+**Journal:** Physical Review B (Regular Article)  
+**Recommendation:** Major Revision (second round)
+
+---
+
+## Summary response
+
+We thank the referee for recognizing the corrections to doping concentration, Marcus definitions, functional mismatch disclosure, and legacy-PBE vs.\ PBE+D3 separation. This revision addresses Report No. 2 notation, APS section hierarchy, language, and figure--text alignment in the manuscript; ionic-relaxation (Table~III) and alternate-placement (Table~IV) DFT remain in progress (2/4 fixed-cell corners converged).
+
+---
+
+## R2-Major Comment 1 — Notation ($\mathcal{S}$, $\pi$)
+
+**Referee concern:** Lowercase $s$ vs.\ $\mathcal{S}$; garbled $\pi$ (e.g., ``71-DOS'').
+
+**Response:** The source manuscript already uses $\mathcal{S}$ throughout (Eq.~\eqref{eq:synergy_order}); we added an explicit Methods convention that the synergy order parameter is \emph{calligraphic} $\mathcal{S}$, never Latin $s$. All densities of states are written $\pi$-DOS (Methods, Fig.~\ref{fig:pdos} captions). We recompiled the PDF and verified no bare ``PDOS'' or broken $\pi$ strings remain in main-text \texttt{.tex}.
+
+**Manuscript:** Methods `sec:notation`; SI/main $\pi$-DOS inventory.
+
+---
+
+## R2-Major Comment 2 — Section hierarchy and internal labels
+
+**Referee concern:** Numbered ``1.--4.'' subsections under Methods; unnumbered Results paragraph; `RUN_TYPE`, `Exp.~X`, file paths.
+
+**Response:** (i) Moved detailed protocol blocks into a dedicated Methods subsection **Detailed calculation protocols** so ionic-relaxation, alternate-placement, and Marcus steps use standard `\subsubsection` hierarchy. (ii) Promoted the Results ionic-relaxation block to `\subsubsection{Ionic-relaxation checkpoint (partial)}`. (iii) Replaced `RUN_TYPE` literals with standard task names (single-point total-energy evaluations; fixed-cell geometry optimization). (iv) Main-text `Exp.~` labels and repository paths were removed in prior revisions; Table~II rows now separate IPR (open data) from $J$ (Fig.~\ref{fig:j}).
+
+**Manuscript:** `methods_extended.tex`; Results `sec:relax_checkpoint`; Table~II.
+
+---
+
+## R2-Major Comment 3 — Mechanistic electronic-structure evidence
+
+**Referee concern:** Qualitative mechanism only; need Mayer/Bader/bond order.
+
+**Response:** We expanded sign-conflict physics in Discussion (iii) and Design implications (B/N $n{=}4$), retain Table~V $\Delta\bar{d}$/$\sigma(\bar{d})$ and $\pi$-DOS/gap context (Results + Fig.~\ref{fig:pdos}), and **reiterate** that Mayer bond order and Bader partitioning along the strain path are not yet computed (Limitations). No new DFT in this pass.
+
+**Pending:** Mayer/Bader strain-path analysis (Track A backlog).
+
+---
+
+## R2-Major Comment 4 — Periodic configuration generality
+
+**Referee concern:** Single periodic placement; tetramer-only alternate seed.
+
+**Response:** Unchanged scientific stance from Report No. 1: all periodic $|\mathcal{S}|$ magnitudes are **configuration-specific** on the fixed reference map; Table~IV tests tetramer placement only. Qualitative donor/acceptor trends are separated from quantitative magnitudes (Methods, Results, Conclusions). Periodic alternate-placement subset remains future work.
+
+**Pending:** seed~137 tetramer grid (Table~IV); optional periodic alternate placement.
+
+---
+
+## R2-Major Comment 5 — Incomplete ionic relaxation
+
+**Referee concern:** 2/4 Table~III; no periodic relax; upper bounds only.
+
+**Response:** We agree. All main-text $|\mathcal{S}|$ remain **protocol upper bounds**; Table~III is **sign-qualitative** with cross-functional rigid (legacy PBE) vs.\ relaxed (PBE+D3) corners. Fixed-cell geometry optimization continues (2/4: pristine $\epsilon{=}0,+3$\%; $P$-doped corners running). Completing 4/4 is required before retention claims.
+
+**Pending DFT:** Table~III 4/4 (`relax_validation/`).
+
+---
+
+## R2-Minor / Technical (summary)
+
+| ID | Issue | Action (R324) |
+|----|-------|----------------|
+| R2-m1 | Duplicate refs [9],[19],[22] | Recompile + verify `.bbl`; no duplicate `\bibitem` keys in source `.bib` |
+| R2-m2 | $|\mathcal{S}|/E_{\mathrm{sub}}$ scale mismatch | Moved ratio from Methods to Discussion (vii) as **rough estimate only** |
+| R2-m3 | Table I/II formatting | Table~II IPR/$J$ row split; Table~I structure unchanged (already ruledtabular) |
+| R2-m4 | Sign-conflict physics | Expanded Discussion (iii) + Design implications (B/N) |
+| R2-t1 | Typography / hyphenation | Added `\hyphenation{stress-related, placement-sensitive, sign-change}` |
+| R2-t2 | ``gate interpretation'' | → ``govern interpretation'' (Methods validation) |
+| R2-t3 | Abstract awkward bound/predict | → ``serve as upper bounds---not predictions---'' |
+| R2-t4 | Fig.~4 $J$ without IPR | Fig.~\ref{fig:j} caption + Methods: IPR in open data; $J$ in figure |
+
+---
+
+# Response to Referees — PRB Major Revision (Report No. 1, archive)
 
 **Manuscript:** Non-Additive Strain--Doping Coupling in Quasi-Hexagonal C$_{60}$ Graphullerene  
 **Journal:** Physical Review B (Regular Article)
@@ -38,7 +117,7 @@
 **Referee concern:** N/B/P coupling classes are qualitative; need bond/charge metrics and decomposition of geometric vs.\ electronic nonlinearity.
 
 **Response:**
-1. **Electronic (N vs.\ B):** Results Sec.~\ref{sec:electronic} now reports verified $\epsilon{=}0$ gaps from the Exp.~7 archive ($E_g^{\mathrm{B}}\approx 0.03$, $E_g^{\mathrm{N}}\approx -0.14$, $E_g^{\mathrm{P}}\approx 0.05$~eV) and links them to opposite $\alpha$ signs on the legacy PBE rigid tetramer grid (Table~I; ${\sim}360$~meV/\% span). Fig.~\ref{fig:main}(a,b) and Fig.~\ref{fig:pdos} provide the $\pi$-DOS context.
+1. **Electronic (N vs.\ B):** Results Sec.~\ref{sec:electronic} now reports verified $\epsilon{=}0$ gaps from the archived tetramer electronic-structure set ($E_g^{\mathrm{B}}\approx 0.03$, $E_g^{\mathrm{N}}\approx -0.14$, $E_g^{\mathrm{P}}\approx 0.05$~eV) and links them to opposite $\alpha$ signs on the legacy PBE rigid tetramer grid (Table~I; ${\sim}360$~meV/\% span). Fig.~\ref{fig:main}(a,b) and Fig.~\ref{fig:pdos} provide the $\pi$-DOS context.
 2. **Structural (P):** Table~V expanded with $\sigma(\bar{d})$ at $+3$\% strain, showing P's frozen local environment ($\Delta\bar{d}\approx 3\times 10^{-5}$~\AA; $\sigma\approx 4\times 10^{-4}$~\AA) vs.\ B/N (${\sim}8.5\times 10^{-3}$~\AA\ mean shift; $\sigma{\sim}0.02$~\AA).
 3. **Nonlinearity decomposition:** Discussion (iv)--(vi) quantify Table~V $\Delta\bar{d}$ vs.\ $|\mathcal{S}|$ contrasts, exclude tetramer--periodic $\alpha$ extrapolation (v), and state decomposition outlook (vi); Design implications and Conclusions now cross-reference Sec.~\ref{sec:synergy} for the four-corner Table~III pristine checkpoint (Major Comment~1); Mayer bond order / Bader partitioning along the strain path remain **future work** (Limitations), so relative electronic vs.\ geometric weights are not quantified in this revision.
 

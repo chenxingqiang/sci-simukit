@@ -29,7 +29,8 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
 | **阻塞 PRB** | Table III/IV DFT；Exp10 cutoff400 |
 | **文稿 P 瓶颈** | Table III **2/4** → GEO ENDED 填数 |
-| **最新 Loop** | **R323**（见下方笔记） |
+| **最新 Loop** | **R324**（见下方笔记） |
+| **Loop C** | **R2-M1–M5** Report No. 2 映射 |
 | **下一 B 任务** | Table III GEO ENDED → 填数；Fig.~1/3 版式已收口 |
 | **主张-证据** | Table IV reference $\mathcal{S}$ = **A**；弛豫 III = **B**（2/4） |
 | **旗杆** | **PRB Regular Article** major revision |
@@ -1400,12 +1401,19 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+- **Loop R324（2026-06-21，双轨 + Loop C Report No. 2）**：
+ - **Track A**：Table III **2/4**；`relax_P_eps0_geo` OT~**213** — **不干预**
+ - **Track B + Loop C**：Report No. 2 入 `response_to_referees.md`（R2-M1–M5）；Methods 子节层级；Abstract upper bounds/not predictions；$|\mathcal{S}|/E_{\mathrm{sub}}$→Discussion；sign-conflict 物理；Fig J/IPR 分工
+ - **创新审计**：R2-M2/M1 文稿 = **A−**；R2-M3/M5 DFT = **B open**（2/4）
+ - **Git**：待 commit
+ - **下一轮**：Table III 3/4；R2-m1 bib 编译核对；Mayer backlog
+
 - **Loop R323（2026-06-21，双轨 + Loop C）**：
  - **Track A**：Table III **2/4**；`relax_P_eps0_geo` OT~**185** — **不干预**
  - **Track B（I Abstract）**：首句 ``periodic coupling magnitudes'' → ``reported periodic $|\mathcal{S}|$ magnitudes bound/predict''；对齐 Intro/Conclusion；**无新定量**
  - **Track C**：response §I Abstract 行 R323
  - **创新审计**：Abstract 契约 = **A**；Table III = **B**（2/4）
- - **Git**：待 commit
+ - **Git**：`c9473fe` — `loop R323: Abstract upper-bound opener` → **pushed: (local only)**
  - **下一轮**：GEO ENDED → Table III 行 3；R324 Intro 轮
 
 - **Loop R322（2026-06-21，双轨 + Loop C）**：

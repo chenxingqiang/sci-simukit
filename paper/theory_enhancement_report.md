@@ -251,6 +251,21 @@ Legacy `analyze_results.py` → 请改用 `analyze_exp9_polaron.py` + `dft_resul
 
 ---
 
+## 8. R324 Report No. 2 映射（2026-06-21）
+
+| R2 ID | 状态 | 本轮动作 |
+|-------|------|----------|
+| R2-M1 $\mathcal{S}$/$\pi$ | **partial** | Methods 显式 calligraphic $\mathcal{S}$；源稿已无 bare PDOS |
+| R2-M2 章节层级 | **partial** | `Detailed calculation protocols` 子节；Results `\subsubsection`；去 `RUN_TYPE` |
+| R2-M3 Mayer/Bader | **open** | Discussion 符号冲突物理扩充；Limitations 仍诚实 |
+| R2-M4 周期性 seed | **文稿 closed** | 配置限定措辞保持 |
+| R2-M5 Table III 4/4 | **DFT open** | 2/4 running |
+| R2-m2 $|\mathcal{S}|/E_{\mathrm{sub}}$ | **closed** | Methods→Discussion (vii) |
+| R2-t2 gate | **closed** | govern interpretation |
+| R2-t4 Fig J/IPR | **closed** | caption + Table II 分行 |
+
+---
+
 ## 8. R323 Abstract 审计（2026-06-21）
 
 | 检查项 | 结果 |

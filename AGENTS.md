@@ -1405,7 +1405,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track B（VI Results）**：`sec:synergy` + Discussion (i) 同步 R311 Table IV reference vs alternate PBE+D3 读法；**无新定量**
  - **Track C**：response checklist §V R312
  - **创新审计**：Results–Methods Table IV 契约 = **A**；Table III = **B**（2/4）
- - **Git**：待 commit
+ - **Git**：`12e0e62` — `loop R312: Results Table IV boundary sync` → **pushed: (local only)**
  - **下一轮**：GEO ENDED → Table III 行 3；R313 Discussion
 
 - **Loop R311（2026-06-21，双轨 + Loop C）**：

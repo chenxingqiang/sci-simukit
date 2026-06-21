@@ -130,7 +130,8 @@ Table~\ref{tab:I} and Sec.~\ref{sec:strain_response} report $E_{\mathrm{sub}}$ u
 \section{\label{sec:results}Results}
 % ------------------------------------------------------------------
 
-We organize the results around total-energy non-additivity under the rigid-strain protocol (Sec.~\ref{sec:notation}): Sec.~\ref{sec:electronic} summarizes band-edge context; Sec.~\ref{sec:strain_response} reports linear strain coefficients, $E_{\mathrm{sub}}$, and geometric strain response (Table~\ref{tab:V}); Sec.~\ref{sec:synergy} gives $\mathcal{S}(n)$ at $+3$\% strain across dopants and supercell sizes (Table~\ref{tab:II}; fifteen-point periodic audit); Sec.~\ref{sec:transport_obs} reports Marcus $\lambda$ and IPR/$J$ after the $\mathcal{S}$ audit.
+We organize the results around total-energy non-additivity under the rigid-strain upper-bound protocol (Sec.~\ref{sec:notation}); Tables~\ref{tab:III} and \ref{tab:IV} gate relaxation- and placement-sensitive interpretations.
+Sec.~\ref{sec:electronic} summarizes band-edge context; Sec.~\ref{sec:strain_response} reports linear strain coefficients, $E_{\mathrm{sub}}$, and geometric strain response (Table~\ref{tab:V}); Sec.~\ref{sec:synergy} gives $\mathcal{S}(n)$ at $+3$\% strain across dopants and supercell sizes (Table~\ref{tab:II}; fifteen-point periodic audit); Sec.~\ref{sec:transport_obs} reports Marcus $\lambda$ and IPR/$J$ after the $\mathcal{S}$ audit.
 
 \begin{figure*}[t]
 \includegraphics[width=\textwidth]{figures/out/figure_prb_main.pdf}
@@ -163,7 +164,7 @@ Table~\ref{tab:V} links this mechanical spread to local geometry: P shows neglig
 \subsection{\label{sec:synergy}Non-additive strain--doping coupling}
 
 Figure~\ref{fig:main}(d) tracks protocol $\mathcal{S}(n)$ (rigid-strain upper bounds) with one dopant per C$_{60}$ at $+3$\% biaxial strain.
-At $n=4$ under the fixed periodic dopant map (alternate placements not yet computed), $\mathcal{S}=-6.2$~meV/atom (B), $+3.0$~meV/atom (N), and $-23.7$~meV/atom (P); P shows the largest magnitude despite the smallest $|\alpha|$ on the tetramer grid (Table~\ref{tab:I}).
+At $n=4$ under the fixed periodic dopant map (reference tetramer placement in Table~\ref{tab:IV}; alternate seed-137 grid pending, Sec.~\ref{sec:methods_s4_seed}), $\mathcal{S}=-6.2$~meV/atom (B), $+3.0$~meV/atom (N), and $-23.7$~meV/atom (P); P shows the largest magnitude despite the smallest $|\alpha|$ on the tetramer grid (Table~\ref{tab:I}).
 Across fifteen periodic points ($n\in\{1,2,4,6,8\}$, B/N/P), $|\mathcal{S}|$ reaches $31.9$~meV/atom for P at $n=1$ and remains $\mathcal{O}(10)$~meV/atom at larger $n$ for B and P, whereas N is smaller in magnitude at $n=4$ but comparable at $n=1$.
 For N, $\mathcal{S}$ changes sign between $n=6$ ($+2.4$~meV/atom) and $n=8$ ($-2.3$~meV/atom) at the production 350~Ry cutoff; this reversal is \emph{not} used in the main conclusions until the matched 400~Ry $n{=}6$ control in Table~\ref{tab:II} and Tables~\ref{tab:III} and \ref{tab:IV} complete (Sec.~\ref{sec:validation}).
 Core size-scaling claims focus on $n\leq 4$ at matched 400~Ry cutoffs; B and P show monotonic $|\mathcal{S}|$ decrease from $n=1$ toward $n=4$, whereas $n\geq 6$ trends are reported for completeness only and mix the 350~Ry production cutoff.
@@ -175,6 +176,7 @@ Negative $\mathcal{S}$ (B, P at $n=4$) means coupled tension \emph{stabilizes} t
 \paragraph{Ionic-relaxation checkpoint (partial).}
 Table~\ref{tab:III} benchmarks four fixed-cell geometry-optimization corners on the tetramer $P$-substitution grid (pristine and $P$ at $\epsilon{=}0$ and $+3$\%); pristine corners at both strains have converged (2/4), and the two $P$-doped corners remain in progress.
 For the pristine tetramer, relaxed total energies at $\epsilon{=}0$ and $+3$\% are $-1363.9551$ and $-1363.9550$~$E_{\mathrm{h}}$ ($\Delta E\approx 1.2\times10^{-4}$~$E_{\mathrm{h}}$), roughly an order of magnitude smaller than the archived rigid legacy-PBE nominal strain increment ($\sim10^{-3}$~$E_{\mathrm{h}}$).
+Because rigid references use legacy PBE without D3 whereas relaxed corners use PBE+D3 (Sec.~\ref{sec:methods_s3_relax}), only \emph{sign} retention of $\mathcal{S}$ is interpreted once all four corners complete.
 $\mathcal{S}_{\mathrm{relaxed}}$ and sign comparison to the rigid $+0.96$~meV/atom entry await the two P-doped fixed-cell corners; Sec.~\ref{sec:discussion} links this interim pristine strain-energy shrinkage to the upper-bound reading of load-dependent margins.
 
 \subsection{\label{sec:transport_obs}Polaron transport diagnostics}

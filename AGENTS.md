@@ -1405,7 +1405,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track B（III Literature）**：WebSearch 无新 graphullerene bib；Intro 补 `Alihosseini2023strain`（COF 双层非加性先例，D1 共价网络）
  - **Track C**：response checklist §II R310
  - **创新审计**：COF 文献定位 = **B+**（bib 已有）；Table III = **B**（2/4）
- - **Git**：待 commit
+ - **Git**：`2708878` — `loop R310: Intro COF non-additive cite` → **pushed: (local only)**
  - **下一轮**：GEO ENDED → Table III 行 3；R311 Methods
 
 - **Loop R309（2026-06-21，双轨 + Loop C）**：

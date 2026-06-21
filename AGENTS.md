@@ -1402,7 +1402,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track B（V Data）**：`main_extended_tables*.tex` 与 canonical Table~II/III 契约对齐（legacy PBE、Sec.~`methods_s3_relax`、ongoing 措辞）
  - **Track C（C-M1）**：`response_to_referees` MC1 增离子步 5/300 + OT~109
  - **创新审计**：extended tables 契约 = **A**；弛豫 = **B pending**
- - **Git**：`077e9c7` — `loop R291: sync extended tables; relax JSON OT~109` → **pushed: (local only)**
+ - **Git**：`50741b9` — `loop R291: Discussion III interim pristine checkpoint`（+ `077e9c7` extended tables）→ **pushed: (local only)**
  - **paper_gap**：GEO ENDED → Table III 行 3
  - **下一轮**：`relax_P_eps0_geo` converged → `analyze_relax_s.py` + 填数
 

@@ -1400,6 +1400,14 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+- **Loop R318（2026-06-21，双轨 + Loop C）**：
+ - **Track A**：Table III **2/4**；`relax_P_eps0_geo` OT~**107** — **不干预**；JSON 刷新
+ - **Track B（IV Methods）**：`sec:notation` Tables III--IV gate + `methods_extended` Table IV $\mathcal{S}^{\mathrm{tet}}$ 边界句；`compile_prb.sh` ✅
+ - **Track C**：response §III checklist R318
+ - **创新审计**：Methods--Abstract/Intro 契约 = **A**；Table III = **B**（2/4）
+ - **Git**：`2eded59` — `loop R318: Methods Tables III-IV gate` → **pushed: (local only)**
+ - **下一轮**：GEO ENDED → Table III 行 3；R319 Results
+
 - **Loop R317（2026-06-21，双轨 + Loop C）**：
  - **Track A**：Table III **2/4**；`relax_P_eps0_geo` OT~**95** — **不干预**；JSON 刷新
  - **Track B（II Intro）**：Intro upper-bound 句对齐 R316 Abstract（Tables III--IV）；Methods 段 Table IV reference vs seed-137 措辞

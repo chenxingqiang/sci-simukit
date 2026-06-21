@@ -84,7 +84,7 @@
 | ML $R^2{>}0.95$、775%/300% $\mu$ | **C** | **[withdrawn from main]** | 勿进 Abstract/Results |
 | 下文 IPR 45→25、$J{=}135$ meV、$\mu{=}8.75\times$ | **C** | **[discrepancy]** | 仅作历史理论草稿；见 §2 |
 
-**Track A 快照（2026-06-21，R300）**：Exp9 **12/12** + **8/8** ✅；Table III **2/4**（$P$-doped fixed-cell corners in progress）；Exp10 **40/41** idle
+**Track A 快照（2026-06-21，R309）**：Exp9 **12/12** + **8/8** ✅；Table III **2/4**（`relax_P_eps0_geo` CRIT）；Exp10 **40/41** idle
 
 ---
 
@@ -242,7 +242,7 @@ Legacy `analyze_results.py` → 请改用 `analyze_exp9_polaron.py` + `dft_resul
 | 图 | 路径 | 证据等级 | 备注 |
 |----|------|----------|------|
 | Fig.~2 π-DOS @ ε=0 | `figures/out/figure_s1_pdos_exp7.pdf` | **A−** | Exp7 `.pdos`; MO isosurfaces pending VMD |
-| Fig.~3 Marcus λ | `figures/out/figure_s2_marcus.pdf` | **A−** | Exp9 **8/8** vertical；EA 竖直箭头 **R303**；B $\lambda^{-}$ excluded |
+| Fig.~3 Marcus λ | `figures/out/figure_s2_marcus.pdf` | **A−** | Exp9 **8/8** vertical；跨掺杂剂列对比 **R308**；EA 文本标注 B/P；B $\lambda^{-}$ excluded |
 | Fig.~4 $J$ + FCWD | `figures/out/figure_s3_j_exp4.pdf` | **B+** | (a) Exp4 $J$ **A**; (b) synthetic FCWD pending MolFC |
 | Table V 局域结构 | Table V in `supplementary_figures.tex` | **A−** | `local_structure_tetramer.json` |
 
@@ -250,7 +250,7 @@ Legacy `analyze_results.py` → 请改用 `analyze_exp9_polaron.py` + `dft_resul
 
 ---
 
-## 8. R307 横切 grep 审计（2026-06-21）
+## 8. R309 横切 grep 审计（2026-06-21）
 
 | 检查项 | 结果 |
 |--------|------|
@@ -260,7 +260,9 @@ Legacy `analyze_results.py` → 请改用 `analyze_exp9_polaron.py` + `dft_resul
 | Abstract/Results $\lambda$ 数值 | **无**（Fig.~3 边界 **A**） |
 | $|\mathcal{S}|=31.9$ / $-23.7$ vs `sdc_exp10_synergy_audit.json` | **一致** |
 | Table IV reference $\mathcal{S}^{\mathrm{tet}}$ vs `tetramer_s_reference_placement.json` | **一致**（+3.8/+5.7/+1.0 meV/atom） |
+| Table III $E$ vs `relax_validation_tetramer.json` | **一致**（2/4；$P$ rows pending） |
 | Koopmans/rVV10 主文声称 | Methods 诚实否定 only（**A**） |
 | `verify_reliability.sh` | **294** pass / **2** warn（Table I legacy PBE；Table III cross-functional） |
+| `compile_prb.sh` | **OK**（主文 PDF 含 R308--R309 Fig.~1/3）
 
-**创新审计（R308）**：Fig.~3 跨掺杂剂对比 + PRB 主图 legend = **A**；$\lambda$ JSON = **A−**；Table III = **B**（2/4）。
+**创新审计（R309）**：Fig.~1 caption 读图键 = **A**；Fig.~3 Marcus **R308** = **A**；Table III = **B**（2/4；`relax_P_eps0_geo` CRIT）。

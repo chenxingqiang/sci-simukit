@@ -29,8 +29,8 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
 | **阻塞 PRB** | Table III/IV DFT；Exp10 cutoff400 |
 | **文稿 P 瓶颈** | Table III **2/4** → GEO ENDED 填数 |
-| **最新 Loop** | **R308**（见下方笔记） |
-| **下一 B 任务** | Table III GEO ENDED → 填数 |
+| **最新 Loop** | **R309**（见下方笔记） |
+| **下一 B 任务** | Table III GEO ENDED → 填数；Fig.~1/3 版式已收口 |
 | **主张-证据** | Table IV reference $\mathcal{S}$ = **A**；弛豫 III = **B**（2/4） |
 | **旗杆** | **PRB Regular Article** major revision |
 | **下一 C 任务** | Table III GEO ENDED → 第三行 + `analyze_relax_s.py` |
@@ -1399,6 +1399,14 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R309（2026-06-21，双轨 + Loop C）**：
+ - **Track A**：Table III **2/4**；`relax_P_eps0_geo` **CRIT** OT~**165** grad~$1.5\times10^{-6}$ — **不干预**；JSON 快照刷新
+ - **Track B（VI Results + 横切）**：Fig.~\ref{fig:main} caption (a) $E_g$ / (d) peak $|\mathcal{S}|$ 读图键；`compile_prb.sh` 收口 R308 图件 PDF
+ - **Track C（C-m4）**：response Minor Fig.~1 行 R309
+ - **创新审计**：Fig.~1 caption = **A**；compile 契约 = **A**；Table III = **B**（2/4）
+ - **Git**：待 commit
+ - **下一轮**：`relax_P_eps0_geo` GEO ENDED → Table III 行 3；R310 Literature
 
 - **Loop R308（2026-06-21，双轨 + Loop C）**：
  - **Track A**：Table III **2/4**；`relax_P_eps0_geo` **CRIT** OT~**144** — **不干预**；刷新 JSON

@@ -2314,7 +2314,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
   - **Track A**：Table S3 **2/4**；`relax_P_eps0_geo` geo step ~5+ OT~105 — **不干预**；Exp10 idle
   - **Track B/C**：`812bedc` 主文 reference/alternate 措辞；theory/response Table S4 台账同步
   - **创新审计**：C-M2 措辞 = **A**；S3 = **B**（2/4 running）
-  - **Git**：`9f718b8` — `loop R269: Table S4 reference-alternate audit sync and S3 snapshot`
+  - **Git**：`9419d44` — `loop R269: Table S4 reference-alternate audit sync and S3 snapshot`
   - **下一轮**：$P@\epsilon{=}0$ GEO ENDED → S3 填数
 
 - **Loop R268（2026-06-21，双轨 + Loop C）**：

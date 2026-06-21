@@ -22,10 +22,10 @@
 **Referee concern:** Quantitative periodic $\mathcal{S}(n)$ may be seed-specific; seed~137 covers only tetramers.
 
 **Response:** We agree and have separated **qualitative** element trends from **quantitative** placement-specific magnitudes:
-1. All periodic $\mathcal{S}(n)$ and the fifteen-point grid are explicitly **seed~42** (Abstract, Methods, Results, Fig.~1(d), Conclusions).
-2. **Table~S4** is now **tetramer-only** (seed~42 vs.\ seed~137): we **removed** the periodic $n{=}4$ column, which mixed concentrations and boundary conditions with tetramer placement controls (parallel to Major Comment~1).
-3. Tetramer $\alpha$ opposite signs for N vs.\ B are reported as **seed~42 placement at fixed 5\% nominal doping**, with Table~S4 pending to test slope sensitivity; we do **not** claim placement-averaged magnitudes for the B/N/P networks.
-4. Qualitative ranking statements (P largest $|\mathcal{S}|$ at $n{=}4$ on this map; N vs.\ B $\alpha$ sign) are framed as **configuration-specific audits**, not universal dopant laws, until seed~137 converges and periodic alternate placements are added (Conclusions, future work).
+1. Periodic $\mathcal{S}(n)$ and the fifteen-point grid use a **fixed reference dopant-site map** (one substituent per C$_{60}$); main text no longer foregrounds RNG seed labels (Abstract, Methods, Results, Conclusions).
+2. **Table~S4** is **tetramer-only** (**reference** vs.\ **alternate** placement): we **removed** any periodic $n{=}4$ column, which mixed concentrations and boundary conditions with tetramer placement controls (parallel to Major Comment~1).
+3. Tetramer $\alpha$ opposite signs for N vs.\ B are reported for the **reference** placement at fixed 5\% nominal doping, with Table~S4 pending to test slope sensitivity; we do **not** claim placement-averaged magnitudes for the B/N/P networks.
+4. Qualitative ranking statements (P largest $|\mathcal{S}|$ at $n{=}4$ on this map; N vs.\ B $\alpha$ sign) are framed as **configuration-specific audits**, not universal dopant laws, until the alternate-placement grid converges and periodic alternate placements are added (Conclusions, future work).
 
 **Manuscript:** Methods substitutional-doping paragraph; Results strain/synergy subsections; Discussion (i); Limitations; Table~S4; SI Methods.
 
@@ -92,7 +92,7 @@
 | Task | Table | Status |
 |------|-------|--------|
 | Ionic relaxation geometry opt. | S3 | **running** 2/4 (`relax_P_eps0_geo`; pristine $\epsilon{=}0,+3$\% in Table~S3; $P@\epsilon{=}0$ near EPS intermittently) |
-| Seed~137 single-point grid | S4 | 18 inp; **pending** |
+| Alternate-placement ENERGY grid | S4 | 18 inp (`seed137` archive); **pending** |
 | 400~Ry $n{=}6$ N SP (Exp10 40/41) | S2 | **pending** |
 | Marcus vertical SP (8) | Fig.~S2 | **8/8** converged; eight $\lambda^{\pm}$ in SI Fig.~S2; B $\lambda^{-}{=}{-}0.173$~eV flagged non-physical (Limitations) |
 | Setup/process/result audit | `reliability_audit.json` | `bash experiments/verify_reliability.sh` (293 checks; coords+inp+workflow) |

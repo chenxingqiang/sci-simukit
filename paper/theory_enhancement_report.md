@@ -93,7 +93,7 @@
 |----------|----------|------|
 | 400 Ry $n\leq4$, 350 Ry $n\geq6$ | `size_*x60_*.inp` | **A** (R132 修复原 300/280 错误) |
 | Table S3 弛豫 | `relax_validation/` + `exp5_relax_status_line.sh` + `relax_validation_tetramer.json` | **B** 2/4 GEO（pristine $\epsilon{=}0,3$\% verified）；$\mathcal{S}_{\mathrm{relaxed}}$ pending |
-| Table S4 seed 137 (18 ENERGY, tetramer only) | `seed_validation/` + `run_seed137_validation.sh` | **B pending**; periodic alt-placement **not started** |
+| Table S4 alternate placement (18 ENERGY, tetramer; inp still seed~137) | `seed_validation/` + `run_seed137_validation.sh` | **B pending**; main text **reference/alternate** labels (R269) |
 | Table S5 局域结构 | `analyze_local_structure.py` | **A− verified** |
 | PRB 验证 DFT 队列 | `experiments/run_prb_revision_dft.sh` | **B**（Exp9 空闲后顺序跑） |
 | PRB `response_to_referees.md` | **A** | **[verified R210]** | Major/Minor 映射；pending S2--S4 + λ |

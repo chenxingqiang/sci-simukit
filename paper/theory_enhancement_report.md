@@ -84,7 +84,7 @@
 | ML $R^2{>}0.95$、775%/300% $\mu$ | **C** | **[withdrawn from main]** | 勿进 Abstract/Results |
 | 下文 IPR 45→25、$J{=}135$ meV、$\mu{=}8.75\times$ | **C** | **[discrepancy]** | 仅作历史理论草稿；见 §2 |
 
-**Track A 快照（2026-06-21，R299）**：Exp9 **12/12** + **8/8** ✅；Table III **2/4**（`relax_P_eps0_geo` **CRIT** OT~214）；Exp10 **40/41** idle
+**Track A 快照（2026-06-21，R300）**：Exp9 **12/12** + **8/8** ✅；Table III **2/4**（$P$-doped fixed-cell corners in progress）；Exp10 **40/41** idle
 
 ---
 
@@ -95,7 +95,7 @@
 | 400 Ry $n\leq4$, 350 Ry $n\geq6$ | `size_*x60_*.inp` | **A** (R132 修复原 300/280 错误) |
 | Table I tetramer $\alpha$/$E_{\mathrm{sub}}$ | `table1_verification.json` (legacy PBE, no D3) | **A−** (R270; 主文/S1 caption；勿与 periodic PBE+D3 $\mathcal{S}$ 混比) |
 | Table III 弛豫 | `relax_validation/` + `relax_P_eps0_geo.inp` + `exp5_relax_status_line.sh` | **B** 2/4 GEO；$P$-doped corners in progress；Methods §`sec:methods_s3_relax` = **A** |
-| Table IV alternate placement (18 ENERGY, tetramer) | `seed_validation/` + `run_seed137_validation.sh` | **B pending** (reference/alternate labels, R269) |
+| Table IV reference $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ | `tetramer_s_reference_placement.json` | **A**（B +3.8, N +5.7, P +1.0 meV/atom） |
 | Table V 局域结构 | `analyze_local_structure.py` | **A− verified** |
 | PRB 验证 DFT 队列 | `experiments/run_prb_revision_dft.sh` | **B**（Table III/IV pending） |
 | PRB `response_to_referees.md` | Major/Minor 映射 | **A** (R210; R271 Table I 泛函行) |
@@ -184,7 +184,7 @@ SI S1.2 合成 $\lambda$ 分解：**[illustrative only]**；eight-channel $\lamb
 | 优先级 | 缺口 | 动作 |
 |--------|------|------|
 | **P0** | Exp9 12/12 + 8 vertical SP | **closed R279** ✅ |
-| **P0** | Table III 4/4 GEO_OPT | `relax_P_eps0_geo` running（2/4 done） |
+| **P0** | Table III 4/4 GEO_OPT | $P$-doped fixed-cell corners in progress（2/4 done） |
 | **P1** | Table IV alternate placement | 18 ENERGY pending |
 | **P1** | Transport 主图 | **C**；PRB 不阻塞 |
 
@@ -262,4 +262,4 @@ Legacy `analyze_results.py` → 请改用 `analyze_exp9_polaron.py` + `dft_resul
 | Koopmans/rVV10 主文声称 | Methods 诚实否定 only（**A**） |
 | `verify_reliability.sh` | **294** pass / **2** warn（Table I legacy PBE；Table III cross-functional） |
 
-**创新审计（R294）**：全稿编号 + 定量 grep = **A**；Table III 填数 = **B pending**（2/4；$P@\epsilon{=}0$ ionic step 5/300）。
+**创新审计（R300）**：Table IV reference $\mathcal{S}^{\mathrm{tet}}$ Results 入文 = **A**；alternate placement = **B pending**；Table III = **B**（2/4）。

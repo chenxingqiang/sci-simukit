@@ -40,7 +40,7 @@
 **Response:**
 1. **Electronic (N vs.\ B):** Results Sec.~\ref{sec:electronic} now reports verified $\epsilon{=}0$ gaps from the Exp.~7 archive ($E_g^{\mathrm{B}}\approx 0.03$, $E_g^{\mathrm{N}}\approx -0.14$, $E_g^{\mathrm{P}}\approx 0.05$~eV) and links them to opposite $\alpha$ signs on the legacy PBE rigid tetramer grid (Table~I; ${\sim}360$~meV/\% span). Fig.~\ref{fig:main}(a,b) and Fig.~\ref{fig:pdos} provide the $\pi$-DOS context.
 2. **Structural (P):** Table~V expanded with $\sigma(\bar{d})$ at $+3$\% strain, showing P's frozen local environment ($\Delta\bar{d}\approx 3\times 10^{-5}$~\AA; $\sigma\approx 4\times 10^{-4}$~\AA) vs.\ B/N (${\sim}8.5\times 10^{-3}$~\AA\ mean shift; $\sigma{\sim}0.02$~\AA).
-3. **Nonlinearity decomposition:** Discussion (iv)--(vi) quantify Table~V $\Delta\bar{d}$ vs.\ $|\mathcal{S}|$ contrasts, exclude tetramer--periodic $\alpha$ extrapolation (v), and state decomposition outlook (vi); Design implications now link interim Table~III pristine $\Delta E$ to the upper-bound reading of protocol $|\mathcal{S}|$ (Major Comment~1); Mayer bond order / Bader partitioning along the strain path remain **future work** (Limitations), so relative electronic vs.\ geometric weights are not quantified in this revision.
+3. **Nonlinearity decomposition:** Discussion (iv)--(vi) quantify Table~V $\Delta\bar{d}$ vs.\ $|\mathcal{S}|$ contrasts, exclude tetramer--periodic $\alpha$ extrapolation (v), and state decomposition outlook (vi); Design implications and Conclusions now cross-reference Sec.~\ref{sec:synergy} for the four-corner Table~III pristine checkpoint (Major Comment~1); Mayer bond order / Bader partitioning along the strain path remain **future work** (Limitations), so relative electronic vs.\ geometric weights are not quantified in this revision.
 
 **Manuscript:** Results electronic subsection; Discussion (i)--(vi), validation protocol; Table~V; Fig.~\ref{fig:pdos}.
 
@@ -110,9 +110,9 @@
 | **§III.E Table~III** | Sign-only; PBE rigid vs PBE+D3 relaxed; four corners = pristine + $P$ at $\epsilon{=}0,+3$\% |
 | **§IV Structure** | No standalone Section IV; transport in Results |
 | **§IV Fig.~4** | FCWD placeholder removed from main text |
-| **§V Results** | Fifteen-point $\mathcal{S}(n)$ audit via Table~II; partial III pristine checkpoint (order-of-magnitude $\Delta E$); $P$-doped fixed-cell corners in progress |
-| **§VI Discussion** | Factor of four; design implications + interim Table~III pristine $\Delta E$ upper-bound link; Table~III sign-only criterion; **Katiyar2025strain** 2D roadmap vs $\mathcal{S}$ audit |
+| **§V Results** | Fifteen-point $\mathcal{S}(n)$ audit (Table~II); Table~IV reference $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ (+3.8/+5.7/+1.0 meV/atom, legacy PBE); partial III pristine checkpoint |
+| **§VI Discussion** | Factor of four; design implications + four-corner Table~III pristine checkpoint cross-ref Sec.~\ref{sec:synergy}; Table~III sign-only criterion; **Katiyar2025strain** 2D roadmap vs $\mathcal{S}$ audit |
 | **§VIII Conclusions** | Three Intro questions closed explicitly (1)--(3); upper-bound framing in opening; Table~III sign-only + Table~IV future work |
 
-*Document version: PRB Major Revision + Chinese checklist (Loop R299 polish, 2026-06-21). Align with `cover_letter_prb.txt`.*
+*Document version: PRB Major Revision + Chinese checklist (Loop R300, 2026-06-21). Align with `cover_letter_prb.txt`.*
 

@@ -29,7 +29,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
 | **阻塞 PRB** | Table III/IV DFT；Exp10 cutoff400 |
 | **文稿 P 瓶颈** | Table III **2/4** → GEO ENDED 填数 |
-| **最新 Loop** | **R319**（见下方笔记） |
+| **最新 Loop** | **R320**（见下方笔记） |
 | **下一 B 任务** | Table III GEO ENDED → 填数；Fig.~1/3 版式已收口 |
 | **主张-证据** | Table IV reference $\mathcal{S}$ = **A**；弛豫 III = **B**（2/4） |
 | **旗杆** | **PRB Regular Article** major revision |
@@ -1405,7 +1405,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track B（VI Results）**：Results opener Tables III--IV gate；$n{=}4$ reference/alternate 措辞；Table III partial sign-only 句；**无新定量**
  - **Track C**：response §V checklist R319
  - **创新审计**：Results 边界 = **A**；Table III = **B**（2/4）
- - **Git**：待 commit
+ - **Git**：`dd873f2` — `loop R319: Results Tables III-IV gate` → **pushed: (local only)**
  - **下一轮**：GEO ENDED → Table III 行 3；R320 Discussion
 
 - **Loop R318（2026-06-21，双轨 + Loop C）**：

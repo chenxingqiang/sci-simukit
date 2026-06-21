@@ -1402,7 +1402,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track B（VI Results）**：Results III checkpoint → Discussion upper-bound 交叉引用
  - **Track C（C-M1）**：response MC1/pending 去 volatile OT 数（与 Table~II 契约一致）
  - **创新审计**：Results–Discussion 链 = **A**；弛豫填数 = **B pending**
- - **Git**：待 commit
+ - **Git**：`0969588` — `loop R292: Results-Discussion III link; response OT cleanup` → **pushed: (local only)**
  - **下一轮**：GEO ENDED → Table III 行 3
 
 - **Loop R291（2026-06-21，双轨 + Loop C）**：

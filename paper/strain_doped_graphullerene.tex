@@ -17,6 +17,8 @@
 \usepackage{dcolumn}% Align table columns on decimal point
 \usepackage{bm}% bold math
 \usepackage{url}% Data Availability URLs
+\usepackage{placeins}% FloatBarrier before Discussion for merged SI tables/figures
+\hyphenation{graph-ul-ler-ene quasi-hexagonal}
 
 \begin{document}
 
@@ -33,10 +35,12 @@
 \date{\today}
 
 \begin{abstract}
-Sequential strain and doping scans are standard in covalent molecular networks, but total-energy effects need not add.
-In quasi-hexagonal C$_{60}$ graphullerene we quantify the omitted cross term with a synergy order parameter $\mathcal{S}$ (meV/atom).
-Under a rigid-strain upper-bound protocol (PBE+D3), tetramers and fifteen periodic $n\times\mathrm{C}_{60}$ supercells ($n=1$--$8$, B/N/P @ $+3$\%, seed~42 placement) give opposite strain coefficients for N ($-303$~meV/\%) and B ($+57$~meV/\%) and $|\mathcal{S}|$ up to $31.9$~meV/atom (P, $n{=}1$) at $+3$\% strain, largest for P despite small $|\alpha|$.
-The pattern warns that sequential high-throughput screens can mis-estimate \emph{relative} stability margins when local dopant distortion couples nonlinearly to external strain; Marcus $\lambda$ and hopping diagnostics (Supplemental Material Fig.~S5--S6) are orthogonal to the $\mathcal{S}$ audit, reported only in Supplemental Material, and remain incomplete until vertical single-points at the neutral geometry finish.
+Under a rigid-strain upper-bound protocol (PBE+D3) with fixed fractional coordinates, all reported coupling magnitudes bound---rather than predict---equilibrium total-energy cross terms until ionic-relaxation benchmarks complete (Table~\ref{tab:S3}).
+Sequential strain and doping scans are standard in covalent molecular networks, but total-energy effects are not necessarily additive.
+In quasi-hexagonal C$_{60}$ graphullerene we quantify the omitted cross term with the synergy order parameter $\mathcal{S}$ (meV per atom) [Eq.~\eqref{eq:synergy_order}].
+On tetramers (${\sim}5$\% nominal doping) and fifteen periodic $n\times\mathrm{C}_{60}$ supercells ($n=1$--$8$, B/N/P @ $+3$\%, seed~42 placement; one substituent per C$_{60}$, ${\sim}1.67$~at.\%), the linear strain coefficient $\alpha$ is opposite for N ($-303$~meV/\%) and B ($+57$~meV/\%), and the protocol yields $|\mathcal{S}|$ values up to $31.9$~meV/atom for P at $n{=}1$ and $+3$\% strain, with P showing the largest $|\mathcal{S}|$ despite the smallest $|\alpha|$.
+Sequential high-throughput screens can introduce systematic errors in the estimation of \emph{relative} stability margins when local dopant distortion couples nonlinearly to external strain.
+Marcus reorganization energies and nearest-neighbor hopping parameters (Figs.~\ref{fig:S2} and \ref{fig:S3}) are reported for transport context but do not affect the non-additivity conclusions.
 \end{abstract}
 
 %\keywords{} % optional; requires showkeys class option (apstemplate.tex)
@@ -48,15 +52,16 @@ The pattern warns that sequential high-throughput screens can mis-estimate \emph
 % ------------------------------------------------------------------
 
 Covalent molecular networks---from graphullerenes to covalent organic frameworks---are often tuned jointly by substitutional chemistry and mechanical load, yet many pipelines still estimate $E_{\mathrm{tot}}(\epsilon,\delta)$ from \emph{separate} doping-only and strain-only calculations~\cite{Materials2024untangling,Li2024strain,Katiyar2025strain}.
-Synthetic carbon allotropes with extended $\pi$ conjugation underpin optoelectronic applications; charge transport in molecular networks is often polaronic and anisotropic~\cite{Capobianco2024electron,Yang2021two,Silva2024large,Shi2023strainC60}, yet prior work emphasizes band edges, mobility, or hopping rather than a same-functional total-energy cross term under joint biaxial $(\epsilon,\delta)$ load.
+Synthetic carbon allotropes with extended $\pi$ conjugation underpin optoelectronic applications; charge transport in molecular networks is often polaronic and anisotropic~\cite{Capobianco2024electron,Yang2021two,Silva2024large,Shi2023strainC60}, yet prior work emphasizes band edges, mobility, or hopping rather than a total-energy cross term evaluated at the \emph{identical} exchange-correlation functional level under joint biaxial $(\epsilon,\delta)$ load.
 Quasi-hexagonal (qHP) C$_{60}$ graphullerene~\cite{Yang2021two,Capobianco2024electron} provides a covalently linked model network for such coupled tuning, with interfullerene linking that raises hopping couplings relative to vdW C$_{60}$ monolayers~\cite{Capobianco2024electron}.
 Ab initio models of pristine qHP networks report intrinsic intramolecular strain from the eight-bond hexagonal connectivity~\cite{Makov2023graphullerene}, so external biaxial load couples to an already distorted cage baseline.
-Beyond pristine monolayers, strain and substitution independently reshape band edges~\cite{Li2024strain,Khan2025tuning,Peng2025monolayer,LopezAlcalay2025graphendofullerene}, while related 2D fullerene networks show anisotropic mechanical and tribological response under load~\cite{Wang2024simulation,Qiu2025atomic} and endohedral qHPC$_{60}$ cage filling reshapes band gaps~\cite{Pereira2026endohedral}; none of these reports a periodic total-energy cross term under joint biaxial $(\epsilon,\delta)$ load, motivating explicit coupled grids rather than additive compositional estimates.
-Non-additive coupling is documented in other two-dimensional networks~\cite{Materials2024untangling}; a quantitative \emph{total-energy} cross term $\mathcal{S}$ [Eq.~\eqref{eq:synergy_order}] has not been reported for substitutional B/N/P qHP C$_{60}$ tetramers and $n=1$--$8$ supercells under a single PBE+D3 protocol on fifteen periodic $(n,\delta)$ points at $+3$\% strain (seed~42 placement).
+Beyond pristine monolayers, strain and substitution independently reshape band edges~\cite{Li2024strain,Khan2025tuning,Peng2025monolayer,LopezAlcalay2025graphendofullerene}, while related 2D fullerene networks show anisotropic mechanical and tribological response under load~\cite{Wang2024simulation,Qiu2025atomic} and endohedral qHP C$_{60}$ cage filling reshapes band gaps~\cite{Pereira2026endohedral}; none of these reports a periodic total-energy cross term under joint biaxial $(\epsilon,\delta)$ load, motivating explicit coupled grids rather than an additive superposition of composition and strain effects.
+Non-additive coupling is documented in other two-dimensional networks~\cite{Materials2024untangling}; a quantitative \emph{total-energy} synergy order parameter $\mathcal{S}$ [Eq.~\eqref{eq:synergy_order}] has not been reported for substitutional B/N/P qHP C$_{60}$ tetramers and $n=1$--$8$ supercells under a single PBE+D3 protocol across fifteen periodic $(n,\delta)$ data points at $+3$\% strain (seed~42 placement).
 
-We address three questions on this model network: (1)~how opposite linear strain coefficients $\alpha$ emerge for donor vs.\ acceptor dopants; (2)~how large the omitted cross term $|\mathcal{S}|$ is when strain and substitution are applied jointly; and (3)~whether $|\mathcal{S}|$ tracks $|\alpha|$ or instead reflects local structural distortion.
-Using $\gtrsim 90$ converged CP2K tasks~\cite{SupplementalMaterial} (Table~S2), we define $\mathcal{S}$ on shared tetramer and periodic grids; Marcus $\lambda$ and hopping observables (IPR/$J$) are orthogonal to the $\mathcal{S}$ audit, reported only in Supplemental Material Fig.~S5--S6 (vertical single-points in progress; 6/8 converged at revision), and are not required for the non-additivity conclusions here.
-The central narrative anchor is that \emph{local} dopant distortion and \emph{global} biaxial strain interact nonlinearly in total energy: $|\mathcal{S}|$ can exceed what linear $\alpha$ alone would suggest, so \emph{relative} stability margins from $\epsilon=0$ substitution energies or from strain-only elastic increments need not survive a coupled load (without reordering widely separated $E_{\mathrm{sub}}$).
+We address three questions on this model network: (1)~how opposite linear strain coefficients $\alpha$ (meV per 1\% biaxial strain of the \emph{total} cell energy) emerge for donor vs.\ acceptor dopants; (2)~how large the omitted synergy cross term $|\mathcal{S}|$ (meV/atom) is when strain and substitution are applied jointly; and (3)~whether $|\mathcal{S}|$ tracks $|\alpha|$ or instead reflects local structural distortion.
+Using $\gtrsim 90$ converged CP2K tasks~(Table~\ref{tab:S2}), we define $\mathcal{S}$ on matched tetramer and periodic PBE+D3 grids (fifteen $(n,\delta)$ points at $+3$\% strain, seed~42 placement) and report opposite donor/acceptor $\alpha$ on the tetramer strain grid, demonstrating that the largest $|\mathcal{S}|$ does not coincide with the smallest tetramer $|\alpha|$ for size-mismatched P.
+\emph{Local} dopant distortion and \emph{global} biaxial strain interact nonlinearly in total energy: $|\mathcal{S}|$ can exceed what linear $\alpha$ alone would suggest, so \emph{relative} stability margins from $\epsilon=0$ substitution energies or strain-only elastic increments need not survive a coupled load even if they do not reorder dopants with widely separated $E_{\mathrm{sub}}$ values.
+Marcus $\lambda$ and hopping observables (Figs.~\ref{fig:S2} and \ref{fig:S3}) characterize transport-relevant quantities but are not used to infer $\mathcal{S}$.
 
 % ------------------------------------------------------------------
 \section{\label{sec:methods}Computational Methods}
@@ -64,78 +69,101 @@ The central narrative anchor is that \emph{local} dopant distortion and \emph{gl
 
 \subsection{Electronic-structure setup}
 
-All calculations use CP2K~\cite{cp2k2025} with PBE~\cite{Perdew1996generalized} and Grimme DFT-D3 (Becke--Johnson damping)~\cite{Grimme2011effect} (Supplemental Material for basis, SCF, and task inventory).
-We deliberately remain below the Koopmans/rVV10 level of Ref.~\citenum{Capobianco2024electron} to obtain a uniform, size-converged $(\epsilon,\delta)$ scan rather than absolute polaron binding energies.
+All calculations use CP2K~\cite{cp2k2025} with PBE~\cite{Perdew1996generalized} and Grimme DFT-D3 (Becke--Johnson damping)~\cite{Grimme2011effect}; Table~\ref{tab:S2} summarizes basis sets, SCF convergence criteria, and the full task inventory.
+We do not employ the Koopmans-compliant rVV10 approach used in Ref.~\citenum{Capobianco2024electron}, and instead adopt a uniform PBE+D3 protocol suitable for large-scale parameter scanning, at the cost of absolute accuracy in polaron binding energies.
 
 \subsection{Notation and conventions}
 \label{sec:notation}
 Biaxial strain is denoted $\epsilon$ (percent); dopant species $\delta\in\{B,N,P\}$.
-The synergy order parameter is always $\mathcal{S}$ (calligraphic) in meV/atom [Eq.~\eqref{eq:synergy_order}].
+The synergy order parameter is denoted by the calligraphic symbol $\mathcal{S}$, with units of meV per atom [Eq.~\eqref{eq:synergy_order}].
 $\pi$-projected densities of states are written $\pi$-DOS (never bare ``pi'' in equations).
 
 \textbf{Rigid-strain protocol.}
 Biaxial strain scales the in-plane lattice vectors of the \emph{pristine} equilibrium cell at fixed fractional coordinates (no ionic relaxation under load).
-Reported $\alpha$ and $\mathcal{S}$ under this protocol are \emph{upper bounds} on coupling under load until the ionic-relaxation benchmark in Table~S3 converges; the rigid tetramer reference cross term in Table~S3 ($\mathcal{S}=+0.96$~meV/atom) already differs in sign from the periodic $n{=}4$ $P$ value ($-23.7$~meV/atom), underscoring that relaxation and concentration matching remain open checks.
+Reported $\alpha$ and $\mathcal{S}$ under this protocol are \emph{upper bounds} at fixed coordinates, not equilibrium thermodynamic quantities. Table~\ref{tab:S3} benchmarks four fixed-cell geometry-optimization corners for tetramer $P@+3$\% to test whether $\mathcal{S}$ retains \emph{sign} after ionic relaxation \emph{within the same tetramer grid} (magnitude ratios are not quantitative until a matched-functional rigid reference exists); it does \emph{not} validate periodic $n{=}4$ magnitudes, which differ in dopant concentration and boundary conditions. Main-text $|\mathcal{S}|$ values therefore bound---rather than predict---meV/atom-scale non-additivity until Table~\ref{tab:S3} converges.
 
 \textbf{Plane-wave cutoff (size scaling).}
-Archived CP2K inputs use 400~Ry for $n\leq 4$ and 350~Ry for $n\geq 6$ (Table~S2); comparisons at fixed $n$ always share the same cutoff.
-Cross-$n$ trends therefore mix a modest basis change at $n=6$; we do \emph{not} interpret the reported N $\mathcal{S}$ sign change between $n=6$ and $n=8$ as a physical size effect until the matched 400~Ry $n{=}6$ control in Supplemental Table~S2 completes.
+Archived CP2K inputs use 400~Ry for $n\leq 4$ and 350~Ry for $n\geq 6$ (Table~\ref{tab:S2}); comparisons at fixed $n$ always share the same cutoff.
+Cross-$n$ trends therefore mix a modest plane-wave cutoff change at $n=6$; we do \emph{not} interpret the reported N $\mathcal{S}$ sign change between $n=6$ and $n=8$ as a physical size effect until the matched 400~Ry $n{=}6$ control in Table~\ref{tab:S2} completes.
 
 \subsection{Substitutional doping and grids}
 
-Tetramer models ($4\times\mathrm{C}_{60}$, 240 sites) substitute B, N, or P at nominal 5\% (12--13 sites from archived coordinates, random seed~42), not a thermodynamic minimum.
-A second seed~137 tetramer ensemble (18 ENERGY tasks; Table~S4) tests whether $\alpha$ and tetramer-scale $\mathcal{S}$ are sensitive to dopant placement; periodic $\mathcal{S}(n)$ claims remain on the seed~42 periodic protocol until seed~137 periodic points are added.
-Periodic scaling cells place one dopant per C$_{60}$ ($n=1$--$8$), so nominal concentration falls from $\sim 5$\% to $\sim 1.7$\% per atom at $n=4$.
-Tetramer $\alpha$, gaps, and Supplemental Material IPR/$J$ trends are therefore not directly interchangeable with periodic $\mathcal{S}(n)$ without a matched-concentration benchmark; all $\mathcal{S}$ claims use the periodic protocol.
-In total, $\gtrsim 90$ converged neutral tasks support the quantitative claims below (Table~S2).
-Charged-state geometry optimizations (12/12 converged) and vertical single-points for Marcus reorganization energies follow the same functional and basis choices (PBE+D3, 400~Ry on the tetramer grid) and are reported separately in Supplemental Material Fig.~S5 (eight vertical ENERGY tasks at the neutral geometry; 6/8 converged at revision; verified $\lambda$ values SI-only); they are orthogonal to and do not enter the $\mathcal{S}$ definition in Eq.~\eqref{eq:synergy_order}.
+Tetramer models ($4\times\mathrm{C}_{60}$, 240 sites) substitute B, N, or P at nominal 5\% (12--13 sites from archived coordinates, random seed~42); these dopant configurations are not thermodynamically optimized ground states.
+A second seed~137 tetramer ensemble (18 single-point energy tasks; Table~\ref{tab:S4}) tests whether tetramer $\alpha$ and $\mathcal{S}$ are placement-sensitive at ${\sim}5$\% nominal doping.
+All periodic supercells propagate the same seed~42 site map (one substituent per C$_{60}$); quantitative $|\mathcal{S}|$ on the fifteen-point grid is therefore configuration-specific, whereas donor/acceptor sign trends for $\alpha$ are discussed as element-intrinsic qualitative expectations pending Table~\ref{tab:S4}.
+Periodic scaling cells place one substituent per C$_{60}$ ($n$ dopants among $60n$ lattice atoms, ${\sim}1.67$~at.\% for all $n$), contrasting with the tetramer grid (${\sim}5$\% nominal).
+Tetramer $\alpha$, gaps, and tetramer IPR/$J$ trends (Fig.~\ref{fig:S3}) are therefore not directly interchangeable with periodic $\mathcal{S}(n)$ without a matched-concentration benchmark; all $\mathcal{S}$ claims use the periodic protocol.
+In total, $\gtrsim 90$ converged neutral tasks support the protocol-audited claims below (Table~\ref{tab:S2}); rigid-strain $|\mathcal{S}|$ magnitudes are upper bounds until Tables~\ref{tab:S3} and \ref{tab:S4} complete.
+Charged-state geometry optimizations (UKS, multiplicity~2, $\mathrm{EPS\_SCF}=10^{-6}$~$E_{\mathrm{h}}$) supply adiabatic ionization potentials and electron affinities ($E_{\mathrm{opt}}^{\pm}$).
+Eight vertical single-point energy evaluations compute $E_{\mathrm{vert}}^{\pm}$ at the \emph{neutral}-geometry coordinates with charged UKS settings matched to the relaxed state ($\mathrm{EPS\_SCF}=10^{-7}$~$E_{\mathrm{h}}$ by default; B $q=-1$: $10^{-6}$~$E_{\mathrm{h}}$), giving $\lambda^{\pm}=E_{\mathrm{vert}}^{\pm}-E_{\mathrm{opt}}^{\pm}$ following Ref.~\citenum{Capobianco2024electron}.
+These Marcus diagnostics appear only in Fig.~\ref{fig:S2} and do not enter Eq.~\eqref{eq:synergy_order}.
 \subsection{Energy observables}
 
-Linear strain sensitivity $\alpha=\mathrm{d}E/\mathrm{d}\epsilon$ (meV per 1\% biaxial strain, tetramer \emph{total} energy) is obtained from the 24-point grid (Table~S1).
+Linear strain sensitivity $\alpha=\mathrm{d}E/\mathrm{d}\epsilon$ (meV per 1\% biaxial strain, tetramer \emph{total} energy) is obtained from the 24-point grid (Table~\ref{tab:S1}).
 Positive $\alpha$ means tension \emph{raises} total energy; negative $\alpha$ means tension \emph{lowers} it under the rigid-strain protocol.
 Substitution energy $E_{\mathrm{sub}}=(E_{\mathrm{doped}}-E_{\mathrm{pristine}})/n_{\mathrm{dopants}}$ is the total-energy difference per dopant site at fixed strain \emph{without} elemental chemical-potential corrections; it is \emph{not} a thermodynamic standard formation enthalpy (${\sim}$eV-scale tabulated values) and is used only for relative ranking within this protocol.
 In sequential high-throughput screens one often estimates $E_{\mathrm{tot}}(\epsilon,\delta)\approx E_{\mathrm{sub}}(\epsilon{=}0)+E_{\mathrm{strain}}(\epsilon)$; the neglected term is precisely $\mathcal{S}(\epsilon,\delta)$---the absolute error in that additive estimate.
-For screening workflows, the magnitude of this error is best gauged against the substitution-energy scale: at $n=4$ and $+3$\% strain, P has $|\mathcal{S}|=23.7$~meV/atom while the per-atom substitution scale is $|E_{\mathrm{sub}}|\times n_{\mathrm{dop}}/n_{\mathrm{atoms}}\approx 0.79$~eV/atom ($|E_{\mathrm{sub}}|\approx 16$~eV per P site, $n_{\mathrm{dop}}{=}12$, Table~S1)---i.e.\ $|\mathcal{S}|/|E_{\mathrm{sub}}|_{\mathrm{per\,atom}}\sim 3$\%, large enough to shift \emph{relative} stability margins among chemistries with comparable $|E_{\mathrm{sub}}|$ in sequential doping-then-strain screens, even though $|\mathcal{S}|$ exceeds the rigid per-atom strain increment ($\alpha\times 3\%/N_{\mathrm{atoms}}\lesssim 0.3$~meV/atom for P) and does not reorder widely separated $E_{\mathrm{sub}}$ ranks (e.g., B vs.\ P at $\epsilon{=}0$).
+For screening workflows under the rigid upper-bound protocol, the magnitude of this additive omission is best gauged against the substitution-energy scale: at $n=4$ and $+3$\% strain, P has $|\mathcal{S}|=23.7$~meV/atom while the per-atom substitution scale is $|E_{\mathrm{sub}}|\times n_{\mathrm{dop}}/n_{\mathrm{atoms}}\approx 0.79$~eV/atom ($|E_{\mathrm{sub}}|\approx 16$~eV per P site, $n_{\mathrm{dop}}{=}4$ substituents in the $n{=}4$ cell, Table~\ref{tab:S1})---i.e.\ $|\mathcal{S}|/|E_{\mathrm{sub}}|_{\mathrm{per\,atom}}\sim 3$\% as an \emph{order-of-magnitude} ratio only, because tetramer and periodic dopant concentrations differ; this ratio is not used as a core nonlinearity test.
 
 \input{sdc_method_section.tex}
 
-\subsection{Validation benchmarks (Supplemental Material)}
+\input{methods_extended.tex}
+
+\subsection{Validation benchmarks}
 \label{sec:validation}
-The full calculation map (converged tasks, main-text usage, and pending controls) is in Supplemental Table~S2; ionic-relaxation energies (Table~S3) and the alternate seed~137 grid (Table~S4) appear there when complete.
-Three supplemental benchmarks---rigid vs.\ relaxed tetramer $\mathcal{S}_P$ (Table~S3), alternate dopant seed~137 (Table~S4), and a matched 400~Ry $n{=}6$ N control (Table~S2)---gate interpretation of the N $\mathcal{S}(n)$ sign change cited in Secs.~\ref{sec:synergy} and~\ref{sec:discussion}.
-Marcus charged-state diagnostics (Fig.~S5; 12/12 GEO\_OPT converged; vertical $\lambda$ in progress, 6/8 at revision) are orthogonal to the $\mathcal{S}$ audit and reported only in Supplemental Material.
-Substitution energy $E_{\mathrm{sub}}$ is \emph{not} a thermodynamic formation enthalpy: it omits elemental chemical potentials and reports $(E_{\mathrm{doped}}-E_{\mathrm{pristine}})/n_{\mathrm{dopants}}$ at fixed strain only.
+The full calculation map (converged tasks, main-text usage, and pending controls) is in Table~\ref{tab:S2}; ionic-relaxation energies (Table~\ref{tab:S3}) and the alternate seed~137 grid (Table~\ref{tab:S4}) appear there when complete.
+Three validation benchmarks---rigid vs.\ relaxed tetramer $\mathcal{S}_P$ (Table~\ref{tab:S3}), alternate dopant seed~137 (Table~\ref{tab:S4}), and a matched 400~Ry $n{=}6$ N control (Table~\ref{tab:S2})---gate interpretation of the N $\mathcal{S}(n)$ sign change cited in Secs.~\ref{sec:synergy} and~\ref{sec:discussion}.
+Table~\ref{tab:S3} has completed the pristine fixed-cell geometry-optimization corners at $\epsilon{=}0$ and $+3$\% ($E=-1363.9551$ and $-1363.9550$~$E_{\mathrm{h}}$); $\mathcal{S}_{\mathrm{relaxed}}$ and sign retention await the P-doped corners ($P@\epsilon{=}0$ running; $P@+3$\% queued).
+
+Table~\ref{tab:S1} and Sec.~\ref{sec:strain_response} report $E_{\mathrm{sub}}$ using the substitution-energy definition above (no chemical-potential reference; not a formation enthalpy).
+
+\input{tables/tab_s2.tex}
+\input{tables/tab_s3.tex}
+\input{tables/tab_s4.tex}
 
 % ------------------------------------------------------------------
 \section{\label{sec:results}Results}
 % ------------------------------------------------------------------
 
-We organize the results around total-energy non-additivity: Sec.~\ref{sec:electronic} summarizes band-edge context; Sec.~\ref{sec:strain_response} reports linear strain coefficients and $E_{\mathrm{sub}}$; Sec.~\ref{sec:synergy} gives $\mathcal{S}(n)$ at $+3$\% strain across dopants and supercell sizes. Marcus schematics and IPR/$J$ diagnostics are orthogonal to this audit and appear only in Supplemental Material Fig.~S5--S6; adiabatic IP/EA and any verified $\lambda$ values are in Supplemental Fig.~S5 only---none are quoted in Sec.~\ref{sec:results}---from twelve converged charged geometry optimizations with vertical single-points in progress (6/8 at revision).
+We organize the results around total-energy non-additivity under the rigid-strain protocol (Sec.~\ref{sec:notation}): Sec.~\ref{sec:electronic} summarizes band-edge context; Sec.~\ref{sec:strain_response} reports linear strain coefficients, $E_{\mathrm{sub}}$, and geometric strain response (Table~\ref{tab:S5}); Sec.~\ref{sec:synergy} gives $\mathcal{S}(n)$ at $+3$\% strain across dopants and supercell sizes (Table~\ref{tab:S2}); Sec.~\ref{sec:transport_obs} reports Marcus $\lambda$ and IPR/$J$ after the $\mathcal{S}$ audit.
+
+\begin{figure*}[t]
+\includegraphics[width=\textwidth]{figures/out/figure_prb_main.pdf}
+\caption{\label{fig:main}Coupled $(\epsilon,\delta)$ response in doped qHP C$_{60}$ (PBE+D3).
+(a)~HOMO--LUMO gap vs.\ strain.
+(b)~$\pi$-DOS for B @ $\epsilon{=}0$ (color scheme follows Ref.~\citenum{Capobianco2024electron}).
+(c)~Mechanical $\alpha$ (Table~\ref{tab:S1}).
+(d)~Seed~42 protocol $\mathcal{S}(n)$ at $+3$\% (max $|\mathcal{S}|{=}31.9$~meV/atom for P @ $n{=}1$; at $n{=}4$: $-6.2$, $+3.0$, $-23.7$~meV/atom for B/N/P); Marcus $\lambda$ and IPR/$J$ in Figs.~\ref{fig:S2} and \ref{fig:S3}.}
+\end{figure*}
 
 \subsection{\label{sec:electronic}Electronic structure under strain and doping}
 
-Figure~\ref{fig:main}(a,b) summarizes tetramer HOMO--LUMO gaps and representative $\pi$-DOS (B @ $\epsilon{=}0$; color scheme follows Ref.~\citenum{Capobianco2024electron}).
-B compresses the $\pi$ gap toward zero at $\epsilon{=}0$; N and P retain finite gaps; tensile strain narrows the pristine gap.
-These band-edge data contextualize total-energy $\mathcal{S}$ but are not used to infer $\mathcal{S}$.
+Figure~\ref{fig:main}(a,b) summarizes tetramer HOMO--LUMO gaps (archived tetramer electronic-structure set) and representative $\pi$-DOS (B @ $\epsilon{=}0$; color scheme follows Ref.~\citenum{Capobianco2024electron}).
+At $\epsilon{=}0$, B is near a closed $\pi$ gap ($E_g\approx 0.03$~eV), N doping pins the Fermi level inside the conduction band ($E_g\approx -0.14$~eV), and P remains gapped ($E_g\approx 0.05$~eV); tensile strain narrows the pristine gap (${\sim}23$~meV/\% on the three available strain points in the dataset).
+Donor vs.\ acceptor ordering of the $\epsilon{=}0$ gaps tracks the opposite $\alpha$ signs in Sec.~\ref{sec:strain_response}, but band-edge slopes are not used to infer $\mathcal{S}$.
+\input{tables/fig_pdos.tex}
 
 \subsection{\label{sec:strain_response}Mechanical strain sensitivity}
 
 Pristine tetramers are strain-insensitive ($|\alpha|\approx 1$~meV/\%).
-Substitution opens an order-of-magnitude spread in $\alpha$: N ($-303.2$~meV/\%, tension stabilizes the doped cell), B ($+56.9$~meV/\%, tension destabilizes), and P ($-19.1$~meV/\%, weakly stabilizing) (Table~S1).
-The opposite sign for N vs.\ B persists across the $\epsilon\in\{-5,\ldots,+5\}$\% grid and is not an artifact of a single strain point.
+\input{tables/tab_s1.tex}
+On the seed~42 tetramer grid (Table~\ref{tab:S1}), substitution opens an order-of-magnitude spread in $\alpha$: N ($-303.2$~meV/\%, tension stabilizes the doped cell), B ($+56.9$~meV/\%, tension destabilizes), and P ($-19.1$~meV/\%, weakly stabilizing).
+The opposite sign for N vs.\ B persists across the $\epsilon\in\{-5,\ldots,+5\}$\% grid at this fixed placement and is not an artifact of a single strain point; Table~\ref{tab:S4} will test whether the slopes are placement-sensitive.
 At $\epsilon=+5$\%, N remains the most tension-stabilized dopant ($\alpha$ most negative), whereas B shows the strongest destabilization under tension; P sits between these extremes with a modest negative $\alpha$, foreshadowing why its linear coefficient poorly predicts $|\mathcal{S}|=23.7$~meV/atom for P at $n{=}4$ under $+3$\% strain (Sec.~\ref{sec:synergy}).
-Substitution energies at $\epsilon=0$ span $E_{\mathrm{sub}}=+73.4$~eV/dopant (B), $-115.3$~eV/dopant (N), and $-15.8$~eV/dopant (P)---raw total-energy differences without chemical-potential reference, not standard formation enthalpies---with $n_{\mathrm{dop}}=12$--13 counted from input coordinates (Table~S1).
-Figure~\ref{fig:main}(c) highlights the $\alpha$ split; ranking dopants by $\epsilon=0$ $|E_{\mathrm{sub}}|$ alone is misleading once $+3$\% strain is applied.
+Substitution energies at $\epsilon=0$ span $E_{\mathrm{sub}}=+73.4$~eV/dopant (B), $-115.3$~eV/dopant (N), and $-15.8$~eV/dopant (P)---raw total-energy differences without chemical-potential reference, not standard formation enthalpies---with $n_{\mathrm{dop}}=12$--13 counted from input coordinates (Table~\ref{tab:S1}).
+Figure~\ref{fig:main}(c) highlights the $\alpha$ split; ranking dopants solely by $|E_{\mathrm{sub}}|$ at $\epsilon{=}0$ is misleading once $+3$\% strain is applied.
+\input{tables/tab_s5.tex}
+Table~\ref{tab:S5} links this mechanical spread to local geometry: P shows negligible strain-induced change in mean nearest C distance ($\Delta\bar{d}\approx 3\times 10^{-5}$~\AA\ vs.\ ${\sim}8.5\times 10^{-3}$~\AA\ for B at $+3$\% load), foreshadowing the $\alpha$--$\mathcal{S}$ decoupling quantified in Sec.~\ref{sec:synergy} (Discussion mechanistic synthesis).
 
 \subsection{\label{sec:synergy}Non-additive strain--doping coupling}
 
-Figure~\ref{fig:main}(d) tracks $\mathcal{S}(n)$ with one dopant per C$_{60}$ at $+3$\% biaxial strain.
-At $n=4$ (seed~42 periodic placement; Table~S4 pending), $\mathcal{S}=-6.2$~meV/atom (B), $+3.0$~meV/atom (N), and $-23.7$~meV/atom (P); P shows the largest magnitude despite the smallest $|\alpha|$ on the tetramer grid (Table~S1).
-Across fifteen coupled points ($n\in\{1,2,4,6,8\}$, B/N/P), $|\mathcal{S}|$ reaches $31.9$~meV/atom for P at $n=1$ and remains $\mathcal{O}(10)$~meV/atom at larger $n$ for B and P, whereas N is smaller in magnitude at $n=4$ but comparable at $n=1$.
-For N, $\mathcal{S}$ changes sign between $n=6$ ($+2.4$~meV/atom) and $n=8$ ($-2.3$~meV/atom) at the production 350~Ry cutoff; this reversal is \emph{not} used in the main conclusions until the matched 400~Ry $n{=}6$ control in Supplemental Table~S2 and Tables~S3--S4 complete (Sec.~\ref{sec:validation}).
+Figure~\ref{fig:main}(d) tracks protocol $\mathcal{S}(n)$ (rigid-strain upper bounds) with one dopant per C$_{60}$ at $+3$\% biaxial strain.
+At $n=4$ under the seed~42 periodic site map (alternate placements not yet computed), $\mathcal{S}=-6.2$~meV/atom (B), $+3.0$~meV/atom (N), and $-23.7$~meV/atom (P); P shows the largest magnitude despite the smallest $|\alpha|$ on the seed~42 tetramer grid (Table~\ref{tab:S1}).
+Across fifteen seed~42 periodic points ($n\in\{1,2,4,6,8\}$, B/N/P), $|\mathcal{S}|$ reaches $31.9$~meV/atom for P at $n=1$ and remains $\mathcal{O}(10)$~meV/atom at larger $n$ for B and P, whereas N is smaller in magnitude at $n=4$ but comparable at $n=1$.
+For N, $\mathcal{S}$ changes sign between $n=6$ ($+2.4$~meV/atom) and $n=8$ ($-2.3$~meV/atom) at the production 350~Ry cutoff; this reversal is \emph{not} used in the main conclusions until the matched 400~Ry $n{=}6$ control in Table~\ref{tab:S2} and Tables~\ref{tab:S3} and \ref{tab:S4} complete (Sec.~\ref{sec:validation}).
 Core size-scaling claims focus on $n\leq 4$ at matched 400~Ry cutoffs; B and P show monotonic $|\mathcal{S}|$ decrease from $n=1$ toward $n=4$, whereas $n\geq 6$ trends are reported for completeness only and mix the 350~Ry production cutoff.
-We report provisional $\mathcal{S}(n)\approx \mathcal{S}_\infty + A/n$ fits in Supplemental Material but withhold asymptotic $\mathcal{S}_\infty$ claims until cutoffs are matched across $n$.
-All periodic $\mathcal{S}$ values quoted in this subsection are tabulated in Supplemental Material (fifteen $n\times$ dopant points at $+3$\% strain).
+We report provisional $\mathcal{S}(n)\approx \mathcal{S}_\infty + A/n$ fits in the open data release but refrain from drawing conclusions about the asymptotic $\mathcal{S}_\infty$ value until cutoffs are matched across $n$.
+All periodic $\mathcal{S}$ values quoted in this subsection use the seed~42 dopant-site map and are tabulated in Table~\ref{tab:S2} (fifteen $n\times$ dopant points at $+3$\% strain).
 Negative $\mathcal{S}$ (B, P at $n=4$) means coupled tension \emph{stabilizes} the doped cell relative to the additive estimate; positive $\mathcal{S}$ (N at $n=4$) means sequential screens \emph{overestimate} stability under load.
 
 \begin{figure*}
@@ -143,78 +171,101 @@ Negative $\mathcal{S}$ (B, P at $n=4$) means coupled tension \emph{stabilizes} t
 \caption{\label{fig:main}Coupled $(\epsilon,\delta)$ response in doped qHP C$_{60}$ (PBE+D3).
 (a)~HOMO--LUMO gap vs.\ strain.
 (b)~$\pi$-DOS for B @ $\epsilon{=}0$ (color scheme follows Ref.~\citenum{Capobianco2024electron}).
-(c)~Mechanical $\alpha$ (Table~S1).
-(d)~$\mathcal{S}(n)$ at $+3$\% (max $|\mathcal{S}|{=}31.9$~meV/atom for P @ $n{=}1$; at $n{=}4$: $-6.2$, $+3.0$, $-23.7$~meV/atom for B/N/P); Marcus $\lambda$ (partial, 6/8 at revision; Supplemental Fig.~S5); IPR/$J$ in Supplemental Material Fig.~S6.}
+(c)~Mechanical $\alpha$ (Table~\ref{tab:S1}).
+(d)~Seed~42 protocol $\mathcal{S}(n)$ at $+3$\% (max $|\mathcal{S}|{=}31.9$~meV/atom for P @ $n{=}1$; at $n{=}4$: $-6.2$, $+3.0$, $-23.7$~meV/atom for B/N/P); Marcus $\lambda$ and IPR/$J$ in Figs.~\ref{fig:S2} and \ref{fig:S3}.}
 \end{figure*}
 
+\subsection{\label{sec:transport_obs}Polaron transport diagnostics}
+
+Figure~\ref{fig:S2} reports Marcus reorganization energies from twelve charged-state geometry optimizations and eight vertical single-points at the neutral geometry (Sec.~\ref{sec:methods_marcus}).
+\input{tables/fig_marcus.tex}
+\input{tables/fig_transport.tex}
+\input{tables/transport_text.tex}
+
+\FloatBarrier
 % ------------------------------------------------------------------
 \section{\label{sec:discussion}Discussion}
 % ------------------------------------------------------------------
 
 \textbf{Context.}
-Relative to strain-only, doping-only, mobility, or mechanical studies in qHP and related fullerene networks~\cite{Capobianco2024electron,Li2024strain,Khan2025tuning,Wang2024simulation,LopezAlcalay2025graphendofullerene,Pereira2026endohedral,Qiu2025atomic,Peng2025monolayer,Shi2023strainC60,Makov2023graphullerene,Materials2024untangling,Santra2024strain}, the distinction here is a same-functional periodic \emph{total-energy} audit of joint biaxial $(\epsilon,\delta)$ load [Eq.~\eqref{eq:synergy_order}] on a rigid-strain upper-bound protocol.
-In other 2D hosts, substitutional defects can raise or lower formation energies under biaxial strain depending on dopant--host size mismatch~\cite{Santra2024strain}; isomer-engineered C$_{70}$ network designs similarly tune band edges through topology choice rather than joint substitutional--mechanical load~\cite{Xu2025C70network}; we instead quantify the omitted additive cross term $\mathcal{S}$ in total energy.
-Band-edge, spin-resolved, and hopping metrics (Supplemental Material Fig.~S6) contextualize mechanism but are not used to infer $\mathcal{S}$.
+Relative to strain-only, doping-only, mobility, or mechanical studies in qHP and related fullerene networks~\cite{Capobianco2024electron,Li2024strain,Khan2025tuning,Wang2024simulation,LopezAlcalay2025graphendofullerene,Pereira2026endohedral,Qiu2025atomic,Peng2025monolayer,ShaikhPeng2025thermal,Shi2023strainC60,Makov2023graphullerene,Materials2024untangling,Santra2024strain}, the distinction here is a periodic \emph{total-energy} audit of joint biaxial $(\epsilon,\delta)$ load [Eq.~\eqref{eq:synergy_order}] on a rigid-strain upper-bound protocol at the identical PBE+D3 functional level.
+In other 2D hosts, substitutional defects can raise or lower formation energies under biaxial strain depending on dopant--host size mismatch~\cite{Santra2024strain}; isomer-engineered C$_{70}$ network designs similarly tune band edges through topology choice rather than joint substitutional--mechanical load~\cite{Xu2025C70network}; we instead quantify the omitted additive cross term $\mathcal{S}$ in total energy. Quasi-harmonic thermal-expansion studies of qHP monolayers report anisotropic positive and negative lattice response tied to interfullerene bond topology~\cite{ShaikhPeng2025thermal,Peng2025monolayer}, whereas our audit holds fractional coordinates fixed at zero-temperature total energy (upper bound pending Table~\ref{tab:S3}). Strain-engineering studies on smaller fullerene graphullerenes instead emphasize magnetic or half-metallic transitions~\cite{Nie2026strainC20}, which is orthogonal to the neutral total-energy audit pursued here.
+Band-edge, spin-resolved, and hopping metrics (Fig.~\ref{fig:S3}) contextualize mechanism but are not used to infer $\mathcal{S}$.
 
-\textbf{Mechanistic synthesis (three coupling classes).}
-\textbf{(i) Opposite $\alpha$ for N vs.\ B.}
-N introduces excess $\pi$ electrons that strengthen bonding under tension (negative $\alpha$), whereas B creates electron deficiency and antibonding $\pi^\ast$ character that rises with lattice expansion (positive $\alpha$)---consistent with donor vs.\ acceptor $\pi$-counting, the gap-vs-strain slopes in Fig.~\ref{fig:main}(a), and dopant-resolved $\pi$-DOS in Fig.~\ref{fig:main}(b) and Supplemental Fig.~S4.
+\textbf{Mechanistic synthesis.}
+\textbf{(i) Opposite $\alpha$ for N vs.\ B (seed~42).}
+N introduces excess $\pi$ electrons that strengthen bonding under tension (negative $\alpha$), whereas B creates electron deficiency and antibonding $\pi^\ast$ character that rises with lattice expansion (positive $\alpha$).
+Quantitatively, the $\epsilon{=}0$ gap ordering ($E_g^{\mathrm{N}}<E_g^{\mathrm{B}}<E_g^{\mathrm{P}}$ within PBE; Sec.~\ref{sec:electronic}) and dopant-resolved $\pi$-DOS in Fig.~\ref{fig:main}(b) and Fig.~\ref{fig:S1} align with donor vs.\ acceptor $\pi$-counting, while total-energy $\alpha$ spans ${\sim}360$~meV/\% between N and B on the seed~42 grid (Table~\ref{tab:S1}).
+The opposite N vs.\ B sign is reported for this fixed placement across $\epsilon\in\{-5,\ldots,+5\}$\% (Table~\ref{tab:S1}); Table~\ref{tab:S4} repeats the full tetramer strain grid for seed~137 to test slope sensitivity at ${\sim}5$\% nominal doping without mixing periodic boundary conditions.
+Mayer bond order and Bader charge partitioning along the strain path are not yet computed (Limitations); periodic $\mathcal{S}(n)$ magnitudes are likewise not averaged over alternate supercell placements until such audits exist.
 \textbf{(ii) Large $|\mathcal{S}|$ for P despite small $|\alpha|$.}
-P carries the largest covalent-radius excess ($+30$~pm vs.\ C; Table~S5) and pre-existing cage distortion at $\epsilon{=}0$, yet shows the smallest strain-induced change in mean nearest C distance ($\Delta\bar{d}\approx 0.00003$~\AA\ from $\epsilon{=}0$ to $+3$\% vs.\ $+0.0085$~\AA\ for B; Table~S5).
-Tensile load therefore couples to \emph{pre-existing} cage distortion from size mismatch rather than to a uniform elastic response, yielding a cross term invisible in separate scans but dominant when both knobs are engaged---consistent with P's intermediate $E_{\mathrm{sub}}$ yet the largest $|\mathcal{S}|$ at $n{=}4$ ($23.7$~meV/atom at $n{=}4$; Supplemental Table~S2) despite weak tetramer $|\alpha|$.
-This closes the strain-response foreshadow in Sec.~\ref{sec:strain_response}: tetramer $|\alpha|$ ranks P as weakly strain-sensitive, whereas the coupled periodic audit exposes the largest cross term.
+P carries the largest covalent-radius excess ($+30$~pm vs.\ C; Table~\ref{tab:S5}) and pre-existing cage distortion at $\epsilon{=}0$, yet shows the smallest strain-induced change in mean nearest C distance ($\Delta\bar{d}\approx 3\times 10^{-5}$~\AA\ vs.\ ${\sim}8.5\times 10^{-3}$~\AA\ for B/N) and the smallest site-to-site spread at $+3$\% ($\sigma(\bar{d})\approx 4\times 10^{-4}$~\AA\ vs.\ ${\sim}2\times 10^{-2}$~\AA\ for B/N; Table~\ref{tab:S5}).
+Tensile load therefore couples to \emph{pre-existing} cage distortion from size mismatch rather than to a uniform elastic response, yielding a cross term invisible in separate scans but dominant when both strain and substitution are applied simultaneously---consistent with P's intermediate $E_{\mathrm{sub}}$ yet the largest $|\mathcal{S}|$ at $n{=}4$ ($23.7$~meV/atom; Table~\ref{tab:S2}) despite weak tetramer $|\alpha|$.
+Sec.~\ref{sec:strain_response} presents this Table~\ref{tab:S5} geometric decoupling before the $n{=}4$ $\mathcal{S}$ ranking in Sec.~\ref{sec:synergy}: tetramer $|\alpha|$ ranks P as weakly strain-sensitive, whereas the coupled periodic audit exposes the largest cross term.
 \textbf{(iii) N $\mathcal{S}$ sign change with $n$.}
-With one dopant per C$_{60}$, electrostatic fields dilute at large $n$; any N sign flip between $n=6$ and $n=8$ is confounded with the 400$\rightarrow$350~Ry cutoff step and remains uninterpreted (Sec.~\ref{sec:validation}).
+With one substituent per C$_{60}$, electrostatic fields dilute at large $n$; any N sign flip between $n=6$ and $n=8$ is confounded with the 400$\rightarrow$350~Ry cutoff step and remains uninterpreted (Sec.~\ref{sec:validation}).
 Together, (i)--(iii) suggest a taxonomy for covalent molecular networks: \emph{electronic} donor/acceptor control of $\alpha$, \emph{structural} local-distortion coupling to external strain (P), and \emph{finite-size} electrostatic dilution (N at large $n$).
+\textbf{(iv) Geometric vs.\ electronic nonlinearity.}
+For P, Table~\ref{tab:S5} shows that rigid tensile load barely moves the mean dopant--C distance ($\Delta\bar{d}\approx 3\times 10^{-5}$~\AA) yet $\mathcal{S}$ remains the largest at $n{=}4$ ($23.7$~meV/atom), whereas B/N exhibit ${\sim}10^{2}\times$ larger $\Delta\bar{d}$ at $+3$\% but smaller $|\mathcal{S}|$ ($6.2$ and $3.0$~meV/atom).
+At $n{=}4$ the coupled correction for P exceeds the rigid per-atom strain increment from tetramer $\alpha$ by two orders of magnitude ($|\mathcal{S}|\gg \alpha\times 3\%/N_{\mathrm{atoms}}$; Methods energy observables), even though $|\alpha|$ ranks P as the weakest strain responder on the seed~42 tetramer grid.
+\textbf{(v) Argument scope (concentration and boundary conditions).}
+We do \emph{not} validate $\mathcal{S}$ by extrapolating tetramer $\alpha$ to periodic $n{=}4$: the ${\sim}5$\% tetramer vs.\ ${\sim}1.67$~at.\% periodic concentrations and tetramer vs.\ periodic boundary conditions are unmatched, so a first-order $(\alpha_\delta-\alpha_0)\epsilon/N_{\mathrm{atoms}}$ estimate is excluded from the argument.
+Non-additivity is assessed only through Eq.~\eqref{eq:synergy_order} on matched four-corner grids at common $(\epsilon,\delta)$; P in particular requires explicit coupled evaluation rather than sequential $\alpha$ screening.
+\textbf{(vi) Decomposition outlook.}
+The Table~\ref{tab:S5} decoupling indicates that the cross term is not reducible to uniform bond stretching alone; electronic rehybridization and pre-stored cage strain likely contribute, but their relative weights are not partitioned here without Mayer/Bader analysis along the strain path (Limitations).
 
-\textbf{(iv) Beyond first-order $(\alpha_\delta-\alpha_0)\epsilon$.}
-A one-parameter mechanical estimate $\mathcal{S}\approx(\alpha_\delta-\alpha_0)\epsilon/ N_{\mathrm{atoms}}$ uses tetramer $\alpha$ at 5\% doping (Table~S1) and is \emph{not} matched to the periodic $n{=}4$ concentration (${\sim}1.7$\% per atom).
-We therefore use it only as a qualitative sanity check (concentration and boundary conditions differ) and not as proof of nonlinearity: at $\epsilon{=}+3$\% it gives ${\sim}{+}0.7$, $-3.8$, and $-0.2$~meV/atom for B/N/P, whereas the periodic $n{=}4$ rigid values are $-6.2$, $+3.0$, and $-23.7$~meV/atom.
-The mismatch signals that the cross term is not reducible to linear strain sensitivity at a different concentration; P in particular requires explicit coupled evaluation.
-
-\textbf{(v) Significance versus DFT uncertainty.}
+\textbf{(vii) Significance versus DFT uncertainty.}
 $\mathcal{S}$ is a difference of total energies computed with the \emph{same} functional, basis, and cell for all four corners of Eq.~\eqref{eq:synergy_order}, so systematic errors largely cancel in sign and relative magnitude.
-At $n{=}4$ and $+3$\% strain, $|\mathcal{S}|=23.7$~meV/atom for P is $\sim 3$\% of the per-atom $E_{\mathrm{sub}}$ scale (Table~S1) but still $\gg$ rigid per-atom strain increments from $\alpha$.
+At $n{=}4$ and $+3$\% strain, $|\mathcal{S}|=23.7$~meV/atom for P is $\sim 3$\% of the per-atom $E_{\mathrm{sub}}$ scale (Table~\ref{tab:S1}) but still $\gg$ rigid per-atom strain increments from $\alpha$.
 Large absolute uncertainties in PBE $E_{\mathrm{sub}}$ therefore do not invalidate the conclusion that sequential scans omit a meV/atom-scale cross term.
 
 \textbf{Design implications.}
-At $n{=}4$ and $+3$\% strain the coupled correction is $|\mathcal{S}|=23.7$~meV/atom for P vs.\ $6.2$~meV/atom for B---sequential \emph{additive} estimates mis-estimate the load-dependent \emph{margin} by an order of magnitude even though widely separated $E_{\mathrm{sub}}$ ranks at $\epsilon{=}0$ (e.g., B vs.\ P; Table~S1) are unchanged.
-Dopants with larger covalent-radius excess (P: $+30$~pm vs.\ B: $+7$~pm; Table~S5) show the largest $|\mathcal{S}|$, so \emph{size-mismatched} substituents demand coupled $(\epsilon,\delta)$ screening rather than one-parameter pipelines.
-The fifteen-point periodic grid tabulates $|\mathcal{S}|$ at each $(n,\delta)$ for screening workflows under the rigid protocol (Supplemental Table~S2).
-At $+3$\% strain, P carries the largest additive-approximation error in $\mathcal{S}$ ($|\mathcal{S}|=23.7$--$31.9$~meV/atom from $n{=}4$ to $n{=}1$); co-design should treat P under tension as a \emph{coupled} stability problem, not $|E_{\mathrm{sub}}|$ at $\epsilon=0$ alone.
+At $n{=}4$ and $+3$\% strain the coupled correction is $|\mathcal{S}|=23.7$~meV/atom for P vs.\ $6.2$~meV/atom for B---sequential \emph{additive} estimates differ by approximately a factor of four in the load-dependent \emph{margin} even though widely separated $E_{\mathrm{sub}}$ ranks at $\epsilon{=}0$ (e.g., B vs.\ P; Table~\ref{tab:S1}) are unchanged.
+Dopants with larger covalent-radius excess (P: $+30$~pm vs.\ B: $+7$~pm; Table~\ref{tab:S5}) show the largest protocol $|\mathcal{S}|$ under fixed coordinates; \emph{size-mismatched} substituents may warrant coupled $(\epsilon,\delta)$ evaluation rather than one-parameter pipelines once Table~\ref{tab:S3} confirms retention after relaxation.
+The fifteen-point periodic grid tabulates protocol $|\mathcal{S}|$ at each $(n,\delta)$ as an audit of additive omission under the rigid protocol (Table~\ref{tab:S2}), not as quantitative design targets.
+At $+3$\% strain, P carries the largest additive-approximation error in protocol $\mathcal{S}$ ($|\mathcal{S}|=23.7$--$31.9$~meV/atom from $n{=}4$ to $n{=}1$ under fixed coordinates); qualitative co-design should treat P under tension as a \emph{coupled} stability problem pending Table~\ref{tab:S3}, not $|E_{\mathrm{sub}}|$ at $\epsilon=0$ alone.
 Where $\mathcal{S}<0$ (B and P at $n{=}4$), coupled tension can stabilize doped cells beyond additive predictions; where $\mathcal{S}>0$ (N at $n{=}4$), sequential screens overestimate stability under load. For chemistries with comparable $|E_{\mathrm{sub}}|$ or in multi-dopant competition, omitting $\mathcal{S}$ can shift margins by several percent of the per-atom substitution scale---much larger than the rigid strain increment from $\alpha$---even when the global dopant rank at $\epsilon{=}0$ is unchanged.
 Gap closing [Fig.~\ref{fig:main}(a)] does not track $|\mathcal{S}|$; we do not compute $\mathcal{S}_{\mathrm{gap}}$, so photonic or transport targets cannot be inferred from total-energy $\mathcal{S}$ alone.
 For B at $n=4$, both negative $\mathcal{S}$ and positive $\alpha$ imply that a strain-only elastic estimate would predict tension \emph{raises} energy while the coupled scan \emph{lowers} it relative to the additive model---a direct sign conflict that sequential pipelines cannot resolve without evaluating $\mathcal{S}$.
-N $\mathcal{S}$ vs.\ $n$ is reported for completeness but excluded from design rules until Table~S2--S4 controls converge.
+For N at $n{=}4$, negative tetramer $\alpha$ and positive $\mathcal{S}$ present a second sign conflict: tension stabilizes the doped tetramer in isolation, yet the periodic coupled audit reports a positive cross term that sequential additive models fail to capture at ${\sim}1.67$~at.\% doping.
+N $\mathcal{S}$ vs.\ $n$ is reported for completeness but excluded from design rules until Tables~\ref{tab:S2}--\ref{tab:S4} controls converge.
 
+\textbf{Validation protocol (Tables~\ref{tab:S2}--\ref{tab:S4}).}
+Three validation benchmarks characterize protocol limits without altering the seed~42 periodic magnitudes quoted above.
+\textbf{Table~\ref{tab:S3}} runs fixed-cell geometry optimization on the four Eq.~\eqref{eq:synergy_order} corners for tetramer $P@+3$\% only; because rigid references use legacy PBE without D3 whereas relaxed corners use PBE+D3, the acceptance criterion is \emph{sign retention} of $\mathcal{S}$ after ionic relaxation within that tetramer grid---not a quantitative $|\mathcal{S}_{\mathrm{relaxed}}|/|\mathcal{S}_{\mathrm{rigid}}|$ ratio until a matched-functional rigid grid is recomputed. It does \emph{not} rescale periodic $\mathcal{S}(n)$ because concentration and boundary conditions differ.
+\textbf{Table~\ref{tab:S4}} tests tetramer $\alpha$ and tetramer $\mathcal{S}_{+3\%}$ for seed~137 vs.\ seed~42; qualitative claims about opposite N/B $\alpha$ signs are configuration-specific until this grid converges.
+\textbf{Table~\ref{tab:S2}} (cutoff400 row) isolates the 400$\rightarrow$350~Ry confound for $6\times\mathrm{C}_{60}$ N @ $+3$\% before any $n\geq 6$ design statement is restored.
 
-\textbf{Polaron transport (Supplemental Material only).}
-The Marcus workflow in Fig.~S5--S6 parallels Ref.~\citenum{Capobianco2024electron}---adiabatic charged-state energies plus vertical evaluations at the neutral geometry---at the uniform PBE+D3 level used for $\mathcal{S}$.
-Where that study linked hopping $J$ and frontier-orbital localization to mobilities in pristine qHP networks, we retain the same observables for comparability (Supplemental Fig.~S6) but treat reorganization energies as \emph{orthogonal} to the neutral total-energy audit: adiabatic IP/EA and any verified $\lambda$ appear only in Supplemental Fig.~S5 (12/12 charged geometry optimizations converged; vertical single-points 6/8 at revision; none quoted in Sec.~\ref{sec:results}) and do not feed back into $\mathcal{S}(n)$ in Fig.~\ref{fig:main}(d). Six of eight vertical tasks at revision populate hole and electron reorganization channels for separate dopant classes in Supplemental Fig.~S5, validating the Capobianco-style workflow at the PBE+D3 level without using $\lambda$ to rank neutral total-energy margins.
+\textbf{Polaron transport.}
+The Marcus workflow in Figs.~\ref{fig:S2} and \ref{fig:S3} parallels Ref.~\citenum{Capobianco2024electron}---charged-state geometry optimizations ($E_{\mathrm{opt}}^{\pm}$) plus vertical single-points at the neutral geometry ($E_{\mathrm{vert}}^{\pm}$)---at the uniform PBE+D3 level used for $\mathcal{S}$.
+Recent work shows that charged-supercell and neutral-defect semilocal routes to polaron self-interaction correction are formally equivalent when the polaronic structure is held fixed~\cite{Falletta2025polaronDFT}; our Marcus $\lambda$ protocol instead follows the charged vertical/adiabatic split of Ref.~\citenum{Capobianco2024electron} without piecewise-linear or $\gamma$/$\mu_{\mathrm{DFT}}$ tuning, and remains orthogonal to the $\mathcal{S}$ audit.
+Where that study linked hopping $J$ and frontier-orbital localization to mobilities in pristine qHP networks, we retain the same observables for comparability (Fig.~\ref{fig:S3}) but do \emph{not} extend their mobility-centric ranking to neutral total-energy margins.
 Endohedral band-gap tuning~\cite{Pereira2026endohedral} and substitutional $\mathcal{S}$ address a second orthogonal knob (cage filling vs.\ cage substitution) and are not interchangeable for sequential-screen corrections.
 
 \textbf{Limitations and outlook.}
-Three protocol limits are actively benchmarked (Supplemental Table~S2; Sec.~\ref{sec:validation}): rigid strain (Table~S3), fixed-seed ensembles (Table~S4), and mixed 400/350~Ry cutoffs across $n$ (Table~S2 cutoff400 control).
-Additional limits: tetramer vs.\ periodic concentration mismatch; PBE+D3 without Koopmans/rVV10; $\mathcal{S}_{\mathrm{gap}}$ not quantified; Mayer bond-order and Bader charge partitioning along the strain path are not computed (Table~S5 reports geometric metrics only); Marcus $\lambda$ awaits completion of eight vertical single-points (6/8 converged at revision; 12/12 charged geometry optimizations converged); mobility tensors are not computed---polaron transport anisotropy in related fullerene networks is treated only comparatively~\cite{Silva2024large,Capobianco2024electron} (Supplemental Material Fig.~S5--S6).
+Three protocol limits are actively benchmarked (Table~\ref{tab:S2}; Sec.~\ref{sec:validation}): rigid strain (Table~\ref{tab:S3}), tetramer alternate-seed placement (Table~\ref{tab:S4}), and mixed 400/350~Ry cutoffs across $n$ (Table~\ref{tab:S2} cutoff400 control).
+All periodic $\mathcal{S}(n)$ use a single seed~42 dopant configuration; magnitudes are not averaged over placement ensembles, and periodic alternate-site audits are not yet computed.
+Additional limits: tetramer vs.\ periodic concentration mismatch; PBE+D3 without Koopmans/rVV10; $\mathcal{S}_{\mathrm{gap}}$ not quantified; Mayer bond-order and Bader charge partitioning along the strain path are not computed (Table~\ref{tab:S5} reports geometric metrics only); the electron-channel reorganization energy $\lambda^{-}$ for B doping is unphysical under the fixed neutral-geometry vertical protocol and is excluded from rate estimates (as further discussed in the Limitations subsection); mobility tensors are not computed---polaron transport anisotropy in related fullerene networks is treated only comparatively~\cite{Silva2024large,Capobianco2024electron} (Figs.~\ref{fig:S2} and \ref{fig:S3}).
 
 % ------------------------------------------------------------------
 \section{\label{sec:conclusions}Conclusions}
 
 Sequential strain--doping workflows in covalent molecular networks can omit a meV/atom-scale total-energy cross term when local dopant distortion couples nonlinearly to external biaxial load.
-In qHP C$_{60}$ graphullerene we quantified this omission with $\mathcal{S}$ under a uniform PBE+D3 rigid-strain protocol, addressing the three Introduction questions: donor N and acceptor B show opposite $\alpha$; joint $(\epsilon,\delta)$ load produces $|\mathcal{S}|$ at the $\mathcal{O}(10)$~meV/atom level on a fifteen-point periodic grid at $+3$\% strain (seed~42 placement); and the largest $|\mathcal{S}|$ does not track the smallest tetramer $|\alpha|$---size-mismatched P couples through pre-existing cage distortion (Table~S5) rather than linear elasticity alone.
-Reported $\mathcal{S}$ values are \emph{upper bounds} under fixed fractional coordinates; ionic-relaxation, alternate-seed, and matched-cutoff controls (Tables~S2--S4) will test whether the cross term remains design-relevant after relaxation and whether rankings are seed-robust.
-Additive estimates can mis-estimate \emph{relative} stability margins among competing chemistries at the few-percent level of the substitution-energy scale without reordering widely separated dopant ranks.
-Marcus $\lambda$ and hopping metrics (Supplemental Material Fig.~S5--S6) are orthogonal to the $\mathcal{S}$ audit and do not alter the neutral-energy conclusions in Fig.~\ref{fig:main}(d); vertical single-points were in progress (6/8 converged at revision), with verified $\lambda$ reported only in Supplemental Material and partial completion already exercising distinct hole and electron channels without changing $\mathcal{S}(n)$ rankings.
-Coupled $(\epsilon,\delta)$ screening is therefore advisable for size-mismatched substituents and for close substitution-energy competitors, complementing strain-only mechanical~\cite{Wang2024simulation}, derivative-network~\cite{LopezAlcalay2025graphendofullerene}, and endohedral band-edge~\cite{Pereira2026endohedral} tuning axes.
-Future work will extend the seed~137 placement audit to periodic cells, add Mayer bond-order and Bader partitioning along the strain path, and complete the eight vertical Marcus tasks in Supplemental Fig.~S5.
+In qHP C$_{60}$ graphullerene we answered the three Introduction questions under a uniform PBE+D3 rigid-strain protocol:
+\textbf{(1)} opposite donor/acceptor $\alpha$ (N vs.\ B; Table~\ref{tab:S1});
+\textbf{(2)} meV/atom-scale omitted cross terms on a fifteen-point periodic grid (seed~42; upper bounds at fixed coordinates; Table~\ref{tab:S2});
+\textbf{(3)} $|\mathcal{S}|$ decoupled from tetramer $|\alpha|$ for size-mismatched P via pre-existing cage distortion (Table~\ref{tab:S5}).
+Ionic-relaxation, alternate-seed, and matched-cutoff controls (Tables~\ref{tab:S2}--\ref{tab:S4}) will test whether these audits remain relevant after relaxation and placement averaging.
+Coupled $(\epsilon,\delta)$ screening is advisable for size-mismatched substituents and close substitution-energy competitors, complementing strain-only mechanical~\cite{Wang2024simulation}, derivative-network~\cite{LopezAlcalay2025graphendofullerene}, and endohedral band-edge~\cite{Pereira2026endohedral} axes.
+Future work extends seed~137 to periodic cells, adds Mayer/Bader strain-path partitioning, and explores polaron-aware semilocal corrections beyond the Marcus vertical protocol.
 
 \begin{acknowledgments}
 We acknowledge computational resources and support from Xiamen University.
 \end{acknowledgments}
 
 \section*{Data availability}
-The data that support the findings of this study are openly available at \url{https://github.com/chenxingqiang/graphullerene-strain-engineering} (repository \texttt{sci-simukit}), including converged CP2K inputs and outputs, machine-readable synergy and polaron audit tables, and scripts to regenerate the main and Supplemental Material figures.
-Pending ionic-relaxation, alternate-seed, and matched-cutoff validation tasks are documented in Supplemental Tables~S2--S4.
+The data that support the findings of this study are openly available at \url{https://github.com/chenxingqiang/graphullerene-strain-engineering}, including converged computational inputs and outputs, tabulated synergy and polaron analyses, and materials to reproduce all figures and tables in the main text.
+Pending ionic-relaxation, alternate-seed, and matched-cutoff validation tasks are documented in Tables~\ref{tab:S2}--\ref{tab:S4}.
 A tagged release matching the manuscript revision will be issued upon acceptance.
 
 %\bibliographystyle{apsrev4-2} % selected automatically by [prb]

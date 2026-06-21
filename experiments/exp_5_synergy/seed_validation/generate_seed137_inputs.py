@@ -8,6 +8,9 @@ import re
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from modernize_cp2k_inp import modernize_cp2k_inp
+
 REPO = Path(__file__).resolve().parents[3]
 SYNERGY = REPO / "dft_results" / "exp_5_synergy"
 OUT = Path(__file__).resolve().parent / "inputs"
@@ -35,17 +38,33 @@ def reroll_dopant_sites(text: str, element: str, seed: int) -> str:
     return text[: coord_m.start()] + new_coord + text[coord_m.end() :]
 
 
+def strain_tag(strain: float) -> str:
+    return f"strain{strain:+.1f}_rigid".replace("+", "p").replace("-", "m")
+
+
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     count = 0
+    for strain in STRAINS:
+        tpl = SYNERGY / f"C60_strain_{strain:+.1f}_pristine_synergy.inp"
+        if not tpl.exists():
+            print(f"skip missing {tpl}", file=sys.stderr)
+            continue
+        tag = f"seed137_pristine_{strain_tag(strain)}"
+        txt = modernize_cp2k_inp(tpl.read_text())
+        txt = re.sub(r"PROJECT \S+", f"PROJECT {tag}", txt, count=1)
+        out_path = OUT / f"{tag}.inp"
+        out_path.write_text(txt)
+        print("wrote", out_path.name)
+        count += 1
     for dop in DOPANTS:
         for strain in STRAINS:
             tpl = SYNERGY / f"C60_strain_{strain:+.1f}_{dop}_doped_synergy.inp"
             if not tpl.exists():
                 print(f"skip missing {tpl}", file=sys.stderr)
                 continue
-            txt = reroll_dopant_sites(tpl.read_text(), dop, SEED + int(strain * 10) + hash(dop) % 1000)
-            tag = f"seed137_{dop}_strain{strain:+.1f}_rigid".replace("+", "p").replace("-", "m")
+            txt = modernize_cp2k_inp(reroll_dopant_sites(tpl.read_text(), dop, SEED + int(strain * 10) + hash(dop) % 1000))
+            tag = f"seed137_{dop}_{strain_tag(strain)}"
             proj = tag
             txt = re.sub(r"PROJECT \S+", f"PROJECT {proj}", txt, count=1)
             out_path = OUT / f"{tag}.inp"

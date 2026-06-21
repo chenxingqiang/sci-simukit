@@ -1,24 +1,24 @@
 \section*{Computational Methods (full protocol)}
 
 All total-energy and electronic-structure calculations use CP2K~\cite{cp2k2025} with PBE~\cite{Perdew1996generalized} and Grimme DFT-D3 (Becke--Johnson damping)~\cite{Grimme2011effect}.
-Unless stated otherwise, biaxial strain scales the in-plane lattice vectors of the pristine equilibrium cell at fixed fractional coordinates (rigid-strain protocol), providing an upper bound on strain--doping coupling until ionic-relaxation benchmarks in Table~S3 converge.
-Plane-wave cutoff is 400~Ry for $n\leq 4$ and 350~Ry for $n\geq 6$ in archived Exp10 inputs (Table~S2); $\mathcal{S}(n)$ comparisons at fixed $n$ use identical cutoffs.
+Unless stated otherwise, biaxial strain scales the in-plane lattice vectors of the pristine equilibrium cell at fixed fractional coordinates (rigid-strain protocol). Reported $\mathcal{S}$ magnitudes are upper bounds at fixed coordinates, not equilibrium values; Table~S3 benchmarks tetramer $P@+3$\% rigid vs.\ ionic-relaxed corners only (not periodic $n{=}4$ calibration).
+Plane-wave cutoff is 400~Ry for $n\leq 4$ and 350~Ry for $n\geq 6$ in archived size-scaling inputs (Table~S2); $\mathcal{S}(n)$ comparisons at fixed $n$ use identical cutoffs.
 
 Tetramer models ($4\times\mathrm{C}_{60}$, 240 sites) use B/N/P substitution at nominal 5\% (12--13 dopants from archived coordinates, seed~42).
-Periodic scaling cells contain one dopant per C$_{60}$ ($n=1$--$8$).
-Dopant sites are not re-optimized thermodynamically; fixed configurations probe mechanism rather than ensemble averages.
-A second random seed~137 tetramer grid (Table~S4) bounds placement sensitivity.
+Periodic scaling cells contain one substituent per C$_{60}$ ($n=1$--$8$) on the seed~42 site map propagated from the archived tetramer protocol.
+Dopant sites are not re-optimized thermodynamically; fixed configurations probe mechanism rather than placement-averaged statistics.
+Table~S4 is tetramer-only (seed~137 vs.\ seed~42); periodic alternate-placement audits are deferred to future work.
 
-Grids: 24 tetramer strain points ($\epsilon\in\{-5,-2.5,0,2.5,5\}$\%); 12 tetramer electronic points; 40 converged periodic neutral-energy points (+1 cutoff400 control pending) at $\epsilon\in\{0,+3\}$\%; charged-state optimizations for Marcus schematics (Fig.~S5); IPR/$J$ factorial (Fig.~S6).
+Grids: 24 tetramer strain points ($\epsilon\in\{-5,-2.5,0,2.5,5\}$\%); 12 tetramer electronic points; 40 converged periodic neutral-energy points (+1 cutoff400 control pending) at $\epsilon\in\{0,+3\}$\%; charged-state geometry optimizations for Marcus schematics (Fig.~S2); IPR/$J$ tetramer dimer grid (Fig.~S3).
 Linear $\alpha=\mathrm{d}E/\mathrm{d}\epsilon$ and substitution energies $E_{\mathrm{sub}}$ are defined in Table~S1.
 \textbf{Task inventory (main-text support).}
 Mechanical strain: 24 tetramer points ($\epsilon\in\{-5,-2.5,0,2.5,5\}$\%, Table~S1).
-Electronics: 12 tetramer PDOS/gap points ($\epsilon\in\{-5,0,+5\}$\%, Fig.~S4).
-Size scaling: 40 converged periodic neutral energies ($n=1$--$8$, $\epsilon\in\{0,+3\}$\%; production Exp10 grid; one matched 400~Ry $n{=}6$ N control pending, Table~S2).
-Synergy $\mathcal{S}$ values are extracted from converged periodic total energies by in-house post-processing (Supplemental Table~S2).
-Polaron factorial: four neutral single-points (Fig.~S6); charged-state GEO\_OPT (12/12 converged) and vertical SP (6/8 converged; 2/8 remaining) for Fig.~S5.
-\textbf{Marcus vertical step.} Eight tetramer ENERGY tasks evaluate each adiabatic $q=\pm1$ endpoint at the \emph{neutral}-geometry atomic coordinates (400~Ry, PBE+D3, EPS\_SCF $10^{-7}$~Eh), with UKS charge and multiplicity matched to the relaxed charged state ($\lambda^{+}$ from $q{=}+1$, $\lambda^{-}$ from $q{=}-1$), following Ref.~\citenum{Capobianco2024electron}; $\lambda^{\pm}=E_{\mathrm{vert}}^{\pm}-E_{\mathrm{opt}}^{\pm}$ (Supplemental Fig.~S5; verified values SI-only at revision).
-SCF: $10^{-6}$~Eh OT; basis DZVP-MOLOPT-SR-GTH.
+Electronics: 12 tetramer $\pi$-DOS/gap points ($\epsilon\in\{-5,0,+5\}$\%, Fig.~S1).
+Size scaling: 40 converged periodic neutral energies ($n=1$--$8$, $\epsilon\in\{0,+3\}$\%; production grid; one matched 400~Ry $n{=}6$ N control pending, Table~S2).
+Synergy $\mathcal{S}$ values are extracted from converged periodic total energies (Table~S2).
+Polaron dimer grid: four neutral single-points (Fig.~S3); charged-state geometry optimizations and vertical single-points at the neutral geometry for Marcus $\lambda^{\pm}$ (Fig.~S2).
+\textbf{Marcus vertical step.} Eight tetramer vertical single-points evaluate each charged endpoint at the \emph{neutral}-geometry atomic coordinates (400~Ry, PBE+D3, EPS\_SCF $10^{-7}$~$E_{\mathrm{h}}$ by default; B $q=-1$ vertical: $10^{-6}$~$E_{\mathrm{h}}$ after OT stall at $10^{-7}$~$E_{\mathrm{h}}$), with UKS charge and multiplicity matched to the relaxed charged state ($\lambda^{+}$ from $q{=}+1$, $\lambda^{-}$ from $q{=}-1$), following Ref.~\citenum{Capobianco2024electron}; $\lambda^{\pm}=E_{\mathrm{vert}}^{\pm}-E_{\mathrm{opt}}^{\pm}$ (Fig.~S2).
+Charged geometry optimization: EPS\_SCF $10^{-6}$~$E_{\mathrm{h}}$ OT (UKS, multiplicity~2); vertical single-point at neutral geometry: $10^{-7}$~$E_{\mathrm{h}}$ (B $q=-1$: $10^{-6}$~$E_{\mathrm{h}}$); neutral periodic energies: $10^{-6}$~$E_{\mathrm{h}}$ in archived size-scaling inputs. Basis DZVP-MOLOPT-SR-GTH.
 Pending ionic-relaxation, alternate-seed, and matched-cutoff controls are listed in Tables~S2--S4.
 
 

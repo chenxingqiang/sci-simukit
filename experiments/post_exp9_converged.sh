@@ -5,11 +5,11 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 python3 "$ROOT/experiments/analysis/analyze_exp9_polaron.py"
 bash "$ROOT/experiments/exp9_status_line.sh"
 
-# Refresh SI transport figures (S5 picks up lambda_eV when vertical SP converged).
+# Refresh SI transport figures (S2 picks up lambda_eV when vertical SP converged).
 if [[ -f "$ROOT/paper/figures/render_si_figures.sh" ]]; then
   bash "$ROOT/paper/figures/render_si_figures.sh" || true
 else
-  python3 "$ROOT/paper/figures/fig_si_s5_marcus_pending.py" || true
+  python3 "$ROOT/paper/figures/fig_si_s2_marcus.py" || true
 fi
 
 read -r geo vert n_lambda <<< "$(python3 -c "
@@ -34,3 +34,5 @@ if [[ "$geo" == "12" && "$vert" == "8" ]] && ! pgrep -f 'cp2k\.psmp' >/dev/null 
   echo "Exp9 complete and CP2K idle — next: bash $ROOT/experiments/run_prb_revision_dft.sh"
 fi
 
+bash "$ROOT/experiments/cleanup_stale_cp2k.sh" || true
+bash "$ROOT/experiments/verify_reliability.sh" || true

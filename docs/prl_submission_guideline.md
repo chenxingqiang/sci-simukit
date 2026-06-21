@@ -333,7 +333,7 @@ Reprints are available from Physical Review Letters. Authors can use SciPris™ 
 | 审稿维度 | AGENTS ID | 本稿路径 |
 |----------|-----------|----------|
 | 摘要 ≤600、无引用 | D6 | `paper/strain_doped_graphullerene.tex` |
-| 单核心贡献（$\mathcal{S}$） | D5 | 主文 Results；IPR/$J$ → SI Fig.~S6 |
+| 单核心贡献（$\mathcal{S}$） | D5 | 主文 Results；IPR/$J$ → SI Fig.~S3 |
 | 刚性应变验证 | D2 | Table~S3 + `relax_validation/` |
 | $n_{\mathrm{dop}}$ / $E_f$ | D10 | `experiments/analysis/table1_verification.json` |
 | 正文词数 ≤3750 | D7 | 待 Loop 压缩；细节 → `si_methods_section.tex` |

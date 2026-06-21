@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fig. S4 — Exp.7 pi-DOS tetramer panel @ epsilon=0 (Electron purple/teal)."""
+"""Fig. S1 — Exp.7 pi-DOS tetramer panel @ epsilon=0 (Electron purple/teal)."""
 
 from __future__ import annotations
 
@@ -81,8 +81,8 @@ def build(out_dir: Path) -> tuple[Path, Path]:
     fig.subplots_adjust(wspace=0.32, hspace=0.38, left=0.10, right=0.98, top=0.94, bottom=0.14)
 
     out_dir.mkdir(parents=True, exist_ok=True)
-    pdf = out_dir / "figure_s4_pdos_exp7.pdf"
-    png = out_dir / "figure_s4_pdos_exp7.png"
+    pdf = out_dir / "figure_s1_pdos_exp7.pdf"
+    png = out_dir / "figure_s1_pdos_exp7.png"
     fig.savefig(pdf, bbox_inches="tight", pad_inches=0.04)
     fig.savefig(png, bbox_inches="tight", pad_inches=0.04, dpi=300)
     plt.close(fig)

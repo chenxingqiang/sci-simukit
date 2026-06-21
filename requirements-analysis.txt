@@ -1,0 +1,12 @@
+# DFT result analysis + manuscript figures (sci-simukit)
+# Install: bash scripts/install_dft_analysis.sh
+
+numpy>=1.21.0
+pandas>=1.3.0
+scipy>=1.7.0
+matplotlib>=3.4.0
+seaborn>=0.11.0
+ase>=3.22.0
+pymatgen>=2023.1.0
+tqdm>=4.64.0
+joblib>=1.1.0

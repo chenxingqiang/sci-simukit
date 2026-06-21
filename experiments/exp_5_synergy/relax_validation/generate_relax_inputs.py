@@ -95,7 +95,7 @@ def build_geo_inp(project: str, cell: str, coord: str, kinds: list[str]) -> str:
             POTENTIAL_FILE_NAME GTH_POTENTIALS
 
             &MGRID
-              CUTOFF 300
+              CUTOFF 400
               REL_CUTOFF 50
             &END MGRID
 

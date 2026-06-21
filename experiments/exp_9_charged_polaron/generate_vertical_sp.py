@@ -34,6 +34,7 @@ def sp_inp(
     a: float,
     b: float,
     c: float,
+    eps_scf: str = "1.0E-7",
 ) -> str:
     mult = 1 if charge == 0 else 2
     uks = ".FALSE." if charge == 0 else ".TRUE."
@@ -66,8 +67,8 @@ def sp_inp(
 
     &SCF
       SCF_GUESS ATOMIC
-      EPS_SCF 1.0E-7
-      MAX_SCF 500
+      EPS_SCF {eps_scf}
+      MAX_SCF 1000
 
       &OT
         MINIMIZER DIIS
@@ -150,7 +151,8 @@ def main() -> None:
             tag = charge_tag(charge)
             project = f"polaron_{dopant}_{tag}_vert_neutral_geom_sp"
             path = VERT_DIR / f"{project}.inp"
-            path.write_text(sp_inp(project, xyz_rel, charge, a, b, c))
+            eps = "1.0E-6" if dopant == "B" and charge == -1 else "1.0E-7"
+            path.write_text(sp_inp(project, xyz_rel, charge, a, b, c, eps_scf=eps))
             written.append(path.name)
 
     print(f"Vertical SP inputs: {len(written)} written -> {VERT_DIR.relative_to(REPO)}")

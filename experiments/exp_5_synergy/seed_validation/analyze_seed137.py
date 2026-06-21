@@ -47,6 +47,7 @@ def main() -> None:
         "seed_primary": 42,
         "seed_validation": 137,
         "status": "pending",
+        "functional_note": "Seed137 inputs use PBE+D3 (modernize_cp2k_inp); compare only after modern pristine outs exist.",
         "tetramer_alpha_meV_per_pct": {"seed42": {}, "seed137": {}},
         "tetramer_S_meV_per_atom_at_eps3": {"seed42": {}, "seed137": {}},
         "relative_deviation_pct": {},
@@ -65,12 +66,22 @@ def main() -> None:
         if e is not None:
             by_dop[dop][strain] = e
 
+    def strain_tag(strain: float) -> str:
+        return f"strain{strain:+.1f}_rigid".replace("+", "p").replace("-", "m")
+
     pristine: dict[float, float] = {}
+    pristine_protocol = "legacy_pbe_no_d3"
     for strain in (-5.0, -2.5, 0.0, 2.5, 3.0, 5.0):
-        ref = REPO / "dft_results/exp_5_synergy" / f"C60_strain_{strain:+.1f}_pristine_synergy.out"
-        e = parse_energy(ref)
+        modern = INP_DIR / f"seed137_pristine_{strain_tag(strain)}.out"
+        legacy = REPO / "dft_results/exp_5_synergy" / f"C60_strain_{strain:+.1f}_pristine_synergy.out"
+        e = parse_energy(modern) if modern.exists() else None
+        if e is not None:
+            pristine_protocol = "pbe_d3_modern"
+        else:
+            e = parse_energy(legacy)
         if e is not None:
             pristine[strain] = e
+    result["pristine_energy_protocol"] = pristine_protocol
 
     converged = sum(len(v) for v in by_dop.values())
     for dop in ("B", "N", "P"):

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fig. S5 — Marcus configuration coordinate (adiabatic IP/EA verified; lambda pending)."""
+"""Fig. S2 — Marcus configuration coordinate (adiabatic IP/EA verified; lambda pending)."""
 
 from __future__ import annotations
 
@@ -88,13 +88,13 @@ def build(out_dir: Path) -> tuple[Path, Path]:
         style_axes(ax)
 
     axes[0].set_ylabel("energy (eV, schematic)")
-    panel_label(axes[0], "S5")
+    panel_label(axes[0], "S2")
     fig.legend(frameon=False, loc="upper center", ncol=2, fontsize=5, bbox_to_anchor=(0.5, 1.04))
     fig.subplots_adjust(wspace=0.22)
 
     out_dir.mkdir(parents=True, exist_ok=True)
-    pdf = out_dir / "figure_s5_marcus_pending.pdf"
-    png = out_dir / "figure_s5_marcus_pending.png"
+    pdf = out_dir / "figure_s2_marcus.pdf"
+    png = out_dir / "figure_s2_marcus.png"
     fig.savefig(pdf, bbox_inches="tight", pad_inches=0.05)
     fig.savefig(png, bbox_inches="tight", pad_inches=0.05, dpi=300)
     plt.close(fig)

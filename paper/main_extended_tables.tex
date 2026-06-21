@@ -1,0 +1,94 @@
+% Legacy merge file — canonical sources: paper/tables/tab_s*.tex
+
+\begin{table}[!ht]
+\caption{\label{tab:S1}Total energies, linear strain sensitivities, and substitution energies for tetramer models (PBE+D3, rigid-strain protocol).
+$E_{\mathrm{sub}}=(E_{\mathrm{doped}}-E_{\mathrm{pristine}})/n_{\mathrm{dopants}}$ at $\epsilon{=}0$ with no chemical-potential reference (not a standard formation enthalpy).
+$n_{\mathrm{dopants}}$ is counted from archived input coordinates (nominal 5\% target; B: 13, N: 12, P: 12).}
+\begin{ruledtabular}
+\begin{tabular}{lccccc}
+System & $n_{\mathrm{dop}}$ & $E(\epsilon{=}0)$ ($E_{\mathrm{h}}$) & $E(\epsilon{=}+5\%)$ ($E_{\mathrm{h}}$) & $\alpha$ (meV/\%) & $E_{\mathrm{sub}}$ (eV/dopant) \\
+\hline
+Pristine & --- & $-1363.5512$ & $-1363.5509$ & $-1.0$ & --- \\
+B-doped & 13 & $-1328.4900$ & $-1328.4090$ & $+56.9$ & $+73.4$ \\
+N-doped & 12 & $-1414.3812$ & $-1414.4053$ & $-303.2$ & $-115.3$ \\
+P-doped & 12 & $-1370.4965$ & $-1370.4888$ & $-19.1$ & $-15.8$ \\
+\end{tabular}
+\end{ruledtabular}
+\end{table}
+
+\begin{table}[!ht]
+\caption{\label{tab:S2}Summary of converged DFT calculations and correspondence to main-text results.
+The $\sim 90$ tasks cited in the main text are the converged calculations that directly support quantitative claims; the full archive includes additional preliminary grids (rows marked ``not used'').}
+\begin{ruledtabular}
+\begin{tabular}{llccl}
+Calculation set & Model & Converged tasks & Main-text usage & Notes \\
+\hline
+Early strain probe & 2$\times$C$_{60}$ & 5 & not used & superseded by tetramer grids \\
+Single-molecule doping & C$_{60}$ & 11 & not used & superseded \\
+Early electronics & 2$\times$C$_{60}$ & 24 & not used & superseded by tetramer $\pi$-DOS \\
+Polaron IPR/$J$ tetramer dimer & tetramer & 4 & Fig.~\ref{fig:S3} & pristine/B $\times$ $\epsilon{=}0,+3$\% \\
+Tetramer strain energies & tetramer & 24 & Table~\ref{tab:S1}, $\alpha$ & rigid strain \\
+Optimal-design grid & tetramer & 20 & not used & archive only \\
+Tetramer $\pi$-DOS/gaps & tetramer & 12 & Fig.~\ref{fig:S1}; main panels & \\
+Geometry references & tetramer relax & 6 & charged-state inputs & reference geometries \\
+Charged polarons & tetramer $q=\pm1$ & 12 geometry opt. & Fig.~\ref{fig:S2} & Marcus $\lambda^{\pm}$ and adiabatic IP/EA \\
+Size scaling & $n\times$C$_{60}$ & 40 (+1 pending) & main $\mathcal{S}(n)$ & 400~Ry ($n\leq4$), 350~Ry ($n\geq6$); cutoff400 control pending \\
+$n{=}6$ cutoff control & $6\times$C$_{60}$ N @+3\% & pending & N sign benchmark & 400~Ry matched control (pending) \\
+Ionic relaxation (tetramer) & tetramer & 2/4 geometry opt. & Table~\ref{tab:S3} & fixed-cell; pristine $\epsilon{=}0,+3$\% converged \\
+\end{tabular}
+\end{ruledtabular}
+\end{table}
+
+\begin{table}[!ht]
+\caption{\label{tab:S3}Ionic-relaxation benchmark for tetramer $P@+3$\% (four fixed-cell geometry-optimization corners, same biaxial cell).
+This benchmark is \emph{sign-qualitative only}: the rigid reference uses legacy PBE without D3, whereas relaxed corners use PBE+D3, so $|\mathcal{S}_{\mathrm{relaxed}}|/|\mathcal{S}_{\mathrm{rigid}}|$ is \emph{not} a quantitative retention ratio until a matched-functional rigid grid is recomputed. We test whether $\mathcal{S}$ retains \emph{sign} \emph{within the tetramer grid only}; it does \emph{not} calibrate periodic main-text $\mathcal{S}(n)$, which uses different dopant concentration and boundary conditions.
+Rigid reference energies: archived fixed-coordinate tetramer single-point grid (legacy PBE, no D3). Relaxed energies: PBE+D3 fixed-cell geometry optimization (400~Ry) from archived inputs in the open repository.
+$\mathcal{S}$ follows Eq.~\eqref{eq:synergy_order} with $N{=}240$ atoms.}
+\begin{ruledtabular}
+\begin{tabular}{lcc}
+Quantity & Rigid (legacy tetramer) & Relaxed (geometry opt.) \\
+\hline
+$E$(pristine, $\epsilon{=}0$) ($E_{\mathrm{h}}$) & $-1363.5512$ & $-1363.9551$ \\
+$E$(pristine, $\epsilon{=}3$\%) ($E_{\mathrm{h}}$) & $-1363.5522$ & $-1363.9550$ \\
+$E$(P, $\epsilon{=}0$) ($E_{\mathrm{h}}$) & $-1370.4965$ & pending \\
+$E$(P, $\epsilon{=}3$\%) ($E_{\mathrm{h}}$) & $-1370.4890$ & pending \\
+$\mathcal{S}$ (meV/atom) & $+0.96$ & pending \\
+Sign of $\mathcal{S}$ vs.\ rigid & \multicolumn{2}{c}{pending (2/4 geometry opt.; $P@\epsilon{=}0$ running)} \\
+\end{tabular}
+\end{ruledtabular}
+\end{table}
+
+\begin{table}[!ht]
+\caption{\label{tab:S4}Alternate random-seed dopant placement (\emph{tetramer only}, rigid strain, PBE+D3).
+Seed~42 defines all main-text tetramer $\alpha$ and the periodic supercell site map (one substituent per C$_{60}$).
+Seed~137 repeats the full B/N/P strain grid ($\epsilon\in\{-5,-2.5,0,+2.5,+3,+5\}$\%; 18 single-point tasks) to test whether tetramer $\alpha$ and $\mathcal{S}$ at $+3$\% are placement-sensitive at ${\sim}5$\% nominal doping.
+Periodic $\mathcal{S}(n)$ is \emph{not} tabulated here because concentration and boundary conditions differ; main-text periodic magnitudes remain seed~42-specific until alternate periodic placements are computed.}
+\begin{ruledtabular}
+\begin{tabular}{lcccc}
+Dopant & Seed & $\alpha$ (meV/\%) & $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ (meV/atom) & Status \\
+\hline
+B & 42 & $+56.9$ & ${\sim}{+}0.7$ & verified (Table~S1) \\
+N & 42 & $-303.2$ & ${\sim}{-}3.8$ & verified \\
+P & 42 & $-19.1$ & ${\sim}{-}0.2$ & verified \\
+B & 137 & pending & pending & 6 inp / pending \\
+N & 137 & pending & pending & 6 inp / pending \\
+P & 137 & pending & pending & 6 inp / pending \\
+\end{tabular}
+\end{ruledtabular}
+\end{table}
+
+\begin{table}[!ht]
+\caption{\label{tab:S5}Local dopant--cage structure from archived tetramer XYZ (mean nearest C distance $\bar{d}$ in \AA; standard deviation $\sigma(\bar{d})$ across dopant sites; covalent-radius excess vs.\ C in pm).
+Strain-induced change $\Delta\bar{d}=\bar{d}(\epsilon{=}+3\%)-\bar{d}(\epsilon{=}0)$ summarizes how tensile load couples to pre-existing distortion (Discussion mechanistic synthesis (ii),(vi)).
+Values are computed from archived tetramer XYZ coordinates (seed~42) in the open data release; Mayer bond order and Bader charges are not included.}
+\begin{ruledtabular}
+\begin{tabular}{lccccc}
+Dopant & $\bar{d}(\epsilon{=}0)$ (\AA) & $\bar{d}(\epsilon{=}+3\%)$ (\AA) & $\Delta\bar{d}$ (\AA) & $\sigma(\bar{d})$ @ $+3$\% (\AA) & $\Delta r_{\mathrm{cov}}$ (pm) \\
+\hline
+B & 1.384 & 1.393 & $+0.0085$ & 0.019 & $+7$ \\
+N & 1.393 & 1.402 & $+0.0087$ & 0.024 & $-6$ \\
+P & 1.384 & 1.385 & $+0.00003$ & 0.0004 & $+30$ \\
+\end{tabular}
+\end{ruledtabular}
+\end{table}
+

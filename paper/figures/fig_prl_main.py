@@ -132,16 +132,33 @@ def _plot_alpha(ax, table1) -> None:
     ax.invert_yaxis()
     lo, hi = min(alphas), max(alphas)
     span = hi - lo
-    pad = max(span * 0.14, 18)
-    ax.set_xlim(lo - pad, hi + pad)
+    pad_neg = max(abs(lo) * 0.06, 22)
+    pad_pos = max(hi * 0.18, 14)
+    ax.set_xlim(lo - pad_neg, hi + pad_pos)
     style_axes(ax, grid=True)
     for i, val in enumerate(alphas):
-        offset = span * 0.04
-        if val >= 0:
-            x, ha = val + offset, "left"
+        label = f"{val:.0f}"
+        if abs(val) >= 80:
+            x = val * (0.72 if val < 0 else 0.28)
+            ax.text(
+                x,
+                i,
+                label,
+                va="center",
+                ha="center",
+                fontsize=5,
+                color="white",
+                fontweight="bold",
+                zorder=4,
+                clip_on=True,
+            )
         else:
-            x, ha = val - offset, "right"
-        ax.text(x, i, f"{val:.0f}", va="center", ha=ha, fontsize=5, zorder=3, clip_on=True)
+            offset = max(span * 0.03, 6)
+            if val >= 0:
+                x, ha = val + offset, "left"
+            else:
+                x, ha = val - offset, "right"
+            ax.text(x, i, label, va="center", ha=ha, fontsize=5, zorder=3, clip_on=True)
 
 
 def _plot_synergy_combo(ax_main, audit, exp4, *, show_inset: bool = False, ax_inset=None) -> None:
@@ -177,20 +194,20 @@ def _plot_synergy_combo(ax_main, audit, exp4, *, show_inset: bool = False, ax_in
     ax_main.set_ylabel(r"$\mathcal{S}$ (meV/atom)", labelpad=2)
     ax_main.yaxis.set_label_coords(-0.20, 0.5)
     ax_main.set_xticks([1, 2, 4, 6, 8])
-    ax_main.margins(x=0.06, y=0.22)
+    ax_main.margins(x=0.06, y=0.18)
     style_axes(ax_main, grid=True)
-    # Compact n=4 legend box (avoids overlapping point labels on panel d)
+    # Compact n=4 values — lower-left to avoid P(n=1) peak annotation (panel d).
     if n4_labels:
         parts = [rf"{d} ${n4_labels[d][1]:+.1f}$" for d in ("B", "N", "P") if d in n4_labels]
         ax_main.text(
             0.03,
-            0.97,
+            0.06,
             r"$n{=}4$: " + ", ".join(parts) + r" meV/atom",
             transform=ax_main.transAxes,
-            fontsize=5.2,
-            va="top",
+            fontsize=5.0,
+            va="bottom",
             ha="left",
-            bbox=dict(boxstyle="round,pad=0.22", facecolor="white", edgecolor="#CCCCCC", alpha=0.96, lw=0.45),
+            bbox=dict(boxstyle="round,pad=0.2", facecolor="white", edgecolor="#CCCCCC", alpha=0.96, lw=0.45),
         )
     p_rows = synergy_rows(audit, "P")
     p_n1 = next((s for n, s in p_rows if int(n) == 1), None)
@@ -198,14 +215,14 @@ def _plot_synergy_combo(ax_main, audit, exp4, *, show_inset: bool = False, ax_in
         ax_main.annotate(
             rf"max $|\mathcal{{S}}|={abs(p_n1):.1f}$",
             xy=(1.0, p_n1),
-            xytext=(14, 6),
-            textcoords="offset points",
-            fontsize=5.5,
+            xytext=(2.15, p_n1 + 7.5),
+            textcoords="data",
+            fontsize=5.3,
             color=DOPANT_COLORS["P"],
             ha="left",
             va="bottom",
             bbox=dict(boxstyle="round,pad=0.15", facecolor="white", edgecolor=DOPANT_COLORS["P"], alpha=0.92, lw=0.4),
-            arrowprops=dict(arrowstyle="-", color=DOPANT_COLORS["P"], lw=0.45, shrinkA=2, shrinkB=2),
+            arrowprops=dict(arrowstyle="-|>", color=DOPANT_COLORS["P"], lw=0.45, shrinkA=3, shrinkB=3),
         )
     ax_main.legend(
         frameon=True,
@@ -287,7 +304,7 @@ def build_prb_figure(out_dir: Path) -> tuple[Path, Path]:
     exp4 = load_json("experiments/analysis/exp4_polaron_verification.json")
     gaps = parse_exp7_gaps()
 
-    fig = plt.figure(figsize=(PRB_WIDTH_IN, PRB_HEIGHT_IN + 0.15))
+    fig = plt.figure(figsize=(PRB_WIDTH_IN, PRB_HEIGHT_IN + 0.18))
     gs = GridSpec(
         1,
         4,
@@ -297,7 +314,7 @@ def build_prb_figure(out_dir: Path) -> tuple[Path, Path]:
         left=0.08,
         right=0.98,
         top=0.88,
-        bottom=0.30,
+        bottom=0.34,
     )
     ax_a = fig.add_subplot(gs[0, 0])
     ax_b = fig.add_subplot(gs[0, 1])

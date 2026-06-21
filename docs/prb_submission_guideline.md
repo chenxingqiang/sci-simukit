@@ -279,14 +279,25 @@ Publication Charges and Reprints
 | Main figure (two-column) | `paper/figures/out/figure_prb_main.pdf` |
 | Cover letter | `paper/cover_letter_prb.txt` |
 
-**Article type:** Regular Article (no length limit). Word count: `bash paper/scripts/prb_wordcount.sh`.
+**Article type:** **Regular Article** (no APS length limit). Word count: `bash paper/scripts/prb_wordcount.sh` (informational only).
+
+### Regular Article strategy (sci-simukit)
+
+| vs Rapid Communications (4500 words) | Regular Article choice |
+|--------------------------------------|-------------------------|
+| Mechanistic Discussion (i)--(vi) | Keep in main text; do not compress for length |
+| Methods detail | `si_methods_section.tex` + SM tables; main Methods stays readable |
+| Marcus / IPR / $J$ | SI Fig.~S2--S3 only (scope boundary unchanged) |
+| Loop priority | **C-M1--M3 DFT** and evidence closure > word-count trimming |
+
+Current manuscript (`texcount` ~3500--3600 words) is well within typical Regular Article length; further expansion is allowed if it strengthens Major-revision responses (e.g., Mayer/Bader outlook, relaxed Table~S3 interpretation).
 
 
 ### Compute dependencies (before final resubmission)
 
 | Step | Command / artifact | Blocks |
 |------|-------------------|--------|
-| Exp9 GEO\_OPT + vertical SP | `continue_exp9_pending.sh` → `post_exp9_converged.sh` (12/12 → vertical queue) | SI Fig.~S5 $\lambda$ |
+| Exp9 GEO\_OPT + vertical SP | `continue_exp9_pending.sh` → `post_exp9_converged.sh` (12/12 → vertical queue) | SI Fig.~S2 $\lambda$ |
 | PRB validation DFT (idle CPU) | `bash experiments/run_prb_revision_dft.sh` | Tables S2--S4 numeric cells |
 | Rebuild PDFs | `bash paper/compile_prb.sh` | Upload bundle（**verified R151**: 1$\times$4 S5） |
 

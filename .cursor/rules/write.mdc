@@ -1,316 +1,169 @@
 ---
+description: 计算物理方向 SCI 论文写作协议（落地版）— 七阶段边界、证据分级、双轨联动；go loops 时 Track B 必读
 alwaysApply: true
 ---
 
-SCI Paper Writing Protocol
-This protocol outlines how researchers, in collaboration with academic advisors or peers, should approach SCI paper writing, emphasizing structured academic rigor and a phased development approach. The core idea is to guide the writing process, focusing on precision in early stages and logical coherence throughout the manuscript development. This version includes explicit communication protocols for collaborative writing.
-⸻
-Core Principles
-Problem-Driven Writing: All content must directly address the central research question. Each section should contribute to answering or contextualizing this question.
-Phased Development: The paper writing process is explicitly divided into eight sequential phases corresponding to the core sections of an SCI paper: Abstract, Introduction, Literature Review, Methodology, Data, Results, Discussion, and Conclusion. Each phase has specific objectives and logical progression requirements.
-Early Precision: The Abstract and Introduction phases are critical and demand high levels of precision in defining the research gap and problem scope. These sections should be detailed and unambiguous.
-Logical Consistency: Later sections must maintain consistency with foundational elements established in earlier sections. Changes to research questions or methodologies in later phases require explicit justification and documentation.
-Evidence-Based Claims: All statements, particularly in Results and Discussion sections, must be supported by empirical evidence or logical reasoning. Speculative claims should be clearly identified as such.
-Peer Verification: Critical sections (particularly Methodology, Results, and Conclusion) should be reviewed by peers or advisors before finalization.
-Iterative Refinement: The process should follow an iterative pattern within and between phases: Draft → Review → Revision → Validation. This cycle is repeated until each section meets academic standards.
-Progressive Complexity: The paper should develop from broad context to specific findings, maintaining a logical flow that guides readers through the research journey.
-Ethical Compliance: All data collection, analysis, and reporting must adhere to field-specific ethical guidelines. Any deviations or limitations must be explicitly stated.
-Citation Integrity: All references must be accurately cited, with proper attribution of prior work. Direct citations and paraphrasing must be clearly distinguished.
-Discipline-Specific Standards: Methodology and results reporting must conform to established standards in the specific research field, with any deviations explicitly justified.
-Pre-Modification Review: Before revising any section, researchers must:
-Review the original approved content and rationale
-Identify specific discrepancies or improvement needs
-Document proposed changes and their justification
-Preserve the original intent unless modification is explicitly approved
-Ensure changes maintain consistency across related sections
-Academic Elegance: Manuscripts must aim for academic elegance — concise, precise, logically structured, and accessible to the target audience. Elegance is characterized by clear section boundaries, consistent terminology, and minimal redundancy while maintaining comprehensiveness.
-Change Documentation: Any significant modifications to research scope, methodology, or key findings must be explicitly recorded in a revision log. Each entry should include:
-Date & Author of the change
-Reason for change (including relevant context)
-Sections affected by the change
-Impact on overall conclusions or claims
-Supporting evidence or justification
-⸻
-Phase-Specific Guidelines
-I. Abstract Phase (Precision Required)
-• Goal: Create a concise yet comprehensive summary of the entire study that accurately reflects the research gap, methodology, key findings, and implications.
-• Researcher Responsibilities:
-Gap Identification: Precisely locate the central contradiction in the research field and identify unresolved key issues in existing theories or practices.
-• Communication: "I am in the Abstract phase. I have identified the following research gap: [specific gap]. Does this align with our understanding of the field's current limitations?"
-Methodology Conciseness: Briefly describe the core technical approach or analytical framework used to address the identified gap.
-Data Specification: Clearly state the key characteristics of the data used to validate the methodology (e.g., sample size, temporal/spatial dimensions, variable properties).
-Finding Distillation: Condense the breakthrough conclusions derived from data analysis into precise statements.
-Significance Clarification: Articulate the contribution of these findings to the theoretical framework of the discipline or their innovative significance for practical applications.
-Peer Review: Seek feedback on whether the abstract accurately represents the research and effectively communicates its value.
-• Communication: "I have drafted the abstract. It emphasizes [key elements]. Does this capture the essence of our research appropriately?"
-II. Introduction Phase
-• Goal: Establish the research context, clearly define the problem, and outline the paper structure, creating a logical foundation for the study.
-• Researcher Responsibilities:
-Background Development: From the discipline's developmental context or practical needs, demonstrate the contemporary necessity of the research problem.
-• Communication: "In developing the introduction, I'm framing the background around [key context]. Should we emphasize different contextual elements?"
-Problem Delimitation: Based on background analysis, focus on specific research pain points and clarify the boundaries and core elements of the problem.
-Research Evolution: Trace the development of key research achievements in the field chronologically or logically, constructing an academic development map.
-Limitation Identification: Systematically analyze deficiencies in previous research regarding methodological design, data coverage, or theoretical interpretation.
-Research Positioning: Clearly explain the solution, technical path, and expected outcomes proposed to address these limitations, defining the research scope (what is included/excluded).
-Structure Outline: Provide an overview of how subsequent sections progressively advance the argument, forming a logical 闭环 (closed loop).
-Validation: Confirm that the introduction effectively establishes the research rationale and leads naturally to the methodology.
-III. Literature Review Phase
-• Goal: Position the research within existing scholarship, demonstrating command of relevant literature and clearly establishing the research gap.
-• Researcher Responsibilities:
-Gap Depth Analysis: Through comparative analysis of authoritative studies, quantitatively or qualitatively demonstrate the extent of existing research gaps.
-• Communication: "In the literature review, I've identified [specific gaps] through analysis of [key studies]. Should we include additional literature to strengthen this analysis?"
-Theoretical-Methodological Genealogy: Construct a 谱系 (genealogy) of theoretical frameworks related to the research question, evaluating the applicability boundaries of each approach.
-Cross-Disciplinary Integration (if applicable): Justify the introduction of methodologies from other disciplines, analyzing their adaptability and innovative potential in the current field.
-Synthesis: Integrate literature findings to create a coherent narrative that justifies the current research approach.
-IV. Methodology Phase
-• Goal: Provide a detailed, reproducible description of how the research was conducted, enabling other researchers to replicate the study.
-• Researcher Responsibilities:
-Design Logic: Explain the rationale for selecting the research paradigm (e.g., empirical research, simulation research) and present the technical roadmap.
-• Communication: "I've outlined our methodological approach as [description]. Does this adequately address potential validity concerns?"
-Data Acquisition Strategy: Explain criteria for selecting data types (independent variables, dependent variables, control variables), collection tools, and quality control methods.
-Analysis Process Construction: Detail data processing steps. If models are involved, explain:
-Model assumptions and parameter settings
-Validation methods and evaluation indicators
-Comparative dimensions with traditional methods
-Reproducibility Check: Ensure sufficient detail for other researchers to replicate the methodology.
-V. Data Phase
-• Goal: Describe the dataset comprehensively, establishing its suitability for addressing the research question.
-• Researcher Responsibilities:
-Dataset Characteristics: Describe the authority of data sources, the appropriateness of collection periods, and provide statistical distribution characteristics of key variables (mean, standard deviation, quantiles, etc.).
-• Communication: "I've described our dataset as [summary]. Should we emphasize different characteristics or provide additional descriptive statistics?"
-Preprocessing Procedures: Explain specific operations and scientific rationale for data cleaning (outlier handling), transformation (standardization, normalization), and integration.
-Limitation Disclosure: Identify any limitations in the dataset that might affect results or generalizability.
-VI. Results Phase
-• Goal: Present research findings objectively and neutrally, without interpretation or speculation.
-• Researcher Responsibilities:
-Core Finding Presentation: Objectively display statistically validated key results in order of priority related to the research questions.
-• Communication: "I've organized the results around [key findings]. Does this structure effectively highlight the most significant outcomes?"
-Trend Analysis: Present patterns or dynamic change characteristics implied in the data through visualizations.
-Anomaly Identification: Flag noteworthy special data points, describing only the phenomena without attribution.
-Validation Results: Report data verifying the methodology's effectiveness (e.g., accuracy rates, significance levels).
-Objectivity Check: Ensure results are presented without interpretive language or speculative claims.
-VII. Discussion Phase
-• Goal: Interpret findings, relate them to existing literature, and explain their significance.
-• Researcher Responsibilities:
-Horizontal Comparison: Quantitatively compare the study's results with similar research, analyzing consistencies and differences.
-• Communication: "In the discussion, I'm comparing our findings with [key studies], noting [similarities/differences]. Should we emphasize different comparative dimensions?"
-Internal Connection: Reveal logical relationships between various results, constructing a conclusion system.
-Difference Attribution: For discrepancies with previous research, analyze potential causes from three aspects:
-Sample heterogeneity (e.g., population characteristics, temporal/spatial differences)
-Methodological differences (e.g., indicator selection, model settings)
-Potential mechanisms (influential pathways not previously noted)
-Significance Elaboration: Explain the broader implications of the findings for the field.
-VIII. Conclusion Phase
-• Goal: Provide a concise synthesis of the research, highlighting its contributions, limitations, and implications for future work.
-• Researcher Responsibilities:
-Core Conclusion Distillation: Use academic language to highly summarize the research's breakthrough achievements, avoiding repetition of results descriptions.
-• Communication: "I've drafted conclusions emphasizing [key points]. Do these effectively capture the significance of our research?"
-Theoretical-Practical Contributions: Clearly identify the research's contributions to disciplinary theory or specific guidance value for industry decision-making.
-Research Limitations: Objectively explain two categories of limitations:
-Scope limitations (e.g., samples covering only specific populations)
-Methodological limitations (e.g., insufficient data timeliness, simplified model assumptions)
-Future Directions: Based on limitations, propose actionable research recommendations, such as:
-Expanding research scope (e.g., cross-cultural validation)
-Improving methodological systems (e.g., integrating multi-source data)
-Deepening mechanism research (e.g., mediating effect analysis)
-Final Validation: Ensure conclusions directly address the research questions posed in the introduction and reflect the significance of the findings.
-⸻
-Structural Design Principles
-Logical Closure: Content in each section must contribute to answering the research question, forming a complete chain: "posing the problem - analyzing the problem - solving the problem"
-Clear Boundaries: The Methodology section describes only operational procedures; the Results section presents only objective data; the Discussion section focuses on interpretation and comparison.
-Natural Transitions: Include transitional sentences between major sections (e.g., "Based on the above methodology, this study collected the following data")
-Hierarchical Organization: Each subheading should focus on a single information point, avoiding content overlap.
-Discipline Adaptation: Emphasis can be adjusted according to disciplinary characteristics (e.g., experimental sciences emphasize methodological reproducibility; social sciences highlight data representativeness)
-⸻
-Communication Protocol
-• Phase Declaration: Before initiating discussion about any section, clearly state the current phase (e.g., "In the Literature Review phase, I'm addressing...")
-• Clarification Requests: When encountering ambiguities or needing additional information, frame specific questions about requirements or expectations.
-• Example: "For the Methodology section, should we provide more detail on [specific procedure] to enhance reproducibility?"
-• Review Requests: When seeking feedback on a draft section, clearly identify specific concerns or areas needing evaluation.
-• Example: "Please review the Results section. I'm particularly concerned whether the presentation of [specific finding] is sufficiently clear and objective."
-• Revision Documentation: When incorporating feedback, document key changes and their rationale for future reference.
-• Example: "Revised the Discussion section to address feedback by adding [specific analysis] regarding [issue raised]."
-⸻
-Version Control
-• Each major revision of the manuscript should be saved with version numbering
-• Significant changes should be tracked in a revision log
-• Final versions of each section should be clearly marked and dated
-• All co-authors should work from the most current approved version of each section
-SCI Paper Writing Protocol
-This protocol outlines how researchers, in collaboration with academic advisors or peers, should approach SCI paper writing, emphasizing structured academic rigor and a phased development approach. The core idea is to guide the writing process, focusing on precision in early stages and logical coherence throughout the manuscript development. This version includes explicit communication protocols for collaborative writing.
-⸻
-Core Principles
-Problem-Driven Writing: All content must directly address the central research question. Each section should contribute to answering or contextualizing this question.
-Phased Development: The paper writing process is explicitly divided into eight sequential phases corresponding to the core sections of an SCI paper: Abstract, Introduction, Literature Review, Methodology, Data, Results, Discussion, and Conclusion. Each phase has specific objectives and logical progression requirements.
-Early Precision: The Abstract and Introduction phases are critical and demand high levels of precision in defining the research gap and problem scope. These sections should be detailed and unambiguous.
-Logical Consistency: Later sections must maintain consistency with foundational elements established in earlier sections. Changes to research questions or methodologies in later phases require explicit justification and documentation.
-Evidence-Based Claims: All statements, particularly in Results and Discussion sections, must be supported by empirical evidence or logical reasoning. Speculative claims should be clearly identified as such.
-Peer Verification: Critical sections (particularly Methodology, Results, and Conclusion) should be reviewed by peers or advisors before finalization.
-Iterative Refinement: The process should follow an iterative pattern within and between phases: Draft → Review → Revision → Validation. This cycle is repeated until each section meets academic standards.
-Progressive Complexity: The paper should develop from broad context to specific findings, maintaining a logical flow that guides readers through the research journey.
-Ethical Compliance: All data collection, analysis, and reporting must adhere to field-specific ethical guidelines. Any deviations or limitations must be explicitly stated.
-Citation Integrity: All references must be accurately cited, with proper attribution of prior work. Direct citations and paraphrasing must be clearly distinguished.
-Discipline-Specific Standards: Methodology and results reporting must conform to established standards in the specific research field, with any deviations explicitly justified.
-Pre-Modification Review: Before revising any section, researchers must:
-Review the original approved content and rationale
-Identify specific discrepancies or improvement needs
-Document proposed changes and their justification
-Preserve the original intent unless modification is explicitly approved
-Ensure changes maintain consistency across related sections
-Academic Elegance: Manuscripts must aim for academic elegance — concise, precise, logically structured, and accessible to the target audience. Elegance is characterized by clear section boundaries, consistent terminology, and minimal redundancy while maintaining comprehensiveness.
-Change Documentation: Any significant modifications to research scope, methodology, or key findings must be explicitly recorded in a revision log. Each entry should include:
-Date & Author of the change
-Reason for change (including relevant context)
-Sections affected by the change
-Impact on overall conclusions or claims
-Supporting evidence or justification
-⸻
-Phase-Specific Guidelines
-I. Abstract Phase (Precision Required)
-• Goal: Create a concise yet comprehensive summary of the entire study that accurately reflects the research gap, methodology, key findings, and implications.
-• Researcher Responsibilities:
-Gap Identification: Precisely locate the central contradiction in the research field and identify unresolved key issues in existing theories or practices.
-• Communication: "I am in the Abstract phase. I have identified the following research gap: [specific gap]. Does this align with our understanding of the field's current limitations?"
-Methodology Conciseness: Briefly describe the core technical approach or analytical framework used to address the identified gap.
-Data Specification: Clearly state the key characteristics of the data used to validate the methodology (e.g., sample size, temporal/spatial dimensions, variable properties).
-Finding Distillation: Condense the breakthrough conclusions derived from data analysis into precise statements.
-Significance Clarification: Articulate the contribution of these findings to the theoretical framework of the discipline or their innovative significance for practical applications.
-Peer Review: Seek feedback on whether the abstract accurately represents the research and effectively communicates its value.
-• Communication: "I have drafted the abstract. It emphasizes [key elements]. Does this capture the essence of our research appropriately?"
-II. Introduction Phase
-• Goal: Establish the research context, clearly define the problem, and outline the paper structure, creating a logical foundation for the study.
-• Researcher Responsibilities:
-Background Development: From the discipline's developmental context or practical needs, demonstrate the contemporary necessity of the research problem.
-• Communication: "In developing the introduction, I'm framing the background around [key context]. Should we emphasize different contextual elements?"
-Problem Delimitation: Based on background analysis, focus on specific research pain points and clarify the boundaries and core elements of the problem.
-Research Evolution: Trace the development of key research achievements in the field chronologically or logically, constructing an academic development map.
-Limitation Identification: Systematically analyze deficiencies in previous research regarding methodological design, data coverage, or theoretical interpretation.
-Research Positioning: Clearly explain the solution, technical path, and expected outcomes proposed to address these limitations, defining the research scope (what is included/excluded).
-Structure Outline: Provide an overview of how subsequent sections progressively advance the argument, forming a logical 闭环 (closed loop).
-Validation: Confirm that the introduction effectively establishes the research rationale and leads naturally to the methodology.
-III. Literature Review Phase
-• Goal: Position the research within existing scholarship, demonstrating command of relevant literature and clearly establishing the research gap.
-• Researcher Responsibilities:
-Gap Depth Analysis: Through comparative analysis of authoritative studies, quantitatively or qualitatively demonstrate the extent of existing research gaps.
-• Communication: "In the literature review, I've identified [specific gaps] through analysis of [key studies]. Should we include additional literature to strengthen this analysis?"
-Theoretical-Methodological Genealogy: Construct a 谱系 (genealogy) of theoretical frameworks related to the research question, evaluating the applicability boundaries of each approach.
-Cross-Disciplinary Integration (if applicable): Justify the introduction of methodologies from other disciplines, analyzing their adaptability and innovative potential in the current field.
-Synthesis: Integrate literature findings to create a coherent narrative that justifies the current research approach.
-IV. Methodology Phase
-• Goal: Provide a detailed, reproducible description of how the research was conducted, enabling other researchers to replicate the study.
-• Researcher Responsibilities:
-Design Logic: Explain the rationale for selecting the research paradigm (e.g., empirical research, simulation research) and present the technical roadmap.
-• Communication: "I've outlined our methodological approach as [description]. Does this adequately address potential validity concerns?"
-Data Acquisition Strategy: Explain criteria for selecting data types (independent variables, dependent variables, control variables), collection tools, and quality control methods.
-Analysis Process Construction: Detail data processing steps. If models are involved, explain:
-Model assumptions and parameter settings
-Validation methods and evaluation indicators
-Comparative dimensions with traditional methods
-Reproducibility Check: Ensure sufficient detail for other researchers to replicate the methodology.
-V. Data Phase
-• Goal: Describe the dataset comprehensively, establishing its suitability for addressing the research question.
-• Researcher Responsibilities:
-Dataset Characteristics: Describe the authority of data sources, the appropriateness of collection periods, and provide statistical distribution characteristics of key variables (mean, standard deviation, quantiles, etc.).
-• Communication: "I've described our dataset as [summary]. Should we emphasize different characteristics or provide additional descriptive statistics?"
-Preprocessing Procedures: Explain specific operations and scientific rationale for data cleaning (outlier handling), transformation (standardization, normalization), and integration.
-Limitation Disclosure: Identify any limitations in the dataset that might affect results or generalizability.
-VI. Results Phase
-• Goal: Present research findings objectively and neutrally, without interpretation or speculation.
-• Researcher Responsibilities:
-Core Finding Presentation: Objectively display statistically validated key results in order of priority related to the research questions.
-• Communication: "I've organized the results around [key findings]. Does this structure effectively highlight the most significant outcomes?"
-Trend Analysis: Present patterns or dynamic change characteristics implied in the data through visualizations.
-Anomaly Identification: Flag noteworthy special data points, describing only the phenomena without attribution.
-Validation Results: Report data verifying the methodology's effectiveness (e.g., accuracy rates, significance levels).
-Objectivity Check: Ensure results are presented without interpretive language or speculative claims.
-VII. Discussion Phase
-• Goal: Interpret findings, relate them to existing literature, and explain their significance.
-• Researcher Responsibilities:
-Horizontal Comparison: Quantitatively compare the study's results with similar research, analyzing consistencies and differences.
-• Communication: "In the discussion, I'm comparing our findings with [key studies], noting [similarities/differences]. Should we emphasize different comparative dimensions?"
-Internal Connection: Reveal logical relationships between various results, constructing a conclusion system.
-Difference Attribution: For discrepancies with previous research, analyze potential causes from three aspects:
-Sample heterogeneity (e.g., population characteristics, temporal/spatial differences)
-Methodological differences (e.g., indicator selection, model settings)
-Potential mechanisms (influential pathways not previously noted)
-Significance Elaboration: Explain the broader implications of the findings for the field.
-VIII. Conclusion Phase
-• Goal: Provide a concise synthesis of the research, highlighting its contributions, limitations, and implications for future work.
-• Researcher Responsibilities:
-Core Conclusion Distillation: Use academic language to highly summarize the research's breakthrough achievements, avoiding repetition of results descriptions.
-• Communication: "I've drafted conclusions emphasizing [key points]. Do these effectively capture the significance of our research?"
-Theoretical-Practical Contributions: Clearly identify the research's contributions to disciplinary theory or specific guidance value for industry decision-making.
-Research Limitations: Objectively explain two categories of limitations:
-Scope limitations (e.g., samples covering only specific populations)
-Methodological limitations (e.g., insufficient data timeliness, simplified model assumptions)
-Future Directions: Based on limitations, propose actionable research recommendations, such as:
-Expanding research scope (e.g., cross-cultural validation)
-Improving methodological systems (e.g., integrating multi-source data)
-Deepening mechanism research (e.g., mediating effect analysis)
-Final Validation: Ensure conclusions directly address the research questions posed in the introduction and reflect the significance of the findings.
-⸻
-Structural Design Principles
-Logical Closure: Content in each section must contribute to answering the research question, forming a complete chain: "posing the problem - analyzing the problem - solving the problem"
-Clear Boundaries: The Methodology section describes only operational procedures; the Results section presents only objective data; the Discussion section focuses on interpretation and comparison.
-Natural Transitions: Include transitional sentences between major sections (e.g., "Based on the above methodology, this study collected the following data")
-Hierarchical Organization: Each subheading should focus on a single information point, avoiding content overlap.
-Discipline Adaptation: Emphasis can be adjusted according to disciplinary characteristics (e.g., experimental sciences emphasize methodological reproducibility; social sciences highlight data representativeness)
-⸻
-Communication Protocol
-• Phase Declaration: Before initiating discussion about any section, clearly state the current phase (e.g., "In the Literature Review phase, I'm addressing...")
-• Clarification Requests: When encountering ambiguities or needing additional information, frame specific questions about requirements or expectations.
-• Example: "For the Methodology section, should we provide more detail on [specific procedure] to enhance reproducibility?"
-• Review Requests: When seeking feedback on a draft section, clearly identify specific concerns or areas needing evaluation.
-• Example: "Please review the Results section. I'm particularly concerned whether the presentation of [specific finding] is sufficiently clear and objective."
-• Revision Documentation: When incorporating feedback, document key changes and their rationale for future reference.
-• Example: "Revised the Discussion section to address feedback by adding [specific analysis] regarding [issue raised]."
+# 计算物理方向 SCI 论文写作协议（落地版）
 
-⸻
-Agent Loop Integration (sci-simukit / AGENTS.md)
+**适用范围**：计算凝聚态物理、计算材料学方向的 SCI 期刊论文（适配 PRB、Physical Review Materials、npj Computational Materials 等专业顶刊），覆盖第一性原理计算、分子模拟等理论计算类研究；支持独立写作、团队协作、导师指导三类场景。
 
-When the user says **go loops**, **继续**, or references **@write.mdc** with loops, the Agent runs **Track B** (Manuscript & Literature Loop) in parallel with **Track A** (CP2K). This section links the eight writing phases above to the repo agent protocol.
+**核心定位**：以「研究逻辑结构化呈现」为核心，通过分阶段管控、证据分级校验、全流程闭环管理，保障稿件学术严谨性，降低协作沟通成本，规避学术规范风险。
 
-**Authority split**
+**仓库联动**：执行细节与 `go loops` 双轨流程见 [`AGENTS.md`](../../AGENTS.md)（Track B 文稿轨、论文自动优化、证据台账 `paper/theory_enhancement_report.md`）。
 
-| Document | Role |
-|----------|------|
-| `AGENTS.md` | Dual-track workflow, experiment status, Loop R{n} notes, Git closure |
-| `write.mdc` (this file) | Eight-phase boundaries, evidence gates, phase declaration |
-| `paper/theory_enhancement_report.md` | Claim ↔ DFT JSON / `.out` ledger; discrepancies stay out of Results |
+---
 
-**write.mdc phase ↔ AGENTS Track B (B1–B5)**
+## 第一部分 总纲层：核心原则
 
-| Phase | Track B layer | Typical artifacts | Evidence gate |
-|-------|---------------|-------------------|---------------|
-| I Abstract | B3 | Main `.tex` abstract | No new numbers without converged `.out` |
-| II Introduction | B1, B3 | Intro, gap, outline | New cites → `.bib` |
-| III Literature Review | B1–B3 | `.bib`, comparison sentences | WebSearch ~every 2 loops |
-| IV Methodology | B3 | Methods vs `experiments/*/inputs/*.inp` | Must match inputs |
-| V Data | B1 | `exp*_status*.json`, audit JSON | Honest DFT counts |
-| VI Results | B3, figures | Results, `paper/figures/` | **Verified `.out` / JSON only** |
-| VII Discussion | B3 | Mechanism, literature compare | Quant claims need A/B grade |
-| VIII Conclusion | B3 | Limitations, future work | Must answer Intro questions |
-| Cross-cutting | B4, B5 | `theory_enhancement_report.md` | A/B/C innovation audit in AGENTS notes |
+所有写作与协作行为必须遵循以下原则，按优先级分为三类：底线级不可突破，流程级保障效率，质量级提升水平。
 
-**Minimum Track B per loop (when CP2K is running or compute idle)**
+### 一、底线级原则（一票否决）
 
-1. **Declare phase** — e.g. "In the Methodology phase, I am aligning Methods with Exp9 inp."
-2. **Pre-modification review** — Core Principles above; document in AGENTS Loop R{n}.
-3. **One minimal patch** — tex / bib / fig / audit / theory report (≥1 file).
-4. **Innovation audit** — A/B/C table in AGENTS notes.
-5. **Verify** — citekey exists; Results numbers trace to `.out`; theory report consistent.
+1. **问题导向**：全文所有内容必须紧扣核心研究问题，每个章节服务于问题解答或背景铺垫，杜绝无关冗余内容。
+2. **证据循证**：所有结论必须有对应等级的实证数据支撑，推测性内容必须明确标注，不得与已验证结论混同。
+3. **逻辑自洽**：摘要、引言、方法、结果、结论必须前后一致，核心问题、方法边界、结论范围全程统一。
+4. **伦理合规**：计算参数、数据结果必须真实可复现，不得篡改、选择性呈现数据；引用必须准确标注出处，区分直接引用与转述。
+5. **诚实披露**：所有方法近似、计算局限、数据偏差必须主动明确说明，不得隐瞒可能影响结论可靠性的信息。
 
-**Hard gates (override phase intent)**
+### 二、流程级原则（效率保障）
 
-- No new Abstract/Results quantitative claims without converged CP2K output.
-- Methods must match `experiments/*/inputs/*.inp` (e.g. PBE+D3 honesty).
-- Illustrative or speculative theory → Discussion, SI, or `theory_enhancement_report.md` only—not Results.
+1. **分阶段推进**：写作按标准阶段依次推进，前置阶段未通过评审，不进入下一阶段，避免后期大规模返工。
+2. **前期锚定精度**：摘要、引言为全文锚点，核心问题、研究边界、核心贡献在此阶段锁定，后续不得随意修改；确需调整必须履行变更流程。
+3. **迭代优化**：每个章节内部、各章节之间遵循「初稿→评审→修改→校验」循环，直至达到对应发表标准。
+4. **变更留痕**：研究范围、核心方法、关键结论的重大调整，必须记录在修订日志中，同步告知所有合著者。
 
-**Commands and closure**: see `AGENTS.md` § Agent 快速入口 (`go loops`) and § 文稿·文献闭环.
+### 三、质量级原则（学术质感）
 
-⸻
-Version Control
-• Each major revision of the manuscript should be saved with version numbering
-• Significant changes should be tracked in a revision log
-• Final versions of each section should be clearly marked and dated
-• All co-authors should work from the most current approved version of each section
+1. **边界清晰**：方法仅描述操作流程，结果仅呈现客观数据，讨论聚焦解读与对比，各模块不越界、不交叉。
+2. **学科适配**：方法描述、结果呈现、术语体系严格遵循计算物理领域通用规范，与领域内主流期刊表达习惯对齐。
+3. **学术表达**：行文精简精准、术语统一、结构清晰，在信息完整的前提下最小化冗余，兼顾专业性与可读性。
+
+---
+
+## 第二部分 执行层：七阶段标准化写作流程
+
+按逻辑分为「前置锚定组-主体展开组-收尾闭环组」三组，每个阶段明确**目标、输入、核心动作、交付物、验收标准、红线禁忌** 6 项要素。
+
+> **与 `AGENTS.md` 轮转编号对照**：阶段 1→I Abstract；2→II Intro（含 III Literature）；3→IV Methods；4→V Data；5→VI Results；6→VII Discussion；7→VIII Conclusion；横切→B4/B5 证据台账。
+
+### 第一组：前置锚定组
+
+#### 阶段1：摘要（精度锚点）
+
+- **阶段目标**：用 150–300 词锁定全文核心贡献，是全文的「学术契约」，所有后续内容不得突破摘要的结论边界。
+- **输入依据**：已收敛的核心计算结果、领域研究空白判断、研究核心创新点。
+- **核心动作**：定位领域缺口；说明计算方法与体系；给出 2–3 个核心定量结果；点明理论/方法学意义。
+- **交付物**：摘要终稿。
+- **验收标准**：不读全文可理解贡献；定量均有收敛支撑；符合期刊格式。
+- **红线禁忌**：夸大结论、未验证定量、超出研究范围引申。
+
+#### 阶段2：引言（逻辑锚点）
+
+- **阶段目标**：构建「大背景→具体问题→现有不足→本文方案」完整逻辑链。
+- **输入依据**：领域核心文献、摘要锁定的研究问题与核心贡献。
+- **核心动作**：学科背景；体系与科学问题；文献缺口；本文方案与范围；章节结构。
+- **交付物**：引言终稿、核心参考文献清单。
+- **验收标准**：可回答「为何要做」；与摘要边界一致；缺口论证充分。
+- **红线禁忌**：文献堆砌、问题模糊、夸大空白、承诺超范围成果。
+
+### 第二组：主体展开组
+
+#### 阶段3：研究方法（可复现性锚点）
+
+- **阶段目标**：完整披露计算方案，保证第三方可复现。
+- **输入依据**：计算输入文件、任务记录、分析脚本。
+- **核心动作**：范式与路线；模型构建；计算参数；分析方法定义。
+- **交付物**：方法章节、参数汇总表。
+- **验收标准**：参数可追溯且与 `experiments/*/inputs/*.inp` 一致；步骤可复现；近似已说明。
+- **红线禁忌**：隐瞒近似、参数不符、省略关键步骤。
+
+#### 阶段4：数据与计算细节（可靠性锚点）
+
+- **阶段目标**：论证方案合理性，说明数据处理与收敛性。
+- **输入依据**：收敛测试、原始输出、预处理脚本。
+- **核心动作**：任务规模与覆盖；收敛性测试；筛选规则；局限性披露。
+- **交付物**：数据描述、收敛性表。
+- **验收标准**：规模与结果匹配；收敛充分；局限坦诚。
+- **红线禁忌**：隐瞒未收敛、选择性筛选、美化统计。
+
+#### 阶段5：研究结果（客观性锚点）
+
+- **阶段目标**：客观呈现核心发现，不做机理解读。
+- **输入依据**：收敛 `.out`、审计 JSON、定稿图表。
+- **核心动作**：按优先级呈现结果；图表客观描述；标注计算条件。
+- **交付物**：结果章节、主图/主表。
+- **验收标准**：数值可追溯；无推测性语言；覆盖 Intro 问题。
+- **红线禁忌**：选择性呈现、提前讨论机理、夸大显著性。
+
+### 第三组：收尾闭环组
+
+#### 阶段6：讨论（价值锚点）
+
+- **阶段目标**：解读结果、关联文献、阐释机理、说明意义与局限。
+- **核心动作**：结果串联；文献对比；差异归因（体系/方法/机制）；机理解释；价值与局限。
+- **验收标准**：回答「为何如此」；对比客观；机理有数据支撑。
+- **红线禁忌**：空谈机理、回避矛盾、无限拔高意义。
+
+#### 阶段7：结论与展望（收尾锚点）
+
+- **阶段目标**：凝练贡献，说明局限，给出可行展望。
+- **验收标准**：回应 Intro 问题；与摘要呼应；展望具体可行。
+- **红线禁忌**：超范围结论、空泛展望、新未验证论断。
+
+---
+
+## 第三部分 质控层：证据分级与评审闭环
+
+| 证据等级 | 定义 | 允许章节 |
+|----------|------|----------|
+| **A 级** | 多组/完全收敛定量；交叉验证结论 | 摘要、结果、结论核心论断 |
+| **B 级** | 单组验证、趋势、有电子结构支撑的机理 | 讨论、方法合理性 |
+| **C 级** | 未收敛、推测、示意模型 | 展望、SI；**禁止**正文核心结论 |
+
+**学术质量红线**：篡改/选择性呈现数据；引用不实；方法与计算不符；结论超出证据。
+
+**三级评审**：自审 → 同行 → 通讯/导师终审。重大修改须重走前置锚定评审。
+
+**投稿前终检**：格式与引用；A 级支撑；摘要-引言-结论闭环；局限披露；图表与正文一致。
+
+---
+
+## 第四部分 协作层：角色权责与版本管理
+
+| 角色 | 核心职责 |
+|------|----------|
+| 第一作者 | 主笔、逻辑、版本、数据可复现 |
+| 通讯作者 | 定位、价值、投稿、终审、学术责任 |
+| 计算负责人 | 执行任务、审核方法/结果数值 |
+| 合作作者 | 模块撰写/数据、章节审核 |
+
+**协作规范**：阶段声明；反馈格式「位置+问题+建议」；重大变更同步合著者。
+
+**版本管理**：`manuscript_vX.Y_日期.tex`；单一可信源；修订日志留痕。
+
+---
+
+## 第五部分 场景与工具层：计算物理专项适配
+
+### DFT 论文专项要求
+
+- **Methods**：泛函、D3、截断能、k 点、SCF/GEO 阈值、超胞与应变 — 与 `*.inp` 一致。
+- **Results**：标注条件与收敛性；合理有效数字。
+- **Discussion**：泛函误差边界；机理解释需电子结构支撑；文献对比说明方法差异。
+- **数据公开**：输入/输出/脚本路径（Data Availability）。
+
+### sci-simukit 双轨/三轨集成
+
+对接 `AGENTS.md`：**Track A** 计算、**Track B** 文稿、**Track C** PRB 修回。
+
+**硬规则**：未收敛 → 不写摘要/结果/结论定量；inp 变更 → Methods 同步；Methods 不得超前美化。
+
+**`go loops` Track B 每轮**：Phase Declaration → Pre-modification review → ≥1 文件 patch → A/B/C 审计 → 验证 citekey 与 `.out`/JSON。
+
+---
+
+## 落地使用说明
+
+1. 优先「前置锚定 + 证据分级」。
+2. 按期刊调整篇幅（PRL vs PRB Regular）。
+3. 经验沉淀进 `AGENTS.md` Loop 笔记。

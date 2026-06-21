@@ -1,6 +1,6 @@
 ================================================================================
 PHYSICAL REVIEW B — COVER LETTER (major revision response)
-Article type: Regular Article (recommended)
+Article type: Regular Article
 Manuscript: Non-Additive Strain--Doping Coupling in Quasi-Hexagonal C60 Graphullerene
 Authors: Xingqiang Chen, Qixing Wang (Xiamen University)
 Corresponding author: xingqiang.chen@xmu.edu.cn
@@ -33,7 +33,7 @@ Summary of revisions (Major comments):
     (geometric metrics only; Mayer bond order and Bader charges are not
     computed). Discussion mechanistic synthesis cites these numbers together
     with gap-vs-strain slopes (main Fig.~1a), $\pi$-DOS panels (main Fig.~1b;
-    Supplemental Fig.~S4), and the fifteen-point synergy audit.
+    Supplemental Fig.~S1), and the fifteen-point synergy audit.
 
 (4) Argumentation — We rewrote the $\mathcal{S}$--$\alpha$ comparison as a
     qualitative sanity check only (concentration mismatch), tightened stability
@@ -49,16 +49,16 @@ Summary of revisions (Major comments):
     converge.
 
 Minor comments: Removed internal repository paths from the main text (Data
-Availability only); compressed Discussion background; condensed Conclusions;
-improved Fig.~1(c)--(d) numeric legibility ($\alpha$ bar labels; compact $n=4$
-$\mathcal{S}$ box on panel~d); APS sentence-case titles for cited references;
-Pereira2026 arXiv entry marked as preprint.
+Availability only); merged former Supplemental tables/figures into standard
+PRB sections (Methods validation + Results subsections; no standalone
+Section~IV); removed FCWD placeholder from main-text Fig.~S3; APS journal
+abbreviations for cited references; Pereira2026 and ShaikhPeng2025 arXiv
+entries marked as preprints.
 
 Data availability: converged inputs/outputs and audit tables at
 https://github.com/chenxingqiang/graphullerene-strain-engineering
 Pending validation energies (Tables~S2--S4) remain in the PRB queue.
-Marcus $\lambda$ (Supplemental Fig.~S5): 12/12 charged geometry optimizations
-converged; vertical single-points are populating $\lambda$ (6/8 converged at revision; six verified channels in Supplemental Fig.~S5; two pending).
+Marcus $\lambda$ (Supplemental Fig.~S2): eight vertical single-points at the neutral geometry are converged; B electron-channel $\lambda^{-}$ is negative and excluded (Limitations).
 
 Prior submission: none to APS journals. Not a joint submission.
 

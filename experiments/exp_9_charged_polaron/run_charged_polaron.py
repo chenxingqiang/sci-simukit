@@ -110,7 +110,7 @@ def generate_geo_opt_input(dopant, charge, output_dir):
     UKS {uks}
     
     &MGRID
-      CUTOFF 300
+      CUTOFF 400
       REL_CUTOFF 50
     &END MGRID
     

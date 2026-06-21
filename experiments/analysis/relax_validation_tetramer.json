@@ -3,7 +3,9 @@
   "dopant": "P",
   "strain_pct": 3.0,
   "rigid_protocol": "PBE, no D3, RUN_TYPE ENERGY (archived Exp5 synergy)",
-  "relaxed_protocol": "PBE+D3, fixed cell GEO_OPT, CUTOFF 300 Ry",
+  "relaxed_protocol": "PBE+D3, fixed cell GEO_OPT, CUTOFF 400 Ry",
+  "scientific_note": "Rigid reference is legacy PBE without D3; |S_relaxed|/|S_rigid| is sign-qualitative only, not a quantitative retention ratio.",
+  "quantitative_ratio_valid": false,
   "energies_ha": {
     "rigid": {
       "pristine_eps0": -1363.5511561701337,
@@ -12,17 +14,25 @@
       "P_eps3": -1370.4890031550478
     },
     "relaxed": {
-      "pristine_eps0": null,
-      "pristine_eps3": null,
+      "pristine_eps0": -1363.9550964975476,
+      "pristine_eps3": -1363.9549737470104,
       "P_eps0": null,
       "P_eps3": null
     }
   },
   "geo_opt_completed": {
-    "pristine_eps0": false,
-    "pristine_eps3": false,
+    "pristine_eps0": true,
+    "pristine_eps3": true,
     "P_eps0": false,
     "P_eps3": false
+  },
+  "running_snapshot": {
+    "geo_completed": 2,
+    "geo_total": 4,
+    "running_task": "relax_P_eps0_geo",
+    "last_ot_step": 277,
+    "last_ot_grad_ha_bohr": 1.58e-06,
+    "next_after_running": "P_eps0"
   },
   "S_rigid": {
     "S_ha_per_atom": 3.5296501400241403e-05,

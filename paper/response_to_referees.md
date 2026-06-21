@@ -1,3 +1,5 @@
+> **Loop C 索引**：`AGENTS.md` § PRB Report No. 1 — IDs **C-M1…C-M4**, **C-m1…C-m5**.
+
 # Response to Referees — PRB Major Revision
 
 **Manuscript:** Non-Additive Strain--Doping Coupling in Quasi-Hexagonal C$_{60}$ Graphullerene  
@@ -9,29 +11,40 @@
 
 **Referee concern:** All $\alpha$ and $\mathcal{S}$ use fixed fractional coordinates; no relax benchmark; reported $|\mathcal{S}|$ may be an upper bound.
 
-**Response:** We agree. The Methods now label the protocol an **upper bound** (Sec.~II, rigid-strain subsection) and contrast the archived rigid tetramer reference in Table~S3 ($\mathcal{S}=+0.96$~meV/atom) with the periodic $n{=}4$ $P$ value ($-23.7$~meV/atom), noting that sign and magnitude may change after ionic relaxation. **Table~S3** lists four fixed-cell GEO\_OPT corners (relaxed energies **pending**). Inputs are archived in the open repository; energies will populate when the validation queue runs after the charged-polaron vertical batch.
+**Response:** We agree that fixed fractional coordinates can overestimate strain coupling and that equilibrium relevance must be demonstrated. We have (i) relabeled all main-text $|\mathcal{S}|$ magnitudes as **protocol upper bounds** at fixed coordinates (Abstract, Methods, Results, Discussion design language); (ii) **removed** the prior rhetorical contrast between the archived rigid tetramer Table~S3 entry ($\mathcal{S}=+0.96$~meV/atom) and periodic $n{=}4$ $P$ ($-23.7$~meV/atom), which the referee correctly notes is **not** a valid control because concentration and boundary conditions differ; and (iii) reframed **Table~S3** as a **sign-qualitative** tetramer benchmark only: rigid references use legacy PBE (no D3) whereas relaxed corners use PBE+D3, so a quantitative $|\mathcal{S}_{\mathrm{relaxed}}|/|\mathcal{S}_{\mathrm{rigid}}|$ ratio is **not** claimed until a matched-functional rigid grid exists. Fixed-cell geometry optimization is **in progress** (2/4 corners converged: pristine $\epsilon{=}0$ and $+3$\%; $P@\epsilon{=}0$ running). Marcus vertical SP (8/8) is complete; the relax queue continues without parallel size-scaling jobs.
 
-**Manuscript:** Methods (rigid-strain subsection); Validation benchmarks subsection; Table~S3; Limitations.
+**Manuscript:** Abstract; Methods rigid-strain subsection; Results $\mathcal{S}(n)$; Discussion (design implications); Table~S3 caption; SI Methods.
 
 ---
 
 ## Major Comment 2 — Single seed (42) placement
 
-**Referee concern:** Quantitative results may be seed-specific.
+**Referee concern:** Quantitative periodic $\mathcal{S}(n)$ may be seed-specific; seed~137 covers only tetramers.
 
-**Response:** Main-text periodic $\mathcal{S}(n)$ is explicitly **seed~42** (Results, $n{=}4$ paragraph). **Table~S4** documents an alternate **seed~137** tetramer grid (18 ENERGY tasks: six strain points per B/N/P; **pending**). We do not claim placement-averaged universality until seed~137 converges.
+**Response:** We agree and have separated **qualitative** element trends from **quantitative** placement-specific magnitudes:
+1. All periodic $\mathcal{S}(n)$ and the fifteen-point grid are explicitly **seed~42** (Abstract, Methods, Results, Fig.~1(d), Conclusions).
+2. **Table~S4** is now **tetramer-only** (seed~42 vs.\ seed~137): we **removed** the periodic $n{=}4$ column, which mixed concentrations and boundary conditions with tetramer placement controls (parallel to Major Comment~1).
+3. Tetramer $\alpha$ opposite signs for N vs.\ B are reported as **seed~42 placement at fixed 5\% nominal doping**, with Table~S4 pending to test slope sensitivity; we do **not** claim placement-averaged magnitudes for the B/N/P networks.
+4. Qualitative ranking statements (P largest $|\mathcal{S}|$ at $n{=}4$ on this map; N vs.\ B $\alpha$ sign) are framed as **configuration-specific audits**, not universal dopant laws, until seed~137 converges and periodic alternate placements are added (Conclusions, future work).
 
-**Manuscript:** Methods (substitutional doping); Table~S4; Results $n{=}4$ clause.
+**Manuscript:** Methods substitutional-doping paragraph; Results strain/synergy subsections; Discussion (i); Limitations; Table~S4; SI Methods.
+
+**Pending DFT:** 18 seed~137 tetramer ENERGY tasks (`run_seed137_validation.sh`); periodic alternate-placement subset queued after Exp9 vertical batch.
 
 ---
 
 ## Major Comment 3 — Mechanism needs quantitative support
 
-**Referee concern:** N/B/P coupling classes are qualitative; need bond/charge metrics.
+**Referee concern:** N/B/P coupling classes are qualitative; need bond/charge metrics and decomposition of geometric vs.\ electronic nonlinearity.
 
-**Response:** We added **Table~S5** (mean nearest C distance, $\Delta\bar{d}$, covalent-radius excess) and cite it in Discussion mechanistic synthesis (ii). For electronic trends we cite gap-vs-strain (Fig.~1a), $\pi$-DOS (Fig.~1b), and Supplemental **Fig.~S4**. Mayer bond order / Bader analysis is **not** yet computed; Limitations now states this explicitly. Table~S5 reports geometric nearest-neighbor metrics only. Legacy illustrative $\lambda$ splits in archived theory notes are **not** in the compiled SI.
+**Response:**
+1. **Electronic (N vs.\ B):** Results Sec.~\ref{sec:electronic} now reports verified $\epsilon{=}0$ gaps from the Exp.~7 archive ($E_g^{\mathrm{B}}\approx 0.03$, $E_g^{\mathrm{N}}\approx -0.14$, $E_g^{\mathrm{P}}\approx 0.05$~eV) and links them to opposite $\alpha$ signs (Table~S1; ${\sim}360$~meV/\% span). Fig.~1(a,b) and Supplemental Fig.~S1 provide the $\pi$-DOS context.
+2. **Structural (P):** Table~S5 expanded with $\sigma(\bar{d})$ at $+3$\% strain, showing P's frozen local environment ($\Delta\bar{d}\approx 3\times 10^{-5}$~\AA; $\sigma\approx 4\times 10^{-4}$~\AA) vs.\ B/N (${\sim}8.5\times 10^{-3}$~\AA\ mean shift; $\sigma{\sim}0.02$~\AA).
+3. **Nonlinearity decomposition:** Discussion (iv)--(vi) quantify Table~S5 $\Delta\bar{d}$ vs.\ $|\mathcal{S}|$ contrasts, exclude tetramer--periodic $\alpha$ extrapolation (v), and state decomposition outlook (vi); Mayer bond order / Bader partitioning along the strain path remain **future work** (Limitations), so relative electronic vs.\ geometric weights are not quantified in this revision.
 
-**Manuscript:** Discussion (i)--(ii); Table~S5; Fig.~S4. Broken cross-reference to non-existent SI Eq.~(S8) removed; IPR definition is inline in Methods.
+**Manuscript:** Results electronic subsection; Discussion (i)--(vi), validation protocol; Table~S5; Fig.~S1.
+
+**Pending:** Mayer/Bader strain-path analysis (no new DFT in this revision).
 
 ---
 
@@ -40,11 +53,11 @@
 **Referee concern:** $\mathcal{S}$ vs $\alpha$ comparison mismatched; stability reordering overstated; size trends confounded by cutoff.
 
 **Response:**
-- (4.1) The $(\alpha_\delta-\alpha_0)\epsilon$ estimate is labeled a **qualitative sanity check only** (Discussion iv), not proof of nonlinearity.
-- (4.2) Stability language tightened to **relative margins** among comparable $|E_{\mathrm{sub}}|$; we state B vs.\ P ranks at $\epsilon{=}0$ are **unchanged** by meV/atom $\mathcal{S}$.
+- (4.1) We **removed** the side-by-side numeric contrast between tetramer $(\alpha_\delta-\alpha_0)\epsilon$ estimates (${\sim}5$\% doping) and periodic $n{=}4$ $\mathcal{S}$ (${\sim}1.7$\% per atom) from Discussion---the referee correctly notes that concentration and boundary-condition mismatch invalidates this as a nonlinearity test. Non-additivity is argued only via Eq.~\eqref{eq:synergy_order} on matched four-corner grids.
+- (4.2) Stability language tightened to **relative margins** among comparable $|E_{\mathrm{sub}}|$; B vs.\ P ranks at $\epsilon{=}0$ are **unchanged** by meV/atom $\mathcal{S}$.
 - (4.3) Core claims focus on $n\leq 4$ at matched 400~Ry; $n\geq 6$ uses 350~Ry and N sign change is **excluded** from conclusions until Table~S2 cutoff400 control completes.
 
-**Manuscript:** Discussion (iii)--(v), Design implications; Results synergy; Conclusions.
+**Manuscript:** Discussion (v)--(vii), Design implications; validation protocol (Tables~S2--S4); Results synergy; Conclusions.
 
 ---
 
@@ -63,13 +76,14 @@
 | Item | Action |
 |------|--------|
 | Internal paths in main text | Removed; Data Availability only (`sci-simukit` URL) |
-| $\mathcal{S}$ / $\pi$ symbols | Unified $\mathcal{S}$; $\pi$-DOS throughout |
-| References sentence case | Main-text citekeys updated to APS sentence case (R212 bib sweep) |
-| Fig.~1(c)--(d) legibility | $\alpha$ bar labels; compact $n{=}4$ $\mathcal{S}$ box; P max annotation |
+| $\mathcal{S}$ / $\pi$ symbols | **R251**: no bare PDOS; order parameter $\mathcal{S}$; $\pi$-DOS in SI inventory; `\hyphenation` |
+| References sentence case | **R252**: APS sentence case on all 22 cited keys; [15] = unique SM entry |
+| $E_\mathrm{sub}$ definition | **R252**: single Methods definition; Validation cross-ref (not formation enthalpy; no $\mu$) |
+| Fig.~1(c)--(d) legibility | **R250**: N $\alpha$ in-bar label; $n{=}4$ box lower-left; max $|\mathcal{S}|$ at $n{=}1$ P |
 | Discussion / Conclusions length | Context compressed; Conclusions condensed (no numeric repeat) |
 | Supplemental citations | Overview + Tables S1--S5 cited; SI table order S1--S5 |
 | Mayer/Bader mechanism | Limitations: not computed; Table~S5 geometry only |
-| Marcus vs $\mathcal{S}$ | Discussion + Conclusion: orthogonal; verified $\lambda$ SI-only; **6/8** at revision (**R231**) |
+| Marcus vs $\mathcal{S}$ | Abstract states scope once; Methods/Results/Discussion no longer repeat ``orthogonal to the $\mathcal{S}$ audit (R254); $\lambda$ SI-only; B negative $\lambda^{-}$ in Limitations only (**R261**) |
 
 ---
 
@@ -77,11 +91,29 @@
 
 | Task | Table | Status |
 |------|-------|--------|
-| Ionic relaxation GEO\_OPT | S3 | inputs ready; **pending** |
-| Seed~137 ENERGY grid | S4 | 18 inp; **pending** |
+| Ionic relaxation geometry opt. | S3 | **running** 2/4 (`relax_P_eps0_geo`; pristine $\epsilon{=}0,+3$\% in Table~S3; $P@\epsilon{=}0$ near EPS intermittently) |
+| Seed~137 single-point grid | S4 | 18 inp; **pending** |
 | 400~Ry $n{=}6$ N SP (Exp10 40/41) | S2 | **pending** |
-| Marcus vertical SP (8) | Fig.~S5 | **6/8** converged; six $\lambda^{\pm}$ channels in SI Fig.~S5; two pending |
+| Marcus vertical SP (8) | Fig.~S2 | **8/8** converged; eight $\lambda^{\pm}$ in SI Fig.~S2; B $\lambda^{-}{=}{-}0.173$~eV flagged non-physical (Limitations) |
+| Setup/process/result audit | `reliability_audit.json` | `bash experiments/verify_reliability.sh` (293 checks; coords+inp+workflow) |
 
 ---
 
-*Document version: Loop R231 (2026-06-20). Align with `cover_letter_prb.txt`.*
+*Document version: PRB Major 1 response (Loop R266) (2026-06-21). Align with `cover_letter_prb.txt`.*
+---
+
+## Detailed Chinese peer-review checklist (Major Revision, 2026-06-20)
+
+| Review theme | Action in this revision |
+|--------------|-------------------------|
+| **§I Abstract** | Rigid-strain upfront; ``not necessarily additive''; synergy $\mathcal{S}$ defined; $\alpha$ named; Marcus sentence simplified |
+| **§II Introduction** | Identical XC level; additive superposition; $\alpha$/$\mathcal{S}$ defined at first use |
+| **§III Methods** | Table~S2--S4 in Methods; Marcus $E_{\mathrm{vert}}$ vs $E_{\mathrm{opt}}$; no internal repo paths |
+| **§III.C doping %** | Clarified: one substituent per C$_{60}$ $\Rightarrow$ ${\sim}1.67$ at.\% (not reviewer's 0.42% one-dopant/supercell) |
+| **§III.E Table~S3** | Sign-only; PBE rigid vs PBE+D3 relaxed mismatch explicit |
+| **§IV structure** | No standalone Section IV; transport in Results |
+| **§IV Fig.~S3** | FCWD placeholder removed from main text |
+| **§VI Discussion** | Factor of four; characterize; Table~S3 sign-only criterion |
+
+*Document version: PRB Major Revision + Chinese checklist (2026-06-20).*
+

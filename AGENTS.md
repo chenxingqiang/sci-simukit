@@ -1402,7 +1402,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track B（横切 B4/B5）**：`theory_enhancement_report.md` §8 R294 grep；`verify_reliability` warn ID → `table_I`/`table_III`
  - **Track C**：无 MC 主文改写（运维数不进 Table~II）
  - **创新审计**：grep 无 C 级泄漏 = **A**；Table III = **B pending**
- - **Git**：待 commit
+ - **Git**：`c6d2001` — `loop R294: cross-cut grep audit; reliability warn IDs` → **pushed: (local only)**
  - **下一轮**：R295 Abstract；GEO ENDED → Table III 行 3
 
 - **Loop R293（2026-06-21，双轨 + Loop C）**：

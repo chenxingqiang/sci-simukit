@@ -1405,7 +1405,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track A**：Table III **2/4**；`relax_P_eps0_geo` OT~**206** — **不干预**；JSON 刷新
  - **Track B（IV Methods）**：`methods_extended` Table III OT 300/outer 20 与 `relax_*_geo.inp` 对齐；`analyze_relax_s.py` 去 `RUN_TYPE`/`GEO_OPT` 审计字段
  - **创新审计**：Methods--inp 契约 = **A**；Table III = **B**（2/4）
- - **Git**：pending — `loop R327: Methods Table III SCF inp contract`
+ - **Git**：`5f2820f` — `loop R327: Methods Table III SCF inp contract` → **pushed: origin/main**（含 R326 `60f27c0`）
  - **下一轮**：GEO ENDED → 行 3；R328 Results；retry push R326--R327
 
 - **Loop R326（2026-06-22，双轨 + Loop C）**：
@@ -1413,7 +1413,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track B（III Literature）**：WebSearch graphullerene strain 2025–26；Discussion 补 **Tromer2022dft**（qHP 力学/光学 DFT vs 四隅 $\mathcal{S}$）；**无新定量**
  - **文献检索**：`(graphullerene OR qHP C60) strain doping 2025` → Khan/Nie/Pereira 已覆盖；**Tromer2022** 入 bib 未引 → 本轮补 cite
  - **创新审计**：文献对比 = **B+**（既有 bib）；Table III = **B**（2/4）
- - **Git**：`60f27c0` — `loop R326: Tromer2022 Discussion cite` → **push failed** (GitHub timeout; retry `git push`)
+ - **Git**：`60f27c0` — `loop R326: Tromer2022 Discussion cite` → **pushed: origin/main**（R326 备注 `155e095` 已合并推送）
  - **下一轮**：GEO ENDED → Table III 行 3；R327 Methods（mod 8）
 
 - **Loop R325（2026-06-22，双轨 + Loop C）**：

@@ -1405,7 +1405,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track A**：Table III **2/4**；`relax_P_eps0_geo` OT~**10**（内层 SCF 重启段）— **不干预**；JSON 刷新
  - **Track B（II Intro）**：Intro 补 **Tromer2022dft** 与 Discussion R326 文献线程对齐；**无新定量**
  - **创新审计**：Intro--Discussion 文献 = **A**；Table III = **B**（2/4）
- - **Git**：pending — `loop R329: Intro Tromer2022 cite`
+ - **Git**：`3d25ed1` — `loop R329: Intro Tromer2022 cite` → **push failed** (GitHub timeout)
  - **下一轮**：GEO ENDED → Table III 行 3；R330 Literature
 
 - **Loop R328（2026-06-22，双轨 + Loop C）**：

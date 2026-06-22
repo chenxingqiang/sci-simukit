@@ -1406,7 +1406,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track B（III Literature）**：WebSearch graphullerene strain 2025–26；Discussion 补 **Tromer2022dft**（qHP 力学/光学 DFT vs 四隅 $\mathcal{S}$）；**无新定量**
  - **文献检索**：`(graphullerene OR qHP C60) strain doping 2025` → Khan/Nie/Pereira 已覆盖；**Tromer2022** 入 bib 未引 → 本轮补 cite
  - **创新审计**：文献对比 = **B+**（既有 bib）；Table III = **B**（2/4）
- - **Git**：pending — `loop R326: Tromer2022 Discussion cite + relax JSON`
+ - **Git**：`60f27c0` — `loop R326: Tromer2022 Discussion cite` → **push failed** (GitHub timeout; retry `git push`)
  - **下一轮**：GEO ENDED → Table III 行 3；R327 Methods（mod 8）
 
 - **Loop R325（2026-06-22，双轨 + Loop C）**：
@@ -1414,7 +1414,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track B（II Intro）**：Intro L65 对齐 R316 **serve as upper bounds---not predictions---**；theory report R316/R325 审计；**无新定量**
  - **Track C**：response R2-t3 全稿闭环（Abstract/Methods/Intro/Conclusions）
  - **创新审计**：Intro--Abstract 契约 = **A**；Discussion `\paragraph{}` = **A**（R316）；Table III = **B**（2/4）
- - **Git**：pending — `loop R325: Intro upper-bound sync + relax JSON`
+ - **Git**：`629475a` — `loop R325: Intro upper-bound sync` → **pushed: origin/main**
  - **下一轮**：GEO ENDED → Table III 行 3；R326 Literature（mod 8）
 
 - **Loop R324（2026-06-21，双轨 + Loop C Report No. 2）**：

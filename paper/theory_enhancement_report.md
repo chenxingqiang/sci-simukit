@@ -251,6 +251,17 @@ Legacy `analyze_results.py` → 请改用 `analyze_exp9_polaron.py` + `dft_resul
 
 ---
 
+## 8. R326 Literature 审计（2026-06-22）
+
+| 检索 query | 命中 | 动作 |
+|------------|------|------|
+| `(graphullerene OR qHP C60) strain doping 2025` | Khan2025, Nie2026, Pereira2026 已在主文 | 无新 bib |
+| bib 未引用的 qHP DFT | `Tromer2022dft` | Discussion Context 补 1 句 + cite |
+
+**创新审计（R326）**：Tromer2022 对比 = **B+**；Table III = **B**（2/4）。
+
+---
+
 ## 8. R325 Intro + R316 文稿审计（2026-06-22）
 
 | 检查项 | 结果 |

@@ -29,7 +29,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
 | **阻塞 PRB** | Table III/IV DFT；Exp10 cutoff400 |
 | **文稿 P 瓶颈** | Table III **2/4** → GEO ENDED 填数 |
-| **最新 Loop** | **R325**（见下方笔记） |
+| **最新 Loop** | **R326**（见下方笔记） |
 | **Loop C** | **R2-M1–M5** Report No. 2 映射 |
 | **下一 B 任务** | Table III GEO ENDED → 填数；Fig.~1/3 版式已收口 |
 | **主张-证据** | Table IV reference $\mathcal{S}$ = **A**；弛豫 III = **B**（2/4） |
@@ -1400,6 +1400,14 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R326（2026-06-22，双轨 + Loop C）**：
+ - **Track A**：Table III **2/4**；`relax_P_eps0_geo` 运行中（OT 快照刷新）— **不干预**
+ - **Track B（III Literature）**：WebSearch graphullerene strain 2025–26；Discussion 补 **Tromer2022dft**（qHP 力学/光学 DFT vs 四隅 $\mathcal{S}$）；**无新定量**
+ - **文献检索**：`(graphullerene OR qHP C60) strain doping 2025` → Khan/Nie/Pereira 已覆盖；**Tromer2022** 入 bib 未引 → 本轮补 cite
+ - **创新审计**：文献对比 = **B+**（既有 bib）；Table III = **B**（2/4）
+ - **Git**：pending — `loop R326: Tromer2022 Discussion cite + relax JSON`
+ - **下一轮**：GEO ENDED → Table III 行 3；R327 Methods（mod 8）
 
 - **Loop R325（2026-06-22，双轨 + Loop C）**：
  - **Track A**：Table III **2/4**；`relax_P_eps0_geo` OT~**251** grad~$10^{-3}$ — **不干预**（内层 SCF 振荡）；`analyze_relax_s.py` 刷新 JSON

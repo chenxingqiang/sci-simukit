@@ -1405,7 +1405,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track A**：Table III **2/4**；`relax_P_eps0_geo` OT~**245** — **不干预**；JSON 刷新
  - **Track B（I Abstract）**：Abstract 补 **covalent molecular networks** 叙事锚点（PRL D1）；**无新定量**
  - **创新审计**：Abstract 叙事锚点 = **A−**；Table III = **B**（2/4）
- - **Git**：pending — `loop R328: Abstract covalent-network framing`
+ - **Git**：`22d6d7a` — `loop R328: Abstract covalent-network framing` → **push failed** (GitHub timeout)
  - **下一轮**：GEO ENDED → Table III 行 3；R329 Intro（mod 8）
 
 - **Loop R327（2026-06-22，双轨 + Loop C）**：

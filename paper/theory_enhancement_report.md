@@ -251,6 +251,20 @@ Legacy `analyze_results.py` → 请改用 `analyze_exp9_polaron.py` + `dft_resul
 
 ---
 
+## 8. R325 Intro + R316 文稿审计（2026-06-22）
+
+| 检查项 | 结果 |
+|--------|------|
+| 全稿 ``serve as upper bounds---not predictions---'' | **A** — Abstract, Methods L86, Intro L65, Conclusions（R316+R325） |
+| Discussion `\textbf{(i)}` / `\textbf{Table~}` | **0** — 已改 `\paragraph{}` + Validation 三段（R316） |
+| Conclusions Intro 三问 | **enumerate**（R316） |
+| `.bbl` 重复 `\bibitem` | **27** 条独立（R316 compile） |
+| Table III `running_snapshot` | OT~251, grad~$10^{-3}$ Ha/bohr, **2/4** |
+
+**创新审计（R325）**：Intro--Abstract 契约 = **A**；Table III = **B**（2/4）。
+
+---
+
 ## 8. R324 Report No. 2 映射（2026-06-21）
 
 | R2 ID | 状态 | 本轮动作 |
@@ -270,7 +284,7 @@ Legacy `analyze_results.py` → 请改用 `analyze_exp9_polaron.py` + `dft_resul
 
 | 检查项 | 结果 |
 |--------|------|
-| Abstract opener ``periodic coupling magnitudes'' 歧义 | **已修** → ``reported periodic $|\mathcal{S}|$ magnitudes bound---rather than predict---''（对齐 Intro L65 / Conclusion） |
+| Abstract opener ``periodic coupling magnitudes'' 歧义 | **已修** → ``serve as upper bounds---not predictions---''（R316 全稿；R325 Intro L65） |
 | Tables III--IV gate + 2/4 | **保持**（无新 `.out` 定量） |
 | `grep` 主文边界 | **0** `7/8` / `experiments/` |
 

@@ -74,7 +74,7 @@ We thank the referee for recognizing the corrections to doping concentration, Ma
 | R2-m4 | Sign-conflict physics | Expanded Discussion (N $\mathcal{S}$ sign change) + Design implications (B/N) |
 | R2-t1 | Typography / hyphenation | Added `\hyphenation{stress-related, placement-sensitive, sign-change}` |
 | R2-t2 | ``gate interpretation'' | → ``govern interpretation'' (Methods validation) |
-| R2-t3 | Abstract awkward bound/predict | Unified **serve as upper bounds---not predictions---** (Abstract, Methods L86, Conclusions) |
+| R2-t3 | Abstract awkward bound/predict | Unified **serve as upper bounds---not predictions---** (Abstract, Methods, Intro L65, Conclusions; R316--R325) |
 | R2-t4 | Fig.~4 $J$ without IPR | Fig.~\ref{fig:j} caption + Methods: IPR in open data; $J$ in figure |
 | R2-t5 | Discussion `\textbf{(i)}` / `\textbf{Table~}` blocks | → `\paragraph{}` + enumerated Conclusions (1)--(3) |
 

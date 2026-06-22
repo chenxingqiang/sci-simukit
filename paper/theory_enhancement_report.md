@@ -251,6 +251,19 @@ Legacy `analyze_results.py` → 请改用 `analyze_exp9_polaron.py` + `dft_resul
 
 ---
 
+## 8. R328 Abstract 审计（2026-06-22）
+
+| 检查项 | 结果 |
+|--------|------|
+| upper-bound 措辞 | **A** — ``serve as upper bounds---not predictions---'' |
+| max $|\mathcal{S}|$ @ fixed coordinates | **A** — 31.9 meV/atom, P $n{=}1$ |
+| 叙事锚点（共价分子网络） | **A−** — Abstract L2 补 ``covalent molecular networks'' |
+| `grep` 主文边界 | **0** `bound---rather` / `experiments/` |
+
+**创新审计（R328）**：Abstract = **A**；Table III = **B**（2/4）。
+
+---
+
 ## 8. R327 Methods 审计（2026-06-22）
 
 | 检查项 | 结果 |

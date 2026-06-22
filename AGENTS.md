@@ -29,7 +29,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
 | **阻塞 PRB** | Table III/IV DFT；Exp10 cutoff400 |
 | **文稿 P 瓶颈** | Table III **2/4** → GEO ENDED 填数 |
-| **最新 Loop** | **R326**（见下方笔记） |
+| **最新 Loop** | **R327**（见下方笔记） |
 | **Loop C** | **R2-M1–M5** Report No. 2 映射 |
 | **下一 B 任务** | Table III GEO ENDED → 填数；Fig.~1/3 版式已收口 |
 | **主张-证据** | Table IV reference $\mathcal{S}$ = **A**；弛豫 III = **B**（2/4） |
@@ -1400,6 +1400,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R327（2026-06-22，双轨 + Loop C）**：
+ - **Track A**：Table III **2/4**；`relax_P_eps0_geo` OT~**206** — **不干预**；JSON 刷新
+ - **Track B（IV Methods）**：`methods_extended` Table III OT 300/outer 20 与 `relax_*_geo.inp` 对齐；`analyze_relax_s.py` 去 `RUN_TYPE`/`GEO_OPT` 审计字段
+ - **创新审计**：Methods--inp 契约 = **A**；Table III = **B**（2/4）
+ - **Git**：pending — `loop R327: Methods Table III SCF inp contract`
+ - **下一轮**：GEO ENDED → 行 3；R328 Results；retry push R326--R327
 
 - **Loop R326（2026-06-22，双轨 + Loop C）**：
  - **Track A**：Table III **2/4**；`relax_P_eps0_geo` 运行中（OT 快照刷新）— **不干预**

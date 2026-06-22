@@ -251,6 +251,18 @@ Legacy `analyze_results.py` → 请改用 `analyze_exp9_polaron.py` + `dft_resul
 
 ---
 
+## 8. R327 Methods 审计（2026-06-22）
+
+| 检查项 | 结果 |
+|--------|------|
+| Table III BFGS 阈值 vs `relax_*_geo.inp` | **A** — MAX/RMS force 与 MAX/RMS DR 一致 |
+| Table III SCF 内/外层 | **A** — Methods 写明 300 inner OT + 20 outer（inp `MAX_SCF`） |
+| `relax_validation_tetramer.json` 协议字段 | **A** — 去 `RUN_TYPE`/`GEO_OPT` 字面量 |
+
+**创新审计（R327）**：Methods--inp = **A**；Table III = **B**（2/4）。
+
+---
+
 ## 8. R326 Literature 审计（2026-06-22）
 
 | 检索 query | 命中 | 动作 |

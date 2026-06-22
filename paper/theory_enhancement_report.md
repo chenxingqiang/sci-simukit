@@ -251,6 +251,18 @@ Legacy `analyze_results.py` → 请改用 `analyze_exp9_polaron.py` + `dft_resul
 
 ---
 
+## 8. R329 Intro 审计（2026-06-22）
+
+| 检查项 | 结果 |
+|--------|------|
+| Intro Tromer2022 vs Discussion R326 | **A** — `Tromer2022dft` 入 Intro L57 |
+| upper-bound 全稿 | **A** — Intro L65 与 Abstract 一致 |
+| Table III 状态 | **B** — 2/4，`relax_P_eps0_geo` running |
+
+**创新审计（R329）**：Intro 文献线程 = **A**；Table III = **B**（2/4）。
+
+---
+
 ## 8. R328 Abstract 审计（2026-06-22）
 
 | 检查项 | 结果 |

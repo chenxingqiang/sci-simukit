@@ -30,8 +30,8 @@
     "geo_completed": 2,
     "geo_total": 4,
     "running_task": "relax_P_eps0_geo",
-    "last_ot_step": 248,
-    "last_ot_grad_ha_bohr": 0.00146436,
+    "last_ot_step": 13,
+    "last_ot_grad_ha_bohr": 0.0185069,
     "next_after_running": "P_eps0"
   },
   "S_rigid": {

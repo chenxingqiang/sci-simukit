@@ -29,7 +29,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
 | **阻塞 PRB** | Table III/IV DFT；Exp10 cutoff400 |
 | **文稿 P 瓶颈** | Table III **2/4** → GEO ENDED 填数 |
-| **最新 Loop** | **R328**（见下方笔记） |
+| **最新 Loop** | **R329**（见下方笔记） |
 | **Loop C** | **R2-M1–M5** Report No. 2 映射 |
 | **下一 B 任务** | Table III GEO ENDED → 填数；Fig.~1/3 版式已收口 |
 | **主张-证据** | Table IV reference $\mathcal{S}$ = **A**；弛豫 III = **B**（2/4） |
@@ -1401,11 +1401,18 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+- **Loop R329（2026-06-22，双轨 + Loop C）**：
+ - **Track A**：Table III **2/4**；`relax_P_eps0_geo` OT~**10**（内层 SCF 重启段）— **不干预**；JSON 刷新
+ - **Track B（II Intro）**：Intro 补 **Tromer2022dft** 与 Discussion R326 文献线程对齐；**无新定量**
+ - **创新审计**：Intro--Discussion 文献 = **A**；Table III = **B**（2/4）
+ - **Git**：pending — `loop R329: Intro Tromer2022 cite`
+ - **下一轮**：GEO ENDED → Table III 行 3；R330 Literature
+
 - **Loop R328（2026-06-22，双轨 + Loop C）**：
  - **Track A**：Table III **2/4**；`relax_P_eps0_geo` OT~**245** — **不干预**；JSON 刷新
  - **Track B（I Abstract）**：Abstract 补 **covalent molecular networks** 叙事锚点（PRL D1）；**无新定量**
  - **创新审计**：Abstract 叙事锚点 = **A−**；Table III = **B**（2/4）
- - **Git**：`22d6d7a` — `loop R328: Abstract covalent-network framing` → **push failed** (GitHub timeout)
+ - **Git**：`22d6d7a` — `loop R328: Abstract covalent-network framing` → **pushed: origin/main**（`7d64823` 备注）
  - **下一轮**：GEO ENDED → Table III 行 3；R329 Intro（mod 8）
 
 - **Loop R327（2026-06-22，双轨 + Loop C）**：

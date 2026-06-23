@@ -58,7 +58,7 @@ We thank the referee for recognizing the corrections to doping concentration, Ma
 
 **Referee concern:** 2/4 Table~III; no periodic relax; upper bounds only.
 
-**Response:** We agree. All main-text $|\mathcal{S}|$ remain **protocol upper bounds**; Table~III is **sign-qualitative** with cross-functional rigid (legacy PBE) vs.\ relaxed (PBE+D3) corners. Fixed-cell geometry optimization continues (2/4: pristine $\epsilon{=}0,+3$\%; $P$-doped corners running). Completing 4/4 is required before retention claims.
+**Response:** We agree. All main-text $|\mathcal{S}|$ remain **protocol upper bounds**; Table~III is **sign-qualitative** with cross-functional rigid (legacy PBE) vs.\ relaxed (PBE+D3) corners. Fixed-cell geometry optimization continues (2/4: pristine $\epsilon{=}0,+3$\%; $P$-doped corners in progress). The $P$ $\epsilon{=}0$ corner required one outer-SCF restart (increased outer cycles and looser EPS for $P$-substituted tetramers); this affects queue timing only and does not alter the sign-qualitative interpretation protocol. Completing 4/4 is required before retention claims.
 
 **Pending DFT:** Table~III 4/4 (`relax_validation/`).
 

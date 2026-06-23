@@ -96,6 +96,10 @@ def _running_snapshot(relax_dir: Path, mapping: dict[str, str]) -> dict:
                 snap["last_ot_step"] = int(ots[-1])
             if grs:
                 snap["last_ot_grad_ha_bohr"] = float(grs[-1])
+            geo_steps = re.findall(r"OPTIMIZATION STEP:\s+(\d+)", tail)
+            if geo_steps:
+                snap["geo_step"] = int(geo_steps[-1])
+                snap["geo_max_iter"] = 300
     pending = [
         k for k, name in tasks
         if not (

@@ -23,13 +23,13 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Exp10** | **40/41** — `size_6x60_N_pos3pct_cutoff400` pending（截断对照） |
 | **Exp8** | **6/6** ✅ |
 | **Exp9** | **12/12** GEO_OPT ✅；vertical SP **8/8** ✅ — λ 全表入 Fig.~3（B $\lambda^{-}$ 负值已标注） |
-| **运行中** | `relax_P_eps0_geo`（Table III **2/4**；$P$-doped fixed-cell corners）— **不干预** |
+| **运行中** | `relax_P_eps0_geo`（Table III **2/4**；geo~7/300，内层 OT 近 EPS）— **不干预** |
 | **临界区** | 内层 SCF 临界区（勿写 OT/步数进主文） |
 | **下一任务** | Table III 4/4 → $\mathcal{S}_{\mathrm{relaxed}}$ sign row；**勿并行** cutoff400 与 relax |
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
 | **阻塞 PRB** | Table III/IV DFT；Exp10 cutoff400 |
 | **文稿 P 瓶颈** | Table III **2/4** → GEO ENDED 填数 |
-| **最新 Loop** | **R330**（见下方笔记） |
+| **最新 Loop** | **R331**（见下方笔记） |
 | **Loop C** | **R2-M1–M5** Report No. 2 映射 |
 | **下一 B 任务** | Table III GEO ENDED → 填数；Fig.~1/3 版式已收口 |
 | **主张-证据** | Table IV reference $\mathcal{S}$ = **A**；弛豫 III = **B**（2/4） |
@@ -1401,11 +1401,18 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+- **Loop R331（2026-06-23，双轨 + Loop C）**：
+ - **Track A**：`relax_P_eps0_geo` geo~**7/300**；OT grad~**9e-6** Ha/bohr（近 1e-5 EPS）— **不干预**
+ - **Track B（Loop C / 横切）**：`response_to_referees` R2-M5 $P$ outer-SCF 重启说明；`analyze_relax_s.py` `running_snapshot.geo_step`
+ - **创新审计**：Referee response 诚实化 = **A**；Table III = **B**（2/4）
+ - **Git**：`6b23f7f` — `loop R331: relax audit geo_step + R2-M5 restart note` → **push failed** (GitHub timeout)
+ - **下一轮**：GEO ENDED → Table III 行 3；retry push
+
 - **Loop R330（2026-06-23，双轨 + Loop C）**：
  - **Track A**：`relax_P_eps0_geo` outer SCF **21/20 ABORT** → 归档；重启 RESTART+末帧 xyz；**40 outer / 1e-5 EPS**；运行中
  - **Track B**：`methods_extended` $P$ SCF 契约；`generate_relax_inputs.py` heavy $P$；`run_relax_validation.sh` ABORT hook
  - **创新审计**：$P$ Methods--inp = **A**；Table III = **B**（2/4）
- - **Git**：`e18dfe4` — `loop R330: P relax ABORT restart` → **push failed** (GitHub timeout)
+ - **Git**：`db2bf51` — `loop R330: P relax ABORT restart` → **push failed** (GitHub timeout; R331 `6b23f7f` local)
  - **下一轮**：GEO ENDED → Table III 行 3；retry push
 
 - **Loop R329（2026-06-22，双轨 + Loop C）**：

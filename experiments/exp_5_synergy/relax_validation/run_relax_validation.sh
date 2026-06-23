@@ -17,7 +17,13 @@ TASKS=(
 )
 
 mkdir -p "$INP_DIR"
-python3 "$ROOT/experiments/exp_5_synergy/relax_validation/generate_relax_inputs.py"
+need_gen=0
+for task in "${TASKS[@]}"; do
+  [[ -f "$INP_DIR/${task}.inp" ]] || need_gen=1
+done
+if [[ "$need_gen" -eq 1 ]]; then
+  python3 "$ROOT/experiments/exp_5_synergy/relax_validation/generate_relax_inputs.py"
+fi
 
 for task in "${TASKS[@]}"; do
   out="$INP_DIR/${task}.out"

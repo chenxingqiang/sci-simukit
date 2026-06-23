@@ -23,16 +23,16 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Exp10** | **40/41** — `size_6x60_N_pos3pct_cutoff400` pending（截断对照） |
 | **Exp8** | **6/6** ✅ |
 | **Exp9** | **12/12** GEO_OPT ✅；vertical SP **8/8** ✅ — λ 全表入 Fig.~3（B $\lambda^{-}$ 负值已标注） |
-| **运行中** | `relax_P_eps0_geo`（Table III **2/4**；geo~7/300，内层 OT 近 EPS）— **不干预** |
+| **运行中** | `relax_P_eps3_geo`（Table III **3/4**；$P$ $\epsilon{=}3$\%）— **不干预** |
 | **临界区** | 内层 SCF 临界区（勿写 OT/步数进主文） |
 | **下一任务** | Table III 4/4 → $\mathcal{S}_{\mathrm{relaxed}}$ sign row；**勿并行** cutoff400 与 relax |
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
 | **阻塞 PRB** | Table III/IV DFT；Exp10 cutoff400 |
-| **文稿 P 瓶颈** | Table III **2/4** → GEO ENDED 填数 |
-| **最新 Loop** | **R331**（见下方笔记） |
+| **文稿 P 瓶颈** | Table III **3/4** → $P$ $+3$\% pending |
+| **最新 Loop** | **R332**（见下方笔记） |
 | **Loop C** | **R2-M1–M5** Report No. 2 映射 |
 | **下一 B 任务** | Table III GEO ENDED → 填数；Fig.~1/3 版式已收口 |
-| **主张-证据** | Table IV reference $\mathcal{S}$ = **A**；弛豫 III = **B**（2/4） |
+| **主张-证据** | Table IV reference $\mathcal{S}$ = **A**；弛豫 III = **B**（3/4） |
 | **旗杆** | **PRB Regular Article** major revision |
 | **下一 C 任务** | Table III GEO ENDED → 第三行 + `analyze_relax_s.py` |
 | **Loop C** | C-M2 文稿 **partial**（reference Table IV ✅）；C-M1 DFT **running**（Table III 2/4） |
@@ -1400,6 +1400,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R332（2026-06-23，双轨 + Loop C）**：
+ - **Track A**：`relax_P_eps0_geo` **3/4 收敛** ($E=-1374.4415$ Ha)；`relax_P_eps3_geo` 已启
+ - **Track B（IV Methods + VI Results）**：`tab_III.tex` 行 3；主文 **3/4** 诚实化
+ - **创新审计**：$P$ $\epsilon{=}0$ 能量 = **A**；$\mathcal{S}$ sign = **B** pending 4/4
+ - **Git**：pending
+ - **下一轮**：$P$ $+3$\% GEO ENDED → $\mathcal{S}_{\mathrm{relaxed}}$；retry push
 
 - **Loop R331（2026-06-23，双轨 + Loop C）**：
  - **Track A**：`relax_P_eps0_geo` geo~**7/300**；OT grad~**9e-6** Ha/bohr（近 1e-5 EPS）— **不干预**

@@ -16,25 +16,23 @@
     "relaxed": {
       "pristine_eps0": -1363.9550964975476,
       "pristine_eps3": -1363.9549737470104,
-      "P_eps0": null,
+      "P_eps0": -1374.4415058098398,
       "P_eps3": null
     }
   },
   "geo_opt_completed": {
     "pristine_eps0": true,
     "pristine_eps3": true,
-    "P_eps0": false,
+    "P_eps0": true,
     "P_eps3": false
   },
   "running_snapshot": {
-    "geo_completed": 2,
+    "geo_completed": 3,
     "geo_total": 4,
-    "running_task": "relax_P_eps0_geo",
-    "last_ot_step": 4,
-    "last_ot_grad_ha_bohr": 7.634e-05,
-    "geo_step": 15,
-    "geo_max_iter": 300,
-    "next_after_running": "P_eps0"
+    "running_task": "relax_P_eps3_geo",
+    "last_ot_step": 1,
+    "last_ot_grad_ha_bohr": 0.03150634,
+    "next_after_running": "P_eps3"
   },
   "S_rigid": {
     "S_ha_per_atom": 3.5296501400241403e-05,

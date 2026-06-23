@@ -52,6 +52,9 @@ def extract_subsys_blocks(inp_text: str) -> tuple[str, str, list[str]]:
 
 def build_geo_inp(project: str, cell: str, coord: str, kinds: list[str]) -> str:
     kind_block = "\n    \n".join(kinds)
+    heavy = "_P_" in project
+    outer_max_scf = 40 if heavy else 20
+    eps_scf = "1.0E-5" if heavy else "1.0E-6"
     return textwrap.dedent(
         f"""\
         &GLOBAL
@@ -106,7 +109,7 @@ def build_geo_inp(project: str, cell: str, coord: str, kinds: list[str]) -> str:
 
             &SCF
               SCF_GUESS ATOMIC
-              EPS_SCF 1.0E-6
+              EPS_SCF {eps_scf}
               MAX_SCF 300
 
               &OT
@@ -115,8 +118,8 @@ def build_geo_inp(project: str, cell: str, coord: str, kinds: list[str]) -> str:
               &END OT
 
               &OUTER_SCF
-                MAX_SCF 20
-                EPS_SCF 1.0E-6
+                MAX_SCF {outer_max_scf}
+                EPS_SCF {eps_scf}
               &END OUTER_SCF
             &END SCF
 

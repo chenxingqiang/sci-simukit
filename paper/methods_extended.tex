@@ -21,7 +21,7 @@ Alternate tasks use PBE+D3 rigid single-point total-energy evaluations at 400~Ry
 The four tetramer corners in Table~\ref{tab:III} are pristine and $P$-substituted cells at $\epsilon{=}0$ and $+3$\% biaxial strain (the Eq.~\eqref{eq:synergy_order} grid for $P$).
 They use fixed-cell geometry optimization with BFGS (maximum 300 ionic steps) at prescribed in-plane cell vectors; only fractional coordinates relax while lattice vectors remain fixed.
 BFGS stops at 300 steps or when the maximum and RMS force components fall below $4.5\times10^{-4}$ and $3.0\times10^{-4}$~Ha/bohr, or when the maximum and RMS atomic displacements fall below $3.0\times10^{-3}$ and $1.5\times10^{-3}$~bohr, respectively.
-These tasks use the same PBE+D3 settings as periodic audits: 400~Ry plane-wave cutoff, DZVP-MOLOPT-SR-GTH basis, and an SCF convergence threshold of $10^{-6}$~$E_{\mathrm{h}}$ with OT--DIIS (up to 300 inner SCF iterations per ionic step and 20 outer SCF cycles) before updating the density for the next BFGS displacement.
+These tasks use the same PBE+D3 settings as periodic audits: 400~Ry plane-wave cutoff, DZVP-MOLOPT-SR-GTH basis, and an SCF convergence threshold of $10^{-6}$~$E_{\mathrm{h}}$ (pristine) or $10^{-5}$~$E_{\mathrm{h}}$ ($P$-substituted) with OT--DIIS (up to 300 inner SCF iterations per ionic step and 20--40 outer SCF cycles) before updating the density for the next BFGS displacement.
 Rigid reference energies in Table~\ref{tab:III} remain the archived legacy-PBE (no D3) single-point grid; relaxed and rigid corners therefore differ in exchange-correlation treatment, and only sign retention of $\mathcal{S}$ is interpreted.
 
 \subsubsection{Marcus vertical step and post-processing}

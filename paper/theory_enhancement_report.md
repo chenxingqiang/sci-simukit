@@ -259,6 +259,16 @@ Legacy `analyze_results.py` → 请改用 `analyze_exp9_polaron.py` + `dft_resul
 | upper-bound 全稿 | **A** — Intro L65 与 Abstract 一致 |
 | Table III 状态 | **B** — 2/4，`relax_P_eps0_geo` running |
 
+
+### R330 audit（2026-06-23）
+
+| 项 | 状态 |
+|----|------|
+| relax_P ABORT | outer 21→重启 40 outer / 1e-5 EPS / RESTART.wfn |
+| Table III | **2/4** |
+
+**创新审计（R330）**：$P$ SCF 契约 = **A**；Table III = **B**。
+
 **创新审计（R329）**：Intro 文献线程 = **A**；Table III = **B**（2/4）。
 
 ---

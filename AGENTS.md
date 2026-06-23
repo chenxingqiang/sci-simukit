@@ -1405,7 +1405,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track A**：`relax_P_eps0_geo` **3/4 收敛** ($E=-1374.4415$ Ha)；`relax_P_eps3_geo` 已启
  - **Track B（IV Methods + VI Results）**：`tab_III.tex` 行 3；主文 **3/4** 诚实化
  - **创新审计**：$P$ $\epsilon{=}0$ 能量 = **A**；$\mathcal{S}$ sign = **B** pending 4/4
- - **Git**：pending
+ - **Git**：`ba01d81` — pushed: origin/main
  - **下一轮**：$P$ $+3$\% GEO ENDED → $\mathcal{S}_{\mathrm{relaxed}}$；retry push
 
 - **Loop R331（2026-06-23，双轨 + Loop C）**：

@@ -100,6 +100,8 @@ def _running_snapshot(relax_dir: Path, mapping: dict[str, str]) -> dict:
             if geo_steps:
                 snap["geo_step"] = int(geo_steps[-1])
                 snap["geo_max_iter"] = 300
+                if snap["geo_step"] >= 250:
+                    snap["critical_zone_geo"] = True
     pending = [
         k for k, name in tasks
         if not (

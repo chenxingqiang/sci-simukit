@@ -10,7 +10,7 @@
 
 ## Summary response
 
-We thank the referee for recognizing the corrections to doping concentration, Marcus definitions, functional mismatch disclosure, and legacy-PBE vs.\ PBE+D3 separation. This revision addresses Report No. 2 notation, APS section hierarchy, language, and figure--text alignment in the manuscript; ionic-relaxation (Table~III) and alternate-placement (Table~IV) DFT remain in progress (2/4 fixed-cell corners converged).
+We thank the referee for recognizing the corrections to doping concentration, Marcus definitions, functional mismatch disclosure, and legacy-PBE vs.\ PBE+D3 separation. This revision addresses Report No. 2 notation, APS section hierarchy, language, and figure--text alignment in the manuscript; ionic-relaxation (Table~III) and alternate-placement (Table~IV) DFT remain in progress (3/4 fixed-cell corners converged).
 
 ---
 
@@ -56,7 +56,7 @@ We thank the referee for recognizing the corrections to doping concentration, Ma
 
 ## R2-Major Comment 5 — Incomplete ionic relaxation
 
-**Referee concern:** 2/4 Table~III; no periodic relax; upper bounds only.
+**Referee concern:** incomplete Table~III (now 3/4); no periodic relax; upper bounds only.
 
 **Response:** We agree. All main-text $|\mathcal{S}|$ remain **protocol upper bounds**; Table~III is **sign-qualitative** with cross-functional rigid (legacy PBE) vs.\ relaxed (PBE+D3) corners. Fixed-cell geometry optimization continues (3/4: pristine $\epsilon{=}0,+3$\% and $P$ $\epsilon{=}0$ converged; $P$ $\epsilon{=}3$\% in progress). The $P$ $\epsilon{=}0$ corner required one outer-SCF restart (increased outer cycles and looser EPS for $P$-substituted tetramers); this affects queue timing only and does not alter the sign-qualitative interpretation protocol. Completing 4/4 is required before retention claims.
 
@@ -91,7 +91,7 @@ We thank the referee for recognizing the corrections to doping concentration, Ma
 
 **Referee concern:** All $\alpha$ and $\mathcal{S}$ use fixed fractional coordinates; no relax benchmark; reported $|\mathcal{S}|$ may be an upper bound.
 
-**Response:** We agree that fixed fractional coordinates can overestimate strain coupling and that equilibrium relevance must be demonstrated. We have (i) relabeled all main-text $|\mathcal{S}|$ magnitudes as **protocol upper bounds** at fixed coordinates (Abstract, Methods, Results, Discussion design language); (ii) **removed** the prior rhetorical contrast between the archived rigid tetramer Table~III entry ($\mathcal{S}=+0.96$~meV/atom) and periodic $n{=}4$ $P$ ($-23.7$~meV/atom), which the referee correctly notes is **not** a valid control because concentration and boundary conditions differ; and (iii) reframed **Table~III** as a **sign-qualitative** tetramer benchmark only: rigid references use legacy PBE (no D3) whereas relaxed corners use PBE+D3, so a quantitative $|\mathcal{S}_{\mathrm{relaxed}}|/|\mathcal{S}_{\mathrm{rigid}}|$ ratio is **not** claimed until a matched-functional rigid grid exists. Fixed-cell geometry optimization is **in progress** (2/4 corners converged: pristine $\epsilon{=}0$ and $+3$\%; $P$-doped fixed-cell corners with inner SCF ongoing). Marcus vertical SP (8/8) is complete; the relax queue continues without parallel size-scaling jobs.
+**Response:** We agree that fixed fractional coordinates can overestimate strain coupling and that equilibrium relevance must be demonstrated. We have (i) relabeled all main-text $|\mathcal{S}|$ magnitudes as **protocol upper bounds** at fixed coordinates (Abstract, Methods, Results, Discussion design language); (ii) **removed** the prior rhetorical contrast between the archived rigid tetramer Table~III entry ($\mathcal{S}=+0.96$~meV/atom) and periodic $n{=}4$ $P$ ($-23.7$~meV/atom), which the referee correctly notes is **not** a valid control because concentration and boundary conditions differ; and (iii) reframed **Table~III** as a **sign-qualitative** tetramer benchmark only: rigid references use legacy PBE (no D3) whereas relaxed corners use PBE+D3, so a quantitative $|\mathcal{S}_{\mathrm{relaxed}}|/|\mathcal{S}_{\mathrm{rigid}}|$ ratio is **not** claimed until a matched-functional rigid grid exists. Fixed-cell geometry optimization is **in progress** (3/4 corners converged: pristine $\epsilon{=}0,+3$\% and $P$ $\epsilon{=}0$; $P$ $\epsilon{=}3$\% with inner SCF ongoing). Marcus vertical SP (8/8) is complete; the relax queue continues without parallel size-scaling jobs.
 
 **Manuscript:** Abstract; Methods rigid-strain subsection; Results $\mathcal{S}(n)$; Discussion (design implications); Table~III caption; Methods validation.
 
@@ -172,7 +172,7 @@ We thank the referee for recognizing the corrections to doping concentration, Ma
 
 | Task | Table | Status |
 |------|-------|--------|
-| Ionic relaxation geometry opt. | III | **running** 2/4 ($P$-doped fixed-cell corners; inner SCF ongoing) |
+| Ionic relaxation geometry opt. | III | **running** 3/4 ($P$ $\epsilon{=}3$\%; geo step $\gtrsim 250$/300) |
 | Alternate-placement ENERGY grid | IV | 18 inp (alternate archive); **pending** |
 | 400~Ry $n{=}6$ N SP (Exp10 40/41) | II | **pending** |
 | Marcus vertical SP (8) | Fig.~3 | **8/8** converged; eight $\lambda^{\pm}$ in Fig.~3; B $\lambda^{-}{=}{-}0.173$~eV flagged non-physical (Limitations) |
@@ -184,8 +184,8 @@ We thank the referee for recognizing the corrections to doping concentration, Ma
 
 | Review theme | Action in this revision |
 |--------------|-------------------------|
-| **§I Abstract** | Covalent-network framing（R328）；Tables~III--IV upper-bound gate; Table~III **2/4**; ``at fixed coordinates'' on max $|\mathcal{S}|$; Marcus Fig.~3 boundary; ``serve as upper bounds---not predictions---'' 全稿闭环（R316--R325） |
-| **§II Introduction** | Periodic PBE+D3 $\mathcal{S}$ vs.\ legacy PBE tetramer $\alpha$ (Table~I) separated; upper-bound + Tables~III--IV gate; Table~III **2/4** partial; Intro $|\mathcal{S}|$ capped at $31.9$~meV/atom **at fixed coordinates** (P $n{=}1$); Marcus Fig.~3; **Tromer2022dft** + **Lv2026** qHP DFT 语境（R329）；Table~IV reference vs seed-137 alternate |
+| **§I Abstract** | Covalent-network framing（R328）；Tables~III--IV upper-bound gate; Table~III **3/4**; ``at fixed coordinates'' on max $|\mathcal{S}|$; Marcus Fig.~3 boundary; ``serve as upper bounds---not predictions---'' 全稿闭环（R316--R325） |
+| **§II Introduction** | Periodic PBE+D3 $\mathcal{S}$ vs.\ legacy PBE tetramer $\alpha$ (Table~I) separated; upper-bound + Tables~III--IV gate; Table~III **3/4** partial; Intro $|\mathcal{S}|$ capped at $31.9$~meV/atom **at fixed coordinates** (P $n{=}1$); Marcus Fig.~3; **Tromer2022dft** + **Lv2026** qHP DFT 语境（R329）；Table~IV reference vs seed-137 alternate |
 | **§III Methods** | Table~I legacy PBE vs periodic PBE+D3; Tables~III--IV upper-bound gate in `sec:notation`（R318）；Table~III four-corner + BFGS thresholds; **Table~IV** reference legacy-PBE vs alternate PBE+D3 seed~137 (`sec:methods_s4_seed`); Fig.~3 Marcus slanted IP + neutral-$Q$ band schematic (R308--R315) |
 | **§III.C Doping concentration** | Clarified: one substituent per C$_{60}$ $\Rightarrow$ $n$ in $60n$ atoms (${\sim}1.67$ at.\%); explicitly \emph{not} $1/240{=}0.42$ at.\% single-dopant/supercell counting |
 | **§III.E Table~III** | Sign-only; PBE rigid vs PBE+D3 relaxed; four corners = pristine + $P$ at $\epsilon{=}0,+3$\% |

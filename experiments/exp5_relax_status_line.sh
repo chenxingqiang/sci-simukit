@@ -45,18 +45,35 @@ d=json.load(open('$JSON'))
 sr=d.get('S_rigid',{}).get('S_meV_per_atom')
 print(f'S_rigid={sr:.2f} meV/atom' if sr is not None else '')
 " 2>/dev/null || true)"
+  geo_snap="$(python3 -c "
+import json
+d=json.load(open('$JSON'))
+rs=d.get('running_snapshot',{})
+gs=rs.get('geo_step')
+gm=rs.get('geo_max_iter',300)
+if gs is not None:
+    print(f'geo={gs}/{gm}')
+" 2>/dev/null || true)"
 fi
 
 extra=""
 crit=""
 [[ -n "$ot" ]] && extra=" OT=${ot}"
 [[ -n "$grad" ]] && extra="${extra} ${grad}"
+[[ -n "$geo_snap" ]] && extra="${extra} ${geo_snap}"
 [[ -n "$s_rigid" ]] && extra="${extra} | ${s_rigid}"
 if [[ -n "$grad" ]]; then
   g="${grad#grad=}"
   if python3 -c "import sys; sys.exit(0 if float('$g') <= 1.5e-5 else 1)" 2>/dev/null; then
     crit=" CRIT"
   fi
+fi
+if [[ -n "${geo_snap:-}" ]] && python3 -c "
+import re,sys
+m=re.search(r'geo=(\d+)/(\d+)', '${geo_snap}')
+sys.exit(0 if m and int(m.group(1))>=250 else 1)
+" 2>/dev/null; then
+  crit="${crit} GEO-CRIT"
 fi
 
 echo "TableIII relax ${done}/${total} | running=${running}${crit} | next=${next_task}${extra}"

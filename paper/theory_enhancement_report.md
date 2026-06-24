@@ -3,13 +3,23 @@
 > **PRB Major 4（2026-06-20）** — 删 α–S 错配数值对比 — **PRB Major 3（2026-06-20）** — Exp7 gap 数 + Table V σ(d̄) + Discussion (vi) — **PRB Major 2（2026-06-20）** — Table IV tetramer-only；seed~42 全文标注 — **PRB Major 1（2026-06-20）** — 删 tetramer↔periodic 无效对照；upper-bound 措辞 — **Loop R245 Discussion（2026-06-20）** — Polaron/Limitations 标 B $\lambda^{-}$ sole pending；主文无 λ — **Loop R244 Results（2026-06-20）** — Table V $\Delta\bar{d}$ 链入 Results；主文无 λ — **Loop R243 Methods（2026-06-20）** — UKS/EPS GEO $10^{-6}$ vs vertical $10^{-7}$ inp 契约 — **Loop R242 Literature（2026-06-20）** — ShaikhPeng2025thermal + rigid vs quasi-harmonic — **Loop R240 Abstract（2026-06-20）** — mobility-centric 正交句；无 7/8/λ — **Loop R239 横切 audit（2026-06-20）** — grep R239 + λ 台账 7/8 — **Loop R238 Conclusion（2026-06-20）** — 三问+Marcus 收口 — **Loop R237 Discussion（2026-06-20）** — Results–Discussion S5 链 + Polaron 正交 — **Loop R235 Methods（2026-06-20）** — EPS/q±1 inp 契约 — **Loop R234 Literature（2026-06-20）** — Nie2026strainC20 + vertical **7/8** — **Loop R233 Intro（2026-06-20）** — 四条 Contributions 对齐三问 — **Loop R231 横切 audit（2026-06-20）** — vertical **7/8** + SI six λ± 全表 — **Loop R230 Conclusion（2026-06-20）** — Conclusion 2/8 通道验证收口 — **Loop R229 Discussion（2026-06-20）** — Polaron 2/8 工作流验证句（主文无 λ 数）— **Loop R228 Results（2026-06-20）** — Results 正交开篇 + S5 λ± 图 fix — **Loop R227 Methods（2026-06-20）** — Marcus vertical q±1/EPS 句；主文 Methods 正交 — **Loop R226 Literature（2026-06-20）** — Xu2025C70network bib + Discussion；vertical **2/8**（B/N λ SI）— **Loop R225 Intro（2026-06-20）** — Intro Marcus 正交 + 1/8；去双 yet — **Loop R224 Abstract（2026-06-20）** — Abstract Marcus 正交/SI-only（无 1/8、无 λ 数）— **Loop R223 横切 audit（2026-06-20）** — theory report λ 台账 + grep R223 — **Loop R222 Conclusion（2026-06-20）** — Conclusion Marcus 1/8 正交收口 — **Loop R221 Discussion（2026-06-20）** — Capobianco $J$/IPR vs $\mathcal{S}$ 正交段 — **Loop R220 Results（2026-06-20）** — Results Marcus SI-only 边界 + Fig.~1(d) caption S5 — **Loop R219 Methods（2026-06-20）** — 主文/SI Methods 1/8 λ 契约 + vertical 400 Ry 句 — **Loop R218 Literature（2026-06-20）** — Santra2024strain bib + Discussion 对比句 — **Loop R217 Intro（2026-06-20）** — Capobianco/力学 gap 句；Shi2023+Qiu2025 cite；cover 1/8 λ — **Loop R216（2026-06-20）** — `post_exp9` + B λ⁺=0.051 eV；SI 1/8 诚实化；Abstract 无新 λ 数 — **Loop R215 横切（2026-06-20）** — theory report 快照 R214 vertical OT fix；PRB response 台账 — **Loop R214** — Exp9 `parse_scf_progress` + Conclusion future work — **Loop R213 PRB（2026-06-20）** — SI Table I--S5 order；删 Eq S8 幻影引用 — **Loop R212 PRB（2026-06-20）** — Table II 40+1；bib sentence case；cover Mayer — **Loop R211 PRB（2026-06-20）** — Abstract upper-bound/seed42；Limitations Mayer/Bader；response 去路径 — **Loop R206 Conclusion（2026-06-20）** — Minor 4 凝练；无新定量 — **Loop R205 PRB Major（2026-06-20）** — 正文去内部路径；稳定性表述收紧；seed42/$n≤4$ 边界 — **Loop R204 Results（2026-06-20）** — 主文 Table I 删除；Results/Limitations → Supplemental Table~II；Methods `sec:validation` prose — **Loop R201 Intro（2026-06-20）** — Intro Marcus 句 ↔ Abstract R200 vertical SP defer — Marcus 末句 ↔ Fig.~3--S3 + vertical SP defer（无 Exp9 计数） — theory report 12/12 台账；§8 P EA 2.96；grep 闸门 R199 — Exp9 **12/12** GEO；P EA 2.96 eV；vertical SP batch 运行中 — (ii) 闭合 Sec.~strain_response foreshadow；Polaron 段 ↔ Results IP 边界 — Results 应变→synergy 23.7 承接；主文/SI IP 边界 — SI Methods Exp10 40/41 + post_exp9$\rightarrow$render_si — Shi2023 qHP strain–$\mu$ vs $\mathcal{S}$（JPCM 225701） — Intro gap 段 Pereira2026 与 Discussion 对齐 — Abstract max $|\\mathcal{S}|$ 标注 P $n{=}1$（对齐 Conclusion） — 全稿 $|\\mathcal{S}|$ grep ✅；Abstract fifteen-point 在位；cover_letter_prb 31.9 — (ii) P $n{=}1$ max 31.9；endohedral 正交句；Abstract 漂移修复 — (ii) P $|\\mathcal{S}|$ $n{=}4$/max；endohedral vs $\mathcal{S}$ 边界 — Fig.~caption (d) audit 数值落盘 — Methods $|\mathcal{S}|$ 23.7 + post_exp9$\rightarrow$render_si 契约 — Pereira2026 endohedral arXiv:2603.10142 vs substitutional $\mathcal{S}$ — Wang2024simulation 入 Intro；R184 Abstract fifteen-point **落盘** — fifteen-point grid 入 Abstract 对齐 Intro/audit — R183 cover_letter 31.9 — R182 Conclusion (iii) 23.7 — R175--R176 Abstract 31.9 — cover_letter_prl P0 ~32→31.9 — R172--R174 $|\\mathcal{S}|$ 全稿 31.9 对齐；Abstract P0 修复 — R165 Discussion design↔audit；R166 Conclusion+DA 路径 — R155 Methods Exp9；R156 Results/SI 边界；R157 Discussion Marcus；R158 Conclusion defer — R116 PBE/D3；R117 Qiu2025；Conclusion post_exp9 闭环 — 与主稿 / canonical JSON / `.out` 对齐  
 > 本文件是**活文档**：旧版「投稿准备 ✅ / 8.5/10」评分已废止；以下以 **A/B/C 证据等级** 为准。
 
+
+### R333 audit（2026-06-23）
+
+| 项 | 状态 |
+|----|------|
+| `relax_P_eps3_geo` | geo **260/300** GEO-CRIT；**不干预** |
+| 文稿 2/4 泄漏 | response + extended tables → **3/4** |
+
+**创新审计（R333）**：契约同步 = **A**；$\mathcal{S}_{relaxed}$ = **B** pending 4/4。
+
 ## PRL desk gate（R128+）
 
 | 闸门 | 状态 |
 |------|------|
 | D6 摘要 ≤600 | **closed** R128 |
 | D7 词数 | **N/A (PRB Regular)** | ~3572 `texcount` 信息性；无 APS 硬顶 |
-| D2 弛豫 | **B** 2/4 GEO；sign-only Table III；Methods BFGS/inp = **A** |
+| D2 弛豫 | **B** 3/4 GEO；sign-only Table III；Methods BFGS/inp = **A** |
 | D4 Table IV $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ | **A**（B +3.8, N +5.7, P +1.0 meV/atom；legacy PBE 四隅） |
 | D1 叙事锚点 | **partial** R295 Abstract covalent-network + joint-load framing |
 
@@ -185,7 +195,7 @@ SI S1.2 合成 $\lambda$ 分解：**[illustrative only]**；eight-channel $\lamb
 | 优先级 | 缺口 | 动作 |
 |--------|------|------|
 | **P0** | Exp9 12/12 + 8 vertical SP | **closed R279** ✅ |
-| **P0** | Table III 4/4 GEO_OPT | $P$-doped fixed-cell corners in progress（2/4 done） |
+| **P0** | Table III 4/4 GEO_OPT | $P$ $\epsilon{=}3$\% in progress（3/4 done） |
 | **P1** | Table IV alternate placement | 18 ENERGY pending |
 | **P1** | Transport 主图 | **C**；PRB 不阻塞 |
 

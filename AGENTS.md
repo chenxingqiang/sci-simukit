@@ -1405,7 +1405,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track A**：Table III **4/4** idle；启动 Table IV seed137 batch（`run_seed137_validation.sh`）→ `seed137_B_strainm2.5_rigid` **running**
  - **Track B（IV Methods + tab_II）**：`exp5_seed137_status_line.sh` + `post_seed137_validation.sh`；tab_II alternate 行；Methods III sign-reversal 措辞
  - **创新审计**：seed137 运维 = **A**；alternate $\mathcal{S}$ = **B** pending
- - **Git**：pending
+ - **Git**：`9597e35` — `loop R337: Table IV seed137 batch` → **push failed** (network timeout; retry)
  - **下一轮**：seed137 converged → tab_IV alternate 列
 
 - **Loop R336（2026-06-24，双轨 + Loop C）**：

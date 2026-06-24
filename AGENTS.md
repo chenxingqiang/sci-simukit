@@ -1405,7 +1405,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track A**：`relax_P_eps3_geo` geo~**260/300** GEO-CRIT — **不干预**
  - **Track B（横切）**：response/extended tables/theory **2/4→3/4**；`exp5_relax_status_line` geo 进度
  - **创新审计**：文稿契约 = **A**；$\mathcal{S}$ sign = **B** pending 4/4
- - **Git**：pending
+ - **Git**：`fd3971e` — `loop R333: sync 3/4 + GEO-CRIT` → **pushed: origin/main**
  - **下一轮**：GEO ENDED → Table III 4/4 + $\mathcal{S}_{relaxed}$ sign
 
 - **Loop R332（2026-06-23，双轨 + Loop C）**：

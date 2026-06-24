@@ -55,6 +55,7 @@ def build_geo_inp(project: str, cell: str, coord: str, kinds: list[str]) -> str:
     heavy = "_P_" in project
     outer_max_scf = 40 if heavy else 20
     eps_scf = "1.0E-5" if heavy else "1.0E-6"
+    max_geo_iter = 450 if heavy else 300
     return textwrap.dedent(
         f"""\
         &GLOBAL
@@ -67,7 +68,7 @@ def build_geo_inp(project: str, cell: str, coord: str, kinds: list[str]) -> str:
           &GEO_OPT
             TYPE MINIMIZATION
             OPTIMIZER BFGS
-            MAX_ITER 300
+            MAX_ITER {max_geo_iter}
             MAX_DR 3.0E-3
             MAX_FORCE 4.5E-4
             RMS_DR 1.5E-3

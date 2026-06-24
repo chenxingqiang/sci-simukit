@@ -72,7 +72,7 @@ PY
   )
   if grep -q 'GEOMETRY OPTIMIZATION COMPLETED' "$out"; then
     echo "[$(date -Iseconds)] DONE $task" | tee -a "$LOG"
-    python3 "$ROOT/experiments/exp_5_synergy/relax_validation/analyze_relax_s.py"
+    bash "$ROOT/experiments/post_relax_validation.sh"
   else
     echo "[$(date -Iseconds)] FAIL $task (no GEO_OPT completion)" | tee -a "$LOG"
     exit 1
@@ -80,4 +80,4 @@ PY
 done
 
 echo "All relax validation jobs finished."
-python3 "$ROOT/experiments/exp_5_synergy/relax_validation/analyze_relax_s.py"
+bash "$ROOT/experiments/post_relax_validation.sh"

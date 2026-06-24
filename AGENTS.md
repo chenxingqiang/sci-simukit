@@ -29,7 +29,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
 | **阻塞 PRB** | Table III/IV DFT；Exp10 cutoff400 |
 | **文稿 P 瓶颈** | Table III **3/4** → $P$ $+3$\% pending |
-| **最新 Loop** | **R333**（见下方笔记） |
+| **最新 Loop** | **R334**（见下方笔记） |
 | **Loop C** | **R2-M1–M5** Report No. 2 映射 |
 | **下一 B 任务** | Table III GEO ENDED → 填数；Fig.~1/3 版式已收口 |
 | **主张-证据** | Table IV reference $\mathcal{S}$ = **A**；弛豫 III = **B**（3/4） |
@@ -1400,6 +1400,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R334（2026-06-23，双轨 + Loop C）**：
+ - **Track A**：`relax_P_eps3_geo` geo~**261/300** GEO-CRIT — **不干预**
+ - **Track B（VIII Conclusion + 运维）**：Conclusion 3/4 诚实化；`post_relax_validation.sh` 闭环
+ - **创新审计**：Conclusion 契约 = **A**；$\mathcal{S}_{relaxed}$ = **B** pending 4/4
+ - **Git**：pending
+ - **下一轮**：GEO ENDED → `post_relax_validation.sh` → tab III 4/4
 
 - **Loop R333（2026-06-23，双轨 + Loop C）**：
  - **Track A**：`relax_P_eps3_geo` geo~**260/300** GEO-CRIT — **不干预**

@@ -30,9 +30,9 @@
     "geo_completed": 3,
     "geo_total": 4,
     "running_task": "relax_P_eps3_geo",
-    "last_ot_step": 6,
-    "last_ot_grad_ha_bohr": 9.43e-06,
-    "geo_step": 261,
+    "last_ot_step": 10,
+    "last_ot_grad_ha_bohr": 8.87e-06,
+    "geo_step": 262,
     "geo_max_iter": 300,
     "critical_zone_geo": true,
     "next_after_running": "P_eps3"

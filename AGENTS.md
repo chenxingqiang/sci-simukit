@@ -1405,8 +1405,8 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track A**：seed137 `B_strainm2.5` OT~42 — **0/18** — **不干预**
  - **Track B（横切 P0）**：主稿 `sec:validation` 删 3/4/sign-retention 泄漏；extended tables tab_II 同步；response MC3/MC2 pending 台账
  - **创新审计**：P0 grep = **A**；Table IV = **B** pending
- - **Git**：pending
- - **下一轮**：push R337–R338；seed137 首任务 converged
+ - **Git**：`0fcb128` — `loop R338: P0 Table III leak fix` → **pushed: origin/main** (incl. R337 `9597e35`)
+ - **下一轮**：seed137 converged；seed137 首任务 converged
 
 - **Loop R337（2026-06-24，双轨 + Loop C）**：
  - **Track A**：Table III **4/4** idle；启动 Table IV seed137 batch（`run_seed137_validation.sh`）→ `seed137_B_strainm2.5_rigid` **running**

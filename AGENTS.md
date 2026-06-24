@@ -1405,7 +1405,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track A**：`relax_P_eps3_geo` geo~**261/300** GEO-CRIT — **不干预**
  - **Track B（VIII Conclusion + 运维）**：Conclusion 3/4 诚实化；`post_relax_validation.sh` 闭环
  - **创新审计**：Conclusion 契约 = **A**；$\mathcal{S}_{relaxed}$ = **B** pending 4/4
- - **Git**：pending
+ - **Git**：`29a2c96` — `loop R334: post_relax_validation + Conclusion 3/4` → **pushed: origin/main**
  - **下一轮**：GEO ENDED → `post_relax_validation.sh` → tab III 4/4
 
 - **Loop R333（2026-06-23，双轨 + Loop C）**：

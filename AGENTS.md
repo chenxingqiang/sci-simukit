@@ -1405,7 +1405,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track A**：Table III **4/4** — `relax_P_eps3_geo` GEO COMPLETED；`post_relax_validation.sh` → S_relaxed **-2.28** meV/atom；**sign_preserved=False**
  - **Track B（VI Results）**：`tab_III.tex` + 主文 3/4→4/4；sign reversal 诚实化；response Major 1/5 同步
  - **创新审计**：Table III 能量 = **A**；sign retention 主张 = **A**（未保留，非 C 级泄漏）
- - **Git**：pending
+ - **Git**：`a67e8d2` — `loop R336: Table III 4/4 sign reversal` → **pushed: origin/main**
  - **下一轮**：Table IV seed-137；matched-functional rigid grid
 
 - **Loop R335（2026-06-24，双轨 + Loop C）**：

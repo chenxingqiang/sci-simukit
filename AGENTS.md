@@ -1405,7 +1405,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track A**：`relax_P_eps3_geo` **MAX_ITER 300** 触顶（step 300 max grad 已收敛）→ EXT_RESTART + **450** 续跑
  - **Track B（IV Methods）**：$ 角 450 步上限；runner maxiter hook + MPIRUN 路径
  - **创新审计**：Methods--inp = **A**；Table III = **B**（3/4）
- - **Git**：pending
+ - **Git**：`c197971` — `loop R335: P eps3 MAX_ITER 450 restart` → **pushed: origin/main**
  - **下一轮**：GEO ENDED → `post_relax_validation.sh`
 
 - **Loop R334（2026-06-23，双轨 + Loop C）**：

@@ -5,6 +5,16 @@
 
 
 
+### R337 audit（2026-06-24）
+
+| 项 | 状态 |
+|----|------|
+| Table IV seed137 | **0/18** dop ENERGY batch **running** |
+| `exp5_seed137_status_line.sh` | **A** 运维 |
+| Table III | **4/4** sign reversal 已入稿（R336） |
+
+**创新审计（R337）**：Table IV 基础设施 = **A**；alternate $\mathcal{S}$ = **B pending**
+
 ### R336 audit（2026-06-24）
 
 | 项 | 状态 |
@@ -216,7 +226,7 @@ SI S1.2 合成 $\lambda$ 分解：**[illustrative only]**；eight-channel $\lamb
 | 优先级 | 缺口 | 动作 |
 |--------|------|------|
 | **P0** | Exp9 12/12 + 8 vertical SP | **closed R279** ✅ |
-| **P0** | Table III 4/4 GEO_OPT | $P$ $\epsilon{=}3$\% in progress（3/4 done） |
+| **P0** | Table III 4/4 GEO_OPT | **done** R336；sign **not** preserved |
 | **P1** | Table IV alternate placement | 18 ENERGY pending |
 | **P1** | Transport 主图 | **C**；PRB 不阻塞 |
 

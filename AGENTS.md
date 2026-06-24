@@ -23,19 +23,19 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Exp10** | **40/41** — `size_6x60_N_pos3pct_cutoff400` pending（截断对照） |
 | **Exp8** | **6/6** ✅ |
 | **Exp9** | **12/12** GEO_OPT ✅；vertical SP **8/8** ✅ — λ 全表入 Fig.~3（B $\lambda^{-}$ 负值已标注） |
-| **运行中** | none（Table III **4/4** ✅）|
+| **运行中** | `seed137_B_strainm2.5_rigid`（Table IV **0/18**）— **不干预** |
 | **临界区** | 内层 SCF 临界区（勿写 OT/步数进主文） |
-| **下一任务** | Table III 4/4 → $\mathcal{S}_{\mathrm{relaxed}}$ sign row；**勿并行** cutoff400 与 relax |
+| **下一任务** | seed137 18/18 → `post_seed137_validation.sh`；**勿并行** cutoff400 |
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
-| **阻塞 PRB** | Table III/IV DFT；Exp10 cutoff400 |
-| **文稿 P 瓶颈** | Table III **3/4** → $P$ $+3$\% pending |
-| **最新 Loop** | **R336**（见下方笔记） |
+| **阻塞 PRB** | Table IV alternate；Exp10 cutoff400 |
+| **文稿 P 瓶颈** | Table IV alternate pending |
+| **最新 Loop** | **R337**（见下方笔记） |
 | **Loop C** | **R2-M1–M5** Report No. 2 映射 |
-| **下一 B 任务** | Table III GEO ENDED → 填数；Fig.~1/3 版式已收口 |
-| **主张-证据** | Table IV reference $\mathcal{S}$ = **A**；弛豫 III = **B**（3/4） |
+| **下一 B 任务** | tab_II seed137 行；Discussion validation 措辞 |
+| **主张-证据** | Table III = **A**（4/4 sign reversal）；Table IV alt = **B** pending |
 | **旗杆** | **PRB Regular Article** major revision |
-| **下一 C 任务** | Table III GEO ENDED → 第三行 + `analyze_relax_s.py` |
-| **Loop C** | C-M2 文稿 **partial**（reference Table IV ✅）；C-M1 DFT **running**（Table III 2/4） |
+| **下一 C 任务** | response Table IV running 台账 |
+| **Loop C** | C-M1 Table III **closed**；C-M2 Table IV **running** |
 
 ---
 
@@ -1400,6 +1400,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R337（2026-06-24，双轨 + Loop C）**：
+ - **Track A**：Table III **4/4** idle；启动 Table IV seed137 batch（`run_seed137_validation.sh`）→ `seed137_B_strainm2.5_rigid` **running**
+ - **Track B（IV Methods + tab_II）**：`exp5_seed137_status_line.sh` + `post_seed137_validation.sh`；tab_II alternate 行；Methods III sign-reversal 措辞
+ - **创新审计**：seed137 运维 = **A**；alternate $\mathcal{S}$ = **B** pending
+ - **Git**：pending
+ - **下一轮**：seed137 converged → tab_IV alternate 列
 
 - **Loop R336（2026-06-24，双轨 + Loop C）**：
  - **Track A**：Table III **4/4** — `relax_P_eps3_geo` GEO COMPLETED；`post_relax_validation.sh` → S_relaxed **-2.28** meV/atom；**sign_preserved=False**

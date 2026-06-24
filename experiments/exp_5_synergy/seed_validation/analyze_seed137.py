@@ -84,6 +84,36 @@ def main() -> None:
     result["pristine_energy_protocol"] = pristine_protocol
 
     converged = sum(len(v) for v in by_dop.values())
+    pri_conv = sum(
+        1
+        for strain in (-5.0, -2.5, 0.0, 2.5, 3.0, 5.0)
+        if parse_energy(INP_DIR / f"seed137_pristine_{strain_tag(strain)}.out") is not None
+    )
+    running = None
+    try:
+        import subprocess
+
+        ps = subprocess.run(
+            ["pgrep", "-lf", "cp2k.psmp.*seed137_"],
+            capture_output=True,
+            text=True,
+        )
+        if ps.stdout.strip():
+            for line in ps.stdout.strip().splitlines():
+                if "-i" in line:
+                    parts = line.split()
+                    idx = parts.index("-i")
+                    running = Path(parts[idx + 1]).stem
+                    break
+    except Exception:
+        pass
+    result["running_snapshot"] = {
+        "dop_converged": converged,
+        "dop_total": 18,
+        "pristine_modern_converged": pri_conv,
+        "pristine_modern_total": 6,
+        "running_task": running,
+    }
     for dop in ("B", "N", "P"):
         strains = sorted(by_dop[dop].keys())
         es = [by_dop[dop][s] for s in strains]

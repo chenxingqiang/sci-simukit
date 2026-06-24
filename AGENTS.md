@@ -23,13 +23,13 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Exp10** | **40/41** — `size_6x60_N_pos3pct_cutoff400` pending（截断对照） |
 | **Exp8** | **6/6** ✅ |
 | **Exp9** | **12/12** GEO_OPT ✅；vertical SP **8/8** ✅ — λ 全表入 Fig.~3（B $\lambda^{-}$ 负值已标注） |
-| **运行中** | `relax_P_eps3_geo`（Table III **3/4**；MAX_ITER 300→450 续跑）— **不干预** |
+| **运行中** | none（Table III **4/4** ✅）|
 | **临界区** | 内层 SCF 临界区（勿写 OT/步数进主文） |
 | **下一任务** | Table III 4/4 → $\mathcal{S}_{\mathrm{relaxed}}$ sign row；**勿并行** cutoff400 与 relax |
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
 | **阻塞 PRB** | Table III/IV DFT；Exp10 cutoff400 |
 | **文稿 P 瓶颈** | Table III **3/4** → $P$ $+3$\% pending |
-| **最新 Loop** | **R335**（见下方笔记） |
+| **最新 Loop** | **R336**（见下方笔记） |
 | **Loop C** | **R2-M1–M5** Report No. 2 映射 |
 | **下一 B 任务** | Table III GEO ENDED → 填数；Fig.~1/3 版式已收口 |
 | **主张-证据** | Table IV reference $\mathcal{S}$ = **A**；弛豫 III = **B**（3/4） |
@@ -1400,6 +1400,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R336（2026-06-24，双轨 + Loop C）**：
+ - **Track A**：Table III **4/4** — `relax_P_eps3_geo` GEO COMPLETED；`post_relax_validation.sh` → S_relaxed **-2.28** meV/atom；**sign_preserved=False**
+ - **Track B（VI Results）**：`tab_III.tex` + 主文 3/4→4/4；sign reversal 诚实化；response Major 1/5 同步
+ - **创新审计**：Table III 能量 = **A**；sign retention 主张 = **A**（未保留，非 C 级泄漏）
+ - **Git**：pending
+ - **下一轮**：Table IV seed-137；matched-functional rigid grid
 
 - **Loop R335（2026-06-24，双轨 + Loop C）**：
  - **Track A**：`relax_P_eps3_geo` **MAX_ITER 300** 触顶（step 300 max grad 已收敛）→ EXT_RESTART + **450** 续跑

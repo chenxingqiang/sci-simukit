@@ -17,25 +17,20 @@
       "pristine_eps0": -1363.9550964975476,
       "pristine_eps3": -1363.9549737470104,
       "P_eps0": -1374.4415058098398,
-      "P_eps3": null
+      "P_eps3": -1374.4614692162331
     }
   },
   "geo_opt_completed": {
     "pristine_eps0": true,
     "pristine_eps3": true,
     "P_eps0": true,
-    "P_eps3": false
+    "P_eps3": true
   },
   "running_snapshot": {
-    "geo_completed": 3,
+    "geo_completed": 4,
     "geo_total": 4,
-    "running_task": "relax_P_eps3_geo",
-    "last_ot_step": 1,
-    "last_ot_grad_ha_bohr": 2.31e-06,
-    "geo_step": 301,
-    "geo_max_iter": 300,
-    "critical_zone_geo": true,
-    "next_after_running": "P_eps3"
+    "running_task": null,
+    "next_after_running": null
   },
   "S_rigid": {
     "S_ha_per_atom": 3.5296501400241403e-05,
@@ -43,5 +38,14 @@
     "delta_strain_ha": -4.202057442626028e-06,
     "delta_doping_ha": -0.02893879021443316,
     "delta_combined_ha": -0.028907695770475545
-  }
+  },
+  "S_relaxed": {
+    "S_ha_per_atom": -8.369232054405984e-05,
+    "S_meV_per_atom": -2.277384060147449,
+    "delta_strain_ha": 5.114605717911521e-07,
+    "delta_doping_ha": -0.043693372134550636,
+    "delta_combined_ha": -0.043776552994522905
+  },
+  "delta_S_meV": -3.237850792881474,
+  "sign_preserved": false
 }

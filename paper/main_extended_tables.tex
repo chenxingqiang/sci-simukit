@@ -34,7 +34,7 @@ Geometry references & tetramer relax & 6 & charged-state inputs & reference geom
 Charged polarons & tetramer $q=\pm1$ & 12 geometry opt. & Fig.~\ref{fig:marcus} & Marcus $\lambda^{\pm}$ and adiabatic IP/EA \\
 Size scaling & $n\times$C$_{60}$ & 40 (+1 pending) & main $\mathcal{S}(n)$ & 400~Ry ($n\leq4$), 350~Ry ($n\geq6$); cutoff400 control pending \\
 $n{=}6$ cutoff control & $6\times$C$_{60}$ N @+3\% & pending & N sign benchmark & 400~Ry matched control (pending) \\
-Ionic relaxation (tetramer) & tetramer & 3/4 geometry opt. & Table~\ref{tab:III} & fixed-cell PBE+D3 GEO\_OPT (BFGS; Sec.~\ref{sec:methods_s3_relax}); pristine $\epsilon{=}0,+3$\% and $P$ $\epsilon{=}0$ converged; $P$ $+3$\% in progress \\
+Ionic relaxation (tetramer) & tetramer & 4/4 geometry opt. & Table~\ref{tab:III} & fixed-cell PBE+D3 GEO\_OPT (BFGS; Sec.~\ref{sec:methods_s3_relax}); four corners converged; $\mathcal{S}_{\mathrm{relaxed}}=-2.28$~meV/atom vs.\ rigid $+0.96$~meV/atom (sign reversal) \\
 \end{tabular}
 \end{ruledtabular}
 \end{table*}
@@ -51,9 +51,9 @@ Quantity & Rigid (legacy tetramer) & Relaxed (geometry opt.) \\
 $E$(pristine, $\epsilon{=}0$) ($E_{\mathrm{h}}$) & $-1363.5512$ & $-1363.9551$ \\
 $E$(pristine, $\epsilon{=}3$\%) ($E_{\mathrm{h}}$) & $-1363.5522$ & $-1363.9550$ \\
 $E$(P, $\epsilon{=}0$) ($E_{\mathrm{h}}$) & $-1370.4965$ & pending \\
-$E$(P, $\epsilon{=}3$\%) ($E_{\mathrm{h}}$) & $-1370.4890$ & pending \\
-$\mathcal{S}$ (meV/atom) & $+0.96$ & pending \\
-Sign of $\mathcal{S}$ vs.\ rigid & \multicolumn{2}{c}{pending (3/4 geometry opt.; $P$ at $\epsilon{=}3$\% in progress)} \\
+$E$(P, $\epsilon{=}3$\%) ($E_{\mathrm{h}}$) & $-1370.4890$ & $-1374.4615$ \\
+$\mathcal{S}$ (meV/atom) & $+0.96$ & $-2.28$ \\
+Sign of $\mathcal{S}$ vs.\ rigid & $+$ & $-$ (not preserved) \\
 \end{tabular}
 \end{ruledtabular}
 \end{table*}

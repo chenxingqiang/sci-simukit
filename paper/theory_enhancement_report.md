@@ -5,6 +5,17 @@
 
 
 
+### R336 audit（2026-06-24）
+
+| 项 | 状态 |
+|----|------|
+| Table III | **4/4** GEO_OPT ✅ |
+| S_rigid | **+0.96** meV/atom |
+| S_relaxed | **-2.28** meV/atom |
+| sign_preserved | **False** |
+
+**创新审计（R336）**：Table III 能量 = **A**；sign retention = **A**（结果：未保留）；主文 upper-bound 叙事 = **A**。
+
 ### R335 audit（2026-06-24）
 
 | 项 | 状态 |
@@ -29,7 +40,7 @@
 |------|------|
 | D6 摘要 ≤600 | **closed** R128 |
 | D7 词数 | **N/A (PRB Regular)** | ~3572 `texcount` 信息性；无 APS 硬顶 |
-| D2 弛豫 | **B** 3/4 GEO；sign-only Table III；Methods BFGS/inp = **A** |
+| D2 弛豫 | **A** 4/4 GEO；sign **not** preserved ($+0.96\to -2.28$ meV/atom)；Methods BFGS/inp = **A** |
 | D4 Table IV $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ | **A**（B +3.8, N +5.7, P +1.0 meV/atom；legacy PBE 四隅） |
 | D1 叙事锚点 | **partial** R295 Abstract covalent-network + joint-load framing |
 

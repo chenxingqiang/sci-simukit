@@ -29,7 +29,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
 | **阻塞 PRB** | Table IV alternate；Exp10 cutoff400 |
 | **文稿 P 瓶颈** | Table IV alternate pending |
-| **最新 Loop** | **R337**（见下方笔记） |
+| **最新 Loop** | **R338**（见下方笔记） |
 | **Loop C** | **R2-M1–M5** Report No. 2 映射 |
 | **下一 B 任务** | tab_II seed137 行；Discussion validation 措辞 |
 | **主张-证据** | Table III = **A**（4/4 sign reversal）；Table IV alt = **B** pending |
@@ -1400,6 +1400,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R338（2026-06-24，双轨 + Loop C）**：
+ - **Track A**：seed137 `B_strainm2.5` OT~42 — **0/18** — **不干预**
+ - **Track B（横切 P0）**：主稿 `sec:validation` 删 3/4/sign-retention 泄漏；extended tables tab_II 同步；response MC3/MC2 pending 台账
+ - **创新审计**：P0 grep = **A**；Table IV = **B** pending
+ - **Git**：pending
+ - **下一轮**：push R337–R338；seed137 首任务 converged
 
 - **Loop R337（2026-06-24，双轨 + Loop C）**：
  - **Track A**：Table III **4/4** idle；启动 Table IV seed137 batch（`run_seed137_validation.sh`）→ `seed137_B_strainm2.5_rigid` **running**

@@ -5,6 +5,16 @@
 
 
 
+### R338 audit（2026-06-24）
+
+| 项 | 状态 |
+|----|------|
+| 主稿 P0 泄漏 | Methods validation **3/4** 句 → **4/4 sign reversal** |
+| Table IV | seed137 **0/18** batch running |
+| grep 3/4 主稿 | **closed**（仅历史 R335 笔记保留） |
+
+**创新审计（R338）**：契约清扫 = **A**；Table IV = **B** pending
+
 ### R337 audit（2026-06-24）
 
 | 项 | 状态 |

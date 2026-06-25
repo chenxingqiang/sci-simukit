@@ -23,13 +23,13 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Exp10** | **40/41** — `size_6x60_N_pos3pct_cutoff400` pending（截断对照） |
 | **Exp8** | **6/6** ✅ |
 | **Exp9** | **12/12** GEO_OPT ✅；vertical SP **8/8** ✅ — λ 全表入 Fig.~3（B $\lambda^{-}$ 负值已标注） |
-| **运行中** | `seed137_B_strainp2.5_rigid`（Table IV **3/18**；OT~55）— **不干预** |
+| **运行中** | `seed137_B_strainp2.5_rigid`（Table IV **3/18**；NP=2，≤2/3 CPU）— **不干预** |
 | **临界区** | 内层 SCF 临界区（勿写 OT/步数进主文） |
 | **下一任务** | seed137 18/18 → `post_seed137_validation.sh`；**勿并行** cutoff400 |
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
 | **阻塞 PRB** | Table IV alternate；Exp10 cutoff400 |
 | **文稿 P 瓶颈** | Table IV alternate pending |
-| **最新 Loop** | **R340**（见下方笔记） |
+| **最新 Loop** | **R341**（见下方笔记） |
 | **Loop C** | **R2-M1–M5** Report No. 2 映射 |
 | **下一 B 任务** | 18/18 → tab_IV alternate 列 |
 | **主张-证据** | Table III = **A**（4/4 sign reversal）；Table IV alt = **B** pending |
@@ -436,6 +436,7 @@ flowchart TB
 | **验证通过再沉淀** | `SCF run converged` / GeoOpt 完成后再更新 `paper/`、`dft_results/`、本文件 |
 | **分层对齐** | 借鉴顶刊材料稿结构：**结构/掺杂（Exp1–2）→ 电子/极化子（Exp3–4,7,9）→ 协同/尺寸（Exp5–6,10）→ 文稿** |
 | **执行前价值闸门** | 每轮进入「策略 → 落地」前，对照投稿目标判断本轮是否值得做（见下节） |
+| **本地 CPU 上限** | 用户要求：**≤2/3 逻辑核**；`source experiments/cp2k_resource.sh` + `cp2k_cap_np`（`SIMUKIT_CPU_FRACTION=0.67`） |
 | **算时写稿** | CP2K 长跑期间做 Track B；定量句标注 `[pending: Exp10 task X]` 或 `[verified: file.out]` |
 | **每轮落盘** | 每轮 Loop 结束 **必须** `git commit`；**push 可选**；笔记写 commit hash；禁止跨多轮 R 堆成一次提交 |
 | **文献即证据** | 新引用须来自检索结果；创新声明须对照 `docs/reference_info.md` + 最新论文 |
@@ -1400,6 +1401,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R341（2026-06-25，双轨）**：
+ - **Track A**：seed137 **已在跑**（3/18，`p2.5`，NP=2）；**不重启**占满 CPU 的 job
+ - **Track B（运维）**：`run_seed137` / `continue_seed137` 接入 `cp2k_resource.sh`（2/3 帽）
+ - **创新审计**：CPU 契约 = **A**（用户偏好入 AGENTS）
+ - **Git**：pending
+ - **下一轮**：p2.5 converged → batch 续跑（新任务自动 `cp2k_cap_np`）
 
 - **Loop R340（2026-06-25，双轨 + Loop C）**：
  - **Track A**：seed137 **3/18**；`p2.5` 长跑 OT~55 — **不干预**
@@ -3443,7 +3451,8 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 - **Exp9 状态误报**：`exp9_status_line` 曾先读陈旧 JSON（pre-ABORT step 63）；运行中须 **live** `dft_results/.../outputs/*.out`（R119 fix）。
 - **`post_exp9_converged.sh` geo 计数**：R152 前误用 `systems.*.geo_opt_converged`（字段不存在），12/12+8/8 闸门永不触发；已改读 JSON `converged` 与 `vertical_sp.outputs_converged`。
-- **seed137 OOM**：Mac 36GB 上 `NP=4` 长跑可被 kill -9；续跑用 `NP=2` + `run_seed137_validation.sh`（自动 skip converged）。
+- **本地 CPU 2/3（用户偏好）**：所有本地 CP2K 启动须 `source experiments/cp2k_resource.sh`；`NP` 经 `cp2k_cap_np` 封顶，**勿** `prterun -np` 占满 `hw.logicalcpu`。
+- **seed137 OOM**：Mac 36GB 上高 `NP` 长跑可被 kill -9；在 2/3 CPU 帽内优先 `cp2k_cap_np 4`；`continue_seed137_pending.sh` 自动 skip converged。
 - **Exp9 batch**：用 `continue_exp9_pending.sh` / `simukit-run`；**勿**并行 legacy runner。Mac 用 Homebrew `cp2k.psmp`。
 - **Exp9 CP2K 2025.1**：`&DFT &PRINT &FORCES` 会 **ABORT**；Mac 本地 inp 已移除 FORCES 块；服务器若升级 CP2K 须同步。
 - **Exp8 SP 写错 .out**：归档 partial 为 `*.failed_partial_*` 后若 CP2K 未重启，lsof 显示仍写该文件；`post_exp8`/`exp8_status_line` 须查 `geoopt_pristine_sp.out*` 全集。

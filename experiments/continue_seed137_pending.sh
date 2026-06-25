@@ -1,8 +1,10 @@
 #!/bin/bash
-# Resume Table IV seed-137 ENERGY batch (skips converged). Mac default: NP=2.
+# Resume Table IV seed-137 ENERGY batch (skips converged). MPI capped at ~2/3 CPUs.
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 LOCK="$ROOT/experiments/.seed137_batch.lock"
+# shellcheck source=cp2k_resource.sh
+source "$ROOT/experiments/cp2k_resource.sh"
 
 if pgrep -f 'cp2k\.psmp.*seed137_' >/dev/null 2>&1; then
   echo "seed137 batch already running. Exit." >&2
@@ -10,10 +12,11 @@ if pgrep -f 'cp2k\.psmp.*seed137_' >/dev/null 2>&1; then
   exit 0
 fi
 
-export NP="${NP:-2}"
+export NP="${NP:-$(cp2k_cap_np 4)}"
 export MPIRUN="${MPIRUN:-/opt/homebrew/bin/mpirun}"
 export CP2K="${CP2K:-/opt/homebrew/bin/cp2k.psmp}"
 export CP2K_DATA="${CP2K_DATA:-/opt/homebrew/share/cp2k/data}"
+echo "seed137 resume NP=$NP SIMUKIT_MAX_CORES=$SIMUKIT_MAX_CORES" >&2
 
 echo $$ >"$LOCK"
 trap 'rm -f "$LOCK"' EXIT

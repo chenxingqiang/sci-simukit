@@ -1405,7 +1405,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track A**：seed137 **3/18**；`p2.5` 长跑 OT~55 — **不干预**
  - **Track B（横切 audit）**：`alpha_provisional` JSON 闸门；`continue_seed137_pending.sh`；response 台账 IV 行
  - **创新审计**：provisional α 勿进主文 = **A**；Table IV = **B** partial
- - **Git**：pending
+ - **Git**：`28259f4` — `loop R340: seed137 provisional-alpha gate` → **push failed** (network)
  - **下一轮**：p2.5 converged → batch 续跑
 
 - **Loop R339（2026-06-25，双轨 + Loop C）**：

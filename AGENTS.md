@@ -29,7 +29,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
 | **阻塞 PRB** | Table IV alternate；Exp10 cutoff400 |
 | **文稿 P 瓶颈** | Table IV alternate pending |
-| **最新 Loop** | **R341**（见下方笔记） |
+| **最新 Loop** | **R342**（见下方笔记） |
 | **Loop C** | **R2-M1–M5** Report No. 2 映射 |
 | **下一 B 任务** | 18/18 → tab_IV alternate 列 |
 | **主张-证据** | Table III = **A**（4/4 sign reversal）；Table IV alt = **B** pending |
@@ -1401,6 +1401,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R342（2026-06-25，双轨）**：
+ - **Track A**：seed137 **3/18**；`p2.5` OT~94 NP=2（cap=9）— **不干预**
+ - **Track B**：`exp5_seed137_status_line` 显示 CPU cap/np；push 积压 4 commits
+ - **创新审计**：CPU 2/3 运维可见 = **A**
+ - **Git**：pending
+ - **下一轮**：p2.5 converged → 续跑 B 网格
 
 - **Loop R341（2026-06-25，双轨）**：
  - **Track A**：seed137 **已在跑**（3/18，`p2.5`，NP=2）；**不重启**占满 CPU 的 job

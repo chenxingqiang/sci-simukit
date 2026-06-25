@@ -4,6 +4,8 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 INP="$ROOT/experiments/exp_5_synergy/seed_validation/inputs"
 JSON="$ROOT/experiments/analysis/seed_validation_tetramer.json"
+# shellcheck source=cp2k_resource.sh
+source "$ROOT/experiments/cp2k_resource.sh"
 
 python3 "$ROOT/experiments/exp_5_synergy/seed_validation/analyze_seed137.py" >/dev/null 2>&1 || true
 dop_tasks=0
@@ -73,4 +75,11 @@ print(st, 'provisional-alpha' if prov else '')
 " 2>/dev/null || echo 'pending ')"
 fi
 
-echo "TableIV seed137 dop ${dop_done}/${dop_tasks} pri ${pri_done}/${pri_total} | status=${status} | running=${running} | next=${next_task}${extra}${provisional:+ | ${provisional}}"
+np_live=""
+if [[ "$running" != none ]]; then
+  np_live="$(ps aux | grep -E "prterun.*${running}" | grep -v grep | sed -n 's/.*-np \([0-9]*\).*/\1/p' | head -1)"
+fi
+cpu_note="cap=${SIMUKIT_MAX_CORES}"
+[[ -n "$np_live" ]] && cpu_note="${cpu_note} np=${np_live}"
+
+echo "TableIV seed137 dop ${dop_done}/${dop_tasks} pri ${pri_done}/${pri_total} | status=${status} | running=${running} | next=${next_task}${extra} | ${cpu_note}${provisional:+ | ${provisional}}"

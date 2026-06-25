@@ -1406,7 +1406,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track A**：seed137 **已在跑**（3/18，`p2.5`，NP=2）；**不重启**占满 CPU 的 job
  - **Track B（运维）**：`run_seed137` / `continue_seed137` 接入 `cp2k_resource.sh`（2/3 帽）
  - **创新审计**：CPU 契约 = **A**（用户偏好入 AGENTS）
- - **Git**：pending
+ - **Git**：`2a49741` — `loop R341: CPU 2/3 cap` → **push failed** (network)
  - **下一轮**：p2.5 converged → batch 续跑（新任务自动 `cp2k_cap_np`）
 
 - **Loop R340（2026-06-25，双轨 + Loop C）**：

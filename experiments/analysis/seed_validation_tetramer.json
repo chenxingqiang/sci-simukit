@@ -29,5 +29,15 @@
     "pristine_modern_converged": 0,
     "pristine_modern_total": 6,
     "running_task": "seed137_B_strainp2.5_rigid"
+  },
+  "strain_points_per_dop": {
+    "B": 3,
+    "N": 0,
+    "P": 0
+  },
+  "alpha_provisional": {
+    "B": true,
+    "N": true,
+    "P": true
   }
 }

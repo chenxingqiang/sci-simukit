@@ -5,6 +5,15 @@
 
 
 
+### R340 audit（2026-06-25）
+
+| 项 | 状态 |
+|----|------|
+| seed137 | **3/18**；p2.5 running |
+| `alpha_provisional` | B=True（3/6 strain pts） |
+
+**创新审计（R340）**：JSON 闸门 = **A**；tab_IV 数值 = **B** pending
+
 ### R339 audit（2026-06-25）
 
 | 项 | 状态 |

@@ -5,6 +5,7 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 INP="$ROOT/experiments/exp_5_synergy/seed_validation/inputs"
 JSON="$ROOT/experiments/analysis/seed_validation_tetramer.json"
 
+python3 "$ROOT/experiments/exp_5_synergy/seed_validation/analyze_seed137.py" >/dev/null 2>&1 || true
 dop_tasks=0
 dop_done=0
 for inp in "$INP"/seed137_{B,N,P}_*_rigid.inp; do
@@ -61,8 +62,15 @@ extra=""
 [[ -n "$grad" ]] && extra="${extra} ${grad}"
 
 status="pending"
+provisional=""
 if [[ -f "$JSON" ]]; then
-  status="$(python3 -c "import json; print(json.load(open('$JSON')).get('status','pending'))" 2>/dev/null || echo pending)"
+  read -r status provisional <<< "$(python3 -c "
+import json
+d=json.load(open('$JSON'))
+st=d.get('status','pending')
+prov=any(d.get('alpha_provisional',{}).values())
+print(st, 'provisional-alpha' if prov else '')
+" 2>/dev/null || echo 'pending ')"
 fi
 
-echo "TableIV seed137 dop ${dop_done}/${dop_tasks} pri ${pri_done}/${pri_total} | status=${status} | running=${running} | next=${next_task}${extra}"
+echo "TableIV seed137 dop ${dop_done}/${dop_tasks} pri ${pri_done}/${pri_total} | status=${status} | running=${running} | next=${next_task}${extra}${provisional:+ | ${provisional}}"

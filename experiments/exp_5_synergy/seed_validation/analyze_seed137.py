@@ -114,6 +114,10 @@ def main() -> None:
         "pristine_modern_total": 6,
         "running_task": running,
     }
+    result["strain_points_per_dop"] = {d: len(by_dop[d]) for d in ("B", "N", "P")}
+    result["alpha_provisional"] = {
+        d: len(by_dop[d]) < 6 for d in ("B", "N", "P")
+    }
     for dop in ("B", "N", "P"):
         strains = sorted(by_dop[dop].keys())
         es = [by_dop[dop][s] for s in strains]

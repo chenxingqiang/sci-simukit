@@ -23,15 +23,15 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Exp10** | **40/41** — `size_6x60_N_pos3pct_cutoff400` pending（截断对照） |
 | **Exp8** | **6/6** ✅ |
 | **Exp9** | **12/12** GEO_OPT ✅；vertical SP **8/8** ✅ — λ 全表入 Fig.~3（B $\lambda^{-}$ 负值已标注） |
-| **运行中** | `seed137_B_strainp2.5_rigid`（Table IV **3/18**；NP=2 续跑）— **不干预** |
+| **运行中** | `seed137_B_strainp2.5_rigid`（Table IV **3/18**；OT~55）— **不干预** |
 | **临界区** | 内层 SCF 临界区（勿写 OT/步数进主文） |
 | **下一任务** | seed137 18/18 → `post_seed137_validation.sh`；**勿并行** cutoff400 |
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
 | **阻塞 PRB** | Table IV alternate；Exp10 cutoff400 |
 | **文稿 P 瓶颈** | Table IV alternate pending |
-| **最新 Loop** | **R339**（见下方笔记） |
+| **最新 Loop** | **R340**（见下方笔记） |
 | **Loop C** | **R2-M1–M5** Report No. 2 映射 |
-| **下一 B 任务** | tab_II seed137 行；Discussion validation 措辞 |
+| **下一 B 任务** | 18/18 → tab_IV alternate 列 |
 | **主张-证据** | Table III = **A**（4/4 sign reversal）；Table IV alt = **B** pending |
 | **旗杆** | **PRB Regular Article** major revision |
 | **下一 C 任务** | response Table IV running 台账 |
@@ -111,7 +111,7 @@ test -f experiments/analysis/relax_validation_tetramer.json && python3 -c "impor
 **Loop 笔记必填**：`prl_gate: D? open | narrative=Y/N | abstract_NNN | relax=pending|done`
 
 
-**一行命令**：`bash experiments/exp10_status_line.sh` · `bash experiments/exp9_status_line.sh` · `bash experiments/exp5_relax_status_line.sh` · `bash experiments/verify_reliability.sh`
+**一行命令**：`bash experiments/exp10_status_line.sh` · `bash experiments/exp9_status_line.sh` · `bash experiments/exp5_relax_status_line.sh · `bash experiments/exp5_seed137_status_line.sh` · `bash experiments/continue_seed137_pending.sh`` · `bash experiments/verify_reliability.sh`
 
 ---
 
@@ -1400,6 +1400,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R340（2026-06-25，双轨 + Loop C）**：
+ - **Track A**：seed137 **3/18**；`p2.5` 长跑 OT~55 — **不干预**
+ - **Track B（横切 audit）**：`alpha_provisional` JSON 闸门；`continue_seed137_pending.sh`；response 台账 IV 行
+ - **创新审计**：provisional α 勿进主文 = **A**；Table IV = **B** partial
+ - **Git**：pending
+ - **下一轮**：p2.5 converged → batch 续跑
 
 - **Loop R339（2026-06-25，双轨 + Loop C）**：
  - **Track A**：seed137 **3/18**；`p2.5` OOM kill → **NP=2** 续跑 `run_seed137_validation.sh`

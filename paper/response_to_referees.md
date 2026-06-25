@@ -172,6 +172,7 @@ We thank the referee for recognizing the corrections to doping concentration, Ma
 
 | Task | Table | Status |
 |------|-------|--------|
+| Alternate placement (seed~137) | IV | **running** 3/18 ($B$ grid partial; $+2.5$\\% SCF in progress) |
 | Ionic relaxation geometry opt. | III | **complete** 4/4; $\mathcal{S}_{\mathrm{relaxed}}=-2.28$ vs rigid $+0.96$ meV/atom (sign not preserved) |
 | Alternate-placement ENERGY grid | IV | 18 inp (alternate archive); **pending** |
 | 400~Ry $n{=}6$ N SP (Exp10 40/41) | II | **pending** |

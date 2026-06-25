@@ -23,13 +23,13 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Exp10** | **40/41** — `size_6x60_N_pos3pct_cutoff400` pending（截断对照） |
 | **Exp8** | **6/6** ✅ |
 | **Exp9** | **12/12** GEO_OPT ✅；vertical SP **8/8** ✅ — λ 全表入 Fig.~3（B $\lambda^{-}$ 负值已标注） |
-| **运行中** | `seed137_B_strainm2.5_rigid`（Table IV **0/18**）— **不干预** |
+| **运行中** | `seed137_B_strainp2.5_rigid`（Table IV **3/18**；NP=2 续跑）— **不干预** |
 | **临界区** | 内层 SCF 临界区（勿写 OT/步数进主文） |
 | **下一任务** | seed137 18/18 → `post_seed137_validation.sh`；**勿并行** cutoff400 |
 | **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
 | **阻塞 PRB** | Table IV alternate；Exp10 cutoff400 |
 | **文稿 P 瓶颈** | Table IV alternate pending |
-| **最新 Loop** | **R338**（见下方笔记） |
+| **最新 Loop** | **R339**（见下方笔记） |
 | **Loop C** | **R2-M1–M5** Report No. 2 映射 |
 | **下一 B 任务** | tab_II seed137 行；Discussion validation 措辞 |
 | **主张-证据** | Table III = **A**（4/4 sign reversal）；Table IV alt = **B** pending |
@@ -1400,6 +1400,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R339（2026-06-25，双轨 + Loop C）**：
+ - **Track A**：seed137 **3/18**；`p2.5` OOM kill → **NP=2** 续跑 `run_seed137_validation.sh`
+ - **Track B（V Data）**：tab_II/extended/response **3/18** 诚实化；JSON partial（B α 不入主文）
+ - **创新审计**：partial 计数 = **A**；alternate $\mathcal{S}$ = **B** pending
+ - **Git**：pending
+ - **下一轮**：18/18 → post_seed137 → tab_IV alternate 列
 
 - **Loop R338（2026-06-24，双轨 + Loop C）**：
  - **Track A**：seed137 `B_strainm2.5` OT~42 — **0/18** — **不干预**
@@ -3429,6 +3436,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 - **Exp9 状态误报**：`exp9_status_line` 曾先读陈旧 JSON（pre-ABORT step 63）；运行中须 **live** `dft_results/.../outputs/*.out`（R119 fix）。
 - **`post_exp9_converged.sh` geo 计数**：R152 前误用 `systems.*.geo_opt_converged`（字段不存在），12/12+8/8 闸门永不触发；已改读 JSON `converged` 与 `vertical_sp.outputs_converged`。
+- **seed137 OOM**：Mac 36GB 上 `NP=4` 长跑可被 kill -9；续跑用 `NP=2` + `run_seed137_validation.sh`（自动 skip converged）。
 - **Exp9 batch**：用 `continue_exp9_pending.sh` / `simukit-run`；**勿**并行 legacy runner。Mac 用 Homebrew `cp2k.psmp`。
 - **Exp9 CP2K 2025.1**：`&DFT &PRINT &FORCES` 会 **ABORT**；Mac 本地 inp 已移除 FORCES 块；服务器若升级 CP2K 须同步。
 - **Exp8 SP 写错 .out**：归档 partial 为 `*.failed_partial_*` 后若 CP2K 未重启，lsof 显示仍写该文件；`post_exp8`/`exp8_status_line` 须查 `geoopt_pristine_sp.out*` 全集。

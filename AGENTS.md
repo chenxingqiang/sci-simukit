@@ -1405,7 +1405,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track A**：seed137 **3/18**；`p2.5` OOM kill → **NP=2** 续跑 `run_seed137_validation.sh`
  - **Track B（V Data）**：tab_II/extended/response **3/18** 诚实化；JSON partial（B α 不入主文）
  - **创新审计**：partial 计数 = **A**；alternate $\mathcal{S}$ = **B** pending
- - **Git**：pending
+ - **Git**：`c0caf02` — `loop R339: seed137 3/18 OOM resume` → **pushed: origin/main**
  - **下一轮**：18/18 → post_seed137 → tab_IV alternate 列
 
 - **Loop R338（2026-06-24，双轨 + Loop C）**：

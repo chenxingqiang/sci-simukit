@@ -1,6 +1,6 @@
 \begin{table*}[t]
 \caption{\label{tab:II}Summary of converged DFT calculations and correspondence to main-text results.
-The $\sim 90$ tasks cited in the main text are the converged calculations that directly support quantitative claims; the full archive includes additional preliminary grids (rows marked ``not used'').}
+The $\sim 90$ tasks cited in the main text are the converged calculations that directly support quantitative claims (rows below that are marked ``not used'' or ``archive only'' are preliminary grids excluded from that count); the full open archive is larger.}
 \begin{ruledtabular}
 \begin{tabular}{llccl}
 Calculation set & Model & Converged tasks & Main-text usage & Notes \\
@@ -14,11 +14,14 @@ Tetramer strain energies & tetramer & 24 & Table~\ref{tab:I}, $\alpha$ & legacy 
 Optimal-design grid & tetramer & 20 & not used & archive only \\
 Tetramer $\pi$-DOS/gaps & tetramer & 12 & Fig.~\ref{fig:pdos}; main panels & \\
 Geometry references & tetramer relax & 6 & charged-state inputs & reference geometries \\
-Charged polarons & tetramer $q=\pm1$ & 12 geometry opt. & Fig.~\ref{fig:marcus} & Marcus $\lambda^{\pm}$ and adiabatic IP/EA \\
-Size scaling & $n\times$C$_{60}$ & 40 (+1 pending) & main $\mathcal{S}(n)$ & 400~Ry ($n\leq4$), 350~Ry ($n\geq6$); cutoff400 control pending \\
-$n{=}6$ cutoff control & $6\times$C$_{60}$ N @+3\% & pending & N sign benchmark & 400~Ry matched control (pending) \\
+Charged polarons & tetramer $q=\pm1$ & 12 geom.\ opt.\ + 8 vert.\ SP & Fig.~\ref{fig:marcus} & Marcus $\lambda^{\pm}$ and adiabatic IP/EA (8/8 vertical converged) \\
+Size scaling & $n\times$C$_{60}$ & 41/41 & main $\mathcal{S}(n)$ & 400~Ry ($n\leq4$), 350~Ry ($n\geq6$); includes cutoff400 control \\
+$n{=}6$ cutoff control & $6\times$C$_{60}$ N @+3\% & 1/1 ENERGY & N sign benchmark & 400~Ry matched control (verified) \\
 Ionic relaxation (tetramer) & tetramer & 4/4 geometry opt. & Table~\ref{tab:III} & fixed-cell PBE+D3 geometry optimization (BFGS; Sec.~\ref{sec:methods_s3_relax}); four corners converged; $\mathcal{S}_{\mathrm{relaxed}}=-2.28$~meV/atom vs.\ rigid $+0.96$~meV/atom (sign reversal) \\
-Alternate placement (tetramer) & tetramer & 3/18 ENERGY & Table~\ref{tab:IV} & PBE+D3 rigid single-points on seed-137 site map (Sec.~\ref{sec:methods_s4_seed}); B strain grid partial (3/6); batch resumed \\
+Alternate placement (tetramer) & tetramer & 18/18 ENERGY & Table~\ref{tab:IV} & PBE+D3 rigid seed-137 map (Sec.~\ref{sec:methods_s4_seed}); 18/18 dop + 6/6 modern pristine verified in Table~\ref{tab:IV} \\
+Periodic placement audit ($n{=}4$) & $4\times$C$_{60}$ & 16/16 ENERGY & Table~\ref{tab:Sgrid} & PBE+D3 rigid; seeds 137 and 271 (\texttt{placement\_validation/}; both maps preserve P$>$B$>$N $|\mathcal{S}|$ ranking) \\
+Matched-functional rigid (Table~\ref{tab:III}) & tetramer & 4/4 ENERGY & Table~\ref{tab:III} footnote & PBE+D3 rigid at relaxed coordinates (\texttt{rigid\_pbed3/}) \\
+Population strain path ($n{=}1$ P) & $1\times$C$_{60}$ & pending & Discussion & Hirshfeld along $\epsilon$ grid (\texttt{population\_validation/}) \\
 \end{tabular}
 \end{ruledtabular}
 \end{table*}

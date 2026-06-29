@@ -20,22 +20,21 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 
 | 项 | 值 |
 |----|-----|
-| **Exp10** | **40/41** — `size_6x60_N_pos3pct_cutoff400` pending（截断对照） |
+| **Exp10** | **41/41** ✅（incl. cutoff400） |
 | **Exp8** | **6/6** ✅ |
 | **Exp9** | **12/12** GEO_OPT ✅；vertical SP **8/8** ✅ — λ 全表入 Fig.~3（B $\lambda^{-}$ 负值已标注） |
-| **运行中** | `seed137_B_strainp2.5_rigid`（Table IV **3/18**；NP=2，≤2/3 CPU）— **不干预** |
-| **临界区** | 内层 SCF 临界区（勿写 OT/步数进主文） |
-| **下一任务** | seed137 18/18 → `post_seed137_validation.sh`；**勿并行** cutoff400 |
-| **SDC** | **15** synergy 点（max $|\mathcal{S}|\approx32$ meV/atom） |
-| **阻塞 PRB** | Table IV alternate；Exp10 cutoff400 |
-| **文稿 P 瓶颈** | Table IV alternate pending |
-| **最新 Loop** | **R342**（见下方笔记） |
-| **Loop C** | **R2-M1–M5** Report No. 2 映射 |
-| **下一 B 任务** | 18/18 → tab_IV alternate 列 |
-| **主张-证据** | Table III = **A**（4/4 sign reversal）；Table IV alt = **B** pending |
+| **运行中** | `pop_n1_P_strainm2.5pct`（population **0/6**）— **不干预** |
+| **临界区** | PRB 队列：rigid_pbed3 → placement → cutoff400 → population |
+| **下一任务** | `P_pos3pct` converged → placement 6/16；16/16 → `post_periodic_placement.sh` |
+| **阻塞 PRB** | population **0/6**；placement/cutoff **closed** ✅ |
+| **文稿 P 瓶颈** | periodic placement 段待 16/16 JSON；cutoff400 / population pending |
+| **最新 Loop** | **R372** |
+| **下一 B 任务** | periodic placement 段待 16/16 JSON |
+| **主张-证据** | Table III matched = **A**（4/4；sign not preserved）；placement = **A**（16/16；seed-137 rank **A−**） |
+| **下一 C 任务** | `docs/prb_review_cn_mapping.md` 维护 |
+| **Loop C** | C-M1 **closed** ✅；C-M2 periodic **A**（16/16）；C-M3 **open** |
+| **SDC** | **15** synergy 点 |
 | **旗杆** | **PRB Regular Article** major revision |
-| **下一 C 任务** | response Table IV running 台账 |
-| **Loop C** | C-M1 Table III **closed**；C-M2 Table IV **running** |
 
 ---
 
@@ -553,9 +552,9 @@ Substantial improvements in validation, mechanistic depth, and argument rigor re
 
 | ID | 审稿要点 | 轨道 | 仓库动作 / 证据 | 文稿（读者语言） | 状态 |
 |----|----------|------|-----------------|------------------|------|
-| **C-M1** | 刚性应变缺弛豫验证 | **A** + B | `relax_validation/` → Table~III；`run_prb_revision_dft.sh`（Exp9 空闲后） | 全文 $|\mathcal{S}|$ = **upper bound**；设计语气弱化 | **文稿 ✅** / **DFT pending** |
-| **C-M2** | 单 seed 周期性 | **A** + B | `seed_validation/` Table~IV（tetramer）；periodic alt-placement = future | seed~42 标注；不宣称普适 | **文稿 ✅** / **DFT pending** |
-| **C-M3** | 机理定量 | B (+A 可选) | Table~V $\Delta\bar{d}$, $\sigma(\bar{d})$；Mayer/Bader = future | Discussion (i)(ii)(iv)；Limitations 诚实 | **部分 ✅** |
+| **C-M1** | 刚性应变缺弛豫验证 | **A** + B | `relax_validation/` 4/4 ✅；`rigid_pbed3/` matched PBE+D3 | upper bound + sign reversal；matched retention pending | **partial**（sign **A** / ratio **B**） |
+| **C-M2** | 单 seed 周期性 | **A** + B | `seed_validation/` + `placement_validation/` n=4 | 构型特异性措辞；`tab_Sgrid` | **partial**（infra **A** / DFT **B**） |
+| **C-M3** | 机理定量 | B (+A) | Table~V；`population_validation/` Hirshfeld | λ⁻ 机制；population pending | **partial** |
 | **C-M4** | $\alpha$ vs $\mathcal{S}$ 错配 | B | 已删并列数值；仅 Eq.(1) 四角落 | Discussion 无 concentration-matched 对比 | **文稿 ✅** |
 | **C-m1** | $\mathcal{S}$ / $\pi$ / 断词 | B | R251：PDOS→$\pi$-DOS；order parameter；`\hyphenation` | 主稿+SI 无 bare PDOS | **✅** |
 | **C-m2** | 参考文献格式 | B | R252： cited keys APS sentence case；[15]=SM 唯一 | **✅** |
@@ -1402,11 +1401,225 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+- **Loop R372（2026-06-29，三轨里程碑）**：
+ - **Track A**：placement **16/16** ✅；cutoff400 **41/41** ✅；启动 population batch（LSD fix；`pop_n1_P_strainm2.5pct` running）
+ - **Track B（VI Results）**：tab_II/Results/Discussion **16/16** + ranking P>B>N；Exp10 41/41
+ - **创新审计**：C-M2 periodic = **A**；population = **B** pending
+ - **Git**：未提交
+
+- **Loop R371（2026-06-29，三轨）**：
+ - **Track A**：placement **14/16** — `place_seed271_pristine_pos0pct` running — **不干预**
+ - **Track B（VII Discussion）**：文稿 **14/16**（seed-271 6/8）；刷新 placement JSON
+ - **创新审计**：seed-137 rank = **A−**；16/16 retention = **B** pending
+ - **Git**：未提交
+
+- **Loop R370（2026-06-29，三轨）**：
+ - **Track A**：placement **13/16** ✅ seed-137 8/8 — `place_seed271_P_pos3pct` OT~**49** — **不干预**
+ - **Track B（VI Results）**：`tab_II`/SI/cover/Discussion **13/16**；seed-137 rank P>B>N = **A−**
+ - **创新审计**：seed-137 placement rank = **A−**；full retention = **B** pending 16/16
+ - **Git**：未提交
+ - **下一轮**：16/16 → `post_periodic_placement.sh`
+
+- **Loop R369（2026-06-28，三轨）**：
+ - **Track A**：placement **5/16** — `P_pos3pct` OT~**197** — **不干预**
+ - **Track B（V Data）**：`exp7_population_status_line.sh`；Limitations → `sec:methods_population`
+ - **Track C**：placement status OT≥250 **CRIT** 提示
+ - **创新审计**：population 运维 = **A**；placement = **B** 5/16
+ - **Git**：未提交
+
+- **Loop R368（2026-06-28，三轨）**：
+ - **Track A**：placement **5/16** — `P_pos3pct` OT~**298** — **不干预**；`relax_placement_stall_eps.sh` + ABORT 后 EPS 1e-5
+ - **Track A**：fix `run_population_validation.sh` ROOT → `../../..`
+ - **Track B（IV Methods）**：`methods_extended` §population strain path
+ - **创新审计**：population ROOT = **A**；placement 运维 = **A**
+ - **Git**：未提交
+ - **下一轮**：6/16 或 ABORT 自动放宽 EPS
+
+- **Loop R367（2026-06-28，三轨）**：
+ - **Track A**：placement **5/16** — `place_seed137_P_pos3pct` OT~**254** — **不干预**
+ - **Track B（横切 audit）**：AGENTS 快照去 stale rigid/retention；theory R345 台账 5/16
+ - **创新审计**：grep 主文 P0 = **0**；placement = **B** 5/16
+ - **Git**：未提交
+ - **下一轮**：6/16 或 Cholesky → `continue_prb_revision_dft.sh`
+
+- **Loop R366（2026-06-28，三轨）**：
+ - **Track A**：placement **5/16** — `place_seed137_P_pos3pct` OT~**135** — **不干预**
+ - **Track B（VIII Conclusion）**：SI/Conclusion 去 stale「ionic/alternate pending」；M2 mapping **closed**
+ - **创新审计**：Conclusion 契约 = **A**；placement = **B** 5/16
+ - **Git**：未提交
+ - **下一轮**：6/16 或 Cholesky 后重启
+
+- **Loop R365（2026-06-28，三轨）**：
+ - **Track A**：placement **5/16** — `place_seed137_P_pos3pct` OT~**246** `grad~1.2×10⁻⁵`（Cholesky ABORT 后重启）— **不干预**
+ - **Track B（VII Discussion）**：Validation §periodic placement **5/16** 诚实化；cover letter 同步
+ - **Track C**：`prb_review_cn_mapping` 5/16；Gotcha placement Cholesky
+ - **创新审计**：placement = **B** 5/16；Discussion 进度 = **A**
+ - **Git**：未提交
+ - **下一轮**：`P_pos3pct` converged → 6/16
+
+- **Loop R364（2026-06-27，三轨）**：
+ - **Track A**：placement **5/16** — `place_seed137_P_pos3pct` OT~**149** — **不干预**
+ - **Track B（VI Results）**：extended `tab_IV` alternate seed137；`tab_III` matched footnote；`tab_II` 8/8 vertical
+ - **Track C**：theory report 去 stale rigid pending
+ - **创新审计**：Table IV extended = **A**；placement = **B** 5/16
+ - **Git**：未提交
+ - **下一轮**：placement 6/16 或 16/16 post
+
+- **Loop R363（2026-06-27，三轨）**：
+ - **Track A**：placement **5/16** — `place_seed137_P_pos3pct` OT~**187** — **不干预**
+ - **Track B（IV Methods）**：`tab_II`/SI/cover letter 诚实化 5/16；matched rigid complete
+ - **Track C**：`exp10_placement_status_line.sh` 增 OT 快照
+ - **创新审计**：placement = **B** 5/16；matched = **A**
+ - **Git**：未提交
+ - **下一轮**：16/16 → `post_periodic_placement.sh`
+
+- **Loop R362（2026-06-27，三轨里程碑）**：
+ - **Track A**：rigid_pbed3 **4/4** ✅（$S_\mathrm{rig}^\mathrm{PBE+D3}=+1.19$，ratio $\approx 1.9$，sign **not** preserved）；placement **5/16** — **不干预**
+ - **Track B（VI Results / VII Discussion）**：主稿 Abstract/Intro/relax/validation/Conclusion 同步 matched-functional 证据；修复 placement `ROOT`（`../../..`）
+ - **Track C**：`tab_III` LaTeX + `methods_extended` 更新
+ - **创新审计**：C-M1 matched = **A**；periodic placement = **B** 5/16
+ - **Git**：未提交
+ - **下一轮**：placement 16/16 → `post_periodic_placement.sh`
+
+- **Loop R361（2026-06-27，三轨）**：
+ - **Track A**：rigid_pbed3 **2/4**（pristine ✅）；`P_eps0` batch — **不干预**
+ - **Track B（II Intro）**：贡献段增 matched-functional underway（Table II；无新数）
+ - **Track C**：`tab_II` **2/4**；post JSON 刷新
+ - **创新审计**：C-M1 matched = **B** 2/4
+ - **Git**：未提交
+ - **下一轮**：4/4 → tab_III matched 脚注
+
+- **Loop R360（2026-06-27，三轨）**：
+ - **Track A**：rigid_pbed3 **1/4** — `pristine_eps3` OT~**58** — **不干预**
+ - **Track B（I Abstract）**：Abstract 增 matched-functional pending 句（Table II 指针；无新数）
+ - **Track C**：`exp10_placement_status_line.sh` 去 JSON 噪声
+ - **创新审计**：Abstract = **A**；matched = **B** 1/4
+ - **Git**：未提交
+ - **下一轮**：rigid_pbed3 2/4+ → post 刷新 JSON
+
+- **Loop R359（2026-06-27，三轨）**：
+ - **Track A**：rigid_pbed3 **1/4** ✅ `pristine_eps0`；`pristine_eps3` batch 中 — **不干预**
+ - **Track B（横切）**：`tab_II` + extended tables **1/4**；修复 `update_tab_III_matched_from_json.py`
+ - **Track C**：theory §12；mapping live R359
+ - **创新审计**：matched ratio = **B**（1/4）；tab_III 定量闸门仍 **false**
+ - **Git**：未提交
+ - **下一轮**：4/4 → post → tab_III matched 脚注（若 ratio valid）
+
+- **Loop R358（2026-06-27，三轨）**：
+ - **Track A**：rigid_pbed3 **0/4** — `pristine_eps0` OT~**171**，grad ~$10^{-6}$ — **不干预**
+ - **Track B（VIII Conclusion）**：Conclusion + Data availability 对齐 Table II pending
+ - **Track C**：`exp5_rigid_pbed3_status_line.sh`；theory §11
+ - **创新审计**：matched ratio = **B**；Table IV = **A**
+ - **Git**：未提交
+ - **下一轮**：4/4 → `post_rigid_pbed3.sh` → `update_tab_III_matched_from_json.py`
+
+- **Loop R357（2026-06-27，三轨里程碑）**：
+ - **Track A**：seed137 **24/24** ✅ → `post_seed137_validation.sh`；修复 nested script `ROOT`（`../../../../`）；启动 **rigid_pbed3** batch
+ - **Track B**：`tab_II` + Methods「6/6 modern pristine」；Table IV 完整 closed 叙事
+ - **Track C**：mapping + theory §10；Gotcha 候选：nested `ROOT` 少一级
+ - **创新审计**：Table IV = **A**；matched PBE+D3 = **B** running
+ - **Git**：未提交
+ - **下一轮**：rigid_pbed3 4/4 → tab_III matched column
+
+- **Loop R356（2026-06-26，三轨）**：
+ - **Track A**：pri **5/6** — `pristine_strainp5.0` OT~**54**，grad $\sim2.5\times10^{-6}$（EPS $10^{-6}$）— **不干预**
+ - **Track B（I Abstract / 横切）**：主稿去 stale ``until Table IV complete'' / ``will test''；Results + Design implications 对齐 18/18 dop
+ - **Track C**：`prb_review_cn_mapping.md` live R356；`theory_enhancement_report.md` §9
+ - **创新审计**：Table IV dop = **A**；pri 6/6 = **B**；periodic placement = **B**
+ - **Git**：未提交
+ - **下一轮**：pri PROGRAM ENDED → `post_seed137_validation.sh` → `continue_prb_revision_dft.sh`
+
+- **Loop R355（2026-06-27，双轨）**：
+ - **Track A**：pri **5/6** — `pristine_strainp5.0` NP=1 SCF 振荡中（OT~39）— **不干预**
+ - **Track B**：`cover_letter_prb.txt` + `tab_II` 去 stale pending；不改 `response_to_referees.md`
+ - **创新审计**：cover letter 契约 = **A**；pri 6/6 = **B** pending
+ - **Git**：未提交
+ - **下一轮**：pri 6/6 → `continue_prb_revision_dft.sh`
+
+- **Loop R354（2026-06-27，双轨里程碑）**：
+ - **Track A**：seed137 dop **18/18** ✅；`tab_IV` alternate 已填；pri **5/6**（`p5.0` NP=1 续跑）— **不干预**
+ - **Track B（VI Results + VII Discussion）**：主稿去 Table IV pending；Discussion 写入 seed137 $\alpha$/\mathcal{S} 对比（N 符号反转；P $|\alpha|\sim990$）
+ - **创新审计**：Table IV alternate = **A**；periodic placement = **B** pending
+ - **Git**：未提交
+ - **下一轮**：pri 6/6 → `post_seed137`；`continue_prb_revision_dft.sh`
+
+- **Loop R353（2026-06-27，双轨 + Track A）**：
+ - **Track A**：seed137 **16/18**；`P_strainp3.0` cholesky ABORT → EPS $10^{-5}$ + **NP=1** 续跑；`p5.0` inp 预放宽
+ - **Track B（V Data）**：Table II **16/18**；JSON：B/N $\alpha$ 非 provisional；P 仍 provisional
+ - **创新审计**：Table IV = **B+**（差 2 点 + 6 pristine）
+ - **Git**：未提交
+ - **下一轮**：18/18 dop → `post_seed137_validation.sh`
+
+- **Loop R352（2026-06-26，双轨）**：
+ - **Track A**：seed137 **8/18** dop（B 网格完成；`N_strainp0.0` OT~30 CRIT）— **不干预**
+ - **Track B（V Data）**：`tab_II` / extended tables **3→8/18**；刷新 `seed_validation_tetramer.json`
+ - **创新审计**：Table IV 进度 = **B+**；alternate 列仍 **blocked**（provisional α）
+ - **Git**：未提交
+ - **下一轮**：18/18 → `post_seed137_validation.sh` + `update_tab_iv_from_json.py`
+
+- **Loop R351（2026-06-26，双轨 + Track A 修复）**：
+ - **Track A**：`p2.5` outer-SCF stall @ EPS $10^{-6}$（非 cholesky）→ inp 放宽 **EPS $10^{-5}$**, MAX_SCF 300；**NP=2** 续跑
+ - **Track B（IV Methods）**：`methods_extended` + `tab_II` 记录 OT stall 运维
+ - **创新审计**：seed137 inp 修复 = **A**；Table IV = **B** 3/18
+ - **Git**：未提交
+ - **下一轮**：p2.5 converged → 续 15 点
+
+- **Loop R350（2026-06-25，双轨）**：
+
+ - **Track A**：seed137 **3/18**；`p2.5` **NP=2** OT~11（cholesky 续跑正常）— **不干预**
+ - **Track B（V Data / 横切）**：`tab_II.tex` 增 matched/population 行 + cholesky 运维注；刷新 `seed_validation_tetramer.json`
+ - **创新审计**：Table II PRB 队列诚实化 = **A**；Table IV = **B** 3/18
+ - **Git**：未提交
+ - **下一轮**：p2.5 converged → 续 batch
+
+- **Loop R349（2026-06-25，双轨 + Track A 恢复）**：
+ - **Track A**：`B_strainp2.5` **cholesky ABORT** → batch 停；`NP=2` 续跑 `continue_seed137_pending.sh`（pid 25811）
+ - **Track B（IV Methods）**：`methods_extended` 增 cholesky ABORT → 降 MPI 运维句
+ - **创新审计**：seed137 运维 = **A**；Table IV = **B** 3/18
+ - **Git**：未提交
+ - **下一轮**：p2.5 converged → 续 15 pending；全 18/18 → `post_seed137_validation.sh`
+
+- **Loop R348（2026-06-25，双轨 + PRB P0）**：
+ - **Track A**：seed137 **3/18**；`B_strainp2.5` OT~24 — **不干预**
+ - **Track B（横切契约）**：`main_extended_tables*.tex` Table III 与 `tab_III.tex` 对齐（去 P 角 pending）；Table II 增 placement/matched/population 行；初始化 `relax_validation_matched_functional.json`
+ - **创新审计**：扩展表 Table III = **A**（P0 修复）；matched ratio = **B** 0/4
+ - **Git**：未提交
+ - **下一轮**：seed137 收敛；rigid_pbed3 batch
+
+- **Loop R347（2026-06-25，双轨 + PRB）**：
+ - **Track A**：seed137 **3/18** dop；`B_strainp2.5` OT~25（早期 SCF，正常）— **不干预**
+ - **Track B（IV Methods + SI）**：`methods_extended` 增 periodic $n{=}4$ placement 协议；`si_methods_section` 去「deferred to future work」与主稿对齐
+ - **创新审计**：periodic placement Methods = **A**；placement DFT = **B** 0/16
+ - **Git**：未提交
+ - **下一轮**：seed137 收敛；`post_seed137_validation.sh`
+
+- **Loop R346（2026-06-25，双轨 + PRB）**：
+ - **Track A**：seed137 **3/18** dop（B: m5/m2.5/0 ✅；p2.5 OT~5）；**0/6** pristine modern；单路 `prterun -np 4` — **不干预**
+ - **Track B（IV Methods）**：`methods_extended` `sec:methods_s3_relax` 增 matched-functional PBE+D3 双轨 + JSON 闸门句
+ - **创新审计**：Methods matched 协议 = **A**；retention ratio = **B** pending rigid_pbed3 4/4
+ - **Git**：未提交
+ - **下一轮**：seed137 收敛段；`continue_prb_revision_dft.sh` 于 CP2K 空闲
+
+- **Loop R345（2026-06-25，PRB 审稿计划落地）**：
+ - **Track A**：PRB 全力 DFT 基础设施 — `rigid_pbed3/`、`placement_validation/`、`population_validation/`；`run_prb_revision_dft.sh` 顺序队列；seed137 batch **续跑**（3/18）
+ - **Track B**：`docs/prb_review_cn_mapping.md`；`tab_S_synergy_grid.tex`；λ⁻/E_sub/设计启示/十五点表入稿
+ - **创新审计**：映射文档 = **A**；DFT 队列 = **B**（在跑）
+ - **Git**：未提交
+ - **下一轮**：seed137 18/18 → `update_tab_iv_from_json.py`；`continue_prb_revision_dft.sh`
+
+- **Loop R344（2026-06-25，双轨 + Loop C）**：
+ - **Track A**：seed137 **3/18**；`p2.5` 11:49 OOM 后续跑段 OT~6（早期 SCF）NP=2 — **不干预**
+ - **Track B（IV Methods）**：`methods_extended` Table III sign-not-preserved + seed137 CPU/OOM 句；`analyze_seed137` JSON `last_ot`/`last_grad`
+ - **Track C**：response M2 Pending DFT 列明 B 已收敛应变点
+ - **创新审计**：Table III Methods = **A**；Table IV = **B**（3/18）
+ - **Git**：未提交（待用户确认）
+ - **下一轮**：p2.5 converged → **4/18** → 续跑 B +3%
+
 - **Loop R342（2026-06-25，双轨）**：
  - **Track A**：seed137 **3/18**；`p2.5` OT~94 NP=2（cap=9）— **不干预**
  - **Track B**：`exp5_seed137_status_line` 显示 CPU cap/np；push 积压 4 commits
  - **创新审计**：CPU 2/3 运维可见 = **A**
- - **Git**：pending
+ - **Git**：`0202d20` + `e60acdb` — R340–R342 → **pushed: origin/main**
  - **下一轮**：p2.5 converged → 续跑 B 网格
 
 - **Loop R341（2026-06-25，双轨）**：
@@ -3453,6 +3666,8 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 ### Gotchas
 
+- **nested validation ROOT**：`rigid_pbed3/`、`placement_validation/`、`population_validation/` 脚本须 `../../../../` 到 repo 根；`../../..` 会误指 `experiments/` 导致 `cp2k_resource.sh` 路径错误并 abort PRB 队列（R357 已修）。
+- **seed137 cholesky ABORT**：`B_strainp2.5` 在 `cp_dbcsr_cholesky_decompose` ABORT 后 batch 退出；`continue_seed137_pending.sh` 归档 partial `.out` 并以 **NP=2** 续跑（勿与 PRB 队列并行）。顺序执行 `experiments/run_prb_revision_dft.sh`（relax skip 4/4 → seed137 → rigid_pbed3 → placement → cutoff400 → population）；**单路 CP2K**；空闲续跑 `continue_prb_revision_dft.sh`。映射见 `docs/prb_review_cn_mapping.md`。
 - **Abstract fifteen periodic 漂移**：`grep -q "fifteen periodic" paper/strain_doped_graphullerene.tex` 应为真；若 Abstract 回退为 `periodic supercells ($n=1$--$8$)` → 恢复 R184/R190 措辞后再 commit。
 - **paper/figures 误删**：工作区 `git status D paper/figures/` 时用 `git checkout HEAD -- paper/figures/` 恢复；勿手删作图脚本目录。
 

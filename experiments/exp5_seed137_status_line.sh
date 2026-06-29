@@ -52,7 +52,10 @@ if [[ "$running" != none && -f "$INP/${running}.out" ]]; then
   read -r ot grad <<< "$(python3 -c "
 import re
 from pathlib import Path
-t = Path('$INP/${running}.out').read_text(errors='replace')[-80000:]
+raw = Path('$INP/${running}.out').read_text(errors='replace')
+if 'PROGRAM STARTED' in raw:
+    raw = raw.split('PROGRAM STARTED')[-1]
+t = raw[-80000:]
 ots = re.findall(r'^\s+(\d+)\s+OT\s', t, re.M)
 grs = re.findall(r'OT\s+DIIS\s+[\d.E+-]+\s+[\d.E+-]+\s+([\d.E+-]+)', t)
 print(ots[-1] if ots else '', f'grad={grs[-1]}' if grs else '')

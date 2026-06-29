@@ -18,7 +18,7 @@ P-doped & 12 & $-1370.4965$ & $-1370.4888$ & $-19.1$ & $-15.8$ \\
 
 \begin{table}[!ht]
 \caption{\label{tab:III}Ionic-relaxation benchmark for the tetramer $P$-substitution synergy grid (four fixed-cell geometry-optimization corners: pristine and $P$ at $\epsilon{=}0$ and $+3$\%, same biaxial cell).
-This table tests whether the $\mathcal{S}$ cross term retains \emph{sign} after ionic relaxation \emph{within the tetramer grid only}; magnitude ratios are \emph{not} quantitative because the archived rigid reference uses legacy PBE without D3 while relaxed corners use PBE+D3---a matched PBE+D3 rigid reference is queued for a future revision.
+This benchmark is \emph{sign-qualitative only}: the rigid reference uses legacy PBE without D3, whereas relaxed corners use PBE+D3. Matched-functional rigid reference (PBE+D3, same four corners): $\mathcal{S}_{\mathrm{rigid}}^{\mathrm{PBE+D3}}=+1.19$~meV/atom; $|\mathcal{S}_{\mathrm{relaxed}}|/|\mathcal{S}_{\mathrm{rigid}}^{\mathrm{PBE+D3}}|\approx 1.9$ (sign \emph{not} preserved on the matched-functional grid). We test whether $\mathcal{S}$ retains \emph{sign} \emph{within the tetramer grid only}.
 Relaxed energies: PBE+D3 fixed-cell geometry optimization (400~Ry) from archived inputs in the open repository.
 $\mathcal{S}$ follows Eq.~\eqref{eq:synergy_order} with $N{=}240$ atoms.}
 \begin{ruledtabular}
@@ -36,9 +36,9 @@ Sign of $\mathcal{S}$ vs.\ rigid & $+$ & $-$ (not preserved) \\
 \end{table}
 
 \begin{table}[!ht]
-\caption{\label{tab:IV}Alternate dopant-placement sensitivity (\emph{tetramer only}, rigid strain, legacy PBE without D3; same archive as Table~\ref{tab:I}).
-The \emph{reference} placement defines all main-text tetramer $\alpha$ and the periodic supercell site map (one substituent per C$_{60}$).
-An \emph{alternate} independent placement repeats the full B/N/P strain grid ($\epsilon\in\{-5,-2.5,0,+2.5,+3,+5\}$\%; 18 single-point tasks) to test whether tetramer $\alpha$ and $\mathcal{S}$ at $+3$\% are placement-sensitive at ${\sim}5$\% nominal doping.
+\caption{\label{tab:IV}Alternate dopant-placement sensitivity (\emph{tetramer only}, rigid strain).
+The \emph{reference} placement defines main-text tetramer $\alpha$ (Table~\ref{tab:I}) and the periodic supercell site map (one substituent per C$_{60}$); its $\alpha$ and $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ use the archived legacy-PBE grid (no D3).
+The \emph{alternate} placement repeats the full B/N/P strain grid ($\epsilon\in\{-5,-2.5,0,+2.5,+3,+5\}$\%; 18 rigid single-points) on an independent seed-137 site map with PBE+D3 (Sec.~\ref{sec:methods_s4_seed}); alternate rows report verified seed-137 placement sensitivity at ${\sim}5$\% nominal doping without mixing periodic boundary conditions.
 $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ follows Eq.~\eqref{eq:synergy_order} on the archived rigid tetramer four-corner grid ($N{=}240$).
 Periodic $\mathcal{S}(n)$ is \emph{not} tabulated here because concentration and boundary conditions differ; main-text periodic magnitudes are configuration-specific until alternate periodic placements are computed.}
 \begin{ruledtabular}
@@ -48,9 +48,9 @@ Dopant & Placement & $\alpha$ (meV/\%) & $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ (me
 B & reference & $+56.9$ & $+3.8$ & verified (Table~\ref{tab:I}) \\
 N & reference & $-303.2$ & $+5.7$ & verified \\
 P & reference & $-19.1$ & $+1.0$ & verified \\
-B & alternate & pending & pending & pending \\
-N & alternate & pending & pending & pending \\
-P & alternate & pending & pending & pending \\
+B & alternate & $+21.4$ & $-2.6$ & verified (seed~137) \\
+N & alternate & $+45.4$ & $+12.6$ & verified (seed~137) \\
+P & alternate & $+989.6$ & $+41.4$ & verified (seed~137) \\
 \end{tabular}
 \end{ruledtabular}
 \end{table}

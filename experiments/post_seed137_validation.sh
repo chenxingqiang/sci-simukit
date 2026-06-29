@@ -6,6 +6,7 @@ JSON="$ROOT/experiments/analysis/seed_validation_tetramer.json"
 
 python3 "$ROOT/experiments/exp_5_synergy/seed_validation/analyze_seed137.py" > /dev/null
 bash "$ROOT/experiments/exp5_seed137_status_line.sh"
+python3 "$ROOT/experiments/update_tab_iv_from_json.py" || true
 
 python3 -c "
 import json

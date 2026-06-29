@@ -20,18 +20,19 @@ Summary of revisions (Major comments):
     $\mathcal{S}$ are upper bounds until ionic-relaxation and alternate-placement
     benchmarks complete (Tables~III--IV). Table~III defines a four-corner
     fixed-cell GEO\_OPT benchmark (pristine and $P$ at $\epsilon{=}0$ and $+3$\%;
-    2/4 pristine corners converged; $P$-doped corners pending; rigid references
-    archived). The main text separates periodic rigid $\mathcal{S}(n)$ from
+    4/4 corners converged; $\mathcal{S}_{\mathrm{relaxed}}=-2.28$ vs.\ rigid $+0.96$~meV/atom,
+    sign not preserved; cross-functional legacy PBE vs.\ PBE+D3). The main text separates periodic rigid $\mathcal{S}(n)$ from
     from tetramer relaxed cross terms and clarifies that $E_{\mathrm{sub}}$ is not
     a thermodynamic formation enthalpy.
 
 (2) Alternate dopant placement — Table~IV documents reference-placement
     $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ on the archived legacy-PBE grid and a
-    pending alternate seed-137 map (18 PBE+D3 rigid ENERGY tasks) to test whether
-    $\alpha$ signs and $|\mathcal{S}|$ rankings at $+3$\% are robust to dopant
-    configuration at ${\sim}5$\% nominal doping without cross-functional comparison
-    to the reference column. Periodic $\mathcal{S}$ magnitudes remain
-    configuration-specific until alternate periodic placements are computed.
+    completed alternate seed-137 map (18/18 PBE+D3 rigid ENERGY tasks): N $\alpha$
+    reverses sign vs.\ the reference placement; P $|\alpha|$ is placement-dominated
+    ($\sim 10^3$~meV/\%); $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ remains $\mathcal{O}(10)$~meV/atom
+    on the alternate map (cross-functional comparison to legacy-PBE reference column
+    remains qualitative). Periodic $\mathcal{S}$ magnitudes remain
+    configuration-specific; periodic placement audits (seeds 137 and 271; 16/16 rigid single-points converged; both preserve P$>$B$>$N $|\mathcal{S}|$ ranking at $+3$\%) are complete. Population-strain Hirshfeld tasks remain in the PRB queue.
 
 (3) Mechanistic depth — Table~V quantifies dopant--cage nearest-neighbor
     distances and covalent-radius mismatch from archived XYZ structures
@@ -50,8 +51,8 @@ Summary of revisions (Major comments):
 (5) Cutoff consistency — A matched 400~Ry single-point control for
     $6\times\mathrm{C}_{60}$ N @ $+3$\% strain (Table~II; pending) is
     documented; the reported N $\mathcal{S}(n)$ sign change between $n=6$ and
-    $n=8$ is excluded from design rules until that benchmark and Tables~III--IV
-    converge.
+    $n=8$ is excluded from design rules until the cutoff400 benchmark converges
+    (Table~III--IV tetramer controls are complete).
 
 Minor comments: Removed internal repository paths from the main text (Data
 Availability only); merged former Supplemental tables/figures into standard
@@ -62,7 +63,7 @@ entries marked as preprints.
 
 Data availability: converged inputs/outputs and audit tables at
 https://github.com/chenxingqiang/graphullerene-strain-engineering
-Pending validation energies (Tables~II--IV) remain in the PRB queue.
+Matched-functional rigid PBE+D3 (Table~III footnote, 4/4), periodic placement (16/16), and cutoff400 (41/41) are complete; population strain path remains in the PRB queue; Tables~III--IV tetramer benchmarks are complete.
 Marcus $\lambda$ (Fig.~3): eight vertical single-points at the neutral geometry are converged; B electron-channel $\lambda^{-}$ is negative and excluded (Limitations).
 
 Prior submission: none to APS journals. Not a joint submission.

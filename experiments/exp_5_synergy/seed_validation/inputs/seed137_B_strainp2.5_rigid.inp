@@ -27,8 +27,8 @@
     
     &SCF
       SCF_GUESS ATOMIC
-      EPS_SCF 1.0E-6
-      MAX_SCF 200
+      EPS_SCF 1.0E-5
+      MAX_SCF 300
       
       &OT
         MINIMIZER DIIS
@@ -37,8 +37,8 @@
       &END OT
       
       &OUTER_SCF
-        MAX_SCF 20
-        EPS_SCF 1.0E-6
+        MAX_SCF 40
+        EPS_SCF 1.0E-5
       &END OUTER_SCF
     &END SCF
   &END DFT

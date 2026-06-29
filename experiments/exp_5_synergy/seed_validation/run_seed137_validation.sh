@@ -28,6 +28,11 @@ for inp in "$INP_DIR"/seed137_*_rigid.inp; do
     echo "[skip] $base"
     continue
   fi
+  if [[ -f "$out" ]] && grep -q 'ABORT' "$out"; then
+    ts="$(date +%Y%m%d_%H%M%S)"
+    mv "$out" "${out}.failed_${ts}"
+    echo "[archive] $base ABORT -> ${out}.failed_${ts}"
+  fi
   echo "[$(date -Iseconds)] START $base np=$NP cap=${SIMUKIT_MAX_CORES}" | tee -a "$LOG"
   (cd "$INP_DIR" && "$MPIRUN" -np "$NP" "$CP2K" -i "${base}.inp" -o "${base}.out")
   if grep -q 'SCF run converged' "$out"; then

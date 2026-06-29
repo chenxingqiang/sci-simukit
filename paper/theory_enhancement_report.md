@@ -5,6 +5,65 @@
 
 
 
+### R345 audit（2026-06-25 PRB 中文审稿映射）
+
+| 项 | 状态 |
+|----|------|
+| 映射文档 | `docs/prb_review_cn_mapping.md` |
+| seed137 | **24/24** ✅ |
+| rigid_pbed3 | **4/4** ✅；`relax_validation_matched_functional.json` |
+| placement n=4 | **16/16** ✅（seed-137 8/8） |
+| population n=1 P | 6 inp；pending |
+| tab_S_synergy_grid | **A**（15 pt JSON） |
+
+**创新审计（R345）**：审稿闭环基础设施 = **A**；全力 DFT = **B** pending
+
+### R346 audit（2026-06-25 go loops）
+
+| 项 | 状态 | 证据 |
+|----|------|------|
+| Methods matched-functional 双轨 | **A** | `methods_extended.tex` `sec:methods_s3_relax` |
+| seed137 tetramer | **B** | 3/18 dop；`alpha_provisional` 全 true |
+| rigid_pbed3 retention | **A** | 4/4；ratio valid；sign not preserved |
+| periodic placement | **A** | 16/16 |
+| tab_IV alternate 列 | **blocked** | `update_tab_iv_from_json.py` 闸门 |
+
+### R352 audit（2026-06-26 go loops）
+
+| 项 | 状态 |
+|----|------|
+| seed137 dop progress | **B+** — 8/18；B $\alpha$ provisional **false** ($\alpha_B\approx 21.4$ meV/\%) |
+| tab_IV alternate 列 | **blocked** — N/P still provisional |
+| `N_strainp0.0` | **B** — OT~32 运行中 |
+
+### R350 audit（2026-06-25 go loops）
+
+| 项 | 状态 |
+|----|------|
+| `tab_II.tex` PRB 队列行 | **A** — matched/population + cholesky 注 |
+| seed137 batch | **B** — 3/18；p2.5 NP=2 运行中 |
+
+| 项 | 状态 |
+|----|------|
+| `main_extended_tables` Table III vs `tab_III.tex` | **A** — 4/4 数值同步 |
+| `relax_validation_matched_functional.json` | **B** — stub; `quantitative_ratio_valid: false` |
+
+| 项 | 状态 |
+|----|------|
+| SI periodic placement 契约 | **A** — 与主稿 `placement_validation/` 一致 |
+| seed137 | **B** — 3/18；OT~25 on p2.5 |
+
+### R344 audit（2026-06-25）
+
+| 项 | 状态 |
+|----|------|
+| seed137 | **3/18**；`B_strainp2.5` SCF 长跑中（NP=2，cap=9） |
+| `running_snapshot` | `last_ot` / `last_grad` 入 JSON；OT 仅解析末次 `PROGRAM STARTED` 后段 |
+| Methods `sec:methods_s3_relax` | sign **not** preserved 措辞对齐 Table III |
+| `alpha_provisional` | B=True（3/6）；**勿进** tab_IV |
+
+**创新审计（R344）**：Table III Methods 契约 = **A**；Table IV = **B** pending
+
 ### R340 audit（2026-06-25）
 
 | 项 | 状态 |
@@ -439,3 +498,192 @@ Legacy `analyze_results.py` → 请改用 `analyze_exp9_polaron.py` + `dft_resul
 | `cover_letter_prb.txt` Tables III--IV | **R322** 同步 |
 
 **创新审计（R322）**：全文 Tables III--IV 闸门 grep = **A**；JSON 对照 = **A**；Table III = **B**（2/4）。
+
+---
+
+## 9. R356 横切审计（2026-06-26）
+
+| 检查项 | 结果 |
+|--------|------|
+| seed137 dop 18/18 → `tab_IV` alternate | **A**（`alpha_provisional` false） |
+| pri modern 5/6 (`p5.0` running) | **B**（勿增 Abstract 新 pristine 数） |
+| 主文 stale until Table IV complete'' | **已修** → periodic placement pending gate |
+| relax 4/4 sign reversal | **A**（`relax_validation_tetramer.json`） |
+| rigid_pbed3 / placement / population | **B pending**（inputs ready） |
+
+**创新审计（R356）**：Table IV dop = **A**；pri 6/6 = **B**；C-M2 periodic = **B**。
+
+---
+
+## 10. R357 里程碑（2026-06-27）
+
+| 检查项 | 结果 |
+|--------|------|
+| seed137 pri 6/6 + dop 18/18 | **A** closed；`post_seed137_validation.sh` |
+| `tab_II` / Methods Table IV 叙事 | **A**（6/6 modern pristine） |
+| PRB queue ROOT path fix | rigid_pbed3 / placement / population scripts |
+| rigid_pbed3 batch | **B** started |
+
+**创新审计（R357）**：C-M2 tetramer = **closed**；C-M1 matched ratio = **B** pending。
+
+---
+
+## 11. R358 审计（2026-06-27）
+
+| 检查项 | 结果 |
+|--------|------|
+| `exp5_rigid_pbed3_status_line.sh` | **A** 新增运维一行快照 |
+| Conclusion / Data availability | **A** 去 stale pending III/IV |
+| rigid_pbed3 `pristine_eps0` | **B** OT~171，近 EPS |
+
+**创新审计（R358）**：matched retention = **B** running；勿提前填 ratio。
+
+---
+
+## 12. R359 横切审计（2026-06-27）
+
+| 检查项 | 结果 |
+|--------|------|
+| `update_tab_III_matched_from_json.py` SyntaxError | **已修**（LaTeX ratio 行改 raw string） |
+| `tab_II` / extended tables rigid_pbed3 | **1/4** 诚实化 |
+| `quantitative_ratio_valid` | **false**（勿改 tab_III 定量句） |
+
+**创新审计（R359）**：matched = **B** 1/4；post hook = **A**。
+
+---
+
+## 13. R360 审计（2026-06-27）
+
+| 检查项 | 结果 |
+|--------|------|
+| Abstract matched-functional 闸门 | **A**（无 retention 数值） |
+| `exp10_placement_status_line.sh` | **A**（抑制 analyze JSON stdout） |
+| rigid_pbed3 | **B** 1/4，`eps3` 早期 OT |
+
+**创新审计（R360）**：Abstract 契约 = **A**；matched ratio = **B** pending。
+
+---
+
+## 14. R361 审计（2026-06-27）
+
+| 检查项 | 结果 |
+|--------|------|
+| rigid_pbed3 | **2/4**（pristine corners ✅） |
+| Intro matched-functional 句 | **A**（无 retention 数） |
+| `tab_II` 计数 | **2/4** |
+
+**创新审计（R361）**：C-M1 matched = **B** 2/4；ratio 闸门仍 **false**。
+
+---
+
+## 16. R363 审计（2026-06-27）
+
+| 检查项 | 结果 |
+|--------|------|
+| tab_II placement | **5/16** partial |
+| cover letter matched | **A** complete |
+| placement status OT | **A** |
+
+**创新审计（R363）**：C-M2 periodic = **B** 5/16。
+
+
+---
+
+## 17. R364 审计（2026-06-27）
+
+| 检查项 | 结果 |
+|--------|------|
+| extended tab_IV alternate | **A** synced seed137 |
+| extended tab_III matched footnote | **A** |
+| tab_II Marcus 8/8 vertical | **A** |
+
+**创新审计（R364）**：Table IV extended = **A** closed；placement = **B** 5/16。
+
+
+---
+
+## 18. R365 审计（2026-06-28）
+
+| 检查项 | 结果 |
+|--------|------|
+| Discussion placement 5/16 | **A** 无保留率数值 |
+| mapping 5/16 | **A** |
+| P_pos3pct Cholesky 重启 | **运维** |
+
+**创新审计（R365）**：C-M2 periodic = **B** 5/16。
+
+
+---
+
+## 19. R366 审计（2026-06-28）
+
+| 检查项 | 结果 |
+|--------|------|
+| SI pending 句 | **A** III/IV closed |
+| Conclusion alternate | **A** 区分 tetramer vs periodic |
+| M2 mapping | **closed** |
+
+**创新审计（R366）**：C-M1 ionic = **A** closed；C-M2 periodic = **B** 5/16。
+
+
+---
+
+## 20. R367 横切审计（2026-06-28）
+
+| grep 闸门 | 结果 |
+|-----------|------|
+| rVV10/Koopmans 夸大（主文） | **0**（仅 Methods/Limitations 诚实句） |
+| 7/8 / 2/4 泄漏（主文） | **0** |
+| AGENTS 快照 vs JSON | **A** matched closed；placement 5/16 |
+
+**创新审计（R367）**：台账卫生 = **A**；C-M2 = **B** 5/16。
+
+
+---
+
+## 21. R368 审计（2026-06-28）
+
+| 检查项 | 结果 |
+|--------|------|
+| population ROOT | **A** fix 4→3 levels |
+| placement ABORT EPS hook | **A** |
+| Methods population § | **A** |
+
+**创新审计（R368）**：C-M3 population 基础设施 = **A**；placement = **B** 5/16。
+
+
+---
+
+## 22. R369 审计（2026-06-28）
+
+| 检查项 | 结果 |
+|--------|------|
+| exp7_population_status_line | **A** |
+| Limitations → methods_population | **A** |
+
+**创新审计（R369）**：C-M3 = **B** 0/6；placement = **B** 5/16。
+
+
+---
+
+## 23. R370 审计（2026-06-29）
+
+| 检查项 | 结果 |
+|--------|------|
+| seed-137 rank P>B>N | **A−** (`periodic_placement_validation.json`) |
+| tab_II 13/16 | **A** |
+| cross-seed retention | **B** pending 16/16 |
+
+**创新审计（R370）**：C-M2 = **B+** 13/16。
+
+
+---
+
+## 24. R371（2026-06-29）
+
+placement **14/16**；seed-271 `P_pos3pct` converged after EPS 1e-5.
+
+
+## 25. R372（2026-06-29）
+
+placement **16/16**; both seeds P>B>N; Exp10 **41/41**.

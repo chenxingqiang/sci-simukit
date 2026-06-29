@@ -1,10 +1,8 @@
 {
-  "updated": "2026-06-22",
-  "converged": 40,
+  "updated": "2026-06-30",
+  "converged": 41,
   "total": 41,
-  "pending": [
-    "size_6x60_N_pos3pct_cutoff400"
-  ],
+  "pending": [],
   "tasks": [
     {
       "task": "size_1x60_B_pos0pct",
@@ -176,9 +174,9 @@
     },
     {
       "task": "size_6x60_N_pos3pct_cutoff400",
-      "converged": false,
-      "last_ot_step": null,
-      "last_grad": null
+      "converged": true,
+      "last_ot_step": 280,
+      "last_grad": 8.4e-07
     },
     {
       "task": "size_6x60_P_pos0pct",
@@ -252,16 +250,5 @@
       "last_ot_step": 250,
       "last_grad": 8.3e-07
     }
-  ],
-  "pending_reference_ot": {
-    "size_6x60_N_pos3pct_cutoff400": {
-      "reference_task": "size_6x60_N_pos0pct",
-      "reference_ot_steps": 196,
-      "eps_scf": 1e-06
-    }
-  },
-  "batch_queue": [
-    "size_6x60_N_pos3pct_cutoff400"
-  ],
-  "next_after_running": "size_6x60_N_pos3pct_cutoff400"
+  ]
 }

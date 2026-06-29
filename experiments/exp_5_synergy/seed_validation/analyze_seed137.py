@@ -41,6 +41,18 @@ def fit_alpha(strains: list[float], energies: list[float]) -> float | None:
     return float(c[0] * HA_TO_MEV)
 
 
+def parse_scf_tail(out: Path) -> tuple[str | None, str | None]:
+    if not out.exists():
+        return None, None
+    text = out.read_text(errors="replace")
+    if "PROGRAM STARTED" in text:
+        text = text.split("PROGRAM STARTED")[-1]
+    text = text[-80000:]
+    ots = re.findall(r"^\s+(\d+)\s+OT\s", text, re.M)
+    grs = re.findall(r"OT\s+DIIS\s+[\d.E+-]+\s+[\d.E+-]+\s+([\d.E+-]+)", text)
+    return (ots[-1] if ots else None, grs[-1] if grs else None)
+
+
 def main() -> None:
     seed42 = json.loads(TABLE1.read_text())["systems"]
     result = {
@@ -114,6 +126,12 @@ def main() -> None:
         "pristine_modern_total": 6,
         "running_task": running,
     }
+    if running:
+        ot, grad = parse_scf_tail(INP_DIR / f"{running}.out")
+        if ot is not None:
+            result["running_snapshot"]["last_ot"] = int(ot)
+        if grad is not None:
+            result["running_snapshot"]["last_grad_Ha_bohr"] = float(grad)
     result["strain_points_per_dop"] = {d: len(by_dop[d]) for d in ("B", "N", "P")}
     result["alpha_provisional"] = {
         d: len(by_dop[d]) < 6 for d in ("B", "N", "P")

@@ -109,7 +109,7 @@ We thank the referee for recognizing the corrections to doping concentration, Ma
 
 **Manuscript:** Methods substitutional-doping paragraph; Results strain/synergy subsections; Discussion (i); Limitations; Table~IV; Methods validation.
 
-**Pending DFT:** 18 seed~137 tetramer ENERGY tasks **in progress** (3/18 converged; B grid partial; batch resumed at $NP{=}2$ after OOM kill on `seed137_B_strainp2.5_rigid`).
+**Pending DFT:** 18 seed~137 tetramer ENERGY tasks **in progress** (3/18 converged on the $B$ strain grid at $\epsilon\in\{-5,-2.5,0\}$\%; $+2.5$\% SCF in progress; batch resumed at $NP{=}2$ after OOM on `seed137_B_strainp2.5_rigid`).
 
 ---
 

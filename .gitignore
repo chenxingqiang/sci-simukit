@@ -89,6 +89,8 @@ polaron_calculations/
 dft_results_download/
 experiments/exp_10_size_scaling/inputs/*.out.failed_*
 **/*.out.failed_*
+**/*.out.failed_spin
+**/*failed_partial*
 **/*-BFGS.Hessian
 
 # C core (simukit) — build locally via `cd c && make`

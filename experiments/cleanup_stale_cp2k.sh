@@ -8,6 +8,7 @@ cd "$ROOT"
 echo "=== cleanup_stale_cp2k ==="
 find "$ROOT" -type f \( \
   -name '*.out.failed_*' -o \
+  -name '*.out.failed_spin' -o \
   -name '*failed_partial*' -o \
   -name '*.restart.bak-*' -o \
   -name '*-RESTART.wfn.bak-*' -o \

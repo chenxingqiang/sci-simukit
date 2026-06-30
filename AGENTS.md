@@ -22,15 +22,16 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 |----|-----|
 | **Exp10** | **41/41** ✅（incl. cutoff400） |
 | **Exp8** | **6/6** ✅ |
-| **Exp9** | **12/12** GEO_OPT ✅；vertical SP **8/8** ✅ — λ 全表入 Fig.~3（B $\lambda^{-}$ 负值已标注） |
-| **运行中** | `pop_n1_P_strainm2.5pct`（population **0/6**）— **不干预** |
-| **临界区** | PRB 队列：rigid_pbed3 → placement → cutoff400 → population |
-| **下一任务** | `P_pos3pct` converged → placement 6/16；16/16 → `post_periodic_placement.sh` |
-| **阻塞 PRB** | population **0/6**；placement/cutoff **closed** ✅ |
-| **文稿 P 瓶颈** | periodic placement 段待 16/16 JSON；cutoff400 / population pending |
-| **最新 Loop** | **R372** |
-| **下一 B 任务** | periodic placement 段待 16/16 JSON |
-| **主张-证据** | Table III matched = **A**（4/4；sign not preserved）；placement = **A**（16/16；seed-137 rank **A−**） |
+| **Exp9** | **12/12** GEO_OPT ✅；vertical SP **8/8** ✅ |
+| **Table IV seed137** | **0/24** protocol-v2 rerun；`seed137_B_strainm2.5_rigid` **running**（np=4） |
+| **运行中** | `seed137_B_strainm2.5_rigid` — **不干预** |
+| **临界区** | seed137 首任务长跑（$-2.5$\% B）；24 点顺序 batch |
+| **下一任务** | seed137 `SCF run converged` → 续 batch → `post_seed137_validation.sh` |
+| **阻塞 PRB** | **Table IV alternate**（0/24 新 `.out`）；population **0/6** |
+| **文稿 P 瓶颈** | tab_IV alternate 数值 **勿改**直至 24/24；主稿 L120/L255 待算后同步 |
+| **最新 Loop** | **R373** |
+| **下一 B 任务** | theory report + tab_IV caption 诚实化（无新数字） |
+| **主张-证据** | periodic $\mathcal{S}$/placement = **A**；tab_IV alternate = **C**（旧数无 v2 `.out`） |
 | **下一 C 任务** | `docs/prb_review_cn_mapping.md` 维护 |
 | **Loop C** | C-M1 **closed** ✅；C-M2 periodic **A**（16/16）；C-M3 **open** |
 | **SDC** | **15** synergy 点 |
@@ -1400,6 +1401,14 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R373（2026-06-30，双轨）**：
+ - **Track A**：seed137 protocol-v2 **0/24**；`seed137_B_strainm2.5_rigid` running（np=4）— **不干预**
+ - **Track B（横切 audit）**：cleanup ~1.1 GB；`verify_dft_protocol` 87/87；theory R373 tab_IV **C**；tab_IV caption 诚实化（无新数字）
+ - **paper_gap**：主稿 Table IV alternate 待 24/24 — **本轮不改数值**
+ - **创新审计**：protocol = **A**；tab_IV alternate = **C**
+ - **Git**：pending
+ - **下一轮**：seed137 计数↑；24/24 → post_seed137 → 改 tab_IV
 
 - **Loop R372（2026-06-29，三轨里程碑）**：
  - **Track A**：placement **16/16** ✅；cutoff400 **41/41** ✅；启动 population batch（LSD fix；`pop_n1_P_strainm2.5pct` running）

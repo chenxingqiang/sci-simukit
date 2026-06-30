@@ -5,12 +5,26 @@
 
 
 
+
+
+### R373 audit（2026-06-30 go loops）
+
+| 项 | 状态 | 证据 |
+|----|------|------|
+| DFT protocol v2 | **A** | `verify_dft_protocol.py` 87/87 |
+| seed137 tetramer | **C→B** | **0/24**；`seed137_B_strainm2.5_rigid` running |
+| tab_IV alternate 列 | **C** | 旧 verified 数无 v2 `.out`；算后改稿 |
+| periodic placement | **A** | 16/16 JSON |
+| population | **B** pending | 0/6 |
+
+**创新审计（R373）**：协议+清理 = **A**；Table IV 数值 = **C**
+
 ### R345 audit（2026-06-25 PRB 中文审稿映射）
 
 | 项 | 状态 |
 |----|------|
 | 映射文档 | `docs/prb_review_cn_mapping.md` |
-| seed137 | **24/24** ✅ |
+| seed137 | **0/24** protocol-v2 rerun（勿用旧 alternate 数） |
 | rigid_pbed3 | **4/4** ✅；`relax_validation_matched_functional.json` |
 | placement n=4 | **16/16** ✅（seed-137 8/8） |
 | population n=1 P | 6 inp；pending |

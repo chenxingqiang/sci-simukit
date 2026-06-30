@@ -70,6 +70,21 @@ def _inject_mgrid(text: str, cutoff: int) -> str:
     return re.sub(r"^\s*&DFT\s*$", block.rstrip("\n"), text, count=1, flags=re.M)
 
 
+
+def _strip_legacy_ot(text: str) -> str:
+    """Remove legacy OT ENERGY_GAP; unify inner MAX_SCF with Exp10 (300)."""
+    text = re.sub(r"^\s*ENERGY_GAP\s+\S+\s*\n", "", text, flags=re.M)
+    text = re.sub(
+        r"^(\s*MAX_SCF\s+)200(\s*\n\s*&OT)",
+        r"\g<1>300\2",
+        text,
+        count=1,
+        flags=re.M,
+    )
+    # Pristine legacy templates: &SCF without &OT still used MAX_SCF 200.
+    text = re.sub(r"^(\s*MAX_SCF\s+)200(\s*)$", r"\g<1>300\2", text, flags=re.M)
+    return text
+
 def normalize_kind_potentials(text: str) -> str:
     for elem, q in _KIND_Q.items():
         text = re.sub(
@@ -88,4 +103,5 @@ def modernize_cp2k_inp(text: str, *, cutoff: int = 400, eps_scf: str = "1.0E-6")
     text = re.sub(r"EPS_SCF\s+[\d.E+-]+", f"EPS_SCF {eps_scf}", text)
     text = re.sub(r"PRECONDITIONER\s+\S+", "PRECONDITIONER FULL_ALL", text)
     text = normalize_kind_potentials(text)
+    text = _strip_legacy_ot(text)
     return text

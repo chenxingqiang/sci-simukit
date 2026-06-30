@@ -30,7 +30,7 @@
     &SCF
       SCF_GUESS ATOMIC
       EPS_SCF 1.0E-6
-      MAX_SCF 200
+      MAX_SCF 300
     &END SCF
   &END DFT
   

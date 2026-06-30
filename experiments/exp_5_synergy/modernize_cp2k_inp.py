@@ -86,14 +86,20 @@ def _strip_legacy_ot(text: str) -> str:
     return text
 
 def normalize_kind_potentials(text: str) -> str:
-    for elem, q in _KIND_Q.items():
-        text = re.sub(
-            rf"(&KIND {elem}\b.*?POTENTIAL )GTH-PBE(?:-q\d+)?",
-            rf"\1GTH-PBE-{q}",
-            text,
-            flags=re.S,
-        )
-    return text
+  lines = text.splitlines()
+  out: list[str] = []
+  in_kind: str | None = None
+  for line in lines:
+    m = re.match(r"^\s*&KIND\s+(\w+)\b", line)
+    if m:
+      in_kind = m.group(1)
+    if re.match(r"^\s*&END KIND\b", line):
+      in_kind = None
+    if in_kind in _KIND_Q and "POTENTIAL GTH-PBE" in line:
+      q = _KIND_Q[in_kind]
+      line = re.sub(r"POTENTIAL GTH-PBE(?:-q\d+)?", f"POTENTIAL GTH-PBE-{q}", line)
+    out.append(line)
+  return "\n".join(out) + ("\n" if text.endswith("\n") else "")
 
 
 def modernize_cp2k_inp(text: str, *, cutoff: int = 400, eps_scf: str = "1.0E-6") -> str:

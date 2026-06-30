@@ -30,9 +30,15 @@ for strain in m5.0 m2.5 p0.0 p2.5 p3.0 p5.0; do
 done
 
 running="none"
+unlinked=""
 next_task="none"
 if pgrep -f 'cp2k\.psmp.*seed137_' >/dev/null 2>&1; then
   running="$(ps aux | grep -E 'cp2k\.psmp.*seed137_' | grep -v grep | awk '{for(i=1;i<=NF;i++) if($i=="-i") print $(i+1)}' | head -1 | xargs basename 2>/dev/null | sed 's/\.inp$//' || echo seed137_*)"
+fi
+if [[ "$running" != none ]] && lsof +L1 2>/dev/null | grep -q "cp2k.*${running}\.out"; then
+  if lsof +L1 2>/dev/null | grep "cp2k.*${running}\.out" | grep -q ' 0 '; then
+    unlinked="UNLINKED"
+  fi
 fi
 
 for inp in "$INP"/seed137_*_rigid.inp; do
@@ -48,11 +54,13 @@ done
 
 ot=""
 grad=""
-if [[ "$running" != none && -f "$INP/${running}.out" ]]; then
+out_read="$INP/${running}.out"
+[[ -f "${out_read}.mirror" ]] && out_read="${out_read}.mirror"
+if [[ "$running" != none && -f "$out_read" ]]; then
   read -r ot grad <<< "$(python3 -c "
 import re
 from pathlib import Path
-raw = Path('$INP/${running}.out').read_text(errors='replace')
+raw = Path('$out_read').read_text(errors='replace')
 if 'PROGRAM STARTED' in raw:
     raw = raw.split('PROGRAM STARTED')[-1]
 t = raw[-80000:]
@@ -85,4 +93,4 @@ fi
 cpu_note="cap=${SIMUKIT_MAX_CORES}"
 [[ -n "$np_live" ]] && cpu_note="${cpu_note} np=${np_live}"
 
-echo "TableIV seed137 dop ${dop_done}/${dop_tasks} pri ${pri_done}/${pri_total} | status=${status} | running=${running} | next=${next_task}${extra} | ${cpu_note}${provisional:+ | ${provisional}}"
+echo "TableIV seed137 dop ${dop_done}/${dop_tasks} pri ${pri_done}/${pri_total} | status=${status} | running=${running}${unlinked:+ | ${unlinked}} | next=${next_task}${extra} | ${cpu_note}${provisional:+ | ${provisional}}"

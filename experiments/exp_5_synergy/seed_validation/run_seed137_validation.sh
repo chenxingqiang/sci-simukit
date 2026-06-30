@@ -12,7 +12,9 @@ MPIRUN="${MPIRUN:-/opt/homebrew/bin/mpirun}"
 # Tetramer ENERGY: suggest 4 MPI ranks, capped at ~2/3 logical CPUs (SIMUKIT_MAX_CORES).
 NP="${NP:-$(cp2k_cap_np 4)}"
 
-python3 "$ROOT/experiments/exp_5_synergy/seed_validation/generate_seed137_inputs.py"
+if [[ "${SKIP_GENERATE:-0}" != 1 ]]; then
+  python3 "$ROOT/experiments/exp_5_synergy/seed_validation/generate_seed137_inputs.py"
+fi
 if [[ "${RERUN_PROTOCOL_FIX:-0}" == 1 ]]; then
   ts="$(date +%Y%m%d_%H%M%S)"
   for out in "$INP_DIR"/seed137_*_rigid.out; do
@@ -35,8 +37,18 @@ for inp in "$INP_DIR"/seed137_*_rigid.inp; do
     mv "$out" "${out}.failed_${ts}"
     echo "[archive] $base ABORT -> ${out}.failed_${ts}"
   fi
+  bash "$ROOT/experiments/guard_unlinked_cp2k_out.sh" || true
   echo "[$(date -Iseconds)] START $base np=$NP cap=${SIMUKIT_MAX_CORES}" | tee -a "$LOG"
   (cd "$INP_DIR" && "$MPIRUN" -np "$NP" "$CP2K" -i "${base}.inp" -o "${base}.out")
+  bash "$ROOT/experiments/guard_unlinked_cp2k_out.sh" || true
+  if [[ ! -f "$out" ]] && [[ -f "${out}.mirror" ]]; then
+    cp "${out}.mirror" "$out"
+    echo "[recover] restored $out from .mirror"
+  fi
+  if [[ ! -f "$out" ]]; then
+    echo "FAIL $base (missing .out after CP2K — was it unlinked?)"
+    exit 1
+  fi
   if grep -q 'SCF run converged' "$out"; then
     bash "$ROOT/experiments/post_seed137_validation.sh" || true
   else

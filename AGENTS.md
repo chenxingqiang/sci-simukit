@@ -23,14 +23,14 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Exp10** | **41/41** ✅（incl. cutoff400） |
 | **Exp8** | **6/6** ✅ |
 | **Exp9** | **12/12** GEO_OPT ✅；vertical SP **8/8** ✅ |
-| **Table IV seed137** | **0/24** protocol-v2 rerun；`seed137_B_strainm2.5_rigid` **running**（np=4） |
+| **Table IV seed137** | **0/24** protocol-v2 rerun；`seed137_B_strainm2.5_rigid` **restarted**（np=4；prior .out unlinked lost） |
 | **运行中** | `seed137_B_strainm2.5_rigid` — **不干预** |
 | **临界区** | seed137 首任务长跑（$-2.5$\% B）；24 点顺序 batch |
 | **下一任务** | seed137 `SCF run converged` → 续 batch → `post_seed137_validation.sh` |
 | **阻塞 PRB** | **Table IV alternate**（0/24 新 `.out`）；population **0/6** |
 | **文稿 P 瓶颈** | tab_IV alternate 数值 **勿改**直至 24/24；主稿 L120/L255 待算后同步 |
-| **最新 Loop** | **R373** |
-| **下一 B 任务** | theory report + tab_IV caption 诚实化（无新数字） |
+| **最新 Loop** | **R374** |
+| **下一 B 任务** | 24/24 后 tab_IV 数值同步；运维 guard_unlinked |
 | **主张-证据** | periodic $\mathcal{S}$/placement = **A**；tab_IV alternate = **C**（旧数无 v2 `.out`） |
 | **下一 C 任务** | `docs/prb_review_cn_mapping.md` 维护 |
 | **Loop C** | C-M1 **closed** ✅；C-M2 periodic **A**（16/16）；C-M3 **open** |
@@ -1402,12 +1402,20 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+- **Loop R374（2026-06-19，双轨）**：
+ - **Track A**：首任务 `.out` **unlinked**（link=0）+ batch 挂死 `generate_seed137` → **重启** `seed137_B_strainm2.5_rigid`（SKIP_GENERATE=1，RESTART.wfn）；杀陈旧 `protocol-fix` 父进程防双 batch — **不干预** 新 np=4
+ - **Track B（运维）**：`guard_unlinked_cp2k_out.sh`；`cleanup_stale_cp2k` 识别 +L1 unlinked；`run_seed137_validation.sh` missing-out 闸门 + `.mirror` 恢复；`modernize` KIND 行解析防挂死
+ - **paper_gap**：tab_IV alternate 仍 **0/24** — **不改数值**
+ - **创新审计**：seed137 运维 = **A**；tab_IV alternate = **C**
+ - **Git**：pending
+ - **下一轮**：dop 计数↑；24/24 → `post_seed137_validation.sh`
+
 - **Loop R373（2026-06-30，双轨）**：
  - **Track A**：seed137 protocol-v2 **0/24**；`seed137_B_strainm2.5_rigid` running（np=4）— **不干预**
  - **Track B（横切 audit）**：cleanup ~1.1 GB；`verify_dft_protocol` 87/87；theory R373 tab_IV **C**；tab_IV caption 诚实化（无新数字）
  - **paper_gap**：主稿 Table IV alternate 待 24/24 — **本轮不改数值**
  - **创新审计**：protocol = **A**；tab_IV alternate = **C**
- - **Git**：pending
+ - **Git**：`f88553c` — loop R373
  - **下一轮**：seed137 计数↑；24/24 → post_seed137 → 改 tab_IV
 
 - **Loop R372（2026-06-29，三轨里程碑）**：
@@ -3675,6 +3683,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 ### Gotchas
 
+- **seed137 unlinked .out**：CP2K 运行中 `rm` 路径会使 `lsof +L1` link=0；`cleanup_stale_cp2k` 的 `lsof path` 检测失效。跑前/后 `bash experiments/guard_unlinked_cp2k_out.sh`；`exp5_seed137_status_line` 标 `UNLINKED`。
 - **nested validation ROOT**：`rigid_pbed3/`、`placement_validation/`、`population_validation/` 脚本须 `../../../../` 到 repo 根；`../../..` 会误指 `experiments/` 导致 `cp2k_resource.sh` 路径错误并 abort PRB 队列（R357 已修）。
 - **seed137 cholesky ABORT**：`B_strainp2.5` 在 `cp_dbcsr_cholesky_decompose` ABORT 后 batch 退出；`continue_seed137_pending.sh` 归档 partial `.out` 并以 **NP=2** 续跑（勿与 PRB 队列并行）。顺序执行 `experiments/run_prb_revision_dft.sh`（relax skip 4/4 → seed137 → rigid_pbed3 → placement → cutoff400 → population）；**单路 CP2K**；空闲续跑 `continue_prb_revision_dft.sh`。映射见 `docs/prb_review_cn_mapping.md`。
 - **Abstract fifteen periodic 漂移**：`grep -q "fifteen periodic" paper/strain_doped_graphullerene.tex` 应为真；若 Abstract 回退为 `periodic supercells ($n=1$--$8$)` → 恢复 R184/R190 措辞后再 commit。

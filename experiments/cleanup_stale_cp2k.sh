@@ -22,7 +22,28 @@ import subprocess
 
 REPO = Path(".")
 
+def _unlinked_open_outs() -> set[str]:
+    try:
+        raw = subprocess.check_output(["lsof", "+L1"], text=True, errors="replace")
+    except (FileNotFoundError, subprocess.CalledProcessError):
+        return set()
+    out: set[str] = set()
+    for line in raw.splitlines():
+        if "cp2k" not in line.lower() or ".out" not in line or " 0 " not in line:
+            continue
+        parts = line.split()
+        if parts and parts[-1].endswith(".out"):
+            out.add(parts[-1])
+    return out
+
+
+_UNLINKED = _unlinked_open_outs()
+
+
 def is_active(path: Path) -> bool:
+    p = str(path.resolve())
+    if p in _UNLINKED:
+        return True
     try:
         return subprocess.run(["lsof", str(path)], capture_output=True).returncode == 0
     except FileNotFoundError:

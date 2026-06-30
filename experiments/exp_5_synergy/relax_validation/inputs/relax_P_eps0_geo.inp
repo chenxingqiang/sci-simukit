@@ -8,7 +8,7 @@
           &GEO_OPT
             TYPE MINIMIZATION
             OPTIMIZER BFGS
-            MAX_ITER 300
+            MAX_ITER 450
             MAX_DR 3.0E-3
             MAX_FORCE 4.5E-4
             RMS_DR 1.5E-3
@@ -337,7 +337,7 @@
 
             &KIND C
       BASIS_SET DZVP-MOLOPT-SR-GTH
-      POTENTIAL GTH-PBE
+      POTENTIAL GTH-PBE-q4
     &END KIND
 
 &KIND P

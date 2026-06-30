@@ -10,6 +10,7 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(REPO / "experiments" / "exp_5_synergy"))
+from modernize_cp2k_inp import normalize_kind_potentials  # noqa: E402
 from relax_validation.generate_relax_inputs import CASES, extract_subsys_blocks  # noqa: E402
 
 SYNERGY_DIR = REPO / "dft_results" / "exp_5_synergy"
@@ -106,6 +107,7 @@ def main() -> None:
             raise FileNotFoundError(src)
         text = src.read_text(encoding="utf-8", errors="replace")
         cell, coord, kinds = extract_subsys_blocks(text)
+        kinds = [normalize_kind_potentials(k) for k in kinds]
         out = OUT_DIR / f"{project}.inp"
         out.write_text(build_energy_inp(project, cell, coord, kinds), encoding="utf-8")
         print(f"wrote {out.relative_to(REPO)}")

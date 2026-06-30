@@ -11,6 +11,13 @@ MPIRUN="${MPIRUN:-/opt/homebrew/bin/mpirun}"
 NP="${NP:-$(cp2k_cap_np 2)}"
 
 python3 "$ROOT/experiments/exp_7_electronic_structure/population_validation/generate_population_inputs.py"
+if [[ "${RERUN_PROTOCOL_FIX:-0}" == 1 ]]; then
+  ts="$(date +%Y%m%d_%H%M%S)"
+  for out in "$INP_DIR"/pop_n1_P_*.out; do
+    [[ -f "$out" ]] || continue
+    mv "$out" "${out}.pre_protocol_fix_${ts}"
+  done
+fi
 
 for inp in "$INP_DIR"/pop_n1_P_*.inp; do
   base="$(basename "$inp" .inp)"

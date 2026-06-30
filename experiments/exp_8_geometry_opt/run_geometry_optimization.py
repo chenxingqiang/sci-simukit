@@ -89,7 +89,7 @@ def generate_geo_opt_input(dopant, output_dir):
     POTENTIAL_FILE_NAME GTH_POTENTIALS
 
     &MGRID
-      CUTOFF 300
+      CUTOFF 400
       REL_CUTOFF 50
     &END MGRID
 
@@ -186,8 +186,8 @@ def generate_single_point_template(cell_info):
     POTENTIAL_FILE_NAME GTH_POTENTIALS
 
     &MGRID
-      CUTOFF 500
-      REL_CUTOFF 60
+      CUTOFF 400
+      REL_CUTOFF 50
     &END MGRID
 
     &QS

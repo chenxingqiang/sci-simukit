@@ -12,12 +12,14 @@ MPIRUN="${MPIRUN:-/opt/homebrew/bin/mpirun}"
 # Tetramer ENERGY: suggest 4 MPI ranks, capped at ~2/3 logical CPUs (SIMUKIT_MAX_CORES).
 NP="${NP:-$(cp2k_cap_np 4)}"
 
-need_gen=0
-for pat in seed137_pristine_strainp0.0_rigid seed137_B_strainp0.0_rigid; do
-  [[ -f "$INP_DIR/${pat}.inp" ]] || need_gen=1
-done
-if [[ "$need_gen" -eq 1 ]]; then
-  python3 "$ROOT/experiments/exp_5_synergy/seed_validation/generate_seed137_inputs.py"
+python3 "$ROOT/experiments/exp_5_synergy/seed_validation/generate_seed137_inputs.py"
+if [[ "${RERUN_PROTOCOL_FIX:-0}" == 1 ]]; then
+  ts="$(date +%Y%m%d_%H%M%S)"
+  for out in "$INP_DIR"/seed137_*_rigid.out; do
+    [[ -f "$out" ]] || continue
+    mv "$out" "${out}.pre_protocol_fix_${ts}"
+    echo "[archive] protocol fix -> ${out}.pre_protocol_fix_${ts}"
+  done
 fi
 
 for inp in "$INP_DIR"/seed137_*_rigid.inp; do

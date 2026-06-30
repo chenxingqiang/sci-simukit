@@ -31,7 +31,6 @@ def build_inp(project: str, coords_str: str, a: float, b: float, c: float) -> st
   METHOD Quickstep
 
   &DFT
-    LSD .TRUE.
     BASIS_SET_FILE_NAME BASIS_MOLOPT
     POTENTIAL_FILE_NAME GTH_POTENTIALS
 

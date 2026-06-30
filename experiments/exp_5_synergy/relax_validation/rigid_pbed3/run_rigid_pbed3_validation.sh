@@ -12,6 +12,13 @@ MPIRUN="${MPIRUN:-/opt/homebrew/bin/mpirun}"
 NP="${NP:-$(cp2k_cap_np 4)}"
 
 python3 "$ROOT/experiments/exp_5_synergy/relax_validation/rigid_pbed3/generate_rigid_pbed3_inputs.py"
+if [[ "${RERUN_PROTOCOL_FIX:-0}" == 1 ]]; then
+  ts="$(date +%Y%m%d_%H%M%S)"
+  for out in "$INP_DIR"/*.out; do
+    [[ -f "$out" ]] || continue
+    mv "$out" "${out}.pre_protocol_fix_${ts}"
+  done
+fi
 
 TASKS=(
   rigid_pbed3_pristine_eps0_sp

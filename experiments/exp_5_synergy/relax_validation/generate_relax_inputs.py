@@ -7,6 +7,10 @@ import re
 import textwrap
 from pathlib import Path
 
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from modernize_cp2k_inp import normalize_kind_potentials
+
 REPO = Path(__file__).resolve().parents[3]
 SYNERGY_DIR = REPO / "dft_results" / "exp_5_synergy"
 OUT_DIR = Path(__file__).resolve().parent / "inputs"
@@ -43,7 +47,7 @@ def extract_subsys_blocks(inp_text: str) -> tuple[str, str, list[str]]:
                 """\
                 &KIND C
                   BASIS_SET DZVP-MOLOPT-SR-GTH
-                  POTENTIAL GTH-PBE
+                  POTENTIAL GTH-PBE-q4
                 &END KIND"""
             )
         ]
@@ -164,6 +168,7 @@ def main() -> None:
             raise FileNotFoundError(src)
         text = src.read_text(encoding="utf-8", errors="replace")
         cell, coord, kinds = extract_subsys_blocks(text)
+        kinds = [normalize_kind_potentials(k) for k in kinds]
         out = OUT_DIR / f"{project}.inp"
         out.write_text(build_geo_inp(project, cell, coord, kinds), encoding="utf-8")
         print(f"wrote {out.relative_to(REPO)}")

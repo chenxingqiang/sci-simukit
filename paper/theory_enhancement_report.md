@@ -7,6 +7,16 @@
 
 
 
+### R380 audit（2026-07-02 go loops）
+
+| 项 | 状态 | 证据 |
+|----|------|------|
+| seed137 | **B** pending | 0/24；outer=3；OT~130/300；grad≈35× EPS **OSC** |
+| tab_IV alternate | **C** | 算后改稿 |
+| 振荡监控 | **A** | `inner_max_cycles` + OSC 旗标 |
+
+**创新审计（R380）**：SCF 振荡运维 = **A**；Table IV = **C**
+
 ### R379 audit（2026-07-02 go loops）
 
 | 项 | 状态 | 证据 |

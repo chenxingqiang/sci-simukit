@@ -59,6 +59,16 @@ def parse_scf_tail(out: Path) -> tuple[str | None, str | None]:
     return (ots[-1] if ots else None, grs[-1] if grs else None)
 
 
+def count_inner_max_cycles(out: Path, cap: int = 300) -> int:
+    if not out.exists():
+        return 0
+    raw = out.read_text(errors="replace")
+    if "PROGRAM STARTED" in raw:
+        raw = raw.split("PROGRAM STARTED")[-1]
+    pat = rf"Leaving inner SCF loop after reaching\s+{cap} steps"
+    return len(re.findall(pat, raw))
+
+
 def parse_outer_scf(out: Path) -> tuple[int | None, float | None]:
     if not out.exists():
         return None, None
@@ -175,7 +185,12 @@ def main() -> None:
                 result["running_snapshot"]["escalation_hint"] = (
                     "inner OT near MAX_SCF; if ABORT retry EPS_SCF=1e-5 or archive+continue"
                 )
-        outer_it, outer_rms = parse_outer_scf(INP_DIR / f"{running}.out")
+        out_path = INP_DIR / f"{running}.out"
+        cap = max_inner_ot_from_inp(INP_DIR / f"{running}.inp")
+        inner_cycles = count_inner_max_cycles(out_path, cap)
+        if inner_cycles:
+            result["running_snapshot"]["inner_max_cycles"] = inner_cycles
+        outer_it, outer_rms = parse_outer_scf(out_path)
         if outer_it is not None:
             result["running_snapshot"]["outer_scf_iter"] = outer_it
         if outer_rms is not None:
@@ -190,6 +205,8 @@ def main() -> None:
                 result["running_snapshot"]["grad_ratio_to_eps"] = round(ratio, 1)
                 if ratio <= 15:
                     result["running_snapshot"]["critical_zone"] = True
+                elif ratio > 15:
+                    result["running_snapshot"]["oscillating"] = True
     result["strain_points_per_dop"] = {d: len(by_dop[d]) for d in ("B", "N", "P")}
     result["alpha_provisional"] = {
         d: len(by_dop[d]) < 6 for d in ("B", "N", "P")

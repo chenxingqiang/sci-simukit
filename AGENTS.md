@@ -25,11 +25,11 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Exp9** | **12/12** GEO_OPT ✅；vertical SP **8/8** ✅ |
 | **Table IV seed137** | **0/24** protocol-v2 rerun；`seed137_B_strainm2.5_rigid` **NP=2 续跑**（首点 MAX300 ABORT 已归档） |
 | **运行中** | `seed137_B_strainm2.5_rigid` np=2 — **不干预** |
-| **临界区** | seed137 外层 SCF **iter=3**；内层 OT 重置后 **CRIT**（grad≈2× EPS，NP=2） |
+| **临界区** | seed137 outer=**3**；OT~**130/300**；grad≈**35× EPS** — **OSC**（NP=2） |
 | **下一任务** | seed137 `SCF run converged` → 续 batch → `post_seed137_validation.sh` |
 | **阻塞 PRB** | **Table IV alternate**（0/24 新 `.out`）；population **0/6** |
 | **文稿 P 瓶颈** | tab_IV alternate 数值 **勿改**直至 24/24；主稿 L120/L255 待算后同步 |
-| **最新 Loop** | **R379** |
+| **最新 Loop** | **R380** |
 | **下一 B 任务** | 24/24 后 tab_IV 数值同步；首点 converged 后 post 链 |
 | **主张-证据** | periodic $\mathcal{S}$/placement = **A**；tab_IV alternate = **C**（旧数无 v2 `.out`） |
 | **下一 C 任务** | `docs/prb_review_cn_mapping.md` 维护 |
@@ -1402,13 +1402,22 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+- **Loop R380（2026-07-02，三轨）**：
+ - **Track A**：outer=3 OT~130/300 grad≈35× EPS **OSC** — batch 存活 — **不干预**
+ - **Track B（V Data）**：`inner_max_cycles` + status line **OSC** / `inner300=` 计数
+ - **Track C**：`prb_review_cn_mapping` live snapshot R380
+ - **paper_gap**：tab_IV **0/24** — 不改数值
+ - **创新审计**：SCF 振荡运维 = **A**；tab_IV = **C**
+ - **Git**：pending
+ - **下一轮**：converged → `post_seed137`；再触 300+外层>20 → EPS 1e-5 单点
+
 - **Loop R379（2026-07-02，三轨）**：
  - **Track A**：内层 OT 触 300 后**外层 SCF iter=3** 续算（非 ABORT）；grad≈**2× EPS** — **CRIT** — **不干预**
  - **Track B（V Data）**：`analyze_seed137` + status line 增 **outer_scf_iter** / `outer=` 显示
  - **Track C**：`prb_review_cn_mapping` live snapshot R379
  - **paper_gap**：tab_IV **0/24** — 不改数值
  - **创新审计**：多层 SCF 运维 = **A**；tab_IV = **C**
- - **Git**：pending
+ - **Git**：`89bcdf6` — loop R379
  - **下一轮**：`SCF run converged` → `post_seed137`；外层>20 仍不收敛 → EPS 1e-5 单点
 
 - **Loop R378（2026-07-02，三轨）**：

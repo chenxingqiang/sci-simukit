@@ -25,11 +25,11 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Exp9** | **12/12** GEO_OPT ✅；vertical SP **8/8** ✅ |
 | **Table IV seed137** | **0/24** protocol-v2 rerun；`seed137_B_strainm2.5_rigid` **NP=2 续跑**（首点 MAX300 ABORT 已归档） |
 | **运行中** | `seed137_B_strainm2.5_rigid` np=2 — **不干预** |
-| **临界区** | seed137 `B_strainm2.5` **CRIT**（OT~222，grad_ratio≈**28×** EPS，OT 振荡） |
+| **临界区** | seed137 `B_strainm2.5` **OT_WARN**（OT~291/300，grad≈9.6× EPS，NP=2） |
 | **下一任务** | seed137 `SCF run converged` → 续 batch → `post_seed137_validation.sh` |
 | **阻塞 PRB** | **Table IV alternate**（0/24 新 `.out`）；population **0/6** |
 | **文稿 P 瓶颈** | tab_IV alternate 数值 **勿改**直至 24/24；主稿 L120/L255 待算后同步 |
-| **最新 Loop** | **R377** |
+| **最新 Loop** | **R378** |
 | **下一 B 任务** | 24/24 后 tab_IV 数值同步；首点 converged 后 post 链 |
 | **主张-证据** | periodic $\mathcal{S}$/placement = **A**；tab_IV alternate = **C**（旧数无 v2 `.out`） |
 | **下一 C 任务** | `docs/prb_review_cn_mapping.md` 维护 |
@@ -1401,6 +1401,15 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R378（2026-07-02，三轨）**：
+ - **Track A**：seed137 OT~**291/300** **OT_WARN**（grad≈9.6× EPS）— **不干预**；若 ABORT → 归档 + `continue_seed137_pending`（NP=2）；二犯考虑 `EPS_SCF 1e-5` 单点
+ - **Track B（V Data）**：`analyze_seed137` + status line 增 **OT/max**、**OT_WARN**、`escalation_hint`
+ - **Track C**：`prb_review_cn_mapping` live snapshot R378
+ - **paper_gap**：tab_IV **0/24** — 不改数值
+ - **创新审计**：MAX_SCF 运维 = **A**；tab_IV = **C**
+ - **Git**：pending
+ - **下一轮**：converged → `post_seed137`；ABORT → 续跑/EPS 试验
 
 - **Loop R377（2026-07-02，三轨）**：
  - **Track A**：seed137 `B_strainm2.5` NP=2 OT~**222** grad_ratio≈**28×** EPS — **CRIT**（OT 振荡，未 converged）— **不干预**；batch `run_seed137_validation.sh` + prterun 存活
@@ -3711,6 +3720,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 ### Gotchas
 
+- **seed137 OT 300 ABORT**：内层 OT 触 `MAX_SCF 300` 且外层未收敛 → 归档 `.failed_*`；`continue_seed137_pending` NP=2；**重复 ABORT** 可对单点试 `EPS_SCF 1e-5`（勿批量改 inp）。
 - **seed137 unlinked .out**：CP2K 运行中 `rm` 路径会使 `lsof +L1` link=0；`cleanup_stale_cp2k` 的 `lsof path` 检测失效。跑前/后 `bash experiments/guard_unlinked_cp2k_out.sh`；`exp5_seed137_status_line` 标 `UNLINKED`。
 - **nested validation ROOT**：`rigid_pbed3/`、`placement_validation/`、`population_validation/` 脚本须 `../../../../` 到 repo 根；`../../..` 会误指 `experiments/` 导致 `cp2k_resource.sh` 路径错误并 abort PRB 队列（R357 已修）。
 - **seed137 cholesky ABORT**：`B_strainp2.5` 在 `cp_dbcsr_cholesky_decompose` ABORT 后 batch 退出；`continue_seed137_pending.sh` 归档 partial `.out` 并以 **NP=2** 续跑（勿与 PRB 队列并行）。顺序执行 `experiments/run_prb_revision_dft.sh`（relax skip 4/4 → seed137 → rigid_pbed3 → placement → cutoff400 → population）；**单路 CP2K**；空闲续跑 `continue_prb_revision_dft.sh`。映射见 `docs/prb_review_cn_mapping.md`。

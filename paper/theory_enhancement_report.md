@@ -7,6 +7,16 @@
 
 
 
+### R378 audit（2026-07-02 go loops）
+
+| 项 | 状态 | 证据 |
+|----|------|------|
+| seed137 | **B** pending | 0/24；`B_strainm2.5` OT~291/300 **OT_WARN**；grad≈9.6× EPS |
+| tab_IV alternate | **C** | 算后改稿 |
+| OT escalation | **A** | `running_snapshot.ot_progress_pct` + OT_WARN |
+
+**创新审计（R378）**：MAX_SCF 运维 = **A**；Table IV = **C**
+
 ### R377 audit（2026-07-02 go loops）
 
 | 项 | 状态 | 证据 |

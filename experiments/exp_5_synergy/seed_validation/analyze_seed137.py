@@ -66,6 +66,13 @@ def eps_scf_from_inp(inp: Path) -> float:
     return float(m.group(1)) if m else 1e-6
 
 
+def max_inner_ot_from_inp(inp: Path) -> int:
+    if not inp.exists():
+        return 300
+    m = re.search(r"MAX_SCF\s+(\d+)", inp.read_text(errors="replace"))
+    return int(m.group(1)) if m else 300
+
+
 def main() -> None:
     seed42 = json.loads(TABLE1.read_text())["systems"]
     result = {
@@ -142,7 +149,15 @@ def main() -> None:
     if running:
         ot, grad = parse_scf_tail(INP_DIR / f"{running}.out")
         if ot is not None:
-            result["running_snapshot"]["last_ot"] = int(ot)
+            oti = int(ot)
+            result["running_snapshot"]["last_ot"] = oti
+            cap = max_inner_ot_from_inp(INP_DIR / f"{running}.inp")
+            result["running_snapshot"]["max_inner_ot"] = cap
+            result["running_snapshot"]["ot_progress_pct"] = round(100 * oti / cap, 1) if cap else None
+            if oti >= max(250, cap - 50):
+                result["running_snapshot"]["escalation_hint"] = (
+                    "inner OT near MAX_SCF; if ABORT retry EPS_SCF=1e-5 or archive+continue"
+                )
         if grad is not None:
             g = float(grad)
             result["running_snapshot"]["last_grad_Ha_bohr"] = g

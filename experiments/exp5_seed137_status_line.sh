@@ -86,7 +86,11 @@ print('CRIT' if r<=15 else '')
 " 2>/dev/null || true)"
 fi
 extra=""
-[[ -n "$ot" ]] && extra=" OT=${ot}"
+ot_max=""
+if [[ -f "$JSON" && -n "$ot" ]]; then
+  ot_max="$(python3 -c "import json; s=json.load(open('$JSON')).get('running_snapshot',{}); print(s.get('max_inner_ot',''))" 2>/dev/null || true)"
+fi
+[[ -n "$ot" && -n "$ot_max" ]] && extra=" OT=${ot}/${ot_max}" || { [[ -n "$ot" ]] && extra=" OT=${ot}"; }
 ratio_eps=""
 if [[ -f "$JSON" ]]; then
   read -r ratio_eps crit_json <<< "$(python3 -c "
@@ -121,7 +125,11 @@ np_live=""
 if [[ "$running" != none ]]; then
   np_live="$(ps aux | grep -E "prterun.*${running}" | grep -v grep | sed -n 's/.*-np \([0-9]*\).*/\1/p' | head -1)"
 fi
+ot_warn=""
+if [[ -n "$ot" && -n "$ot_max" ]]; then
+  ot_warn="$(python3 -c "o=int('$ot'); m=int('$ot_max'); print('OT_WARN' if o>=m-10 else '')" 2>/dev/null || true)"
+fi
 cpu_note="cap=${SIMUKIT_MAX_CORES}"
 [[ -n "$np_live" ]] && cpu_note="${cpu_note} np=${np_live}"
 
-echo "TableIV seed137 dop ${dop_done}/${dop_tasks} pri ${pri_done}/${pri_total} | status=${status} | running=${running}${unlinked:+ | ${unlinked}} | next=${next_task}${extra} | ${cpu_note}${crit:+ | ${crit}}${provisional:+ | ${provisional}}"
+echo "TableIV seed137 dop ${dop_done}/${dop_tasks} pri ${pri_done}/${pri_total} | status=${status} | running=${running}${unlinked:+ | ${unlinked}} | next=${next_task}${extra} | ${cpu_note}${ot_warn:+ | ${ot_warn}}${crit:+ | ${crit}}${provisional:+ | ${provisional}}"

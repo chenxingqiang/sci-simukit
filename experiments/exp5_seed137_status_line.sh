@@ -65,11 +65,26 @@ if 'PROGRAM STARTED' in raw:
     raw = raw.split('PROGRAM STARTED')[-1]
 t = raw[-80000:]
 ots = re.findall(r'^\s+(\d+)\s+OT\s', t, re.M)
-grs = re.findall(r'OT\s+DIIS\s+[\d.E+-]+\s+[\d.E+-]+\s+([\d.E+-]+)', t)
+grs = re.findall(r'OT\s+(?:SD|DIIS|CG|BROYDEN)\s+[\d.E+-]+\s+[\d.E+-]+\s+([\d.E+-]+)', t)
 print(ots[-1] if ots else '', f'grad={grs[-1]}' if grs else '')
 " 2>/dev/null || echo ' ')"
 fi
 
+crit=""
+if [[ "$running" != none && -n "$grad" ]]; then
+  crit="$(python3 -c "
+import re
+g=float(re.sub(r'grad=','','$grad'))
+eps=1e-6
+from pathlib import Path
+inp=Path('$INP/${running}.inp')
+if inp.exists():
+    m=re.search(r'EPS_SCF\s+([\d.E+-]+)', inp.read_text())
+    if m: eps=float(m.group(1))
+r=g/eps
+print('CRIT' if r<=15 else '')
+" 2>/dev/null || true)"
+fi
 extra=""
 [[ -n "$ot" ]] && extra=" OT=${ot}"
 [[ -n "$grad" ]] && extra="${extra} ${grad}"
@@ -93,4 +108,4 @@ fi
 cpu_note="cap=${SIMUKIT_MAX_CORES}"
 [[ -n "$np_live" ]] && cpu_note="${cpu_note} np=${np_live}"
 
-echo "TableIV seed137 dop ${dop_done}/${dop_tasks} pri ${pri_done}/${pri_total} | status=${status} | running=${running}${unlinked:+ | ${unlinked}} | next=${next_task}${extra} | ${cpu_note}${provisional:+ | ${provisional}}"
+echo "TableIV seed137 dop ${dop_done}/${dop_tasks} pri ${pri_done}/${pri_total} | status=${status} | running=${running}${unlinked:+ | ${unlinked}} | next=${next_task}${extra} | ${cpu_note}${crit:+ | ${crit}}${provisional:+ | ${provisional}}"

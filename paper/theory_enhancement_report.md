@@ -7,6 +7,16 @@
 
 
 
+### R376 audit（2026-07-01 go loops）
+
+| 项 | 状态 | 证据 |
+|----|------|------|
+| seed137 | **B** pending | 0/24；`B_strainm2.5` NP=2 **CRIT**（OT~209，grad≈10× EPS） |
+| tab_IV alternate | **C** | 算后改稿 |
+| status_line | **A** | `exp5_seed137_status_line` CRIT + SD/DIIS grad |
+
+**创新审计（R376）**：seed137 临界区监控 = **A**；Table IV = **C**
+
 ### R375 audit（2026-07-01 go loops）
 
 | 项 | 状态 | 证据 |

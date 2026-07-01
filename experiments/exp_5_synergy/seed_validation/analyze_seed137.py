@@ -49,8 +49,21 @@ def parse_scf_tail(out: Path) -> tuple[str | None, str | None]:
         text = text.split("PROGRAM STARTED")[-1]
     text = text[-80000:]
     ots = re.findall(r"^\s+(\d+)\s+OT\s", text, re.M)
-    grs = re.findall(r"OT\s+DIIS\s+[\d.E+-]+\s+[\d.E+-]+\s+([\d.E+-]+)", text)
+    grs = re.findall(
+        r"OT\s+(?:SD|DIIS|CG|BROYDEN)\s+[\d.E+-]+\s+[\d.E+-]+\s+([\d.E+-]+)",
+        text,
+    )
+    if not grs:
+        rms = re.findall(r"outer SCF iter =\s+\d+\s+RMS gradient =\s+([\d.E+-]+)", text)
+        grs = rms
     return (ots[-1] if ots else None, grs[-1] if grs else None)
+
+
+def eps_scf_from_inp(inp: Path) -> float:
+    if not inp.exists():
+        return 1e-6
+    m = re.search(r"EPS_SCF\s+([\d.E+-]+)", inp.read_text(errors="replace"))
+    return float(m.group(1)) if m else 1e-6
 
 
 def main() -> None:
@@ -131,7 +144,15 @@ def main() -> None:
         if ot is not None:
             result["running_snapshot"]["last_ot"] = int(ot)
         if grad is not None:
-            result["running_snapshot"]["last_grad_Ha_bohr"] = float(grad)
+            g = float(grad)
+            result["running_snapshot"]["last_grad_Ha_bohr"] = g
+            eps = eps_scf_from_inp(INP_DIR / f"{running}.inp")
+            result["running_snapshot"]["eps_scf"] = eps
+            ratio = g / eps if eps else None
+            if ratio is not None:
+                result["running_snapshot"]["grad_ratio_to_eps"] = round(ratio, 1)
+                if ratio <= 15:
+                    result["running_snapshot"]["critical_zone"] = True
     result["strain_points_per_dop"] = {d: len(by_dop[d]) for d in ("B", "N", "P")}
     result["alpha_provisional"] = {
         d: len(by_dop[d]) < 6 for d in ("B", "N", "P")

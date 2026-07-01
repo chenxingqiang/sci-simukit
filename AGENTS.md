@@ -25,11 +25,11 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Exp9** | **12/12** GEO_OPT ✅；vertical SP **8/8** ✅ |
 | **Table IV seed137** | **0/24** protocol-v2 rerun；`seed137_B_strainm2.5_rigid` **NP=2 续跑**（首点 SCF MAX300 ABORT 已归档） |
 | **运行中** | `seed137_B_strainm2.5_rigid` np=2 — **不干预** |
-| **临界区** | seed137 首任务长跑（$-2.5$\% B）；24 点顺序 batch |
+| **临界区** | seed137 `B_strainm2.5` **CRIT**（OT~209，grad≈10× EPS，NP=2） |
 | **下一任务** | seed137 `SCF run converged` → 续 batch → `post_seed137_validation.sh` |
 | **阻塞 PRB** | **Table IV alternate**（0/24 新 `.out`）；population **0/6** |
 | **文稿 P 瓶颈** | tab_IV alternate 数值 **勿改**直至 24/24；主稿 L120/L255 待算后同步 |
-| **最新 Loop** | **R375** |
+| **最新 Loop** | **R376** |
 | **下一 B 任务** | 24/24 后 tab_IV 数值同步；运维 guard_unlinked |
 | **主张-证据** | periodic $\mathcal{S}$/placement = **A**；tab_IV alternate = **C**（旧数无 v2 `.out`） |
 | **下一 C 任务** | `docs/prb_review_cn_mapping.md` 维护 |
@@ -1402,13 +1402,22 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+- **Loop R376（2026-07-01，三轨）**：
+ - **Track A**：seed137 `B_strainm2.5` NP=2 OT~**209** grad≈**10× EPS** — **CRIT** — **不干预**
+ - **Track B（V Data）**：`analyze_seed137` + `exp5_seed137_status_line` 增 **CRIT** / `grad_ratio_to_eps`；OT SD/DIIS grad 解析
+ - **Track C**：C-M2 seed137 0/24 仍为 blocking（映射已诚实）
+ - **paper_gap**：tab_IV **0/24** — 不改数值
+ - **创新审计**：临界区监控 = **A**；tab_IV = **C**
+ - **Git**：pending
+ - **下一轮**：`SCF run converged` → **立即** `post_seed137_validation.sh` → 续 batch
+
 - **Loop R375（2026-07-01，三轨）**：
  - **Track A**：`B_strainm2.5` SCF **MAX 300 ABORT**（OT~300，未收敛）→ 归档 `.failed_*`；**NP=2** `continue_seed137_pending` 续跑 — **不干预**
  - **Track B（横切）**：`continue_seed137` ABORT→NP=2 自动；theory R375；`prb_review_cn_mapping` seed137 **0/24** 诚实化
  - **Track C**：C-M1 M1 tetramer **open** 映射修正
  - **paper_gap**：tab_IV 仍 **0/24** — **不改数值**
  - **创新审计**：seed137 运维 = **A**；tab_IV = **C**
- - **Git**：pending
+ - **Git**：`206b3aa` — loop R375
  - **下一轮**：首点 converged → 续 23 点；若再 ABORT → EPS 1e-5 单点试验
 
 - **Loop R374（2026-06-19，双轨）**：

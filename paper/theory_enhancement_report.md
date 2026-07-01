@@ -7,6 +7,16 @@
 
 
 
+### R379 audit（2026-07-02 go loops）
+
+| 项 | 状态 | 证据 |
+|----|------|------|
+| seed137 | **B** pending | 0/24；`B_strainm2.5` 外层 SCF **iter=3**；内层 OT 重置后 **CRIT**（grad≈2× EPS） |
+| tab_IV alternate | **C** | 算后改稿 |
+| 外层 SCF 监控 | **A** | `running_snapshot.outer_scf_iter` |
+
+**创新审计（R379）**：多层 SCF 运维 = **A**；Table IV = **C**
+
 ### R378 audit（2026-07-02 go loops）
 
 | 项 | 状态 | 证据 |

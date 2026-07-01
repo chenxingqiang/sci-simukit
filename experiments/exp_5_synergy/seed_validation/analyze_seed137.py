@@ -59,6 +59,23 @@ def parse_scf_tail(out: Path) -> tuple[str | None, str | None]:
     return (ots[-1] if ots else None, grs[-1] if grs else None)
 
 
+def parse_outer_scf(out: Path) -> tuple[int | None, float | None]:
+    if not out.exists():
+        return None, None
+    text = out.read_text(errors="replace")
+    if "PROGRAM STARTED" in text:
+        text = text.split("PROGRAM STARTED")[-1]
+    text = text[-120000:]
+    outers = re.findall(
+        r"outer SCF iter =\s+(\d+)\s+RMS gradient =\s+([\d.E+-]+)",
+        text,
+    )
+    if not outers:
+        return None, None
+    it, gr = outers[-1]
+    return int(it), float(gr)
+
+
 def eps_scf_from_inp(inp: Path) -> float:
     if not inp.exists():
         return 1e-6
@@ -158,6 +175,11 @@ def main() -> None:
                 result["running_snapshot"]["escalation_hint"] = (
                     "inner OT near MAX_SCF; if ABORT retry EPS_SCF=1e-5 or archive+continue"
                 )
+        outer_it, outer_rms = parse_outer_scf(INP_DIR / f"{running}.out")
+        if outer_it is not None:
+            result["running_snapshot"]["outer_scf_iter"] = outer_it
+        if outer_rms is not None:
+            result["running_snapshot"]["outer_rms_grad_Ha_bohr"] = outer_rms
         if grad is not None:
             g = float(grad)
             result["running_snapshot"]["last_grad_Ha_bohr"] = g

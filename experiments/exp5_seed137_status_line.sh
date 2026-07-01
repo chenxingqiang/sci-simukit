@@ -90,7 +90,11 @@ ot_max=""
 if [[ -f "$JSON" && -n "$ot" ]]; then
   ot_max="$(python3 -c "import json; s=json.load(open('$JSON')).get('running_snapshot',{}); print(s.get('max_inner_ot',''))" 2>/dev/null || true)"
 fi
-[[ -n "$ot" && -n "$ot_max" ]] && extra=" OT=${ot}/${ot_max}" || { [[ -n "$ot" ]] && extra=" OT=${ot}"; }
+outer_note=""
+if [[ -f "$JSON" ]]; then
+  outer_note="$(python3 -c "import json; o=json.load(open('$JSON')).get('running_snapshot',{}).get('outer_scf_iter'); print(f' outer={o}' if o else '')" 2>/dev/null || true)"
+fi
+[[ -n "$ot" && -n "$ot_max" ]] && extra=" OT=${ot}/${ot_max}${outer_note}" || { [[ -n "$ot" ]] && extra=" OT=${ot}"; }
 ratio_eps=""
 if [[ -f "$JSON" ]]; then
   read -r ratio_eps crit_json <<< "$(python3 -c "

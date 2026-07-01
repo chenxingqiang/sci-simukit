@@ -32,7 +32,7 @@
 | 方法长句拆分 | **partial** | `methods_extended.tex` 按需 |
 | 设计启示具体化 | **partial** | Discussion Design implications（共价半径 ≳20 pm） |
 
-**Live snapshot（2026-07-02 R378）**：seed137 **0/24**（`B_strainm2.5` OT~291/300 OT_WARN）；placement **16/16** ✅；Exp10 **41/41**；population **0/6**.
+**Live snapshot（2026-07-02 R379）**：seed137 **0/24**（`B_strainm2.5` outer SCF iter=3，内层 OT 重置）；placement **16/16** ✅；population **0/6**.
 
 
 ## DFT 队列顺序

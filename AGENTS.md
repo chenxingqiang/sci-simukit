@@ -1409,7 +1409,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **paper_gap**：tab_IV **0/24** — 不改数值
  - **创新审计**：seed137 运维 = **A**；tab_IV = **C**
  - **prl_gate**：D2 closed Table III；tab_IV alternate pending
- - **Git**：pending
+ - **Git**：`45feda6` — loop R377；（**pushed: local only**）
  - **下一轮**：`SCF run converged` → **立即** `post_seed137_validation.sh`；grad 回跳>15× EPS 则仍长跑
 
 - **Loop R376（2026-07-01，三轨）**：

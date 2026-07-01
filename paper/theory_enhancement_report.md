@@ -7,6 +7,17 @@
 
 
 
+### R377 audit（2026-07-02 go loops）
+
+| 项 | 状态 | 证据 |
+|----|------|------|
+| seed137 | **B** pending | **0/24**；`B_strainm2.5` NP=2 **CRIT**（OT~222，grad_ratio≈**28×** EPS；OT 振荡未 converged） |
+| tab_IV alternate | **C** | 无 v2 converged `.out`；算后改稿 |
+| status_line | **A** | `exp5_seed137_status_line` 对齐 JSON `grad_ratio_to_eps` |
+| reliability | **A** | `verify_reliability.sh` 294 pass / 2 warn（table_I/III 已知） |
+
+**创新审计（R377）**：seed137 运维快照 = **A**；Table IV 数值 = **C**
+
 ### R376 audit（2026-07-01 go loops）
 
 | 项 | 状态 | 证据 |

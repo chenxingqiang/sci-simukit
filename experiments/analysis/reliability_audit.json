@@ -1,5 +1,5 @@
 {
-  "date": "2026-06-21",
+  "date": "2026-07-02",
   "summary": {
     "pass": 294,
     "warn": 2,
@@ -1490,7 +1490,7 @@
       "layer": "setup",
       "check_id": "coord_seed137_composition_consistent_seed137_B_strainp5.0_rigid",
       "status": "pass",
-      "message": "composition {'B': 12, 'C': 228} vs reference {'C': 228, 'B': 12}",
+      "message": "composition {'C': 228, 'B': 12} vs reference {'C': 228, 'B': 12}",
       "evidence": "experiments/exp_5_synergy/seed_validation/inputs/seed137_B_strainp5.0_rigid.inp"
     },
     {
@@ -2085,7 +2085,7 @@
       "layer": "result",
       "check_id": "exp10_scf_converged",
       "status": "pass",
-      "message": "Exp10 SCF converged 40/41 (grep on inputs/*.out)",
+      "message": "Exp10 SCF converged 41/41 (grep on inputs/*.out)",
       "evidence": ""
     },
     {

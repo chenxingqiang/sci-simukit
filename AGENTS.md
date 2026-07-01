@@ -23,14 +23,14 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Exp10** | **41/41** ✅（incl. cutoff400） |
 | **Exp8** | **6/6** ✅ |
 | **Exp9** | **12/12** GEO_OPT ✅；vertical SP **8/8** ✅ |
-| **Table IV seed137** | **0/24** protocol-v2 rerun；`seed137_B_strainm2.5_rigid` **NP=2 续跑**（首点 SCF MAX300 ABORT 已归档） |
+| **Table IV seed137** | **0/24** protocol-v2 rerun；`seed137_B_strainm2.5_rigid` **NP=2 续跑**（首点 MAX300 ABORT 已归档） |
 | **运行中** | `seed137_B_strainm2.5_rigid` np=2 — **不干预** |
-| **临界区** | seed137 `B_strainm2.5` **CRIT**（OT~209，grad≈10× EPS，NP=2） |
+| **临界区** | seed137 `B_strainm2.5` **CRIT**（OT~222，grad_ratio≈**28×** EPS，OT 振荡） |
 | **下一任务** | seed137 `SCF run converged` → 续 batch → `post_seed137_validation.sh` |
 | **阻塞 PRB** | **Table IV alternate**（0/24 新 `.out`）；population **0/6** |
 | **文稿 P 瓶颈** | tab_IV alternate 数值 **勿改**直至 24/24；主稿 L120/L255 待算后同步 |
-| **最新 Loop** | **R376** |
-| **下一 B 任务** | 24/24 后 tab_IV 数值同步；运维 guard_unlinked |
+| **最新 Loop** | **R377** |
+| **下一 B 任务** | 24/24 后 tab_IV 数值同步；首点 converged 后 post 链 |
 | **主张-证据** | periodic $\mathcal{S}$/placement = **A**；tab_IV alternate = **C**（旧数无 v2 `.out`） |
 | **下一 C 任务** | `docs/prb_review_cn_mapping.md` 维护 |
 | **Loop C** | C-M1 **closed** ✅；C-M2 periodic **A**（16/16）；C-M3 **open** |
@@ -1402,13 +1402,23 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+- **Loop R377（2026-07-02，三轨）**：
+ - **Track A**：seed137 `B_strainm2.5` NP=2 OT~**222** grad_ratio≈**28×** EPS — **CRIT**（OT 振荡，未 converged）— **不干预**；batch `run_seed137_validation.sh` + prterun 存活
+ - **Track B（横切 B4/B5）**：`exp5_seed137_status_line` 输出 JSON `grad_ratio_to_eps`；`theory_enhancement_report` R377；`verify_reliability` 294 pass
+ - **Track C**：`prb_review_cn_mapping` live snapshot R377（seed137 0/24 CRIT）
+ - **paper_gap**：tab_IV **0/24** — 不改数值
+ - **创新审计**：seed137 运维 = **A**；tab_IV = **C**
+ - **prl_gate**：D2 closed Table III；tab_IV alternate pending
+ - **Git**：pending
+ - **下一轮**：`SCF run converged` → **立即** `post_seed137_validation.sh`；grad 回跳>15× EPS 则仍长跑
+
 - **Loop R376（2026-07-01，三轨）**：
  - **Track A**：seed137 `B_strainm2.5` NP=2 OT~**209** grad≈**10× EPS** — **CRIT** — **不干预**
  - **Track B（V Data）**：`analyze_seed137` + `exp5_seed137_status_line` 增 **CRIT** / `grad_ratio_to_eps`；OT SD/DIIS grad 解析
  - **Track C**：C-M2 seed137 0/24 仍为 blocking（映射已诚实）
  - **paper_gap**：tab_IV **0/24** — 不改数值
  - **创新审计**：临界区监控 = **A**；tab_IV = **C**
- - **Git**：pending
+ - **Git**：`80030cc` — loop R376
  - **下一轮**：`SCF run converged` → **立即** `post_seed137_validation.sh` → 续 batch
 
 - **Loop R375（2026-07-01，三轨）**：

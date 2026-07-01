@@ -87,7 +87,23 @@ print('CRIT' if r<=15 else '')
 fi
 extra=""
 [[ -n "$ot" ]] && extra=" OT=${ot}"
-[[ -n "$grad" ]] && extra="${extra} ${grad}"
+ratio_eps=""
+if [[ -f "$JSON" ]]; then
+  read -r ratio_eps crit_json <<< "$(python3 -c "
+import json
+s=json.load(open('$JSON')).get('running_snapshot',{})
+r=s.get('grad_ratio_to_eps')
+print(f'{r}x' if r is not None else '', 'CRIT' if s.get('critical_zone') else '')
+" 2>/dev/null || echo ' ')"
+  [[ -n "$crit_json" ]] && crit="$crit_json"
+fi
+if [[ -n "$grad" ]]; then
+  if [[ -n "$ratio_eps" ]]; then
+    extra="${extra} ${grad} (${ratio_eps} EPS)"
+  else
+    extra="${extra} ${grad}"
+  fi
+fi
 
 status="pending"
 provisional=""

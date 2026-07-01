@@ -27,10 +27,10 @@
     "pristine_modern_converged": 0,
     "pristine_modern_total": 6,
     "running_task": "seed137_B_strainm2.5_rigid",
-    "last_ot": 212,
-    "last_grad_Ha_bohr": 6.77e-06,
+    "last_ot": 232,
+    "last_grad_Ha_bohr": 1.91e-06,
     "eps_scf": 1e-06,
-    "grad_ratio_to_eps": 6.8,
+    "grad_ratio_to_eps": 1.9,
     "critical_zone": true
   },
   "strain_points_per_dop": {

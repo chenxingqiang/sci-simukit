@@ -12,6 +12,23 @@ if pgrep -f 'cp2k\.psmp.*seed137_' >/dev/null 2>&1; then
   exit 0
 fi
 
+INP="$ROOT/experiments/exp_5_synergy/seed_validation/inputs"
+if [[ -z "${NP+x}" || "${NP}" == "$(cp2k_cap_np 4)" ]]; then
+  for inp in "$INP"/seed137_*_rigid.inp; do
+    [[ -f "$inp" ]] || continue
+    base="$(basename "$inp" .inp)"
+    out="$INP/${base}.out"
+    if [[ -f "$out" ]] && grep -q 'SCF run converged' "$out"; then
+      continue
+    fi
+    if compgen -G "$INP/${base}.out.failed_*" >/dev/null; then
+      export NP=2
+      echo "seed137: prior ABORT for $base -> NP=$NP" >&2
+    fi
+    break
+  done
+fi
+
 export NP="${NP:-$(cp2k_cap_np 4)}"
 export MPIRUN="${MPIRUN:-/opt/homebrew/bin/mpirun}"
 export CP2K="${CP2K:-/opt/homebrew/bin/cp2k.psmp}"

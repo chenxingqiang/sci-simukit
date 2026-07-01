@@ -7,6 +7,16 @@
 
 
 
+### R375 audit（2026-07-01 go loops）
+
+| 项 | 状态 | 证据 |
+|----|------|------|
+| seed137 tetramer | **B** pending | **0/24**；`B_strainm2.5` SCF MAX 300 ABORT → archived；**NP=2** 续跑 |
+| tab_IV alternate 列 | **C** | 无 v2 converged `.out`；算后改稿 |
+| continue_seed137 | **A** | ABORT 后自动 NP=2 |
+
+**创新审计（R375）**：seed137 运维 = **A**；Table IV 数值 = **C**
+
 ### R373 audit（2026-06-30 go loops）
 
 | 项 | 状态 | 证据 |

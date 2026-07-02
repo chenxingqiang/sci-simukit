@@ -1408,7 +1408,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track C**：`prb_review_cn_mapping` R383 **2/24**
  - **paper_gap**：tab_IV **2/24** — 不改数值
  - **创新审计**：EPS 1e-5 tetramer = **A**（首点收敛）；tab_IV = **C**
- - **Git**：pending
+ - **Git**：`8aec02b` — loop R383
  - **下一轮**：batch 续跑；24/24 → tab_IV
 
 - **Loop R382（2026-07-02，三轨）**：

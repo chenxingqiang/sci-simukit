@@ -3,6 +3,7 @@
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 export RERUN_PROTOCOL_FIX=1
+export SEED137_EPS="${SEED137_EPS:-1.0E-5}"
 export CP2K_DATA="${CP2K_DATA:-/opt/homebrew/share/cp2k/data}"
 
 echo "=== Regenerate inputs ==="

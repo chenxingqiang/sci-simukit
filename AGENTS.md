@@ -3756,7 +3756,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 ### Gotchas
 
-- **seed137 OT 300 ABORT**：内层 OT 触 `MAX_SCF 300` 且外层未收敛 → 归档 `.failed_*`；`continue_seed137_pending` NP=2；**重复 ABORT** 可对单点试 `EPS_SCF 1e-5`（勿批量改 inp）。
+- **seed137 EPS**：tetramer 默认 `SEED137_EPS=1.0E-5`（`generate_seed137_inputs.py`）；`SEED137_EPS_ONLY=1` 仅改 EPS 不动坐标；掺杂位锁定见 `seed137_reroll_offsets.json`（勿用 `hash(dop)` 重生成）。
 - **seed137 unlinked .out**：CP2K 运行中 `rm` 路径会使 `lsof +L1` link=0；`cleanup_stale_cp2k` 的 `lsof path` 检测失效。跑前/后 `bash experiments/guard_unlinked_cp2k_out.sh`；`exp5_seed137_status_line` 标 `UNLINKED`。
 - **nested validation ROOT**：`rigid_pbed3/`、`placement_validation/`、`population_validation/` 脚本须 `../../../../` 到 repo 根；`../../..` 会误指 `experiments/` 导致 `cp2k_resource.sh` 路径错误并 abort PRB 队列（R357 已修）。
 - **seed137 cholesky ABORT**：`B_strainp2.5` 在 `cp_dbcsr_cholesky_decompose` ABORT 后 batch 退出；`continue_seed137_pending.sh` 归档 partial `.out` 并以 **NP=2** 续跑（勿与 PRB 队列并行）。顺序执行 `experiments/run_prb_revision_dft.sh`（relax skip 4/4 → seed137 → rigid_pbed3 → placement → cutoff400 → population）；**单路 CP2K**；空闲续跑 `continue_prb_revision_dft.sh`。映射见 `docs/prb_review_cn_mapping.md`。

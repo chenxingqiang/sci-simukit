@@ -1408,7 +1408,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track C**：`prb_review_cn_mapping` R382 live snapshot
  - **paper_gap**：tab_IV **0/24** — 不改数值
  - **创新审计**：ABORT 恢复链 = **A**；tab_IV = **C**
- - **Git**：pending
+ - **Git**：`d01da57` — loop R382
  - **下一轮**：ABORT → auto EPS 1e-5 + continue；converged → `post_seed137`
 
 - **Loop R381（2026-07-02，三轨）**：

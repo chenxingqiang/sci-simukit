@@ -7,6 +7,16 @@
 
 
 
+### R383 audit（2026-07-02 go loops）
+
+| 项 | 状态 | 证据 |
+|----|------|------|
+| seed137 | **B** partial | **2/18** dop（B m2.5+m5.0 ✅）；`p0.0` **CRIT** ~2× EPS |
+| EPS 1e-5 | **A** | 提前停 1e-6 job + 全批 inp patch；首点收敛 |
+| tab_IV alternate | **C** | `update_tab_iv` skip until 18/18 |
+
+**创新审计（R383）**：EPS 策略 = **A**；Table IV = **C**
+
 ### R382 audit（2026-07-02 go loops）
 
 | 项 | 状态 | 证据 |

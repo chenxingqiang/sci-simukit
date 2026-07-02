@@ -1,7 +1,7 @@
 {
   "seed_primary": 42,
   "seed_validation": 137,
-  "status": "pending",
+  "status": "partial",
   "functional_note": "Seed137 inputs use PBE+D3 (modernize_cp2k_inp); compare only after modern pristine outs exist.",
   "tetramer_alpha_meV_per_pct": {
     "seed42": {
@@ -22,27 +22,22 @@
   "relative_deviation_pct": {},
   "pristine_energy_protocol": "legacy_pbe_no_d3",
   "running_snapshot": {
-    "dop_converged": 0,
+    "dop_converged": 2,
     "dop_total": 18,
     "pristine_modern_converged": 0,
     "pristine_modern_total": 6,
-    "running_task": "seed137_B_strainm2.5_rigid",
-    "last_ot": 140,
+    "running_task": "seed137_B_strainp0.0_rigid",
+    "last_ot": 125,
     "max_inner_ot": 300,
-    "ot_progress_pct": 46.7,
-    "inner_max_cycles": 19,
+    "ot_progress_pct": 41.7,
     "max_outer_scf": 20,
-    "outer_scf_iter": 19,
-    "outer_warn": true,
-    "escalation_hint": "outer SCF near MAX; on ABORT archive+continue auto relax EPS 1e-5 (run_seed137) and NP=2 (continue_seed137)",
-    "outer_rms_grad_Ha_bohr": 0.0034,
-    "last_grad_Ha_bohr": 0.00249798,
-    "eps_scf": 1e-06,
-    "grad_ratio_to_eps": 2498.0,
-    "oscillating": true
+    "last_grad_Ha_bohr": 2.433e-05,
+    "eps_scf": 1e-05,
+    "grad_ratio_to_eps": 2.4,
+    "critical_zone": true
   },
   "strain_points_per_dop": {
-    "B": 0,
+    "B": 2,
     "N": 0,
     "P": 0
   },

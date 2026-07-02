@@ -23,15 +23,15 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Exp10** | **41/41** ✅（incl. cutoff400） |
 | **Exp8** | **6/6** ✅ |
 | **Exp9** | **12/12** GEO_OPT ✅；vertical SP **8/8** ✅ |
-| **Table IV seed137** | **0/24** protocol-v2 rerun；`seed137_B_strainm2.5_rigid` **NP=2 续跑**（首点 MAX300 ABORT 已归档） |
-| **运行中** | `seed137_B_strainm2.5_rigid` np=2 — **不干预** |
-| **临界区** | seed137 **outer=19/20 OUTER_WARN**；OT~141/300；**OSC**（NP=2） |
-| **下一任务** | seed137 `SCF run converged` → 续 batch → `post_seed137_validation.sh` |
-| **阻塞 PRB** | **Table IV alternate**（0/24 新 `.out`）；population **0/6** |
+| **Table IV seed137** | **2/24** partial（dop **2/18**：`B_strainm2.5`+`m5.0` ✅）；**EPS 1e-5** batch |
+| **运行中** | `seed137_B_strainp0.0_rigid` np=2 — **不干预** |
+| **临界区** | `B_strainp0.0` **CRIT**（grad≈2× EPS，OT~125/300） |
+| **下一任务** | `p0.0` converged → batch 续跑；`post_seed137` 已刷新 partial JSON |
+| **阻塞 PRB** | **Table IV alternate**（2/24）；population **0/6** |
 | **文稿 P 瓶颈** | tab_IV alternate 数值 **勿改**直至 24/24；主稿 L120/L255 待算后同步 |
-| **最新 Loop** | **R382** |
-| **下一 B 任务** | 24/24 后 tab_IV 数值同步；首点 converged 后 post 链 |
-| **主张-证据** | periodic $\mathcal{S}$/placement = **A**；tab_IV alternate = **C**（旧数无 v2 `.out`） |
+| **最新 Loop** | **R383** |
+| **下一 B 任务** | 24/24 后 tab_IV；partial α 仍 provisional |
+| **主张-证据** | seed137 EPS1e-5 首点 = **A**；tab_IV alternate = **C**（2/24 partial） |
 | **下一 C 任务** | `docs/prb_review_cn_mapping.md` 维护 |
 | **Loop C** | C-M1 **closed** ✅；C-M2 periodic **A**（16/16）；C-M3 **open** |
 | **SDC** | **15** synergy 点 |
@@ -1401,6 +1401,15 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R383（2026-07-02，三轨）**：
+ - **Track A**：**2/18** dop ✅（`B_strainm2.5`+`m5.0`）；`B_strainp0.0` **CRIT** ~2× EPS — batch 存活 — **不干预**；EPS 1e-5 提前切换有效
+ - **Track B（V Data）**：`post_seed137_validation.sh` partial JSON；`update_tab_iv` skip（非 complete）
+ - **Track C**：`prb_review_cn_mapping` R383 **2/24**
+ - **paper_gap**：tab_IV **2/24** — 不改数值
+ - **创新审计**：EPS 1e-5 tetramer = **A**（首点收敛）；tab_IV = **C**
+ - **Git**：pending
+ - **下一轮**：batch 续跑；24/24 → tab_IV
 
 - **Loop R382（2026-07-02，三轨）**：
  - **Track A**：outer=**19/20** OUTER_WARN；OT~141/300；batch 存活 — **不干预**

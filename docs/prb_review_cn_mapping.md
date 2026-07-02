@@ -32,7 +32,7 @@
 | 方法长句拆分 | **partial** | `methods_extended.tex` 按需 |
 | 设计启示具体化 | **partial** | Discussion Design implications（共价半径 ≳20 pm） |
 
-**Live snapshot（2026-07-02 R383）**：seed137 **2/24** partial（B m2.5+m5.0 ✅；`p0.0` CRIT）；EPS **1e-5** batch；population **0/6**.
+**Live snapshot（2026-07-02 R384）**：seed137 **7/24** partial（**B 6/6** ✅ + `N_m2.5`；`N_m5.0` CRIT）；population **0/6**.
 
 
 ## DFT 队列顺序

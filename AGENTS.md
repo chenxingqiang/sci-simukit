@@ -23,15 +23,15 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Exp10** | **41/41** ✅（incl. cutoff400） |
 | **Exp8** | **6/6** ✅ |
 | **Exp9** | **12/12** GEO_OPT ✅；vertical SP **8/8** ✅ |
-| **Table IV seed137** | **2/24** partial（dop **2/18**：`B_strainm2.5`+`m5.0` ✅）；**EPS 1e-5** batch |
-| **运行中** | `seed137_B_strainp0.0_rigid` np=2 — **不干预** |
-| **临界区** | `B_strainp0.0` **CRIT**（grad≈2× EPS，OT~125/300） |
-| **下一任务** | `p0.0` converged → batch 续跑；`post_seed137` 已刷新 partial JSON |
-| **阻塞 PRB** | **Table IV alternate**（2/24）；population **0/6** |
+| **Table IV seed137** | **7/24** partial（dop **7/18**；**B 6/6** ✅）；**EPS 1e-5** batch |
+| **运行中** | `seed137_N_strainm5.0_rigid` np=2 — **不干预** |
+| **临界区** | `N_strainm5.0` **CRIT**（grad≈3× EPS，OT~50/300） |
+| **下一任务** | N/P + pristine 续 batch；24/24 → `update_tab_iv_from_json.py` |
+| **阻塞 PRB** | **Table IV alternate**（7/24）；population **0/6** |
 | **文稿 P 瓶颈** | tab_IV alternate 数值 **勿改**直至 24/24；主稿 L120/L255 待算后同步 |
-| **最新 Loop** | **R383** |
+| **最新 Loop** | **R384** |
 | **下一 B 任务** | 24/24 后 tab_IV；partial α 仍 provisional |
-| **主张-证据** | seed137 EPS1e-5 首点 = **A**；tab_IV alternate = **C**（2/24 partial） |
+| **主张-证据** | seed137 B-grid **A**（6/6）；tab_IV alternate = **C**（7/24 partial） |
 | **下一 C 任务** | `docs/prb_review_cn_mapping.md` 维护 |
 | **Loop C** | C-M1 **closed** ✅；C-M2 periodic **A**（16/16）；C-M3 **open** |
 | **SDC** | **15** synergy 点 |
@@ -1401,6 +1401,15 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R384（2026-07-02，三轨）**：
+ - **Track A**：**7/18** dop（**B 6/6** ✅ + `N_m2.5`）；`N_strainm5.0` **CRIT** — batch 存活 — **不干预**
+ - **Track B（V Data）**：`post_seed137` partial JSON；B 应变网格全收敛里程碑
+ - **Track C**：`prb_review_cn_mapping` R384 **7/24**
+ - **paper_gap**：tab_IV **7/24** — 不改数值
+ - **创新审计**：seed137 B α/S 网格 = **A−**（6 点，待 N/P）；tab_IV = **C**
+ - **Git**：`5dd130d` — loop R384
+ - **下一轮**：N/P + pristine batch；18/18 dop → α provisional 降调
 
 - **Loop R383（2026-07-02，三轨）**：
  - **Track A**：**2/18** dop ✅（`B_strainm2.5`+`m5.0`）；`B_strainp0.0` **CRIT** ~2× EPS — batch 存活 — **不干预**；EPS 1e-5 提前切换有效

@@ -7,6 +7,16 @@
 
 
 
+### R384 audit（2026-07-02 go loops）
+
+| 项 | 状态 | 证据 |
+|----|------|------|
+| seed137 | **B** partial | **7/18** dop；**B 6/6** strain grid ✅；`N_m5.0` CRIT |
+| tab_IV alternate | **C** | 7/24；`update_tab_iv` skip |
+| EPS 1e-5 batch | **A** | 连续收敛无 ABORT（B 全网格） |
+
+**创新审计（R384）**：B placement α 网格 = **A−**；Table IV = **C**
+
 ### R383 audit（2026-07-02 go loops）
 
 | 项 | 状态 | 证据 |

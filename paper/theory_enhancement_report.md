@@ -7,6 +7,16 @@
 
 
 
+### R381 audit（2026-07-02 go loops）
+
+| 项 | 状态 | 证据 |
+|----|------|------|
+| seed137 | **B** pending | 0/24；**outer=19/20 OUTER_WARN**；OSC；inner300≥3 |
+| tab_IV alternate | **C** | 算后改稿 |
+| ABORT 恢复 | **A** | `relax_seed137_eps.sh` 单点 EPS 1e-5 |
+
+**创新审计（R381）**：外层 SCF 运维 = **A**；Table IV = **C**
+
 ### R380 audit（2026-07-02 go loops）
 
 | 项 | 状态 | 证据 |

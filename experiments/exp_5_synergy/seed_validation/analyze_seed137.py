@@ -96,8 +96,17 @@ def eps_scf_from_inp(inp: Path) -> float:
 def max_inner_ot_from_inp(inp: Path) -> int:
     if not inp.exists():
         return 300
-    m = re.search(r"MAX_SCF\s+(\d+)", inp.read_text(errors="replace"))
-    return int(m.group(1)) if m else 300
+    ms = re.findall(r"MAX_SCF\s+(\d+)", inp.read_text(errors="replace"))
+    return int(ms[0]) if ms else 300
+
+
+def max_outer_scf_from_inp(inp: Path) -> int:
+    if not inp.exists():
+        return 20
+    ms = re.findall(r"MAX_SCF\s+(\d+)", inp.read_text(errors="replace"))
+    if len(ms) >= 2:
+        return int(ms[1])
+    return 20
 
 
 def main() -> None:
@@ -191,8 +200,15 @@ def main() -> None:
         if inner_cycles:
             result["running_snapshot"]["inner_max_cycles"] = inner_cycles
         outer_it, outer_rms = parse_outer_scf(out_path)
+        omax = max_outer_scf_from_inp(INP_DIR / f"{running}.inp")
+        result["running_snapshot"]["max_outer_scf"] = omax
         if outer_it is not None:
             result["running_snapshot"]["outer_scf_iter"] = outer_it
+            if outer_it >= max(omax - 2, 1):
+                result["running_snapshot"]["outer_warn"] = True
+                result["running_snapshot"]["escalation_hint"] = (
+                    "outer SCF near MAX; on ABORT run relax_seed137_eps.sh <task> then continue"
+                )
         if outer_rms is not None:
             result["running_snapshot"]["outer_rms_grad_Ha_bohr"] = outer_rms
         if grad is not None:

@@ -32,7 +32,7 @@
 | 方法长句拆分 | **partial** | `methods_extended.tex` 按需 |
 | 设计启示具体化 | **partial** | Discussion Design implications（共价半径 ≳20 pm） |
 
-**Live snapshot（2026-07-02 R381）**：seed137 **0/24**（outer=19/20 OUTER_WARN，OSC）；population **0/6**.
+**Live snapshot（2026-07-02 R382）**：seed137 **0/24**（outer=19/20 OUTER_WARN，OT~141/300，OSC）；ABORT 链 auto relax EPS；population **0/6**.
 
 
 ## DFT 队列顺序

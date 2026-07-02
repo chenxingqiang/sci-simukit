@@ -25,11 +25,11 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Exp9** | **12/12** GEO_OPT ✅；vertical SP **8/8** ✅ |
 | **Table IV seed137** | **0/24** protocol-v2 rerun；`seed137_B_strainm2.5_rigid` **NP=2 续跑**（首点 MAX300 ABORT 已归档） |
 | **运行中** | `seed137_B_strainm2.5_rigid` np=2 — **不干预** |
-| **临界区** | seed137 **outer=19/20 OUTER_WARN**；**OSC**；inner300≥3（NP=2） |
+| **临界区** | seed137 **outer=19/20 OUTER_WARN**；OT~141/300；**OSC**（NP=2） |
 | **下一任务** | seed137 `SCF run converged` → 续 batch → `post_seed137_validation.sh` |
 | **阻塞 PRB** | **Table IV alternate**（0/24 新 `.out`）；population **0/6** |
 | **文稿 P 瓶颈** | tab_IV alternate 数值 **勿改**直至 24/24；主稿 L120/L255 待算后同步 |
-| **最新 Loop** | **R381** |
+| **最新 Loop** | **R382** |
 | **下一 B 任务** | 24/24 后 tab_IV 数值同步；首点 converged 后 post 链 |
 | **主张-证据** | periodic $\mathcal{S}$/placement = **A**；tab_IV alternate = **C**（旧数无 v2 `.out`） |
 | **下一 C 任务** | `docs/prb_review_cn_mapping.md` 维护 |
@@ -1401,6 +1401,15 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R382（2026-07-02，三轨）**：
+ - **Track A**：outer=**19/20** OUTER_WARN；OT~141/300；batch 存活 — **不干预**
+ - **Track B（IV Methods 运维）**：`run_seed137` 遇 `.failed_*` 自动 `relax_seed137_eps`；escalation_hint 更新
+ - **Track C**：`prb_review_cn_mapping` R382 live snapshot
+ - **paper_gap**：tab_IV **0/24** — 不改数值
+ - **创新审计**：ABORT 恢复链 = **A**；tab_IV = **C**
+ - **Git**：pending
+ - **下一轮**：ABORT → auto EPS 1e-5 + continue；converged → `post_seed137`
 
 - **Loop R381（2026-07-02，三轨）**：
  - **Track A**：outer=**19/20** **OUTER_WARN** + OSC — batch 存活（~22h CPU）— **不干预**；ABORT 后 → `relax_seed137_eps.sh B_strainm2.5` + `continue_seed137_pending`

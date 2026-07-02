@@ -7,6 +7,16 @@
 
 
 
+### R382 audit（2026-07-02 go loops）
+
+| 项 | 状态 | 证据 |
+|----|------|------|
+| seed137 | **B** pending | 0/24；outer=19/20 OUTER_WARN；OT~141/300；OSC |
+| tab_IV alternate | **C** | 算后改稿 |
+| ABORT 链 | **A** | `run_seed137` 遇 `.failed_*` 自动 `relax_seed137_eps` |
+
+**创新审计（R382）**：ABORT 恢复链 = **A**；Table IV = **C**
+
 ### R381 audit（2026-07-02 go loops）
 
 | 项 | 状态 | 证据 |

@@ -207,7 +207,8 @@ def main() -> None:
             if outer_it >= max(omax - 2, 1):
                 result["running_snapshot"]["outer_warn"] = True
                 result["running_snapshot"]["escalation_hint"] = (
-                    "outer SCF near MAX; on ABORT run relax_seed137_eps.sh <task> then continue"
+                    "outer SCF near MAX; on ABORT archive+continue auto relax EPS 1e-5 "
+                    "(run_seed137) and NP=2 (continue_seed137)"
                 )
         if outer_rms is not None:
             result["running_snapshot"]["outer_rms_grad_Ha_bohr"] = outer_rms

@@ -37,6 +37,12 @@ for inp in "$INP_DIR"/seed137_*_rigid.inp; do
     mv "$out" "${out}.failed_${ts}"
     echo "[archive] $base ABORT -> ${out}.failed_${ts}"
   fi
+  if compgen -G "$INP_DIR/${base}.out.failed_*" >/dev/null 2>&1; then
+    if grep -qE 'EPS_SCF[[:space:]]+1\.0E-6' "$inp"; then
+      bash "$ROOT/experiments/relax_seed137_eps.sh" "$base"
+      echo "[relax] prior failure(s) for $base -> EPS_SCF 1e-5 before retry"
+    fi
+  fi
   bash "$ROOT/experiments/guard_unlinked_cp2k_out.sh" || true
   echo "[$(date -Iseconds)] START $base np=$NP cap=${SIMUKIT_MAX_CORES}" | tee -a "$LOG"
   (cd "$INP_DIR" && "$MPIRUN" -np "$NP" "$CP2K" -i "${base}.inp" -o "${base}.out")

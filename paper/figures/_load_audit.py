@@ -66,6 +66,26 @@ def ha_per_atom_to_meV(ha_per_atom: float) -> float:
     return ha_per_atom * HA_TO_MEV
 
 
+def load_tetramer_alpha_panel() -> tuple[dict[str, float], str]:
+    """Alpha for Fig.~1(c): prefer matched-functional PBE+D3; fallback alternate placement."""
+    root = repo_root()
+    ref_path = root / "experiments/analysis/reference_placement_pbed3.json"
+    if ref_path.is_file():
+        ref = json.loads(ref_path.read_text())
+        if ref.get("status") == "complete" and "alpha_meV_per_pct" in ref:
+            alpha = dict(ref["alpha_meV_per_pct"])
+            alpha.setdefault("pristine", 1.0)
+            return alpha, "reference placement, PBE+D3"
+
+    alt = {
+        "B": 21.4,
+        "N": 45.4,
+        "P": 989.6,
+        "pristine": 1.0,
+    }
+    return alt, "alternate placement (seed~137), PBE+D3 rigid"
+
+
 def synergy_rows(audit: dict[str, Any], dopant: str) -> list[tuple[int, float]]:
     rows = [
         (r["n_molecules"], r["synergy_S_meV_per_atom"])

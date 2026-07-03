@@ -48,4 +48,13 @@ bash "$ROOT/experiments/post_exp10_converged.sh"
 echo "=== PRB revision DFT: n=1 P population strain path ==="
 bash "$ROOT/experiments/exp_7_electronic_structure/population_validation/run_population_validation.sh"
 
+echo "=== PRB revision DFT: periodic n=1 P ionic relaxation (P0) ==="
+bash "$ROOT/experiments/exp_10_size_scaling/periodic_relax_validation/run_periodic_relax_validation.sh"
+
+echo "=== PRB revision DFT: population B/N strain path (queued after periodic) ==="
+bash "$ROOT/experiments/exp_7_electronic_structure/population_validation/continue_population_bn.sh" || true
+
+echo "=== PRB revision DFT: reference-placement PBE+D3 tetramer grid (Table I modernization) ==="
+bash "$ROOT/experiments/exp_5_synergy/reference_pbed3/run_reference_pbed3_validation.sh" || true
+
 echo "PRB revision DFT queue finished."

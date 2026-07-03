@@ -1,0 +1,178 @@
+        &GLOBAL
+          PROJECT per_relax_n1_P_eps3_geo
+          RUN_TYPE GEO_OPT
+          PRINT_LEVEL MEDIUM
+        &END GLOBAL
+
+        &MOTION
+          &GEO_OPT
+            TYPE MINIMIZATION
+            OPTIMIZER BFGS
+            MAX_ITER 450
+            MAX_DR 3.0E-3
+            MAX_FORCE 4.5E-4
+            RMS_DR 1.5E-3
+            RMS_FORCE 3.0E-4
+          &END GEO_OPT
+
+          &PRINT
+            &TRAJECTORY
+              FORMAT XYZ
+              &EACH
+                GEO_OPT 1
+              &END EACH
+            &END TRAJECTORY
+
+            &RESTART
+              &EACH
+                GEO_OPT 10
+              &END EACH
+            &END RESTART
+          &END PRINT
+        &END MOTION
+
+        &FORCE_EVAL
+          METHOD Quickstep
+
+          &DFT
+            BASIS_SET_FILE_NAME BASIS_MOLOPT
+            POTENTIAL_FILE_NAME GTH_POTENTIALS
+    LSD .TRUE.
+
+
+            &MGRID
+              CUTOFF 400
+              REL_CUTOFF 50
+            &END MGRID
+
+            &QS
+              METHOD GPW
+              EPS_DEFAULT 1.0E-10
+            &END QS
+
+            &SCF
+              SCF_GUESS ATOMIC
+              EPS_SCF 1.0E-5
+              MAX_SCF 300
+
+              &OT
+                MINIMIZER DIIS
+                PRECONDITIONER FULL_ALL
+              &END OT
+
+              &OUTER_SCF
+                MAX_SCF 40
+                EPS_SCF 1.0E-5
+              &END OUTER_SCF
+            &END SCF
+
+            &XC
+              &XC_FUNCTIONAL PBE
+              &END XC_FUNCTIONAL
+
+              &VDW_POTENTIAL
+                POTENTIAL_TYPE PAIR_POTENTIAL
+                &PAIR_POTENTIAL
+                  TYPE DFTD3
+                  PARAMETER_FILE_NAME dftd3.dat
+                  REFERENCE_FUNCTIONAL PBE
+                &END PAIR_POTENTIAL
+              &END VDW_POTENTIAL
+            &END XC
+
+            &PRINT
+              &MULLIKEN
+              &END MULLIKEN
+            &END PRINT
+          &END DFT
+
+          &SUBSYS
+            &CELL
+      ABC 14.6878 14.6878 20.0000
+      PERIODIC XYZ
+    &END CELL
+
+            &COORD
+      P  9.486501  7.814263  12.666950
+      C  10.410868  7.372432  11.630029
+      C  8.578296  6.884629  13.236323
+      C  10.393597  6.016744  11.201424
+      C  10.493562  5.708816  9.800299
+      C  10.528106  8.469789  10.673944
+      C  10.625605  8.173213  9.323485
+      C  10.607453  6.766982  8.879586
+      C  6.748473  8.609923  13.208102
+      C  7.691222  9.573832  12.617526
+      C  7.183573  7.288715  13.508626
+      C  9.035975  9.185188  12.352969
+      C  9.677326  9.588856  11.118954
+      C  6.941150  10.384556  11.662312
+      C  7.560996  10.773016  10.474597
+      C  8.955971  10.371322  10.197662
+      C  5.020385  6.338738  12.670096
+      C  4.571038  7.710086  12.353172
+      C  6.305503  6.132416  13.236730
+      C  5.416245  8.825036  12.619733
+      C  5.534966  9.924774  11.664181
+      C  3.812565  7.653093  11.120421
+      C  3.926415  8.711111  10.199603
+      C  4.803893  9.868804  10.476091
+      C  6.694463  4.140830  11.794031
+      C  5.361733  4.353904  11.204789
+      C  7.157033  5.013129  12.793883
+      C  4.543178  5.435740  11.632972
+      C  3.794447  6.246884  10.676527
+      C  5.463952  4.048664  9.802344
+      C  4.742645  4.831024  8.881014
+      C  3.891939  5.950121  9.326042
+      C  9.451098  5.052535  11.792253
+      C  8.973218  4.145783  10.755720
+      C  8.562458  5.476570  12.794389
+      C  7.617779  3.702706  10.755764
+      C  6.858953  3.647036  9.525439
+      C  9.616086  4.551107  9.523895
+      C  8.885167  4.495193  8.335769
+      C  7.478969  4.035409  8.337738
+      C  4.933613  6.605530  7.332970
+      C  5.384122  5.234566  7.646953
+      C  6.728916  4.846098  7.382490
+      C  5.841799  7.535241  6.763763
+      C  4.968732  9.367374  8.207671
+      C  4.026305  8.403098  8.798425
+      C  4.009163  7.047419  8.369837
+      C  5.857469  8.943314  7.205636
+      C  7.725332  10.279363  8.205980
+      C  6.802002  10.717440  9.244273
+      C  5.446575  10.274160  9.244201
+      C  7.262821  9.406936  7.206255
+      C  9.399639  8.081463  7.329947
+      C  9.876861  8.984457  8.367044
+      C  9.058130  10.066260  8.795174
+      C  8.114476  8.287742  6.763469
+      C  7.671693  5.810121  6.791949
+      C  9.003946  5.595006  7.380229
+      C  9.849038  6.710087  7.646797
+      C  7.236564  7.131353  6.491555
+    &END COORD
+
+            &KIND C
+      BASIS_SET DZVP-MOLOPT-SR-GTH
+      POTENTIAL GTH-PBE-q4
+    &END KIND
+
+&KIND B
+      BASIS_SET DZVP-MOLOPT-SR-GTH
+      POTENTIAL GTH-PBE-q3
+    &END KIND
+
+&KIND N
+      BASIS_SET DZVP-MOLOPT-SR-GTH
+      POTENTIAL GTH-PBE-q5
+    &END KIND
+
+&KIND P
+      BASIS_SET DZVP-MOLOPT-SR-GTH
+      POTENTIAL GTH-PBE-q5
+    &END KIND
+          &END SUBSYS
+        &END FORCE_EVAL

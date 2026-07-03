@@ -1,0 +1,185 @@
+#!/usr/bin/env python3
+"""Build fixed-cell GEO_OPT inputs for periodic ionic-relaxation validation (P0).
+
+Phase 1: n=1 P four corners (pristine/P @ eps 0 and +3%).
+Phase 2 (backlog): n=4 B/N/P four corners each.
+"""
+
+from __future__ import annotations
+
+import re
+import sys
+import textwrap
+from pathlib import Path
+
+REPO = Path(__file__).resolve().parents[3]
+SP_DIR = REPO / "experiments" / "exp_10_size_scaling" / "inputs"
+OUT_DIR = Path(__file__).resolve().parent / "inputs"
+
+sys.path.insert(0, str(REPO / "experiments" / "exp_5_synergy"))
+from modernize_cp2k_inp import normalize_kind_potentials  # noqa: E402
+
+# (output_stem, source_energy_inp)
+PHASE1 = [
+    ("per_relax_n1_pristine_eps0_geo", "size_1x60_pristine_pos0pct.inp"),
+    ("per_relax_n1_pristine_eps3_geo", "size_1x60_pristine_pos3pct.inp"),
+    ("per_relax_n1_P_eps0_geo", "size_1x60_P_pos0pct.inp"),
+    ("per_relax_n1_P_eps3_geo", "size_1x60_P_pos3pct.inp"),
+]
+
+BLOCK_RE = re.compile(
+    r"(&CELL.*?&END CELL)|(&COORD.*?&END COORD)|(&KIND .*?&END KIND)",
+    re.DOTALL,
+)
+
+
+def extract_subsys_blocks(inp_text: str) -> tuple[str, str, list[str]]:
+    cell = coord = None
+    kinds: list[str] = []
+    for m in BLOCK_RE.finditer(inp_text):
+        block = m.group(0)
+        if block.startswith("&CELL"):
+            cell = block
+        elif block.startswith("&COORD"):
+            coord = block
+        elif block.startswith("&KIND"):
+            kinds.append(block)
+    if cell is None or coord is None:
+        raise ValueError("Missing CELL or COORD in source inp")
+    if not kinds:
+        kinds = [
+            textwrap.dedent(
+                """\
+                &KIND C
+                  BASIS_SET DZVP-MOLOPT-SR-GTH
+                  POTENTIAL GTH-PBE-q4
+                &END KIND"""
+            )
+        ]
+    return cell, coord, kinds
+
+
+def build_geo_inp(project: str, cell: str, coord: str, kinds: list[str]) -> str:
+    kind_block = "\n    \n".join(kinds)
+    doped = "pristine" not in project
+    heavy = doped  # P (phase 1); B/N in phase 2 share heavier SCF/GEO settings
+    outer_max_scf = 40 if heavy else 20
+    eps_scf = "1.0E-5" if heavy else "1.0E-6"
+    max_geo_iter = 450 if heavy else 300
+    lsd_line = "    LSD .TRUE.\n\n" if doped else ""
+    return textwrap.dedent(
+        f"""\
+        &GLOBAL
+          PROJECT {project}
+          RUN_TYPE GEO_OPT
+          PRINT_LEVEL MEDIUM
+        &END GLOBAL
+
+        &MOTION
+          &GEO_OPT
+            TYPE MINIMIZATION
+            OPTIMIZER BFGS
+            MAX_ITER {max_geo_iter}
+            MAX_DR 3.0E-3
+            MAX_FORCE 4.5E-4
+            RMS_DR 1.5E-3
+            RMS_FORCE 3.0E-4
+          &END GEO_OPT
+
+          &PRINT
+            &TRAJECTORY
+              FORMAT XYZ
+              &EACH
+                GEO_OPT 1
+              &END EACH
+            &END TRAJECTORY
+
+            &RESTART
+              &EACH
+                GEO_OPT 10
+              &END EACH
+            &END RESTART
+          &END PRINT
+        &END MOTION
+
+        &FORCE_EVAL
+          METHOD Quickstep
+
+          &DFT
+            BASIS_SET_FILE_NAME BASIS_MOLOPT
+            POTENTIAL_FILE_NAME GTH_POTENTIALS
+{lsd_line}
+            &MGRID
+              CUTOFF 400
+              REL_CUTOFF 50
+            &END MGRID
+
+            &QS
+              METHOD GPW
+              EPS_DEFAULT 1.0E-10
+            &END QS
+
+            &SCF
+              SCF_GUESS ATOMIC
+              EPS_SCF {eps_scf}
+              MAX_SCF 300
+
+              &OT
+                MINIMIZER DIIS
+                PRECONDITIONER FULL_ALL
+              &END OT
+
+              &OUTER_SCF
+                MAX_SCF {outer_max_scf}
+                EPS_SCF {eps_scf}
+              &END OUTER_SCF
+            &END SCF
+
+            &XC
+              &XC_FUNCTIONAL PBE
+              &END XC_FUNCTIONAL
+
+              &VDW_POTENTIAL
+                POTENTIAL_TYPE PAIR_POTENTIAL
+                &PAIR_POTENTIAL
+                  TYPE DFTD3
+                  PARAMETER_FILE_NAME dftd3.dat
+                  REFERENCE_FUNCTIONAL PBE
+                &END PAIR_POTENTIAL
+              &END VDW_POTENTIAL
+            &END XC
+
+            &PRINT
+              &MULLIKEN
+              &END MULLIKEN
+            &END PRINT
+          &END DFT
+
+          &SUBSYS
+            {cell}
+
+            {coord}
+
+            {kind_block}
+          &END SUBSYS
+        &END FORCE_EVAL
+        """
+    )
+
+
+def main() -> None:
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    for project, src_name in PHASE1:
+        src = SP_DIR / src_name
+        if not src.exists():
+            raise FileNotFoundError(src)
+        text = src.read_text(encoding="utf-8", errors="replace")
+        cell, coord, kinds = extract_subsys_blocks(text)
+        kinds = [normalize_kind_potentials(k) for k in kinds]
+        out = OUT_DIR / f"{project}.inp"
+        out.write_text(build_geo_inp(project, cell, coord, kinds), encoding="utf-8")
+        print(f"wrote {out.relative_to(REPO)}")
+
+
+if __name__ == "__main__":
+    main()

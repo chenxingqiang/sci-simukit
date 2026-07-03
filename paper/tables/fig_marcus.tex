@@ -1,11 +1,16 @@
 \begin{figure*}[t]
 \centering
-\IfFileExists{figures/out/figure_s2_marcus.pdf}{%
-\includegraphics[width=\textwidth]{figures/out/figure_s2_marcus.pdf}}{%
-\fbox{\parbox{0.85\textwidth}{\centering\vspace{2cm}\textbf{Marcus figure not found}\vspace{2cm}}}%
-}
-\caption{\label{fig:marcus}Marcus reorganization energies across dopants (12/12 charged-state geometry optimizations; eight vertical single-points at the neutral geometry).
-Each column applies the same protocol; the slanted arrow marks adiabatic IP ($q{=}{+}1$ GEO\_OPT), teal labels give adiabatic EA where computed (B, P), and the shaded $Q{\approx}0$ band marks the neutral geometry used for vertical single-points ($\lambda^{\pm}{=}E_{\mathrm{vert}}^{\pm}-E_{\mathrm{opt}}^{\pm}$).
-Pristine $\lambda^{\pm}{=}0.041$/0.042~eV; N $\lambda^{+}{=}0.058$/ $\lambda^{-}{=}0.065$~eV; B $\lambda^{+}{=}0.051$~eV; P $\lambda^{+}{=}0.200$/ $\lambda^{-}{=}0.315$~eV.
+\begin{minipage}[c]{0.47\textwidth}
+\centering
+\textbf{(a)}~Marcus protocol\par\vspace{0.6em}
+\input{figures/tikz/marcus_schematic}%
+\end{minipage}\hfill
+\begin{minipage}[c]{0.49\textwidth}
+\centering
+\textbf{(b)}~Adiabatic IP/EA and $\lambda^{\pm}$\par\vspace{0.8em}
+\input{figures/tikz/marcus_table}%
+\end{minipage}
+\caption{\label{fig:marcus}Marcus reorganization energies from charged-state geometry optimizations and vertical single-points at the neutral geometry.
+Panel~(a) schematically defines the vertical--adiabatic decomposition following Ref.~\citenum{Capobianco2024electron}; panel~(b) tabulates adiabatic IP/EA and $\lambda^{\pm}=E_{\mathrm{vert}}^{\pm}-E_{\mathrm{opt}}^{\pm}$ for pristine and B/N/P tetramers.
 The electron-channel $\lambda^{-}$ for B is unphysical under the fixed neutral-geometry vertical protocol and is excluded (Limitations).}
 \end{figure*}

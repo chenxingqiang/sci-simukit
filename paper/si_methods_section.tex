@@ -7,19 +7,19 @@ Plane-wave cutoff is 400~Ry for $n\leq 4$ and 350~Ry for $n\geq 6$ in archived s
 Tetramer models ($4\times\mathrm{C}_{60}$, 240 sites) use B/N/P substitution at nominal 5\% (12--13 dopants from archived coordinates, reference placement).
 Periodic scaling cells contain one substituent per C$_{60}$ ($n=1$--$8$) on the reference placement site map propagated from the archived tetramer protocol.
 Dopant sites are not re-optimized thermodynamically; fixed configurations probe mechanism rather than placement-averaged statistics.
-Table~\ref{tab:IV} is tetramer-only (alternate vs.\ reference placement); periodic $n{=}4$ placement audits on independent site maps (seeds 137 and 271; \texttt{placement\_validation/}, 16 rigid PBE+D3 single-points; 16/16 converged; seeds 137 and 271 both preserve P$>$B$>$N $|\mathcal{S}|$ ranking vs.\ the reference map in Table~\ref{tab:Sgrid}; matched-functional rigid PBE+D3 at relaxed tetramer coordinates (\texttt{rigid\_pbed3/}, Table~\ref{tab:III}) is complete (4/4).
+Table~\ref{tab:IV} is tetramer-only (alternate vs.\ reference placement); periodic $n{=}4$ placement audits on two independent site maps (16 rigid PBE+D3 single-points converged) preserve the P$>$B$>$N $|\mathcal{S}|$ ranking vs.\ the production map in Table~\ref{tab:Sgrid}; matched-functional rigid PBE+D3 at relaxed tetramer coordinates (Table~\ref{tab:III}) is complete (4/4).
 
-Grids: 24 tetramer strain points ($\epsilon\in\{-5,-2.5,0,2.5,5\}$\%); 12 tetramer electronic points; 41 converged periodic neutral-energy points (includes cutoff400 control) at $\epsilon\in\{0,+3\}$\%; charged-state geometry optimizations for Marcus schematics (Fig.~3); IPR/$J$ tetramer dimer grid (Fig.~4).
+Grids: 24 tetramer strain points ($\epsilon\in\{-5,-2.5,0,2.5,5\}$\%); 12 tetramer electronic points; 41 converged periodic neutral-energy points (includes cutoff benchmark) at $\epsilon\in\{0,+3\}$\%; charged-state geometry optimizations for Marcus schematics (Fig.~3); IPR/$J$ tetramer dimer grid (Fig.~4).
 Linear $\alpha=\mathrm{d}E/\mathrm{d}\epsilon$ and substitution energies $E_{\mathrm{sub}}$ are defined in Table~\ref{tab:I}.
 \textbf{Task inventory (main-text support).}
 Mechanical strain: 24 tetramer points ($\epsilon\in\{-5,-2.5,0,2.5,5\}$\%, Table~\ref{tab:I}).
 Electronics: 12 tetramer $\pi$-DOS/gap points ($\epsilon\in\{-5,0,+5\}$\%, Fig.~2).
-Size scaling: 40 converged periodic neutral energies ($n=1$--$8$, $\epsilon\in\{0,+3\}$\%; production grid; matched 400~Ry $n{=}6$ N cutoff control verified, Table~\ref{tab:II}).
+Size scaling: 41 converged periodic neutral energies ($n=1$--$8$, $\epsilon\in\{0,+3\}$\%; includes one cutoff benchmark; Table~\ref{tab:II}).
 Synergy $\mathcal{S}$ values are extracted from converged periodic total energies (Table~\ref{tab:II}).
 Polaron dimer grid: four neutral single-points (Fig.~4); charged-state geometry optimizations and vertical single-points at the neutral geometry for Marcus $\lambda^{\pm}$ (Fig.~3).
 \textbf{Marcus vertical step.} Eight tetramer vertical single-points evaluate each charged endpoint at the \emph{neutral}-geometry atomic coordinates (400~Ry, PBE+D3, EPS\_SCF $10^{-7}$~$E_{\mathrm{h}}$ by default; B $q=-1$ vertical: $10^{-6}$~$E_{\mathrm{h}}$ after OT stall at $10^{-7}$~$E_{\mathrm{h}}$), with UKS charge and multiplicity matched to the relaxed charged state ($\lambda^{+}$ from $q{=}+1$, $\lambda^{-}$ from $q{=}-1$), following Ref.~\citenum{Capobianco2024electron}; $\lambda^{\pm}=E_{\mathrm{vert}}^{\pm}-E_{\mathrm{opt}}^{\pm}$ (Fig.~3).
 Charged geometry optimization: EPS\_SCF $10^{-6}$~$E_{\mathrm{h}}$ OT (UKS, multiplicity~2); vertical single-point at neutral geometry: $10^{-7}$~$E_{\mathrm{h}}$ (B $q=-1$: $10^{-6}$~$E_{\mathrm{h}}$); neutral periodic energies: $10^{-6}$~$E_{\mathrm{h}}$ in archived size-scaling inputs. Basis DZVP-MOLOPT-SR-GTH.
-Completed ionic-relaxation with matched-functional rigid audit (Table~\ref{tab:III}), alternate tetramer placement (Table~\ref{tab:IV}), periodic placement (16/16), and matched-cutoff control (41/41 size-scaling grid) are archived; population-strain Hirshfeld controls remain pending in Table~\ref{tab:II}.
+Completed ionic-relaxation with matched-functional rigid audit (Table~\ref{tab:III}), alternate tetramer placement (Table~\ref{tab:IV}), periodic placement (16/16), matched-cutoff control, and Hirshfeld population along the $n{=}1$ P strain path (6/6; Table~\ref{tab:II}) are archived.
 
 
 \input{sdc_method_section.tex}

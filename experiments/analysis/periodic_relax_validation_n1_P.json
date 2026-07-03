@@ -1,0 +1,55 @@
+{
+  "system": "periodic 1xC60 P substitutional",
+  "n_atoms": 60,
+  "functional": "PBE+D3",
+  "protocol": "fixed-cell GEO_OPT",
+  "geo_completed": 4,
+  "geo_total": 4,
+  "status": "complete",
+  "running_snapshot": {
+    "running_task": null
+  },
+  "corners": {
+    "pristine_eps0": {
+      "relaxed_energy_ha": -340.9798590837538,
+      "geo_converged": true
+    },
+    "pristine_eps3": {
+      "relaxed_energy_ha": -340.979633171719,
+      "geo_converged": true
+    },
+    "P_eps0": {
+      "relaxed_energy_ha": -341.84942612880457,
+      "geo_converged": true
+    },
+    "P_eps3": {
+      "relaxed_energy_ha": -341.8491999840238,
+      "geo_converged": true
+    }
+  },
+  "S_rigid": {
+    "S_ha_per_atom": -0.0011725331216562544,
+    "S_meV_per_atom": -31.906251659602376,
+    "source": "rigid fixed-coordinates SP (SDC audit n=1 P @ +3%)",
+    "energies_ha": {
+      "pristine_eps0": -340.9602802221,
+      "pristine_eps3": -340.9536848941572,
+      "P_eps0": -341.5338124767434,
+      "P_eps3": -341.5975691361
+    }
+  },
+  "S_relaxed": {
+    "S_ha_per_atom": 3.879099114839635e-09,
+    "S_meV_per_atom": 0.00010555566430037147,
+    "energies_ha": {
+      "pristine_eps0": -340.9798590837538,
+      "pristine_eps3": -340.979633171719,
+      "P_eps0": -341.84942612880457,
+      "P_eps3": -341.8491999840238
+    }
+  },
+  "retention": {
+    "ratio_abs": 3.3083066424257915e-06,
+    "sign_preserved": false
+  }
+}

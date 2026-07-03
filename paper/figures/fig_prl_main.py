@@ -14,7 +14,7 @@ from matplotlib.lines import Line2D
 FIG_DIR = Path(__file__).resolve().parent
 sys.path.insert(0, str(FIG_DIR))
 
-from _load_audit import load_json, parse_exp7_gaps, repo_root, synergy_rows
+from _load_audit import load_json, load_tetramer_alpha_panel, parse_exp7_gaps, repo_root, synergy_rows
 from _pdos import gaussian_dos, parse_pdos
 from _style import (
     COLOR_CBM,
@@ -155,25 +155,25 @@ def _plot_electronic_row(ax_gap, ax_dos, gaps) -> None:
     )
 
 
-def _plot_alpha(ax, table1) -> None:
+def _plot_alpha(ax, alphas: dict[str, float], protocol_note: str) -> None:
     panel_label(ax, "c")
     labels = ["N", "B", "P", "pristine"]
-    alphas = [table1["systems"][k]["alpha_meV_per_pct"] for k in labels]
+    vals = [alphas[k] for k in labels]
     ypos = np.arange(len(labels))
-    ax.barh(ypos, alphas, color=[DOPANT_COLORS[k] for k in labels], height=0.55, edgecolor="none", zorder=2)
+    ax.barh(ypos, vals, color=[DOPANT_COLORS[k] for k in labels], height=0.55, edgecolor="none", zorder=2)
     ax.axvline(0, color="#333333", lw=0.55, zorder=1)
     ax.set_yticks(ypos)
     ax.set_yticklabels(labels)
     ax.tick_params(axis="y", pad=1)
     ax.set_xlabel(r"$\alpha$ (meV/%)", labelpad=2)
     ax.invert_yaxis()
-    lo, hi = min(alphas), max(alphas)
+    lo, hi = min(vals), max(vals)
     span = hi - lo
     pad_neg = max(abs(lo) * 0.06, 22)
     pad_pos = max(hi * 0.18, 14)
     ax.set_xlim(lo - pad_neg, hi + pad_pos)
     style_axes(ax, grid=True)
-    for i, val in enumerate(alphas):
+    for i, val in enumerate(vals):
         label = f"{val:.0f}"
         if abs(val) >= 80:
             x = val * (0.72 if val < 0 else 0.28)
@@ -196,6 +196,16 @@ def _plot_alpha(ax, table1) -> None:
             else:
                 x, ha = val - offset, "right"
             ax.text(x, i, label, va="center", ha=ha, fontsize=5, zorder=3, clip_on=True)
+    ax.text(
+        0.97,
+        0.04,
+        protocol_note,
+        transform=ax.transAxes,
+        fontsize=4.5,
+        ha="right",
+        va="bottom",
+        color="#555555",
+    )
 
 
 def _plot_synergy_combo(ax_main, audit, exp4, *, show_inset: bool = False, ax_inset=None) -> None:
@@ -292,6 +302,7 @@ def _plot_synergy_combo(ax_main, audit, exp4, *, show_inset: bool = False, ax_in
 def build_prl_figure(out_dir: Path) -> tuple[Path, Path]:
     apply_prl_style()
     table1 = load_json("experiments/analysis/table1_verification.json")
+    alpha_panel, alpha_note = load_tetramer_alpha_panel()
     audit = load_json("experiments/analysis/sdc/sdc_exp10_synergy_audit.json")
     exp4 = load_json("experiments/analysis/exp4_polaron_verification.json")
     gaps = parse_exp7_gaps()
@@ -315,7 +326,7 @@ def build_prl_figure(out_dir: Path) -> tuple[Path, Path]:
     ax_d = fig.add_subplot(gs[0, 3])
 
     _plot_electronic_row(ax_a, ax_b, gaps)
-    _plot_alpha(ax_c, table1)
+    _plot_alpha(ax_c, alpha_panel, alpha_note)
     inset = ax_d.inset_axes([0.50, 0.10, 0.40, 0.34])
     _plot_synergy_combo(ax_d, audit, exp4, show_inset=True, ax_inset=inset)
     _add_unified_dopant_legend(fig)
@@ -332,6 +343,7 @@ def build_prl_figure(out_dir: Path) -> tuple[Path, Path]:
 def build_prb_figure(out_dir: Path) -> tuple[Path, Path]:
     apply_prb_style()
     table1 = load_json("experiments/analysis/table1_verification.json")
+    alpha_panel, alpha_note = load_tetramer_alpha_panel()
     audit = load_json("experiments/analysis/sdc/sdc_exp10_synergy_audit.json")
     exp4 = load_json("experiments/analysis/exp4_polaron_verification.json")
     gaps = parse_exp7_gaps()
@@ -353,7 +365,7 @@ def build_prb_figure(out_dir: Path) -> tuple[Path, Path]:
     ax_c = fig.add_subplot(gs[0, 2])
     ax_d = fig.add_subplot(gs[0, 3])
     _plot_electronic_row(ax_a, ax_b, gaps)
-    _plot_alpha(ax_c, table1)
+    _plot_alpha(ax_c, alpha_panel, alpha_note)
     _plot_synergy_combo(ax_d, audit, exp4, show_inset=False)
     _add_unified_dopant_legend(fig)
     out_dir.mkdir(parents=True, exist_ok=True)

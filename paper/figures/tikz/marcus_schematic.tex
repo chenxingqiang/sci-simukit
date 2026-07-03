@@ -1,0 +1,85 @@
+% Marcus configuration-coordinate schematic (Fig.~\ref{fig:marcus}, panel a).
+% DATA: experiments/analysis/exp9_polaron_verification.json (schematic only).
+\begingroup
+\definecolor{otgray}{HTML}{5A5A5A}
+\definecolor{marcusVBM}{HTML}{7B4FB3}
+\definecolor{marcusCBM}{HTML}{2BAFA3}
+\begin{tikzpicture}[
+  >=Stealth,
+  font=\footnotesize,
+  x=2.5cm,
+  y=2.55cm,
+  every node/.style={inner sep=1.2pt},
+  lbl/.style={font=\scriptsize},
+  vbm lbl/.style={lbl, text=marcusVBM},
+  cbm lbl/.style={lbl, text=marcusCBM},
+  gry lbl/.style={lbl, text=otgray},
+  lead/.style={otgray!55, line width=0.35pt},
+]
+  \def\k{1.1}
+  \def\qshift{0.35}
+  \def\echarged{0.35}
+  \def\ymin{-0.02}
+  \def\ymax{0.56}
+  \def\xmin{-1.05}
+  \def\xmax{1.05}
+  \def\xaxis{-1.12}  % y-axis at left margin
+
+  % --- curves & vertical-SP window ---
+  \fill[otgray!10] (-0.11,\ymin) rectangle (0.11,\ymax);
+  \draw[marcusVBM, line width=0.8pt]
+    plot[domain=\xmin:\xmax, samples=90] (\x, {0.5*\k*\x*\x});
+  \draw[marcusCBM, line width=0.8pt]
+    plot[domain=-0.40:\xmax, samples=90]
+    (\x, {\echarged + 0.5*\k*(\x-\qshift)*(\x-\qshift)});
+
+  % minima
+  \coordinate (nmin) at (0,0);
+  \coordinate (cmin) at (\qshift,\echarged);
+  \fill[marcusVBM] (nmin) circle (1pt);
+  \fill[marcusCBM] (cmin) circle (1pt);
+
+  % --- axes ---
+  \draw[->, otgray, line width=0.45pt] (\xaxis,\ymin) -- (\xmax+0.06,\ymin);
+  \draw[->, otgray, line width=0.45pt] (\xaxis,\ymin) -- (\xaxis,\ymax+0.04);
+
+  \node[gry lbl, rotate=90, anchor=center] at (-1.52, 0.28)
+    {energy (eV, schematic)};
+
+  \foreach \x/\lbl in {-1/-1.00,0/0,1/1.00} {
+    \draw[otgray, line width=0.3pt] (\x,\ymin) -- (\x,\ymin-0.035);
+    \node[gry lbl, anchor=north] at (\x,\ymin-0.035) {\lbl};
+  }
+
+  % x labels — two lines, separated (no merge with tick ``0'')
+  \node[gry lbl, anchor=north] at (0.00,-0.30)
+    {neutral $Q$ (vertical SP)};
+  \node[gry lbl, anchor=north] at (0.00,-0.46)
+    {configuration coordinate $Q$};
+
+  % $\lambda$ definition — top centre margin
+  \node[gry lbl, anchor=south] at (0.02,0.64)
+    {$\lambda^{\pm}=E_{\mathrm{vert}}^{\pm}-E_{\mathrm{opt}}^{\pm}$};
+
+  % neutral curve label — upper-left margin (clear of y-axis & curve)
+  \coordinate (vbmpt) at (-0.48, {0.5*\k*0.48*0.48});
+  \draw[lead] (vbmpt) -- (-0.70,0.54);
+  \node[vbm lbl, anchor=south west] at (-0.70,0.54) {neutral ($q{=}0$)};
+
+  \coordinate (cbmpt) at (0.82, {0.35 + 0.5*\k*(0.82-\qshift)*(0.82-\qshift)});
+  \draw[lead] (cbmpt) -- (0.98,0.46);
+  \node[cbm lbl, anchor=west] at (0.98,0.46) {charged ($q{\pm}1$)};
+
+  % adiabatic IP — label along arrow, offset above (away from $Q{=}0$ tick)
+  \draw[<->, otgray!85!black, line width=0.5pt]
+    (0.06,0.04) -- node[midway, sloped, above=3pt,
+      inner sep=1.5pt, fill=white, fill opacity=0.95, text=otgray,
+      font=\scriptsize] {adiabatic IP}
+    (\qshift-0.06,\echarged-0.04);
+
+  % adiabatic EA — leader from charged minimum to lower-right margin
+  \draw[lead] (cmin) -- (0.54,0.20);
+  \node[cbm lbl, anchor=west] at (0.54,0.20) {adiab.\ EA (B, P)};
+
+\end{tikzpicture}
+\endgroup

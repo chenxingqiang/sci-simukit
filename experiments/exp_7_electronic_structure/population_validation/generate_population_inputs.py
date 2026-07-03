@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""n=1 P periodic supercell: Hirshfeld population along strain path (Mayer via post-processing)."""
+"""n=1 periodic supercell: Hirshfeld population along strain path (B/N/P)."""
 
 from __future__ import annotations
 
+import json
 import sys
 from pathlib import Path
 
@@ -19,8 +20,15 @@ OUT = Path(__file__).resolve().parent / "inputs"
 STRAINS = (-5.0, -2.5, 0.0, 2.5, 3.0, 5.0)
 SEED = 42
 
+DOPANT_KIND = {
+    "B": ("GTH-PBE-q3", 3),
+    "N": ("GTH-PBE-q5", 5),
+    "P": ("GTH-PBE-q5", 5),
+}
 
-def build_inp(project: str, coords_str: str, a: float, b: float, c: float) -> str:
+
+def build_inp(project: str, coords_str: str, a: float, b: float, c: float, dopant: str) -> str:
+    pot, q = DOPANT_KIND[dopant]
     return f"""&GLOBAL
   PROJECT {project}
   RUN_TYPE ENERGY
@@ -99,9 +107,9 @@ def build_inp(project: str, coords_str: str, a: float, b: float, c: float) -> st
       POTENTIAL GTH-PBE-q4
     &END KIND
 
-    &KIND P
+    &KIND {dopant}
       BASIS_SET DZVP-MOLOPT-SR-GTH
-      POTENTIAL GTH-PBE-q5
+      POTENTIAL {pot}
     &END KIND
   &END SUBSYS
 &END FORCE_EVAL
@@ -113,24 +121,35 @@ def strain_tag(eps: float) -> str:
     return f"strain{s}pct"
 
 
-def main() -> None:
-    OUT.mkdir(parents=True, exist_ok=True)
+def write_dopant_grid(dopant: str) -> int:
     coords, cell = get_multi_c60_coordinates(1)
-    atoms, info = create_substitutional_doped_structure(coords, "P", 1 / len(coords), seed=SEED)
-    p_idx = info["dopant_indices"][0] if info.get("dopant_indices") else None
-
+    atoms, info = create_substitutional_doped_structure(coords, dopant, 1 / len(coords), seed=SEED)
+    dop_idx = info["dopant_indices"][0] if info.get("dopant_indices") else 0
     for strain in STRAINS:
         scale = 1.0 + strain / 100.0
         scaled = [(e, x * scale, y * scale, z) for e, x, y, z in atoms]
         coords_str = format_coords_for_cp2k(scaled)
         a, b, c = cell["a"] * scale, cell["b"] * scale, cell["c"]
-        tag = f"pop_n1_P_{strain_tag(strain)}"
-        (OUT / f"{tag}.inp").write_text(build_inp(tag, coords_str, a, b, c), encoding="utf-8")
+        tag = f"pop_n1_{dopant}_{strain_tag(strain)}"
+        (OUT / f"{tag}.inp").write_text(build_inp(tag, coords_str, a, b, c, dopant), encoding="utf-8")
         print("wrote", f"{tag}.inp")
-    meta = OUT / "dopant_site_index.json"
-    import json
+    meta = OUT / f"dopant_site_index_{dopant}.json"
+    meta.write_text(
+        json.dumps({"dopant_element": dopant, "dopant_index": int(dop_idx), "seed": SEED}, indent=2) + "\n"
+    )
+    # Legacy single-P meta for backward compatibility
+    if dopant == "P":
+        (OUT / "dopant_site_index.json").write_text(meta.read_text(encoding="utf-8"), encoding="utf-8")
+    return int(dop_idx)
 
-    meta.write_text(json.dumps({"dopant_element": "P", "dopant_index": int(p_idx), "seed": SEED}, indent=2) + "\n")
+
+def main() -> None:
+    OUT.mkdir(parents=True, exist_ok=True)
+    targets = sys.argv[1:] if len(sys.argv) > 1 else ["B", "N", "P"]
+    for dop in targets:
+        if dop not in DOPANT_KIND:
+            raise SystemExit(f"unknown dopant {dop}")
+        write_dopant_grid(dop)
 
 
 if __name__ == "__main__":

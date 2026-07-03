@@ -1,0 +1,48 @@
+{
+  "strain_pct": 3.0,
+  "n_molecules": 1,
+  "source_S": "experiments/analysis/sdc/sdc_exp10_synergy_audit.json",
+  "source_delta_r": "paper/tables/tab_V.tex",
+  "rows": [
+    {
+      "dopant": "B",
+      "delta_r_cov_pm": 7,
+      "abs_delta_r_cov_pm": 7,
+      "mismatch_fraction": 0.09090909090909091,
+      "S_meV_per_atom_n1": 8.376045828083734
+    },
+    {
+      "dopant": "N",
+      "delta_r_cov_pm": -6,
+      "abs_delta_r_cov_pm": 6,
+      "mismatch_fraction": 0.07792207792207792,
+      "S_meV_per_atom_n1": 2.299098813278564
+    },
+    {
+      "dopant": "P",
+      "delta_r_cov_pm": 30,
+      "abs_delta_r_cov_pm": 30,
+      "mismatch_fraction": 0.38961038961038963,
+      "S_meV_per_atom_n1": 31.906251664575134
+    }
+  ],
+  "heuristic": {
+    "large_abs_dr_pm_ge_20": {
+      "dopants": [
+        "P"
+      ],
+      "max_S_meV_per_atom": 31.906251664575134
+    },
+    "small_abs_dr_pm_lt_15": {
+      "dopants": [
+        "B",
+        "N"
+      ],
+      "S_range_meV_per_atom": [
+        2.299098813278564,
+        8.376045828083734
+      ]
+    },
+    "note": "N breaks pure size-mismatch scaling (electronic channel); P is geometric-regime anchor."
+  }
+}

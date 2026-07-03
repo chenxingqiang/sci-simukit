@@ -1,0 +1,17 @@
+{
+  "analyses": [
+    {
+      "system": "tetramer P rigid_pbed3 (matched-functional four corners)",
+      "n_atoms": 240,
+      "status": "complete",
+      "dispersion_ha_per_corner": {
+        "pristine_eps0": -0.32698640738172,
+        "pristine_eps3": -0.3268814676352,
+        "P_eps0": -0.34764461774161,
+        "P_eps3": -0.34459536930115
+      },
+      "S_vdW_meV_per_atom": 0.33382800457592054,
+      "note": "D3 dispersion energy only; S_vdW uses same four-corner formula on Grimme terms"
+    }
+  ]
+}

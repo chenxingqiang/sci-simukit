@@ -24,14 +24,14 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Exp8** | **6/6** ✅ |
 | **Exp9** | **12/12** GEO_OPT ✅；vertical SP **8/8** ✅ |
 | **Table IV seed137** | **24/24** ✅（18/18 dop + 6/6 pri modern） |
-| **运行中** | `pop_n1_P_strainp0.0pct` np=2 — **不干预** |
+| **运行中** | `pop_n1_P_strainp2.5pct` np=2 — **不干预** |
 | **临界区** | — |
 | **下一任务** | population **6/6**；converged → `analyze_population_strain.py` |
-| **阻塞 PRB** | population **2/6**（C-M3） |
+| **阻塞 PRB** | population **3/6**（C-M3） |
 | **文稿 P 瓶颈** | C-M3 population in progress；勿提前写 Hirshfeld 定量 |
-| **最新 Loop** | **R388** |
+| **最新 Loop** | **R390** |
 | **下一 B 任务** | population 后 Hirshfeld；勿提前写定量 |
-| **主张-证据** | matched retention = **A**；population = **B** 2/6 |
+| **主张-证据** | 主图 audit = **A**；population = **B** 3/6 |
 | **下一 C 任务** | `docs/prb_review_cn_mapping.md` 维护 |
 | **Loop C** | C-M1 **closed** ✅；C-M2 **closed** ✅；C-M3 **open** |
 | **SDC** | **15** synergy 点 |
@@ -1401,6 +1401,23 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R390（2026-07-03，Track B figures+tables）**：
+ - **Track A**：population snapshot — **不干预**
+ - **Track B**：Fig.~Marcus 1 panel + $\lambda$ 表；Table II 瘦身 + Table IIarchive；caption/Methods/response 同步；`compile_prb.sh` ✅
+ - **paper_gap**：population pending — 不进主图
+ - **创新审计**：Marcus + Table II = **A**
+ - **Git**：pending — `loop R390: Marcus compact fig + Table II split`
+ - **下一轮**：population 6/6 → mechanism 段
+
+- **Loop R389（2026-07-03，Track B figures）**：
+ - **Track A**：population **3/6**；`pop_n1_P_strainp2.5pct` CRIT — **不干预**
+ - **Track B（figures）**：`render_prb.sh` + `render_si_figures.sh`；`compile_prb.sh`；fig:main caption inset→panel annotation；JSON 审计 B/$\mathcal{S}$/Marcus
+ - **Track C**：—（图件无新 MC 项）
+ - **paper_gap**：population 3/6 — 不进主图
+ - **创新审计**：主图+S1--S3 = **A**
+ - **Git**：pending — `loop R389: refresh PRB figures + caption fix`
+ - **下一轮**：6/6 population；可选 SI S2 B $\lambda^{-}$ 标注强化
 
 - **Loop R388（2026-07-03，三轨）**：
  - **Track A**：population **2/6** partial JSON；`pop_n1_P_strainp0.0pct` OT~**CRIT** — **不干预**

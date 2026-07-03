@@ -7,6 +7,27 @@
 
 
 
+### R390 audit（2026-07-03 go loops figures+tables）
+
+| 项 | 状态 | 证据 |
+|----|------|------|
+| Fig.~Marcus | **A** | 1× schematic + tabulated IP/EA/$\lambda^{\pm}$（替代 1×4 重复抛物线） |
+| Table II | **A** | active 行主文；superseded 四行 → Table IIarchive |
+| compile_prb | **A** | PDF 重编译通过 |
+
+**创新审计（R390）**：图件信息密度 = **A**；population 仍 **B** pending
+
+### R389 audit（2026-07-03 go loops figures）
+
+| 项 | 状态 | 证据 |
+|----|------|------|
+| figure_prb_main | **A** | `render_prb.sh`；B $E_g{=}0.03$；$|\mathcal{S}|_{P,n=1}{=}31.9$；$n{=}4$ B/N/P 与 audit 一致 |
+| fig:pdos/marcus/j | **A** | SI S1--S3 重绘；Marcus $\lambda$ 与 `exp9_polaron_verification.json` 一致 |
+| fig:main caption | **A** | PRB (d) 改「inset」→「panel annotation」（无 PRL inset） |
+| population | **B** | **3/6** partial — 不进主图 |
+
+**创新审计（R389）**：主图+辅图 = **A**；population = **B**
+
 ### R388 audit（2026-07-03 go loops）
 
 | 项 | 状态 | 证据 |

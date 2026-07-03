@@ -32,19 +32,21 @@
 | 方法长句拆分 | **partial** | `methods_extended.tex` 按需 |
 | 设计启示具体化 | **partial** | Discussion Design implications（共价半径 ≳20 pm） |
 
-**Live snapshot（2026-07-03 R388）**：population **2/6**（$\epsilon=-5,-2.5$\% converged）；`pop_n1_P_strainp0.0pct` batch 运行中；`LSD .TRUE.` 入 Methods + `verify_dft_protocol`；PRB 阻塞 → C-M3 population.
+**Live snapshot（2026-07-03 R390）**：Table IV seed137 **24/24** ✅；population **P 6/6** ✅、**B/N 0/6** pending；**P0** 周期 $n{=}1$ P 弛豫 **2/4** GEO（pristine ✅；P 角 LSD 修复后重跑 `per_relax_n1_P_eps0_geo`）；`reference_pbed3/` 24 SP 待 batch；主文 **勿**写 $\mathcal{S}_{\mathrm{relaxed}}$ 直至 4/4 + `post_periodic_relax_validation.sh`。
 
 
 ## DFT 队列顺序
 
 见 `experiments/run_prb_revision_dft.sh`：
 
-1. Table III relax — **skip if 4/4**
+1. Table III relax — **skip if 4/4** ✅
 2. seed137 tetramer **24/24** ✅ — skip
 3. rigid PBE+D3 Table III matched **4/4** ✅ — skip
-4. periodic placement n=4 (seeds 137, 271)
-5. Exp10 cutoff400
-6. n=1 P population (6 SP)
+4. periodic placement n=4 — **16/16** ✅ — skip
+5. **P0** periodic $n{=}1$ P GEO (`periodic_relax_validation/`) — **2/4**；P 角须 `LSD .TRUE.`（`generate_periodic_relax_inputs.py`）
+6. population B/N Hirshfeld (`continue_population_bn.sh`) — **0/12**
+7. reference placement PBE+D3 α (`reference_pbed3/`) — inputs only
+8. Exp10 cutoff400 — idle backlog
 
 **CPU**：`experiments/cp2k_resource.sh`（≤2/3 核）；单路 CP2K。
 

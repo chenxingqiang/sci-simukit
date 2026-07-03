@@ -10,16 +10,16 @@ CP2K="${CP2K:-/opt/homebrew/bin/cp2k.psmp}"
 MPIRUN="${MPIRUN:-/opt/homebrew/bin/mpirun}"
 NP="${NP:-$(cp2k_cap_np 2)}"
 
-python3 "$ROOT/experiments/exp_7_electronic_structure/population_validation/generate_population_inputs.py"
+python3 "$ROOT/experiments/exp_7_electronic_structure/population_validation/generate_population_inputs.py" B N P
 if [[ "${RERUN_PROTOCOL_FIX:-0}" == 1 ]]; then
   ts="$(date +%Y%m%d_%H%M%S)"
-  for out in "$INP_DIR"/pop_n1_P_*.out; do
+  for out in "$INP_DIR"/pop_n1_*.out; do
     [[ -f "$out" ]] || continue
     mv "$out" "${out}.pre_protocol_fix_${ts}"
   done
 fi
 
-for inp in "$INP_DIR"/pop_n1_P_*.inp; do
+for inp in "$INP_DIR"/pop_n1_*.inp; do
   base="$(basename "$inp" .inp)"
   out="$INP_DIR/${base}.out"
   if [[ -f "$out" ]] && grep -q 'SCF run converged' "$out"; then
@@ -35,4 +35,4 @@ for inp in "$INP_DIR"/pop_n1_P_*.inp; do
   grep -q 'SCF run converged' "$out" || { echo "FAIL $base"; exit 1; }
 done
 
-python3 "$ROOT/experiments/exp_7_electronic_structure/population_validation/analyze_population_strain.py"
+python3 "$ROOT/experiments/exp_7_electronic_structure/population_validation/analyze_population_strain.py" B N P

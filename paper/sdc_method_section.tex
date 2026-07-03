@@ -11,17 +11,18 @@ Additive superposition gives $\mathcal{S}=0$; $\mathcal{S}<0$ indicates cooperat
 
 When $\alpha_\delta=\mathrm{d}E/\mathrm{d}\epsilon$ denotes the \emph{total}-cell linear strain coefficient (meV per 1\% strain) at fixed $n$, a first-order estimate of the per-atom cross term is $\mathcal{S}(\epsilon,\delta)\approx(\alpha_\delta-\alpha_0)\,\epsilon/N_{\mathrm{atoms}}$ at small $\epsilon$ under the rigid-strain protocol; tetramer and periodic $n$ use different $N_{\mathrm{atoms}}$ and dopant concentrations, so this link is not used quantitatively in the periodic audit (Discussion, argument scope).
 
-Periodic-cell $\mathcal{S}$ values are extracted from converged CP2K total energies (Table~\ref{tab:II}); the fifteen-point $+3$\% strain audit accompanies the open data release.
-We report $\mathcal{S}$ for total energy only; an analogous gap cross term $\mathcal{S}_{\mathrm{gap}}$ is not computed here---main-text panel~(a) shows that gap slopes need not track $|\mathcal{S}|$.
+Periodic-cell $\mathcal{S}$ values are extracted from CP2K total energies (Table~\ref{tab:II}); the fifteen-point $+3$\% strain audit accompanies the open data release.
+We report $\mathcal{S}$ for total energy only.
+By the same four-corner construction one may define $\mathcal{S}_{\mathrm{gap}}=E_g(\epsilon,\delta)-[E_g(\epsilon,0)+E_g(0,\delta)-E_g(0,0)]$ (and analogously $\mathcal{S}_{J}$, $\mathcal{S}_{\lambda}$ for hopping or reorganization energies); these observables are \emph{not} tabulated here---panel~(a) of Fig.~\ref{fig:main} shows that gap slopes need not track $|\mathcal{S}|$.
 
-\subsubsection{Localization and coupling (Fig.~\ref{fig:j})}
-Following Capobianco \emph{et al.}~\cite{Capobianco2024electron}, we report the inverse participation ratio (IPR) of the charged-state frontier orbital and the nearest-neighbor electronic coupling $J$ from tetramer dimer fragments.
-IPR is $N\sum_i|\psi_i|^4/(\sum_i|\psi_i|^2)^2$ on a Mulliken-projected orbital grid; verified values for the four corners in Table~\ref{tab:II} accompany the open data release.
-$J$ is estimated from the ground--first-excited splitting of the anionic dimer at fixed interfullerene geometry (two-state model) and plotted in Fig.~\ref{fig:j}.
-These observables use the same PBE+D3 level as the energy scans and are \emph{not} directly comparable in absolute value to the Koopmans-compliant $J\simeq 75$--$81$~meV reported for pristine qHP networks~\cite{Capobianco2024electron}, but they provide an internally consistent trend under coupled $(\epsilon,\delta)$.
+\paragraph{Attribution framework (total energy).}
+Conceptually, $\mathcal{S}=\mathcal{S}_{\mathrm{geom}}+\mathcal{S}_{\mathrm{el}}+\mathcal{S}_{\mathrm{vdW}}$, where $\mathcal{S}_{\mathrm{geom}}$ collects nonlinear elastic work from bond-angle and cage-shape changes beyond first-order strain, $\mathcal{S}_{\mathrm{el}}$ from charge-transfer and orbital-rehybridization nonlinearities, and $\mathcal{S}_{\mathrm{vdW}}$ from the Grimme D3 cross term.
+On the matched-functional tetramer $P$ rigid four-corner grid, extracting D3 dispersion energies gives $\mathcal{S}_{\mathrm{vdW}}\approx +0.33$~meV/atom---negligible versus $|\mathcal{S}_{\mathrm{rigid}}^{\mathrm{PBE+D3}}|\approx 1.2$~meV/atom (Table~\ref{tab:III}).
+Full corner-resolved projections for B/N and periodic cells remain open; Table~\ref{tab:V} ($\bar{d}$, $\Delta r_{\mathrm{cov}}$) and Hirshfeld population (Sec.~\ref{sec:methods_population}) proxy geometric vs.\ electronic channels in Discussion.
+
+\subsubsection{Localization and coupling (open data)}
+Following Capobianco \emph{et al.}~\cite{Capobianco2024electron}, inverse participation ratios and nearest-neighbor hopping $J$ are archived for tetramer dimer fragments at the same PBE+D3 level as the energy scans; they are not used to infer $\mathcal{S}$.
 
 \subsubsection{Polaron binding}
-Marcus reorganization energies follow the vertical--adiabatic decomposition~\cite{Capobianco2024electron}:
-$\lambda^{\pm}=E_{\mathrm{vert}}^{\pm}-E_{\mathrm{opt}}^{\pm}$, with separate internal ($\lambda^{\pm}_{\mathrm{loc}}$) and environmental ($\lambda^{\pm}_{\mathrm{env}}$) contributions when geometry subsets are relaxed.
-Charged-state relaxations and vertical single-points are documented in Fig.~\ref{fig:marcus}.
-Charged geometry optimizations supply adiabatic IP/EA; vertical single-points at the neutral geometry yield Marcus $\lambda^{\pm}$ (Fig.~\ref{fig:marcus}).
+Marcus reorganization energies follow the vertical--adiabatic decomposition~\cite{Capobianco2024electron} (Supplemental Material).
+Charged geometry optimizations supply adiabatic IP/EA; vertical single-points at the neutral geometry yield Marcus $\lambda^{\pm}$.

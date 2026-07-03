@@ -39,7 +39,7 @@ def main() -> None:
 
     for dop in ("B", "N", "P"):
         old = f"{dop} & alternate & pending & pending & pending"
-        new = f"{dop} & alternate & {fmt_alpha(a137.get(dop))} & {fmt_s(s137.get(dop))} & verified (seed~137)"
+        new = f"{dop} & alternate & {fmt_alpha(a137.get(dop))} & {fmt_s(s137.get(dop))} & verified (alternate)"
         if old not in text:
             old2 = f"{dop} & alternate & pending & pending & pending \\\\"
             new2 = f"{dop} & alternate & {fmt_alpha(a137.get(dop))} & {fmt_s(s137.get(dop))} & verified (seed~137) \\\\"

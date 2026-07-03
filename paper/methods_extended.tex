@@ -12,11 +12,11 @@ Periodic supercells place one substituent per C$_{60}$ unit ($n=1$--$8$), giving
 \subsubsection{Alternate-placement benchmark (Table~\ref{tab:IV})}
 \label{sec:methods_s4_seed}
 The \emph{reference} placement in Table~\ref{tab:IV} is the archived rigid tetramer map underlying Table~\ref{tab:I} (legacy PBE without D3).
-The \emph{alternate} placement repeats the full B/N/P strain grid ($\epsilon\in\{-5,-2.5,0,+2.5,+3,+5\}$\%; 18 rigid single-point tasks) with an independently rerolled substitution map at the same nominal 5\% doping level (seed~137).
+The \emph{alternate} placement repeats the full B/N/P strain grid ($\epsilon\in\{-5,-2.5,0,+2.5,+3,+5\}$\%; 18 rigid single-point tasks) with an independently rerolled substitution map at the same nominal 5\% doping level (pseudorandom seed~137; public archive).
 Reference-placement $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ for B/N/P is tabulated in Table~\ref{tab:IV} and Sec.~\ref{sec:synergy}; periodic $\mathcal{S}(n)$ is not inferred from either tetramer map.
 Alternate tasks use PBE+D3 rigid single-point total-energy evaluations at 400~Ry with an SCF convergence threshold of $10^{-6}$~$E_{\mathrm{h}}$; they are \emph{not} on the same exchange-correlation treatment as the reference $\alpha$ column, so only within-placement trends are compared once the grid converges.
-At periodic $n{=}4$, two independent site maps (seeds 137 and 271) repeat the four-corner Eq.~\eqref{eq:synergy_order} audit (pristine and B/N/P at $\epsilon{=}0$ and $+3$\%; eight energies per seed, 16 total) under the same PBE+D3 rigid protocol as the fifteen-point size-scaling grid; rankings of $|\mathcal{S}|$ at $+3$\% are compared to the reference map (seed~42) in Table~\ref{tab:Sgrid} once converged (16/16 complete for seeds 137 and 271).
-Long-running SCF steps resume from wavefunction restarts; after an out-of-memory failure, a Cholesky factorization ABORT, or an outer-SCF stall (e.g.\ seed-137 B at $+2.5$\% strain hitting the 200-step OT cap at $10^{-6}$~$E_{\mathrm{h}}$), the batch archives the partial log, may relax \texttt{EPS\_SCF} to $10^{-5}$ on the affected input, resumes at reduced MPI width ($\leq 2$ ranks for tetramer ENERGY), and uses at most two-thirds of available CPU cores so tetramer tasks do not contend with periodic cutoff controls.
+At periodic $n{=}4$, two independent site maps repeat the four-corner Eq.~\eqref{eq:synergy_order} audit (pristine and B/N/P at $\epsilon{=}0$ and $+3$\%; eight energies per map, 16 total) under the same PBE+D3 rigid protocol as the fifteen-point size-scaling grid; rankings of $|\mathcal{S}|$ at $+3$\% are compared to the production reference map in Table~\ref{tab:Sgrid}. Fixed pseudorandom seeds 137 and 271 identify the alternate maps in the archive; the production map uses seed~42.
+Where alternate-grid rigid single-points stall in SCF, the convergence threshold may be relaxed to $10^{-5}$~$E_{\mathrm{h}}$ for that task.
 
 \subsubsection{Ionic-relaxation benchmark (Table~\ref{tab:III})}
 \label{sec:methods_s3_relax}
@@ -24,23 +24,25 @@ The four tetramer corners in Table~\ref{tab:III} are pristine and $P$-substitute
 They use fixed-cell geometry optimization with BFGS (maximum 300 ionic steps for pristine corners and 450 for $P$-substituted corners) at prescribed in-plane cell vectors; only fractional coordinates relax while lattice vectors remain fixed.
 BFGS stops at 300 steps or when the maximum and RMS force components fall below $4.5\times10^{-4}$ and $3.0\times10^{-4}$~Ha/bohr, or when the maximum and RMS atomic displacements fall below $3.0\times10^{-3}$ and $1.5\times10^{-3}$~bohr, respectively.
 These tasks use the same PBE+D3 settings as periodic audits: 400~Ry plane-wave cutoff, DZVP-MOLOPT-SR-GTH basis, and an SCF convergence threshold of $10^{-6}$~$E_{\mathrm{h}}$ (pristine) or $10^{-5}$~$E_{\mathrm{h}}$ ($P$-substituted) with OT--DIIS (up to 300 inner SCF iterations per ionic step and 20--40 outer SCF cycles) before updating the density for the next BFGS displacement.
-Interrupted runs resume from the latest motion restart file (\texttt{*-1.restart}) and SCF wavefunction restart (\texttt{*-RESTART.wfn}) without regenerating converged pristine inputs.
-Rigid reference energies in Table~\ref{tab:III} remain the archived legacy-PBE (no D3) single-point grid; relaxed and rigid corners therefore differ in exchange-correlation treatment, and the benchmark tests whether ionic relaxation preserves the rigid $\mathcal{S}$ sign (Table~\ref{tab:III}: sign \emph{not} preserved; $\mathcal{S}_{\mathrm{relaxed}}=-2.28$ vs.\ $\mathcal{S}_{\mathrm{rigid}}=+0.96$~meV/atom).
-A matched-functional control recomputes the same four corners as rigid PBE+D3 single points at the relaxed fractional coordinates (400~Ry, $10^{-6}$~$E_{\mathrm{h}}$ SCF, no ionic steps).
-With all four matched corners converged, Table~\ref{tab:III} reports $\mathcal{S}_{\mathrm{rigid}}^{\mathrm{PBE+D3}}=+1.19$~meV/atom and $|\mathcal{S}_{\mathrm{relaxed}}|/|\mathcal{S}_{\mathrm{rigid}}^{\mathrm{PBE+D3}}|\approx 1.9$ (sign \emph{not} preserved); the legacy-PBE rigid row remains for comparability with the archived tetramer grid.
+Rigid reference energies in Table~\ref{tab:III} remain the archived legacy-PBE (no D3) single-point grid; relaxed corners use PBE+D3, so the legacy cross-functional row is sign-qualitative only.
+A matched-functional control recomputes the same four corners as rigid PBE+D3 single points at the relaxed fractional coordinates (400~Ry, $10^{-6}$~$E_{\mathrm{h}}$ SCF, no ionic steps); quantitative retention is read from the matched-functional row in Table~\ref{tab:III}, while the legacy-PBE rigid row remains for comparability with the archived tetramer grid.
 
 
 \subsubsection{Population strain path ($n{=}1$ P)}
 \label{sec:methods_population}
 Six rigid single-point tasks on the $n{=}1$ P-substituted periodic supercell scan Hirshfeld atomic charges along $\epsilon\in\{-5,-2.5,0,+2.5,+3,+5\}$\% (Table~\ref{tab:II}); Mayer bond orders are extracted in post-processing from converged wavefunctions.
 These tasks use the same PBE+D3, 400~Ry, and $10^{-6}$~$E_{\mathrm{h}}$ SCF settings as the periodic size-scaling grid; the neutral $n{=}1$ P cell has an odd electron count, so spin-polarized KS (\texttt{LSD .TRUE.}) is enabled (unlike the closed-shell size-scaling ENERGY tasks).
-They complement geometric $\bar{d}$ metrics in Table~\ref{tab:V} once converged.
+They complement geometric $\bar{d}$ metrics in Table~\ref{tab:V}.
+
+\subsubsection{Periodic ionic-relaxation benchmark (pending)}
+\label{sec:methods_periodic_relax}
+Fixed-cell geometry optimization on the periodic $n{=}1$ P-substitution four corners (pristine and $P$ at $\epsilon{=}0$ and $+3$\%; PBE+D3, 400~Ry) uses the same BFGS thresholds as Table~\ref{tab:III}.
+Inputs are generated from the converged rigid single-point cells in the size-scaling archive; results will be tabulated separately once all four corners converge (do not rescale tetramer Table~\ref{tab:III} benchmarks).
 
 \subsubsection{Marcus vertical step and post-processing}
 \label{sec:methods_marcus}
 Charged-state geometry optimizations supply adiabatic ionization potentials and electron affinities ($E_{\mathrm{opt}}^{\pm}$).
-Eight vertical single-point energy evaluations compute $E_{\mathrm{vert}}^{\pm}$ at the \emph{neutral}-geometry coordinates with the charged UKS settings of the relaxed state, following Ref.~\citenum{Capobianco2024electron}; $\lambda^{\pm}=E_{\mathrm{vert}}^{\pm}-E_{\mathrm{opt}}^{\pm}$ (Fig.~\ref{fig:marcus}).
-Figure~\ref{fig:marcus} schematically separates adiabatic IP (slanted arrow between neutral and charged minima) from the neutral-geometry vertical single-points that define $\lambda^{\pm}=E_{\mathrm{vert}}^{\pm}-E_{\mathrm{opt}}^{\pm}$; adiabatic EA is quoted as text on the B and P panels only.
-For near-gap B doping, negative $\lambda^{-}$ from the vertical step at fixed neutral coordinates is treated as a semilocal artifact (Sec.~\ref{sec:transport_obs}) and excluded from rate estimates.
+Eight vertical single-point energy evaluations compute $E_{\mathrm{vert}}^{\pm}$ at the \emph{neutral}-geometry coordinates with the charged UKS settings of the relaxed state, following Ref.~\citenum{Capobianco2024electron}; $\lambda^{\pm}=E_{\mathrm{vert}}^{\pm}-E_{\mathrm{opt}}^{\pm}$ (Supplemental Material).
+For near-gap B doping, negative $\lambda^{-}$ from the vertical step at fixed neutral coordinates is treated as a semilocal artifact and excluded from rate estimates.
 $\pi$-projected densities of states use a 0.05~eV Gaussian broadening aligned to the Fermi level (Fig.~\ref{fig:pdos}).
-Inverse participation ratios and hopping integrals $J$ are defined in Sec.~\ref{sec:methods}; verified IPR values accompany the open data release, whereas Fig.~\ref{fig:j} reports $J$ only on the tetramer dimer grid.
+Inverse participation ratios and hopping integrals $J$ are defined in Sec.~\ref{sec:methods}; verified IPR and $J$ values accompany the open data release (not used to infer $\mathcal{S}$).

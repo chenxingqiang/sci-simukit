@@ -1,0 +1,41 @@
+% Supplemental Material — figures and tables not in main PRB text.
+\documentclass[%
+ reprint,
+ groupedaddress,
+ amsmath,amssymb,
+ aps,
+ prb,
+ floatfix,
+]{revtex4-2}
+
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc}
+\usepackage{dcolumn}
+\usepackage{bm}
+\usepackage{url}
+
+\begin{document}
+
+\title{Supplemental Material for:\\Non-Additive Strain--Doping Coupling in Quasi-Hexagonal C$_{60}$ Graphullerene}
+
+\author{Xingqiang Chen}
+\author{Qixing Wang}
+\affiliation{Department of Physics, Xiamen University, Xiamen 361005, China}
+
+\maketitle
+
+\section{Periodic synergy rows ($n\geq 6$)}
+\input{tables/tab_S_synergy_grid_si.tex}
+
+\section{Marcus reorganization energies}
+Polaron transport diagnostics are orthogonal to the total-energy synergy audit $\mathcal{S}$ in the main text.
+\input{tables/fig_marcus.tex}
+
+\section{Hopping integral $J$}
+\input{tables/fig_transport.tex}
+\input{tables/transport_text.tex}
+
+\bibliography{strain_graphullerene_50refs}
+
+\end{document}

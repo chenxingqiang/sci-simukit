@@ -1408,7 +1408,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track C**：`response` pending 表 **2/6**；mapping R387 live snapshot
  - **paper_gap**：population 2/6 — 不改 Hirshfeld 定量
  - **创新审计**：Methods LSD 契约 = **A**；population = **B** 2/6
- - **Git**：pending — `loop R387: population LSD Methods + verify protocol`
+ - **Git**：`9f39c88` — loop R387；（**pushed: local only**）
  - **下一轮**：6/6 → `analyze_population_strain.py`；Discussion (iv)
 
 - **Loop R386（2026-07-03，三轨）**：

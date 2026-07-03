@@ -32,7 +32,7 @@
 | 方法长句拆分 | **partial** | `methods_extended.tex` 按需 |
 | 设计启示具体化 | **partial** | Discussion Design implications（共价半径 ≳20 pm） |
 
-**Live snapshot（2026-07-03 R387）**：population **2/6**（$\epsilon=-5,-2.5$\% converged）；`pop_n1_P_strainp0.0pct` batch 运行中；`LSD .TRUE.` 入 Methods + `verify_dft_protocol`；PRB 阻塞 → C-M3 population.
+**Live snapshot（2026-07-03 R388）**：population **2/6**（$\epsilon=-5,-2.5$\% converged）；`pop_n1_P_strainp0.0pct` batch 运行中；`LSD .TRUE.` 入 Methods + `verify_dft_protocol`；PRB 阻塞 → C-M3 population.
 
 
 ## DFT 队列顺序

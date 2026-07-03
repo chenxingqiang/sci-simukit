@@ -2,20 +2,20 @@
   "system": "1xC60 P substitutional",
   "seed": 42,
   "dopant_index": 0,
-  "status": "pending",
+  "status": "partial",
   "mayer_note": "Mayer bond orders: post-process CP2K WFN with Lobster/Multiwfn (see docs/prb_review_cn_mapping.md)",
   "strain_path": [
     {
       "strain_pct": -5.0,
       "task": "pop_n1_P_strainm5.0pct",
-      "converged": false,
-      "hirshfeld_charge_P": null
+      "converged": true,
+      "hirshfeld_charge_P": 0.02079
     },
     {
       "strain_pct": -2.5,
       "task": "pop_n1_P_strainm2.5pct",
-      "converged": false,
-      "hirshfeld_charge_P": null
+      "converged": true,
+      "hirshfeld_charge_P": 0.019543
     },
     {
       "strain_pct": 0.0,

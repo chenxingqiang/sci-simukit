@@ -29,7 +29,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **下一任务** | population **6/6**；converged → `analyze_population_strain.py` |
 | **阻塞 PRB** | population **2/6**（C-M3） |
 | **文稿 P 瓶颈** | C-M3 population in progress；勿提前写 Hirshfeld 定量 |
-| **最新 Loop** | **R387** |
+| **最新 Loop** | **R388** |
 | **下一 B 任务** | population 后 Hirshfeld；勿提前写定量 |
 | **主张-证据** | matched retention = **A**；population = **B** 2/6 |
 | **下一 C 任务** | `docs/prb_review_cn_mapping.md` 维护 |
@@ -1401,6 +1401,15 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R388（2026-07-03，三轨）**：
+ - **Track A**：population **2/6** partial JSON；`pop_n1_P_strainp0.0pct` OT~**CRIT** — **不干预**
+ - **Track B（VI Results）**：sec:strain_response 增 Table V ↔ Hirshfeld 定性桥接；`post_population_validation.sh`；`exp7_population_status_line` OT/CRIT
+ - **Track C**：`response` pending 表 p0.0 CRIT 注；mapping R388
+ - **paper_gap**：population 2/6 — 主文无 Hirshfeld 电荷数
+ - **创新审计**：Results 桥接 = **A**；population partial = **B**
+ - **Git**：pending — `loop R388: Results Table V bridge + population post hook`
+ - **下一轮**：p0.0 converged → **立即** `post_population_validation.sh`；6/6 → Discussion (iv)
 
 - **Loop R387（2026-07-03，三轨）**：
  - **Track A**：population **2/6**（m5/m2.5 ✅）；`pop_n1_P_strainp0.0pct` batch — **不干预**

@@ -7,6 +7,17 @@
 
 
 
+### R388 audit（2026-07-03 go loops）
+
+| 项 | 状态 | 证据 |
+|----|------|------|
+| population | **B** partial | **2/6** JSON；p0.0 OT~CRIT |
+| Results Table V bridge | **A** | sec:strain_response 定性 Hirshfeld 句；无电荷数 |
+| post_population | **A** | `post_population_validation.sh` + status OT/CRIT |
+| Hirshfeld 主文定量 | **C** | 6/6 前禁止 |
+
+**创新审计（R388）**：Results 几何–电子分离叙事 = **A**；population = **B** partial
+
 ### R387 audit（2026-07-03 go loops）
 
 | 项 | 状态 | 证据 |

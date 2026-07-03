@@ -33,7 +33,8 @@ With all four matched corners converged, Table~\ref{tab:III} reports $\mathcal{S
 \subsubsection{Population strain path ($n{=}1$ P)}
 \label{sec:methods_population}
 Six rigid single-point tasks on the $n{=}1$ P-substituted periodic supercell scan Hirshfeld atomic charges along $\epsilon\in\{-5,-2.5,0,+2.5,+3,+5\}$\% (Table~\ref{tab:II}); Mayer bond orders are extracted in post-processing from converged wavefunctions.
-These tasks use the same PBE+D3, 400~Ry, and $10^{-6}$~$E_{\mathrm{h}}$ SCF settings as the periodic size-scaling grid and complement geometric $\bar{d}$ metrics in Table~\ref{tab:V} once converged.
+These tasks use the same PBE+D3, 400~Ry, and $10^{-6}$~$E_{\mathrm{h}}$ SCF settings as the periodic size-scaling grid; the neutral $n{=}1$ P cell has an odd electron count, so spin-polarized KS (\texttt{LSD .TRUE.}) is enabled (unlike the closed-shell size-scaling ENERGY tasks).
+They complement geometric $\bar{d}$ metrics in Table~\ref{tab:V} once converged.
 
 \subsubsection{Marcus vertical step and post-processing}
 \label{sec:methods_marcus}

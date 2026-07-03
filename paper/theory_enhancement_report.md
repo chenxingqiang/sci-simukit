@@ -7,6 +7,17 @@
 
 
 
+### R387 audit（2026-07-03 go loops）
+
+| 项 | 状态 | 证据 |
+|----|------|------|
+| population | **B** in progress | **2/6** converged；`pop_n1_P_strainp0.0pct` running |
+| Methods LSD | **A** | `methods_extended` §population；`verify_dft_protocol` `require_lsd` |
+| tab_II / extended | **A** | 去 `population_validation/` 路径；spin-polarized KS 注 |
+| Hirshfeld 主文 | **C** | 6/6 前不写定量 |
+
+**创新审计（R387）**：C-M3 population = **B** 2/6；Methods–inp LSD = **A**
+
 ### R386 audit（2026-07-03 go loops）
 
 | 项 | 状态 | 证据 |

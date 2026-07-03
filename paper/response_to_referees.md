@@ -178,7 +178,7 @@ We thank the referee for recognizing the corrections to doping concentration, Ma
 | 400~Ry $n{=}6$ N SP (Exp10 41/41) | II | **complete** |
 | Marcus vertical SP (8) | Fig.~3 | **8/8** converged; eight $\lambda^{\pm}$ in Fig.~3; B $\lambda^{-}{=}{-}0.173$~eV flagged non-physical (Limitations) |
 | Matched-functional rigid PBE+D3 (Table III) | III | **complete** 4/4; ratio $\approx 1.9$ (sign not preserved) |
-| Population Hirshfeld ($n{=}1$ P) | V / II | **pending** 0/6 |
+| Population Hirshfeld ($n{=}1$ P) | V / II | **in progress** 2/6 ($\epsilon=-5,-2.5$\% converged); `LSD .TRUE.` for odd $e^{-}$ |
 | Setup/process/result audit | reliability audit | **294** pass / 2 warn |
 
 ---

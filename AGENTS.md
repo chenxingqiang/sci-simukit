@@ -24,14 +24,14 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Exp8** | **6/6** ✅ |
 | **Exp9** | **12/12** GEO_OPT ✅；vertical SP **8/8** ✅ |
 | **Table IV seed137** | **24/24** ✅（18/18 dop + 6/6 pri modern） |
-| **运行中** | `pop_n1_P_strainm2.5pct` np=2 — **不干预** |
+| **运行中** | `pop_n1_P_strainp0.0pct` np=2 — **不干预** |
 | **临界区** | — |
 | **下一任务** | population **6/6**；converged → `analyze_population_strain.py` |
-| **阻塞 PRB** | population **0/6**（C-M3） |
-| **文稿 P 瓶颈** | C-M3 population pending；methods 边界已清 |
-| **最新 Loop** | **R386** |
+| **阻塞 PRB** | population **2/6**（C-M3） |
+| **文稿 P 瓶颈** | C-M3 population in progress；勿提前写 Hirshfeld 定量 |
+| **最新 Loop** | **R387** |
 | **下一 B 任务** | population 后 Hirshfeld；勿提前写定量 |
-| **主张-证据** | matched retention = **A**；population = **B** pending |
+| **主张-证据** | matched retention = **A**；population = **B** 2/6 |
 | **下一 C 任务** | `docs/prb_review_cn_mapping.md` 维护 |
 | **Loop C** | C-M1 **closed** ✅；C-M2 **closed** ✅；C-M3 **open** |
 | **SDC** | **15** synergy 点 |
@@ -1401,6 +1401,15 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R387（2026-07-03，三轨）**：
+ - **Track A**：population **2/6**（m5/m2.5 ✅）；`pop_n1_P_strainp0.0pct` batch — **不干预**
+ - **Track B（IV Methods）**：`sec:methods_population` 增 LSD 奇电子句；`tab_II`/extended tables 去路径；`verify_dft_protocol` population 改 `require_lsd`
+ - **Track C**：`response` pending 表 **2/6**；mapping R387 live snapshot
+ - **paper_gap**：population 2/6 — 不改 Hirshfeld 定量
+ - **创新审计**：Methods LSD 契约 = **A**；population = **B** 2/6
+ - **Git**：pending — `loop R387: population LSD Methods + verify protocol`
+ - **下一轮**：6/6 → `analyze_population_strain.py`；Discussion (iv)
 
 - **Loop R386（2026-07-03，三轨）**：
  - **Track A**：rigid_pbed3 **4/4** ✅；population ABORT（odd e$^{-}$）→ `LSD .TRUE.`；batch 重跑 — **不干预**

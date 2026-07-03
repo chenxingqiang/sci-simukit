@@ -4,13 +4,13 @@
   "strain_pct": 3.0,
   "rigid_protocol": "PBE+D3 rigid single-point (matched functional), 400 Ry",
   "relaxed_protocol": "PBE+D3, fixed-cell geometry optimization, 400 Ry cutoff",
-  "quantitative_ratio_valid": false,
+  "quantitative_ratio_valid": true,
   "energies_ha": {
     "rigid_pbed3": {
       "pristine_eps0": -1363.8768932694084,
-      "pristine_eps3": null,
-      "P_eps0": null,
-      "P_eps3": null
+      "pristine_eps3": -1363.8767806661879,
+      "P_eps0": -1370.8552181774621,
+      "P_eps3": -1370.844628580875
     },
     "relaxed": {
       "pristine_eps0": -1363.9550964975476,
@@ -21,8 +21,18 @@
   },
   "scf_converged": {
     "pristine_eps0": true,
-    "pristine_eps3": false,
-    "P_eps0": false,
-    "P_eps3": false
-  }
+    "pristine_eps3": true,
+    "P_eps0": true,
+    "P_eps3": true
+  },
+  "S_rigid_pbed3": {
+    "S_ha_per_atom": 4.365413902765805e-05,
+    "S_meV_per_atom": 1.1878896383176623,
+    "delta_strain_ha": 4.6918008536067644e-07,
+    "delta_doping_ha": -0.02907635378355735,
+    "delta_combined_ha": -0.029032230464444333
+  },
+  "delta_S_meV_matched": -3.4652736984651114,
+  "sign_preserved_matched": false,
+  "retention_ratio_abs": 1.917
 }

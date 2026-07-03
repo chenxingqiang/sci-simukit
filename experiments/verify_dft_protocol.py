@@ -40,7 +40,7 @@ CHECKS = [
         "population",
         REPO / "experiments/exp_7_electronic_structure/population_validation/inputs",
         "pop_n1_P_*.inp",
-        {"mgrid": True, "d3": True, "kind_q": True, "no_lsd": True, "no_forces": True, "no_energy_gap": True},
+        {"mgrid": True, "d3": True, "kind_q": True, "require_lsd": True, "no_forces": True, "no_energy_gap": True},
     ),
     (
         "exp7",
@@ -131,6 +131,8 @@ def check_file(path: Path, rules: dict) -> list[str]:
         errs.append("contains &FORCES")
     if rules.get("no_lsd") and re.search(r"^\s*LSD\s+\.TRUE\.", text, re.M):
         errs.append("LSD .TRUE.")
+    if rules.get("require_lsd") and not re.search(r"^\s*LSD\s+\.TRUE\.", text, re.M):
+        errs.append("missing LSD .TRUE. (odd electron count)")
     if rules.get("no_energy_gap") and re.search(r"^\s*ENERGY_GAP\s+", text, re.M):
         errs.append("ENERGY_GAP present")
     if rules.get("max_scf_300"):

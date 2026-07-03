@@ -1408,7 +1408,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track C**：C-M1 matched-functional **closed**
  - **paper_gap**：population 0/6 — 不改 Hirshfeld 定量
  - **创新审计**：matched ratio = **A**；population = **B**
- - **Git**：pending
+ - **Git**：`83d3689` — loop R386；（**pushed: local only**）
  - **下一轮**：population converged → Discussion (iv) 机制句
 
 - **Loop R385（2026-07-03，三轨）**：

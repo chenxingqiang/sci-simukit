@@ -1408,7 +1408,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track C**：`response_to_referees` MC2 + pending 表同步 R385
  - **paper_gap**：population 0/6 — 不改主文 Hirshfeld 定量
  - **创新审计**：Table IV alternate = **A**；population = **B**
- - **Git**：pending
+ - **Git**：`a13ed40` — loop R385；（**pushed: local only**）
  - **下一轮**：rigid_pbed3 4/4 → tab_III matched；population 6/6 → C-M3
 
 - **Loop R384（2026-07-02，三轨）**：

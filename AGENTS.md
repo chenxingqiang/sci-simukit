@@ -1408,7 +1408,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track C**：`response` pending 表 p0.0 CRIT 注；mapping R388
  - **paper_gap**：population 2/6 — 主文无 Hirshfeld 电荷数
  - **创新审计**：Results 桥接 = **A**；population partial = **B**
- - **Git**：pending — `loop R388: Results Table V bridge + population post hook`
+ - **Git**：`f0a8941` — loop R388；（**pushed: local only**）
  - **下一轮**：p0.0 converged → **立即** `post_population_validation.sh`；6/6 → Discussion (iv)
 
 - **Loop R387（2026-07-03，三轨）**：

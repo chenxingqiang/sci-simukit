@@ -7,6 +7,17 @@
 
 
 
+### R386 audit（2026-07-03 go loops）
+
+| 项 | 状态 | 证据 |
+|----|------|------|
+| rigid_pbed3 matched | **A** | **4/4**；`quantitative_ratio_valid`；retention $\approx 1.9$ |
+| population | **B** pending | **0/6**；ABORT odd e$^{-}$ → **LSD** patch |
+| main tex P0 | **A** | 去 `placement_validation/` / `population_validation/` / `rigid_pbed3/` |
+| tab_III caption | **A** | matched-functional 措辞与 JSON 一致 |
+
+**创新审计（R386）**：C-M1 matched = **A** closed；population = **B**（LSD fix 后重跑）
+
 ### R385 audit（2026-07-03 go loops）
 
 | 项 | 状态 | 证据 |

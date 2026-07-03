@@ -32,7 +32,7 @@
 | 方法长句拆分 | **partial** | `methods_extended.tex` 按需 |
 | 设计启示具体化 | **partial** | Discussion Design implications（共价半径 ≳20 pm） |
 
-**Live snapshot（2026-07-03 R385）**：seed137 **24/24** ✅；rigid_pbed3 **1/4**；population **0/6**；PRB 阻塞 → C-M3 population + matched-functional 3/4.
+**Live snapshot（2026-07-03 R386）**：rigid_pbed3 **4/4** ✅（ratio valid）；population **0/6**（LSD fix 后重跑）；PRB 阻塞 → C-M3 population.
 
 
 ## DFT 队列顺序
@@ -41,7 +41,7 @@
 
 1. Table III relax — **skip if 4/4**
 2. seed137 tetramer **24/24** ✅ — skip
-3. rigid PBE+D3 Table III matched (4 SP)
+3. rigid PBE+D3 Table III matched **4/4** ✅ — skip
 4. periodic placement n=4 (seeds 137, 271)
 5. Exp10 cutoff400
 6. n=1 P population (6 SP)

@@ -58,7 +58,7 @@ We thank the referee for recognizing the corrections to doping concentration, Ma
 
 **Referee concern:** incomplete Table~III; no periodic relax; upper bounds only.
 
-**Response:** We agree. All main-text $|\mathcal{S}|$ remain **protocol upper bounds**; Table~III is **sign-qualitative** with cross-functional rigid (legacy PBE) vs.\ relaxed (PBE+D3) corners. Fixed-cell geometry optimization on all four corners is **complete** (pristine $\epsilon{=}0,+3$\% and $P$ $\epsilon{=}0,+3$\%): $\mathcal{S}_{\mathrm{rigid}}=+0.96$~meV/atom versus $\mathcal{S}_{\mathrm{relaxed}}=-2.28$~meV/atom (**sign not preserved**). The $P$ $\epsilon{=}0$ corner required one outer-SCF restart; the $P$ $\epsilon{=}3$\% corner required continuation past a 300-step BFGS cap (450-step restart). Queue details do not alter the sign-qualitative interpretation protocol. A matched-functional rigid grid remains future work before any quantitative retention ratio.
+**Response:** We agree. All main-text $|\mathcal{S}|$ remain **protocol upper bounds**; Table~III is **sign-qualitative** with cross-functional rigid (legacy PBE) vs.\ relaxed (PBE+D3) corners. Fixed-cell geometry optimization on all four corners is **complete** (pristine $\epsilon{=}0,+3$\% and $P$ $\epsilon{=}0,+3$\%): $\mathcal{S}_{\mathrm{rigid}}=+0.96$~meV/atom versus $\mathcal{S}_{\mathrm{relaxed}}=-2.28$~meV/atom (**sign not preserved**). The $P$ $\epsilon{=}0$ corner required one outer-SCF restart; the $P$ $\epsilon{=}3$\% corner required continuation past a 300-step BFGS cap (450-step restart). Queue details do not alter the sign-qualitative interpretation protocol. A matched-functional PBE+D3 rigid grid on the same four corners is **complete** (4/4): $\mathcal{S}_{\mathrm{rigid}}^{\mathrm{PBE+D3}}=+1.19$~meV/atom with $|\mathcal{S}_{\mathrm{relaxed}}|/|\mathcal{S}_{\mathrm{rigid}}^{\mathrm{PBE+D3}}|\approx 1.9$ (sign still not preserved).
 
 **DFT status:** Table~III **4/4** (`relax_validation/`; `relax_validation_tetramer.json`).
 
@@ -177,7 +177,7 @@ We thank the referee for recognizing the corrections to doping concentration, Ma
 | Alternate-placement ENERGY grid | IV | **complete** 24/24 (PBE+D3 rigid) |
 | 400~Ry $n{=}6$ N SP (Exp10 41/41) | II | **complete** |
 | Marcus vertical SP (8) | Fig.~3 | **8/8** converged; eight $\lambda^{\pm}$ in Fig.~3; B $\lambda^{-}{=}{-}0.173$~eV flagged non-physical (Limitations) |
-| Matched-functional rigid PBE+D3 (Table III) | III | **1/4** converged; 3 SP pending |
+| Matched-functional rigid PBE+D3 (Table III) | III | **complete** 4/4; ratio $\approx 1.9$ (sign not preserved) |
 | Population Hirshfeld ($n{=}1$ P) | V / II | **pending** 0/6 |
 | Setup/process/result audit | reliability audit | **294** pass / 2 warn |
 

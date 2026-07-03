@@ -24,16 +24,16 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Exp8** | **6/6** ✅ |
 | **Exp9** | **12/12** GEO_OPT ✅；vertical SP **8/8** ✅ |
 | **Table IV seed137** | **24/24** ✅（18/18 dop + 6/6 pri modern） |
-| **运行中** | PRB queue：`rigid_pbed3` 1/4 → population 0/6 — **启动 batch** |
+| **运行中** | `pop_n1_P_strainm2.5pct` np=2 — **不干预** |
 | **临界区** | — |
-| **下一任务** | `rigid_pbed3` 3 SP + `population_validation` 6 SP |
-| **阻塞 PRB** | population **0/6**；matched-functional **1/4** |
+| **下一任务** | population **6/6**；converged → `analyze_population_strain.py` |
+| **阻塞 PRB** | population **0/6**（C-M3） |
 | **文稿 P 瓶颈** | C-M3 population pending；methods 边界已清 |
-| **最新 Loop** | **R385** |
-| **下一 B 任务** | population 收敛后 Table V / Discussion (iv) |
-| **主张-证据** | tab_IV alternate = **A**（24/24）；population = **B** pending |
+| **最新 Loop** | **R386** |
+| **下一 B 任务** | population 后 Hirshfeld；勿提前写定量 |
+| **主张-证据** | matched retention = **A**；population = **B** pending |
 | **下一 C 任务** | `docs/prb_review_cn_mapping.md` 维护 |
-| **Loop C** | C-M1 partial（matched 1/4）；C-M2 **closed** ✅；C-M3 **open** |
+| **Loop C** | C-M1 **closed** ✅；C-M2 **closed** ✅；C-M3 **open** |
 | **SDC** | **15** synergy 点 |
 | **旗杆** | **PRB Regular Article** major revision |
 
@@ -1401,6 +1401,15 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R386（2026-07-03，三轨）**：
+ - **Track A**：rigid_pbed3 **4/4** ✅；population ABORT（odd e$^{-}$）→ `LSD .TRUE.`；batch 重跑 — **不干预**
+ - **Track B（P0 + Loop C）**：`tab_III` caption；主文去仓库路径；`response` MC1 matched 4/4
+ - **Track C**：C-M1 matched-functional **closed**
+ - **paper_gap**：population 0/6 — 不改 Hirshfeld 定量
+ - **创新审计**：matched ratio = **A**；population = **B**
+ - **Git**：pending
+ - **下一轮**：population converged → Discussion (iv) 机制句
 
 - **Loop R385（2026-07-03，三轨）**：
  - **Track A**：seed137 **24/24** ✅；无 CP2K → 启动 `continue_prb_revision_dft.sh`（rigid_pbed3 **1/4** → population **0/6**）

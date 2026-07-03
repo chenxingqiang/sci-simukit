@@ -7,6 +7,18 @@
 
 
 
+### R385 audit（2026-07-03 go loops）
+
+| 项 | 状态 | 证据 |
+|----|------|------|
+| seed137 tetramer | **A** | **24/24** complete (`seed_validation_tetramer.json`); `alpha_provisional` all false |
+| tab_IV alternate | **A** | B/N/P $\alpha$ + $\mathcal{S}_{+3\%}$ verified; caption 去 pending |
+| rigid_pbed3 | **B** pending | **1/4**; next `pristine_eps3_sp` |
+| population | **B** pending | **0/6** |
+| methods_extended | **A** | 去 `experiments/` / JSON 路径泄漏 |
+
+**创新审计（R385）**：Table IV alternate = **A**；C-M2 tetramer = **closed**；population = **B**
+
 ### R384 audit（2026-07-02 go loops）
 
 | 项 | 状态 | 证据 |

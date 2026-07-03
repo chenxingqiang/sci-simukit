@@ -23,17 +23,17 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Exp10** | **41/41** ✅（incl. cutoff400） |
 | **Exp8** | **6/6** ✅ |
 | **Exp9** | **12/12** GEO_OPT ✅；vertical SP **8/8** ✅ |
-| **Table IV seed137** | **7/24** partial（dop **7/18**；**B 6/6** ✅）；**EPS 1e-5** batch |
-| **运行中** | `seed137_N_strainm5.0_rigid` np=2 — **不干预** |
-| **临界区** | `N_strainm5.0` **CRIT**（grad≈3× EPS，OT~50/300） |
-| **下一任务** | N/P + pristine 续 batch；24/24 → `update_tab_iv_from_json.py` |
-| **阻塞 PRB** | **Table IV alternate**（7/24）；population **0/6** |
-| **文稿 P 瓶颈** | tab_IV alternate 数值 **勿改**直至 24/24；主稿 L120/L255 待算后同步 |
-| **最新 Loop** | **R384** |
-| **下一 B 任务** | 24/24 后 tab_IV；partial α 仍 provisional |
-| **主张-证据** | seed137 B-grid **A**（6/6）；tab_IV alternate = **C**（7/24 partial） |
+| **Table IV seed137** | **24/24** ✅（18/18 dop + 6/6 pri modern） |
+| **运行中** | PRB queue：`rigid_pbed3` 1/4 → population 0/6 — **启动 batch** |
+| **临界区** | — |
+| **下一任务** | `rigid_pbed3` 3 SP + `population_validation` 6 SP |
+| **阻塞 PRB** | population **0/6**；matched-functional **1/4** |
+| **文稿 P 瓶颈** | C-M3 population pending；methods 边界已清 |
+| **最新 Loop** | **R385** |
+| **下一 B 任务** | population 收敛后 Table V / Discussion (iv) |
+| **主张-证据** | tab_IV alternate = **A**（24/24）；population = **B** pending |
 | **下一 C 任务** | `docs/prb_review_cn_mapping.md` 维护 |
-| **Loop C** | C-M1 **closed** ✅；C-M2 periodic **A**（16/16）；C-M3 **open** |
+| **Loop C** | C-M1 partial（matched 1/4）；C-M2 **closed** ✅；C-M3 **open** |
 | **SDC** | **15** synergy 点 |
 | **旗杆** | **PRB Regular Article** major revision |
 
@@ -1401,6 +1401,15 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R385（2026-07-03，三轨）**：
+ - **Track A**：seed137 **24/24** ✅；无 CP2K → 启动 `continue_prb_revision_dft.sh`（rigid_pbed3 **1/4** → population **0/6**）
+ - **Track B（V Data + Loop C）**：`tab_IV` caption 24/24；`methods_extended` 去仓库路径；theory R385；`prb_review_cn_mapping` C-M2 **closed**
+ - **Track C**：`response_to_referees` MC2 + pending 表同步 R385
+ - **paper_gap**：population 0/6 — 不改主文 Hirshfeld 定量
+ - **创新审计**：Table IV alternate = **A**；population = **B**
+ - **Git**：pending
+ - **下一轮**：rigid_pbed3 4/4 → tab_III matched；population 6/6 → C-M3
 
 - **Loop R384（2026-07-02，三轨）**：
  - **Track A**：**7/18** dop（**B 6/6** ✅ + `N_m2.5`）；`N_strainm5.0` **CRIT** — batch 存活 — **不干预**

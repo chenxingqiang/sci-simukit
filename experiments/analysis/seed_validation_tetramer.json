@@ -1,7 +1,7 @@
 {
   "seed_primary": 42,
   "seed_validation": 137,
-  "status": "partial",
+  "status": "complete",
   "functional_note": "Seed137 inputs use PBE+D3 (modernize_cp2k_inp); compare only after modern pristine outs exist.",
   "tetramer_alpha_meV_per_pct": {
     "seed42": {
@@ -11,43 +11,39 @@
     },
     "seed137": {
       "B": -44.91041285577375,
-      "N": null,
-      "P": null
+      "N": -59.84392004786788,
+      "P": 1027.7292395644565
     }
   },
   "tetramer_S_meV_per_atom_at_eps3": {
     "seed42": {},
     "seed137": {
-      "B": 2.03
+      "B": 1.9,
+      "N": 0.32,
+      "P": -32.34
     }
   },
   "relative_deviation_pct": {
-    "alpha_B": -178.9
+    "alpha_B": -178.9,
+    "alpha_N": 80.3,
+    "alpha_P": 5480.8
   },
-  "pristine_energy_protocol": "legacy_pbe_no_d3",
+  "pristine_energy_protocol": "pbe_d3_modern",
   "running_snapshot": {
-    "dop_converged": 7,
+    "dop_converged": 18,
     "dop_total": 18,
-    "pristine_modern_converged": 0,
+    "pristine_modern_converged": 6,
     "pristine_modern_total": 6,
-    "running_task": "seed137_N_strainm5.0_rigid",
-    "last_ot": 50,
-    "max_inner_ot": 300,
-    "ot_progress_pct": 16.7,
-    "max_outer_scf": 20,
-    "last_grad_Ha_bohr": 3.174e-05,
-    "eps_scf": 1e-05,
-    "grad_ratio_to_eps": 3.2,
-    "critical_zone": true
+    "running_task": null
   },
   "strain_points_per_dop": {
     "B": 6,
-    "N": 1,
-    "P": 0
+    "N": 6,
+    "P": 6
   },
   "alpha_provisional": {
     "B": false,
-    "N": true,
-    "P": true
+    "N": false,
+    "P": false
   }
 }

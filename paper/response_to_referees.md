@@ -103,13 +103,13 @@ We thank the referee for recognizing the corrections to doping concentration, Ma
 
 **Response:** We agree and have separated **qualitative** element trends from **quantitative** placement-specific magnitudes:
 1. Periodic $\mathcal{S}(n)$ and the fifteen-point grid use a **fixed reference dopant-site map** (one substituent per C$_{60}$); main text no longer foregrounds RNG seed labels (Abstract, Methods, Results, Conclusions).
-2. **Table~IV** is **tetramer-only** (**reference** vs.\ **alternate** placement): we **removed** any periodic $n{=}4$ column, which mixed concentrations and boundary conditions with tetramer placement controls (parallel to Major Comment~1). Reference-placement $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ on the legacy rigid grid is now reported in Results ($+3.8$, $+5.7$, $+1.0$~meV/atom for B, N, and P) as a placement-audit baseline only. The pending alternate grid uses PBE+D3 rigid single-points on an independent seed-137 map (Methods Sec.~\ref{sec:methods_s4_seed}), not the legacy-PBE archive of Table~\ref{tab:I}.
-3. Tetramer $\alpha$ opposite signs for N vs.\ B are reported for the **reference** placement at fixed 5\% nominal doping, with Table~IV pending to test slope sensitivity; we do **not** claim placement-averaged magnitudes for the B/N/P networks.
-4. Qualitative ranking statements (P largest $|\mathcal{S}|$ at $n{=}4$ on this map; N vs.\ B $\alpha$ sign) are framed as **configuration-specific audits**, not universal dopant laws, until the alternate-placement grid converges and periodic alternate placements are added (Conclusions, future work).
+2. **Table~IV** is **tetramer-only** (**reference** vs.\ **alternate** placement): we **removed** any periodic $n{=}4$ column, which mixed concentrations and boundary conditions with tetramer placement controls (parallel to Major Comment~1). Reference-placement $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ on the legacy rigid grid is now reported in Results ($+3.8$, $+5.7$, $+1.0$~meV/atom for B, N, and P) as a placement-audit baseline only. The alternate grid uses PBE+D3 rigid single-points on an independent seed-137 map (Methods Sec.~\ref{sec:methods_s4_seed}), not the legacy-PBE archive of Table~\ref{tab:I}.
+3. Tetramer $\alpha$ opposite signs for N vs.\ B are reported for the **reference** placement at fixed 5\% nominal doping, with Table~IV complete (24/24) to test slope sensitivity; we do **not** claim placement-averaged magnitudes for the B/N/P networks.
+4. Qualitative ranking statements (P largest $|\mathcal{S}|$ at $n{=}4$ on this map; N vs.\ B $\alpha$ sign) are framed as **configuration-specific audits**, not universal dopant laws, with periodic alternate placements complete (16/16; Table~II) and the tetramer alternate grid complete (24/24) (Conclusions, future work).
 
 **Manuscript:** Methods substitutional-doping paragraph; Results strain/synergy subsections; Discussion (i); Limitations; Table~IV; Methods validation.
 
-**Pending DFT:** 18 seed~137 tetramer ENERGY tasks **in progress** (3/18 converged on the $B$ strain grid at $\epsilon\in\{-5,-2.5,0\}$\%; $+2.5$\% SCF in progress; batch resumed at $NP{=}2$ after OOM on `seed137_B_strainp2.5_rigid`).
+**DFT status (R385):** seed-137 tetramer alternate grid **complete** (18/18 dopant strain points + 6/6 modern PBE+D3 pristine references); Table~IV alternate $\alpha$ and $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ populated in the manuscript.
 
 ---
 
@@ -172,12 +172,14 @@ We thank the referee for recognizing the corrections to doping concentration, Ma
 
 | Task | Table | Status |
 |------|-------|--------|
-| Alternate placement (seed~137) | IV | **running** 3/18 ($B$ grid partial; $+2.5$\\% SCF in progress) |
+| Alternate placement (seed~137) | IV | **complete** 24/24; N $\alpha$ sign reversal; $|\alpha_P|\sim 10^3$~meV/\% |
 | Ionic relaxation geometry opt. | III | **complete** 4/4; $\mathcal{S}_{\mathrm{relaxed}}=-2.28$ vs rigid $+0.96$ meV/atom (sign not preserved) |
-| Alternate-placement ENERGY grid | IV | 18 inp (alternate archive); **pending** |
-| 400~Ry $n{=}6$ N SP (Exp10 40/41) | II | **pending** |
+| Alternate-placement ENERGY grid | IV | **complete** 24/24 (PBE+D3 rigid) |
+| 400~Ry $n{=}6$ N SP (Exp10 41/41) | II | **complete** |
 | Marcus vertical SP (8) | Fig.~3 | **8/8** converged; eight $\lambda^{\pm}$ in Fig.~3; B $\lambda^{-}{=}{-}0.173$~eV flagged non-physical (Limitations) |
-| Setup/process/result audit | `reliability_audit.json` | `bash experiments/verify_reliability.sh` (**294** pass / 2 warn; coords+inp+workflow) |
+| Matched-functional rigid PBE+D3 (Table III) | III | **1/4** converged; 3 SP pending |
+| Population Hirshfeld ($n{=}1$ P) | V / II | **pending** 0/6 |
+| Setup/process/result audit | reliability audit | **294** pass / 2 warn |
 
 ---
 

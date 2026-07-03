@@ -7,7 +7,7 @@
 
 | 中文审稿要点 | Loop C | 证据 / 脚本 | 文稿锚点 | 状态 | 下一 DFT |
 |--------------|--------|---------------|----------|------|----------|
-| M1 掺杂构型普适性不足；周期无多构型 | **C-M2** (tetramer + periodic) | `seed_validation_tetramer.json`（**0/24** protocol-v2 pending）；`periodic_placement_validation.json`（**16/16** ✅） | Table IV；Results $n{=}4$；Limitations | **partial**（tetramer **open** 0/24 / periodic **A** 16/16） | `placement_validation/` seeds 137+271 |
+| M1 掺杂构型普适性不足；周期无多构型 | **C-M2** (tetramer + periodic) | `seed_validation_tetramer.json`（**24/24** ✅）；`periodic_placement_validation.json`（**16/16** ✅） | Table IV；Results $n{=}4$；Limitations | **closed**（tetramer **A** 24/24 / periodic **A** 16/16） | — |
 | M2 离子弛豫（四隅） | **C-M1** | `relax_validation_tetramer.json` (4/4)；`relax_validation_matched_functional.json` (**4/4**, ratio valid) | Table III；`sec:methods_s3_relax` | **closed**（sign **A**；matched rigid **A**） | — |
 | M3 四聚体 α vs 周期 𝒮 变量混淆 | **C-M4** | 主稿 grep 无并列数值 | Discussion (v) | **closed** | — |
 | M4 机理缺电子结构定量 | **C-M3** | `population_P_n1_strain.json`；Table V | Discussion (iv)–(vi)；Limitations | **open** | `population_validation/` n=1 P ×6 strain + Hirshfeld |
@@ -32,7 +32,7 @@
 | 方法长句拆分 | **partial** | `methods_extended.tex` 按需 |
 | 设计启示具体化 | **partial** | Discussion Design implications（共价半径 ≳20 pm） |
 
-**Live snapshot（2026-07-02 R384）**：seed137 **7/24** partial（**B 6/6** ✅ + `N_m2.5`；`N_m5.0` CRIT）；population **0/6**.
+**Live snapshot（2026-07-03 R385）**：seed137 **24/24** ✅；rigid_pbed3 **1/4**；population **0/6**；PRB 阻塞 → C-M3 population + matched-functional 3/4.
 
 
 ## DFT 队列顺序
@@ -40,7 +40,7 @@
 见 `experiments/run_prb_revision_dft.sh`：
 
 1. Table III relax — **skip if 4/4**
-2. seed137 tetramer **0/24** (+ 6 pristine modern) — **blocking**
+2. seed137 tetramer **24/24** ✅ — skip
 3. rigid PBE+D3 Table III matched (4 SP)
 4. periodic placement n=4 (seeds 137, 271)
 5. Exp10 cutoff400

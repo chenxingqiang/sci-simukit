@@ -1406,7 +1406,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track C**：theory R393；response 保持 reference grid running
  - **paper_gap**：Table I reference α **C** — 勿改数值
  - **创新审计**：Methods SI = **A**；reference α = **C**
- - **Git**：`commit: (this push)` — `loop R393: …`
+ - **Git**：`commit: dfaef03` — `loop R393: Methods extended + refpbed3 status line`；（**pushed: origin/main**）
  - **下一轮**：`+2.5_B` converged → 续 20 点；24/24 → Table I
 
 - **Loop R392（2026-07-05，三轨 · compute paused）**：
@@ -1416,7 +1416,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **paper_gap**：Table I reference α **C**（4/24）— **勿改数值**
  - **创新审计**：periodic + Hirshfeld = **A**；reference α = **C**
  - **prl_gate**：D2 periodic closed；reference Table I pending
- - **Git**：`commit: (this push)` — `loop R392: …`
+ - **Git**：`commit: dfaef03` — `loop R392-R393 batch`；（**pushed: origin/main**）
  - **下一轮**：用户恢复 → `run_reference_pbed3_validation.sh`；24/24 → Table I + Fig.1(c)
 
 - **Loop R390（2026-07-03，Track B figures+tables）**：

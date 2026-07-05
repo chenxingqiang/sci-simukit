@@ -8,9 +8,9 @@
 | 中文审稿要点 | Loop C | 证据 / 脚本 | 文稿锚点 | 状态 | 下一 DFT |
 |--------------|--------|---------------|----------|------|----------|
 | M1 掺杂构型普适性不足；周期无多构型 | **C-M2** (tetramer + periodic) | `seed_validation_tetramer.json`（**24/24** ✅）；`periodic_placement_validation.json`（**16/16** ✅） | Table IV；Results $n{=}4$；Limitations | **closed**（tetramer **A** 24/24 / periodic **A** 16/16） | — |
-| M2 离子弛豫（四隅） | **C-M1** | `relax_validation_tetramer.json` (4/4)；`relax_validation_matched_functional.json` (**4/4**, ratio valid) | Table III；`sec:methods_s3_relax` | **closed**（sign **A**；matched rigid **A**） | — |
+| M2 离子弛豫（四隅） | **C-M1** | `relax_validation_tetramer.json` (4/4)；`periodic_relax_validation_n1_P.json` (**4/4**) | Table III；`sec:relax_checkpoint` | **closed**（tetramer + periodic $n{=}1$ P **A**） | — |
 | M3 四聚体 α vs 周期 𝒮 变量混淆 | **C-M4** | 主稿 grep 无并列数值 | Discussion (v) | **closed** | — |
-| M4 机理缺电子结构定量 | **C-M3** | `population_P_n1_strain.json`；Table V | Discussion (iv)–(vi)；Limitations | **open** | `population_validation/` n=1 P ×6 strain + Hirshfeld |
+| M4 机理缺电子结构定量 | **C-M3** | `population_{B,N,P}_n1_strain.json` (**18/18**) | Discussion (iv)–(vi)；Limitations | **partial**（Hirshfeld **A**；Mayer open） | Mayer/Bader backlog |
 | M5 N 掺杂 𝒮 尺寸趋势不清 | **C-M2** + Table II | `sdc_exp10_synergy_audit.json` (15 pt)；cutoff400 | Results；`tab_S_synergy_grid` | **partial** | `size_6x60_N_pos3pct_cutoff400` |
 
 ## Minor Comments
@@ -32,7 +32,7 @@
 | 方法长句拆分 | **partial** | `methods_extended.tex` 按需 |
 | 设计启示具体化 | **partial** | Discussion Design implications（共价半径 ≳20 pm） |
 
-**Live snapshot（2026-07-03 R390）**：Table IV seed137 **24/24** ✅；population **P 6/6** ✅、**B/N 0/6** pending；**P0** 周期 $n{=}1$ P 弛豫 **2/4** GEO（pristine ✅；P 角 LSD 修复后重跑 `per_relax_n1_P_eps0_geo`）；`reference_pbed3/` 24 SP 待 batch；主文 **勿**写 $\mathcal{S}_{\mathrm{relaxed}}$ 直至 4/4 + `post_periodic_relax_validation.sh`。
+**Live snapshot（2026-07-05 R393）**：periodic relax **4/4** ✅；population **18/18** ✅；`reference_pbed3` **4/24**（`+2.5_B` **running**，OT~130/300；勿改 Table I）。
 
 
 ## DFT 队列顺序

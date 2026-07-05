@@ -1,0 +1,35 @@
+{
+  "placement": "reference (seed 42 archive map)",
+  "functional": "PBE+D3",
+  "n_atoms": 240,
+  "status": "pending",
+  "systems": {
+    "B": {
+      "alpha_meV_per_pct": null,
+      "E_sub_eV_per_dopant": null,
+      "S_meV_per_atom_at_eps3": null,
+      "strain_energies_ha": {},
+      "converged_strain_points": 0
+    },
+    "N": {
+      "alpha_meV_per_pct": null,
+      "E_sub_eV_per_dopant": null,
+      "S_meV_per_atom_at_eps3": null,
+      "strain_energies_ha": {},
+      "converged_strain_points": 0
+    },
+    "P": {
+      "alpha_meV_per_pct": null,
+      "E_sub_eV_per_dopant": null,
+      "S_meV_per_atom_at_eps3": null,
+      "strain_energies_ha": {},
+      "converged_strain_points": 0
+    }
+  },
+  "pristine": {
+    "alpha_meV_per_pct": null,
+    "strain_energies_ha": {}
+  },
+  "converged_tasks": 0,
+  "total_tasks": 24
+}

@@ -1,5 +1,5 @@
 {
-  "system": "1xC60 P substitutional",
+  "system": "1xC60 B substitutional",
   "seed": 42,
   "dopant_index": 0,
   "status": "complete",
@@ -7,39 +7,39 @@
   "strain_path": [
     {
       "strain_pct": -5.0,
-      "task": "pop_n1_P_strainm5.0pct",
+      "task": "pop_n1_B_strainm5.0pct",
       "converged": true,
-      "hirshfeld_charge_P": 0.02079
+      "hirshfeld_charge_B": 0.097899
     },
     {
       "strain_pct": -2.5,
-      "task": "pop_n1_P_strainm2.5pct",
+      "task": "pop_n1_B_strainm2.5pct",
       "converged": true,
-      "hirshfeld_charge_P": 0.019543
+      "hirshfeld_charge_B": 0.120047
     },
     {
       "strain_pct": 0.0,
-      "task": "pop_n1_P_strainp0.0pct",
+      "task": "pop_n1_B_strainp0.0pct",
       "converged": true,
-      "hirshfeld_charge_P": 0.062558
+      "hirshfeld_charge_B": 0.118677
     },
     {
       "strain_pct": 2.5,
-      "task": "pop_n1_P_strainp2.5pct",
+      "task": "pop_n1_B_strainp2.5pct",
       "converged": true,
-      "hirshfeld_charge_P": 0.05733
+      "hirshfeld_charge_B": 0.112552
     },
     {
       "strain_pct": 3.0,
-      "task": "pop_n1_P_strainp3.0pct",
+      "task": "pop_n1_B_strainp3.0pct",
       "converged": true,
-      "hirshfeld_charge_P": 0.056004
+      "hirshfeld_charge_B": 0.111305
     },
     {
       "strain_pct": 5.0,
-      "task": "pop_n1_P_strainp5.0pct",
+      "task": "pop_n1_B_strainp5.0pct",
       "converged": true,
-      "hirshfeld_charge_P": 0.050097
+      "hirshfeld_charge_B": 0.10522
     }
   ]
 }

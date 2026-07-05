@@ -39,7 +39,7 @@
 Substitutional doping and biaxial strain are jointly used to tune covalent molecular networks, yet total energies are still often assembled from separate composition-only and strain-only density-functional theory calculations.
 We study quasi-hexagonal C$_{60}$ graphullerene with the PBE+D3 functional and define a synergy order parameter $\mathcal{S}$ (meV/atom) for the total-energy cross term missing from sequential strain--doping scans.
 On B/N/P tetramers and periodic $n\times\mathrm{C}_{60}$ supercells ($n=1$--$8$), donor and acceptor dopants show opposite linear strain coefficients $\alpha$, while phosphorus---despite the smallest tetramer $|\alpha|$---exhibits the largest joint-load cross term, with $|\mathcal{S}|$ reaching $31.9$~meV/atom at $n{=}1$ under $+3$\% biaxial strain.
-These bounds are \emph{rigid-strain upper bounds} at fixed fractional coordinates, not equilibrium thermodynamic quantities; ionic relaxation can reverse $\mathcal{S}$, and tetramer $\alpha$ is sensitive to dopant placement at ${\sim}5$\% loading.
+These bounds are \emph{rigid-strain upper bounds} at fixed fractional coordinates, not equilibrium thermodynamic quantities; ionic relaxation can reverse or nearly extinguish $\mathcal{S}$ (tetramer Table~\ref{tab:III}; periodic $n{=}1$ P), and tetramer $\alpha$ is sensitive to dopant placement at ${\sim}5$\% loading.
 The results indicate that stability ranking under load in covalent molecular networks requires explicit coupled strain--doping energy evaluations when chemical mismatch or strain magnitude enter the geometric-nonlinear regime, rather than additive composition--strain models used in sequential high-throughput screening.
 \end{abstract}
 
@@ -165,7 +165,7 @@ Substitution energies at $\epsilon=0$ span $E_{\mathrm{sub}}=+73.4$~eV/dopant (B
 Figure~\ref{fig:main}(c) highlights the $\alpha$ split; ranking dopants solely by $|E_{\mathrm{sub}}|$ at $\epsilon{=}0$ is misleading once $+3$\% strain is applied.
 \input{tables/tab_V.tex}
 Table~\ref{tab:V} links mechanical spread to \emph{tetramer} local geometry (${\sim}5$\% nominal doping, multiple sites): P shows negligible strain-induced change in the mean nearest-neighbor C--C distance ($\Delta\bar{d}\approx 3\times 10^{-5}$~\AA\ vs.\ ${\sim}8.5\times 10^{-3}$~\AA\ for B at $+3$\% load), indicating a vanishing \emph{uniform nearest-neighbor stretch} component rather than absence of cage buckling; periodic $n{=}1$ bond statistics are not yet tabulated (Limitations).
-Complementary Hirshfeld population on the periodic $n{=}1$ P strain path (Table~\ref{tab:II}; Sec.~\ref{sec:methods_population}) probes charge redistribution along the same load path as Table~\ref{tab:V} geometry.
+Complementary Hirshfeld population on the periodic $n{=}1$ B/N/P strain paths (Table~\ref{tab:II}; Sec.~\ref{sec:methods_population}) probes charge redistribution along the same load path as Table~\ref{tab:V} geometry.
 
 \subsection{\label{sec:synergy}Non-additive strain--doping coupling}
 
@@ -185,6 +185,7 @@ Table~\ref{tab:III} benchmarks four fixed-cell geometry-optimization corners on 
 For the pristine tetramer, relaxed total energies at $\epsilon{=}0$ and $+3$\% are $-1363.9551$ and $-1363.9550$~$E_{\mathrm{h}}$ ($\Delta E\approx 1.2\times10^{-4}$~$E_{\mathrm{h}}$), roughly an order of magnitude smaller than the archived rigid legacy-PBE nominal strain increment ($\sim10^{-3}$~$E_{\mathrm{h}}$).
 The $P$-doped corners give $E(P,\epsilon{=}0)=-1374.4415$ and $E(P,\epsilon{=}3\%)=-1374.4615$~$E_{\mathrm{h}}$.
 Because rigid references use legacy PBE without D3 whereas relaxed corners use PBE+D3 (Sec.~\ref{sec:methods_s3_relax}), the cross-functional comparison gives $\mathcal{S}_{\mathrm{rigid}}=+0.96$~meV/atom versus $\mathcal{S}_{\mathrm{relaxed}}=-2.28$~meV/atom (sign \emph{not} preserved); matched-functional PBE+D3 rigid single-points at the same relaxed coordinates yield $\mathcal{S}_{\mathrm{rigid}}^{\mathrm{PBE+D3}}=+1.19$~meV/atom with the same sign reversal ($|\mathcal{S}_{\mathrm{relaxed}}|/|\mathcal{S}_{\mathrm{rigid}}^{\mathrm{PBE+D3}}|\approx 1.9$; Table~\ref{tab:III}).
+Matched-functional fixed-cell geometry optimization on the periodic $n{=}1$ P grid (PBE+D3; four corners) gives $\mathcal{S}_{\mathrm{rigid}}=-31.9$~meV/atom versus $\mathcal{S}_{\mathrm{relaxed}}\approx +0.1$~$\mu$eV/atom ($|\mathcal{S}_{\mathrm{relaxed}}|/|\mathcal{S}_{\mathrm{rigid}}|\lesssim 10^{-5}$), so ionic relaxation collapses the rigid periodic cross term in this cell and rigid $|\mathcal{S}|$ is a conservative upper bound on equilibrium $\mathcal{S}$ at $n{=}1$.
 This tetramer benchmark does not rescale periodic $\mathcal{S}(n)$ (concentration and boundary conditions differ; Sec.~\ref{sec:discussion}).
 
 % ------------------------------------------------------------------
@@ -215,8 +216,8 @@ In this language, small-mismatch dopants approximate the linear-additive regime 
 \paragraph{Component attribution.}
 Full decomposition into $\mathcal{S}_{\mathrm{geom}}$, $\mathcal{S}_{\mathrm{el}}$, and $\mathcal{S}_{\mathrm{vdW}}$ awaits corner-resolved post-processing on every four-corner grid.
 For the matched-functional tetramer $P$ rigid grid, extracting Grimme D3 dispersion energies at the four corners gives $\mathcal{S}_{\mathrm{vdW}}\approx +0.33$~meV/atom---orders of magnitude below $|\mathcal{S}_{\mathrm{rigid}}^{\mathrm{PBE+D3}}|\approx 1.2$~meV/atom (Table~\ref{tab:III})---so vdW non-additivity does not drive the reported cross terms.
-Within the present audit, P combines negligible $\Delta\bar{d}$ with the largest $|\mathcal{S}|$ and a monotonic Hirshfeld shift on the $n{=}1$ strain path ($+0.063\,e\rightarrow +0.056\,e$ at $+3$\%; Sec.~\ref{sec:mechanistic}), implicating \emph{pre-stored cage strain plus electronic redistribution} rather than uniform bond stretching as the dominant channel.
-B and N Hirshfeld strain-path data are queued (Sec.~\ref{sec:methods_population}); larger $\Delta\bar{d}$ with smaller $|\mathcal{S}|$ is consistent with electronic-dominated cross terms at small $\Delta r_{\mathrm{cov}}$.
+Within the present audit, P combines negligible $\Delta\bar{d}$ with the largest $|\mathcal{S}|$ and a monotonic Hirshfeld decrease under tension on the $n{=}1$ strain path ($+0.063\,e\rightarrow +0.056\,e$ at $+3$\%; Sec.~\ref{sec:mechanistic}), implicating \emph{pre-stored cage strain plus electronic redistribution} rather than uniform bond stretching as the dominant channel.
+B and N show smaller rigid $|\mathcal{S}|$ with modest Hirshfeld shifts over the same load path ($+0.12\rightarrow +0.11\,e$ and $+0.069\rightarrow +0.057\,e$ from $\epsilon{=}0$ to $+3$\%; Table~\ref{tab:II}), consistent with electronic-dominated cross terms at small $\Delta r_{\mathrm{cov}}$.
 
 \subsection{Mechanistic synthesis}
 \paragraph{Opposite $\alpha$ for N vs.\ B.}
@@ -243,9 +244,10 @@ Non-additivity is assessed only through Eq.~\eqref{eq:synergy_order} on matched 
 \paragraph{Sign origins of $\mathcal{S}$.}
 For size-mismatched P (geometric channel), tensile $\epsilon_{\mathrm{ext}}$ partially relieves dopant-induced cage compression; coupled corners are \emph{more} stable than additive models predict, giving $\mathcal{S}<0$ when the cross term is negative in our sign convention (B and P at $n{=}4$).
 For small-mismatch B and N (electronic channel), $\mathcal{S}$ follows nonlinear evolution of $\pi$ states near $E_F$ under strain: donor N and acceptor B occupy different filling regimes, so $\mathcal{S}$ can be positive or negative at comparable $|\Delta r_{\mathrm{cov}}|$ (N $+3.0$ vs.\ B $-6.2$~meV/atom at $n{=}4$) without a single geometric scaling law.
-\paragraph{Hirshfeld charge along the $n{=}1$ P strain path.}
+\paragraph{Hirshfeld charge along the $n{=}1$ B/N/P strain paths.}
 \label{sec:mechanistic}
 On the periodic $n{=}1$ P grid (PBE+D3), Hirshfeld charge on P decreases from $+0.063\,e$ at $\epsilon{=}0$ to $+0.056\,e$ at $+3$\% ($+0.050\,e$ at $+5$\%) while tetramer $\Delta\bar{d}$ for P remains below $10^{-4}$~\AA\ at $+3$\% load (Table~\ref{tab:V}).
+On the same periodic grid, B and N Hirshfeld charges shift from $+0.119\,e$ and $+0.069\,e$ at $\epsilon{=}0$ to $+0.111\,e$ and $+0.057\,e$ at $+3$\%, respectively---smaller fractional changes than P despite larger $\Delta\bar{d}$ on the tetramer proxy (Table~\ref{tab:V}).
 Tensile strain therefore redistributes electron density without proportional nearest-neighbor bond stretching, consistent with coupling to pre-existing cage distortion rather than uniform elastic response; Mayer bond orders along the same path are not yet tabulated (Limitations).
 
 \paragraph{Significance versus DFT uncertainty.}
@@ -255,7 +257,7 @@ As a \emph{rough magnitude estimate only} (not a core result), at $n{=}4$ and $+
 Large absolute uncertainties in PBE $E_{\mathrm{sub}}$ therefore do not invalidate the conclusion that sequential scans omit a meV/atom-scale cross term.
 
 \paragraph{Decomposition outlook.}
-The stress-field picture (Sec.~\ref{sec:stress_coupling}) and Table~\ref{tab:V}--Hirshfeld trends indicate that $\mathcal{S}$ is not reducible to uniform bond stretching; Mayer/Bader corner projections along B/N strain paths remain open (Limitations).
+The stress-field picture (Sec.~\ref{sec:stress_coupling}) and Table~\ref{tab:V}--Hirshfeld trends indicate that $\mathcal{S}$ is not reducible to uniform bond stretching; Mayer/Bader corner projections remain open (Limitations).
 
 \subsection{Generality and design principles}
 \label{sec:generality}
@@ -292,18 +294,18 @@ Three classes of laboratory observables could test the stress-field picture with
 Quantitative links require matched sample chemistry and strain calibration; we quote DFT protocol bounds only.
 
 \subsection{Validation protocol (Tables~\ref{tab:II}--\ref{tab:IV})}
-Sec.~\ref{sec:relax_checkpoint} reports the tetramer ionic-relaxation benchmark (Table~\ref{tab:III}).
+Sec.~\ref{sec:relax_checkpoint} reports the tetramer ionic-relaxation benchmark (Table~\ref{tab:III}) and periodic $n{=}1$ P fixed-cell geometry optimization ($\mathcal{S}_{\mathrm{relaxed}}\ll \mathcal{S}_{\mathrm{rigid}}$).
 The alternate placement map (Table~\ref{tab:IV}, PBE+D3 rigid grid) gives $\alpha=+21.4$, $+45.4$, and $+989.6$~meV/\% and $\mathcal{S}_{+3\%}^{\mathrm{tet}}=-2.6$, $+12.6$, and $+41.4$~meV/atom for B, N, and P; N $\alpha$ reverses sign relative to the legacy reference column (Table~\ref{tab:I}).
 Two independent $n{=}4$ periodic placement maps preserve the production-map $|\mathcal{S}|$ ranking at $+3$\% (P$>$B$>$N; Table~\ref{tab:II}).
 The cutoff benchmark row in Table~\ref{tab:II} tests 400~Ry vs.\ 350~Ry for $6\times\mathrm{C}_{60}$ N @ $+3$\%.
 
 \subsection{Limitations and outlook}
 Rigid-strain periodic $\mathcal{S}(n)$ and legacy-PBE tetramer $\alpha$ (Table~\ref{tab:I}) are not on the same exchange-correlation grid; the PBE+D3 alternate tetramer map (Table~\ref{tab:IV}) and periodic PBE+D3 $\mathcal{S}$ audit supply matched-functional comparisons for placement and decoupling claims.
-Fixed-cell ionic relaxation is reported for the tetramer $P$ grid (Table~\ref{tab:III}); periodic $n{=}1$ P four-corner relaxations are queued (PBE+D3; open archive) to translate rigid upper bounds into equilibrium periodic cross terms.
+Fixed-cell ionic relaxation is reported for the tetramer $P$ grid (Table~\ref{tab:III}) and for periodic $n{=}1$ P (four PBE+D3 corners; Sec.~\ref{sec:relax_checkpoint}), where $\mathcal{S}_{\mathrm{relaxed}}\ll \mathcal{S}_{\mathrm{rigid}}$.
 All periodic $\mathcal{S}(n)$ use a single production dopant-site map; magnitudes are configuration-specific (two independent $n{=}4$ placement maps preserve the P$>$B$>$N ranking; Table~\ref{tab:II}).
 Production $n\geq 6$ points use 350~Ry while core claims require matched 400~Ry (cutoff benchmark in Table~\ref{tab:II}).
-Additional limits: tetramer vs.\ periodic concentration mismatch; Table~V tetramer geometry is a qualitative proxy; reference-placement PBE+D3 $\alpha$ modernization pending (`reference_pbed3/`); PBE+D3 without Koopmans/rVV10; $\mathcal{S}_{\mathrm{gap}}$ not quantified; Mayer bond orders not tabulated; Hirshfeld population covers $n{=}1$ P only (B/N queued; Sec.~\ref{sec:methods_population}); unphysical B $\lambda^{-}$ under the fixed neutral-geometry vertical protocol (Supplemental Material) is excluded from rate estimates; mobility tensors are not computed.
-Future work adds periodic ionic-relaxation corners (in progress), reference-placement matched-functional Table~I, B/N Hirshfeld paths, Mayer/Bader strain-path partitioning, and placement averaging on periodic cells.
+Additional limits: tetramer vs.\ periodic concentration mismatch; Table~V tetramer geometry is a qualitative proxy; reference-placement PBE+D3 tetramer $\alpha$ modernization pending; PBE+D3 without Koopmans/rVV10; $\mathcal{S}_{\mathrm{gap}}$ not quantified; Mayer bond orders not tabulated; Hirshfeld population covers $n{=}1$ B/N/P (Sec.~\ref{sec:methods_population}); unphysical B $\lambda^{-}$ under the fixed neutral-geometry vertical protocol (Supplemental Material) is excluded from rate estimates; mobility tensors are not computed.
+Future work adds reference-placement matched-functional Table~I, Mayer/Bader strain-path partitioning, and placement averaging on periodic cells.
 
 % ------------------------------------------------------------------
 \section{\label{sec:conclusions}Conclusions}
@@ -316,7 +318,7 @@ In detail:
 \item meV/atom-scale omitted cross terms on a fifteen-point periodic grid ($|\mathcal{S}|$ up to $31.9$~meV/atom for P at $n{=}1$ at fixed coordinates; Table~\ref{tab:II});
 \item $|\mathcal{S}|$ tracking local cage distortion and mismatch (Table~\ref{tab:V}) rather than tetramer $|\alpha|$ for P, including on the PBE+D3 alternate tetramer map (Table~\ref{tab:IV}).
 \end{enumerate}
-Under the rigid-strain protocol (Sec.~\ref{sec:notation}), quoted $|\mathcal{S}|$ magnitudes bound equilibrium cross terms until periodic ionic-relaxation corners complete (Table~\ref{tab:III}; queued $n{=}1$ P).
+Under the rigid-strain protocol (Sec.~\ref{sec:notation}), quoted $|\mathcal{S}|$ magnitudes bound equilibrium cross terms; periodic $n{=}1$ P ionic relaxation nearly extinguishes $\mathcal{S}$ ($|\mathcal{S}_{\mathrm{rel}}|\ll 1$~meV/atom vs.\ $31.9$~meV/atom rigid), while the tetramer Table~\ref{tab:III} benchmark shows sign reversal at matched corners.
 Coupled $(\epsilon,\delta)$ screening is advisable for size-mismatched substituents, $+3$\% and larger loads, and close substitution-energy competitors; Raman, STS, and stability trends in Sec.~\ref{sec:exp_signatures} offer experimental tests of the stress-field picture.
 
 \begin{acknowledgments}

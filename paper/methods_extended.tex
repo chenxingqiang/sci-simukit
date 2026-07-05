@@ -28,16 +28,16 @@ Rigid reference energies in Table~\ref{tab:III} remain the archived legacy-PBE (
 A matched-functional control recomputes the same four corners as rigid PBE+D3 single points at the relaxed fractional coordinates (400~Ry, $10^{-6}$~$E_{\mathrm{h}}$ SCF, no ionic steps); quantitative retention is read from the matched-functional row in Table~\ref{tab:III}, while the legacy-PBE rigid row remains for comparability with the archived tetramer grid.
 
 
-\subsubsection{Population strain path ($n{=}1$ P)}
+\subsubsection{Population strain paths ($n{=}1$ B/N/P)}
 \label{sec:methods_population}
-Six rigid single-point tasks on the $n{=}1$ P-substituted periodic supercell scan Hirshfeld atomic charges along $\epsilon\in\{-5,-2.5,0,+2.5,+3,+5\}$\% (Table~\ref{tab:II}); Mayer bond orders are extracted in post-processing from converged wavefunctions.
-These tasks use the same PBE+D3, 400~Ry, and $10^{-6}$~$E_{\mathrm{h}}$ SCF settings as the periodic size-scaling grid; the neutral $n{=}1$ P cell has an odd electron count, so spin-polarized KS (\texttt{LSD .TRUE.}) is enabled (unlike the closed-shell size-scaling ENERGY tasks).
+Eighteen rigid single-point tasks on the $n{=}1$ B-, N-, and P-substituted periodic supercells scan Hirshfeld atomic charges along $\epsilon\in\{-5,-2.5,0,+2.5,+3,+5\}$\% (Table~\ref{tab:II}); Mayer bond orders are extracted in post-processing from converged wavefunctions.
+These tasks use the same PBE+D3, 400~Ry, and $10^{-6}$~$E_{\mathrm{h}}$ SCF settings as the periodic size-scaling grid; doped $n{=}1$ cells have odd electron counts, so spin-polarized KS (\texttt{LSD .TRUE.}) is enabled (unlike the closed-shell size-scaling ENERGY tasks).
 They complement geometric $\bar{d}$ metrics in Table~\ref{tab:V}.
 
-\subsubsection{Periodic ionic-relaxation benchmark (pending)}
+\subsubsection{Periodic ionic-relaxation benchmark ($n{=}1$ P)}
 \label{sec:methods_periodic_relax}
 Fixed-cell geometry optimization on the periodic $n{=}1$ P-substitution four corners (pristine and $P$ at $\epsilon{=}0$ and $+3$\%; PBE+D3, 400~Ry) uses the same BFGS thresholds as Table~\ref{tab:III}.
-Inputs are generated from the converged rigid single-point cells in the size-scaling archive; results will be tabulated separately once all four corners converge (do not rescale tetramer Table~\ref{tab:III} benchmarks).
+Inputs are generated from the converged rigid single-point cells in the size-scaling archive; all four corners converged ($\mathcal{S}_{\mathrm{relaxed}}\ll \mathcal{S}_{\mathrm{rigid}}$; Sec.~\ref{sec:relax_checkpoint})---do not rescale tetramer Table~\ref{tab:III} benchmarks to periodic cells.
 
 \subsubsection{Marcus vertical step and post-processing}
 \label{sec:methods_marcus}

@@ -7,6 +7,27 @@
 
 
 
+### R393 audit（2026-07-05 go loops — reference batch running）
+
+| 项 | 状态 | 证据 |
+|----|------|------|
+| reference_pbed3 | **C** partial | **4/24**；`+2.5_B` batch running（OT~120+，EPS $10^{-6}$） |
+| methods_extended | **A** | `sec:methods_population` B/N/P；periodic relax **4/4** closed |
+| status line | **A** | `exp5_reference_pbed3_status_line.sh` OT/grad 快照 |
+
+**创新审计（R393）**：Methods SI 契约 = **A**；Table I reference α = **C**（勿进主文直至 24/24）
+
+### R392 audit（2026-07-05 go loops — compute paused）
+
+| 项 | 状态 | 证据 |
+|----|------|------|
+| periodic_relax n=1 P | **A** | **4/4**；`periodic_relax_validation_n1_P.json`；$S_{\mathrm{rig}}=-31.9$ meV/atom；$S_{\mathrm{rel}}\approx 0.1$ μeV/atom |
+| population B/N/P | **A** | **18/18**；`population_{B,N,P}_n1_strain.json` |
+| reference_pbed3 | **C** partial | **4/24**；用户暂停 batch；勿进 Table~I 数值 |
+| main tex periodic/Hirshfeld | **A** | `sec:relax_checkpoint` + Discussion mechanistic 已同步 |
+
+**创新审计（R392）**：C-M1 periodic = **A** closed；C-M3 Hirshfeld = **A**；Table I reference α = **C**（4/24）
+
 ### R390 audit（2026-07-03 go loops figures+tables）
 
 | 项 | 状态 | 证据 |
@@ -15,7 +36,7 @@
 | Table II | **A** | active 行主文；superseded 四行 → Table IIarchive |
 | compile_prb | **A** | PDF 重编译通过 |
 
-**创新审计（R390）**：图件信息密度 = **A**；population 仍 **B** pending
+**创新审计（R390）**：图件信息密度 = **A**；population = **A**（18/18，R391+）
 
 ### R389 audit（2026-07-03 go loops figures）
 

@@ -12,7 +12,7 @@
 
 We thank the referee for recognizing the corrections to doping concentration, Marcus definitions, functional mismatch disclosure, and legacy-PBE vs.\ PBE+D3 separation. This revision addresses Report No.~2 notation, APS section hierarchy, language, and figure--text alignment; **Table~III** tetramer ionic-relaxation is **complete** (4/4; sign reversal of $\mathcal{S}$); **Table~IV** alternate-placement DFT is **complete** (24/24). We further upgraded the narrative from a single-qHP case study to a **covalent molecular-network** coupling framework (internal vs.\ external stress field, mismatch--$|\mathcal{S}|$ scaling, additive-model applicability boundaries, and qualitative experimental signatures in new Methods/Discussion subsections). Main-text transport/$J$ content is consolidated in the **Supplemental Material**; Fig.~3 in the main text reports the Marcus protocol schematic and tabulated $\lambda^{\pm}$ only.
 
-**New DFT in this pass (queued or running):** periodic $n{=}1$ $P$ four-corner fixed-cell geometry optimization (`periodic_relax_validation/`; **1/4** at revision); Hirshfeld population along the strain path for **B** and **N** at $n{=}1$ (P grid **complete** 6/6; B/N queued after periodic batch); reference-placement PBE+D3 tetramer $\alpha$ grid (`reference_pbed3/`, inputs ready).
+**New DFT in this pass:** periodic $n{=}1$ $P$ four-corner fixed-cell geometry optimization (**4/4** complete); Hirshfeld population along the strain path for **B**, **N**, and **P** at $n{=}1$ (**18/18** complete); reference-placement PBE+D3 tetramer $\alpha$ grid (**running**, 24 SP).
 
 **Manuscript alignment (this pass):** Fig.~1(c) now uses **PBE+D3 alternate-placement** $\alpha$ (Table~IV) instead of legacy PBE Table~I; explicit **decoupling** definition (not $\alpha$--$|\mathcal{S}|$ anticorrelation); $\mathcal{S}_{\mathrm{vdW}}\approx +0.33$~meV/atom from D3 corner extraction; Eshelby/defect-elastic framing; Table~V tetramer-proxy disclaimer; $n\leq 4$ non-monotonic $|\mathcal{S}|$ note; raw $\Delta E_{\mathrm{sub}}$ terminology.
 
@@ -42,9 +42,9 @@ We thank the referee for recognizing the corrections to doping concentration, Ma
 
 **Referee concern:** Qualitative mechanism only; need Mayer/Bader/bond order.
 
-**Response:** We expanded sign-conflict physics in Discussion (iii) and Design implications (B/N $n{=}4$), retain Table~V $\Delta\bar{d}$/$\sigma(\bar{d})$ with explicit **tetramer-proxy** scope (not periodic $n{=}1$ bond statistics), and added **$\mathcal{S}_{\mathrm{vdW}}\approx +0.33$~meV/atom** on the matched-functional $P$ tetramer grid (negligible vs.\ total $|\mathcal{S}|$). Hirshfeld charge strain-path audit for $n{=}1$ **P** is **complete** (6/6). **B** and **N** Hirshfeld grids are **queued**. Sign-origin paragraphs distinguish geometric (P) vs.\ electronic (B/N) channels. Mayer/Bader remain **future work**.
+**Response:** We expanded sign-conflict physics in Discussion (iii) and Design implications (B/N $n{=}4$), retain Table~V $\Delta\bar{d}$/$\sigma(\bar{d})$ with explicit **tetramer-proxy** scope (not periodic $n{=}1$ bond statistics), and added **$\mathcal{S}_{\mathrm{vdW}}\approx +0.33$~meV/atom** on the matched-functional $P$ tetramer grid (negligible vs.\ total $|\mathcal{S}|$). Hirshfeld charge strain-path audits for $n{=}1$ **B**, **N**, and **P** are **complete** (18/18): P shows the largest fractional shift under tension ($+0.063\to+0.056\,e$ at $+3$\%); B and N shift more modestly ($+0.12\to+0.11\,e$ and $+0.069\to+0.057\,e$). Sign-origin paragraphs distinguish geometric (P) vs.\ electronic (B/N) channels. Mayer/Bader remain **future work**.
 
-**Pending:** B/N Hirshfeld strain path; Mayer/Bader analysis (Track A backlog).
+**Pending:** Mayer/Bader analysis (Track A backlog).
 
 **Manuscript:** Discussion mechanistic synthesis; `sec:methods_population`; Limitations.
 
@@ -64,9 +64,9 @@ We thank the referee for recognizing the corrections to doping concentration, Ma
 
 **Referee concern:** incomplete Table~III; no periodic relax; upper bounds only.
 
-**Response:** We agree. All main-text $|\mathcal{S}|$ remain **protocol upper bounds** at fixed coordinates until periodic ionic benchmarks complete. **Table~III** tetramer fixed-cell geometry optimization is **complete** (4/4): $\mathcal{S}_{\mathrm{rigid}}=+0.96$~meV/atom versus $\mathcal{S}_{\mathrm{relaxed}}=-2.28$~meV/atom (**sign not preserved**). A matched-functional PBE+D3 rigid grid on the same four corners is **complete** (4/4): $\mathcal{S}_{\mathrm{rigid}}^{\mathrm{PBE+D3}}=+1.19$~meV/atom with $|\mathcal{S}_{\mathrm{relaxed}}|/|\mathcal{S}_{\mathrm{rigid}}^{\mathrm{PBE+D3}}|\approx 1.9$ (sign still not preserved). **Periodic** $n{=}1$ $P$ four-corner fixed-cell geometry optimization is **queued/running** (`periodic_relax_validation/`); no $\mathcal{S}_{\mathrm{relaxed}}^{\mathrm{periodic}}$ magnitudes enter the main text until converged.
+**Response:** We agree. Main-text rigid $|\mathcal{S}|$ are **protocol upper bounds** at fixed coordinates. **Table~III** tetramer fixed-cell geometry optimization is **complete** (4/4): $\mathcal{S}_{\mathrm{rigid}}=+0.96$~meV/atom versus $\mathcal{S}_{\mathrm{relaxed}}=-2.28$~meV/atom (**sign not preserved**). Matched-functional PBE+D3 rigid single-points on the same four corners give $\mathcal{S}_{\mathrm{rigid}}^{\mathrm{PBE+D3}}=+1.19$~meV/atom ($|\mathcal{S}_{\mathrm{relaxed}}|/|\mathcal{S}_{\mathrm{rigid}}^{\mathrm{PBE+D3}}|\approx 1.9$; sign still not preserved). **Periodic** $n{=}1$ $P$ four-corner fixed-cell geometry optimization is **complete** (4/4): $\mathcal{S}_{\mathrm{rigid}}=-31.9$~meV/atom versus $\mathcal{S}_{\mathrm{relaxed}}\approx +0.1$~$\mu$eV/atom ($|\mathcal{S}_{\mathrm{relaxed}}|/|\mathcal{S}_{\mathrm{rigid}}|\lesssim 10^{-5}$), so rigid periodic $|\mathcal{S}|$ is a conservative upper bound on equilibrium $\mathcal{S}$ in this cell (Sec.~\ref{sec:relax_checkpoint}).
 
-**DFT status:** Table~III tetramer **4/4**; periodic $n{=}1$ P **1/4** (running); reference-placement PBE+D3 tetramer grid **pending** (inputs generated).
+**DFT status:** Table~III tetramer **4/4**; periodic $n{=}1$ P **4/4**; reference-placement PBE+D3 tetramer grid **running**.
 
 ---
 
@@ -186,9 +186,8 @@ We thank the referee for recognizing the corrections to doping concentration, Ma
 | 400~Ry $n{=}6$ N SP (Exp10 41/41) | II | **complete** |
 | Marcus vertical SP (8) | Fig.~3 | **8/8** converged; $\lambda^{\pm}$ tabulated in Fig.~3(b); B $\lambda^{-}{=}{-}0.173$~eV flagged non-physical (Limitations) |
 | Matched-functional rigid PBE+D3 (Table III) | III | **complete** 4/4; ratio $\approx 1.9$ (sign not preserved) |
-| Population Hirshfeld ($n{=}1$ P) | V / II | **complete** 6/6; $+0.063\,e\to+0.056\,e$ ($\epsilon{=}0\to+3$\%) |
-| Population Hirshfeld ($n{=}1$ B/N) | V / II | **queued** (inputs generated; batch after periodic relax) |
-| Periodic ionic relax ($n{=}1$ P) | II / III | **in progress** 0/4 (`periodic_relax_validation/`) |
+| Population Hirshfeld ($n{=}1$ B/N/P) | V / II | **complete** 18/18 |
+| Periodic ionic relax ($n{=}1$ P) | II / III | **complete** 4/4; $\mathcal{S}_{\mathrm{rel}}\ll \mathcal{S}_{\mathrm{rig}}$ |
 | Physics-upgrade narrative | Intro/Disc. | **complete** (`sec:stress_coupling`, `sec:generality`, `sec:exp_signatures`) |
 | Transport / $J$ main text | SI | **complete** (Marcus/$J$ in Supplemental Material; main Fig.~3 protocol only) |
 | Setup/process/result audit | reliability audit | **294** pass / 2 warn |

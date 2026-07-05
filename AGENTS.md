@@ -23,17 +23,15 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Exp10** | **41/41** ✅（incl. cutoff400） |
 | **Exp8** | **6/6** ✅ |
 | **Exp9** | **12/12** GEO_OPT ✅；vertical SP **8/8** ✅ |
-| **Table IV seed137** | **24/24** ✅（18/18 dop + 6/6 pri modern） |
-| **运行中** | `pop_n1_P_strainp2.5pct` np=2 — **不干预** |
-| **临界区** | — |
-| **下一任务** | population **6/6**；converged → `analyze_population_strain.py` |
-| **阻塞 PRB** | population **3/6**（C-M3） |
-| **文稿 P 瓶颈** | C-M3 population in progress；勿提前写 Hirshfeld 定量 |
-| **最新 Loop** | **R390** |
-| **下一 B 任务** | population 后 Hirshfeld；勿提前写定量 |
-| **主张-证据** | 主图 audit = **A**；population = **B** 3/6 |
-| **下一 C 任务** | `docs/prb_review_cn_mapping.md` 维护 |
-| **Loop C** | C-M1 **closed** ✅；C-M2 **closed** ✅；C-M3 **open** |
+| **Table IV seed137** | **24/24** ✅ |
+| **Periodic relax n=1 P** | **4/4** ✅ |
+| **Population B/N/P** | **18/18** ✅ |
+| **reference_pbed3** | **4/24** → `+2.5_B` **running** np=2 |
+| **运行中** | `C60_strain_+2.5_B_doped_refpbed3` — **不干预** |
+| **最新 Loop** | **R393** |
+| **下一 B 任务** | 24/24 后 `update_tab_I_reference_pbed3`；Mayer backlog |
+| **主张-证据** | periodic relax + Hirshfeld = **A**；reference α = **C** |
+| **Loop C** | C-M1 **closed** ✅；C-M2 **closed** ✅；C-M3 **partial**（Hirshfeld **A**） |
 | **SDC** | **15** synergy 点 |
 | **旗杆** | **PRB Regular Article** major revision |
 
@@ -111,7 +109,7 @@ test -f experiments/analysis/relax_validation_tetramer.json && python3 -c "impor
 **Loop 笔记必填**：`prl_gate: D? open | narrative=Y/N | abstract_NNN | relax=pending|done`
 
 
-**一行命令**：`bash experiments/exp10_status_line.sh` · `bash experiments/exp9_status_line.sh` · `bash experiments/exp5_relax_status_line.sh · `bash experiments/exp5_seed137_status_line.sh` · `bash experiments/continue_seed137_pending.sh`` · `bash experiments/verify_reliability.sh`
+**一行命令**：`bash experiments/exp10_status_line.sh` · `bash experiments/exp9_status_line.sh` · `bash experiments/exp5_relax_status_line.sh` · `bash experiments/exp5_seed137_status_line.sh` · `bash experiments/exp5_reference_pbed3_status_line.sh` · `bash experiments/continue_seed137_pending.sh` · `bash experiments/verify_reliability.sh`
 
 ---
 
@@ -1401,6 +1399,25 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R393（2026-07-05，三轨）**：
+ - **Track A**：reference_pbed3 **4/24**；`+2.5_B` OT~120+ np=2 长跑 — **不干预**
+ - **Track B（IV Methods）**：`methods_extended` population B/N/P + periodic relax **4/4** closed；`exp5_reference_pbed3_status_line` OT 快照
+ - **Track C**：theory R393；response 保持 reference grid running
+ - **paper_gap**：Table I reference α **C** — 勿改数值
+ - **创新审计**：Methods SI = **A**；reference α = **C**
+ - **Git**：`commit: (this push)` — `loop R393: …`
+ - **下一轮**：`+2.5_B` converged → 续 20 点；24/24 → Table I
+
+- **Loop R392（2026-07-05，三轨 · compute paused）**：
+ - **Track A**：periodic relax **4/4** ✅；population **18/18** ✅；`reference_pbed3` **4/24** — **用户暂停**，CP2K idle — **不启动**
+ - **Track B（V Data + 横切）**：Methods Hirshfeld 句 B/N/P 统一；Validation 链 periodic relax；`theory_enhancement_report` R392；`exp5_reference_pbed3_status_line.sh`；`compile_prb.sh` ✅
+ - **Track C**：`prb_review_cn_mapping` R392 paused 快照
+ - **paper_gap**：Table I reference α **C**（4/24）— **勿改数值**
+ - **创新审计**：periodic + Hirshfeld = **A**；reference α = **C**
+ - **prl_gate**：D2 periodic closed；reference Table I pending
+ - **Git**：`commit: (this push)` — `loop R392: …`
+ - **下一轮**：用户恢复 → `run_reference_pbed3_validation.sh`；24/24 → Table I + Fig.1(c)
 
 - **Loop R390（2026-07-03，Track B figures+tables）**：
  - **Track A**：population snapshot — **不干预**

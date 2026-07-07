@@ -26,10 +26,10 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Table IV seed137** | **24/24** ✅ |
 | **Periodic relax n=1 P** | **4/4** ✅ |
 | **Population B/N/P** | **18/18** ✅ |
-| **reference_pbed3** | **4/24** → `+2.5_B` **running** np=2 |
-| **运行中** | `C60_strain_+2.5_B_doped_refpbed3` — **不干预** |
-| **最新 Loop** | **R393** |
-| **下一 B 任务** | 24/24 后 `update_tab_I_reference_pbed3`；Mayer backlog |
+| **reference_pbed3** | **6/24** partial → `+2.5_P` **running** np=2 OT~175 **OSC** outer=15 (~2000× EPS) |
+| **运行中** | `C60_strain_+2.5_P_doped_refpbed3` — **不干预**（外层 SCF 回跳；ABORT 后 EPS $10^{-5}$） |
+| **最新 Loop** | **R399** |
+| **下一 B 任务** | 24/24 后 Table~I/Fig.1(c)；Mayer backlog |
 | **主张-证据** | periodic relax + Hirshfeld = **A**；reference α = **C** |
 | **Loop C** | C-M1 **closed** ✅；C-M2 **closed** ✅；C-M3 **partial**（Hirshfeld **A**） |
 | **SDC** | **15** synergy 点 |
@@ -109,7 +109,7 @@ test -f experiments/analysis/relax_validation_tetramer.json && python3 -c "impor
 **Loop 笔记必填**：`prl_gate: D? open | narrative=Y/N | abstract_NNN | relax=pending|done`
 
 
-**一行命令**：`bash experiments/exp10_status_line.sh` · `bash experiments/exp9_status_line.sh` · `bash experiments/exp5_relax_status_line.sh` · `bash experiments/exp5_seed137_status_line.sh` · `bash experiments/exp5_reference_pbed3_status_line.sh` · `bash experiments/continue_seed137_pending.sh` · `bash experiments/verify_reliability.sh`
+**一行命令**：`bash experiments/exp10_status_line.sh` · `bash experiments/exp9_status_line.sh` · `bash experiments/exp5_relax_status_line.sh` · `bash experiments/exp5_seed137_status_line.sh` · `bash experiments/exp5_reference_pbed3_status_line.sh` · `bash experiments/continue_reference_pbed3_pending.sh` · `bash experiments/continue_seed137_pending.sh` · `bash experiments/verify_reliability.sh`
 
 ---
 
@@ -1399,6 +1399,58 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R399（2026-07-07，三轨）**：
+ - **Track A**：reference_pbed3 **6/24**；`+2.5_P` 昨夜 ~2× EPS → 今晨 outer=15 OT~175 grad~$2\times10^{-3}$ **OSC**（外层 SCF 能量阶梯 $-1370\to-1601$ Ha）— batch 存活 — **不干预**
+ - **Track B（运维 + Loop C）**：status line 增 **OSC**（grad${>}100\times$ EPS）；response 稿 outer-SCF cycling 诚实化
+ - **paper_gap**：Table I $\alpha$ **C** — 不改数值
+ - **创新审计**：SCF 运维 = **A**；reference α = **C**
+ - **Git**：`f5be318` — loop R394–R399: reference_pbed3 ops 6/24, OSC status, Methods/response
+ - **下一轮**：ABORT→`relax_reference_pbed3_eps`+`continue`；converged→7/24
+
+- **Loop R398（2026-07-06，三轨）**：
+ - **Track A**：reference_pbed3 **6/24**；`+2.5_P` OT~**225**/300 grad~$2.6\times10^{-6}$ (~**3×** EPS) **CRIT** outer=3 — batch 存活 — **不干预**
+ - **Track B（IV Methods + 运维）**：`exp5_reference_pbed3_status_line` 自动 refresh JSON + 读 inp `EPS_SCF` 显示 `~Nx EPS`；Methods 外层 SCF 失败亦触发 EPS $10^{-5}$
+ - **Track C**：response **6/24** 不变（主文无 partial 计数）
+ - **paper_gap**：Table I $\alpha$ **C** — 不改数值
+ - **创新审计**：status 运维 = **A**；reference α = **C**
+ - **Git**：local only（R394–R398 积压；用户未要求 commit）
+ - **下一轮**：`+2.5_P` converged → **7/24** + `post_reference_pbed3`；+2.5 行满 → 续 pristine/+3.0
+
+- **Loop R397（2026-07-06，三轨）**：
+ - **Track A**：reference_pbed3 **6/24** partial（$+2.5$ B/N ✅ EPS $10^{-5}$/1e-6）；`+2.5_P` OT~191 grad~$2.4\times10^{-5}$ **CRIT** — **不干预**
+ - **Track B（V Data + Loop C）**：`tab_II` $N_{\mathrm{conv}}$ 4→6；response **6/24** partial；JSON 6 点
+ - **paper_gap**：Table I $\alpha$ **C** — 不改数值
+ - **创新审计**：Table II 计数 = **A**；reference α = **C**
+ - **Git**：local only（R394–R397 积压）
+ - **下一轮**：`+2.5_P` converged → post；batch 续 $+2.5$ pristine
+
+- **Loop R396（2026-07-06，三轨）**：
+ - **Track A**：reference_pbed3 **4/24** partial；`+2.5_B` OT~195/300 outer~18 grad~$1.2\times10^{-3}$ np=2 — **不干预**（逼近 OT_WARN 250）
+ - **Track B（运维 + Loop C）**：`continue_reference_pbed3_pending.sh`；status line 已有 `OUTER_WARN`@outer≥20；response pending 表 reference **partial 4/24**
+ - **Track C**：`response_to_referees` DFT 状态同步 partial
+ - **paper_gap**：Table I $\alpha$ **C** — 不改数值
+ - **创新审计**：refpbed3 resume 链 = **A**；reference α = **C**
+ - **Git**：local only（R394–R396 积压）
+ - **下一轮**：`+2.5_B` converged → post；OT≥250 仍不收敛 → 监视 ABORT
+
+- **Loop R395（2026-07-06，三轨）**：
+ - **Track A**：reference_pbed3 **4/24**；`+2.5_B` OT~121/300 outer~10 grad~$1.7\times10^{-3}$ np=2 — **不干预**（外层 SCF 振荡，参照 `+0.0_N` 266 OT）
+ - **Track B（V Data + IV Methods）**：`post_reference_pbed3_validation.sh` + `relax_reference_pbed3_eps.sh`；batch ABORT→EPS $10^{-5}$ 链；status line `outer=`；`tab_II` reference row；Methods Table~I modernization 句；**fix** `analyze_reference_pbed3.py` 路径标签 → JSON **partial 4/24**
+ - **Track C**：mapping R395 live snapshot
+ - **paper_gap**：Table I $\alpha$ **C**（4/24）— 不改数值
+ - **创新审计**：refpbed3 运维 = **A**；reference α = **C**
+ - **Git**：local only（用户未要求 commit）
+ - **下一轮**：`+2.5_B` converged → `post_reference_pbed3`；24/24 → Table~I
+
+- **Loop R394（2026-07-06，三轨）**：
+ - **Track A**：reference_pbed3 **4/24**；`+2.5_B` OT~147/300 np=2 — **不干预**
+ - **Track B（横切 P0）**：`sdc_method_section` + `si_methods` Hirshfeld **18/18** 契约；response checklist Table IV **24/24**；status line OT_WARN
+ - **Track C**：response §I–II checklist 去 stale Table IV pending
+ - **paper_gap**：Table I reference α **C**（4/24）
+ - **创新审计**：P0 契约 = **A**；reference α = **C**
+ - **Git**：local only
+ - **下一轮**：`+2.5_B` converged → 续 batch；24/24 → Table I
 
 - **Loop R393（2026-07-05，三轨）**：
  - **Track A**：reference_pbed3 **4/24**；`+2.5_B` OT~120+ np=2 长跑 — **不干预**
@@ -3845,6 +3897,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 ### Gotchas
 
 - **seed137 EPS**：tetramer 默认 `SEED137_EPS=1.0E-5`（`generate_seed137_inputs.py`）；`SEED137_EPS_ONLY=1` 仅改 EPS 不动坐标；掺杂位锁定见 `seed137_reroll_offsets.json`（勿用 `hash(dop)` 重生成）。
+- **reference_pbed3 慢收敛**：seed~42 四聚体 EPS $10^{-6}$ 下内层 OT 可触 300 步并触发**外层 SCF** 重启（`+0.0_N` 参考 266 OT）；`+2.5_B` 外层 21 轮 ABORT 后 **EPS $10^{-5}$** 收敛；`+2.5_P` 可昨夜近 EPS 后外层能量阶梯回跳（outer${\geq}15$、grad${\gg}$EPS，status **OSC**）— **勿杀 job**，等 ABORT 再 `relax_reference_pbed3_eps`；续跑须 `SKIP_GENERATE=1`（`continue_reference_pbed3_pending.sh`）以免 `generate_*` 覆盖 EPS。
 - **seed137 unlinked .out**：CP2K 运行中 `rm` 路径会使 `lsof +L1` link=0；`cleanup_stale_cp2k` 的 `lsof path` 检测失效。跑前/后 `bash experiments/guard_unlinked_cp2k_out.sh`；`exp5_seed137_status_line` 标 `UNLINKED`。
 - **nested validation ROOT**：`rigid_pbed3/`、`placement_validation/`、`population_validation/` 脚本须 `../../../../` 到 repo 根；`../../..` 会误指 `experiments/` 导致 `cp2k_resource.sh` 路径错误并 abort PRB 队列（R357 已修）。
 - **seed137 cholesky ABORT**：`B_strainp2.5` 在 `cp_dbcsr_cholesky_decompose` ABORT 后 batch 退出；`continue_seed137_pending.sh` 归档 partial `.out` 并以 **NP=2** 续跑（勿与 PRB 队列并行）。顺序执行 `experiments/run_prb_revision_dft.sh`（relax skip 4/4 → seed137 → rigid_pbed3 → placement → cutoff400 → population）；**单路 CP2K**；空闲续跑 `continue_prb_revision_dft.sh`。映射见 `docs/prb_review_cn_mapping.md`。

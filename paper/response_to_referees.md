@@ -12,7 +12,7 @@
 
 We thank the referee for recognizing the corrections to doping concentration, Marcus definitions, functional mismatch disclosure, and legacy-PBE vs.\ PBE+D3 separation. This revision addresses Report No.~2 notation, APS section hierarchy, language, and figure--text alignment; **Table~III** tetramer ionic-relaxation is **complete** (4/4; sign reversal of $\mathcal{S}$); **Table~IV** alternate-placement DFT is **complete** (24/24). We further upgraded the narrative from a single-qHP case study to a **covalent molecular-network** coupling framework (internal vs.\ external stress field, mismatch--$|\mathcal{S}|$ scaling, additive-model applicability boundaries, and qualitative experimental signatures in new Methods/Discussion subsections). Main-text transport/$J$ content is consolidated in the **Supplemental Material**; Fig.~3 in the main text reports the Marcus protocol schematic and tabulated $\lambda^{\pm}$ only.
 
-**New DFT in this pass:** periodic $n{=}1$ $P$ four-corner fixed-cell geometry optimization (**4/4** complete); Hirshfeld population along the strain path for **B**, **N**, and **P** at $n{=}1$ (**18/18** complete); reference-placement PBE+D3 tetramer $\alpha$ grid (**running**, 24 SP).
+**New DFT in this pass:** periodic $n{=}1$ $P$ four-corner fixed-cell geometry optimization (**4/4** complete); Hirshfeld population along the strain path for **B**, **N**, and **P** at $n{=}1$ (**18/18** complete); reference-placement PBE+D3 tetramer $\alpha$ grid (**partial** 6/24; $\epsilon{=}0$ and $+2.5$\% B/N converged; $+2.5$\% P in progress with outer-SCF cycling).
 
 **Manuscript alignment (this pass):** Fig.~1(c) now uses **PBE+D3 alternate-placement** $\alpha$ (Table~IV) instead of legacy PBE Table~I; explicit **decoupling** definition (not $\alpha$--$|\mathcal{S}|$ anticorrelation); $\mathcal{S}_{\mathrm{vdW}}\approx +0.33$~meV/atom from D3 corner extraction; Eshelby/defect-elastic framing; Table~V tetramer-proxy disclaimer; $n\leq 4$ non-monotonic $|\mathcal{S}|$ note; raw $\Delta E_{\mathrm{sub}}$ terminology.
 
@@ -66,7 +66,7 @@ We thank the referee for recognizing the corrections to doping concentration, Ma
 
 **Response:** We agree. Main-text rigid $|\mathcal{S}|$ are **protocol upper bounds** at fixed coordinates. **Table~III** tetramer fixed-cell geometry optimization is **complete** (4/4): $\mathcal{S}_{\mathrm{rigid}}=+0.96$~meV/atom versus $\mathcal{S}_{\mathrm{relaxed}}=-2.28$~meV/atom (**sign not preserved**). Matched-functional PBE+D3 rigid single-points on the same four corners give $\mathcal{S}_{\mathrm{rigid}}^{\mathrm{PBE+D3}}=+1.19$~meV/atom ($|\mathcal{S}_{\mathrm{relaxed}}|/|\mathcal{S}_{\mathrm{rigid}}^{\mathrm{PBE+D3}}|\approx 1.9$; sign still not preserved). **Periodic** $n{=}1$ $P$ four-corner fixed-cell geometry optimization is **complete** (4/4): $\mathcal{S}_{\mathrm{rigid}}=-31.9$~meV/atom versus $\mathcal{S}_{\mathrm{relaxed}}\approx +0.1$~$\mu$eV/atom ($|\mathcal{S}_{\mathrm{relaxed}}|/|\mathcal{S}_{\mathrm{rigid}}|\lesssim 10^{-5}$), so rigid periodic $|\mathcal{S}|$ is a conservative upper bound on equilibrium $\mathcal{S}$ in this cell (Sec.~\ref{sec:relax_checkpoint}).
 
-**DFT status:** Table~III tetramer **4/4**; periodic $n{=}1$ P **4/4**; reference-placement PBE+D3 tetramer grid **running**.
+**DFT status:** Table~III tetramer **4/4**; periodic $n{=}1$ P **4/4**; reference-placement PBE+D3 tetramer grid **partial** 6/24 ($\epsilon{=}0$ pristine/B/N/P; $+2.5$\% B/N; $+2.5$\% P outer-SCF oscillation in progress).
 
 ---
 
@@ -189,6 +189,7 @@ We thank the referee for recognizing the corrections to doping concentration, Ma
 | Population Hirshfeld ($n{=}1$ B/N/P) | V / II | **complete** 18/18 |
 | Periodic ionic relax ($n{=}1$ P) | II / III | **complete** 4/4; $\mathcal{S}_{\mathrm{rel}}\ll \mathcal{S}_{\mathrm{rig}}$ |
 | Physics-upgrade narrative | Intro/Disc. | **complete** (`sec:stress_coupling`, `sec:generality`, `sec:exp_signatures`) |
+| Reference placement PBE+D3 ($\alpha$ modernization) | I / II | **partial** 6/24 ($\epsilon{=}0$, $+2.5$\% B/N); $+2.5$\% P outer-SCF cycling; Table~\ref{tab:I} legacy-PBE retained until complete |
 | Transport / $J$ main text | SI | **complete** (Marcus/$J$ in Supplemental Material; main Fig.~3 protocol only) |
 | Setup/process/result audit | reliability audit | **294** pass / 2 warn |
 
@@ -198,8 +199,8 @@ We thank the referee for recognizing the corrections to doping concentration, Ma
 
 | Review theme | Action in this revision |
 |--------------|-------------------------|
-| **§I Abstract** | Covalent-network framing（R328）；Table~III **4/4** sign reversal；Table~IV pending；``at fixed coordinates'' on max $|\mathcal{S}|$; Marcus Fig.~3 boundary |
-| **§II Introduction** | Periodic PBE+D3 $\mathcal{S}$ vs.\ legacy PBE tetramer $\alpha$ (Table~I) separated; Table~III **4/4** complete (sign reversal); Table~IV pending |
+| **§I Abstract** | Covalent-network framing（R328）；Table~III **4/4** sign reversal；Table~IV **24/24** alternate；``at fixed coordinates'' on max $|\mathcal{S}|$; Marcus Fig.~3 boundary |
+| **§II Introduction** | Periodic PBE+D3 $\mathcal{S}$ vs.\ legacy PBE tetramer $\alpha$ (Table~I) separated; Table~III **4/4** complete (sign reversal); Table~IV alternate **24/24** |
 | **§III Methods** | Table~I legacy PBE vs periodic PBE+D3; Tables~III--IV upper-bound gate in `sec:notation`（R318）；Table~III four-corner + BFGS thresholds; **Table~IV** reference legacy-PBE vs alternate PBE+D3 seed~137 (`sec:methods_s4_seed`); Fig.~3 Marcus schematic + $\lambda$ table (R390); Table~IIarchive for superseded grids |
 | **§III.C Doping concentration** | Clarified: one substituent per C$_{60}$ $\Rightarrow$ $n$ in $60n$ atoms (${\sim}1.67$ at.\%); explicitly \emph{not} $1/240{=}0.42$ at.\% single-dopant/supercell counting |
 | **§III.E Table~III** | Sign-only; PBE rigid vs PBE+D3 relaxed; four corners = pristine + $P$ at $\epsilon{=}0,+3$\% |

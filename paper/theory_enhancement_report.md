@@ -7,6 +7,74 @@
 
 
 
+### R399 audit（2026-07-07 go loops — +2.5_P outer-SCF OSC）
+
+| 项 | 状态 | 证据 |
+|----|------|------|
+| reference_pbed3 | **C** partial | **6/24**；`+2.5_P` outer=15 grad~$2\times10^{-3}$ **OSC** — **不干预** |
+| status line OSC | **A** | grad${>}100\times$ EPS 标记 |
+| response | **A** | outer-SCF cycling（仅 response 稿） |
+| Table I α | **C** | **勿改**直至 24/24 |
+
+**创新审计（R399）**：运维 = **A**；reference α = **C**
+
+### R398 audit（2026-07-06 go loops — refpbed3 +2.5_P ~3× EPS）
+
+| 项 | 状态 | 证据 |
+|----|------|------|
+| reference_pbed3 | **C** partial | **6/24**；`+2.5_P` OT~225 grad~$2.6\times10^{-6}$ (~3× EPS) **CRIT** — **不干预** |
+| status line | **A** | 自动 `analyze_reference_pbed3`；inp `EPS_SCF`→`~Nx EPS` |
+| Methods EPS fallback | **A** | 外层 SCF 失败亦触发 $10^{-5}$（与 alternate grid 对齐） |
+| Table I α | **C** | **勿改**直至 24/24 |
+
+**创新审计（R398）**：运维契约 = **A**；reference α = **C**
+
+### R397 audit（2026-07-06 go loops — refpbed3 6/24）
+
+| 项 | 状态 | 证据 |
+|----|------|------|
+| reference_pbed3 | **C** partial | **6/24**；$+2.5$ B/N ✅；`+2.5_P` CRIT OT~191 — **不干预** |
+| tab_II $N_{\mathrm{conv}}$ | **A** | Reference placement **6**（诚实计数） |
+| response partial | **A** | **6/24**（仅 response 稿） |
+| ABORT recovery | **A** | `+2.5_B` EPS $10^{-5}$ + `SKIP_GENERATE=1` |
+
+**创新审计（R397）**：进度诚实化 = **A**；Table I reference α = **C**
+
+### R396 audit（2026-07-06 go loops — refpbed3 +2.5_B OT~195）
+
+| 项 | 状态 | 证据 |
+|----|------|------|
+| continue_reference_pbed3 | **A** | 对齐 `continue_seed137_pending.sh`；NP=2 cap |
+| status line | **A** | OT/grad/outer；`OUTER_WARN`@outer≥20 |
+| response pending | **A** | reference placement **partial 4/24**（仅 response 稿） |
+| reference_pbed3 | **C** | **4/24**；`+2.5_B` OT~195/300 outer~18 — **不干预** |
+
+**创新审计（R396）**：resume 运维 = **A**；Table I reference α = **C**
+
+### R395 audit（2026-07-06 go loops — refpbed3 ops + Table II row）
+
+| 项 | 状态 | 证据 |
+|----|------|------|
+| post_reference_pbed3 | **A** | `post_reference_pbed3_validation.sh` + per-task hook in batch runner |
+| relax_reference_pbed3_eps | **A** | ABORT 后 EPS $10^{-5}$ 单点（对齐 seed137 运维） |
+| status line outer= | **A** | `exp5_reference_pbed3_status_line.sh` OT/grad/**outer** |
+| tab_II reference row | **A** | $N_{\mathrm{conv}}{=}4$ 诚实计数；勿进 Table~I $\alpha$ |
+| analyze_reference_pbed3 | **A** | 路径标签 `+0.0` 修复；JSON **partial 4/24** 与 grep 一致 |
+| reference_pbed3 | **C** | **4/24**；`+2.5_B` OT~121/300 outer~10 — **不干预** |
+
+**创新审计（R395）**：运维闭环 = **A**；Table I reference α = **C**
+
+### R394 audit（2026-07-06 go loops — refpbed3 +2.5_B running）
+
+| 项 | 状态 | 证据 |
+|----|------|------|
+| sdc_method_section | **A** | Hirshfeld B/N/P **18/18**；vdW corner B/N 仍 open |
+| si_methods | **A** | 18/18 B/N/P + periodic relax 归档句 |
+| response checklist | **A** | Table IV alternate **24/24**（非 pending） |
+| reference_pbed3 | **C** | **4/24**；`+2.5_B` OT~147/300 — **不干预** |
+
+**创新审计（R394）**：文稿-证据契约 P0 = **A**；Table I reference α = **C**
+
 ### R393 audit（2026-07-05 go loops — reference batch running）
 
 | 项 | 状态 | 证据 |

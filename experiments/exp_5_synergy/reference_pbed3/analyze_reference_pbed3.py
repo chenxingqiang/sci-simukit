@@ -17,6 +17,10 @@ HA_TO_MEV = 27.211386245988 * 1000.0
 STRAINS = (-5.0, -2.5, 0.0, 2.5, 3.0, 5.0)
 
 
+def strain_tag(eps: float) -> str:
+    return f"{eps:+.1f}"
+
+
 def parse_energy(out: Path) -> float | None:
     if not out.exists() or "SCF run converged" not in out.read_text(errors="replace"):
         return None
@@ -37,7 +41,7 @@ def synergy_s(e_p0, e_p3, e_d0, e_d3) -> float:
 def main() -> None:
     pristine: dict[float, float] = {}
     for eps in STRAINS:
-        tag = f"{eps:+.1f}".replace("+", "p").replace("-", "m")
+        tag = strain_tag(eps)
         out = INP_DIR / f"C60_strain_{tag}_pristine_refpbed3.out"
         e = parse_energy(out)
         if e is not None:
@@ -56,7 +60,7 @@ def main() -> None:
         energies: dict[float, float] = {}
         for eps in STRAINS:
             total += 1
-            tag = f"{eps:+.1f}".replace("+", "p").replace("-", "m")
+            tag = strain_tag(eps)
             out = INP_DIR / f"C60_strain_{tag}_{dop}_doped_refpbed3.out"
             e = parse_energy(out)
             if e is not None:

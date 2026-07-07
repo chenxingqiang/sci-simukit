@@ -4,6 +4,7 @@
 \label{sec:methods_dft_detail}
 Periodic total-energy and electronic-structure tasks use CP2K~\cite{cp2k2025} with PBE~\cite{Perdew1996generalized} and Grimme DFT-D3 (Becke--Johnson damping)~\cite{Grimme2011effect}.
 Tetramer $\alpha$ and $E_{\mathrm{sub}}$ in Table~\ref{tab:I} come from the archived rigid tetramer grid (legacy PBE without D3).
+A matched PBE+D3 rigid re-evaluation of the reference placement map (seed~42; 24 tasks at 400~Ry, $10^{-6}$~$E_{\mathrm{h}}$ SCF) is underway (Table~\ref{tab:II}); published $\alpha$ values are not replaced until that grid converges.
 Unless stated otherwise, biaxial strain scales the in-plane lattice vectors of the pristine equilibrium cell at fixed fractional coordinates (rigid-strain protocol).
 The plane-wave cutoff is 400~Ry for $n\leq 4$ and 350~Ry for $n\geq 6$ (Table~\ref{tab:II}); the atom-centered basis (DZVP-MOLOPT-SR-GTH) is unchanged across $n$.
 Tetramer models ($4\times\mathrm{C}_{60}$, 240 atoms) use B/N/P substitution at nominal 5\% (12--13 dopant sites from archived coordinates).
@@ -17,6 +18,7 @@ Reference-placement $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ for B/N/P is tabulated i
 Alternate tasks use PBE+D3 rigid single-point total-energy evaluations at 400~Ry with an SCF convergence threshold of $10^{-6}$~$E_{\mathrm{h}}$; they are \emph{not} on the same exchange-correlation treatment as the reference $\alpha$ column, so only within-placement trends are compared once the grid converges.
 At periodic $n{=}4$, two independent site maps repeat the four-corner Eq.~\eqref{eq:synergy_order} audit (pristine and B/N/P at $\epsilon{=}0$ and $+3$\%; eight energies per map, 16 total) under the same PBE+D3 rigid protocol as the fifteen-point size-scaling grid; rankings of $|\mathcal{S}|$ at $+3$\% are compared to the production reference map in Table~\ref{tab:Sgrid}. Fixed pseudorandom seeds 137 and 271 identify the alternate maps in the archive; the production map uses seed~42.
 Where alternate-grid rigid single-points stall in SCF, the convergence threshold may be relaxed to $10^{-5}$~$E_{\mathrm{h}}$ for that task.
+The same relaxation applies to reference-placement modernization tasks when inner OT reaches 300 steps or outer SCF fails to converge (up to 21 outer cycles at $10^{-6}$~$E_{\mathrm{h}}$).
 
 \subsubsection{Ionic-relaxation benchmark (Table~\ref{tab:III})}
 \label{sec:methods_s3_relax}

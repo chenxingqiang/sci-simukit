@@ -2,34 +2,44 @@
   "placement": "reference (seed 42 archive map)",
   "functional": "PBE+D3",
   "n_atoms": 240,
-  "status": "pending",
+  "status": "partial",
   "systems": {
     "B": {
       "alpha_meV_per_pct": null,
-      "E_sub_eV_per_dopant": null,
+      "E_sub_eV_per_dopant": 73.36251068622347,
       "S_meV_per_atom_at_eps3": null,
-      "strain_energies_ha": {},
-      "converged_strain_points": 0
+      "strain_energies_ha": {
+        "0.0": -1328.8287144881083,
+        "2.5": -1328.840813731389
+      },
+      "converged_strain_points": 2
     },
     "N": {
       "alpha_meV_per_pct": null,
-      "E_sub_eV_per_dopant": null,
+      "E_sub_eV_per_dopant": -115.27827133400052,
       "S_meV_per_atom_at_eps3": null,
-      "strain_energies_ha": {},
-      "converged_strain_points": 0
+      "strain_energies_ha": {
+        "0.0": -1414.7137875160759,
+        "2.5": -1414.7426515270513
+      },
+      "converged_strain_points": 2
     },
     "P": {
       "alpha_meV_per_pct": null,
-      "E_sub_eV_per_dopant": null,
+      "E_sub_eV_per_dopant": -15.823898838447368,
       "S_meV_per_atom_at_eps3": null,
-      "strain_energies_ha": {},
-      "converged_strain_points": 0
+      "strain_energies_ha": {
+        "0.0": -1370.8552181966757
+      },
+      "converged_strain_points": 1
     }
   },
   "pristine": {
     "alpha_meV_per_pct": null,
-    "strain_energies_ha": {}
+    "strain_energies_ha": {
+      "0.0": -1363.8770075188067
+    }
   },
-  "converged_tasks": 0,
+  "converged_tasks": 6,
   "total_tasks": 24
 }

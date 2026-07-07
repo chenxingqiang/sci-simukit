@@ -4,6 +4,8 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 DIR="$ROOT/experiments/exp_5_synergy/reference_pbed3/inputs"
 JSON="$ROOT/experiments/analysis/reference_placement_pbed3.json"
 
+python3 "$ROOT/experiments/exp_5_synergy/reference_pbed3/analyze_reference_pbed3.py" >/dev/null 2>&1 || true
+
 done=0
 total=0
 for inp in "$DIR"/C60_strain_*_refpbed3.inp; do
@@ -28,29 +30,48 @@ fi
 line="ReferencePBE+D3 ${done}/${total} | status=${status} | running=${running}"
 
 if [[ "$running" != none ]]; then
-  snap="$(python3 - "$DIR/${running}.out" <<'PY'
+  snap="$(python3 - "$DIR/${running}.out" "$DIR/${running}.inp" <<'PY'
 import re, sys
 from pathlib import Path
 p = Path(sys.argv[1])
+inp = Path(sys.argv[2]) if len(sys.argv) > 2 else p.with_suffix('.inp')
 if not p.exists():
     sys.exit(0)
 text = p.read_text(errors="replace")
+eps = 1.0e-6
+if inp.exists():
+    m_eps = re.search(r'EPS_SCF\s+([\d.E+-]+)', inp.read_text(errors="replace"))
+    if m_eps:
+        eps = float(m_eps.group(1).replace('D', 'E').replace('d', 'e'))
 # Last inner OT block after final PROGRAM STARTED
 starts = [m.start() for m in re.finditer(r"PROGRAM STARTED", text)]
 chunk = text[starts[-1]:] if starts else text
 ots = [ln for ln in chunk.splitlines() if re.match(r"\s+\d+ OT ", ln)]
+outers = [ln for ln in chunk.splitlines() if "outer SCF iter" in ln]
+outer = ""
+outer_warn = ""
+if outers:
+    m = re.search(r"outer SCF iter\s*=\s*(\d+)", outers[-1])
+    if m:
+        oi = int(m.group(1))
+        outer = f" outer={oi}"
+        if oi >= 20:
+            outer_warn = " OUTER_WARN"
 if not ots:
+    if outer:
+        print(outer.strip() + outer_warn)
     sys.exit(0)
 parts = ots[-1].split()
 step, grad = parts[0], parts[5] if len(parts) > 5 else "?"
-eps = 1.0e-6
 try:
     g = float(grad)
     ratio = g / eps
     crit = " CRIT" if ratio <= 15 else ""
-    print(f"OT~{step}/300 grad~{grad}{crit}")
+    osc = " OSC" if ratio > 100 else ""
+    warn = " OT_WARN" if int(step) >= 250 else ""
+    print(f"OT~{step}/300 grad~{grad} (~{ratio:.0f}x EPS){crit}{osc}{warn}{outer}{outer_warn}")
 except ValueError:
-    print(f"OT~{step} grad~{grad}")
+    print(f"OT~{step} grad~{grad}{outer}{outer_warn}")
 PY
 )"
   [[ -n "$snap" ]] && line="$line | $snap"

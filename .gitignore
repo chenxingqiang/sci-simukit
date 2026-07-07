@@ -102,6 +102,8 @@ c/src/*.o
 # VMD render cache
 paper/figures/final_figures/_vbm_cbm_cache/
 experiments/.exp9_batch.lock
+experiments/.reference_pbed3_batch.lock
+experiments/.seed137_batch.lock
 paper/*Notes.bib
 **/*.pre_protocol_fix_*
 **/*.restart.bak-*

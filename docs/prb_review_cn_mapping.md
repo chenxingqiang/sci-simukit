@@ -32,7 +32,7 @@
 | 方法长句拆分 | **partial** | `methods_extended.tex` 按需 |
 | 设计启示具体化 | **partial** | Discussion Design implications（共价半径 ≳20 pm） |
 
-**Live snapshot（2026-07-05 R393）**：periodic relax **4/4** ✅；population **18/18** ✅；`reference_pbed3` **4/24**（`+2.5_B` **running**，OT~130/300；勿改 Table I）。
+**Live snapshot（2026-07-07 R399）**：reference_pbed3 **6/24**；`+2.5_P` outer=15 **OSC**（昨夜近收敛后外层 SCF 回跳）；Table I reference α 勿改至 24/24。
 
 
 ## DFT 队列顺序

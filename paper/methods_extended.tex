@@ -3,8 +3,9 @@
 \subsubsection{DFT calculator settings}
 \label{sec:methods_dft_detail}
 Periodic total-energy and electronic-structure tasks use CP2K~\cite{cp2k2025} with PBE~\cite{Perdew1996generalized} and Grimme DFT-D3 (Becke--Johnson damping)~\cite{Grimme2011effect}.
-Tetramer $\alpha$ and $E_{\mathrm{sub}}$ in Table~\ref{tab:I} come from the archived rigid tetramer grid (legacy PBE without D3).
-A matched PBE+D3 rigid re-evaluation of the reference placement map (seed~42; 24 tasks at 400~Ry, $10^{-6}$~$E_{\mathrm{h}}$ SCF) is underway (Table~\ref{tab:II}); published $\alpha$ values are not replaced until that grid converges.
+Fig.~\ref{fig:main}(c) uses rigid PBE+D3 $\alpha$ on the reference placement map (seed~42; 24/24; Table~\ref{tab:II}).
+The alternate-placement benchmark (Table~\ref{tab:IV}) tests slope sensitivity on an independent site map.
+The modernization grid mirrors the alternate-placement strain set ($\epsilon\in\{-5,-2.5,0,+2.5,+3,+5\}$\%; pristine plus B/N/P rigid single-points on the archived reference map).
 Unless stated otherwise, biaxial strain scales the in-plane lattice vectors of the pristine equilibrium cell at fixed fractional coordinates (rigid-strain protocol).
 The plane-wave cutoff is 400~Ry for $n\leq 4$ and 350~Ry for $n\geq 6$ (Table~\ref{tab:II}); the atom-centered basis (DZVP-MOLOPT-SR-GTH) is unchanged across $n$.
 Tetramer models ($4\times\mathrm{C}_{60}$, 240 atoms) use B/N/P substitution at nominal 5\% (12--13 dopant sites from archived coordinates).
@@ -12,7 +13,7 @@ Periodic supercells place one substituent per C$_{60}$ unit ($n=1$--$8$), giving
 
 \subsubsection{Alternate-placement benchmark (Table~\ref{tab:IV})}
 \label{sec:methods_s4_seed}
-The \emph{reference} placement in Table~\ref{tab:IV} is the archived rigid tetramer map underlying Table~\ref{tab:I} (legacy PBE without D3).
+The \emph{reference} rows in Table~\ref{tab:IV} reproduce an archived legacy-PBE rigid tetramer map (no D3) for placement contrast only; main-text quantitative claims use the alternate PBE+D3 column.
 The \emph{alternate} placement repeats the full B/N/P strain grid ($\epsilon\in\{-5,-2.5,0,+2.5,+3,+5\}$\%; 18 rigid single-point tasks) with an independently rerolled substitution map at the same nominal 5\% doping level (pseudorandom seed~137; public archive).
 Reference-placement $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ for B/N/P is tabulated in Table~\ref{tab:IV} and Sec.~\ref{sec:synergy}; periodic $\mathcal{S}(n)$ is not inferred from either tetramer map.
 Alternate tasks use PBE+D3 rigid single-point total-energy evaluations at 400~Ry with an SCF convergence threshold of $10^{-6}$~$E_{\mathrm{h}}$; they are \emph{not} on the same exchange-correlation treatment as the reference $\alpha$ column, so only within-placement trends are compared once the grid converges.

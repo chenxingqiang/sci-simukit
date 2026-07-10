@@ -67,15 +67,23 @@ def ha_per_atom_to_meV(ha_per_atom: float) -> float:
 
 
 def load_tetramer_alpha_panel() -> tuple[dict[str, float], str]:
-    """Alpha for Fig.~1(c): prefer matched-functional PBE+D3; fallback alternate placement."""
+    """Alpha for Fig.~1(c): reference placement PBE+D3 when 24/24; else alternate."""
     root = repo_root()
     ref_path = root / "experiments/analysis/reference_placement_pbed3.json"
     if ref_path.is_file():
         ref = json.loads(ref_path.read_text())
-        if ref.get("status") == "complete" and "alpha_meV_per_pct" in ref:
-            alpha = dict(ref["alpha_meV_per_pct"])
-            alpha.setdefault("pristine", 1.0)
-            return alpha, "reference placement, PBE+D3"
+        if (
+            ref.get("status") == "complete"
+            and not ref.get("alpha_provisional", True)
+            and "systems" in ref
+        ):
+            alpha = {
+                "B": float(ref["systems"]["B"]["alpha_meV_per_pct"]),
+                "N": float(ref["systems"]["N"]["alpha_meV_per_pct"]),
+                "P": float(ref["systems"]["P"]["alpha_meV_per_pct"]),
+                "pristine": float(ref["pristine"]["alpha_meV_per_pct"]),
+            }
+            return alpha, "reference placement (seed~42), PBE+D3 rigid"
 
     alt = {
         "B": 21.4,
@@ -85,6 +93,13 @@ def load_tetramer_alpha_panel() -> tuple[dict[str, float], str]:
     }
     return alt, "alternate placement (seed~137), PBE+D3 rigid"
 
+
+
+def load_placement_alpha_pair() -> tuple[dict[str, float], dict[str, float]]:
+    """Reference (seed~42) vs alternate (seed~137) PBE+D3 rigid tetramer alpha."""
+    ref, _ = load_tetramer_alpha_panel()
+    alt = {"B": 21.4, "N": 45.4, "P": 989.6, "pristine": 1.0}
+    return ref, alt
 
 def synergy_rows(audit: dict[str, Any], dopant: str) -> list[tuple[int, float]]:
     rows = [

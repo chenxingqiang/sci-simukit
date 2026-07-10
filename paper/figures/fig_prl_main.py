@@ -14,7 +14,7 @@ from matplotlib.lines import Line2D
 FIG_DIR = Path(__file__).resolve().parent
 sys.path.insert(0, str(FIG_DIR))
 
-from _load_audit import load_json, load_tetramer_alpha_panel, parse_exp7_gaps, repo_root, synergy_rows
+from _load_audit import load_json, load_placement_alpha_pair, load_tetramer_alpha_panel, parse_exp7_gaps, repo_root, synergy_rows
 from _pdos import gaussian_dos, parse_pdos
 from _style import (
     COLOR_CBM,
@@ -27,8 +27,11 @@ from _style import (
     PRB_HEIGHT_IN,
     PRB_WIDTH_IN,
     apply_prl_style,
+    apply_nature_style,
     apply_prb_style,
     apply_si_style,
+    NATURE_BLUE,
+    NATURE_RED,
     panel_label,
     style_axes,
 )
@@ -76,7 +79,7 @@ def _add_unified_dopant_legend(fig: plt.Figure) -> None:
 
 def _plot_electronic_row(ax_gap, ax_dos, gaps) -> None:
     """(a) Gap vs strain + (b) aligned π-DOS @ B, ε=0 — Electron energy axis."""
-    panel_label(ax_gap, "a")
+    panel_label(ax_gap, "a", nature=True)
     for dopant in ("pristine", "B", "N", "P"):
         pts = [p for p in gaps if p.dopant == dopant and p.converged]
         if not pts:
@@ -125,9 +128,9 @@ def _plot_electronic_row(ax_gap, ax_dos, gaps) -> None:
     ax_gap.set_ylabel(r"energy gap (eV)")
     ax_gap.set_xlim(-5.5, 5.5)
     ax_gap.set_ylim(-0.22, 1.62)
-    style_axes(ax_gap)
+    style_axes(ax_gap, grid=True, grid_axis="both")
 
-    panel_label(ax_dos, "b")
+    panel_label(ax_dos, "b", nature=True)
     pdos_path = repo_root() / "dft_results/exp_7_electronic_structure/outputs/elec_pos0p0_B-k1-1.pdos"
     series = parse_pdos(pdos_path)
     grid = np.linspace(-2.5, 2.5, 400)
@@ -142,7 +145,7 @@ def _plot_electronic_row(ax_gap, ax_dos, gaps) -> None:
     ax_dos.set_ylabel(r"$\pi$-DOS (a.u.)")
     ax_dos.set_xlim(-2.0, 2.0)
     ax_dos.set_ylim(0, dos.max() * 1.08)
-    style_axes(ax_dos)
+    style_axes(ax_dos, grid=True, grid_axis="y")
     ax_dos.text(
         0.97,
         0.95,
@@ -155,61 +158,58 @@ def _plot_electronic_row(ax_gap, ax_dos, gaps) -> None:
     )
 
 
-def _plot_alpha(ax, alphas: dict[str, float], protocol_note: str) -> None:
-    panel_label(ax, "c")
-    labels = ["N", "B", "P", "pristine"]
-    vals = [alphas[k] for k in labels]
-    ypos = np.arange(len(labels))
-    ax.barh(ypos, vals, color=[DOPANT_COLORS[k] for k in labels], height=0.55, edgecolor="none", zorder=2)
-    ax.axvline(0, color="#333333", lw=0.55, zorder=1)
-    ax.set_yticks(ypos)
-    ax.set_yticklabels(labels)
-    ax.tick_params(axis="y", pad=1)
-    ax.set_xlabel(r"$\alpha$ (meV/%)", labelpad=2)
+def _plot_alpha_placement_compare(ax, ref: dict[str, float], alt: dict[str, float]) -> None:
+    """Panel (c): paired reference vs alternate alpha — Nature two-condition bars."""
+    panel_label(ax, "c", nature=True)
+    dopants = ["N", "B", "P"]
+    y = np.arange(len(dopants), dtype=float)
+    h = 0.34
+    ref_vals = [ref[d] for d in dopants]
+    alt_vals = [alt[d] for d in dopants]
+    ax.barh(y + h / 2, ref_vals, height=h, color=NATURE_BLUE, label="Reference (seed~42)", zorder=3)
+    ax.barh(y - h / 2, alt_vals, height=h, color=NATURE_RED, label="Alternate (seed~137)", zorder=3)
+    ax.axvline(0, color="#333333", lw=0.65, zorder=1)
+    ax.set_yticks(y)
+    ax.set_yticklabels(dopants)
     ax.invert_yaxis()
-    lo, hi = min(vals), max(vals)
-    span = hi - lo
-    pad_neg = max(abs(lo) * 0.06, 22)
-    pad_pos = max(hi * 0.18, 14)
-    ax.set_xlim(lo - pad_neg, hi + pad_pos)
-    style_axes(ax, grid=True)
-    for i, val in enumerate(vals):
-        label = f"{val:.0f}"
-        if abs(val) >= 80:
-            x = val * (0.72 if val < 0 else 0.28)
-            ax.text(
-                x,
-                i,
-                label,
-                va="center",
-                ha="center",
-                fontsize=5,
-                color="white",
-                fontweight="bold",
-                zorder=4,
-                clip_on=True,
-            )
-        else:
-            offset = max(span * 0.03, 6)
-            if val >= 0:
-                x, ha = val + offset, "left"
-            else:
-                x, ha = val - offset, "right"
-            ax.text(x, i, label, va="center", ha=ha, fontsize=5, zorder=3, clip_on=True)
-    ax.text(
-        0.97,
-        0.04,
-        protocol_note,
-        transform=ax.transAxes,
-        fontsize=4.5,
-        ha="right",
-        va="bottom",
-        color="#555555",
+    ax.set_xlabel(r"Linear strain coefficient $\alpha$ (meV/%)", labelpad=3)
+    lo, hi = min(ref_vals + alt_vals), max(ref_vals + alt_vals)
+    pad = max(abs(lo), abs(hi)) * 0.12 + 18
+    ax.set_xlim(lo - pad, hi + pad)
+    style_axes(ax, grid=True, grid_axis="x")
+    ax.legend(
+        loc="lower right",
+        frameon=False,
+        fontsize=6.5,
+        handlelength=1.4,
+        borderaxespad=0.4,
     )
+    for yi, rv, av in zip(y, ref_vals, alt_vals):
+        for val, dy, color in ((rv, h / 2, NATURE_BLUE), (av, -h / 2, NATURE_RED)):
+            if abs(val) >= 90:
+                x = val * (0.65 if val < 0 else 0.35)
+                ax.text(
+                    x,
+                    yi + dy,
+                    f"{val:.0f}",
+                    va="center",
+                    ha="center",
+                    fontsize=5.5,
+                    color="white",
+                    fontweight="bold",
+                    zorder=4,
+                )
 
+
+
+
+def _plot_alpha(ax, alphas: dict[str, float], protocol_note: str) -> None:
+    """PRL row: same paired placement comparison as PRB panel (c)."""
+    ref, alt = load_placement_alpha_pair()
+    _plot_alpha_placement_compare(ax, ref, alt)
 
 def _plot_synergy_combo(ax_main, audit, exp4, *, show_inset: bool = False, ax_inset=None) -> None:
-    panel_label(ax_main, "d")
+    panel_label(ax_main, "d", nature=True)
     ns = np.array([1, 2, 4, 6, 8], dtype=float)
     n4_labels: dict[str, tuple[float, float]] = {}
     for dopant in ("B", "N", "P"):
@@ -237,12 +237,13 @@ def _plot_synergy_combo(ax_main, audit, exp4, *, show_inset: bool = False, ax_in
             alpha=0.8,
         )
     ax_main.axhline(0, color="#DDDDDD", lw=0.4, zorder=0)
-    ax_main.set_xlabel(r"$n\times\mathrm{C}_{60}$", labelpad=2)
+    ax_main.set_xscale("log")
+    ax_main.set_xlabel(r"Supercell size $n$ ($n\times\mathrm{C}_{60}$)", labelpad=2)
     ax_main.set_ylabel(r"$\mathcal{S}$ (meV/atom)", labelpad=2)
     ax_main.yaxis.set_label_coords(-0.20, 0.5)
     ax_main.set_xticks([1, 2, 4, 6, 8])
     ax_main.margins(x=0.06, y=0.18)
-    style_axes(ax_main, grid=True)
+    style_axes(ax_main, grid=True, grid_axis="both")
     # Compact n=4 values — lower-left to avoid P(n=1) peak annotation (panel d).
     if n4_labels:
         parts = [rf"{d} ${n4_labels[d][1]:+.1f}$" for d in ("B", "N", "P") if d in n4_labels]
@@ -341,31 +342,31 @@ def build_prl_figure(out_dir: Path) -> tuple[Path, Path]:
 
 
 def build_prb_figure(out_dir: Path) -> tuple[Path, Path]:
-    apply_prb_style()
+    apply_nature_style()
     table1 = load_json("experiments/analysis/table1_verification.json")
-    alpha_panel, alpha_note = load_tetramer_alpha_panel()
+    ref_alpha, alt_alpha = load_placement_alpha_pair()
     audit = load_json("experiments/analysis/sdc/sdc_exp10_synergy_audit.json")
     exp4 = load_json("experiments/analysis/exp4_polaron_verification.json")
     gaps = parse_exp7_gaps()
 
-    fig = plt.figure(figsize=(PRB_WIDTH_IN, PRB_HEIGHT_IN + 0.18))
+    fig = plt.figure(figsize=(PRB_WIDTH_IN, PRB_HEIGHT_IN))
     gs = GridSpec(
         1,
         4,
         figure=fig,
-        width_ratios=[1.05, 0.85, 0.82, 1.05],
-        wspace=0.48,
-        left=0.08,
+        width_ratios=[1.08, 0.88, 1.05, 1.08],
+        wspace=0.55,
+        left=0.10,
         right=0.98,
-        top=0.90,
-        bottom=0.34,
+        top=0.88,
+        bottom=0.22,
     )
     ax_a = fig.add_subplot(gs[0, 0])
     ax_b = fig.add_subplot(gs[0, 1])
     ax_c = fig.add_subplot(gs[0, 2])
     ax_d = fig.add_subplot(gs[0, 3])
     _plot_electronic_row(ax_a, ax_b, gaps)
-    _plot_alpha(ax_c, alpha_panel, alpha_note)
+    _plot_alpha_placement_compare(ax_c, ref_alpha, alt_alpha)
     _plot_synergy_combo(ax_d, audit, exp4, show_inset=False)
     _add_unified_dopant_legend(fig)
     out_dir.mkdir(parents=True, exist_ok=True)

@@ -26,11 +26,11 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Table IV seed137** | **24/24** ✅ |
 | **Periodic relax n=1 P** | **4/4** ✅ |
 | **Population B/N/P** | **18/18** ✅ |
-| **reference_pbed3** | **6/24** partial → `+2.5_P` **running** np=2 OT~175 **OSC** outer=15 (~2000× EPS) |
-| **运行中** | `C60_strain_+2.5_P_doped_refpbed3` — **不干预**（外层 SCF 回跳；ABORT 后 EPS $10^{-5}$） |
-| **最新 Loop** | **R399** |
-| **下一 B 任务** | 24/24 后 Table~I/Fig.1(c)；Mayer backlog |
-| **主张-证据** | periodic relax + Hirshfeld = **A**；reference α = **C** |
+| **reference_pbed3** | **24/24** ✅ → `-5.0` 三点 pending；`-5.0_N` **CRIT** outer=2 |
+| **运行中** | `C60_strain_-5.0_N_doped_refpbed3` — **不干预** |
+| **最新 Loop** | **R408** |
+| **下一 B 任务** | Mayer backlog；placement averaging |
+| **主张-证据** | 主文 α/S = **PBE+D3 only**（Table IV + periodic）；legacy Table I = **SI 归档** |
 | **Loop C** | C-M1 **closed** ✅；C-M2 **closed** ✅；C-M3 **partial**（Hirshfeld **A**） |
 | **SDC** | **15** synergy 点 |
 | **旗杆** | **PRB Regular Article** major revision |
@@ -1399,6 +1399,83 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R408（2026-07-10，三轨）**：
+ - **Track A**：reference_pbed3 **24/24** ✅ — idle
+ - **Track B（VI Results + 图）**：Fig.1(c) → reference PBE+D3 α；`_load_audit` 修 JSON 解析；tab_II 24/24；去 pending 句
+ - **Track C**：response reference grid **complete**
+ - **创新审计**：reference α = **A**；legacy Table I = **SI only**
+ - **Git**：local only
+ - **下一轮**：Mayer/Bader backlog
+
+- **Loop R407（2026-07-10，三轨 · PBE+D3-only 主文）**：
+ - **Track A**：reference_pbed3 **21/24**；`-5.0_N` OT~40 **CRIT** — **不干预**
+ - **Track B（VI Results + 表）**：主文剔除 legacy-PBE Table~I 定量；$\alpha$ 叙事改 Table~IV PBE+D3；Table~I 移 SI；tab_II/tab_IV/methods_extended 同步
+ - **Track C**：主文无 legacy $\alpha$ 数；reference α 仍 **C**（24/24 闸门）
+ - **paper_gap**：24/24 前勿填 Table~I / Fig.1(c) reference 列
+ - **创新审计**：PBE+D3-only 主文 = **A**；reference α = **C**
+ - **Git**：local only
+ - **下一轮**：`-5.0` 行收敛 → 24/24 → reference $\alpha$ 入 Fig.1(c)
+
+- **Loop R406（2026-07-10，三轨）**：
+ - **Track A**：reference_pbed3 **17→21/24**（`-2.5` 全行 + `-5.0_B` ✅；`-2.5_N` EPS $10^{-5}$ 后收敛）；`-5.0_N` OT~7 **CRIT** — **不干预**
+ - **Track B（V Data）**：`tab_II` **21**；Results 边界句更新（仅 $-5$\% pending）；**勿填** Table~I provisional $\alpha$
+ - **Track C**：response **21/24**
+ - **paper_gap**：Table I $\alpha$ **C** — 24/24 前勿填（JSON provisional B/N/P 有值）
+ - **创新审计**：计数 = **A**；reference $\alpha$ = **C**
+ - **Git**：local only
+ - **下一轮**：`-5.0` 三点 → 24/24 → `update_tab_I_reference_from_json.py`
+
+- **Loop R405（2026-07-09，三轨 · better paper）**：
+ - **Track A**：reference_pbed3 **17/24**；`-2.5_N` OT~118 **OSC** outer=17 — **不干预**
+ - **Track B（VII Discussion）**：Hirshfeld 段增 $\Delta q/q$ 对比（N ${\sim}18$\% vs P ${\sim}11$\% vs B ${\sim}7$\%）→ 电荷 alone 不排序 $|\mathcal{S}|$；Methods/Results 去 modernization pending / orthogonal 重复
+ - **Track C**：C-M3 机理句加强（Hirshfeld **A**）；主文无修回进度
+ - **paper_gap**：Table~I $\alpha$ **C** — 24/24 前勿填
+ - **创新审计**：Hirshfeld 机理对比 = **A**；reference $\alpha$ = **C**
+ - **Git**：local only
+ - **下一轮**：`-2.5_N` 收敛 → 18/24；可选 Abstract 对齐 modernization 句
+
+- **Loop R404（2026-07-09，三轨）**：
+ - **Track A**：reference_pbed3 **17/24**；`-2.5_N` OT~109 **OSC** outer=17 — **不干预**
+ - **Track B（VI Results + 运维）**：Results 增 reference modernization 边界句（无新 $\alpha$）；`update_tab_I_reference_from_json.py`（24/24 闸门）；status line `next=`
+ - **Track C**：response pending 表 OT 快照
+ - **paper_gap**：Table~I $\alpha$ **C** — 24/24 前勿填
+ - **创新审计**：Results 边界 = **A**；reference $\alpha$ = **C**
+ - **Git**：local only
+ - **下一轮**：`-2.5_N` ABORT? → EPS $10^{-5}$；收敛 → 18/24
+
+- **Loop R403（2026-07-09，三轨）**：
+ - **Track A**：reference_pbed3 **17/24** idle → `continue_reference_pbed3_pending.sh` 续跑 `-2.5_N` np=2 — **不干预**
+ - **Track B（IV Methods）**：`methods_extended` 增 reference 24 点应变范围与 alternate 对齐句
+ - **Track C**：Table I $\alpha$ 仍 **C**；response 维持 **17/24**
+ - **paper_gap**：24/24 前勿填 Table~I
+ - **创新审计**：Methods 契约 = **A**；reference $\alpha$ = **C**
+ - **Git**：local only
+ - **下一轮**：`-2.5` grid 收敛 → 7 点 pending
+
+- **Loop R402（2026-07-08，三轨）**：
+ - **Track A**：reference_pbed3 **15→17/24**（$+5$ pristine、$-2.5$ B ✅）；`-2.5_N` OT~153 **OSC** outer=8 — **不干预**
+ - **Track B（V Data + Loop C）**：`tab_II` **17**；response **17/24**；`alpha_provisional` 闸门仍 **C**
+ - **paper_gap**：Table I $\alpha$ **C** — 24/24 前勿填
+ - **创新审计**：Table II 计数 = **A**；reference $\alpha$ = **C**
+ - **Git**：local only
+ - **下一轮**：24/24 → Table~I；$-2.5$ grid 续跑
+
+- **Loop R401（2026-07-08，三轨）**：
+ - **Track A**：reference_pbed3 **6→15/24** ✅（$+2.5_P$ EPS $10^{-5}$ 收敛；$+3$/$+5$ B/N/P 完成）；`+5.0_pristine` **running** np=2 — **不干预**
+ - **Track B（V Data + Loop C）**：`tab_II` $N_{\mathrm{conv}}$ 6→**15**；response **15/24** partial；JSON 有 4 点 provisional $\alpha$ — **勿进 Table~I**
+ - **paper_gap**：Table I $\alpha$ **C** — 24/24 前勿填
+ - **创新审计**：Table II 计数 = **A**；reference $\alpha$ = **C**（partial fit）
+ - **Git**：local only
+ - **下一轮**：24/24 → `update_tab_I_reference_from_json`；pending $-2.5$/$-5$
+
+- **Loop R400（2026-07-07，三轨）**：
+ - **Track A**：batch **idle**（`+2.5_P` ABORT 未归档）→ `continue_reference_pbed3_pending.sh`：归档 failed → **EPS $10^{-5}$** → **重跑中** np=2；仍 **6/24**
+ - **Track B（V Data + Loop C）**：response 稿 $+2.5$ P ABORT→EPS $10^{-5}$ 诚实化；主文 Table~I $\alpha$ **不改**
+ - **paper_gap**：Table I $\alpha$ **C** — 24/24 前勿填
+ - **创新审计**：ABORT 恢复链 = **A**；reference α = **C**
+ - **Git**：local only（用户未要求 commit）
+ - **下一轮**：`+2.5_P` converged → 7/24；续 $+2.5$ pristine
 
 - **Loop R399（2026-07-07，三轨）**：
  - **Track A**：reference_pbed3 **6/24**；`+2.5_P` 昨夜 ~2× EPS → 今晨 outer=15 OT~175 grad~$2\times10^{-3}$ **OSC**（外层 SCF 能量阶梯 $-1370\to-1601$ Ha）— batch 存活 — **不干预**

@@ -75,6 +75,19 @@ except ValueError:
 PY
 )"
   [[ -n "$snap" ]] && line="$line | $snap"
+  next_task=""
+  for inp in "$DIR"/C60_strain_*_refpbed3.inp; do
+    [[ -f "$inp" ]] || continue
+    base="$(basename "$inp" .inp)"
+    [[ "$base" == "$running" ]] && continue
+    out="$DIR/${base}.out"
+    if [[ -f "$out" ]] && grep -q 'SCF run converged' "$out"; then
+      continue
+    fi
+    next_task="$base"
+    break
+  done
+  [[ -n "$next_task" ]] && line="$line | next=${next_task}"
 fi
 
 echo "$line"

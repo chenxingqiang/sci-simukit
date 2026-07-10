@@ -2,44 +2,63 @@
   "placement": "reference (seed 42 archive map)",
   "functional": "PBE+D3",
   "n_atoms": 240,
-  "status": "partial",
+  "status": "complete",
   "systems": {
     "B": {
-      "alpha_meV_per_pct": null,
+      "alpha_meV_per_pct": 58.73208265335301,
       "E_sub_eV_per_dopant": 73.36251068622347,
-      "S_meV_per_atom_at_eps3": null,
+      "S_meV_per_atom_at_eps3": 4.159218952069723,
       "strain_energies_ha": {
+        "-5.0": -1328.788046275845,
+        "-2.5": -1328.8110158694383,
         "0.0": -1328.8287144881083,
-        "2.5": -1328.840813731389
+        "2.5": -1328.840813731389,
+        "3.0": -1328.7919156765029,
+        "5.0": -1328.7487016043458
       },
-      "converged_strain_points": 2
+      "converged_strain_points": 6
     },
     "N": {
-      "alpha_meV_per_pct": null,
+      "alpha_meV_per_pct": -297.45255042844394,
       "E_sub_eV_per_dopant": -115.27827133400052,
-      "S_meV_per_atom_at_eps3": null,
+      "S_meV_per_atom_at_eps3": 5.377192535437775,
       "strain_energies_ha": {
+        "-5.0": -1414.6178503048884,
+        "-2.5": -1414.6506460221008,
         "0.0": -1414.7137875160759,
-        "2.5": -1414.7426515270513
+        "2.5": -1414.7426515270513,
+        "3.0": -1414.6662463756024,
+        "5.0": -1414.738060462366
       },
-      "converged_strain_points": 2
+      "converged_strain_points": 6
     },
     "P": {
-      "alpha_meV_per_pct": null,
+      "alpha_meV_per_pct": 455.9667907810123,
       "E_sub_eV_per_dopant": -15.823898838447368,
-      "S_meV_per_atom_at_eps3": null,
+      "S_meV_per_atom_at_eps3": 1.1899325890812542,
       "strain_energies_ha": {
-        "0.0": -1370.8552181966757
+        "-5.0": -1370.8413996834468,
+        "-2.5": -1370.8344339167515,
+        "0.0": -1370.8552181966757,
+        "2.5": -1370.2385653610565,
+        "3.0": -1370.8446080077547,
+        "5.0": -1370.8437789847426
       },
-      "converged_strain_points": 1
+      "converged_strain_points": 6
     }
   },
   "pristine": {
-    "alpha_meV_per_pct": null,
+    "alpha_meV_per_pct": 1.1588056919506284,
     "strain_energies_ha": {
-      "0.0": -1363.8770075188067
+      "-5.0": -1363.8772719920494,
+      "-2.5": -1363.8771237023307,
+      "0.0": -1363.8770075188067,
+      "2.5": -1363.876915646446,
+      "3.0": -1363.8768923417458,
+      "5.0": -1363.8768506006104
     }
   },
-  "converged_tasks": 6,
-  "total_tasks": 24
+  "converged_tasks": 24,
+  "total_tasks": 24,
+  "alpha_provisional": false
 }

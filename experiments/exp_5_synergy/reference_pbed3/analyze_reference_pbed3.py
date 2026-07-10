@@ -97,8 +97,12 @@ def main() -> None:
     report["total_tasks"] = total + len(STRAINS)
     if report["converged_tasks"] == report["total_tasks"]:
         report["status"] = "complete"
+        report["alpha_provisional"] = False
     elif report["converged_tasks"]:
         report["status"] = "partial"
+        report["alpha_provisional"] = True
+    else:
+        report["alpha_provisional"] = True
     OUT_JSON.parent.mkdir(parents=True, exist_ok=True)
     OUT_JSON.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(report, indent=2))

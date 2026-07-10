@@ -7,6 +7,102 @@
 
 
 
+### R408 audit（2026-07-10 go loops — reference 24/24 → Fig.1(c)）
+
+| 项 | 状态 | 证据 |
+|----|------|------|
+| reference_pbed3 | **A** | 24/24; `alpha_provisional=false` |
+| Fig.1(c) α | **A** | reference B/N/P +58.7/-297.5/+456.0 meV/\% |
+| 主文 legacy PBE | **归档** | 仅 SI Table~I |
+| alternate α | **A** | Table~IV +21.4/+45.4/+989.6（对比用） |
+
+### R407 audit（2026-07-10 go loops — 主文去 legacy-PBE 定量）
+
+| 项 | 状态 | 证据 |
+|----|------|------|
+| 主文 Table~I | **归档** | 移出 Results；仅 SI `tab_I.tex`（legacy PBE） |
+| 主文 $\alpha$ 叙事 | **A** | Table~IV alternate PBE+D3（+21.4/+45.4/+989.6 meV/\%） |
+| legacy 数字 grep | **A** | 主文无 $-303$/56.9/73.4 等 Table~I 数 |
+| reference_pbed3 | **C** | **21/24**；`-5.0_N` CRIT — **不干预** |
+| Table~I 填数闸门 | **C** | 24/24 + `alpha_provisional=false` 前仍禁止 |
+
+**创新审计（R407）**：PBE+D3-only 主文契约 = **A**；reference α = **C**
+
+### R406 audit（2026-07-10 go loops — refpbed3 21/24）
+
+| 项 | 状态 | 证据 |
+|----|------|------|
+| reference_pbed3 | **C** partial | **21/24**；`-5.0_N` CRIT；pending P/pristine @ $-5$\% |
+| tab_II / response | **A** | $N_{\mathrm{conv}}=21$ |
+| provisional $\alpha$ | **C** | B/N/P fits exist — **禁止**进 Table~I |
+| Results 边界 | **A** | 仅 $-5$\% pending 句 |
+
+**创新审计（R406）**：进度 = **A**；reference α = **C**
+
+### R405 audit（2026-07-09 go loops — better paper / Hirshfeld Δq）
+
+| 项 | 状态 | 证据 |
+|----|------|------|
+| Hirshfeld $\Delta q/q$ @ $+3$\% | **A** | B ${\sim}7$\%、N ${\sim}18$\%、P ${\sim}11$\%（population JSON） |
+| Discussion 机理 | **A** | 电荷 alone 不排序 $|\mathcal{S}|$；P 需几何预应变 |
+| Methods pending 措辞 | **A** | 去 modernization pending / orthogonal 重复 |
+| reference_pbed3 | **C** | **17/24**；`-2.5_N` OSC — **不干预** |
+
+**创新审计（R405）**：C-M3 Hirshfeld = **A**；reference α = **C**
+
+### R404 audit（2026-07-09 go loops — Results boundary + tab_I gate script）
+
+| 项 | 状态 | 证据 |
+|----|------|------|
+| reference_pbed3 | **C** partial | **17/24**；`-2.5_N` OSC outer=17 — **不干预** |
+| Results modernization 句 | **A** | 无新 $\alpha$；Table~I 仍 legacy |
+| `update_tab_I_reference_from_json.py` | **A** | status=complete 闸门；本轮 skip partial |
+
+**创新审计（R404）**：文稿边界 = **A**；reference α = **C**
+
+### R403 audit（2026-07-09 go loops — batch resume）
+
+| 项 | 状态 | 证据 |
+|----|------|------|
+| reference_pbed3 | **C** partial | **17/24**；idle 后 `continue_reference_pbed3_pending` → `-2.5_N` |
+| Methods strain scope | **A** | `methods_extended` 24 点范围句 |
+| Table I $\alpha$ | **C** | `alpha_provisional=true` |
+
+**创新审计（R403）**：batch 运维 = **A**；reference α = **C**
+
+### R402 audit（2026-07-08 go loops — refpbed3 17/24）
+
+| 项 | 状态 | 证据 |
+|----|------|------|
+| reference_pbed3 | **C** partial | **17/24**；tensile 全完成；`-2.5_B` ✅；`-2.5_N` OSC OT~153 — **不干预** |
+| tab_II | **A** | $N_{\mathrm{conv}}=17$ |
+| response | **A** | **17/24**（仅 response 稿） |
+| Table I $\alpha$ | **C** | `alpha_provisional=true` |
+
+**创新审计（R402）**：进度 = **A**；reference α = **C**
+
+### R401 audit（2026-07-08 go loops — refpbed3 15/24 milestone）
+
+| 项 | 状态 | 证据 |
+|----|------|------|
+| reference_pbed3 | **C** partial | **15/24**；$\epsilon\in\{0,+2.5,+3,+5\}$\% B/N/P ✅；`+5.0_pristine` running |
+| tab_II $N_{\mathrm{conv}}$ | **A** | Reference placement **15** |
+| JSON provisional $\alpha$ | **C** | B/N/P 各 4 点拟合 — **禁止**进 Table~I 直至 24/24 |
+| response | **A** | **15/24**（仅 response 稿） |
+
+**创新审计（R401）**：进度诚实化 = **A**；Table I reference α = **C**
+
+### R400 audit（2026-07-07 go loops — +2.5_P ABORT, EPS 1e-5 retry）
+
+| 项 | 状态 | 证据 |
+|----|------|------|
+| reference_pbed3 | **C** partial | **6/24**；`+2.5_P` ABORT@$10^{-6}$ → archived → **EPS $10^{-5}$** retry **running** |
+| continue_reference_pbed3 | **A** | 归档 + relax + SKIP_GENERATE=1 链验证 |
+| response | **A** | ABORT→EPS retry（仅 response 稿） |
+| Table I α | **C** | **勿改**直至 24/24 |
+
+**创新审计（R400）**：Track A 恢复 = **A**；reference α = **C**
+
 ### R399 audit（2026-07-07 go loops — +2.5_P outer-SCF OSC）
 
 | 项 | 状态 | 证据 |

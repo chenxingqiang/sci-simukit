@@ -1405,6 +1405,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track B（VI SI 图）**：全量 `render_vbm_cbm_surface_all.sh` 重渲；**$n{=}8$ VBM/CBM 轨道板**入稿；SI caption 去 structure-only；刷新 `figure_s4_vbm_cbm_{N,P_n4}.pdf`
  - **Track C**：response S4 台账 → MO **12/12**
  - **创新审计**：n=8 轨道局域 = **A−**（MO cube verified）；Mayer = **C**
+ - **Git**：`commit: 09ff8c4` — loop R410; pushed: (local only)
  - **下一轮**：可选 B/pristine SI 扩展；Mayer/Bader
 
 - **Loop R409（2026-07-11，三轨）**：

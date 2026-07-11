@@ -405,7 +405,7 @@ def compose_single_size_figure(
         ax = fig.add_subplot(gs[0, col])
         _show_tile_grid(ax, tiles, nrow, ncol)
         ax.set_title(
-          f"{row_title}{grid_note}\n{label}",
+          f"{label}{grid_note}",
           fontsize=8,
           fontweight="bold",
           color=color,
@@ -417,7 +417,7 @@ def compose_single_size_figure(
       ):
         ax = fig.add_subplot(gs[0, col])
         _show_panel(ax, png)
-        ax.set_title(f"{row_title}\n{label}", fontsize=8, fontweight="bold", color=color, pad=3)
+        ax.set_title(label, fontsize=9, fontweight="bold", color=color, pad=4)
     else:
       ax = fig.add_subplot(gs[0, :])
       _show_panel(ax, panel.vbm_png)
@@ -450,7 +450,7 @@ def compose_single_size_figure(
     ):
       _show_tile_grid(ax, tiles, nrow, ncol)
       ax.set_title(
-        f"{row_title}{grid_note}\n{label}",
+        f"{label}{grid_note}",
         fontsize=8,
         fontweight="bold",
         color=color,
@@ -465,7 +465,7 @@ def compose_single_size_figure(
       [COLOR_VBM, COLOR_CBM],
     ):
       _show_panel(ax, png)
-      ax.set_title(f"{row_title}\n{label}", fontsize=8, fontweight="bold", color=color, pad=3)
+      ax.set_title(label, fontsize=9, fontweight="bold", color=color, pad=4)
   else:
     fig, ax = plt.subplots(figsize=(5.2, 3.4), dpi=300)
     _show_panel(ax, panel.vbm_png)
@@ -477,7 +477,7 @@ def compose_single_size_figure(
         pad=4,
     )
 
-  fig.suptitle(title, fontsize=8, y=0.98, style="italic")
+  fig.suptitle(f"{title}\n{row_title}", fontsize=8, y=0.99, style="italic")
   out_pdf.parent.mkdir(parents=True, exist_ok=True)
   fig.savefig(out_pdf, bbox_inches="tight", facecolor="white")
   fig.savefig(out_pdf.with_suffix(".png"), bbox_inches="tight", facecolor="white", dpi=300)

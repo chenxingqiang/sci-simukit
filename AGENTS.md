@@ -27,9 +27,9 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Periodic relax n=1 P** | **4/4** ✅ |
 | **Population B/N/P** | **18/18** ✅ |
 | **reference_pbed3** | **24/24** ✅ |
-| **运行中** | `size_8x60_N_pos0pct_mo` MO-cube SP（np=9）— **不干预** |
-| **最新 Loop** | **R409** |
-| **下一 B 任务** | SI Fig.~S4 MSMS 表面板入稿；MO cube 收敛后刷新轨道 panel |
+| **运行中** | none（MO_CUBES **12/12** ✅） |
+| **最新 Loop** | **R410** |
+| **下一 B 任务** | SI 可选补 pristine/B composite；Mayer backlog |
 | **主张-证据** | 主文 α/S = **PBE+D3 only**（Table IV + periodic）；legacy Table I = **SI 归档** |
 | **Loop C** | C-M1 **closed** ✅；C-M2 **closed** ✅；C-M3 **partial**（Hirshfeld **A**） |
 | **SDC** | **15** synergy 点 |
@@ -1399,6 +1399,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R410（2026-07-12，三轨）**：
+ - **Track A**：MO_CUBES **12/12** ✅（24 cubes）；Exp10/8/9/reference idle — **不干预**
+ - **Track B（VI SI 图）**：全量 `render_vbm_cbm_surface_all.sh` 重渲；**$n{=}8$ VBM/CBM 轨道板**入稿；SI caption 去 structure-only；刷新 `figure_s4_vbm_cbm_{N,P_n4}.pdf`
+ - **Track C**：response S4 台账 → MO **12/12**
+ - **创新审计**：n=8 轨道局域 = **A−**（MO cube verified）；Mayer = **C**
+ - **下一轮**：可选 B/pristine SI 扩展；Mayer/Bader
 
 - **Loop R409（2026-07-11，三轨）**：
  - **Track A**：Exp10 **41/41**、Exp8 **6/6**、Exp9 **12/12+8/8**、reference_pbed3 **24/24** ✅；`size_8x60_N_pos0pct_mo` MO-cube SP 长跑（np=9）— **不干预**

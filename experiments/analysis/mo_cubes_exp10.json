@@ -1,6 +1,6 @@
 {
-  "status": "partial",
-  "converged": 11,
+  "status": "complete",
+  "converged": 12,
   "total": 12,
   "systems": {
     "size_4x60_B_pos0pct": {
@@ -116,11 +116,11 @@
     "size_8x60_pristine_pos0pct": {
       "stem": "size_8x60_pristine_pos0pct_mo",
       "base_stem": "size_8x60_pristine_pos0pct",
-      "converged": false,
-      "homo_index": null,
-      "lumo_index": null,
-      "homo_cube": null,
-      "lumo_cube": null,
+      "converged": true,
+      "homo_index": 960,
+      "lumo_index": 961,
+      "homo_cube": "/Users/xingqiangchen/sci-simukit/experiments/exp_10_size_scaling/mo_cubes_sp/inputs/size_8x60_pristine_pos0pct_mo-WFN_00960_1-1_0.cube",
+      "lumo_cube": "/Users/xingqiangchen/sci-simukit/experiments/exp_10_size_scaling/mo_cubes_sp/inputs/size_8x60_pristine_pos0pct_mo-WFN_00961_1-1_0.cube",
       "archive_dir": "/Users/xingqiangchen/sci-simukit/dft_results/exp_10_size_scaling/mo_cubes/size_8x60_pristine_pos0pct_mo"
     }
   }

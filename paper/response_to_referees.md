@@ -42,7 +42,7 @@ We thank the referee for recognizing the corrections to doping concentration, Ma
 
 **Referee concern:** Qualitative mechanism only; need Mayer/Bader/bond order.
 
-**Response:** We expanded sign-conflict physics in Discussion (iii) and Design implications (B/N $n{=}4$), retain Table~V $\Delta\bar{d}$/$\sigma(\bar{d})$ with explicit **tetramer-proxy** scope (not periodic $n{=}1$ bond statistics), and added **$\mathcal{S}_{\mathrm{vdW}}\approx +0.33$~meV/atom** on the matched-functional $P$ tetramer grid (negligible vs.\ total $|\mathcal{S}|$). Hirshfeld charge strain-path audits for $n{=}1$ **B**, **N**, and **P** are **complete** (18/18): P shows the largest fractional shift under tension ($+0.063\to+0.056\,e$ at $+3$\%); B and N shift more modestly ($+0.12\to+0.11\,e$ and $+0.069\to+0.057\,e$). Sign-origin paragraphs distinguish geometric (P) vs.\ electronic (B/N) channels. Mayer/Bader remain **future work**.
+**Response:** We expanded sign-conflict physics in Discussion (iii) and Design implications (B/N $n{=}4$), retain Table~V $\Delta\bar{d}$/$\sigma(\bar{d})$ with explicit **tetramer-proxy** scope (not periodic $n{=}1$ bond statistics), and added **$\mathcal{S}_{\mathrm{vdW}}\approx +0.33$~meV/atom** on the matched-functional $P$ tetramer grid (negligible vs.\ total $|\mathcal{S}|$). Hirshfeld charge strain-path audits for $n{=}1$ **B**, **N**, and **P** are **complete** (18/18): P shows the largest fractional shift under tension ($+0.063\to+0.056\,e$ at $+3$\%); B and N shift more modestly ($+0.12\to+0.11\,e$ and $+0.069\to+0.057\,e$). Sign-origin paragraphs distinguish geometric (P) vs.\ electronic (B/N) channels. Periodic VBM/CBM isosurfaces on MSMS-rendered $n\times\mathrm{C}_{60}$ cells (Supplemental Material; N size series + P $n{=}4$) provide a spatial localization signature for the finite-size dilution channel; Mayer/Bader remain future work.
 
 **Pending:** Mayer/Bader analysis (Track A backlog).
 
@@ -191,7 +191,7 @@ We thank the referee for recognizing the corrections to doping concentration, Ma
 | Physics-upgrade narrative | Intro/Disc. | **complete** (`sec:stress_coupling`, `sec:generality`, `sec:exp_signatures`) |
 | Reference placement PBE+D3 ($\alpha$ modernization) | I / II | **complete** **24/24**; Table~\ref{tab:I} legacy-PBE retained in SI only |
 | Transport / $J$ main text | SI | **complete** (Marcus/$J$ in Supplemental Material; main Fig.~3 protocol only) |
-| SI Fig.~S4 MSMS structure panels | SI | **complete** (uniform gray C$_{60}$ cages, element-colored dopants; `figureS4_surf_*`); orbital tiles refresh when MO-cube SP ends |
+| SI Fig.~S4 MSMS VBM/CBM panels | SI | **complete** (N size series + P $n{=}4$ in SM; gray MSMS cages; MO-cube SP **12/12** incl.\ $n{=}8$ orbitals) |
 | Setup/process/result audit | reliability audit | **294** pass / 2 warn |
 
 ---

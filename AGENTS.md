@@ -26,10 +26,10 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Table IV seed137** | **24/24** ✅ |
 | **Periodic relax n=1 P** | **4/4** ✅ |
 | **Population B/N/P** | **18/18** ✅ |
-| **reference_pbed3** | **24/24** ✅ → `-5.0` 三点 pending；`-5.0_N` **CRIT** outer=2 |
-| **运行中** | `C60_strain_-5.0_N_doped_refpbed3` — **不干预** |
-| **最新 Loop** | **R408** |
-| **下一 B 任务** | Mayer backlog；placement averaging |
+| **reference_pbed3** | **24/24** ✅ |
+| **运行中** | `size_8x60_N_pos0pct_mo` MO-cube SP（np=9）— **不干预** |
+| **最新 Loop** | **R409** |
+| **下一 B 任务** | SI Fig.~S4 MSMS 表面板入稿；MO cube 收敛后刷新轨道 panel |
 | **主张-证据** | 主文 α/S = **PBE+D3 only**（Table IV + periodic）；legacy Table I = **SI 归档** |
 | **Loop C** | C-M1 **closed** ✅；C-M2 **closed** ✅；C-M3 **partial**（Hirshfeld **A**） |
 | **SDC** | **15** synergy 点 |
@@ -1399,6 +1399,15 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R409（2026-07-11，三轨）**：
+ - **Track A**：Exp10 **41/41**、Exp8 **6/6**、Exp9 **12/12+8/8**、reference_pbed3 **24/24** ✅；`size_8x60_N_pos0pct_mo` MO-cube SP 长跑（np=9）— **不干预**
+ - **Track B（SI 图）**：`render_structure_surface.tcl` 正面取景 + 灰 MSMS `msms_cages`；全量 `render_vbm_cbm_surface_all.sh` → **40** 个 `figureS4_surf_*`；`render_vbm_cbm_periodic.tcl` 同步正面 `frame_on_supercell`
+ - **Track C**：`response_to_referees` reference grid **24/24** 台账修正（去 stale 21/24）
+ - **paper_gap**：`figureS4_surf_*` 未入 `supplementary_figures.tex`；MO cube 待收敛 → 轨道 panel 刷新
+ - **创新审计**：S4 MSMS 结构板 = **A−**（VMD+MSMS）；Mayer = **C** backlog
+ - **Git**：local only（用户未要求 commit）
+ - **下一轮**：MO cube ENDED → 重渲轨道 tile；SI tex 选 MSMS vs CPK
 
 - **Loop R408（2026-07-10，三轨）**：
  - **Track A**：reference_pbed3 **24/24** ✅ — idle

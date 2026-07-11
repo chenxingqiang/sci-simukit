@@ -189,8 +189,9 @@ We thank the referee for recognizing the corrections to doping concentration, Ma
 | Population Hirshfeld ($n{=}1$ B/N/P) | V / II | **complete** 18/18 |
 | Periodic ionic relax ($n{=}1$ P) | II / III | **complete** 4/4; $\mathcal{S}_{\mathrm{rel}}\ll \mathcal{S}_{\mathrm{rig}}$ |
 | Physics-upgrade narrative | Intro/Disc. | **complete** (`sec:stress_coupling`, `sec:generality`, `sec:exp_signatures`) |
-| Reference placement PBE+D3 ($\alpha$ modernization) | I / II | **partial** **21/24** ($-5$\% N CRIT; P/pristine pending); Table~\ref{tab:I} legacy-PBE retained until complete |
+| Reference placement PBE+D3 ($\alpha$ modernization) | I / II | **complete** **24/24**; Table~\ref{tab:I} legacy-PBE retained in SI only |
 | Transport / $J$ main text | SI | **complete** (Marcus/$J$ in Supplemental Material; main Fig.~3 protocol only) |
+| SI Fig.~S4 MSMS structure panels | SI | **complete** (uniform gray C$_{60}$ cages, element-colored dopants; `figureS4_surf_*`); orbital tiles refresh when MO-cube SP ends |
 | Setup/process/result audit | reliability audit | **294** pass / 2 warn |
 
 ---

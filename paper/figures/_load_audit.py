@@ -123,3 +123,65 @@ def n4_decomposition(sdc: dict[str, Any], dopant: str) -> dict[str, float]:
                 "synergy_meV": ha_per_atom_to_meV(s_ha),
             }
     raise KeyError(f"No n=4 decomposition for dopant {dopant}")
+
+
+def load_reference_pbed3_alpha_S() -> tuple[dict[str, float], dict[str, float], float]:
+    """Reference-placement PBE+D3 tetramer alpha and S@+3% (complete grid)."""
+    ref = load_json("experiments/analysis/reference_placement_pbed3.json")
+    if ref.get("status") != "complete":
+        raise RuntimeError("reference_placement_pbed3 not complete")
+    alpha = {d: float(ref["systems"][d]["alpha_meV_per_pct"]) for d in ("B", "N", "P")}
+    alpha["pristine"] = float(ref["pristine"]["alpha_meV_per_pct"])
+    s_tet = {d: float(ref["systems"][d]["S_meV_per_atom_at_eps3"]) for d in ("B", "N", "P")}
+    return alpha, s_tet, float(ref["pristine"]["alpha_meV_per_pct"])
+
+
+def load_alternate_alpha_S() -> tuple[dict[str, float], dict[str, float]]:
+    """Alternate-placement PBE+D3 values matching main-text Table I."""
+    alpha = {"B": 21.4, "N": 45.4, "P": 989.6, "pristine": 1.0}
+    s_tet = {"B": -2.6, "N": 12.6, "P": 41.4}
+    return alpha, s_tet
+
+
+def load_local_structure_summary() -> dict[str, dict[str, float]]:
+    data = load_json("experiments/analysis/local_structure_tetramer.json")
+    return data["summary_by_dopant"]
+
+
+def load_local_structure_paths() -> dict[str, list[tuple[float, float, float]]]:
+    """dopant -> [(strain_pct, mean_d_ang, std_d_ang), ...] from tetramer XYZ."""
+    data = load_json("experiments/analysis/local_structure_tetramer.json")
+    out: dict[str, list[tuple[float, float, float]]] = {}
+    for row in data["records"]:
+        dop = str(row["dopant"])
+        out.setdefault(dop, []).append(
+            (float(row["strain_pct"]), float(row["mean_d_ang"]), float(row["std_d_ang"]))
+        )
+    for dop in out:
+        out[dop] = sorted(out[dop], key=lambda x: x[0])
+    return out
+
+
+def load_hirshfeld_strain_paths() -> dict[str, list[tuple[float, float]]]:
+    """dopant -> list of (strain_pct, hirshfeld_charge)."""
+    out: dict[str, list[tuple[float, float]]] = {}
+    for dop in ("B", "N", "P"):
+        data = load_json(f"experiments/analysis/population_{dop}_n1_strain.json")
+        key = f"hirshfeld_charge_{dop}"
+        pts = [
+            (float(row["strain_pct"]), float(row[key]))
+            for row in data["strain_path"]
+            if row.get("converged") and key in row
+        ]
+        out[dop] = sorted(pts, key=lambda x: x[0])
+    return out
+
+
+def load_periodic_relax_n1_P() -> tuple[float, float]:
+    data = load_json("experiments/analysis/periodic_relax_validation_n1_P.json")
+    return float(data["S_rigid"]["S_meV_per_atom"]), float(data["S_relaxed"]["S_meV_per_atom"])
+
+
+def load_mismatch_rows() -> list[dict[str, float]]:
+    data = load_json("experiments/analysis/mismatch_synergy_scaling.json")
+    return data["rows"]

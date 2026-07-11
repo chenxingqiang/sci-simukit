@@ -1,8 +1,5 @@
 # Render VBM (HOMO) and CBM (LUMO) isosurfaces — Figure S4 style
-# Usage:
-#   VMDDIR=/Applications/VMD.app/Contents/vmd2/lib \
-#     $VMDDIR/vmd_MACOSXARM64 -dispdev text -e render_vbm_cbm.tcl \
-#     -args HOMO.cube LUMO.cube OUT_VBM.png OUT_CBM.png
+# Usage: vmd -dispdev text -e render_vbm_cbm.tcl -args HOMO.cube LUMO.cube OUT_VBM.tga OUT_CBM.tga ?isovalue?
 
 proc setup_display {} {
     color Display Background white
@@ -16,20 +13,33 @@ proc setup_display {} {
     color Element C gray
 }
 
-proc render_band_edge {cube_file out_png isovalue band_color} {
+proc frame_on_atoms {mol_id} {
+    set sel [atomselect $mol_id {name C}]
+    set mm [measure minmax $sel]
+    set span [veclength [vecsub [lindex $mm 1] [lindex $mm 0]]]
+    $sel delete
+    display resetview
+    rotate x by 14
+    rotate y by 30
+    if {$span > 0.1} {
+        scale by [expr {38.0 / $span}]
+    }
+}
+
+proc render_band_edge {cube_file out_tga isovalue band_color} {
     mol delete all
     mol new $cube_file type cube waitfor all
     set mid [molinfo top]
 
     mol delrep 0 $mid
 
-    mol representation DynamicBonds 1.6 0.12 12.0
+    mol representation DynamicBonds 1.5 0.12 12.0
     mol color Element
     mol selection {name C}
     mol material AOChalky
     mol addrep $mid
 
-    mol representation VDW 0.25 12.0
+    mol representation VDW 0.32 12.0
     mol color Element
     mol selection {name C}
     mol material AOChalky
@@ -38,23 +48,20 @@ proc render_band_edge {cube_file out_png isovalue band_color} {
     mol addfile $cube_file type cube waitfor all
     mol representation Isosurface $isovalue 0 0 0 1 1
     mol color ColorID $band_color
-    mol selection {all}
+    mol selection {name C}
     mol material Transparent
     mol addrep $mid
 
     setup_display
-    display resetview
-    rotate x by 12
-    rotate y by 28
-    scale by 0.92
+    frame_on_atoms $mid
 
-    display resize 1200 900
-    render TachyonInternal $out_png
-    puts "Rendered $out_png (isovalue=$isovalue)"
+    display resize 1200 1000
+    render TachyonInternal $out_tga
+    puts "Rendered $out_tga (isovalue=$isovalue)"
 }
 
 if {[llength $argv] < 4} {
-    puts "Usage: vmd -e render_vbm_cbm.tcl -args HOMO.cube LUMO.cube OUT_VBM.png OUT_CBM.png ?isovalue?"
+    puts "Usage: vmd -e render_vbm_cbm.tcl -args HOMO.cube LUMO.cube OUT_VBM.tga OUT_CBM.tga ?isovalue?"
     quit
 }
 

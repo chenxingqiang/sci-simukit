@@ -1,0 +1,127 @@
+{
+  "status": "partial",
+  "converged": 11,
+  "total": 12,
+  "systems": {
+    "size_4x60_B_pos0pct": {
+      "stem": "size_4x60_B_pos0pct_mo",
+      "base_stem": "size_4x60_B_pos0pct",
+      "converged": true,
+      "homo_index": 478,
+      "lumo_index": 479,
+      "homo_cube": "/Users/xingqiangchen/sci-simukit/experiments/exp_10_size_scaling/mo_cubes_sp/inputs/size_4x60_B_pos0pct_mo-WFN_00478_1-1_0.cube",
+      "lumo_cube": "/Users/xingqiangchen/sci-simukit/experiments/exp_10_size_scaling/mo_cubes_sp/inputs/size_4x60_B_pos0pct_mo-WFN_00479_1-1_0.cube",
+      "archive_dir": "/Users/xingqiangchen/sci-simukit/dft_results/exp_10_size_scaling/mo_cubes/size_4x60_B_pos0pct_mo"
+    },
+    "size_4x60_N_pos0pct": {
+      "stem": "size_4x60_N_pos0pct_mo",
+      "base_stem": "size_4x60_N_pos0pct",
+      "converged": true,
+      "homo_index": 482,
+      "lumo_index": 483,
+      "homo_cube": "/Users/xingqiangchen/sci-simukit/experiments/exp_10_size_scaling/mo_cubes_sp/inputs/size_4x60_N_pos0pct_mo-WFN_00482_1-1_0.cube",
+      "lumo_cube": "/Users/xingqiangchen/sci-simukit/experiments/exp_10_size_scaling/mo_cubes_sp/inputs/size_4x60_N_pos0pct_mo-WFN_00483_1-1_0.cube",
+      "archive_dir": "/Users/xingqiangchen/sci-simukit/dft_results/exp_10_size_scaling/mo_cubes/size_4x60_N_pos0pct_mo"
+    },
+    "size_4x60_P_pos0pct": {
+      "stem": "size_4x60_P_pos0pct_mo",
+      "base_stem": "size_4x60_P_pos0pct",
+      "converged": true,
+      "homo_index": 482,
+      "lumo_index": 483,
+      "homo_cube": "/Users/xingqiangchen/sci-simukit/experiments/exp_10_size_scaling/mo_cubes_sp/inputs/size_4x60_P_pos0pct_mo-WFN_00482_1-1_0.cube",
+      "lumo_cube": "/Users/xingqiangchen/sci-simukit/experiments/exp_10_size_scaling/mo_cubes_sp/inputs/size_4x60_P_pos0pct_mo-WFN_00483_1-1_0.cube",
+      "archive_dir": "/Users/xingqiangchen/sci-simukit/dft_results/exp_10_size_scaling/mo_cubes/size_4x60_P_pos0pct_mo"
+    },
+    "size_4x60_pristine_pos0pct": {
+      "stem": "size_4x60_pristine_pos0pct_mo",
+      "base_stem": "size_4x60_pristine_pos0pct",
+      "converged": true,
+      "homo_index": 480,
+      "lumo_index": 481,
+      "homo_cube": "/Users/xingqiangchen/sci-simukit/experiments/exp_10_size_scaling/mo_cubes_sp/inputs/size_4x60_pristine_pos0pct_mo-WFN_00480_1-1_0.cube",
+      "lumo_cube": "/Users/xingqiangchen/sci-simukit/experiments/exp_10_size_scaling/mo_cubes_sp/inputs/size_4x60_pristine_pos0pct_mo-WFN_00481_1-1_0.cube",
+      "archive_dir": "/Users/xingqiangchen/sci-simukit/dft_results/exp_10_size_scaling/mo_cubes/size_4x60_pristine_pos0pct_mo"
+    },
+    "size_6x60_B_pos0pct": {
+      "stem": "size_6x60_B_pos0pct_mo",
+      "base_stem": "size_6x60_B_pos0pct",
+      "converged": true,
+      "homo_index": 717,
+      "lumo_index": 718,
+      "homo_cube": "/Users/xingqiangchen/sci-simukit/experiments/exp_10_size_scaling/mo_cubes_sp/inputs/size_6x60_B_pos0pct_mo-WFN_00717_1-1_0.cube",
+      "lumo_cube": "/Users/xingqiangchen/sci-simukit/experiments/exp_10_size_scaling/mo_cubes_sp/inputs/size_6x60_B_pos0pct_mo-WFN_00718_1-1_0.cube",
+      "archive_dir": "/Users/xingqiangchen/sci-simukit/dft_results/exp_10_size_scaling/mo_cubes/size_6x60_B_pos0pct_mo"
+    },
+    "size_6x60_N_pos0pct": {
+      "stem": "size_6x60_N_pos0pct_mo",
+      "base_stem": "size_6x60_N_pos0pct",
+      "converged": true,
+      "homo_index": 723,
+      "lumo_index": 724,
+      "homo_cube": "/Users/xingqiangchen/sci-simukit/experiments/exp_10_size_scaling/mo_cubes_sp/inputs/size_6x60_N_pos0pct_mo-WFN_00723_1-1_0.cube",
+      "lumo_cube": "/Users/xingqiangchen/sci-simukit/experiments/exp_10_size_scaling/mo_cubes_sp/inputs/size_6x60_N_pos0pct_mo-WFN_00724_1-1_0.cube",
+      "archive_dir": "/Users/xingqiangchen/sci-simukit/dft_results/exp_10_size_scaling/mo_cubes/size_6x60_N_pos0pct_mo"
+    },
+    "size_6x60_P_pos0pct": {
+      "stem": "size_6x60_P_pos0pct_mo",
+      "base_stem": "size_6x60_P_pos0pct",
+      "converged": true,
+      "homo_index": 723,
+      "lumo_index": 724,
+      "homo_cube": "/Users/xingqiangchen/sci-simukit/experiments/exp_10_size_scaling/mo_cubes_sp/inputs/size_6x60_P_pos0pct_mo-WFN_00723_1-1_0.cube",
+      "lumo_cube": "/Users/xingqiangchen/sci-simukit/experiments/exp_10_size_scaling/mo_cubes_sp/inputs/size_6x60_P_pos0pct_mo-WFN_00724_1-1_0.cube",
+      "archive_dir": "/Users/xingqiangchen/sci-simukit/dft_results/exp_10_size_scaling/mo_cubes/size_6x60_P_pos0pct_mo"
+    },
+    "size_6x60_pristine_pos0pct": {
+      "stem": "size_6x60_pristine_pos0pct_mo",
+      "base_stem": "size_6x60_pristine_pos0pct",
+      "converged": true,
+      "homo_index": 720,
+      "lumo_index": 721,
+      "homo_cube": "/Users/xingqiangchen/sci-simukit/experiments/exp_10_size_scaling/mo_cubes_sp/inputs/size_6x60_pristine_pos0pct_mo-WFN_00720_1-1_0.cube",
+      "lumo_cube": "/Users/xingqiangchen/sci-simukit/experiments/exp_10_size_scaling/mo_cubes_sp/inputs/size_6x60_pristine_pos0pct_mo-WFN_00721_1-1_0.cube",
+      "archive_dir": "/Users/xingqiangchen/sci-simukit/dft_results/exp_10_size_scaling/mo_cubes/size_6x60_pristine_pos0pct_mo"
+    },
+    "size_8x60_B_pos0pct": {
+      "stem": "size_8x60_B_pos0pct_mo",
+      "base_stem": "size_8x60_B_pos0pct",
+      "converged": true,
+      "homo_index": 956,
+      "lumo_index": 957,
+      "homo_cube": "/Users/xingqiangchen/sci-simukit/experiments/exp_10_size_scaling/mo_cubes_sp/inputs/size_8x60_B_pos0pct_mo-WFN_00956_1-1_0.cube",
+      "lumo_cube": "/Users/xingqiangchen/sci-simukit/experiments/exp_10_size_scaling/mo_cubes_sp/inputs/size_8x60_B_pos0pct_mo-WFN_00957_1-1_0.cube",
+      "archive_dir": "/Users/xingqiangchen/sci-simukit/dft_results/exp_10_size_scaling/mo_cubes/size_8x60_B_pos0pct_mo"
+    },
+    "size_8x60_N_pos0pct": {
+      "stem": "size_8x60_N_pos0pct_mo",
+      "base_stem": "size_8x60_N_pos0pct",
+      "converged": true,
+      "homo_index": 964,
+      "lumo_index": 965,
+      "homo_cube": "/Users/xingqiangchen/sci-simukit/experiments/exp_10_size_scaling/mo_cubes_sp/inputs/size_8x60_N_pos0pct_mo-WFN_00964_1-1_0.cube",
+      "lumo_cube": "/Users/xingqiangchen/sci-simukit/experiments/exp_10_size_scaling/mo_cubes_sp/inputs/size_8x60_N_pos0pct_mo-WFN_00965_1-1_0.cube",
+      "archive_dir": "/Users/xingqiangchen/sci-simukit/dft_results/exp_10_size_scaling/mo_cubes/size_8x60_N_pos0pct_mo"
+    },
+    "size_8x60_P_pos0pct": {
+      "stem": "size_8x60_P_pos0pct_mo",
+      "base_stem": "size_8x60_P_pos0pct",
+      "converged": true,
+      "homo_index": 964,
+      "lumo_index": 965,
+      "homo_cube": "/Users/xingqiangchen/sci-simukit/experiments/exp_10_size_scaling/mo_cubes_sp/inputs/size_8x60_P_pos0pct_mo-WFN_00964_1-1_0.cube",
+      "lumo_cube": "/Users/xingqiangchen/sci-simukit/experiments/exp_10_size_scaling/mo_cubes_sp/inputs/size_8x60_P_pos0pct_mo-WFN_00965_1-1_0.cube",
+      "archive_dir": "/Users/xingqiangchen/sci-simukit/dft_results/exp_10_size_scaling/mo_cubes/size_8x60_P_pos0pct_mo"
+    },
+    "size_8x60_pristine_pos0pct": {
+      "stem": "size_8x60_pristine_pos0pct_mo",
+      "base_stem": "size_8x60_pristine_pos0pct",
+      "converged": false,
+      "homo_index": null,
+      "lumo_index": null,
+      "homo_cube": null,
+      "lumo_cube": null,
+      "archive_dir": "/Users/xingqiangchen/sci-simukit/dft_results/exp_10_size_scaling/mo_cubes/size_8x60_pristine_pos0pct_mo"
+    }
+  }
+}

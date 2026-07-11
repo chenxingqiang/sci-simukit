@@ -13,9 +13,9 @@ file mkdir $out_dir
 
 proc apply_pub_style {} {
     color Element C gray
-    color Name B magenta
-    color Name N blue
-    color Name P orange
+    color Element B magenta
+    color Element N blue
+    color Element P orange
     color Display Background white
     display shadows on
     display ambientocclusion on
@@ -23,7 +23,6 @@ proc apply_pub_style {} {
     display aodirect 0.3
     display depthcue off
     display projection Orthographic
-    display rendermode GLSL
     axes location Off
 }
 
@@ -40,8 +39,8 @@ proc style_mol {mol_id} {
     mol material AOChalky
     mol addrep $mol_id
     mol representation VDW 0.55 12.0
-    mol color Name
-    mol selection {name B N P}
+    mol color Element
+    mol selection {name B or name N or name P}
     mol material Glossy
     mol addrep $mol_id
 }
@@ -61,12 +60,18 @@ proc load_shifted {xyz label dx dy dz} {
     return $mid
 }
 
+proc render_tachyon {out_tga width height} {
+    display resize $width $height
+    render TachyonInternal $out_tga
+}
+
 apply_pub_style
 
 set panels {
     {C60_strain_+0.0_pristine_synergy.xyz "Pristine" 0}
-    {C60_strain_+0.0_B_doped_synergy.xyz "B-doped" 45}
-    {C60_strain_+0.0_N_doped_synergy.xyz "N-doped" 90}
+    {C60_strain_+0.0_B_doped_synergy.xyz "B-doped" 38}
+    {C60_strain_+0.0_N_doped_synergy.xyz "N-doped" 76}
+    {C60_strain_+0.0_P_doped_synergy.xyz "P-doped" 114}
 }
 
 set mids {}
@@ -90,10 +95,9 @@ rotate x by 12
 rotate y by 22
 scale by 0.85
 
-display resize 2400 900
-set out_png [file join $out_dir scheme_tetramer_doping.png]
-render snapshot $out_png
-puts "Wrote $out_png"
+set out_tga [file join $out_dir scheme_tetramer_doping.tga]
+render_tachyon $out_tga 2800 800
+puts "Wrote $out_tga"
 
 foreach p $panels {
     set fname [lindex $p 0]
@@ -105,10 +109,9 @@ foreach p $panels {
     display resetview
     rotate x by 12
     rotate y by 22
-    display resize 1200 1200
     set stem [file rootname $fname]
-    set out_one [file join $out_dir "${stem}.png"]
-    render snapshot $out_one
+    set out_one [file join $out_dir "${stem}.tga"]
+    render_tachyon $out_one 1200 1200
     puts "Wrote $out_one"
     mol delete $mid
 }

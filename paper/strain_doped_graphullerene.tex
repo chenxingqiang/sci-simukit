@@ -2,23 +2,17 @@
 \documentclass[%
  reprint,
  groupedaddress,
-%superscriptaddress,
-%unsortedaddress,
-%runinaddress,
-%preprint,
-%preprintnumbers,
  amsmath,amssymb,
  aps,
  prb,
  floatfix,
-%nobibnotes,
 ]{revtex4-2}
 
-\usepackage{graphicx}% Include figure files
-\usepackage{dcolumn}% Align table columns on decimal point
-\usepackage{bm}% bold math
-\usepackage{url}% Data Availability URLs
-\usepackage{placeins}% FloatBarrier before Discussion for merged SI tables/figures
+\usepackage{graphicx}
+\usepackage{dcolumn}
+\usepackage{bm}
+\usepackage{url}
+\usepackage{placeins}
 \hyphenation{graph-ul-ler-ene quasi-hexagonal stress-related place-ment-sen-si-tive sign-change}
 
 \begin{document}
@@ -36,14 +30,12 @@
 \date{\today}
 
 \begin{abstract}
-Substitutional doping and biaxial strain are jointly used to tune covalent molecular networks, yet total energies are still often assembled from separate composition-only and strain-only density-functional theory calculations.
+Substitutional doping and biaxial strain are jointly used to tune covalent molecular networks, yet total energies are still often approximated by superposing results from separate composition-only and strain-only density-functional theory calculations.
 We study quasi-hexagonal C$_{60}$ graphullerene with the PBE+D3 functional and define a synergy order parameter $\mathcal{S}$ (meV/atom) for the total-energy cross term missing from sequential strain--doping scans.
-On B/N/P tetramers and periodic $n\times\mathrm{C}_{60}$ supercells ($n=1$--$8$) under matched PBE+D3, linear strain coefficients $\alpha$ and $|\mathcal{S}|$ decouple on rigid tetramer grids (Table~\ref{tab:IV}), while phosphorus exhibits the largest joint-load cross term on periodic cells, with $|\mathcal{S}|$ reaching $31.9$~meV/atom at $n{=}1$ under $+3$\% biaxial strain.
-These bounds are \emph{rigid-strain upper bounds} at fixed fractional coordinates, not equilibrium thermodynamic quantities; ionic relaxation can reverse or nearly extinguish $\mathcal{S}$ (tetramer Table~\ref{tab:III}; periodic $n{=}1$ P), and tetramer $\alpha$ is sensitive to dopant placement at ${\sim}5$\% loading.
-The results indicate that stability ranking under load in covalent molecular networks requires explicit coupled strain--doping energy evaluations when chemical mismatch or strain magnitude enter the geometric-nonlinear regime, rather than additive composition--strain models used in sequential high-throughput screening.
+On B/N/P tetramers and periodic $n\times\mathrm{C}_{60}$ supercells ($n=1$--$8$) under matched PBE+D3, linear strain coefficients $\alpha$ and $|\mathcal{S}|$ decouple on rigid tetramer grids (Table~\ref{tab:I}), while phosphorus exhibits the largest joint-load cross term on periodic cells, with $|\mathcal{S}|$ reaching $31.9$~meV/atom at $n{=}1$ under $+3$\% biaxial strain.
+These rigid-strain values represent upper bounds on equilibrium coupling; ionic relaxation can substantially reduce or even reverse the synergy magnitude.
+Our results demonstrate that stability ranking under load requires explicit coupled strain--doping evaluations for size-mismatched dopants and large biaxial strain, rather than additive composition--strain models used in sequential high-throughput screening.
 \end{abstract}
-
-%\keywords{} % optional; requires showkeys class option (apstemplate.tex)
 
 \maketitle
 
@@ -51,273 +43,193 @@ The results indicate that stability ranking under load in covalent molecular net
 \section{\label{sec:intro}Introduction}
 % ------------------------------------------------------------------
 
-Covalent molecular networks---from graphullerenes to covalent organic frameworks---are often tuned jointly by substitutional chemistry and mechanical load, yet many high-throughput pipelines still assemble $E_{\mathrm{tot}}(\epsilon,\delta)$ from \emph{separate} doping-only and strain-only density-functional theory runs~\cite{Materials2024untangling,Li2024strain,Katiyar2025strain}.
+Covalent molecular networks---from graphullerenes to covalent organic frameworks---are often tuned jointly by substitutional chemistry and mechanical load, yet many high-throughput pipelines still construct $E_{\mathrm{tot}}(\epsilon,\delta)$ by combining \emph{separate} doping-only and strain-only density-functional theory runs~\cite{Materials2024untangling,Li2024strain,Katiyar2025strain}.
 Defect formation energies and substitutional stabilities under strain are classical questions in defect physics, but most workflows still assume that composition-only and strain-only increments superpose linearly---an assumption that breaks down when dopant-induced internal stress couples nonlinearly to external load.
-The omitted cross term is a systematic bias in sequential screening: it arises whenever a dopant introduces a \emph{local chemical-mismatch stress field} that couples nonlinearly to an external biaxial load, so additive composition--strain models can mis-rank stability margins even when dopant ordering at $\epsilon{=}0$ is unchanged.
-Synthetic carbon allotropes with extended $\pi$ conjugation underpin optoelectronic applications; charge transport in molecular networks is often polaronic and anisotropic~\cite{Capobianco2024electron,Yang2021two,Silva2024large,Shi2023strainC60}, yet prior work emphasizes band edges, mobility, or hopping rather than a periodic total-energy cross term under joint biaxial $(\epsilon,\delta)$ load.
-Quasi-hexagonal (qHP) C$_{60}$ graphullerene~\cite{Yang2021two,Capobianco2024electron} provides a covalently linked model network for such coupled tuning, with interfullerene linking that raises hopping couplings relative to vdW C$_{60}$ monolayers~\cite{Capobianco2024electron}; foundational and recent DFT surveys of qHP monolayers and covalent fullerene networks emphasize elastic, optical, and transport properties~\cite{Tromer2022dft,Lv2026covalent} but do not report a periodic total-energy cross term under joint biaxial $(\epsilon,\delta)$ load.
-Ab initio models of pristine qHP networks report intrinsic intramolecular strain from the eight-bond hexagonal connectivity~\cite{Makov2023graphullerene} (${\sim}0.1$--$0.2$~eV-scale cage distortions relative to isolated C$_{60}$ in prior surveys), so external biaxial load couples to an already pre-strained, \emph{soft} molecular cage---a regime where Eshelby-type linear superposition of defect and external fields is not guaranteed.
-Beyond pristine monolayers, strain and substitution independently reshape band edges~\cite{Li2024strain,Peng2025monolayer,LopezAlcalay2025graphendofullerene}, while substitutional B/N engineering can yield spin-polarized half-semiconductor gaps~\cite{Khan2025tuning}, and related 2D fullerene networks show anisotropic mechanical and tribological response under load~\cite{Wang2024simulation,Qiu2025atomic} and endohedral qHP C$_{60}$ cage filling reshapes band gaps~\cite{Pereira2026endohedral}; none of these reports a periodic total-energy cross term under joint biaxial $(\epsilon,\delta)$ load, motivating explicit coupled grids rather than an additive superposition of composition and strain effects.
-Non-additive coupling is documented in other two-dimensional networks~\cite{Materials2024untangling,Alihosseini2023strain}; a quantitative \emph{total-energy} synergy order parameter $\mathcal{S}$ [Eq.~\eqref{eq:synergy_order}] has not been reported for substitutional B/N/P qHP C$_{60}$ tetramers and $n=1$--$8$ supercells.
+The omitted cross term is a systematic bias in sequential screening: it arises whenever a dopant introduces a \emph{local chemical-mismatch stress field} that couples nonlinearly to an external biaxial load, so additive composition--strain models can incorrectly rank relative stability even when dopant ordering at $\epsilon{=}0$ is unchanged.
+Quasi-hexagonal (qHP) C$_{60}$ graphullerene~\cite{Yang2021two,Capobianco2024electron} is a covalently linked molecular network whose elastic, optical, and transport properties have been surveyed extensively~\cite{Tromer2022dft,Lv2026covalent,Capobianco2024electron,Silva2024large}, yet prior work does not report a periodic total-energy cross term under joint biaxial $(\epsilon,\delta)$ load.
+Ab initio models of pristine qHP networks report intrinsic intramolecular strain from the eight-bond hexagonal connectivity~\cite{Makov2023graphullerene} (${\sim}0.1$--$0.2$~eV-scale cage distortions relative to isolated C$_{60}$ in prior surveys), so external biaxial load couples to an intrinsically pre-strained, \emph{soft} molecular cage.
+Eshelby-type linear superposition assumes a linear elastic continuum; because the pre-strained fullerene cage can enter a nonlinear elastic regime, additive superposition of defect and external fields is not guaranteed.
+Beyond pristine monolayers, strain and substitution independently reshape band edges~\cite{Li2024strain,Peng2025monolayer,LopezAlcalay2025graphendofullerene}, and substitutional B/N engineering can yield spin-polarized half-semiconductor gaps~\cite{Khan2025tuning}.
+Related 2D fullerene networks show anisotropic mechanical and tribological response under load~\cite{Wang2024simulation,Qiu2025atomic}, and endohedral qHP C$_{60}$ cage filling reshapes band gaps~\cite{Pereira2026endohedral}.
+None of these reports a periodic total-energy cross term under joint biaxial $(\epsilon,\delta)$ load.
+Non-additive coupling is documented in other two-dimensional networks~\cite{Materials2024untangling,Alihosseini2023strain}; a quantitative \emph{total-energy} synergy order parameter $\mathcal{S}$ [Eq.~\eqref{eq:synergy_order}] remains unquantified for substitutional B/N/P qHP C$_{60}$ tetramers and $n=1$--$8$ supercells.
 
-We address three questions on this \emph{class} of covalent molecular networks (qHP C$_{60}$ as the validation platform): (1)~how donor vs.\ acceptor dopants yield distinct mechanical strain response and $\pi$ filling under the same PBE+D3 protocol; (2)~how large the omitted synergy cross term $|\mathcal{S}|$ is under joint load; and (3)~whether $|\mathcal{S}|$ scales with size mismatch or instead reflects $\pi$-electron nonlinearity.
-Using $\gtrsim 90$ DFT tasks catalogued in Table~\ref{tab:II}, we define $\mathcal{S}$ on periodic PBE+D3 grids (fifteen $(n,\delta)$ points at $+3$\% strain).
-Matched-functional tetramer $\alpha$ and $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ on an independent PBE+D3 placement map (Table~\ref{tab:IV}) are compared to periodic $\mathcal{S}(n)$ on the same functional.
-The largest periodic $|\mathcal{S}|$ at fixed coordinates (up to $31.9$~meV/atom for P at $n{=}1$) does not track tetramer $|\alpha|$ in any simple monotonic sense---\emph{decoupling} here means that linear $\alpha$ cannot quantitatively predict cross-term magnitude or sign, not that $|\alpha|$ and $|\mathcal{S}|$ are anticorrelated.
-\emph{Local} dopant distortion and \emph{global} biaxial strain interact nonlinearly in total energy: $|\mathcal{S}|$ can exceed what linear $\alpha$ alone would suggest, so \emph{relative} stability margins from $\epsilon=0$ substitution energies or strain-only elastic increments need not survive a coupled load even if they do not reorder dopants with widely separated $E_{\mathrm{sub}}$ values.
-Protocol limits (ionic-relaxation sign reversal, placement sensitivity) are benchmarked in Sec.~\ref{sec:validation}; polaron transport diagnostics appear in the Supplemental Material and do not enter $\mathcal{S}$.
+We address three questions on this \emph{class} of covalent molecular networks (qHP C$_{60}$ as the validation platform): (1)~how donor vs.\ acceptor dopants produce distinct mechanical strain responses and $\pi$-electron filling under the same PBE+D3 protocol; (2)~how large the omitted non-additive cross term $|\mathcal{S}|$ is under joint load; and (3)~whether $|\mathcal{S}|$ scales with dopant--host size mismatch or originates from $\pi$-electron nonlinearities.
+We define $\mathcal{S}$ on periodic PBE+D3 grids at $+3$\% biaxial strain and compare matched-functional tetramer $\alpha$ and $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ on an independent placement map (Table~\ref{tab:I}) to periodic $\mathcal{S}(n)$.
+The largest periodic $|\mathcal{S}|$ at fixed coordinates (up to $31.9$~meV/atom for P at $n{=}1$) does not track tetramer $|\alpha|$ monotonically---\emph{decoupling} means that linear $\alpha$ cannot quantitatively predict cross-term magnitude or sign.
+Local dopant distortion and global biaxial strain therefore interact nonlinearly in total energy, so relative stability margins from $\epsilon=0$ substitution energies or strain-only increments may not hold under coupled loading.
 
 % ------------------------------------------------------------------
 \section{\label{sec:methods}Computational Methods}
 % ------------------------------------------------------------------
 
-\subsection{Electronic-structure setup}
+\subsection{Electronic structure method}
 
-All periodic audit and charged-state tasks use CP2K~\cite{cp2k2025} with PBE~\cite{Perdew1996generalized} and Grimme DFT-D3 (Becke--Johnson damping)~\cite{Grimme2011effect}.
-Table~\ref{tab:IV} supplies verified PBE+D3 tetramer $\alpha$ and $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ on an alternate placement map; the matched PBE+D3 reference map (seed~42; Table~\ref{tab:II}, 24/24) gives $+58.7$, $-297.5$, and $+456.0$~meV/\% for B, N, and P (Fig.~\ref{fig:main}(c)), illustrating placement sensitivity relative to the alternate map.
-Table~\ref{tab:II} catalogues task groups, $N_{\mathrm{conv}}$, main-text linkage, and protocol; superseded grids are in Table~\ref{tab:IIarchive}.
-We do not employ the Koopmans-compliant rVV10 approach used in Ref.~\citenum{Capobianco2024electron}, and instead adopt a PBE+D3 protocol for periodic and charged-state tasks suitable for large-scale parameter scanning, at the cost of absolute accuracy in polaron binding energies.
+All total-energy calculations use CP2K~\cite{cp2k2025} with PBE~\cite{Perdew1996generalized}, Grimme DFT-D3 (Becke--Johnson damping)~\cite{Grimme2011effect}, Goedecker--Teter--Hutter (GTH) pseudopotentials, and the DZVP-MOLOPT-SR-GTH atom-centered basis.
+We adopt PBE+D3 rather than the Koopmans-compliant rVV10 protocol of Ref.~\citenum{Capobianco2024electron} to enable large-scale $(\epsilon,\delta)$ grids; PBE underestimates absolute gaps, but $\mathcal{S}$ is a same-functional total-energy difference so systematic gap errors largely cancel.
+Plane-wave cutoffs are 400~Ry for $n\leq 4$ and 350~Ry for $n\geq 6$; a single-point 400~Ry control at $6\times\mathrm{C}_{60}$ N and $+3$\% differs by ${\sim}0.057$~meV/atom from the 350~Ry energy at fixed geometry.
+Unless noted otherwise, the SCF threshold is $10^{-6}$~$E_{\mathrm{h}}$.
 
-\subsection{Notation and conventions}
+\subsection{Strain and doping models}
 \label{sec:notation}
-Biaxial strain is denoted $\epsilon$ (percent); dopant species $\delta\in\{B,N,P\}$.
-The synergy order parameter is denoted by the calligraphic symbol $\mathcal{S}$ (never the Latin $s$), with units of meV per atom [Eq.~\eqref{eq:synergy_order}].
-$\pi$-projected densities of states are written $\pi$-DOS (never bare ``pi'' in equations).
+Biaxial strain is defined as $\epsilon=(a-a_0)/a_0\times 100\%$, where $a$ ($a_0$) is the strained (pristine equilibrium) in-plane lattice constant; dopant species $\delta\in\{\mathrm{B},\mathrm{N},\mathrm{P}\}$.
+The synergy order parameter is the calligraphic symbol $\mathcal{S}$ [Eq.~\eqref{eq:synergy_order}], in meV per atom.
+$\pi$-projected densities of states are written $\pi$-DOS.
 
-\subsubsection{Rigid-strain protocol}
-Biaxial strain scales the in-plane lattice vectors of the \emph{pristine} equilibrium cell at fixed fractional coordinates (no ionic relaxation under load).
-Reported $\alpha$ and $\mathcal{S}$ under this protocol are upper bounds at fixed coordinates (Sec.~\ref{sec:validation}).
+Biaxial strain scales the in-plane lattice vectors of the pristine equilibrium cell at fixed fractional coordinates (rigid-strain protocol).
+Reported $\alpha$ and $\mathcal{S}$ under this protocol are upper bounds on equilibrium magnitudes, because ionic relaxation can lower the energy through structural reconstruction (Sec.~\ref{sec:validation}).
 
-\subsubsection{Plane-wave cutoff (size scaling)}
-Archived CP2K inputs use 400~Ry for $n\leq 4$ and 350~Ry for $n\geq 6$ (Table~\ref{tab:II}); comparisons at fixed $n$ always share the same cutoff.
-Cross-$n$ trends mix a plane-wave cutoff change at $n=6$; the cutoff benchmark row in Table~\ref{tab:II} provides a 400~Ry control at $6\times\mathrm{C}_{60}$ (Supplemental Material Table~S1 for $n\geq 6$ production rows).
-
-\subsection{Substitutional doping and grids}
-
-Tetramer models ($4\times\mathrm{C}_{60}$, 240 sites) substitute B, N, or P at nominal 5\% (12--13 sites from archived coordinates); these dopant configurations are not thermodynamically optimized ground states.
-A second tetramer placement ensemble (24 single-point energies: 18 dopant-strain points plus six pristine references; Table~\ref{tab:IV}) tests whether tetramer $\alpha$ and $\mathcal{S}$ are placement-sensitive at ${\sim}5$\% nominal doping.
-All periodic supercells propagate the same dopant site map (one substituent per C$_{60}$); quantitative $|\mathcal{S}|$ on the fifteen-point grid is therefore configuration-specific, whereas the verified PBE+D3 alternate tetramer map (Table~\ref{tab:IV}) gives $|\alpha_P|\gg|\alpha_{\mathrm{B,N}}|$ while $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ remains $\mathcal{O}(10)$~meV/atom for all three dopants---so $\alpha$ trends and cross-term magnitudes are placement-specific at ${\sim}5$\% nominal doping (Sec.~\ref{sec:methods_s4_seed}).
-Periodic scaling cells place one substituent per C$_{60}$ ($n$ dopants among $60n$ lattice atoms, ${\sim}1.67$~at.\% for all $n$), contrasting with the tetramer grid (${\sim}5$\% nominal).
-Counting a single dopant in the full supercell (e.g., $1/240{=}0.42$~at.\% for the tetramer) is \emph{not} the concentration used here; atomic percent is always dopants per lattice atom ($n$ in $60n$).
-Tetramer $\alpha$, gaps, and tetramer IPR/$J$ trends are not directly interchangeable with periodic $\mathcal{S}(n)$ without a matched-concentration benchmark; all $\mathcal{S}$ claims use the periodic protocol.
-In total, $\gtrsim 90$ tasks in Table~\ref{tab:II} support the protocol-audited energy claims below; Marcus and Hirshfeld rows are separate diagnostics that do not enter Eq.~\eqref{eq:synergy_order}.
-Charged-state tasks supply adiabatic IP/EA and vertical Marcus $\lambda^{\pm}$ (Supplemental Material; Sec.~\ref{sec:methods_marcus}), which do not enter Eq.~\eqref{eq:synergy_order}.
-\subsection{Energy observables}
-
-Linear strain sensitivity $\alpha=\mathrm{d}E/\mathrm{d}\epsilon$ (meV per 1\% biaxial strain, tetramer \emph{total} energy) is obtained from rigid PBE+D3 tetramer strain grids (Table~\ref{tab:IV} alternate placement; reference-placement modernization in Table~\ref{tab:II}).
-Periodic $\mathcal{S}$ and size-scaling energies use PBE+D3 throughout (Table~\ref{tab:II}).
-Positive $\alpha$ means tension \emph{raises} total energy; negative $\alpha$ means tension \emph{lowers} it under the rigid-strain protocol.
-The raw substitution energy difference $\Delta E_{\mathrm{sub}}=(E_{\mathrm{doped}}-E_{\mathrm{pristine}})/n_{\mathrm{dopants}}$ at fixed strain is \emph{not} a thermodynamic standard formation enthalpy (no elemental chemical potentials); when quoted, values use the same PBE+D3 protocol as the surrounding grid.
-In sequential high-throughput screens one often estimates $E_{\mathrm{tot}}(\epsilon,\delta)\approx E_{\mathrm{sub}}(\epsilon{=}0)+E_{\mathrm{strain}}(\epsilon)$; the neglected term is precisely $\mathcal{S}(\epsilon,\delta)$---the absolute error in that additive estimate.
-The order-of-magnitude ratio $|\mathcal{S}|/|E_{\mathrm{sub}}|_{\mathrm{per\,atom}}$ for screening workflows is discussed in Sec.~\ref{sec:discussion} as a rough magnitude estimate only (not a core nonlinearity test).
+Tetramer models ($4\times\mathrm{C}_{60}$) substitute B, N, or P at nominal ${\sim}5$~at.\% on a fixed pseudorandom carbon-site map; configurations are not thermodynamically optimized.
+Periodic supercells place one substituent per C$_{60}$ (${\sim}1.67$~at.\%) on a fixed production site map shared across $n=1$--$8$.
+Linear strain sensitivity $\alpha=\mathrm{d}E/\mathrm{d}\epsilon$ (meV per 1\% biaxial strain) is obtained from rigid PBE+D3 tetramer grids; positive $\alpha$ means tensile strain increases the total energy.
+The substitution energy difference $\Delta E_{\mathrm{sub}}=(E_{\mathrm{doped}}-E_{\mathrm{pristine}})/n_{\mathrm{dopants}}$ is not a thermodynamic formation enthalpy (no elemental chemical potentials).
 
 \input{sdc_method_section.tex}
 
-\subsection{Detailed calculation protocols}
-\input{methods_extended.tex}
-
 \subsection{Validation benchmarks}
 \label{sec:validation}
-The task-group inventory in Table~\ref{tab:II} (superseded exploratory grids in Table~\ref{tab:IIarchive}) lists $N_{\mathrm{conv}}$ and main-text linkage; ionic-relaxation energies appear in Table~\ref{tab:III}; the alternate-placement grid in Table~\ref{tab:IV} spans the full B/N/P strain path and six modern PBE+D3 pristine references.
-Three validation benchmarks---ionic-relaxation tetramer $\mathcal{S}_P$ (Table~\ref{tab:III}), alternate dopant placement (Table~\ref{tab:IV}), and a cutoff benchmark at $6\times\mathrm{C}_{60}$ N @ $+3$\% (Table~\ref{tab:II})---govern interpretation of size-scaling trends (Secs.~\ref{sec:synergy} and~\ref{sec:discussion}).
+Three benchmarks govern interpretation of size-scaling trends: alternate dopant placement (Table~\ref{tab:I}), ionic relaxation of the tetramer $P$ four-corner grid (Table~\ref{tab:II}), and the single-point cutoff control described above.
+\input{methods_extended.tex}
 
-Sec.~\ref{sec:strain_response} reports $E_{\mathrm{sub}}$ only when tied to the verified PBE+D3 grids above (no chemical-potential reference; not a formation enthalpy).
-
-\input{tables/tab_S_synergy_grid.tex}
-\input{tables/tab_II.tex}
-\input{tables/tab_II_archive.tex}
-\input{tables/tab_III.tex}
 \input{tables/tab_IV.tex}
+\input{tables/tab_III.tex}
 
 % ------------------------------------------------------------------
 \section{\label{sec:results}Results}
 % ------------------------------------------------------------------
 
-We organize the results around total-energy non-additivity (Sec.~\ref{sec:notation}); Secs.~\ref{sec:electronic}--\ref{sec:synergy} report band-edge context, PBE+D3 tetramer $\alpha$ and geometry (Tables~\ref{tab:IV} and \ref{tab:V}), and periodic $\mathcal{S}(n)$ (Tables~\ref{tab:II} and \ref{tab:Sgrid}).
-Polaron transport diagnostics (Marcus $\lambda$, IPR, $J$) appear in the Supplemental Material and do not enter the $\mathcal{S}$ audit.
+We first present electronic structure and linear strain response, then focus on the non-additive synergy order parameter $\mathcal{S}$.
 
 \begin{figure*}[t]
 \includegraphics[width=\textwidth]{figures/out/figure_prb_main.pdf}
 \caption{\label{fig:main}Coupled $(\epsilon,\delta)$ response in doped qHP C$_{60}$.
 (a)~HOMO--LUMO gap vs.\ strain (tetramer electronic archive; PBE).
-(b)~$\pi$-DOS for B @ $\epsilon{=}0$ (PBE+D3; N panel: $E_g<0$ indicates metallic pinning).
-(c)~Mechanical $\alpha$ on reference (blue) vs.\ alternate (red) tetramer placement maps (PBE+D3 rigid; Table~\ref{tab:II} vs.\ Table~\ref{tab:IV}).
-(d)~Periodic $\mathcal{S}(n)$ at $+3$\% biaxial strain (PBE+D3 rigid; $n\leq 4$ core grid; peak $|\mathcal{S}|$ at P, $n{=}1$).}
+(b)~Mechanical $\alpha$ on reference (blue) vs.\ alternate (red) tetramer placement maps (PBE+D3 rigid; Table~\ref{tab:I}).
+(c)~Periodic $\mathcal{S}(n)$ at $+3$\% biaxial strain (PBE+D3 rigid; $n\leq 4$ core grid; peak $|\mathcal{S}|$ at P, $n{=}1$).}
 \end{figure*}
 
 \subsection{\label{sec:electronic}Electronic structure under strain and doping}
 
-Figure~\ref{fig:main}(a,b) summarizes tetramer HOMO--LUMO gaps (archived tetramer electronic-structure set) and representative $\pi$-DOS (B @ $\epsilon{=}0$; color scheme follows Ref.~\citenum{Capobianco2024electron}).
-At $\epsilon{=}0$, B is near a closed $\pi$ gap ($E_g\approx 0.03$~eV), N doping pins the Fermi level inside the conduction band ($E_g\approx -0.14$~eV), and P remains gapped ($E_g\approx 0.05$~eV); tensile strain narrows the pristine gap (${\sim}23$~meV/\% on the three available strain points in the dataset).
-Donor vs.\ acceptor ordering of the $\epsilon{=}0$ gaps tracks distinct mechanical response in Sec.~\ref{sec:strain_response}, but band-edge slopes are not used to infer $\mathcal{S}$.
-The four-panel $\pi$-DOS stack (Fig.~\ref{fig:pdos}) shows N-induced states crossing the Fermi level at $\epsilon{=}0$ (metallic pinning), a narrow $\pi$ gap for B ($E_g\approx 0.03$~eV), and a wider gap for P---consistent with excess vs.\ deficient $\pi$ electron count at the dopant cage but not yet decomposed into site-resolved Mulliken or Bader partitions (Limitations).
+Figure~\ref{fig:main}(a) summarizes tetramer HOMO--LUMO gaps (archived tetramer electronic-structure set).
+At $\epsilon{=}0$, B doping results in a nearly closed $\pi$ gap ($E_g\approx 0.03$~eV), N doping pins the Fermi level inside the conduction band ($E_g\approx -0.14$~eV), and P remains gapped ($E_g\approx 0.05$~eV); tensile strain narrows the pristine gap (${\sim}23$~meV/\% on the three available strain points in the dataset).
+Donor vs.\ acceptor ordering of the $\epsilon{=}0$ gaps tracks distinct mechanical response in Sec.~\ref{sec:strain_response}.
+The four-panel $\pi$-DOS stack (Fig.~\ref{fig:pdos}) shows N-induced states crossing the Fermi level at $\epsilon{=}0$ (metallic pinning), a narrow $\pi$ gap for B ($E_g\approx 0.03$~eV), and a wider gap for P---consistent with excess vs.\ deficient $\pi$-electron count at the dopant cage.
 \input{tables/fig_pdos.tex}
 
 \subsection{\label{sec:strain_response}Mechanical strain sensitivity}
 
 Pristine tetramers are strain-insensitive ($|\alpha|\approx 1$~meV/\% on the verified PBE+D3 grids).
-Rigid PBE+D3 $\alpha$ on the reference placement map (seed~42; Table~\ref{tab:II}) gives $+58.7$, $-297.5$, and $+456.0$~meV/\% for B, N, and P; Fig.~\ref{fig:main}(c) plots this column, which shares the dopant-site map with the periodic $\mathcal{S}$ audit.
-On the independent alternate placement (Table~\ref{tab:IV}), the same protocol gives $+21.4$, $+45.4$, and $+989.6$~meV/\%---$\alpha$ is placement-dominated while $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ remains $\mathcal{O}(10)$~meV/atom for all three dopants (Sec.~\ref{sec:generality}).
-The largest periodic $|\mathcal{S}|$ at $n{=}4$ and $+3$\% strain is $23.7$~meV/atom for P (Table~\ref{tab:II}), while $|\alpha_P|$ on the alternate tetramer map is placement-dominated---foreshadowing $\alpha$--$|\mathcal{S}|$ decoupling (Sec.~\ref{sec:synergy}).
-Figure~\ref{fig:main}(c) highlights the $\alpha$ spread; ranking dopants solely by substitution energy at $\epsilon{=}0$ is misleading once $+3$\% strain is applied.
-Archived legacy-PBE single-point energies (no D3) are retained in the public release for reproducibility only and are not cited for quantitative claims in the main text.
+Rigid PBE+D3 $\alpha$ on the reference placement map gives $+58.7$, $-297.5$, and $+456.0$~meV/\% for B, N, and P [Fig.~\ref{fig:main}(b)]; these share the dopant-site map with the periodic $\mathcal{S}$ audit.
+On the independent alternate placement (Table~\ref{tab:I}), the same protocol gives $+21.4$, $+45.4$, and $+989.6$~meV/\%---$\alpha$ exhibits strong dopant-placement dependence while $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ remains on the order of $10$~meV/atom for all three dopants.
+The largest periodic $|\mathcal{S}|$ at $n{=}4$ and $+3$\% strain is $23.7$~meV/atom for P (Table~\ref{tab:IV}), while $|\alpha_P|$ on the alternate tetramer map is placement-sensitive---consistent with $\alpha$--$|\mathcal{S}|$ decoupling.
+Ranking dopant stability solely by zero-strain substitution energies can be misleading under applied strain for close competitors.
 \input{tables/tab_V.tex}
-Table~\ref{tab:V} links mechanical spread to \emph{tetramer} local geometry (${\sim}5$\% nominal doping, multiple sites): P shows negligible strain-induced change in the mean nearest-neighbor C--C distance ($\Delta\bar{d}\approx 3\times 10^{-5}$~\AA\ vs.\ ${\sim}8.5\times 10^{-3}$~\AA\ for B at $+3$\% load), indicating a vanishing \emph{uniform nearest-neighbor stretch} component rather than absence of cage buckling; periodic $n{=}1$ bond statistics are not yet tabulated (Limitations).
-Complementary Hirshfeld population on the periodic $n{=}1$ B/N/P strain paths (Table~\ref{tab:II}; Sec.~\ref{sec:methods_population}) probes charge redistribution along the same load path as Table~\ref{tab:V} geometry.
+Table~\ref{tab:III} links mechanical spread to \emph{tetramer} local geometry (${\sim}5$\% nominal doping, multiple sites): P shows negligible strain-induced change in the mean nearest-neighbor C--C distance ($\Delta\bar{d}\approx 3\times 10^{-5}$~\AA\ vs.\ ${\sim}8.5\times 10^{-3}$~\AA\ for B at $+3$\% load), indicating a negligible uniform stretching of nearest-neighbor bonds rather than absence of cage buckling.
+Complementary Hirshfeld charges on the periodic $n{=}1$ B/N/P strain paths probe charge redistribution along the same load path.
 
 \subsection{\label{sec:synergy}Non-additive strain--doping coupling}
 
-Figure~\ref{fig:main}(d) tracks protocol $\mathcal{S}(n)$ at $+3$\% biaxial strain.
-At $n=4$ under the fixed periodic production map (Table~\ref{tab:Sgrid}; two independent $n{=}4$ placement maps preserve the production-map $|\mathcal{S}|$ ranking at $+3$\%: P$>$B$>$N), $\mathcal{S}=-6.2$~meV/atom (B), $+3.0$~meV/atom (N), and $-23.7$~meV/atom (P); P shows the largest magnitude despite $\alpha$--$|\mathcal{S}|$ decoupling on the verified PBE+D3 tetramer map (Table~\ref{tab:IV}).
-On the alternate tetramer map (Table~\ref{tab:IV}, PBE+D3 throughout), P still carries the largest $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ ($+41.4$~meV/atom) while $|\alpha|$ is placement-dominated ($+989.6$~meV/\%); this is \emph{not} a simple $\alpha$--$|\mathcal{S}|$ anticorrelation---decoupling means linear $\alpha$ cannot predict cross-term magnitude or sign (Sec.~\ref{sec:generality}).
-For $n\leq 4$ at matched 400~Ry cutoffs, $|\mathcal{S}|$ reaches $31.9$~meV/atom for P at $n=1$ and remains $\mathcal{O}(10)$~meV/atom for B and P at $n=2$--$4$ (Table~\ref{tab:Sgrid}).
-Within $n\leq 4$, $|\mathcal{S}|$ is not monotonic in $n$ (e.g., B: $8.4\rightarrow 2.2\rightarrow 6.2$~meV/atom at $n{=}1,2,4$), reflecting finite-cell dopant--dipole and image interactions rather than an asymptotic size limit; we report protocol values at each supercell without extrapolating $\mathcal{S}_\infty$.
-Rows with $n\geq 6$ use 350~Ry production settings and appear only in Supplemental Material Table~S1.
-All periodic $\mathcal{S}$ values quoted in this subsection use the fixed dopant-site map and are tabulated in Table~\ref{tab:II} (fifteen $n\times$ dopant points at $+3$\% strain).
-Rigid PBE+D3 $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ from Eq.~\eqref{eq:synergy_order} on the alternate tetramer map is $-2.6$, $+12.6$, and $+41.4$~meV/atom for B, N, and P (Table~\ref{tab:IV}); tetramer cross terms are not used to infer periodic $\mathcal{S}(n)$ because concentration and boundary conditions differ.
+Figure~\ref{fig:main}(c) tracks protocol $\mathcal{S}(n)$ at $+3$\% biaxial strain.
+At $n=4$ under the fixed periodic production map (Table~\ref{tab:IV}; two independent $n{=}4$ placement maps preserve P$>$B$>$N), $\mathcal{S}=-6.2$~meV/atom (B), $+3.0$~meV/atom (N), and $-23.7$~meV/atom (P); P shows the largest magnitude despite $\alpha$--$|\mathcal{S}|$ decoupling on the verified PBE+D3 tetramer map (Table~\ref{tab:I}).
+On the alternate tetramer map (Table~\ref{tab:I}), P still carries the largest $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ ($+41.4$~meV/atom) while $|\alpha|$ is placement-sensitive ($+989.6$~meV/\%); decoupling means linear $\alpha$ cannot predict cross-term magnitude or sign.
+For $n\leq 4$ at matched 400~Ry cutoffs, $|\mathcal{S}|$ reaches $31.9$~meV/atom for P at $n=1$ and remains on the order of $10$~meV/atom for B and P at $n=2$--$4$ (Table~\ref{tab:IV}).
+Within $n\leq 4$, $|\mathcal{S}|$ is not monotonic in $n$ (e.g., B: $8.4\rightarrow 2.2\rightarrow 6.2$~meV/atom at $n{=}1,2,4$), reflecting finite-cell dopant--dipole interactions and periodic image effects rather than an asymptotic size limit; we report protocol values at each supercell without extrapolating $\mathcal{S}_\infty$.
+Rows with $n\geq 6$ (350~Ry) appear in Supplemental Material Table~S1.
 Negative $\mathcal{S}$ (B, P at $n=4$) means coupled tension \emph{stabilizes} the doped cell relative to the additive estimate; positive $\mathcal{S}$ (N at $n=4$) means sequential screens \emph{overestimate} stability under load.
 
-\subsubsection{Ionic-relaxation checkpoint (Table~\ref{tab:III})}
+\subsubsection{Ionic-relaxation checkpoint}
 \label{sec:relax_checkpoint}
-Table~\ref{tab:III} benchmarks four fixed-cell geometry-optimization corners on the tetramer $P$-substitution grid (pristine and $P$ at $\epsilon{=}0$ and $+3$\%).
-For the pristine tetramer, relaxed total energies at $\epsilon{=}0$ and $+3$\% are $-1363.9551$ and $-1363.9550$~$E_{\mathrm{h}}$ ($\Delta E\approx 1.2\times10^{-4}$~$E_{\mathrm{h}}$), roughly an order of magnitude smaller than the archived rigid legacy-PBE nominal strain increment ($\sim10^{-3}$~$E_{\mathrm{h}}$).
+Table~\ref{tab:II} benchmarks four fixed-cell geometry-optimization corners on the tetramer $P$-substitution grid (pristine and $P$ at $\epsilon{=}0$ and $+3$\%).
+For the pristine tetramer, relaxed total energies at $\epsilon{=}0$ and $+3$\% are $-1363.9551$ and $-1363.9550$~$E_{\mathrm{h}}$ ($\Delta E\approx 1.2\times10^{-4}$~$E_{\mathrm{h}}$).
 The $P$-doped corners give $E(P,\epsilon{=}0)=-1374.4415$ and $E(P,\epsilon{=}3\%)=-1374.4615$~$E_{\mathrm{h}}$.
-Matched-functional PBE+D3 rigid single-points at relaxed coordinates yield $\mathcal{S}_{\mathrm{rigid}}^{\mathrm{PBE+D3}}=+1.19$~meV/atom versus $\mathcal{S}_{\mathrm{relaxed}}=-2.28$~meV/atom (sign \emph{not} preserved; $|\mathcal{S}_{\mathrm{relaxed}}|/|\mathcal{S}_{\mathrm{rigid}}^{\mathrm{PBE+D3}}|\approx 1.9$; Table~\ref{tab:III}).
-Matched-functional fixed-cell geometry optimization on the periodic $n{=}1$ P grid (PBE+D3; four corners) gives $\mathcal{S}_{\mathrm{rigid}}=-31.9$~meV/atom versus $\mathcal{S}_{\mathrm{relaxed}}\approx +0.1$~$\mu$eV/atom ($|\mathcal{S}_{\mathrm{relaxed}}|/|\mathcal{S}_{\mathrm{rigid}}|\lesssim 10^{-5}$), so ionic relaxation collapses the rigid periodic cross term in this cell and rigid $|\mathcal{S}|$ is a conservative upper bound on equilibrium $\mathcal{S}$ at $n{=}1$.
-This tetramer benchmark does not rescale periodic $\mathcal{S}(n)$ (concentration and boundary conditions differ; Sec.~\ref{sec:discussion}).
+Matched-functional PBE+D3 rigid single-points at relaxed coordinates yield $\mathcal{S}_{\mathrm{rigid}}^{\mathrm{PBE+D3}}=+1.19$~meV/atom versus $\mathcal{S}_{\mathrm{relaxed}}=-2.28$~meV/atom (sign not preserved; $|\mathcal{S}_{\mathrm{relaxed}}|/|\mathcal{S}_{\mathrm{rigid}}^{\mathrm{PBE+D3}}|\approx 1.9$; Table~\ref{tab:II}).
+Matched-functional fixed-cell geometry optimization on the periodic $n{=}1$ P grid (PBE+D3; four corners) gives $\mathcal{S}_{\mathrm{rigid}}=-31.9$~meV/atom versus $\mathcal{S}_{\mathrm{relaxed}}\approx +0.1$~$\mu$eV/atom ($|\mathcal{S}_{\mathrm{relaxed}}|/|\mathcal{S}_{\mathrm{rigid}}|\lesssim 10^{-5}$), so ionic relaxation nearly eliminates the rigid periodic cross term in this cell.
+
+\input{tables/tab_S_synergy_grid.tex}
 
 % ------------------------------------------------------------------
 \section{\label{sec:discussion}Discussion}
 % ------------------------------------------------------------------
 
 \subsection{Literature context}
-Relative to strain-only, doping-only, mobility, or mechanical studies in qHP and related fullerene networks~\cite{Capobianco2024electron,Li2024strain,Khan2025tuning,Wang2024simulation,LopezAlcalay2025graphendofullerene,Pereira2026endohedral,Qiu2025atomic,Peng2025monolayer,ShaikhPeng2025thermal,Shi2023strainC60,Makov2023graphullerene,Lv2026covalent,Materials2024untangling,Santra2024strain,Tromer2022dft}, the distinction here is a periodic \emph{total-energy} audit of joint biaxial $(\epsilon,\delta)$ load [Eq.~\eqref{eq:synergy_order}] (periodic PBE+D3; Table~\ref{tab:II}).
+Relative to strain-only, doping-only, mobility, or mechanical studies in qHP and related fullerene networks~\cite{Capobianco2024electron,Li2024strain,Khan2025tuning,Wang2024simulation,LopezAlcalay2025graphendofullerene,Pereira2026endohedral,Qiu2025atomic,Peng2025monolayer,ShaikhPeng2025thermal,Shi2023strainC60,Makov2023graphullerene,Lv2026covalent,Materials2024untangling,Santra2024strain,Tromer2022dft}, the distinction here is a periodic \emph{total-energy} audit of joint biaxial $(\epsilon,\delta)$ load [Eq.~\eqref{eq:synergy_order}] (Table~\ref{tab:IV}).
 Foundational DFT surveys of qHP C$_{60}$ monolayers emphasize anisotropic elastic moduli and optical gaps~\cite{Tromer2022dft} rather than matched four-corner total-energy grids under joint substitutional and mechanical load.
-Strain-engineering roadmaps for generic two-dimensional materials~\cite{Katiyar2025strain} likewise foreground band-edge and mobility levers under separate mechanical or chemical protocols rather than a matched four-corner total-energy grid on covalent fullerene networks.
+Strain-engineering roadmaps for generic two-dimensional materials~\cite{Katiyar2025strain} likewise foreground band-edge and mobility levers under separate mechanical or chemical protocols.
 Graphendofullerene derivatives report Curie temperatures tunable through \emph{either} biaxial strain or electrostatic doping applied in isolation~\cite{LopezAlcalay2025graphendofullerene}, reinforcing that joint $(\epsilon,\delta)$ total-energy corners are not implicit in sequential protocol designs.
 In other 2D hosts, substitutional defects can raise or lower formation energies under biaxial strain depending on dopant--host size mismatch~\cite{Santra2024strain}; spin-resolved impurity engineering on qHP graphullerene instead targets half-semiconductor gaps~\cite{Khan2025tuning}; we instead quantify the omitted additive cross term $\mathcal{S}$ in total energy.
-Band-edge metrics contextualize donor/acceptor ordering (Sec.~\ref{sec:electronic}) but are not used to infer $\mathcal{S}$.
 
-\subsection{Internal stress and external strain}
+\subsection{Origins of $\alpha$--$\mathcal{S}$ decoupling}
 \label{sec:stress_coupling}
 Substitutional B, N, or P can be viewed as embedding a \emph{localized internal strain field} $\boldsymbol{\varepsilon}_{\mathrm{int}}$ into an already distorted qHP cage baseline~\cite{Makov2023graphullerene}.
-Table~\ref{tab:V} quantifies the chemical-mismatch scale by covalent-radius excess $\Delta r_{\mathrm{cov}}$ ($+7$, $-6$, and $+30$~pm for B, N, and P vs.\ C) and by mean dopant--C distance $\bar{d}$ at $\epsilon{=}0$.
+Table~\ref{tab:III} quantifies the chemical-mismatch scale by covalent-radius excess $\Delta r_{\mathrm{cov}}$ ($+7$, $-6$, and $+30$~pm for B, N, and P vs.\ C) and by mean dopant--C distance $\bar{d}$ at $\epsilon{=}0$.
 External biaxial strain $\epsilon_{\mathrm{ext}}$ is a uniform macroscopic load on the periodic cell.
 Sequential high-throughput models implicitly assume that responses to $\boldsymbol{\varepsilon}_{\mathrm{int}}$ and $\epsilon_{\mathrm{ext}}$ superpose linearly; $\mathcal{S}$ is the total-energy evidence that this superposition fails when both fields are present.
-In the Eshelby picture, a small substitutional defect in a linear elastic continuum produces a strain field that superposes with external load; qHP C$_{60}$ violates that limit because the cage is \emph{soft} and pre-strained~\cite{Makov2023graphullerene}, so second-order defect--elastic work (our geometric channel) can exceed linear $\alpha\times\epsilon$ scaling.
+In the Eshelby picture, a small substitutional defect in a linear elastic continuum produces a strain field that superposes with external load; qHP C$_{60}$ falls outside this linear elastic regime because the cage is \emph{soft} and pre-strained~\cite{Makov2023graphullerene}, so second-order defect--elastic work can exceed the increment predicted by linear $\alpha\times\epsilon$ scaling alone.
 
-For \emph{size-mismatched} P, the dopant introduces compressive local misfit in the cage ($\Delta r_{\mathrm{cov}}{=}+30$~pm) while tensile $\epsilon_{\mathrm{ext}}$ partially relieves that misfit without proportionally stretching nearest-neighbor bonds ($\Delta\bar{d}\approx 3\times 10^{-5}$~\AA\ at $+3$\%; Table~\ref{tab:V}).
-The resulting negative $\mathcal{S}$ (cooperative stabilization relative to the additive estimate) is consistent with nonlinear \emph{defect--elastic} coupling: external strain couples to \emph{pre-existing cage buckling} rather than to uniform bond stretching.
-For B and N, $|\Delta r_{\mathrm{cov}}|\lesssim 10$~pm and $\Delta\bar{d}$ tracks $\epsilon_{\mathrm{ext}}$ more uniformly (${\sim}8.5\times 10^{-3}$~\AA\ at $+3$\%), so $\mathcal{S}$ is set primarily by \emph{electronic} nonlinearity---donor vs.\ acceptor $\pi$ counting and Fermi-level pinning (Secs.~\ref{sec:electronic} and~\ref{sec:strain_response})---rather than by large-amplitude cage reshaping.
-In this language, small-mismatch dopants approximate the linear-additive regime ($|\mathcal{S}|\sim\mathcal{O}(1$--$10)$~meV/atom at $n{=}1$), whereas large-mismatch substituents require explicit coupled $(\epsilon,\delta)$ corners because geometric nonlinearity drives $|\mathcal{S}|$ to $\mathcal{O}(10^2)$ times the per-atom strain increment from $\alpha$ alone (Sec.~\ref{sec:synergy}).
+N introduces excess $\pi$ electrons that strengthen bonding under tensile strain (negative $\alpha$), whereas B creates electron deficiency and antibonding $\pi^\ast$ character that rises with lattice expansion (positive $\alpha$).
+Quantitatively, the $\epsilon{=}0$ gap ordering ($E_g^{\mathrm{N}}<E_g^{\mathrm{B}}<E_g^{\mathrm{P}}$ within PBE; Sec.~\ref{sec:electronic}) and the dopant-resolved $\pi$-DOS stack in Fig.~\ref{fig:pdos} (N states at $E_F$; B near-gap; P gapped) align with donor vs.\ acceptor $\pi$-electron counting, while total-energy $\alpha$ spans ${\sim}970$~meV/\% between B and P on the verified PBE+D3 alternate tetramer map (Table~\ref{tab:I}).
+$\alpha$--$\mathcal{S}$ \emph{decoupling} does not assert anticorrelation between $|\alpha|$ and $|\mathcal{S}|$: on the alternate PBE+D3 map (Table~\ref{tab:I}), P has both the largest $|\alpha|$ and the largest $\mathcal{S}_{+3\%}^{\mathrm{tet}}$.
+The claim is that linear strain slopes from a one-parameter scan cannot quantitatively predict four-corner cross-term magnitude or sign because $\alpha$ is placement-sensitive at ${\sim}5$~at.\% loading whereas $|\mathcal{S}|$ remains on the order of $10$~meV/atom on matched-functional tetramer and periodic audits.
 
-\paragraph{Component attribution.}
-Full decomposition into $\mathcal{S}_{\mathrm{geom}}$, $\mathcal{S}_{\mathrm{el}}$, and $\mathcal{S}_{\mathrm{vdW}}$ awaits corner-resolved post-processing on every four-corner grid.
-For the matched-functional tetramer $P$ rigid grid, extracting Grimme D3 dispersion energies at the four corners gives $\mathcal{S}_{\mathrm{vdW}}\approx +0.33$~meV/atom---orders of magnitude below $|\mathcal{S}_{\mathrm{rigid}}^{\mathrm{PBE+D3}}|\approx 1.2$~meV/atom (Table~\ref{tab:III})---so vdW non-additivity does not drive the reported cross terms.
-Within the present audit, P combines negligible $\Delta\bar{d}$ with the largest $|\mathcal{S}|$ and a monotonic Hirshfeld decrease under tension on the $n{=}1$ strain path ($+0.063\,e\rightarrow +0.056\,e$ at $+3$\%; Sec.~\ref{sec:mechanistic}), implicating \emph{pre-stored cage strain plus electronic redistribution} rather than uniform bond stretching as the dominant channel.
-B and N show smaller rigid $|\mathcal{S}|$ with modest Hirshfeld shifts over the same load path ($+0.12\rightarrow +0.11\,e$ and $+0.069\rightarrow +0.057\,e$ from $\epsilon{=}0$ to $+3$\%; Table~\ref{tab:II}), consistent with electronic-dominated cross terms at small $\Delta r_{\mathrm{cov}}$.
+The tetramer linear coefficient $\alpha$ and the periodic cross term $\mathcal{S}$ probe different energy partitions: $\alpha$ is the slope of total-cell energy under uniform lattice expansion at ${\sim}5$\% multi-site doping, whereas $\mathcal{S}$ is the omitted four-corner cross term per atom at ${\sim}1.67$~at.\% under periodic boundary conditions.
+They therefore need not share sign even for the same element---a negative $\alpha$ (tension lowers total energy in a strain-only scan) can coexist with positive $\mathcal{S}$ (the coupled corner is less stable than an additive model predicts), as for N at $n{=}4$.
+Any N sign flip between $n=6$ and $n=8$ lies outside the matched-cutoff $n\leq 4$ core grid and is excluded from design rules.
 
-\subsection{Mechanistic synthesis}
-\paragraph{Opposite $\alpha$ for N vs.\ B.}
-N introduces excess $\pi$ electrons that strengthen bonding under tension (negative $\alpha$), whereas B creates electron deficiency and antibonding $\pi^\ast$ character that rises with lattice expansion (positive $\alpha$).
-Quantitatively, the $\epsilon{=}0$ gap ordering ($E_g^{\mathrm{N}}<E_g^{\mathrm{B}}<E_g^{\mathrm{P}}$ within PBE; Sec.~\ref{sec:electronic}) and the dopant-resolved $\pi$-DOS stack in Figs.~\ref{fig:main}(b) and \ref{fig:pdos} (N states at $E_F$; B near-gap; P gapped) align with donor vs.\ acceptor $\pi$ counting, while total-energy $\alpha$ spans ${\sim}970$~meV/\% between B and P on the verified PBE+D3 alternate tetramer map (Table~\ref{tab:IV}).
-Table~\ref{tab:IV} repeats the full tetramer strain grid on an alternate site map (PBE+D3 rigid; Sec.~\ref{sec:methods_s4_seed}): $|\alpha_P|$ exceeds B and N by $\mathcal{O}(10^2)$ while $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ at $+3$\% remains $\mathcal{O}(10)$~meV/atom for all three dopants.
-Mayer bond order and Bader charge partitioning along the strain path are not yet computed (Limitations); periodic $\mathcal{S}(n)$ magnitudes on the reference map are not placement-averaged, though two independent $n{=}4$ placement maps preserve the P$>$B$>$N ranking (Table~\ref{tab:II}).
-\paragraph{Large $|\mathcal{S}|$ for P despite small $|\alpha|$.}
-P carries the largest covalent-radius excess ($+30$~pm vs.\ C; Table~\ref{tab:V}) and pre-existing cage distortion at $\epsilon{=}0$, yet shows the smallest strain-induced change in mean nearest C distance ($\Delta\bar{d}\approx 3\times 10^{-5}$~\AA\ vs.\ ${\sim}8.5\times 10^{-3}$~\AA\ for B/N) and the smallest site-to-site spread at $+3$\% ($\sigma(\bar{d})\approx 4\times 10^{-4}$~\AA\ vs.\ ${\sim}2\times 10^{-2}$~\AA\ for B/N; Table~\ref{tab:V}).
-Tensile load therefore couples to \emph{pre-existing} cage distortion from size mismatch rather than to a uniform elastic response, yielding a cross term invisible in separate scans but dominant when both strain and substitution are applied simultaneously---consistent with P carrying the largest $|\mathcal{S}|$ at $n{=}4$ ($23.7$~meV/atom; Table~\ref{tab:II}) despite $\alpha$--$|\mathcal{S}|$ decoupling on the verified PBE+D3 tetramer map (Table~\ref{tab:IV}).
-Sec.~\ref{sec:strain_response} presents this Table~\ref{tab:V} geometric decoupling before the $n{=}4$ $\mathcal{S}$ ranking in Sec.~\ref{sec:synergy}: tetramer $|\alpha|$ ranks P as weakly strain-sensitive, whereas the coupled periodic audit exposes the largest cross term.
-\paragraph{N $\mathcal{S}$ sign change with $n$.}
-With one substituent per C$_{60}$, electrostatic fields dilute at large $n$.
-The tetramer linear coefficient $\alpha$ and the periodic cross term $\mathcal{S}$ probe different energy partitions: $\alpha$ is the slope of \emph{total}-cell energy under uniform lattice expansion at ${\sim}5$\% multi-site doping, whereas $\mathcal{S}$ is the omitted four-corner cross term per atom at ${\sim}1.67$~at.\% under periodic boundary conditions.
-They therefore need not share sign even for the same element---a negative $\alpha$ (tension lowers total energy in a strain-only scan) can coexist with positive $\mathcal{S}$ (the coupled corner is \emph{less} stable than an additive model predicts), as for N at $n{=}4$.
-Any N sign flip between $n=6$ and $n=8$ is confounded with the 400$\rightarrow$350~Ry cutoff step and is excluded from design rules (Sec.~\ref{sec:validation}).
-Together, these three classes suggest a taxonomy for covalent molecular networks: \emph{electronic} donor/acceptor control of $\alpha$, \emph{structural} local-distortion coupling to external strain (P), and \emph{finite-size} electrostatic dilution (N at large $n$).
-\paragraph{Geometric vs.\ electronic nonlinearity.}
-For P, Table~\ref{tab:V} shows that rigid tensile load barely moves the mean dopant--C distance ($\Delta\bar{d}\approx 3\times 10^{-5}$~\AA) yet $\mathcal{S}$ remains the largest at $n{=}4$ ($23.7$~meV/atom), whereas B/N exhibit ${\sim}10^{2}\times$ larger $\Delta\bar{d}$ at $+3$\% but smaller $|\mathcal{S}|$ ($6.2$ and $3.0$~meV/atom).
-At $n{=}4$ the coupled correction for P exceeds the rigid per-atom strain increment from tetramer $\alpha$ by two orders of magnitude ($|\mathcal{S}|\gg \alpha\times 3\%/N_{\mathrm{atoms}}$; Methods energy observables), even though $|\alpha|$ ranks P as the weakest strain responder on the tetramer grid.
-\paragraph{Argument scope (concentration and boundary conditions).}
-We do \emph{not} validate $\mathcal{S}$ by extrapolating tetramer $\alpha$ to periodic $n{=}4$: the ${\sim}5$\% tetramer vs.\ ${\sim}1.67$~at.\% periodic concentrations and tetramer vs.\ periodic boundary conditions are unmatched, so a first-order $(\alpha_\delta-\alpha_0)\epsilon/N_{\mathrm{atoms}}$ estimate is excluded from the argument.
-Non-additivity is assessed only through Eq.~\eqref{eq:synergy_order} on matched four-corner grids at common $(\epsilon,\delta)$; P in particular requires explicit coupled evaluation rather than sequential $\alpha$ screening.
-\paragraph{Sign origins of $\mathcal{S}$.}
-For size-mismatched P (geometric channel), tensile $\epsilon_{\mathrm{ext}}$ partially relieves dopant-induced cage compression; coupled corners are \emph{more} stable than additive models predict, giving $\mathcal{S}<0$ when the cross term is negative in our sign convention (B and P at $n{=}4$).
-For small-mismatch B and N (electronic channel), $\mathcal{S}$ follows nonlinear evolution of $\pi$ states near $E_F$ under strain: donor N and acceptor B occupy different filling regimes, so $\mathcal{S}$ can be positive or negative at comparable $|\Delta r_{\mathrm{cov}}|$ (N $+3.0$ vs.\ B $-6.2$~meV/atom at $n{=}4$) without a single geometric scaling law.
-\paragraph{Hirshfeld charge along the $n{=}1$ B/N/P strain paths.}
+\subsection{Geometric vs.\ electronic coupling mechanisms}
 \label{sec:mechanistic}
-On the periodic $n{=}1$ P grid (PBE+D3), Hirshfeld charge on P decreases from $+0.063\,e$ at $\epsilon{=}0$ to $+0.056\,e$ at $+3$\% ($+0.050\,e$ at $+5$\%) while tetramer $\Delta\bar{d}$ for P remains below $10^{-4}$~\AA\ at $+3$\% load (Table~\ref{tab:V}).
-On the same periodic grid, B and N Hirshfeld charges shift from $+0.119\,e$ and $+0.069\,e$ at $\epsilon{=}0$ to $+0.111\,e$ and $+0.057\,e$ at $+3$\% (${\sim}7$\% and ${\sim}18$\% fractional $\Delta q/q$, vs.\ ${\sim}11$\% for P).
+For \emph{size-mismatched} P, the dopant introduces compressive local misfit in the cage ($\Delta r_{\mathrm{cov}}{=}+30$~pm) while tensile $\epsilon_{\mathrm{ext}}$ partially relieves that misfit without proportionally stretching nearest-neighbor bonds ($\Delta\bar{d}\approx 3\times 10^{-5}$~\AA\ at $+3$\%; Table~\ref{tab:III}).
+The resulting negative $\mathcal{S}$ (cooperative stabilization relative to the additive estimate) is consistent with nonlinear defect--elastic coupling: external strain couples to \emph{pre-existing cage buckling} rather than to uniform bond stretching.
+P carries the largest covalent-radius excess and pre-existing cage distortion at $\epsilon{=}0$, yet shows the smallest strain-induced change in mean nearest C distance and the smallest site-to-site spread at $+3$\% ($\sigma(\bar{d})\approx 4\times 10^{-4}$~\AA\ vs.\ ${\sim}2\times 10^{-2}$~\AA\ for B/N; Table~\ref{tab:III}), yielding the largest $|\mathcal{S}|$ at $n{=}4$ ($23.7$~meV/atom; Table~\ref{tab:IV}).
+For B and N, $|\Delta r_{\mathrm{cov}}|\lesssim 10$~pm and $\Delta\bar{d}$ tracks $\epsilon_{\mathrm{ext}}$ more uniformly (${\sim}8.5\times 10^{-3}$~\AA\ at $+3$\%), so $\mathcal{S}$ is set primarily by electronic nonlinearity---donor vs.\ acceptor $\pi$-electron counting and Fermi-level pinning---rather than by large-amplitude cage reshaping.
+At $n{=}4$ the coupled correction for P exceeds the rigid per-atom strain increment from tetramer $\alpha$ by about two orders of magnitude ($|\mathcal{S}|\gg \alpha\times 3\%/N_{\mathrm{atoms}}$), even though $|\alpha|$ ranks P as the weakest strain responder on the tetramer grid.
+
+For the matched-functional tetramer $P$ rigid grid, Grimme D3 dispersion energies at the four corners give $\mathcal{S}_{\mathrm{vdW}}\approx +0.33$~meV/atom---orders of magnitude below $|\mathcal{S}_{\mathrm{rigid}}^{\mathrm{PBE+D3}}|\approx 1.2$~meV/atom (Table~\ref{tab:II})---so vdW non-additivity does not drive the reported cross terms.
+On the periodic $n{=}1$ P grid, Hirshfeld charge on P decreases from $+0.063\,e$ at $\epsilon{=}0$ to $+0.056\,e$ at $+3$\% while tetramer $\Delta\bar{d}$ for P remains below $10^{-4}$~\AA\ at $+3$\% load (Table~\ref{tab:III}).
+B and N Hirshfeld charges shift from $+0.119\,e$ and $+0.069\,e$ at $\epsilon{=}0$ to $+0.111\,e$ and $+0.057\,e$ at $+3$\% (${\sim}7$\% and ${\sim}18$\% fractional $\Delta q/q$, vs.\ ${\sim}11$\% for P).
 Thus N shows the largest fractional charge response yet the smallest $|\mathcal{S}|$ at $n{=}4$, whereas P combines a moderate $\Delta q$ with vanishing $\Delta\bar{d}$ and the largest cross term---charge redistribution alone does not rank $|\mathcal{S}|$; geometric pre-strain remains necessary for the P channel.
-Tensile strain therefore redistributes electron density without proportional nearest-neighbor bond stretching; Mayer bond orders along the same path are not yet tabulated (Limitations).
 
-\paragraph{Significance versus DFT uncertainty.}
-\label{sec:significance}
-$\mathcal{S}$ is a difference of total energies computed with the \emph{same} functional, basis, and cell for all four corners of Eq.~\eqref{eq:synergy_order}, so systematic errors largely cancel in sign and relative magnitude.
-As a \emph{rough magnitude estimate only} (not a core result), at $n{=}4$ and $+3$\% strain P has $|\mathcal{S}|=23.7$~meV/atom on the periodic PBE+D3 grid while tetramer and periodic concentrations differ (${\sim}5$\% vs.\ ${\sim}1.67$~at.\%); $|\mathcal{S}|/|E_{\mathrm{sub}}|_{\mathrm{per\,atom}}$ ratios from archived legacy grids are omitted because they mix functionals.
-Large absolute uncertainties in PBE $E_{\mathrm{sub}}$ therefore do not invalidate the conclusion that sequential scans omit a meV/atom-scale cross term.
+Together, these observations suggest a taxonomy for covalent molecular networks: \emph{electronic} donor/acceptor control of $\alpha$; \emph{structural} local-distortion coupling to external strain (P); and \emph{finite-size} electrostatic dilution (N at large $n$).
 
-\paragraph{Decomposition outlook.}
-The stress-field picture (Sec.~\ref{sec:stress_coupling}) and Table~\ref{tab:V}--Hirshfeld trends indicate that $\mathcal{S}$ is not reducible to uniform bond stretching; Mayer/Bader corner projections remain open (Limitations).
-
-\subsection{Generality and design principles}
+\subsection{General design rules for covalent networks}
 \label{sec:generality}
-\paragraph{Decoupling definition.}
-$\alpha$--$\mathcal{S}$ \emph{decoupling} does \emph{not} assert anticorrelation between $|\alpha|$ and $|\mathcal{S}|$: on the alternate PBE+D3 map (Table~\ref{tab:IV}), P has both the largest $|\alpha|$ and the largest $\mathcal{S}_{+3\%}^{\mathrm{tet}}$.
-The claim is that linear strain slopes from a one-parameter scan cannot quantitatively predict four-corner cross-term magnitude or sign because $\alpha$ is placement-sensitive at ${\sim}5$\% loading whereas $|\mathcal{S}|$ remains $\mathcal{O}(10)$~meV/atom on matched-functional tetramer and periodic audits.
-\paragraph{Mismatch--$|\mathcal{S}|$ scaling (audit at $n{=}1$, $+3$\%).}
-Using $|\Delta r_{\mathrm{cov}}|$ from Table~\ref{tab:V} as a single mismatch coordinate, periodic $|\mathcal{S}|$ spans $2.3$--$8.4$~meV/atom for B and N ($|\Delta r_{\mathrm{cov}}|\lesssim 10$~pm) but reaches $31.9$~meV/atom for P ($|\Delta r_{\mathrm{cov}}|{=}30$~pm; Table~\ref{tab:Sgrid}).
+Using $|\Delta r_{\mathrm{cov}}|$ from Table~\ref{tab:III} as a single mismatch coordinate, periodic $|\mathcal{S}|$ spans $2.3$--$8.4$~meV/atom for B and N ($|\Delta r_{\mathrm{cov}}|\lesssim 10$~pm) but reaches $31.9$~meV/atom for P ($|\Delta r_{\mathrm{cov}}|{=}30$~pm; Table~\ref{tab:IV}).
 N breaks a naive ``$|\mathcal{S}|\propto(\Delta r)^2$'' law at comparable mismatch to B because its cross term is electronic (positive $\mathcal{S}$ at $n{=}4$) rather than geometric.
-The data nonetheless support a \emph{two-regime} design rule for covalent networks: $|\Delta r_{\mathrm{cov}}|\gtrsim 20$~pm flags the geometric-nonlinear regime where coupled audits are mandatory (P); $|\Delta r_{\mathrm{cov}}|\lesssim 15$~pm leaves $|\mathcal{S}|$ at few-meV/atom under $+3$\% load but still permits sign conflicts between $\alpha$ and $\mathcal{S}$ (B, N).
-When $|\mathcal{S}|$ approaches tens of meV/atom---as for P at $n{=}1$--$4$---stability margins inferred from $\epsilon{=}0$ substitution energies or strain-only $\alpha$ can shift by several percent of the per-atom substitution scale even without reordering dopants (Sec.~\ref{sec:significance}).
+The data support a \emph{two-regime} design rule: $|\Delta r_{\mathrm{cov}}|\gtrsim 20$~pm flags the geometric-nonlinear regime where coupled audits are mandatory (P); $|\Delta r_{\mathrm{cov}}|\lesssim 15$~pm leaves $|\mathcal{S}|$ at few-meV/atom under $+3$\% load but still permits sign conflicts between $\alpha$ and $\mathcal{S}$ (B, N).
+These thresholds are calibrated on qHP C$_{60}$; rigid graphene-like hosts may require higher mismatch before geometric nonlinearity dominates.
 
-\paragraph{When additive scans suffice.}
-\textbf{Dopant mismatch:} at $|\Delta r_{\mathrm{cov}}|\lesssim 10$~pm and $+3$\% biaxial load, $|\mathcal{S}|\lesssim 10$~meV/atom on the $n{=}1$ audit grid; sequential pipelines may be adequate for coarse ranking but not for close $E_{\mathrm{sub}}$ competitors.
-\textbf{Strain magnitude:} pristine tetramers show $|\alpha|\approx 1$~meV/\%, so sub-1\% loads keep linear strain increments small; at $+3$\% and above, coupled corners for size-mismatched dopants are advisable because $|\mathcal{S}|$ can exceed the rigid per-atom increment from $\alpha\times\epsilon$ by orders of magnitude (P at $n{=}4$).
-\textbf{Network architecture:} qHP C$_{60}$ combines interfullerene covalent links with \emph{soft} intramolecular cages and intrinsic intramolecular strain~\cite{Makov2023graphullerene}, amplifying local-distortion coupling relative to rigid 2D lattices; extrapolation to graphene-like hosts requires separate benchmarks (Limitations).
+At $|\Delta r_{\mathrm{cov}}|\lesssim 10$~pm and $+3$\% biaxial load, $|\mathcal{S}|\lesssim 10$~meV/atom on the $n{=}1$ audit grid; sequential pipelines may be adequate for coarse ranking but not for close $E_{\mathrm{sub}}$ competitors.
+Pristine tetramers show $|\alpha|\approx 1$~meV/\%, so sub-1\% loads keep linear strain increments small; at $+3$\% and above, coupled corners for size-mismatched dopants are advisable.
+qHP C$_{60}$ combines interfullerene covalent links with soft intramolecular cages and intrinsic intramolecular strain~\cite{Makov2023graphullerene}, amplifying local-distortion coupling relative to rigid 2D lattices; extrapolation to graphene-like hosts requires separate benchmarks.
+Tetramer $\alpha$ and $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ are not interchangeable with periodic $\mathcal{S}(n)$ because concentration (${\sim}5$\% vs.\ ${\sim}1.67$~at.\%) and boundary conditions differ; non-additivity is assessed only through Eq.~\eqref{eq:synergy_order} on matched four-corner grids.
 
-\paragraph{Co-design implications.}
-At $n{=}4$ and $+3$\% strain the coupled correction is $|\mathcal{S}|=23.7$~meV/atom for P vs.\ $6.2$~meV/atom for B---sequential \emph{additive} estimates differ by approximately a factor of four in the load-dependent \emph{margin} under the same PBE+D3 periodic protocol.
-Dopants with covalent-radius excess $\gtrsim 20$~pm relative to C (P: $+30$~pm vs.\ B: $+7$~pm; Table~\ref{tab:V}) show the largest protocol $|\mathcal{S}|$ under fixed coordinates; \emph{size-mismatched} substituents should be screened with coupled $(\epsilon,\delta)$ total-energy evaluations rather than sequential one-parameter pipelines.
-The fifteen-point periodic grid tabulates protocol $|\mathcal{S}|$ at each $(n,\delta)$ as an audit of additive omission (Table~\ref{tab:II}), not as quantitative design targets.
-At $+3$\% strain, P carries the largest additive-approximation error in protocol $\mathcal{S}$ ($|\mathcal{S}|=23.7$--$31.9$~meV/atom from $n{=}4$ to $n{=}1$ under fixed coordinates); qualitative co-design should treat P under tension as a \emph{coupled} stability problem (Table~\ref{tab:IV} shows $|\alpha_P|$ placement-dominated on the alternate map), not $|E_{\mathrm{sub}}|$ at $\epsilon=0$ alone.
+At $n{=}4$ and $+3$\% strain the coupled correction is $|\mathcal{S}|=23.7$~meV/atom for P vs.\ $6.2$~meV/atom for B---sequential additive estimates differ by approximately a factor of four in the load-dependent margin under the same PBE+D3 periodic protocol.
 Where $\mathcal{S}<0$ (B and P at $n{=}4$), coupled tension can stabilize doped cells beyond additive predictions; where $\mathcal{S}>0$ (N at $n{=}4$), sequential screens overestimate stability under load.
-For B at $n{=}4$, negative $\mathcal{S}$ coexists with positive $\alpha$---a sign conflict that strain-only elastic estimates cannot resolve without evaluating $\mathcal{S}$.
-For N at $n{=}4$, negative tetramer $\alpha$ and positive $\mathcal{S}$ present a second sign conflict at ${\sim}1.67$~at.\% periodic doping.
-Gap closing [Fig.~\ref{fig:main}(a)] does not track $|\mathcal{S}|$; $\mathcal{S}_{\mathrm{gap}}$ is defined in Sec.~\ref{sec:methods} but not computed, so photonic or transport targets cannot be inferred from total-energy $\mathcal{S}$ alone.
+For B at $n{=}4$, negative $\mathcal{S}$ coexists with positive $\alpha$; for N at $n{=}4$, negative tetramer $\alpha$ and positive $\mathcal{S}$ present a second sign conflict.
+Gap closing [Fig.~\ref{fig:main}(a)] does not track $|\mathcal{S}|$, so photonic or transport targets cannot be inferred from total-energy $\mathcal{S}$ alone.
 
 \subsection{Experimental signatures}
 \label{sec:exp_signatures}
 Three classes of laboratory observables could test the stress-field picture without resolving total energies directly.
-\textbf{Raman or IR cage modes:} under joint doping and strain, mode shifts should deviate from the sum of doping-only and strain-only shifts when $|\mathcal{S}|$ is large---especially for P, where tensile load couples to pre-existing cage distortion rather than uniform bond stretching (Table~\ref{tab:V}).
+\textbf{Raman or IR cage modes:} under joint doping and strain, mode shifts should deviate from the sum of doping-only and strain-only shifts when $|\mathcal{S}|$ is large---especially for P, where tensile load couples to pre-existing cage distortion rather than uniform bond stretching (Table~\ref{tab:III}).
 \textbf{Scanning tunneling spectroscopy:} dopant-site local density of states should evolve nonlinearly with strain when Hirshfeld charge redistributes without proportional $\Delta\bar{d}$ (Sec.~\ref{sec:mechanistic}); N pinning near $E_F$ vs.\ gapped B/P provides contrasting signatures.
 \textbf{Thermal or chemical stability:} for $\mathcal{S}<0$ (B, P at $n{=}4$), tension should enhance apparent doping stability relative to additive thermochemical estimates; for $\mathcal{S}>0$ (N at $n{=}4$), the opposite bias is expected.
 Quantitative links require matched sample chemistry and strain calibration; we quote DFT protocol bounds only.
 
-\subsection{Validation protocol (Tables~\ref{tab:II}--\ref{tab:IV})}
-Sec.~\ref{sec:relax_checkpoint} reports the tetramer ionic-relaxation benchmark (Table~\ref{tab:III}) and periodic $n{=}1$ P fixed-cell geometry optimization ($\mathcal{S}_{\mathrm{relaxed}}\ll \mathcal{S}_{\mathrm{rigid}}$).
-The alternate placement map (Table~\ref{tab:IV}, PBE+D3 rigid grid) gives $\alpha=+21.4$, $+45.4$, and $+989.6$~meV/\% and $\mathcal{S}_{+3\%}^{\mathrm{tet}}=-2.6$, $+12.6$, and $+41.4$~meV/atom for B, N, and P.
-Two independent $n{=}4$ periodic placement maps preserve the production-map $|\mathcal{S}|$ ranking at $+3$\% (P$>$B$>$N; Table~\ref{tab:II}).
-The cutoff benchmark row in Table~\ref{tab:II} tests 400~Ry vs.\ 350~Ry for $6\times\mathrm{C}_{60}$ N @ $+3$\%.
-
 \subsection{Limitations and outlook}
-Rigid-strain periodic $\mathcal{S}(n)$ and tetramer $\alpha$ both use PBE+D3 in the main-text quantitative audit (Tables~\ref{tab:II} and \ref{tab:IV}); archived legacy-PBE grids in the public release are not used for those claims.
-Fixed-cell ionic relaxation is reported for the tetramer $P$ grid (Table~\ref{tab:III}) and for periodic $n{=}1$ P (four PBE+D3 corners; Sec.~\ref{sec:relax_checkpoint}), where $\mathcal{S}_{\mathrm{relaxed}}\ll \mathcal{S}_{\mathrm{rigid}}$.
-All periodic $\mathcal{S}(n)$ use a single production dopant-site map; magnitudes are configuration-specific (two independent $n{=}4$ placement maps preserve the P$>$B$>$N ranking; Table~\ref{tab:II}).
-Production $n\geq 6$ points use 350~Ry while core claims require matched 400~Ry (cutoff benchmark in Table~\ref{tab:II}).
-Additional limits: tetramer vs.\ periodic concentration mismatch; Table~V tetramer geometry is a qualitative proxy; PBE+D3 without Koopmans/rVV10; $\mathcal{S}_{\mathrm{gap}}$ not quantified; Mayer bond orders not tabulated; Hirshfeld population covers $n{=}1$ B/N/P (Sec.~\ref{sec:methods_population}); unphysical B $\lambda^{-}$ under the fixed neutral-geometry vertical protocol (Supplemental Material) is excluded from rate estimates; mobility tensors are not computed.
-Future work adds Mayer/Bader strain-path partitioning and placement averaging on periodic cells.
+Main-text $\alpha$ and $\mathcal{S}$ use PBE+D3 under the rigid-strain protocol (Sec.~\ref{sec:notation}); ionic relaxation can reverse or nearly extinguish $\mathcal{S}$ (Table~\ref{tab:II}; periodic $n{=}1$ P).
+Periodic $\mathcal{S}(n)$ magnitudes are configuration-specific on a fixed production site map (two independent $n{=}4$ maps preserve P$>$B$>$N; Table~\ref{tab:IV}).
+Core claims use matched 400~Ry for $n\leq 4$; $n\geq 6$ production points use 350~Ry.
+Table~\ref{tab:III} geometry is a tetramer proxy; the geometric vs.\ electronic channel assignment rests on $\Delta\bar{d}$, $\Delta r_{\mathrm{cov}}$, and Hirshfeld $\Delta q$ rather than a full energy decomposition.
+Because $\mathcal{S}$ is a same-functional difference, absolute errors in substitution energy do not affect our conclusion of non-additive coupling.
+Future work includes Mayer/Bader strain-path partitioning and placement averaging on periodic cells.
 
 % ------------------------------------------------------------------
 \section{\label{sec:conclusions}Conclusions}
 
-We quantify how substitutional chemistry and biaxial strain couple \emph{nonlinearly} in covalent molecular networks: the omitted total-energy cross term $\mathcal{S}$ arises when a dopant-induced internal stress field meets an external load, not from a graphullerene-specific numerical artifact.
-On qHP C$_{60}$ as the validation platform, two mechanisms emerge---\emph{electronic} donor/acceptor $\pi$ control (B, N) and \emph{geometric} local-distortion coupling for size-mismatched P---with a practical mismatch threshold ($|\Delta r_{\mathrm{cov}}|\gtrsim 20$~pm) separating few-meV from tens-of-meV $|\mathcal{S}|$ under $+3$\% load (Secs.~\ref{sec:stress_coupling} and~\ref{sec:generality}).
-In detail:
-\begin{enumerate}
-\item distinct donor/acceptor $\pi$ filling and gap response (Sec.~\ref{sec:electronic}) with placement-sensitive PBE+D3 $\alpha$ on tetramer maps (Table~\ref{tab:IV});
-\item meV/atom-scale omitted cross terms on a fifteen-point periodic grid ($|\mathcal{S}|$ up to $31.9$~meV/atom for P at $n{=}1$ at fixed coordinates; Table~\ref{tab:II});
-\item $|\mathcal{S}|$ tracking local cage distortion and mismatch (Table~\ref{tab:V}) rather than tetramer $|\alpha|$ for P, including on the PBE+D3 alternate tetramer map (Table~\ref{tab:IV}).
-\end{enumerate}
-Under the rigid-strain protocol (Sec.~\ref{sec:notation}), quoted $|\mathcal{S}|$ magnitudes bound equilibrium cross terms; periodic $n{=}1$ P ionic relaxation nearly extinguishes $\mathcal{S}$ ($|\mathcal{S}_{\mathrm{rel}}|\ll 1$~meV/atom vs.\ $31.9$~meV/atom rigid), while the tetramer Table~\ref{tab:III} benchmark shows sign reversal at matched corners.
+We quantify how substitutional chemistry and biaxial strain couple nonlinearly in covalent molecular networks: the omitted total-energy cross term $\mathcal{S}$ arises when a dopant-induced internal stress field meets an external load, not from a graphullerene-specific numerical artifact.
+On qHP C$_{60}$ as the validation platform, donor and acceptor dopants produce distinct $\pi$-electron filling and gap response, with placement-sensitive PBE+D3 $\alpha$ on tetramer maps (Table~\ref{tab:I}), while omitted cross terms reach the meV/atom scale on the periodic grid ($|\mathcal{S}|$ up to $31.9$~meV/atom for P at $n{=}1$ at fixed coordinates; Table~\ref{tab:IV}).
+For P, $|\mathcal{S}|$ tracks local cage distortion and mismatch (Table~\ref{tab:III}) rather than tetramer $|\alpha|$.
+Two mechanisms emerge---electronic donor/acceptor $\pi$ control (B, N) and geometric local-distortion coupling for size-mismatched P---with a practical mismatch threshold ($|\Delta r_{\mathrm{cov}}|\gtrsim 20$~pm) separating few-meV from tens-of-meV $|\mathcal{S}|$ under $+3$\% load.
 Coupled $(\epsilon,\delta)$ screening is advisable for size-mismatched substituents, $+3$\% and larger loads, and close substitution-energy competitors; Raman, STS, and stability trends in Sec.~\ref{sec:exp_signatures} offer experimental tests of the stress-field picture.
 
 \begin{acknowledgments}
@@ -326,11 +238,9 @@ We acknowledge computational resources and support from Xiamen University.
 
 \section*{Data availability}
 The data that support the findings of this study are openly available at \url{https://github.com/chenxingqiang/graphullerene-strain-engineering}, including computational inputs and outputs, tabulated synergy and polaron analyses, and materials to reproduce all figures and tables in the main text.
-Ionic-relaxation, alternate tetramer placement, periodic placement, Hirshfeld population, and size-scaling archives referenced in Tables~\ref{tab:II}--\ref{tab:IV} are included in the public release.
-Fixed pseudorandom seeds identifying alternate site maps (e.g.\ seed~137 for Table~\ref{tab:IV}) are recorded in the archive metadata.
+Ionic-relaxation, alternate-placement, Hirshfeld, and size-scaling archives referenced in Tables~\ref{tab:I}--\ref{tab:IV} are included in the public release.
 A tagged release matching the manuscript revision will be issued upon acceptance.
 
-%\bibliographystyle{apsrev4-2} % selected automatically by [prb]
 \bibliography{strain_graphullerene_50refs}
 
 \end{document}

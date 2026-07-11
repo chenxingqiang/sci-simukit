@@ -78,7 +78,7 @@ def _add_unified_dopant_legend(fig: plt.Figure) -> None:
 
 
 def _plot_electronic_row(ax_gap, ax_dos, gaps) -> None:
-    """(a) Gap vs strain + (b) aligned π-DOS @ B, ε=0 — Electron energy axis."""
+    """(a) Gap vs strain; optional (b) π-DOS @ B, ε=0 when ax_dos is not None."""
     panel_label(ax_gap, "a", nature=True)
     for dopant in ("pristine", "B", "N", "P"):
         pts = [p for p in gaps if p.dopant == dopant and p.converged]
@@ -130,6 +130,8 @@ def _plot_electronic_row(ax_gap, ax_dos, gaps) -> None:
     ax_gap.set_ylim(-0.22, 1.62)
     style_axes(ax_gap, grid=True, grid_axis="both")
 
+    if ax_dos is None:
+        return
     panel_label(ax_dos, "b", nature=True)
     pdos_path = repo_root() / "dft_results/exp_7_electronic_structure/outputs/elec_pos0p0_B-k1-1.pdos"
     series = parse_pdos(pdos_path)
@@ -158,16 +160,16 @@ def _plot_electronic_row(ax_gap, ax_dos, gaps) -> None:
     )
 
 
-def _plot_alpha_placement_compare(ax, ref: dict[str, float], alt: dict[str, float]) -> None:
-    """Panel (c): paired reference vs alternate alpha — Nature two-condition bars."""
-    panel_label(ax, "c", nature=True)
+def _plot_alpha_placement_compare(ax, ref: dict[str, float], alt: dict[str, float], *, label: str = "c") -> None:
+    """Paired reference vs alternate alpha — Nature two-condition bars."""
+    panel_label(ax, label, nature=True)
     dopants = ["N", "B", "P"]
     y = np.arange(len(dopants), dtype=float)
     h = 0.34
     ref_vals = [ref[d] for d in dopants]
     alt_vals = [alt[d] for d in dopants]
-    ax.barh(y + h / 2, ref_vals, height=h, color=NATURE_BLUE, label="Reference (seed~42)", zorder=3)
-    ax.barh(y - h / 2, alt_vals, height=h, color=NATURE_RED, label="Alternate (seed~137)", zorder=3)
+    ax.barh(y + h / 2, ref_vals, height=h, color=NATURE_BLUE, label="Reference", zorder=3)
+    ax.barh(y - h / 2, alt_vals, height=h, color=NATURE_RED, label="Alternate", zorder=3)
     ax.axvline(0, color="#333333", lw=0.65, zorder=1)
     ax.set_yticks(y)
     ax.set_yticklabels(dopants)
@@ -208,8 +210,8 @@ def _plot_alpha(ax, alphas: dict[str, float], protocol_note: str) -> None:
     ref, alt = load_placement_alpha_pair()
     _plot_alpha_placement_compare(ax, ref, alt)
 
-def _plot_synergy_combo(ax_main, audit, exp4, *, show_inset: bool = False, ax_inset=None) -> None:
-    panel_label(ax_main, "d", nature=True)
+def _plot_synergy_combo(ax_main, audit, exp4, *, show_inset: bool = False, ax_inset=None, label: str = "d") -> None:
+    panel_label(ax_main, label, nature=True)
     ns = np.array([1, 2, 4, 6, 8], dtype=float)
     n4_labels: dict[str, tuple[float, float]] = {}
     for dopant in ("B", "N", "P"):
@@ -342,8 +344,8 @@ def build_prl_figure(out_dir: Path) -> tuple[Path, Path]:
 
 
 def build_prb_figure(out_dir: Path) -> tuple[Path, Path]:
+    """PRB main figure: 3 panels — gap, alpha placement, S(n). Full pi-DOS is Fig. 2."""
     apply_nature_style()
-    table1 = load_json("experiments/analysis/table1_verification.json")
     ref_alpha, alt_alpha = load_placement_alpha_pair()
     audit = load_json("experiments/analysis/sdc/sdc_exp10_synergy_audit.json")
     exp4 = load_json("experiments/analysis/exp4_polaron_verification.json")
@@ -352,11 +354,11 @@ def build_prb_figure(out_dir: Path) -> tuple[Path, Path]:
     fig = plt.figure(figsize=(PRB_WIDTH_IN, PRB_HEIGHT_IN))
     gs = GridSpec(
         1,
-        4,
+        3,
         figure=fig,
-        width_ratios=[1.08, 0.88, 1.05, 1.08],
-        wspace=0.55,
-        left=0.10,
+        width_ratios=[1.08, 1.05, 1.12],
+        wspace=0.45,
+        left=0.08,
         right=0.98,
         top=0.88,
         bottom=0.22,
@@ -364,10 +366,11 @@ def build_prb_figure(out_dir: Path) -> tuple[Path, Path]:
     ax_a = fig.add_subplot(gs[0, 0])
     ax_b = fig.add_subplot(gs[0, 1])
     ax_c = fig.add_subplot(gs[0, 2])
-    ax_d = fig.add_subplot(gs[0, 3])
-    _plot_electronic_row(ax_a, ax_b, gaps)
-    _plot_alpha_placement_compare(ax_c, ref_alpha, alt_alpha)
-    _plot_synergy_combo(ax_d, audit, exp4, show_inset=False)
+    # Gap only (panel a); skip single-system DOS (redundant with Fig. pdos)
+    _plot_electronic_row(ax_a, None, gaps)
+    # Relabel alpha/S panels for 3-panel layout
+    _plot_alpha_placement_compare(ax_b, ref_alpha, alt_alpha, label="b")
+    _plot_synergy_combo(ax_c, audit, exp4, show_inset=False, label="c")
     _add_unified_dopant_legend(fig)
     out_dir.mkdir(parents=True, exist_ok=True)
     pdf = out_dir / "figure_prb_main.pdf"

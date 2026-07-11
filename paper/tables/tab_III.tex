@@ -1,17 +1,16 @@
 \begin{table*}[t]
-\caption{\label{tab:III}Ionic-relaxation benchmark for the tetramer $P$-substitution synergy grid (four fixed-cell geometry-optimization corners: pristine and $P$ at $\epsilon{=}0$ and $+3$\%, same biaxial cell).
-This benchmark is \emph{sign-qualitative only}: the rigid reference uses legacy PBE without D3, whereas relaxed corners use PBE+D3, so the legacy cross-functional row is \emph{not} a quantitative retention ratio. A matched-functional rigid reference (PBE+D3, same four corners): $\mathcal{S}_{\mathrm{rigid}}^{\mathrm{PBE+D3}}=+1.19$~meV/atom; $|\mathcal{S}_{\mathrm{relaxed}}|/|\mathcal{S}_{\mathrm{rigid}}^{\mathrm{PBE+D3}}|\approx 1.9$ (sign \emph{not} preserved on the matched-functional grid). We test whether $\mathcal{S}$ retains \emph{sign} \emph{within the tetramer grid only}; it does \emph{not} calibrate periodic main-text $\mathcal{S}(n)$, which uses different dopant concentration and boundary conditions.
-Rigid reference energies: archived fixed-coordinate tetramer single-point grid (legacy PBE, no D3). Relaxed energies: PBE+D3 fixed-cell geometry optimization (400~Ry) from archived inputs in the open repository.
+\caption{\label{tab:II}Ionic-relaxation benchmark for the tetramer $P$-substitution synergy grid (four fixed-cell geometry-optimization corners: pristine and $P$ at $\epsilon{=}0$ and $+3$\%, same biaxial cell).
+Relaxed corners and the matched-functional ratio use PBE+D3 ($\mathcal{S}_{\mathrm{rigid}}^{\mathrm{PBE+D3}}=+1.19$~meV/atom; $|\mathcal{S}_{\mathrm{relaxed}}|/|\mathcal{S}_{\mathrm{rigid}}^{\mathrm{PBE+D3}}|\approx 1.9$; sign not preserved).
 $\mathcal{S}$ follows Eq.~\eqref{eq:synergy_order} with $N{=}240$ atoms.}
 \begin{ruledtabular}
 \begin{tabular}{lcc}
-Quantity & Rigid (legacy tetramer) & Relaxed (geometry opt.) \\
+Quantity & Rigid (PBE+D3 matched) & Relaxed (geometry opt.) \\
 \hline
-$E$(pristine, $\epsilon{=}0$) ($E_{\mathrm{h}}$) & $-1363.5512$ & $-1363.9551$ \\
-$E$(pristine, $\epsilon{=}3$\%) ($E_{\mathrm{h}}$) & $-1363.5522$ & $-1363.9550$ \\
-$E$(P, $\epsilon{=}0$) ($E_{\mathrm{h}}$) & $-1370.4965$ & $-1374.4415$ \\
-$E$(P, $\epsilon{=}3$\%) ($E_{\mathrm{h}}$) & $-1370.4890$ & $-1374.4615$ \\
-$\mathcal{S}$ (meV/atom) & $+0.96$ & $-2.28$ \\
+$E$(pristine, $\epsilon{=}0$) ($E_{\mathrm{h}}$) & --- & $-1363.9551$ \\
+$E$(pristine, $\epsilon{=}3$\%) ($E_{\mathrm{h}}$) & --- & $-1363.9550$ \\
+$E$(P, $\epsilon{=}0$) ($E_{\mathrm{h}}$) & --- & $-1374.4415$ \\
+$E$(P, $\epsilon{=}3$\%) ($E_{\mathrm{h}}$) & --- & $-1374.4615$ \\
+$\mathcal{S}$ (meV/atom) & $+1.19$ & $-2.28$ \\
 Sign of $\mathcal{S}$ vs.\ rigid & $+$ & $-$ (not preserved) \\
 \end{tabular}
 \end{ruledtabular}

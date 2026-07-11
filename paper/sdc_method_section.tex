@@ -1,28 +1,12 @@
-\subsubsection{Non-additive coupling metric}
+\subsection{Synergy order parameter}
 We quantify strain--doping cross terms with the synergy order parameter $\mathcal{S}$:
 \begin{equation}
 \mathcal{S}(\epsilon,\delta)
 = \Delta E(\epsilon,\delta) - \bigl[\Delta E(\epsilon,0) + \Delta E(0,\delta)\bigr],
 \label{eq:synergy_order}
 \end{equation}
-where $\epsilon$ is biaxial strain, $\delta\in\{B,N,P\}$, and $\Delta E(\epsilon,\delta)$ is the energy per atom relative to the pristine, zero-strain reference at the same supercell size $n\times\mathrm{C}_{60}$.
-The bracketed term is the \emph{additive} prediction from separate strain-only and doping-only scans; deviations from zero measure non-additive coupling.
-Additive superposition gives $\mathcal{S}=0$; $\mathcal{S}<0$ indicates cooperative stabilization beyond the two-scan sum, whereas $\mathcal{S}>0$ indicates cooperative destabilization.
-
-When $\alpha_\delta=\mathrm{d}E/\mathrm{d}\epsilon$ denotes the \emph{total}-cell linear strain coefficient (meV per 1\% strain) at fixed $n$, a first-order estimate of the per-atom cross term is $\mathcal{S}(\epsilon,\delta)\approx(\alpha_\delta-\alpha_0)\,\epsilon/N_{\mathrm{atoms}}$ at small $\epsilon$ under the rigid-strain protocol; tetramer and periodic $n$ use different $N_{\mathrm{atoms}}$ and dopant concentrations, so this link is not used quantitatively in the periodic audit (Discussion, argument scope).
-
-Periodic-cell $\mathcal{S}$ values are extracted from CP2K total energies (Table~\ref{tab:II}); the fifteen-point $+3$\% strain audit accompanies the open data release.
-We report $\mathcal{S}$ for total energy only.
-By the same four-corner construction one may define $\mathcal{S}_{\mathrm{gap}}=E_g(\epsilon,\delta)-[E_g(\epsilon,0)+E_g(0,\delta)-E_g(0,0)]$ (and analogously $\mathcal{S}_{J}$, $\mathcal{S}_{\lambda}$ for hopping or reorganization energies); these observables are \emph{not} tabulated here---panel~(a) of Fig.~\ref{fig:main} shows that gap slopes need not track $|\mathcal{S}|$.
-
-\paragraph{Attribution framework (total energy).}
-Conceptually, $\mathcal{S}=\mathcal{S}_{\mathrm{geom}}+\mathcal{S}_{\mathrm{el}}+\mathcal{S}_{\mathrm{vdW}}$, where $\mathcal{S}_{\mathrm{geom}}$ collects nonlinear elastic work from bond-angle and cage-shape changes beyond first-order strain, $\mathcal{S}_{\mathrm{el}}$ from charge-transfer and orbital-rehybridization nonlinearities, and $\mathcal{S}_{\mathrm{vdW}}$ from the Grimme D3 cross term.
-On the matched-functional tetramer $P$ rigid four-corner grid, extracting D3 dispersion energies gives $\mathcal{S}_{\mathrm{vdW}}\approx +0.33$~meV/atom---negligible versus $|\mathcal{S}_{\mathrm{rigid}}^{\mathrm{PBE+D3}}|\approx 1.2$~meV/atom (Table~\ref{tab:III}).
-Corner-resolved $\mathcal{S}_{\mathrm{vdW}}$ for B/N dopants and periodic cells beyond the matched tetramer $P$ grid remain open; Table~\ref{tab:V} ($\bar{d}$, $\Delta r_{\mathrm{cov}}$) and Hirshfeld population on the $n{=}1$ B/N/P strain paths (Sec.~\ref{sec:methods_population}; Table~\ref{tab:II}) proxy geometric vs.\ electronic channels in Discussion.
-
-\subsubsection{Localization and coupling (open data)}
-Following Capobianco \emph{et al.}~\cite{Capobianco2024electron}, inverse participation ratios and nearest-neighbor hopping $J$ are archived for tetramer dimer fragments at the same PBE+D3 level as the energy scans; they are not used to infer $\mathcal{S}$.
-
-\subsubsection{Polaron binding}
-Marcus reorganization energies follow the vertical--adiabatic decomposition~\cite{Capobianco2024electron} (Supplemental Material).
-Charged geometry optimizations supply adiabatic IP/EA; vertical single-points at the neutral geometry yield Marcus $\lambda^{\pm}$.
+where $\epsilon$ is biaxial strain, $\delta\in\{\mathrm{B},\mathrm{N},\mathrm{P}\}$, and
+$\Delta E(\epsilon,\delta)=\bigl[E(\epsilon,\delta)-E(0,\mathrm{pristine})\bigr]/N_{\mathrm{atoms}}$
+is the energy per atom relative to the pristine, zero-strain reference at the same supercell size $n\times\mathrm{C}_{60}$.
+The bracketed term is the additive prediction from separate strain-only and doping-only scans; $\mathcal{S}=0$ under perfect additivity, $\mathcal{S}<0$ indicates cooperative stabilization, and $\mathcal{S}>0$ indicates that the coupled corner is less stable than the additive prediction.
+Periodic $\mathcal{S}$ values are taken from the $+3$\% size-scaling grid (Table~\ref{tab:IV}).

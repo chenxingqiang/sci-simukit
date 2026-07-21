@@ -4050,3 +4050,17 @@ dft_results/
 见 [README.md](README.md)、[docs/experimental_implementation_plan.md](docs/experimental_implementation_plan.md)。
 
 **持续优化闭环**：**Track A 计算** + **Track B 文稿·文献** 双轨并行；见 [双轨并行总览](#双轨并行总览) 与 [文稿·文献闭环](#文稿文献闭环-manuscript--literature-loop)。**每轮 Loop 必须 `git commit`**（**push 可选**）。验证通过后再改定量主张，勿新建独立 Loop orchestrator。
+
+## Cursor Cloud specific instructions
+
+Linux 云 Agent 环境（Ubuntu 24.04；无 macOS/Homebrew，无 CP2K，无长期 Web 服务）。上文 macOS 章节里的 `/opt/homebrew/...` 路径不适用。启动更新脚本已把 Python 分析依赖装好；下列为非显然的启动/运行注意点：
+
+- **Python 依赖**：装的是 **轻量分析栈** `requirements-analysis.txt`（numpy/pandas/scipy/matplotlib/seaborn/ase/pymatgen 等），用系统 Python `pip install --break-system-packages`（PEP 668，无 venv）。**未** 安装重型 `requirements.txt`（torch/dgl/pymatgen ML 全栈）；若需 GNN/ML 再按需装。
+- **C 核心 (`c/`)**：二进制已 gitignore，每个 session 需本地 `make`。Linux 上默认 `-std=c11` 会隐藏 POSIX `setenv`（macOS clang 默认可见），须用 gnu 扩展构建：
+  `make -C c CFLAGS='-std=gnu11 -Wall -Wextra -O2 -Iinclude'` → `c/simukit-run`、`c/simukit-sdc`。
+- **DFT 数据缺失（关键）**：原始 CP2K `.out`、`.log`、`.xyz` 结构文件均 gitignore（见 `.gitignore`），fresh clone **不含**。因此：`./c/simukit-sdc …` 报 `parsed=0`，`bash experiments/exp10_status_line.sh` 显示 `0/41`，且依赖 live DFT gap 数据的图脚本（如 `paper/figures/fig_prl_main.py` / `render_prb.sh`）会 `StopIteration` 失败 —— 属数据缺失，非环境损坏。可复现的分析/作图走已提交的 `experiments/analysis/*.json`；自包含图脚本示例 `python3 paper/figures/fig_si_s3_j_exp4.py` → `paper/figures/out/figure_s3_j_exp4.{pdf,png}`。
+- **运行分析脚本不要提交其副产物**：`simukit-sdc`、`update_exp10_status.py`、图脚本会 **覆盖** 已提交的 `experiments/analysis/exp10_status.json`、`sdc/*.json`、`paper/figures/out/*`、`paper/*.pdf`（数据缺失时会写成 0）。跑完用 `git checkout -- <file>` 还原，勿把 data-less 结果 commit。
+- **LaTeX 手稿**：TeX Live 是**系统依赖**（不在更新脚本内）。若缺失，一次性安装：
+  `sudo apt-get install -y --no-install-recommends latexmk texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-publishers texlive-science texlive-fonts-recommended`。
+  直接编译：`cd paper && latexmk -pdf -interaction=nonstopmode strain_doped_graphullerene.tex`（revtex4-2 来自 `texlive-publishers`；仓库引用的 `revtex-tds/` 不存在也无妨）。**勿**用 `paper/compile_prb.sh` 做首次编译——它先跑需 DFT 数据的图渲染会中止。
+- **图脚本 Python 路径**：`paper/figures/render_prb.sh` 等硬编码 macOS conda python，Linux 上用 `PYTHON=python3 bash paper/figures/render_prb.sh` 覆盖。

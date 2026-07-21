@@ -9,6 +9,13 @@ where $\epsilon$ is biaxial strain, $\delta\in\{B,N,P\}$, and $\Delta E(\epsilon
 The bracketed term is the \emph{additive} prediction from separate strain-only and doping-only scans; deviations from zero measure non-additive coupling.
 Additive superposition gives $\mathcal{S}=0$; $\mathcal{S}<0$ indicates cooperative stabilization beyond the two-scan sum, whereas $\mathcal{S}>0$ indicates cooperative destabilization.
 
+\paragraph{Relation to interaction and formation energies.}
+Algebraically, Eq.~\eqref{eq:synergy_order} has the form of an interaction (coupling) energy, and we claim no novelty in that construction.
+Its distinct role is \emph{dimensional}: a formation or substitution energy subtracts a single reference state, and a binding or interaction energy measures the coupling of one fixed pair of fragments, whereas $\mathcal{S}$ is a symmetric \emph{double-reference cross term} over the four corners of the two-dimensional $(\epsilon,\delta)$ control space that is spanned by high-throughput screening.
+It therefore quantifies a quantity none of the pairwise energies provide: the error incurred when total energies under joint load are assembled additively from separate strain-only and doping-only scans (Sec.~\ref{sec:synergy}).
+Table~\ref{tab:descriptor} contrasts $\mathcal{S}$ with common stability and electronic descriptors on these axes.
+Consistent with this purely energetic definition, $|\mathcal{S}|$ is \emph{not} reducible to a single geometric ($\Delta\bar{d}$) or charge ($\Delta q$) channel (Sec.~\ref{sec:mechanistic}); it is this irreducibility, rather than any new functional form, that motivates reporting $\mathcal{S}$ as a coupling descriptor for the joint design space.
+
 When $\alpha_\delta=\mathrm{d}E/\mathrm{d}\epsilon$ denotes the \emph{total}-cell linear strain coefficient (meV per 1\% strain) at fixed $n$, a first-order estimate of the per-atom cross term is $\mathcal{S}(\epsilon,\delta)\approx(\alpha_\delta-\alpha_0)\,\epsilon/N_{\mathrm{atoms}}$ at small $\epsilon$ under the rigid-strain protocol; tetramer and periodic $n$ use different $N_{\mathrm{atoms}}$ and dopant concentrations, so this link is not used quantitatively in the periodic audit (Discussion, argument scope).
 
 Periodic-cell $\mathcal{S}$ values are extracted from CP2K total energies (Table~\ref{tab:II}); the fifteen-point $+3$\% strain audit accompanies the open data release.

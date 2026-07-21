@@ -59,6 +59,7 @@ Quasi-hexagonal (qHP) C$_{60}$ graphullerene~\cite{Yang2021two,Capobianco2024ele
 Ab initio models of pristine qHP networks report intrinsic intramolecular strain from the eight-bond hexagonal connectivity~\cite{Makov2023graphullerene} (${\sim}0.1$--$0.2$~eV-scale cage distortions relative to isolated C$_{60}$ in prior surveys), so external biaxial load couples to an already pre-strained, \emph{soft} molecular cage---a regime where Eshelby-type linear superposition of defect and external fields is not guaranteed.
 Beyond pristine monolayers, strain and substitution independently reshape band edges~\cite{Li2024strain,Peng2025monolayer,LopezAlcalay2025graphendofullerene}, while substitutional B/N engineering can yield spin-polarized half-semiconductor gaps~\cite{Khan2025tuning}, and related 2D fullerene networks show anisotropic mechanical and tribological response under load~\cite{Wang2024simulation,Qiu2025atomic} and endohedral qHP C$_{60}$ cage filling reshapes band gaps~\cite{Pereira2026endohedral}; none of these reports a periodic total-energy cross term under joint biaxial $(\epsilon,\delta)$ load, motivating explicit coupled grids rather than an additive superposition of composition and strain effects.
 Non-additive coupling is documented in other two-dimensional networks~\cite{Materials2024untangling,Alihosseini2023strain}; a quantitative \emph{total-energy} synergy order parameter $\mathcal{S}$ [Eq.~\eqref{eq:synergy_order}] has not been reported for substitutional B/N/P qHP C$_{60}$ tetramers and $n=1$--$8$ supercells.
+Unlike a single-reference formation energy or a pairwise interaction energy, $\mathcal{S}$ is a double-reference cross term over the joint $(\epsilon,\delta)$ control space that bounds the bias of additive sequential screening (Table~\ref{tab:descriptor}); the novelty is this physically interpreted, validated coupling descriptor rather than the algebraic form of Eq.~\eqref{eq:synergy_order}.
 
 We address three questions on this \emph{class} of covalent molecular networks (qHP C$_{60}$ as the validation platform): (1)~how donor vs.\ acceptor dopants yield distinct mechanical strain response and $\pi$ filling under the same PBE+D3 protocol; (2)~how large the omitted synergy cross term $|\mathcal{S}|$ is under joint load; and (3)~whether $|\mathcal{S}|$ scales with size mismatch or instead reflects $\pi$-electron nonlinearity.
 Using $\gtrsim 90$ DFT tasks catalogued in Table~\ref{tab:II}, we define $\mathcal{S}$ on periodic PBE+D3 grids (fifteen $(n,\delta)$ points at $+3$\% strain).
@@ -123,6 +124,7 @@ Three validation benchmarks---ionic-relaxation tetramer $\mathcal{S}_P$ (Table~\
 
 Sec.~\ref{sec:strain_response} reports $E_{\mathrm{sub}}$ only when tied to the verified PBE+D3 grids above (no chemical-potential reference; not a formation enthalpy).
 
+\input{tables/tab_descriptor_comparison.tex}
 \input{tables/tab_S_synergy_grid.tex}
 \input{tables/tab_II.tex}
 \input{tables/tab_II_archive.tex}

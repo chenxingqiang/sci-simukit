@@ -38,6 +38,15 @@ $e(\epsilon,x)\approx e_{\mathrm{elastic}}(\epsilon)+e_{\mathrm{chem}}(x)+c\,\ep
 where $e_{\mathrm{elastic}}$ and $e_{\mathrm{chem}}$ are the strain-only and composition-only increments estimated by separate scans, and $c\,\epsilon x$ is the omitted bilinear work when a dopant-induced \emph{internal stress field} overlaps nonlinearly with external biaxial load on a soft cage.
 In linear elastic inclusion theory the cross term vanishes at leading order; qHP C$_{60}$ departs from that limit because intramolecular buckling stores internal stress that external tension can release cooperatively (Discussion).
 
+\paragraph{Relation to interaction and formation energies.}
+Algebraically, Eq.~\eqref{eq:synergy_order} has the form of an interaction (coupling) energy, and we claim no novelty in that construction.
+Its distinct role is \emph{dimensional}: a formation or substitution energy subtracts a single reference state, and a binding or interaction energy measures the coupling of one fixed pair of fragments, whereas $\mathcal{S}$ is a symmetric \emph{double-reference cross term} over the four corners of the two-dimensional $(\epsilon,\delta)$ control space that is spanned by high-throughput screening.
+It therefore quantifies a quantity none of the pairwise energies provide: the error incurred when total energies under joint load are assembled additively from separate strain-only and doping-only scans (Sec.~\ref{sec:synergy}).
+Table~\ref{tab:descriptor} contrasts $\mathcal{S}$ with common stability and electronic descriptors on these axes.
+Consistent with this purely energetic definition, $|\mathcal{S}|$ is \emph{not} reducible to a single geometric ($\Delta\bar{d}$) or charge ($\Delta q$) channel (Sec.~\ref{sec:mechanistic}); it is this irreducibility, rather than any new functional form, that motivates reporting $\mathcal{S}$ as a coupling descriptor for the joint design space.
+
+When $\alpha_\delta=\mathrm{d}E/\mathrm{d}\epsilon$ denotes the \emph{total}-cell linear strain coefficient (meV per 1\% strain) at fixed $n$, a first-order estimate of the per-atom cross term is $\mathcal{S}(\epsilon,\delta)\approx(\alpha_\delta-\alpha_0)\,\epsilon/N_{\mathrm{atoms}}$ at small $\epsilon$ under the rigid-strain protocol; tetramer and periodic $n$ use different $N_{\mathrm{atoms}}$ and dopant concentrations, so this link is not used quantitatively in the periodic audit (Discussion, argument scope).
+
 \paragraph{Physical meaning, sign, and units.}
 Physically, $\mathcal{S}$ measures the energetic cost of \emph{nonlinear} interaction between externally imposed biaxial strain and dopant-induced internal stress: when internal cage distortion and macroscopic load are applied together, the total energy need not equal the sum of separate strain-only and doping-only increments.
 We report $\mathcal{S}$ in meV per atom so that values are comparable across supercell sizes $n\times\mathrm{C}_{60}$ at fixed one-substituent-per-C$_{60}$ loading (${\sim}1.67$~at.\% in periodic cells); the same per-atom unit is used for tetramer (${\sim}5$~at.\%) audits with the understanding that concentration differs (Sec.~\ref{sec:generality}).

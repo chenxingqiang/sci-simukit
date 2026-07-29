@@ -124,10 +124,19 @@ Three protocol checks govern interpretation: (i)~ionic relaxation of the tetrame
 Tetramer corners use BFGS force thresholds $4.5\times10^{-4}$ and $3.0\times10^{-4}$~Ha/bohr at $\epsilon{=}0$ and $+3$\%, respectively (displacement thresholds $3.0\times10^{-3}$ and $1.5\times10^{-3}$~bohr; Sec.~\ref{sec:methods_relax}).
 Periodic ionic benchmarks are limited to $n{=}1$ $P$ on the production map; tetramer Table~\ref{tab:III} supplies the complementary ${\sim}5$~at.\% relaxation geometry at matched functional.
 Size scaling extends to $n{=}8$ (480 atoms, in-plane lattice ${\sim}44$~\AA); explicit two-body periodic-image convergence tests on $|\mathcal{S}|$ were not performed beyond this grid.
+
+The task-group inventory in Table~\ref{tab:II} (superseded exploratory grids in Table~\ref{tab:IIarchive}) lists $N_{\mathrm{conv}}$ and main-text linkage; ionic-relaxation energies appear in Table~\ref{tab:III}; the alternate-placement grid in Table~\ref{tab:IV} spans the full B/N/P strain path and six modern PBE+D3 pristine references.
+Three validation benchmarks---ionic-relaxation tetramer $\mathcal{S}_P$ (Table~\ref{tab:III}), alternate dopant placement (Table~\ref{tab:IV}), and a cutoff benchmark at $6\times\mathrm{C}_{60}$ N @ $+3$\% (Table~\ref{tab:II})---govern interpretation of size-scaling trends (Secs.~\ref{sec:synergy} and~\ref{sec:discussion}).
+
+Sec.~\ref{sec:strain_response} reports $E_{\mathrm{sub}}$ only when tied to the verified PBE+D3 grids above (no chemical-potential reference; not a formation enthalpy).
+
+\input{tables/tab_descriptor_comparison.tex}
+\input{tables/tab_S_synergy_grid.tex}
+\input{tables/tab_II.tex}
+\input{tables/tab_II_archive.tex}
+\input{tables/tab_III.tex}
 \input{tables/tab_IV.tex}
 \input{methods_extended.tex}
-
-\input{tables/tab_III.tex}
 
 % ------------------------------------------------------------------
 \section{\label{sec:results}Results}

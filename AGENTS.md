@@ -1407,7 +1407,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track C**：response 台账 R5–R8 闭环
  - **创新审计**：叙事升格 + $\eta$ = **A**（audit JSON）；SCAN/Mayer = **C** backlog
  - **paper_gap**：Mayer/Bader；full cutoff/k 曲线
- - **Git**：`commit: 55a05e7` — `loop R413: PRB Rounds 5-8 narrative, eta, uncertainty, four main figs`；（**pushed: local only**）
+ - **Git**：`commit: af3e181` — `loop R413: PRB Rounds 5-8 narrative, eta, uncertainty, four main figs`；（**pushed: local only**）
  - **下一轮**：Mayer/Bader 或 SCAN 单点
 
 - **Loop R412（2026-07-18，三轨）**：

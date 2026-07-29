@@ -28,8 +28,8 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Population B/N/P** | **18/18** ✅ |
 | **reference_pbed3** | **24/24** ✅ |
 | **运行中** | none（MO_CUBES **12/12** ✅） |
-| **最新 Loop** | **R410** |
-| **下一 B 任务** | SI 可选补 pristine/B composite；Mayer backlog |
+| **最新 Loop** | **R413** |
+| **下一 B 任务** | Mayer/Bader backlog；SCAN/cutoff convergence curves |
 | **主张-证据** | 主文 α/S = **PBE+D3 only**（Table IV + periodic）；legacy Table I = **SI 归档** |
 | **Loop C** | C-M1 **closed** ✅；C-M2 **closed** ✅；C-M3 **partial**（Hirshfeld **A**） |
 | **SDC** | **15** synergy 点 |
@@ -1399,6 +1399,33 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+
+- **Loop R413（2026-07-29，Track B · PRB Rounds 5–8）**：
+ - **Track A**：idle — **不干预**
+ - **Track B**：physics-first 叙事（$\mathcal{S}$ bilinear estimator）；$\eta$、$\sigma_{\mathcal{S}}$、Taylor/cluster-expansion；alternative/predictive/constrained-loading 节；Fig.2(c) $\eta$\% 标注；`response_to_referees` Rounds 5/6/8；cover title 对齐
+ - **Track C**：response 台账 R5–R8 闭环
+ - **创新审计**：叙事升格 + $\eta$ = **A**（audit JSON）；SCAN/Mayer = **C** backlog
+ - **paper_gap**：Mayer/Bader；full cutoff/k 曲线
+ - **Git**：`commit: 55a05e7` — `loop R413: PRB Rounds 5-8 narrative, eta, uncertainty, four main figs`；（**pushed: local only**）
+ - **下一轮**：Mayer/Bader 或 SCAN 单点
+
+- **Loop R412（2026-07-18，三轨）**：
+ - **Track A**：Exp10 **41/41**、Exp8 **6/6**、Exp9 **12/12+8/8**、reference_pbed3 **24/24** — idle；**不干预**
+ - **Track B（VI Results）**：Results 补 Fig.~\ref{fig:decoupling}(c) $\sigma(\bar{d})(\epsilon)$ 过程句；`render_prb.sh` 重渲四主图
+ - **Track C（C-M3）**：`response_to_referees` 去 stale `fig:main`；四图 process 布局台账
+ - **创新审计**：过程主图 = **A**；σ 路径叙事 = **A**；Mayer = **C**
+ - **paper_gap**：Mayer/Bader still **C** backlog
+ - **Git**：local only（用户未要求 commit）
+ - **下一轮**：Mayer/Bader 或用户指定 commit 图件
+
+- **Loop R411（2026-07-12，Track B · 主文四图）**：
+  - **Track A**：idle（MO_CUBES **12/12**）；**不干预**
+  - **Track B（VI Results + 图）**：Fig.3(a) → α **符号分裂**示意图（非柱图）；`render_prb.sh` 重渲 Fig.1–4；caption 结论句优先；Results/Discussion/Conclusions 文–图对齐
+  - **创新审计**：Fig.3(a) 符号分裂 = **A**（同源 reference α）；主文边界 grep = **A**
+  - **paper_gap**：Mayer/Bader still **C** backlog
+  - **Git**：local only（用户未要求 commit）
+  - **下一轮**：Mayer/Bader 或 SI composite 补强
 
 - **Loop R410（2026-07-12，三轨）**：
  - **Track A**：MO_CUBES **12/12** ✅（24 cubes）；Exp10/8/9/reference idle — **不干预**

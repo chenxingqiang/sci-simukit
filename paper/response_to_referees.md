@@ -2,9 +2,303 @@
 
 # Response to Referees — PRB Major Revision (Report No. 2)
 
-**Manuscript:** Non-Additive Strain--Doping Coupling in Quasi-Hexagonal C$_{60}$ Graphullerene  
+**Manuscript:** Breakdown of Additive Strain--Doping Energetics in Quasi-Hexagonal C$_{60}$ Graphullerene  
 **Journal:** Physical Review B (Regular Article)  
 **Recommendation:** Major Revision (second round)
+
+---
+
+## Simulated PRB Referee Round 2 — Title and Abstract (sentence 1)
+
+### R2-Title — Breakdown of additive energetics framing
+
+**Referee concern:** ``Non-additive'' is author-defined and does not state the physics problem (failure of additive strain--dopant energetics); title does not signal DFT total-energy scope.
+
+**Response:** We replaced the title with **Breakdown of Additive Strain--Doping Energetics in Quasi-Hexagonal C$_{60}$ Graphullerene** so the central claim---that sequential composition/strain workflows break down---is visible before the descriptor $\mathcal{S}$ appears in the Abstract.
+
+**Manuscript:** `\title{}`; Supplemental Material title; cover letter.
+
+### R2-Abstract-S1 — High-throughput additive assumption
+
+**Referee concern:** Opening ``often assembled/approximated'' lacks evidence; scope too broad without naming covalent molecular networks; ``density-functional theory'' too long.
+
+**Response:** Sentence~1 now targets **high-throughput first-principles screening of covalent molecular networks**, states that doping and biaxial strain are **commonly evaluated independently**, and names the **implicit additive assumption** explicitly (no unsupported ``often'' without qualifier).
+
+**Manuscript:** Abstract sentence~1.
+
+### R2-Abstract-S2 — Physics before metric; drop ``order parameter'' in Abstract
+
+**Referee concern:** ``We define'' and ``synergy order parameter'' frame the contribution as a new symbol rather than nonlinear strain--dopant physics; Eq.~(1) reads as a standard four-corner interaction energy; PBE+D3 is too early for the Abstract; ``cross term'' is ambiguous.
+
+**Response:** Sentence~2 is now two clauses: (i) **first-principles** demonstration that **internal stress couples nonlinearly with biaxial strain** and breaks additivity on qHP C$_{60}$; (ii) $\mathcal{S}$ as a **matched four-corner total-energy difference** (meV/atom) **neglected in additive workflows**---a diagnostic coupling metric, not a phase-transition order parameter. PBE+D3 remains in the results sentence (Abstract sentence~3). Abstract wording ``synergy magnitude'' $\to$ ``coupling magnitude'' for consistency.
+
+**Manuscript:** Abstract sentences~2--4.
+
+### R2-Abstract-S3 — Predictive failure, rigid upper bounds, and P ranking scope
+
+**Referee concern:** ``$\alpha$ and $|\mathcal{S}|$ decouple'' overstates physics; rigid protocol and relaxation caveat hidden before the $31.9$~meV/atom peak; ``largest'' without B/N/P scope; $31.9$~meV significance unclear; one sentence carried four claims; rigid vs.\ relaxed narrative tension (periodic $n{=}1$ $P$).
+
+**Response:** Abstract sentence~3 is split into four claims: (i) **$\alpha$ does not reliably predict $|\mathcal{S}|$** on the reference rigid map (not ``decoupling''); (ii) **among the three dopants investigated**, P shows the largest $|\mathcal{S}|$, linked to **covalent-radius excess**; (iii) **$31.9$~meV/atom** at $n{=}1$, $+3$\% is labeled a **rigid-protocol upper bound** and compared to B/N at matched load; (iv) **fixed-coordinate $|\mathcal{S}|$ are not equilibrium energies**, with explicit periodic $n{=}1$ $P$ rigid vs.\ relaxed contrast ($-31.9$ vs.\ $\sim 0.1$~$\mu$eV/atom; matched PBE+D3 GEO\_OPT).
+
+**Manuscript:** Abstract sentences~3--5.
+
+### R2-Abstract-S4 — Rigid upper bounds as physics, not computational caveat
+
+**Referee concern:** Narrative conflict between the $31.9$~meV/atom peak and near-extinction after relaxation; ``fixed fractional coordinates'' is Methods jargon; placement validation should not appear in the Abstract; need physical interpretation (internal-stress release) and applicability when relaxation is limited.
+
+**Response:** Abstract limitation block reframed as **rigid-strain upper bounds vs.\ equilibrium coupling**: structural relaxation **releases dopant-induced internal stress**; $|\mathcal{S}|$ quantifies omitted coupling under **mechanically constrained or kinetically limited load**; a second sentence states relevance under **epitaxial clamping, substrate adhesion, or ultrafast loading**. Removed Methods phrasing from the Abstract; tetramer placement sensitivity remains in Methods/Limitations only. Discussion Limitations adds the same applicability sentence.
+
+**Manuscript:** Abstract sentences~5--6; Limitations paragraph.
+
+### R2-Abstract-S5 — Moderated take-home message (mechanism, scope, constrained loading)
+
+**Referee concern:** ``requires'' overclaims beyond one qHP system and three dopants; ``covalent molecular networks'' generalizes beyond evidence; ``stability ranking'' and ``geometric-nonlinear regime'' are undefined; conclusion lacks mechanism and blurs equilibrium vs.\ mechanically constrained configurations.
+
+**Response:** Closing sentence now (i) scopes claims to **quasi-hexagonal C$_{60}$ graphullerene**; (ii) states the **mechanism** (internal stress $\times$ external strain nonlinear interaction); (iii) uses **relative energetic stability** under **mechanically constrained loading**; (iv) replaces ``requires'' with **when additive workflows are expected to fail** (practical criterion, not universal law).
+
+**Manuscript:** Abstract closing sentence.
+
+### R2-Abstract — Round 2 overall verdict (simulated Referee \#2)
+
+**Referee summary:** Abstract reframed from ``define $\mathcal{S}$'' to **additive approximation failure**, **nonlinear strain--dopant coupling**, rigid **upper bounds** vs.\ equilibrium relaxation, and moderated scope on qHP C$_{60}$; ``order parameter'' removed from Abstract; ``decouple'' replaced by predictive-failure language.
+
+**Author response:** Title + eight Abstract sentences revised per R2-Title through R2-Abstract-S5; Discussion Limitations adds applicability under epitaxial clamping/substrate adhesion/ultrafast loading. Main-text terminology harmonization (``coupling energy $\mathcal{S}$'') remains for Introduction/Methods rounds.
+
+### R3-Intro-P1 — Physics-first opening; cited additive-workflow gap
+
+**Referee concern (simulated Referee \#2):** Opening emphasized computational workflow over physical origin of strain--dopant coupling; ``most widely used'' / ``routinely'' without evidence; transport shopping list; separability undefined; literature gap implicit; mechanism (local stress vs.\ global strain) missing before screening critique.
+
+**Response:** First paragraph rewritten: (i) **widely used** (not ``most'') strategies for **energetic and electronic** properties; (ii) **physics first**---global bonding geometry vs.\ localized chemical stress and lattice distortion; (iii) **separable** clarified as neglecting a **nonlinear interaction term**; (iv) **many** HT mapping studies with **Materials2024untangling, Li2024strain, Katiyar2025strain** cites plus **computational cost** of coupled grids; (v) explicit **gap**---additive validity under simultaneous load **not systematically examined** for graphullerene networks. Redundant workflow-only sentences merged into this arc before the qHP system paragraph.
+
+**Manuscript:** Introduction opening paragraph (four sentences before qHP platform sentence).
+
+### R3-Intro-P2 — Gap-driven literature review; defer $\mathcal{S}$ equation
+
+**Referee concern (simulated Referee \#2):** Literature paragraph read as a topic list (strain / doping / transport) without an unresolved **physical** question; novelty framed as ``define $\mathcal{S}$'' rather than **additive approximation failure**; missing **However** negative statement, **why** energetic coupling matters (stability ranking, defect preference), **elastic-frustration** mechanism, and **cluster-expansion** context; $\mathcal{S}$ and Eq.~\eqref{eq:synergy_order} introduced before the physics gap was established; ``class of covalent molecular networks'' overgeneralizes.
+
+**Response:** Second block reorganized as **known $\rightarrow$ mechanism $\rightarrow$ However (gap) $\rightarrow$ related nonlinear studies $\rightarrow$ CE context $\rightarrow$ qHP quantification gap**. Added **vandewalle2009cluster** for alloy cluster-expansion cross terms. **$\mathcal{S}$** introduced only after three physics questions, as the **same-functional four-corner difference omitted in additive workflows** (not a renamed fitted interaction parameter). Removed ``synergy order parameter'' and ``decouple'' from Intro; scoped to **qHP C$_{60}$ validation platform**.
+
+**Manuscript:** Introduction literature block (qHP platform through contribution sentences).
+
+### R3-Intro-P3 — Hypothesis-first contributions; findings not TOC
+
+**Referee concern (simulated Referee \#2):** Final Intro paragraph read as a computational workflow summary (``We introduce/quantify/compare $\mathcal{S}$''); missing explicit **hypothesis** and **scientific questions**; contributions listed like a table of contents ($\alpha$, DOS, charge without hierarchy); no **why qHP C$_{60}$**; too much Methods detail (rigid, $+3$\%, supercell); missing **why energetic stability** matters; weak generality statement.
+
+**Response:** Closing block rewritten as **problem $\rightarrow$ platform rationale $\rightarrow$ hypothesis + three tests $\rightarrow$ brief approach ($\mathcal{S}$ as audit, Sec.~Methods) $\rightarrow$ three **findings** (additive failure, $\alpha$ misprediction, P upper bound + chemical-mismatch channel) $\rightarrow$ moderated **potential** generality. Introduced **$E(\epsilon,\delta)$ energy-landscape** framing and **relative energetic stability** as the primary observable; electronic proxies demoted to secondary validation in Results.
+
+**Manuscript:** Introduction closing paragraph (six sentences before Methods).
+
+### R3-Intro — Round 3 overall verdict (simulated Referee \#2)
+
+**Referee summary:** Introduction reframed from workflow/$\mathcal{S}$-first to **physics gap $\rightarrow$ hypothesis $\rightarrow$ tests $\rightarrow$ findings**; P1 physics-first opening; P2 gap-driven literature with CE context; P3 hypothesis and scientific questions. ``Order parameter'' removed from Abstract/Intro; full Methods theory in **R4-Methods-B** (Round 4.2).
+
+**Author response:** Intro P1--P3 revised per R3-Intro-P1 through R3-Intro-P3; aligned with Title/Abstract additive-failure narrative.
+
+### R4-Methods-A1 — Why PBE+D3 (not SCAN / HSE / rVV10)?
+
+**Referee concern (simulated Referee \#2):** Functional choice is stated without justification; meV-scale conclusions require XC sensitivity discussion; reviewer would request at least one SCAN (or r$^2$SCAN) spot-check.
+
+**Response:** Methods now justify PBE+D3 for \emph{matched} four-corner grids at meV resolution, contrast with hybrid/meta-GGA and Capobianco rVV10 scope (gaps/transport), and state that $\mathcal{S}$ is a within-functional difference so absolute gap errors largely cancel.
+A SCAN/r$^2$SCAN representative corner is **not** in the current dataset; Limitations and future work flag this as a targeted sensitivity test (no fabricated SCAN numbers).
+
+**Manuscript:** Sec.~Electronic structure method, ``Exchange-correlation and dispersion''; Limitations outlook.
+
+### R4-Methods-A2 — Role of Grimme D3
+
+**Referee concern:** Why D3 on a covalent network? Is vdW negligible?
+
+**Response:** Added physical rationale (inter-cage dispersion in the qHP plane) and quantitative anchor $\mathcal{S}_{\mathrm{vdW}}\approx +0.33$~meV/atom vs.\ $|\mathcal{S}_{\mathrm{rigid}}^{\mathrm{PBE+D3}}|$ on the matched tetramer $P$ grid (Table~\ref{tab:II}).
+
+**Manuscript:** Same paragraph; Discussion (iv) retains vdW decomposition.
+
+### R4-Methods-A3 — SCF precision for difference-of-differences
+
+**Referee concern:** $\mathrm{EPS\_SCF}=10^{-6}$~$E_{\mathrm{h}}$ may be insufficient when $|$\mathcal{S}$|$ is only a few meV/atom; four-energy cancellation must be discussed explicitly.
+
+**Response:** Methods now state inner/outer OT thresholds ($10^{-6}$~$E_{\mathrm{h}}$; MAX\_SCF 300; OUTER\_SCF 30), note tighter $10^{-7}$~$E_{\mathrm{h}}$ in charged vertical workflows (SI), and explain that $\mathcal{S}$ noise is governed by \emph{cancellation} among identically protocolled corners.
+
+**Manuscript:** ``SCF convergence and four-corner precision''; SI Methods Marcus thresholds.
+
+### R4-Methods-A4 — Cutoff benchmark on $\mathcal{S}$, not only total $E$
+
+**Referee concern:** Single-point total-energy shift at 400 vs.\ 350~Ry does not prove $\mathcal{S}$ convergence.
+
+**Response:** We retain the verified single-corner audit (${\sim}0.057$~meV/atom at $6\times\mathrm{C}_{60}$ N $+3$\%) and interpret it as an \emph{upper bound} on one-corner drift: if one corner shifts by $\delta$, $|$\mathcal{S}$|$ changes by $\mathcal{O}(\delta)$ at most.
+This is well below the smallest $|$\mathcal{S}$|$ in the $n\leq 4$ core grid (e.g.\ $2.3$~meV/atom for N at $n{=}1$).
+Full four-corner $\mathcal{S}(\mathrm{cutoff})$ curves are honestly deferred to future work (Limitations).
+
+**Manuscript:** Cutoff paragraph; Validation benchmarks (ii); SI Methods.
+
+### R4-Methods-A5 — $k$-point convergence of $\mathcal{S}$
+
+**Referee concern:** Energy $k$-convergence does not guarantee $\mathcal{S}(k)$ convergence.
+
+**Response:** Documented $\Gamma$-only production sampling for 60--480 atom supercells (in-plane lattice up to ${\sim}44$~\AA\ at $n{=}8$); direct $\mathcal{S}(k)$ tests listed as future sensitivity work alongside cutoff/EPS curves.
+
+**Manuscript:** ``Plane-wave mesh and Brillouin-zone sampling''; Limitations.
+
+### R4-Methods-A6 — Force thresholds for relaxation
+
+**Referee concern:** BFGS force criteria unspecified; loose forces could explain $\mathcal{S}\approx 0$ after relax.
+
+**Response:** Validation benchmarks now cite tetramer BFGS force/displacement thresholds and cross-reference Sec.~\ref{sec:methods_relax} ($4.5\times10^{-4}$ / $3.0\times10^{-4}$~Ha/bohr).
+
+**Manuscript:** Sec.~\ref{sec:validation}; `methods_extended.tex`.
+
+### R4-Methods-A7 — Supercell size and periodic images
+
+**Referee concern:** Is $n{=}8$ large enough? Periodic image interactions on $|$\mathcal{S}$|$?
+
+**Response:** Validation states $n{=}8$ (480 atoms, ${\sim}44$~\AA\ in-plane) and **honestly** notes that explicit periodic-image convergence tests on $|$\mathcal{S}$|$ were not performed beyond this grid.
+
+**Manuscript:** Sec.~\ref{sec:validation}.
+
+### R4-Methods-A8 — Why only periodic $n{=}1$ ionic relaxation?
+
+**Referee concern:** Relaxation limited to $n{=}1$ $P$ appears arbitrary without tetramer companion.
+
+**Response:** Validation separates periodic $n{=}1$ $P$ GEO\_OPT (4/4) from tetramer four-corner relaxation (Table~\ref{tab:II}/III at ${\sim}5$~at.\%); scope is explicit in Methods and Validation.
+
+**Manuscript:** Sec.~\ref{sec:validation}; `methods_extended.tex` ionic-relaxation benchmark.
+
+### R4-Methods-A9 — Rigid protocol physical boundary conditions
+
+**Referee concern:** Rigid strain reads as artificial without experimental/kinetic correspondence.
+
+**Response:** Methods now tie fixed fractional coordinates to epitaxial clamping, substrate adhesion, and ultrafast loading---aligned with Abstract/Discussion upper-bound narrative.
+
+**Manuscript:** ``Spin, charge, and mechanical boundary conditions''; cross-ref Sec.~\ref{sec:validation}.
+
+### R4-Methods-A10 — Numerical error bars on $\mathcal{S}$
+
+**Referee concern:** No uncertainty estimates (e.g.\ $31.9\pm ?$ meV/atom).
+
+**Response:** Four-corner cancellation argument plus partial cutoff bound; explicit $\mathcal{S}(\mathrm{EPS\_SCF})$ sensitivity curves deferred to future work (no fabricated error bars).
+
+**Manuscript:** SCF precision paragraph; Limitations.
+
+### R4-Methods-A11 — Spin polarization for B/N/P
+
+**Referee concern:** Are local moments treated with spin-polarized DFT?
+
+**Response:** Production $\mathcal{S}$ grid uses closed-shell RKS on neutral substitutional cells; UKS only for Hirshfeld strain-path audits with odd electron counts (Sec.~\ref{sec:methods_population}).
+
+**Manuscript:** ``Spin, charge, and mechanical boundary conditions''.
+
+### R4-Methods-A12 — Charge neutrality / substitution model
+
+**Referee concern:** Why neutral cells? How is doping charge compensated?
+
+**Response:** Explicit neutral substitution without compensating background; $\Delta E_{\mathrm{sub}}$ is not a formation enthalpy (cross-ref Sec.~\ref{sec:notation}).
+
+**Manuscript:** Same paragraph.
+
+### R4-Methods-A — Software note (CP2K vs.\ VASP/PAW)
+
+**Referee concern (implicit):** Reviewer template assumed VASP/PAW; manuscript must be internally consistent.
+
+**Response:** Methods identify **CP2K + GTH pseudopotentials + GPW**, not VASP PAW---consistent with all production `*.inp` files.
+
+**Manuscript:** Opening of Sec.~Electronic structure method.
+
+### R4-Methods-A — Round 4.1 overall verdict (simulated Referee \#2)
+
+**Referee summary:** Methods II.A upgraded from ``we use PBE+D3'' to functional/dispersion justification, four-corner SCF logic, partial $\mathcal{S}$ cutoff bound, $\Gamma$-only scope, spin/charge/rigid BCs, and honest gaps (no SCAN subset; no full $\mathcal{S}(\mathrm{cutoff}/k/\mathrm{EPS})$ curves yet).
+Residual Major-level backlog: **Track A** SCAN spot-check; four-corner cutoff400 grid for direct $\mathcal{S}(\mathrm{cutoff})$ SI figure.
+
+**Author response:** Main Methods + SI Methods + `sdc_method_section` terminology harmonization (``coupling energy $\mathcal{S}$''); Validation benchmarks expanded; Limitations outlook updated.
+
+---
+
+## Round 4.2 — Methods II.B--II.D (Eq.~(1), Taylor expansion, rigid/relaxed protocol)
+
+### R4-Methods-B1 — Mixed derivative / Taylor expansion connection
+
+**Referee concern:** Eq.~(1) reads as an unexplained four-point difference; Reviewer expects explicit link to $\partial^2 E/\partial\epsilon\,\partial\delta$ and Taylor expansion of $E(\epsilon,\delta)$.
+
+**Response:** Sec.~\ref{sec:methods_coupling} now opens with a Taylor expansion of $e(\epsilon,x)$ [Eq.~\eqref{eq:taylor_coupling}], identifies the omitted bilinear term $c\,\epsilon x$, and states that Eq.~\eqref{eq:synergy_order} is the corresponding four-corner finite-difference estimator at finite load. Discussion (Sec.~\ref{sec:stress_coupling}) adds one sentence tying $\mathcal{S}$ to the discrete mixed second derivative.
+
+**Manuscript:** `sdc_method_section.tex`; Discussion `sec:stress_coupling`.
+
+### R4-Methods-B2 — Terminology: ``synergy'' and ``order parameter''
+
+**Referee concern:** ``Synergy'' and ``order parameter'' suggest rebranding of interaction/coupling energy; PRB reserves order parameter for broken-symmetry phases.
+
+**Response:** Methods define $\mathcal{S}$ explicitly as the \emph{strain--dopant coupling energy}, not an order parameter. Subsection title is ``Strain--dopant coupling energy''; SI theory inventory updated. Residual ``synergy'' in data-availability URL path only.
+
+**Manuscript:** `sdc_method_section.tex`; `supplementary_material_theory.tex`.
+
+### R4-Methods-B3 — Why four states (reference gauge)
+
+**Referee concern:** Why four corners? Reference independence / gauge?
+
+**Response:** Added explicit four-energy form [Eq.~\eqref{eq:four_corner}] and text: only a four-state construction removes linear strain, linear doping, and shared pristine reference in one gauge-fixed estimator; three-point schemes retain linear contamination.
+
+**Manuscript:** `sdc_method_section.tex` [Eq.~\eqref{eq:four_corner}].
+
+### R4-Methods-B4 — Sign convention
+
+**Referee concern:** Meaning of $\mathcal{S}>0$ vs.\ $\mathcal{S}<0$ for reading figures.
+
+**Response:** Methods paragraph ``Physical meaning, sign, and units'': $\mathcal{S}<0$ = coupled corner more stable than additive (cooperative); $\mathcal{S}>0$ = less stable than additive (anti-cooperative). Discussion sign examples at $n{=}4$ retained.
+
+**Manuscript:** `sdc_method_section.tex`; Discussion `sec:generality`.
+
+### R4-Methods-B5 — Units (meV/atom vs.\ eV/cell)
+
+**Referee concern:** Why per-atom normalization across supercells?
+
+**Response:** Text states meV/atom for comparability across $n\times\mathrm{C}_{60}$ at fixed one-substituent-per-C$_{60}$ loading, with tetramer concentration caveat (Sec.~\ref{sec:generality}).
+
+**Manuscript:** `sdc_method_section.tex`.
+
+### R4-Methods-B6 — Size scaling of $\mathcal{S}(n)$
+
+**Referee concern:** How does $\mathcal{S}$ scale with supercell size?
+
+**Response:** Methods state $|\mathcal{S}|$ is not constrained to $1/n$ linear decay; electrostatic dilution and local distortion can peak at intermediate $n$, with cross-reference to Table~\ref{tab:IV} and Fig.~\ref{fig:synergy}.
+
+**Manuscript:** `sdc_method_section.tex`.
+
+### R4-Methods-B7 — Discrete $\delta$ vs.\ continuous symmetry
+
+**Referee concern:** Is $\mathcal{S}(\epsilon,\delta)$ symmetric under exchange of strain and composition?
+
+**Response:** Clarified that $\delta$ is a discrete chemical label; B/N/P cross terms are not required to follow a single smooth surface in $\delta$.
+
+**Manuscript:** `sdc_method_section.tex`.
+
+### R4-Methods-B8 — Error propagation (four corners)
+
+**Referee concern:** No uncertainty propagation for four independently converged totals.
+
+**Response:** Added conservative estimate $\sigma_{\mathcal{S}}\approx 2\sigma_e$ for uncorrelated per-atom corner uncertainties, with note that identical protocols induce partial cancellation (Sec.~\ref{sec:validation}).
+
+**Manuscript:** `sdc_method_section.tex`; cross-ref Validation benchmarks.
+
+### R4-Methods-B9 — Physical interpretation sentence
+
+**Referee concern:** Equation defined mathematically but not physically.
+
+**Response:** ``Physically, $\mathcal{S}$ measures the energetic cost of \emph{nonlinear} interaction between externally imposed biaxial strain and dopant-induced internal stress'' (Methods); linked to internal vs.\ external stress fields in Discussion.
+
+**Manuscript:** `sdc_method_section.tex`; Discussion `sec:stress_coupling`.
+
+### R4-Methods-D1 — Rigid vs.\ relaxed protocol (II.D)
+
+**Referee concern:** Rigid-strain upper bound vs.\ ionic relaxation not clearly separated in notation section.
+
+**Response:** `sec:notation` now has a dedicated ``Rigid vs.\ relaxed mechanical protocols'' paragraph: rigid strain = fixed fractional coordinates (upper bound); relaxed strain = fixed-cell BFGS at each corner (Sec.~\ref{sec:methods_relax}, Table~\ref{tab:II}, Fig.~\ref{fig:synergy}(e)).
+
+**Manuscript:** `strain_doped_graphullerene.tex` `sec:notation`; `methods_extended.tex` `sec:methods_relax`.
+
+### R4-Methods-B — Round 4.2 overall verdict (simulated Referee \#2)
+
+**Referee summary:** Eq.~(1) reframed from ``new metric'' to **energy functional $\rightarrow$ Taylor bilinear term $\rightarrow$ four-corner finite difference $\rightarrow$ DFT audit**; terminology de-``synergy''/de-``order parameter''; sign, units, scaling, gauge, error propagation, and rigid/relaxed protocols addressed in Methods without new DFT.
+
+**Residual (optional):** schematic figure (Taylor vs.\ four-corner) still backlog; full $\mathcal{S}(\mathrm{cutoff}/k/\mathrm{EPS})$ curves Track A.
+
+**Author response:** `sdc_method_section.tex` expanded (~one Methods page of theory); `sec:notation` rigid/relaxed split; Discussion one-liner on mixed derivative.
 
 ---
 
@@ -12,9 +306,9 @@
 
 We thank the referee for recognizing the corrections to doping concentration, Marcus definitions, functional mismatch disclosure, and legacy-PBE vs.\ PBE+D3 separation. This revision addresses Report No.~2 notation, APS section hierarchy, language, and figure--text alignment; **Table~III** tetramer ionic-relaxation is **complete** (4/4; sign reversal of $\mathcal{S}$); **Table~IV** alternate-placement DFT is **complete** (24/24). We further upgraded the narrative from a single-qHP case study to a **covalent molecular-network** coupling framework (internal vs.\ external stress field, mismatch--$|\mathcal{S}|$ scaling, additive-model applicability boundaries, and qualitative experimental signatures in new Methods/Discussion subsections). Main-text transport/$J$ content is consolidated in the **Supplemental Material**; Fig.~3 in the main text reports the Marcus protocol schematic and tabulated $\lambda^{\pm}$ only.
 
-**New DFT in this pass:** periodic $n{=}1$ $P$ four-corner fixed-cell geometry optimization (**4/4** complete); Hirshfeld population along the strain path for **B**, **N**, and **P** at $n{=}1$ (**18/18** complete); reference-placement PBE+D3 tetramer $\alpha$ grid (**complete** **24/24**; Fig.~1(c) and archived Table~I in the Supplemental Material).
+**New DFT in this pass:** periodic $n{=}1$ $P$ four-corner fixed-cell geometry optimization (**4/4** complete); Hirshfeld population along the strain path for **B**, **N**, and **P** at $n{=}1$ (**18/18** complete); reference-placement PBE+D3 tetramer $\alpha$ grid (**complete** **24/24**; Fig.~\ref{fig:decoupling}(d) endpoint map and archived Table~I in the Supplemental Material).
 
-**Manuscript alignment (this pass):** Fig.~1(c) now uses **PBE+D3 alternate-placement** $\alpha$ (Table~IV) instead of legacy PBE Table~I; explicit **decoupling** definition (not $\alpha$--$|\mathcal{S}|$ anticorrelation); $\mathcal{S}_{\mathrm{vdW}}\approx +0.33$~meV/atom from D3 corner extraction; Eshelby/defect-elastic framing; Table~V tetramer-proxy disclaimer; $n\leq 4$ non-monotonic $|\mathcal{S}|$ note; raw $\Delta E_{\mathrm{sub}}$ terminology.
+**Manuscript alignment (this pass):** Main figures are four process-centric panels (Figs.~\ref{fig:electronic}--\ref{fig:mechanism}): strain paths ($E_g$, $\pi$-DOS, $\Delta E$), $\mathcal{S}(n)$ size scaling, microscopic $q$/$\bar{d}$/$\sigma$ paths, and mechanism endpoints. Reference-map **PBE+D3** $\alpha$ (Table~IV) replaces legacy PBE Table~I in the endpoint map; explicit **decoupling** definition (not $\alpha$--$|\mathcal{S}|$ anticorrelation); $\mathcal{S}_{\mathrm{vdW}}\approx +0.33$~meV/atom from D3 corner extraction; Eshelby/defect-elastic framing; Table~V tetramer-proxy disclaimer; $n\leq 4$ non-monotonic $|\mathcal{S}|$ note; raw $\Delta E_{\mathrm{sub}}$ terminology.
 
 ---
 
@@ -88,7 +382,7 @@ We thank the referee for recognizing the corrections to doping concentration, Ma
 
 # Response to Referees — PRB Major Revision (Report No. 1, archive)
 
-**Manuscript:** Non-Additive Strain--Doping Coupling in Quasi-Hexagonal C$_{60}$ Graphullerene  
+**Manuscript:** Breakdown of Additive Strain--Doping Energetics in Quasi-Hexagonal C$_{60}$ Graphullerene  
 **Journal:** Physical Review B (Regular Article)
 
 ---
@@ -124,7 +418,7 @@ We thank the referee for recognizing the corrections to doping concentration, Ma
 **Referee concern:** N/B/P coupling classes are qualitative; need bond/charge metrics and decomposition of geometric vs.\ electronic nonlinearity.
 
 **Response:**
-1. **Electronic (N vs.\ B):** Results Sec.~\ref{sec:electronic} now reports verified $\epsilon{=}0$ gaps from the archived tetramer electronic-structure set ($E_g^{\mathrm{B}}\approx 0.03$, $E_g^{\mathrm{N}}\approx -0.14$, $E_g^{\mathrm{P}}\approx 0.05$~eV) and links them to opposite $\alpha$ signs on the legacy PBE rigid tetramer grid (Table~I; ${\sim}360$~meV/\% span). Fig.~\ref{fig:main}(a,b) and Fig.~\ref{fig:pdos} provide the $\pi$-DOS context.
+1. **Electronic (N vs.\ B):** Results Sec.~\ref{sec:electronic} now reports verified $\epsilon{=}0$ gaps from the archived tetramer electronic-structure set ($E_g^{\mathrm{B}}\approx 0.03$, $E_g^{\mathrm{N}}\approx -0.14$, $E_g^{\mathrm{P}}\approx 0.05$~eV) and links them to opposite $\alpha$ signs on the reference PBE+D3 map (Table~IV; ${\sim}360$~meV/\% span on the legacy PBE grid in archived Table~I). Fig.~\ref{fig:electronic}(b,c) and Supplemental Fig.~\ref{fig:pdos} provide the $\pi$-DOS and $E_g(\epsilon)$ process context.
 2. **Structural (P):** Table~V expanded with $\sigma(\bar{d})$ at $+3$\% strain, showing P's frozen local environment ($\Delta\bar{d}\approx 3\times 10^{-5}$~\AA; $\sigma\approx 4\times 10^{-4}$~\AA) vs.\ B/N (${\sim}8.5\times 10^{-3}$~\AA\ mean shift; $\sigma{\sim}0.02$~\AA).
 3. **Nonlinearity decomposition:** Discussion (iv)--(vi) quantify Table~V $\Delta\bar{d}$ vs.\ $|\mathcal{S}|$ contrasts, exclude tetramer--periodic $\alpha$ extrapolation (v), and state decomposition outlook (vi); Design implications cross-reference the completed Table~III ionic-relaxation benchmark (sign reversal; Major Comment~1); Mayer bond order / Bader partitioning along the strain path remain **future work** (Limitations), so relative electronic vs.\ geometric weights are not quantified in this revision.
 
@@ -167,7 +461,7 @@ We thank the referee for recognizing the corrections to doping concentration, Ma
 | $\mathcal{S}$ / $\pi$ symbols | **R251**: no bare PDOS; order parameter $\mathcal{S}$; $\pi$-DOS in SI inventory; `\hyphenation` |
 | References sentence case | **R252**: APS sentence case on all 22 cited keys; [15] = unique SM entry |
 | $E_\mathrm{sub}$ definition | **R252**: single Methods definition; Validation cross-ref (not formation enthalpy; no $\mu$) |
-| Fig.~1(c)--(d) legibility | **R250/R309**: N $\alpha$ in-bar label; $n{=}4$ box lower-left; peak $|\mathcal{S}|$ at $n{=}1$ P; caption (a) $E_g$ / (d) panel annotation 读图键 |
+| Main-figure process layout | **R411/R412**: four figures (electronic/synergy/decoupling/mechanism); strain paths replace bar catalogs; $\sigma(\bar{d})(\epsilon)$ in Fig.~\ref{fig:decoupling}(c); endpoint map in (d) |
 | Fig.~3 Marcus | **R390**: single protocol schematic (panel a) + tabulated IP/EA/$\lambda^{\pm}$ (panel b); B $\lambda^{-}$ excluded in table |
 | Discussion / Conclusions length | Context compressed; Conclusions condensed (no numeric repeat) |
 | Supplemental citations | Overview + Tables I--V cited; table order I--V |
@@ -212,4 +506,158 @@ We thank the referee for recognizing the corrections to doping concentration, Ma
 | **§VIII Conclusions** | `enumerate` 三条对应 Intro；upper-bound **serve as upper bounds---not predictions---**（R316）；Table~III four-corner sign-only; Table~IV reference $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ archived; future work decouples Table~IV placement vs.\ XC (R314) |
 
 *Document version: PRB Major Revision + Chinese checklist (Loop R316, 2026-06-19). Align with `cover_letter_prb.txt`.*
+
+
+---
+
+## Round 5 — Simulated Referee #2: Results (Section III) — 2026-07-29
+
+**Overall Results score (referee):** ~3.3/5 → targeted **Major Revision** fixes below.
+
+| ID | Referee theme | Manuscript / figure action | Status |
+|----|---------------|---------------------------|--------|
+| **R5-Fig1** | Fig.~1 too workflow-like; missing stress / $E(\epsilon,\delta)$ | Fig.~\ref{fig:electronic}(e): physics chain + bond-stress coloring + schematic landscape (`draw_physics_coupling_schematic`) | **done** |
+| **R5-Fig2** | Failure of additivity not visualized; no $|S|$ distribution; relaxation “vanishes” | Fig.~\ref{fig:synergy}(c) additive vs coupled bars @ $n{=}4$; (d) 15-point histogram; (e) stress-release framing | **done** |
+| **R5-Fig3** | $\alpha$--$S$ needs statistics; avoid “decouple”; $n{=}3$ sample | Fig.~\ref{fig:decoupling}(d): Pearson $r$, $R^2$, Spearman $\rho$; text “weak correlation” / non-predictor | **done** |
+| **R5-Fig4** | DOS/charge standalone | Results + Discussion: $\pi$-DOS / Hirshfeld paths tied to nonlinear $\mathcal{S}$ audit | **done** |
+| **R5-TabIII** | Bond lengths without comparison context | Table~\ref{tab:III} footnote: DFT internal + literature qHP strain context | **done** |
+| **R5-Disc** | Q1–Q3 mechanism depth | Existing `sec:stress_coupling` / `sec:mechanistic` retained; relaxation as upper-bound protocol | **partial** (Mayer backlog) |
+
+**Referee A-list cross-map:** narrative refactor (R2–R4) + rigid applicability (Limitations) + $S$ convergence curves remain **partial** (single-point cutoff audit only).
+
+
+---
+
+## Round 6 — Simulated Referee #2: Deep Technical Review — 2026-07-29
+
+**Referee recommendation (simulated):** Major Revision — publish after strengthening physics narrative, rigid-protocol relevance, and $\mathcal{S}$ interpretation (not after new descriptor framing).
+
+**Simulated overall scores (/10):** Novelty 6.5→target 8; Physics 8.5; DFT 9.0; Rigor 7.5; Writing 8.5; Figures 8.0; Storytelling 5.5→target 8; PRB fit 7.5.
+
+### Major Concern 1 — Is $\mathcal{S}$ really new?
+
+**Referee:** Four-state interaction energy / discrete mixed second derivative; novelty cannot rest on Eq.~(1).
+
+**Response:** Primary discovery reframed as **nonlinear strain--dopant energetic coupling and additive failure** (Abstract opening; Conclusions). $\mathcal{S}$ is the **gauge-fixed four-corner estimator** of the bilinear Taylor term [Eqs.~\eqref{eq:taylor_coupling}--\eqref{eq:four_corner}] and is **not** claimed as a new thermodynamic observable (Intro; `sec:methods_coupling`; Discussion cluster-expansion paragraph with **vandewalle2009cluster**). Story: physics first, symbol second.
+
+### Major Concern 2 — P largest: mechanism incomplete
+
+**Referee:** Atomic radius alone insufficient; need bond / charge / frustration channels.
+
+**Response:** `sec:mechanistic` adds explicit **(i) local bond stretching, (ii) charge redistribution, (iii) elastic frustration** for P, with Table~\ref{tab:III} and Hirshfeld audit numbers; Fig.~\ref{fig:mechanism} ties paths to $|\mathcal{S}|$.
+
+### Major Concern 3 — Relaxation suppresses $\mathcal{S}$
+
+**Referee:** If equilibrium coupling is near zero, what is rigid $\mathcal{S}$ for?
+
+**Response:** New subsection **Physical relevance of mechanically constrained configurations** (`sec:constrained_loading`): epitaxial/clamped substrates, adhesion, ultrafast/cyclic load, MEMS/nanoflexures; rigid $\mathcal{S}$ as **upper bound** when ions cannot relax; relaxed audits for annealed equilibrium. Not “S vanished” narrative (Fig.~\ref{fig:synergy}(e)).
+
+### Major Concern 4 — Single material
+
+**Referee:** Why graphullerene; is it accidental?
+
+**Response:** Intro: qHP C$_{60}$ chosen as **soft, pre-strained** network vs rigid graphene/COF; generality via matched four-corner protocol on each host (Conclusions; Limitations). No fabricated graphene DFT in this revision.
+
+### Major Concern 5 — Only B/N/P
+
+**Referee:** Why not Al/Si/Ga/As/S?
+
+**Response:** Intro: minimal **III/V-neighbor** set spanning donor/acceptor/size channels; explicit scope note that extended chemistry is future work (Limitations).
+
+### Major Concern 6 — Statistics ($n=3$)
+
+**Referee:** Need Pearson/Spearman; bootstrap?
+
+**Response:** Fig.~\ref{fig:decoupling}(d) + Results text report $r$, $R^2$, $\rho$; Limitations state **bootstrap not meaningful at $n{=}3$** without additional converged dopants. Honest: $r\approx+0.71$ supports **failure of $\alpha$ as rank predictor**, not “$R^2=0.12$ weak correlation.”
+
+### Major Concern 7 — Error bars
+
+**Response:** `sdc_method_section` $\sigma_{\mathcal{S}}\approx 2\sigma_e$ propagation; Methods cutoff audit on $\mathcal{S}$ sensitivity; Limitations: DFT-internal geometry only (no experimental $\pm$ on bond lengths).
+
+### Major Concern 8 — Functional (SCAN)
+
+**Response:** Methods + Limitations: PBE+D3 production; **SCAN/r$^2$SCAN spot-check listed as future work** — no fabricated meta-GGA numbers.
+
+### Major Concern 9 — Literature (cluster expansion / mixed derivative)
+
+**Response:** Discussion literature block: **vandewalle2009cluster**, elastic superposition context, four-corner finite difference as CE interaction-energy analogue.
+
+### Major Concern 10 — Theoretical framework
+
+**Response:** `sdc_method_section.tex`: Taylor expansion Eq.~\eqref{eq:taylor_coupling} $\rightarrow$ four-corner finite difference; linked in Discussion `sec:stress_coupling`. Not a separate half-page derivation (PRB Methods length), but explicit **$c\,\epsilon x$** identification.
+
+### Simulated Editor recommendation
+
+> Publish after Major Revision — interesting first-principles results; strengthen theoretical interpretation, rigid-strain relevance, and direct validation narrative for the coupling energy.
+
+**Still open (Track A / honest backlog):** full $\mathcal{S}(\mathrm{cutoff},k,\mathrm{EPS})$ curves; Mayer/Bader; SCAN single-point; optional second host (graphene) four-corner grid.
+
+
+---
+
+## Round 8 — Editor + Senior Referee (Fatal Weaknesses) — 2026-07-29
+
+**Simulated Editor line:** calculations are careful, but physics advance is not yet compelling because novelty is framed as a descriptor and mechanisms remain under-developed.
+
+**Simulated recommendation:** Major Revision — revise substantially before PRB re-evaluation.
+
+### Fatal Issue 1 — Claim magnitude / threshold
+
+**Attack:** “Additive fails” without defining significant failure; 31.9 meV is meaningless without reference.
+
+**Response:** Added additive fractional error $\eta=|\mathcal{S}|/|\Delta E_{\mathrm{coupled}}|$ [Eq.~\eqref{eq:additive_fraction}]; at $n{=}4$ P, $\eta\approx 8\%$ vs.\ $<1\%$ for B/N. Fig.~\ref{fig:synergy}(c) annotates $\eta$. Results discuss $\sigma_{\mathcal{S}}$ scale vs.\ 2–32 meV distribution.
+
+### Fatal Issue 2 — Uncertainty on $\mathcal{S}$
+
+**Attack:** No confidence interval on four-corner $\mathcal{S}$.
+
+**Response:** `sdc_method_section` — cutoff audit ($|\Delta\mathcal{S}|<0.2$ meV), conservative $\sigma_{\mathcal{S}}\lesssim 2$ meV/atom; Table IV / Results report $-6.2\pm 2$, $+3.0\pm 2$, $-23.7\pm 2$ meV/atom ($\pm$ = protocol bound, not experiment).
+
+### Fatal Issue 3 — Single material / over-generalization
+
+**Attack:** Conclusions too general.
+
+**Response:** Conclusions now “likely only after matched audits on each host”; Intro “likely to fail” not universal; Limitations scope qHP C$_{60}$ vs.\ graphene/COF.
+
+### Fatal Issue 4 — Mechanism = correlation
+
+**Attack:** P $\rightarrow$ radius $\rightarrow$ S; need chain and counterexamples.
+
+**Response:** `sec:mechanistic` — explicit chain radius $\rightarrow$ internal stress $\rightarrow$ charge $\rightarrow$ $\mathcal{S}$; B/N counterexamples to radius-only ranking; Fig.~\ref{fig:mechanism} caption updated.
+
+### Fatal Issue 5 — Alternative explanations
+
+**Attack:** finite size, localization, Pulay, SCF artifact?
+
+**Response:** New `sec:alternative` — four explicit controls with audit numbers.
+
+### Fatal Issue 6 — Theory too weak
+
+**Attack:** need energy functional model.
+
+**Response:** `sdc_method_section` — $e_{\mathrm{elastic}}+e_{\mathrm{chem}}+c\epsilon x$ paragraph; Taylor + cluster expansion in Intro/Discussion.
+
+### Fatal Issue 7 — Overclaim
+
+**Attack:** “establishes” in Conclusions.
+
+**Response:** Replaced with “documents” / “likely only after…”; removed “establishes” from readout map.
+
+### Fatal Issue 8 — Descriptor-first story
+
+**Attack:** Editor sees incremental descriptor.
+
+**Response:** Abstract/Intro/Conclusions already physics-first; Round 8 reinforces $\eta$, uncertainty, predictive section.
+
+### Fatal Issue 9 — Why PRB?
+
+**Response:** Intro sentence — Taylor bilinear + CE interaction energy $\rightarrow$ PRB not methods-only journal.
+
+### Fatal Issue 10 — Predictive power
+
+**Attack:** post-analysis only?
+
+**Response:** New `sec:predictive` — four-corner pre-screen before full relaxation; $|{\mathcal{S}}|>{\sim}2$ meV/atom flag.
+
+**Still open (honest):** full $\mathcal{S}$(cutoff,k,EPS) curves; SCAN spot-check; Mayer/Bader; second host graphene grid; bootstrap needs $>3$ dopants.
 

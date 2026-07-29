@@ -1,7 +1,7 @@
 ================================================================================
 PHYSICAL REVIEW B — COVER LETTER (major revision response)
 Article type: Regular Article
-Manuscript: Non-Additive Strain--Doping Coupling in Quasi-Hexagonal C60 Graphullerene
+Manuscript: Breakdown of Additive Strain--Doping Energetics in Quasi-Hexagonal C60 Graphullerene
 Authors: Xingqiang Chen, Qixing Wang (Xiamen University)
 Corresponding author: xingqiang.chen@xmu.edu.cn
 ================================================================================

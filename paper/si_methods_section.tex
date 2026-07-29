@@ -4,7 +4,8 @@ All total-energy and electronic-structure calculations use CP2K~\cite{cp2k2025} 
 Unless stated otherwise, biaxial strain scales the in-plane lattice vectors of the pristine equilibrium cell at fixed fractional coordinates (rigid-strain protocol).
 Reported $\mathcal{S}$ magnitudes under this protocol are upper bounds at fixed coordinates; Table~\ref{tab:III} in the main text benchmarks the tetramer $P$ four-corner ionic-relaxation grid.
 Plane-wave cutoffs are 400~Ry for $n\leq 4$ and 350~Ry for $n\geq 6$; $\mathcal{S}(n)$ comparisons at fixed $n$ use identical cutoffs.
-A single-point 400~Ry control at $6\times\mathrm{C}_{60}$ N and $+3$\% differs by ${\sim}0.057$~meV/atom from the 350~Ry energy at fixed geometry.
+Production supercells use $\Gamma$-only sampling; a partial cutoff audit at $6\times\mathrm{C}_{60}$ N and $+3$\% shifts one corner energy by ${\sim}0.057$~meV/atom between 350 and 400~Ry---below the smallest $|\mathcal{S}|$ in the $n\leq 4$ core grid.
+Direct $\mathcal{S}(\mathrm{cutoff})$, $\mathcal{S}(k)$, and $\mathcal{S}(\mathrm{EPS\_SCF})$ curves are listed as future sensitivity work in the main-text Limitations.
 
 Tetramer models ($4\times\mathrm{C}_{60}$) use B/N/P substitution at nominal ${\sim}5$~at.\% on fixed site maps (reference and independent alternate configurations).
 Periodic scaling cells contain one substituent per C$_{60}$ ($n=1$--$8$) on a fixed production site map.

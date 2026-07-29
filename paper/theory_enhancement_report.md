@@ -7,6 +7,18 @@
 
 
 
+### R412 audit（2026-07-18 go loops — process figures + Loop C）
+
+| 项 | 状态 | 证据 |
+|----|------|------|
+| figure_prb_1..4 | **A** | `render_prb.sh`; E(ε)/q(ε)/d̄±σ/S(n) paths; no bar catalogs |
+| Results σ(ε) | **A** | Fig.~\ref{fig:decoupling}(c) linked in Results decoupling paragraph |
+| response fig refs | **A** | MC3: fig:main → fig:electronic(b,c); header → four-figure layout |
+| Mayer/Bader | **C** | Limitations future work only |
+| compile_prb | **A** | PDF 重编译通过 |
+
+**创新审计（R412）**：过程数据主图 = **A**；C-M3 机理 = **B+**（Hirshfeld+σ paths）；Mayer = **C**
+
 ### R408 audit（2026-07-10 go loops — reference 24/24 → Fig.1(c)）
 
 | 项 | 状态 | 证据 |

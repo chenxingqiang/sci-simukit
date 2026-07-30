@@ -38,7 +38,6 @@ from _style import (
     SYNERGY_CMAP,
     add_reference_lines,
     apply_nature_style,
-    draw_physics_coupling_schematic,
     panel_label,
     panel_subtitle,
     plot_error_band,
@@ -157,14 +156,13 @@ def build_fig1() -> tuple[Path, Path]:
     gaps = parse_exp7_gaps()
     alpha_ref, _, _ = load_reference_pbed3_alpha_S()
 
-    fig = plt.figure(figsize=(PRB_WIDTH_IN, 7.2), facecolor="white")
-    gs = GridSpec(3, 2, figure=fig, height_ratios=[0.82, 1.32, 1.18],
+    fig = plt.figure(figsize=(PRB_WIDTH_IN, 6.6), facecolor="white")
+    gs = GridSpec(3, 2, figure=fig, height_ratios=[0.82, 1.32, 0.95],
                   hspace=0.38, wspace=0.26, left=0.08, right=0.97, top=0.96, bottom=0.08)
     ax_a = fig.add_subplot(gs[0, :])
     ax_b = fig.add_subplot(gs[1, 0])
     ax_c = fig.add_subplot(gs[1, 1])
-    ax_d = fig.add_subplot(gs[2, 0])
-    ax_e = fig.add_subplot(gs[2, 1])
+    ax_d = fig.add_subplot(gs[2, :])
 
     panel_label(ax_a, "a", nature=True)
     ax_a.set_facecolor("#FAFAFA")
@@ -221,8 +219,6 @@ def build_fig1() -> tuple[Path, Path]:
     style_axes(ax_d)
     _legend_in(ax_d, loc="upper left", fontsize=6.8)
 
-    panel_label(ax_e, "e", nature=True)
-    draw_physics_coupling_schematic(ax_e)
     return _save(fig, "figure_prb_1_electronic")
 
 

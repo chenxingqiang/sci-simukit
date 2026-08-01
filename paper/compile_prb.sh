@@ -14,6 +14,8 @@ fi
 
 bash "$ROOT/figures/render_prb.sh"
 bash "$ROOT/figures/render_si_figures.sh"
+PY="${PYTHON:-/opt/homebrew/Caskroom/miniconda/base/bin/python3}"
+"$PY" "$ROOT/scripts/generate_tab_S_corner_energies.py"
 cd "$ROOT"
 latexmk -pdf -interaction=nonstopmode -file-line-error -f strain_doped_graphullerene.tex
 latexmk -pdf -interaction=nonstopmode -file-line-error -f supplementary_figures.tex

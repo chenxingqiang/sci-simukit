@@ -832,3 +832,105 @@ We thank the referee for recognizing the corrections to doping concentration, Ma
 
 **Next:** Optional author PDF review; Track A backlog (SCAN, $k$, $n{=}4$ P relax) remains Limitations-only until converged.
 
+---
+
+## Round 6b — Simulated PRB Associate Editor: Editorial Value Assessment — 2026-08-01
+
+**Editorial recommendation:** Major Revision (reframing only); desk-reject risk removed if physics chain is accepted.
+
+| ID | AE question / request | Manuscript action | Status |
+|----|----------------------|-------------------|--------|
+| **AE-Q1** | New physics ≠ nonzero $\mathcal{S}$ | Abstract/Intro/Conclusion unified on frozen incompatibility → bilinear coupling | **done** |
+| **AE-Q2** | Why PRB? | Intro: neglect of $\partial^2 E/\partial\epsilon\,\partial\delta$ in $E$ | **done** |
+| **AE-Q3** | Generality | `sec:applicability` applicable / not applicable | **done** |
+| **AE-Q4** | Citation workflow | 4-step workflow + Fig.~\ref{fig:synergy}(f,g) | **done** |
+| **AE-Q5** | Prediction | As/Sb extrapolation (no DFT) | **done** |
+| **AE-Q6** | Theory figure | Fig.~2 panel **(g)** $E(\epsilon)$ schematic | **done** |
+| **AE-Q7** | Uniaxial strain | One sentence in applicability | **done** |
+| **AE-Q8** | Finite $T$ | Limitations: 0~K; $T$ unexplored | **done** |
+| **AE-Q9** | at.\% in Table IV | `tab_S_synergy_grid.tex` column | **done** |
+| **AE-Q10** | Experimental handles | `sec:experimental_signatures` | **done** |
+| **AE-R1** | Phenomenon not descriptor | Retained from Rounds 5–6 | **done** |
+| **AE-R2** | Discussion −30% | Compressed Discussion subsections | **done** |
+| **AE-R3** | Theory figure | Panel (g) + `draw_energy_coupling_schematic` | **done** |
+| **AE-R4** | $k$ / SCAN | Table~\ref{tab:sigma_S} + Limitations (pending) | **done** |
+
+**Archive:** `paper/referee_report_round6_ae_editorial_value.md`
+
+**Verify:** `bash paper/figures/render_prb.sh` + `bash paper/compile_prb.sh`
+
+**Next:** Round 7 — strict theoretical Referee #2 (equation-by-equation, overclaim, uniqueness of $\mathcal{S}$); optional commit on user request.
+
+---
+
+## Round 7 — Strict Referee #2: Computational rigor & overclaim audit — 2026-08-01
+
+**Referee recommendation:** Major Revision (substantial mandatory calculations + full text restructuring; full re-review).
+
+**Archive:** `paper/referee_report_round7_strict_referee2.md`
+
+| ID | Referee theme | Response / manuscript action | Status |
+|----|---------------|------------------------------|--------|
+| **R7-1.1** | $\Gamma$-only $k$ corrupts $\mathcal{S}$ | Agree in principle. **Track A:** four-corner $\mathcal{S}$ for $n{=}1$ B/N/P at $2\times2\times1$; fold into Table~\ref{tab:sigma_S} and $\sigma_{\mathcal{S}}$ when converged. **Text:** Limitations + pending row (no new main-text numbers). | **partial** (disclosure); **DFT open** |
+| **R7-1.2** | Dual cutoff 400/350 Ry unjustified for P | Agree. **Track A:** matched $n{=}1$ P four-corner at 350/400 Ry; optional uniform 400 Ry for $n\geq6$. **Text:** existing $6\times$C$_{60}$ N single-point + pending P audit in Table~\ref{tab:sigma_S}. | **partial**; **DFT open** |
+| **R7-1.3** | SCAN / meta-GGA sensitivity | Agree. **Track A:** SCAN four-corner $n{=}1$ P @ $+3$\%. **Text:** Table~\ref{tab:sigma_S} XC row pending; ranking claims scoped to PBE+D3. | **partial**; **DFT open** |
+| **R7-1.4** | vdW cross-term only tetramer P | Agree. **Track A:** B/N periodic vdW audits. **Text:** added pending row in Table~\ref{tab:sigma_S}. | **partial**; **DFT open** |
+| **R7-2.1** | Finite-strain truncation at +3% | Agree. Eq.~\eqref{eq:mixed_derivative} already lists $\mathcal{O}(\epsilon^2\delta,\ldots)$; **Methods** note multi-amplitude ($\epsilon=1$--$3$\%) audit as targeted sensitivity (Limitations). **Track A:** multi-strain $\mathcal{S}$ for $n{=}1$ P. | **partial** (text); **DFT open** |
+| **R7-2.2** | Ad-hoc $\eta>1\%$ / 2 meV thresholds | **Text:** operational heuristics on present protocol map; formal 95\% bands await pending $k$/XC rows (Sec.~\ref{sec:synergy}, Table~\ref{tab:sigma_S}). | **done** (honest framing) |
+| **R7-3.1** | No elastic/electronic partition | Agree. **Track A:** Mayer/Bader/virial backlog. **Text:** removed “predominantly/exclusively elastic” claims; Results/Discussion/Conclusions softened to “consistent with dominant elastic-work contribution” pending partition. | **partial** (text); **DFT open** |
+| **R7-3.2** | N breaks $\Delta r_{\mathrm{cov}}$ scaling | **Text:** retained qualitative N secondary channel; quantitative two-parameter law deferred (Limitations: Mayer + periodic $n{=}4$ geometry). | **partial** |
+| **R7-3.3** | $\alpha$–$|\mathcal{S}|$ with $n{=}3$ | **Decline** additional dopants (Si/Al) in this revision scope. **Text:** explicit “qualitative rank among three species, not fitted correlation”; Conclusions no longer “does not reliably predict.” | **done** |
+| **R7-4.1** | Rigid vs equilibrium overgeneralization | **Text:** expanded `sec:constrained_loading` — constrained vs equilibrium regimes; when additive screening may remain valid. | **done** |
+| **R7-4.2** | $n{=}1$ image / $\mathcal{S}_\infty$ | **Text:** $n{=}1$ extremum may include PBC image coupling; no $\mathcal{S}_\infty$ claim in Conclusions. **Track A:** image-decoupling supercell test. | **partial** (text); **DFT open** |
+| **R7-5.1** | Second host (graphene etc.) | **Decline** in current revision (resource). **Text:** “validated here on one host only”; applicability requires per-host audit (`sec:discussion_literature`). | **done** (scope) |
+| **R7-5.2** | Cluster-expansion literature gap | **Text:** Discussion contrasts CE $c\,\epsilon x$ cross terms with periodic four-corner total-energy audit; novelty = audit protocol on soft network, not existence of bilinear coupling. | **done** |
+| **R7-6.1** | Unified $\sigma_{\mathcal{S}}$ | Table~\ref{tab:sigma_S} lists components; quadrature sum after pending rows converge. | **partial** |
+| **R7-6.2** | Figure error bars | $\alpha$ panel: fit SE bars (R3-M5); $\mathcal{S}$ values carry $\pm 2$ meV protocol band in text; full propagated bars after $k$/XC. | **partial** |
+| **R7-6.3** | Finite-$T$ | Limitations: 0 K BO; vibrational entropy unexplored (R6b). | **done** (prior) |
+| **R7-6.4** | Table VII tetramer-only geometry | **Track A:** periodic $n{=}4$ bond statistics. **Text:** Limitations note concentration bias. | **partial**; **DFT open** |
+| **R7-6.5** | SI raw corner energies | Data Availability: machine-readable synergy tables with four-corner components in public repository; SI inventory Table~\ref{tab:inventory}. | **done** |
+| **R7-M1** | $\mathcal{S}$ “unique” overclaim | **Methods:** symmetric four-corner form on audited grid; alternatives differ by $\mathcal{O}(\Delta\epsilon,\Delta\delta)$; pointer to **S-tab:descriptor**. | **done** |
+
+**Manuscript files touched (Round 7):** `strain_doped_graphullerene.tex`, `sdc_method_section.tex`, `tab_sigma_S_benchmark.tex`, `referee_report_round7_strict_referee2.md`.
+
+**Verify:** `bash paper/compile_prb.sh` (body $\approx 4216$ words after R7 edits).
+
+**Next:** User-directed **Track A** queue ($k$, SCAN, $n{=}1$ P cutoff, Mayer/Bader) or commit `loop R416: Round 7 strict referee text response`.
+
+---
+
+## Round 7b — Referee #2: Equation-by-equation mathematical audit — 2026-08-01
+
+**Referee recommendation:** Major Revision closes on theory rigor once $\gamma$ vs.\ $\mathcal{S}$, four-point uniqueness, and full derivation are documented.
+
+| ID | Referee theme | Manuscript action | Status |
+|----|---------------|-------------------|--------|
+| **R7b-Eq1** | Taylor requires continuous $\delta$ | Intro + Methods: discrete composition caveat; expansion = finite-difference on $E(\epsilon,\delta)$ functional | **done** |
+| **R7b-Eq2** | Why four corners only? | Methods `\paragraph{Why a four-point stencil?}`; SI Sec.~\ref{S-sec:why_four} vs central/LS/Hessian | **done** |
+| **R7b-Eq3** | No proof $\mathcal{S}$ = mixed derivative | SI Appendix: Taylor at four corners → linear cancellation → Eq.~\eqref{eq:mixed_derivative}; Methods summary + cross-ref | **done** |
+| **R7b-γS** | Confuse $\mathcal{S}$ with coupling | $\gamma$ intrinsic vs.\ $\mathcal{S}$ estimator unified (Intro, Methods, Discussion) | **done** |
+| **R7b-dim** | Dimensional analysis missing | Methods + SI: meV/atom, $\eta$ dimensionless, $\gamma$ units | **done** |
+| **R7b-σ** | $\sigma_{\mathcal{S}}=2\sigma_e$ without derivation | Eq.~\eqref{eq:sigma_propagation} + SI Sec.~\ref{S-sec:error_prop} | **done** |
+| **R7b-sym** | Clairaut / exchange symmetry | SI Sec.~\ref{S-sec:symmetry_gauge}; Methods paragraph | **done** |
+| **R7b-gauge** | Energy offset invariance | SI + Methods: arbitrary constant cancels | **done** |
+| **R7b-lim** | When Taylor fails | Limitations: ${\gtrsim}10$\% strain, phase transitions | **done** |
+| **R7b-App** | Appendix A (~1 page) | `si_appendix_finite_difference.tex` → Supplemental Material Sec.~I | **done** |
+
+**New files:** `paper/si_appendix_finite_difference.tex`; `supplementary_figures.tex` (+ `xr-hyper` to main).
+
+**Verify:** `bash paper/compile_prb.sh` (main + SI cross-refs).
+
+**Next:** Track A convergence backlog.
+
+---
+
+## Round 7c — SI corner energies + $\mathcal{S}$ error bars — 2026-08-01
+
+| ID | Referee theme | Manuscript action | Status |
+|----|---------------|-------------------|--------|
+| **R7c-SI-raw** | SI raw four-corner totals | `tab_S_corner_energies.tex` + `figures/data/sdc_corner_energies.csv` from `sdc_exp10_results.json` | **done** |
+| **R7c-fig-err** | Figure error bars on $\mathcal{S}$ | Fig.~2(b) $\pm 2$~meV/atom; Fig.~3(d), Fig.~4(b) $y$ error bars (`SIGMA_S_MEV`) | **done** |
+| **R7c-build** | Reproducible table generation | `generate_tab_S_corner_energies.py` hooked in `compile_prb.sh` | **done** |
+
+**Verify:** `bash paper/compile_prb.sh`; `bash paper/figures/render_prb.sh`.
+

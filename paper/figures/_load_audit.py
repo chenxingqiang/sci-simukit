@@ -68,6 +68,10 @@ def ha_per_atom_to_meV(ha_per_atom: float) -> float:
     return ha_per_atom * HA_TO_MEV
 
 
+# Conservative reporting band for four-corner S (meV/atom); see Eq. sigma_propagation / Table sigma_S.
+SIGMA_S_MEV: float = 2.0
+
+
 def load_tetramer_alpha_panel() -> tuple[dict[str, float], str]:
     """Alpha for Fig.~1(c): reference placement PBE+D3 when 24/24; else alternate."""
     root = repo_root()

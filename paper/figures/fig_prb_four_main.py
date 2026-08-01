@@ -26,6 +26,7 @@ from _load_audit import (
     parse_exp7_gaps,
     repo_root,
     synergy_rows,
+    SIGMA_S_MEV,
 )
 from _pdos import gaussian_dos, parse_pdos
 from _style import (
@@ -39,6 +40,7 @@ from _style import (
     add_reference_lines,
     apply_nature_style,
     draw_additive_screening_schematic,
+    draw_energy_coupling_schematic,
     panel_label,
     panel_subtitle,
     plot_error_band,
@@ -275,12 +277,15 @@ def build_fig2() -> tuple[Path, Path]:
         top=0.93,
         bottom=0.10,
     )
-    ax_f = fig.add_subplot(gs[0, :])
+    ax_f = fig.add_subplot(gs[0, :2])
+    ax_g = fig.add_subplot(gs[0, 2])
     ax_a, ax_b = fig.add_subplot(gs[1, 0]), fig.add_subplot(gs[1, 1:])
     ax_c, ax_d, ax_e = fig.add_subplot(gs[2, 0]), fig.add_subplot(gs[2, 1]), fig.add_subplot(gs[2, 2])
 
     panel_label(ax_f, "f", nature=True)
     draw_additive_screening_schematic(ax_f)
+    panel_label(ax_g, "g", nature=True)
+    draw_energy_coupling_schematic(ax_g)
 
     dopants = ["B", "N", "P"]
     ns = [1, 2, 4, 6, 8]
@@ -322,6 +327,18 @@ def build_fig2() -> tuple[Path, Path]:
         n_all = np.array([r[0] for r in rows], dtype=float)
         s_all = np.array([r[1] for r in rows])
         plot_trajectory(ax_b, n_all, s_all, DOPANT_COLORS[dop], label=dop, fill_to=0)
+        ax_b.errorbar(
+            n_all,
+            s_all,
+            yerr=np.full_like(s_all, SIGMA_S_MEV),
+            fmt="none",
+            ecolor=DOPANT_COLORS[dop],
+            elinewidth=0.85,
+            capsize=2.4,
+            capthick=0.75,
+            alpha=0.75,
+            zorder=4,
+        )
         if dop in fits:
             s_inf, a_coef = float(fits[dop]["S_infinity"]), float(fits[dop]["A"])
             ax_b.plot(n_fit, s_inf + a_coef / n_fit, "--", color=DOPANT_COLORS[dop], lw=1.1, alpha=0.75)
@@ -554,12 +571,26 @@ def build_fig3() -> tuple[Path, Path]:
                 abs_alpha[d],
                 abs_s4[d],
                 xerr=xerr,
+                yerr=SIGMA_S_MEV,
                 fmt="none",
                 ecolor=DOPANT_COLORS[d],
                 elinewidth=0.9,
                 capsize=2.5,
                 capthick=0.8,
                 alpha=0.85,
+                zorder=2,
+            )
+        else:
+            ax_d.errorbar(
+                abs_alpha[d],
+                abs_s4[d],
+                yerr=SIGMA_S_MEV,
+                fmt="none",
+                ecolor=DOPANT_COLORS[d],
+                elinewidth=0.85,
+                capsize=2.2,
+                capthick=0.7,
+                alpha=0.75,
                 zorder=2,
             )
         scatter_dopant(ax_d, abs_alpha[d], abs_s4[d], d, size=80 + 340 * (abs_s1[d] / s1_ref))
@@ -620,6 +651,18 @@ def build_fig4() -> tuple[Path, Path]:
     ax_b.axvspan(20, 45, color=DOPANT_FILLS["P"], alpha=0.40, zorder=0)
     ax_b.axvline(20, color=DOPANT_COLORS["P"], ls="--", lw=0.95, alpha=0.75)
     for d in dopants:
+        ax_b.errorbar(
+            dr[d],
+            s_abs[d],
+            yerr=SIGMA_S_MEV,
+            fmt="none",
+            ecolor=DOPANT_COLORS[d],
+            elinewidth=0.85,
+            capsize=2.2,
+            capthick=0.7,
+            alpha=0.8,
+            zorder=2,
+        )
         scatter_dopant(ax_b, dr[d], s_abs[d], d, size=130,
                        offset={"B": (14, -16), "N": (14, 14), "P": (-20, 0)}[d])
     ax_b.set_xlabel(r"$|\Delta r_{\mathrm{cov}}|$ (pm)")

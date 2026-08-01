@@ -1,0 +1,99 @@
+\label{sec:appendix_fd}
+
+This appendix derives the four-corner coupling estimator $\mathcal{S}$ used in the main text [Eqs.~\eqref{eq:synergy_order}--\eqref{eq:four_corner}] from a Taylor expansion of total energy about the pristine reference, justifies the stencil choice against alternatives, and states symmetry, gauge, and error-propagation properties.
+
+\subsection{Taylor expansion and discrete composition}
+\label{sec:taylor}
+
+Let $E(\epsilon,\delta)$ denote the total energy of a supercell with biaxial strain parameter $\epsilon$ and composition label $\delta$ (pristine reference vs.\ one substitutional dopant per C$_{60}$ on the fixed production map).
+Although $\delta$ is sampled on a discrete chemical grid (B, N, or P) rather than a continuous concentration field, the expansion below is the standard \emph{finite-difference} representation of the underlying composition-dependent energy functional $E(\epsilon,\delta)$ on the audited $(\epsilon,\delta)$ stencil---not a claim that dopant concentration is a differentiable continuum variable.
+
+Expand about $(\epsilon_0,\delta_0)=(0,0)$ to second order in increments $(\Delta\epsilon,\Delta\delta)$:
+\begin{equation}
+E(\epsilon_0+\Delta\epsilon,\,\delta_0+\Delta\delta)
+= E_0
++ E_\epsilon\,\Delta\epsilon
++ E_\delta\,\Delta\delta
++ E_{\epsilon\delta}\,\Delta\epsilon\,\Delta\delta
++ \mathcal{O}(\Delta\epsilon^2,\Delta\delta^2,\Delta\epsilon^2\Delta\delta,\Delta\epsilon\Delta\delta^2),
+\label{eq:taylor_total}
+\end{equation}
+where $E_\epsilon\equiv\partial E/\partial\epsilon|_{0,0}$, $E_\delta\equiv\partial E/\partial\delta|_{0,0}$, and $E_{\epsilon\delta}\equiv\partial^2 E/\partial\epsilon\,\partial\delta|_{0,0}$.
+The bilinear coefficient $E_{\epsilon\delta}$ (denoted $\gamma$ in continuum discussions) characterizes the intrinsic mixed energetic response; it is a \emph{material functional} of the host, boundary conditions, and exchange--correlation approximation.
+Eq.~\eqref{eq:taylor_total} requires sufficiently small perturbations and a single, smooth energy branch; it fails across phase transitions or when strain drives large bond rearrangements (main text, Sec.~\ref{sec:discussion_limitations}).
+
+\subsection{Four-corner stencil and cancellation of linear terms}
+\label{sec:four_corner_deriv}
+
+Define the four corner totals on the rectangular grid
+$(\epsilon,\delta)\in\{(0,0),(\Delta\epsilon,0),(0,\Delta\delta),(\Delta\epsilon,\Delta\delta)\}$:
+$E_{00}$, $E_{\epsilon 0}$, $E_{0\delta}$, $E_{\epsilon\delta}$.
+The symmetric combination
+\begin{equation}
+\Delta E_{\mathrm{cross}}
+\equiv E_{\epsilon\delta}-E_{\epsilon 0}-E_{0\delta}+E_{00}
+\label{eq:cross_combination}
+\end{equation}
+substitutes Eq.~\eqref{eq:taylor_total} at each corner.
+All first-order terms cancel identically:
+\begin{equation}
+\Delta E_{\mathrm{cross}}
+= E_{\epsilon\delta}\,\Delta\epsilon\,\Delta\delta
++ \mathcal{O}(\Delta\epsilon^2,\Delta\delta^2,\Delta\epsilon^2\Delta\delta,\Delta\epsilon\Delta\delta^2).
+\label{eq:cross_result}
+\end{equation}
+Dividing by $N_{\mathrm{atoms}}$ gives the per-atom estimator $\mathcal{S}=\Delta E_{\mathrm{cross}}/N_{\mathrm{atoms}}$ [Eq.~\eqref{eq:four_corner}], i.e.,
+\begin{equation}
+\mathcal{S}
+\approx \frac{E_{\epsilon\delta}}{N_{\mathrm{atoms}}}\,\Delta\epsilon\,\Delta\delta
++ \mathcal{O}(\Delta\epsilon^2,\Delta\delta^2,\Delta\epsilon^2\Delta\delta,\Delta\epsilon\Delta\delta^2),
+\label{eq:S_mixed}
+\end{equation}
+which is Eq.~\eqref{eq:mixed_derivative} of the main text.
+Thus $\mathcal{S}$ \emph{estimates} the mixed energetic response under finite $(\Delta\epsilon,\Delta\delta)$; it is not itself the continuum coefficient $\gamma\equiv E_{\epsilon\delta}/N_{\mathrm{atoms}}$ unless the higher-order remainder is negligible.
+
+The additive-screening bias is, by construction,
+$\mathcal{S}=\Delta E(\epsilon,\delta)-[\Delta E(\epsilon,0)+\Delta E(0,\delta)]$ [Eq.~\eqref{eq:synergy_order}], where each $\Delta E$ is measured relative to the same pristine reference $E(0,0)$.
+
+\subsection{Why this four-point stencil?}
+\label{sec:why_four}
+
+The symmetric four-corner form is \emph{not} unique, but it is the minimal second-order-accurate stencil on a rectangular $(\epsilon,\delta)$ grid that (i)~requires only four DFT totals, (ii)~cancels all first-order strain and composition increments and any shared reference offset, and (iii)~isolates the bilinear cross term in one algebraic step.
+Alternatives differ in cost, bias, or interpretability:
+\begin{itemize}
+\item \textbf{Central (five-point) stencils} on a finer grid reduce truncation error at the price of additional corners and, for discrete $\delta$, may interpolate between non-physical composition labels.
+\item \textbf{Least-squares fits} of $E(\epsilon,\delta)$ to a low-order polynomial over many points can estimate $E_{\epsilon\delta}$ but mix truncation error with fit-window choice and do not map one-to-one onto the additive-screening bias audited here.
+\item \textbf{Full mixed Hessian} $\partial^2 E/\partial\epsilon\,\partial\delta$ from analytic or numerical derivatives of relaxed energies requires continuous, well-defined $\delta$ and is ill posed on the present discrete substitution grid.
+\end{itemize}
+Asymmetric three-point schemes retain linear contamination in at least one channel; Table~\ref{tab:descriptor} contrasts $\mathcal{S}$ with other descriptors.
+
+\subsection{Symmetry, gauge invariance, and units}
+\label{sec:symmetry_gauge}
+
+\paragraph{Symmetry (Clairaut).}
+If $E_{\epsilon\delta}=E_{\delta\epsilon}$ (Schwarz/Clairaut theorem for a smooth $E$), the symmetric stencil~\eqref{eq:cross_combination} is invariant under exchanging the order in which the $\epsilon$ and $\delta$ increments are applied on the grid: the estimated cross term is the same whether one views strain or composition as the ``first'' axis.
+This is a property of the \emph{stencil}, not a claim that biaxial strain and chemical substitution are physically interchangeable controls (main text, Sec.~\ref{sec:methods_coupling}).
+
+\paragraph{Gauge invariance.}
+Adding an arbitrary constant $C$ to all four corner totals leaves $\mathcal{S}$ unchanged; only energy \emph{differences} among the four corners enter.
+Shared systematic shifts (e.g., uniform XC offsets) therefore cancel in the four-corner combination when all corners share the same computational protocol.
+
+\paragraph{Units.}
+$\mathcal{S}$ is reported in meV per atom.
+The dimensionless additive-failure fraction $\eta=|\mathcal{S}|/|\Delta E_{\mathrm{coupled}}|$ [Eq.~\eqref{eq:additive_fraction}] has no units.
+The continuum coefficient $\gamma\equiv\partial^2 E/\partial\epsilon\,\partial\delta$ carries units of energy per atom per strain increment per composition increment; on the production grid ($\Delta\epsilon=3$\%, discrete $\Delta\delta$ from pristine to one substituent per C$_{60}$), $\mathcal{S}\approx\gamma\,\Delta\epsilon\,\Delta\delta$ up to higher-order remainders.
+
+\subsection{Error propagation}
+\label{sec:error_prop}
+
+With $\mathcal{S}=(E_{\epsilon\delta}-E_{\epsilon 0}-E_{0\delta}+E_{00})/N_{\mathrm{atoms}}$ and independent, equal per-atom uncertainties $\sigma_e$ on each converged corner total,
+\begin{equation}
+\sigma_{\mathcal{S}}^2
+= \frac{1}{N_{\mathrm{atoms}}^2}\bigl(\sigma_e^2+\sigma_e^2+\sigma_e^2+\sigma_e^2\bigr)
+= 4\sigma_e^2,
+\qquad
+\sigma_{\mathcal{S}} = 2\sigma_e,
+\label{eq:sigma_propagation_si}
+\end{equation}
+which is Eq.~\eqref{eq:sigma_propagation} of the main text when corners are uncorrelated.
+Correlated SCF noise across chemically related corners would reduce the effective coefficient below $2$; the main-text reporting band uses $2\sigma_e$ as a conservative upper bound (Table~\ref{tab:sigma_S}).

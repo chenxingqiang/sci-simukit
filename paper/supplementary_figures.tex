@@ -14,6 +14,8 @@
 \usepackage{dcolumn}
 \usepackage{bm}
 \usepackage{url}
+\usepackage{xr-hyper}
+\externaldocument{strain_doped_graphullerene}
 
 \begin{document}
 
@@ -24,6 +26,9 @@
 \affiliation{Department of Physics, Xiamen University, Xiamen 361005, China}
 
 \maketitle
+
+\section{Finite-difference derivation of the four-corner coupling estimator}
+\input{si_appendix_finite_difference.tex}
 
 \section{Literature positioning and descriptor comparison}
 \input{tables/tab_lit_positioning}
@@ -65,6 +70,9 @@ Cage-resolved VBM/CBM isosurfaces on periodic $n\times\mathrm{C}_{60}$ cells ($n
 
 \section{Periodic coupling-energy rows ($n\geq 6$)}
 \input{tables/tab_S_synergy_grid_si.tex}
+
+\section{Four-corner total energies ($+3$\%)}
+\input{tables/tab_S_corner_energies.tex}
 
 \section{Marcus reorganization energies}
 Polaron transport diagnostics are reported here for completeness; the main-text analysis centers on $\mathcal{S}$.

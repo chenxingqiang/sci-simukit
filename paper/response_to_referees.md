@@ -661,3 +661,174 @@ We thank the referee for recognizing the corrections to doping concentration, Ma
 
 **Still open (honest):** full $\mathcal{S}$(cutoff,k,EPS) curves; SCAN spot-check; Mayer/Bader; second host graphene grid; bootstrap needs $>3$ dopants.
 
+---
+
+## Simulated PRB Referee Round 9 — “Invisible Questions” (Hidden Assumptions)
+
+**Referee concern:** Fifteen implicit assumptions reviewers ask but authors rarely answer: uniqueness of Eq.~(1), mixed derivative $\leftrightarrow$ physics, choice of total energy, 0~K, phonons, charge neutrality, local minima, strain knots, Taylor validity, conservative generalization, observability, predictivity, $E(\epsilon,\delta)$ landscape, elastic vs.\ chemical dominance, why prior work missed coupling.
+
+**Response:** New Discussion subsection **`sec:interpretive`** (`Interpretive foundations`) consolidates answers; redundant prose removed from `sec:conceptual`.
+
+| ID | Hidden assumption | Main-text location |
+|----|-------------------|-------------------|
+| HA1 | Uniqueness of Eq.~(1) vs.\ $\Delta G$, $\Delta H$, interaction energy | `sec:interpretive` ¶1; Methods `Relation to other energy measures` |
+| HA2 | Why mixed derivative = coupling | Landau / CE paragraph; `vandewalle2009cluster` |
+| HA3 | Why total energy not elastic/stress/free energy alone | KS ranking-bias paragraph |
+| HA4 | Room temperature / 0~K | 0~K electronic totals; finite-$T$ caveat |
+| HA5 | Imaginary phonons at large strain | Not audited at $\pm5$\%; $+3$\% production window |
+| HA6 | Charge compensation / magnetism | Closed-shell KS; spin only where required |
+| HA7 | Global vs.\ local minimum | BFGS local minima; Table~IV maps |
+| HA8 | Why $\pm3$\% (not $\pm1$\%, etc.) | Knot set $\{-5,\ldots,+5\}$\%; finer meshes backlog |
+| HA9 | Taylor linearity breakdown | Small-load expansion; higher-order neglected |
+| HA10 | Over-generalization | Conclusions: “likely applicable only…” |
+| HA11 | Is $\mathcal{S}$ observable? | Indirect → `sec:exp_signatures` |
+| HA12 | Predictive use | `sec:predictive`; high $\|{\mathcal{S}}\|$ flag |
+| HA13 | $E(\epsilon,\delta)$ vs.\ $\mathcal{S}$ | Landscape primary; $\mathcal{S}$ = curvature sample |
+| HA14 | Elastic vs.\ chemistry | P elastic--structural; B/N electronic-leaning |
+| HA15 | Why not reported before? | Full relax + additive grids mask constrained-load coupling |
+
+**Conclusions:** Two closing sentences on prior-work masking and diagnostic role of $\mathcal{S}$.
+
+**Abstract (Round 9b):** Opening reframed around $E(\epsilon,\delta)$ landscape; $\mathcal{S}$ as diagnostic (not order parameter); closing sentence on why prior work masked coupling (no `\cite`/section refs in abstract).
+
+**Senior Referee framing:** Primary discovery = nonlinear coupling under mechanically constrained load; $\mathcal{S}$ = quantitative diagnostic (already Round 6--8); Round 9 makes implicit assumptions explicit for the editor.
+
+---
+
+## Simulated PRB Referee Round 1 — Title, Abstract, Introduction (author revision)
+
+**Recommendation addressed:** Major Revision (presentation / PRB style).
+
+| Referee point | Action |
+|---------------|--------|
+| Title “Breakdown” too strong / methodology-flavored | Retitled **Non-additive Strain--Dopant Energetics in Quasi-Hexagonal C$_{60}$ Graphullerene** (main, SI, cover letter). |
+| Abstract too long (~350 words); “previously overlooked” | Rewritten to **~170 words**; “document…not explicitly quantified”; $\alpha$ failure in sentence~2; upper-bound one sentence; removed Methods/Discussion-only clauses. |
+| “Scope for PRB” in main text | **Deleted** from Introduction; equivalent framing moved to **cover letter** opening paragraph. |
+| Cluster expansion late; $\mathcal{S}$ over-defined in Intro | CE sentence moved to **paragraph~1**; Intro gives **one-line** $\mathcal{S}$ pointer to Eq.~\eqref{eq:synergy_order} and Sec.~\ref{sec:methods_coupling}. |
+| Literature pile-up | Shortened to two-class summary + **Table~\ref{tab:lit_positioning}** (`tab_lit_positioning.tex`). |
+| Novelty = “we discover $\mathcal{S}$” | Opening contribution sentence reframed: quantify bilinear interaction and document when additive workflows fail. |
+| Three findings in Intro | **Restored** condensed (1)--(3) block with A-level numbers ($31.9\pm 2$ meV/atom, $\eta\approx 8\%$). |
+| Split Makov mega-sentence | Split into two sentences (intrinsic strain; local stress + periodic audit motivation). |
+
+**Files:** `strain_doped_graphullerene.tex`, `tables/tab_lit_positioning.tex`, `cover_letter_prb.txt`, `supplementary_figures.tex`.
+
+**Next:** Simulated Round 2 — Computational Methods (convergence, Eq.~(1) uniqueness, error propagation).
+
+---
+
+## Simulated PRB Referee Round 2 — Computational Methods (author revision)
+
+**Recommendation addressed:** Major Revision (evidence vs.\ meV/atom claims).
+
+| Referee point | Action |
+|---------------|--------|
+| **M1** XC cancellation assumed | Methods: vdW $\mathcal{S}_{\mathrm{vdW}}\approx 0.33$ meV/atom and cutoff $|\Delta\mathcal{S}|<0.2$ meV/atom cited as **demonstrated** audits; SCAN/r$^2$SCAN four-corner spot-checks listed **pending** (Table~\ref{tab:sigma_S}; Limitations). |
+| **M2** $\Gamma$-only $k$ | Explicit $\Gamma$-only caution for smallest $|\mathcal{S}|$ ($2.3$--$3.0$ meV/atom at $n{=}1$); $2\times 2\times 1$ benchmark **pending** (Table~\ref{tab:sigma_S}). |
+| **M3** $\sigma_{\mathcal{S}}\lesssim 2$ meV | New **Table~\ref{tab:sigma_S}** (`tab_sigma_S_benchmark.tex`): SCF propagation, cutoff, D3, pending $k$/XC rows; reporting band defined as conservative protocol floor. |
+| **M4** Upper bound buried | Abstract opens **Under mechanically constrained loading**; rigid-strain BC paragraph unchanged as upper bound. |
+| **M5** Relaxation benchmark weak | Validation lists $n{=}4$ P periodic fixed-cell relax as **targeted backlog** (no numbers without converged GEO). |
+| **M7** Defensive $\mathcal{S}$ Methods | `sdc_method_section.tex` compressed (~40\%); interpretive material → Discussion (`sec:interpretive`) + SI. |
+| **M8** Descriptor table in main | `tab_descriptor_comparison.tex` moved to SI; main cites **Table~\ref{S-tab:descriptor}** via `xr-hyper`. |
+| **M9** Taylor physics late | **Eq.~\eqref{eq:taylor_coupling}** in Introduction; $\mathcal{S}$ = four-corner **estimator** in Methods. |
+| **M10** $\eta$ | Retained; Abstract cites $\eta\approx 8\%$ at $n{=}4$. |
+| **m1--m3** Length / scope | Literature table to SI; `tab_lit_positioning` SI-only; compile uses `xr-hyper` prefix `S-` for cross-document refs. |
+
+**Track A backlog (no fabricated Results numbers):** SCAN/r$^2$SCAN $n{=}1$ P @ $+3$\% four corners; $\Gamma$ vs $2\times 2\times 1$ for $n{=}1$ B/N/P @ $+3$\%; periodic $n{=}4$ P ionic relaxation.
+
+**Files:** `strain_doped_graphullerene.tex`, `sdc_method_section.tex`, `tables/tab_sigma_S_benchmark.tex`, `tables/tab_lit_positioning.tex`, `tables/tab_descriptor_comparison.tex`, `supplementary_figures.tex`, `compile_prb.sh`, `si_methods_section.tex`.
+
+**Verify:** `bash paper/compile_prb.sh` → main 16 pp., SI 6 pp.; main undefined refs cleared.
+
+**Next:** Simulated Round 3 — Results (Figs.~2--4).
+
+---
+
+## Round 3 — Simulated Referee #3: Results (Section III) — 2026-08-01
+
+**Referee recommendation:** Major Revision (borderline accept); presentation fixes below.
+
+| ID | Referee theme | Manuscript / figure action | Status |
+|----|---------------|---------------------------|--------|
+| **R3-M1** | Fig.~1 overloaded (structure + DOS + gap + landscape) | Caption reframed: (a) structure; (b--d) one-parameter slices; joint audit deferred to Fig.~\ref{fig:synergy}; full physical split deferred | **partial** (caption + Results order) |
+| **R3-M2** | Results opens with figure roadmap | Deleted four-line figure-index paragraph; physics-first opener | **done** |
+| **R3-M3** | Sec.~IIIA mixes interpretation | Results = observations only; bilinear/DOS-prediction language → Discussion (`sec:stress_coupling`) | **done** |
+| **R3-M4** | “does not linearly predict” without quantification | Removed from Results; Discussion: “consistent with … do not, by themselves, rank” + no regression at $n{=}3$ | **done** |
+| **R3-M5** | $\alpha$ lacks error bars; $n{=}3$ correlation stats | Fig.~\ref{fig:decoupling}(d): horizontal $x$-error bars (six-point linear-fit SE); **removed** Pearson/$R^2$/Spearman | **done** |
+| **R3-M6** | Central test buried | **Sec.~\ref{sec:synergy}** moved first; caption leads with panel (c) additive vs coupled | **done** |
+| **R3-M7** | $\eta>1\%$ implied universal | Results + Discussion: **operational thresholds adopted in this work** | **done** |
+| **R3-M8** | $|\mathcal{S}|$ distribution needs box plot | Fig.~\ref{fig:synergy}(d): histogram + inset box (median, Q1, Q3) | **done** |
+| **R3-M9** | Relaxation only P | Results: **illustrative** $n{=}1$ P only; no general law claimed | **done** |
+| **R3-M10** | Premature because/therefore in Results | Observation-only rewrite; mechanism sentence at Results end points to Discussion | **done** |
+| **R3-Physics** | Why P largest only in Discussion | One closing Results sentence: largest $\Delta r_{\mathrm{cov}}$ + largest audited $|\mathcal{S}|$ | **done** |
+
+**Verify:** `bash paper/figures/render_prb.sh` + `bash paper/compile_prb.sh`.
+
+**Next:** Simulated Round 4 — Discussion (Section IV).
+
+---
+
+## Round 4 — Simulated Referee #2 (theory-focused): Discussion (Section IV) — 2026-08-01
+
+**Referee recommendation:** Major Revision → Minor Revision if presentation fixes below are implemented.
+
+| ID | Referee theme | Manuscript action | Status |
+|----|---------------|-------------------|--------|
+| **R4-M1** | Discussion too long (~5 pp.; defending $\mathcal{S}$) | Restructured IV.A--E; removed `sec:interpretive` / `sec:conceptual` definitional blocks (~30\% cut); uniqueness moved to Methods | **done** |
+| **R4-M2** | Literature opener indirect | Opening: **Our work differs from previous studies in that...** (`sec:discussion_literature`) | **done** |
+| **R4-M3** | qHP scope good; compress graphene/COF | Single sentence on stiffer hosts; retained non-uniqueness disclaimer | **done** |
+| **R4-M4** | B/N/P: add electronic + geometric DOF | Added explicit sentence in literature subsection | **done** |
+| **R4-M5** | Physical discovery belongs in Intro | Final Intro paragraph: primary discovery is **physical**, not a new descriptor | **done** |
+| **R4-M6** | Eq.(1) too late | Already in Introduction (Round 2); Discussion cites only | **done** (prior) |
+| **R4-M7** | Operational thresholds need caveat | Added: **practical screening criteria rather than thermodynamic boundaries** | **done** |
+| **R4-M8** | Interpretive foundations too late | Definitional material → `sdc_method_section.tex` (uniqueness); Discussion physics-only | **done** |
+| **R4-M9** | P mechanism hierarchy unclear | Explicit **primary / secondary / tertiary** in `sec:mechanistic` | **done** |
+| **R4-M10** | Need one mechanism figure narrative | Fig.~\ref{fig:mechanism} caption reframed as hierarchy chain | **done** |
+| **R4-m1--m5** | Repetition (interaction energy, order parameter, CE, Taylor) | Deleted redundant paragraphs; single Methods/Intro pointers | **done** |
+| **R4-Language** | PRB passive tone | **The present results indicate** / **The calculations suggest** in Discussion + Conclusions | **done** |
+| **R4-Structure** | IV.A Main finding → B Mechanism → C Literature → D Limitations → E Future work | New subsection labels `sec:discussion_main` … `sec:discussion_future` | **done** |
+
+**Verify:** `bash paper/compile_prb.sh`.
+
+**Next:** Optional full-manuscript tone pass; Track A backlog (SCAN, $k$, $n{=}4$ P relax) in Limitations only.
+
+---
+
+## Round 5 — Simulated AE / Referee #2: Physics Story Audit — 2026-08-01
+
+**Referee recommendation:** Major Revision → Minor Revision if physics story reframed as below.
+
+| ID | Referee theme | Manuscript action | Status |
+|----|---------------|-------------------|--------|
+| **R5-M1** | $\mathcal{S}$ is mixed finite difference, not new physics | Main claim = **additive screening fails**; $\mathcal{S}$ = estimator only (Abstract, Intro, Methods, Conclusions) | **done** |
+| **R5-M2** | Missing general principle | **General rule** paragraph: non-additivity $\propto$ frozen elastic incompatibility (Intro, Discussion) | **done** |
+| **R5-M3** | P mechanism hierarchy | Retained/strengthened primary/secondary/tertiary (Round 4 + R5 electronic responds) | **done** |
+| **R5-M4** | Qualitative scaling law | Results: $|\mathcal{S}|$ vs $|\Delta r_{\mathrm{cov}}|$ at $n{=}1$ (audit JSON); N breaks radius-only trend | **done** |
+| **R5-M5** | Relaxed limit is physics, not limitation | Abstract + Results + Discussion: near-zero $\mathcal{S}$ after relax = elastic-work origin | **done** |
+| **R5-M6** | Electronic origin unclear | **Electronic structure responds rather than controls** (Discussion) | **done** |
+| **R5-M7** | Fig. 2 graphical summary | New panel **(f)** workflow schematic + caption rewrite | **done** |
+| **R5-M8** | Eq. mixed derivative | Eq.~\eqref{eq:mixed_derivative} in Methods | **done** |
+| **R5-M9** | Error budget table | Table~\ref{tab:sigma_S} expanded (SCF, cutoff, vdW, relax, $k$, XC) | **done** |
+| **R5-M10** | Applicability framework | **When additive screening should fail** paragraph (Discussion IV.A) | **done** |
+
+**Verify:** `bash paper/figures/render_prb.sh` + `bash paper/compile_prb.sh`.
+
+---
+
+## Round 6 — Simulated AE: Full-manuscript polish — 2026-08-01
+
+**Referee recommendation:** Minor Revision (editorial) if physics story (Rounds 4–5) is accepted.
+
+| ID | Referee theme | Manuscript action | Status |
+|----|---------------|-------------------|--------|
+| **R6-E1** | Cover letter undersells physics story | Rewrote `cover_letter_prb.txt`: additive failure, estimator role, elastic-work origin | **done** |
+| **R6-E2** | Abstract vs Discussion tone mismatch | Abstract: “matched four-corner audits show” (passive audit voice) | **done** |
+| **R6-E3** | Intro redundancy | Merged investigate/hypothesize into single hypothesis block | **done** |
+| **R6-E4** | Literature opener tone | “The present work differs…” (`sec:discussion_literature`) | **done** |
+| **R6-E5** | Stale cover-letter cross-refs | Removed incorrect legacy figure pointers; Tables I–V aligned | **done** |
+
+**Archive:** `paper/referee_report_round6_full_manuscript.md`
+
+**Verify:** `bash paper/compile_prb.sh`
+
+**Next:** Optional author PDF review; Track A backlog (SCAN, $k$, $n{=}4$ P relax) remains Limitations-only until converged.
+

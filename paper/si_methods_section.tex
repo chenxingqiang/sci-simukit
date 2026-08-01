@@ -4,14 +4,17 @@ All total-energy and electronic-structure calculations use CP2K~\cite{cp2k2025} 
 Unless stated otherwise, biaxial strain scales the in-plane lattice vectors of the pristine equilibrium cell at fixed fractional coordinates (rigid-strain protocol).
 Reported $\mathcal{S}$ magnitudes under this protocol are upper bounds at fixed coordinates; Table~\ref{tab:III} in the main text benchmarks the tetramer $P$ four-corner ionic-relaxation grid.
 Plane-wave cutoffs are 400~Ry for $n\leq 4$ and 350~Ry for $n\geq 6$; $\mathcal{S}(n)$ comparisons at fixed $n$ use identical cutoffs.
-Production supercells use $\Gamma$-only sampling; a partial cutoff audit at $6\times\mathrm{C}_{60}$ N and $+3$\% shifts one corner energy by ${\sim}0.057$~meV/atom between 350 and 400~Ry---below the smallest $|\mathcal{S}|$ in the $n\leq 4$ core grid.
-Direct $\mathcal{S}(\mathrm{cutoff})$, $\mathcal{S}(k)$, and $\mathcal{S}(\mathrm{EPS\_SCF})$ curves are listed as future sensitivity work in the main-text Limitations.
+Production supercells use $\Gamma$-only sampling.
+Because $\mathcal{S}$ is a four-corner difference on the same cell, sensitivity should be audited on $\mathcal{S}(\mathrm{cutoff})$ and $\mathcal{S}(k)$, not on bare total energies alone.
+A partial cutoff audit at $6\times\mathrm{C}_{60}$ N and $+3$\% shifts one corner total by ${\sim}0.057$~meV/atom between 350 and 400~Ry, implying $|\Delta\mathcal{S}|<0.2$~meV/atom when only the mesh drifts (main text, Sec.~\ref{sec:methods_coupling}).
+Full $\mathcal{S}(\mathrm{cutoff})$, $\mathcal{S}(k)$, and $\mathcal{S}(\mathrm{EPS\_SCF})$ curves are targeted supplements (main-text Limitations).
+A representative SCAN or r$^2$SCAN single-point on a high-$|\mathcal{S}|$ corner (e.g., periodic $P$ at $n{=}1$, $+3$\%) is listed as a targeted meta-GGA sensitivity test; production rankings and signs are framed as within-PBE+D3 (main text, Sec.~\ref{sec:methods}).
 
 Tetramer models ($4\times\mathrm{C}_{60}$) use B/N/P substitution at nominal ${\sim}5$~at.\% on fixed site maps (reference and independent alternate configurations).
 Periodic scaling cells contain one substituent per C$_{60}$ ($n=1$--$8$) on a fixed production site map.
 Dopant sites are not thermodynamically re-optimized.
 Linear $\alpha=\mathrm{d}E/\mathrm{d}\epsilon$ and substitution energy differences $\Delta E_{\mathrm{sub}}$ follow the main-text definitions.
-A calculation inventory appears in Tables~\ref{tab:II} and~\ref{tab:IIarchive}.
+A calculation inventory appears in Tables~\ref{tab:II} and~\ref{tab:inventory_archive}.
 
 \paragraph{Marcus vertical step (Supplemental only).}
 Charged-state geometry optimizations and vertical single-points at neutral geometries yield adiabatic IP/EA and Marcus $\lambda^{\pm}$, following Ref.~\citenum{Capobianco2024electron}.

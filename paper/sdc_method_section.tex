@@ -1,20 +1,10 @@
 \subsection{Strain--dopant coupling energy}
 \label{sec:methods_coupling}
 
-\paragraph{Energy landscape and Taylor expansion.}
-Joint mechanical and chemical load is specified by biaxial strain $\epsilon$ and substitutional species $\delta\in\{\mathrm{B},\mathrm{N},\mathrm{P}\}$.
-Let $E(\epsilon,\delta)$ denote the total energy of the matched supercell at strain $\epsilon$ and dopant label $\delta$ (pristine for $\delta{=}0$).
-Expanding the energy per atom $e(\epsilon,\delta)=E(\epsilon,\delta)/N_{\mathrm{atoms}}$ about the pristine, zero-strain reference in a continuous composition parameter $x$ (holding supercell size fixed) gives, schematically,
-\begin{equation}
-e(\epsilon,x) \approx e_{0} + a\,\epsilon + b\,x + c\,\epsilon\,x + \mathcal{O}(\epsilon^2,x^2,\epsilon^2 x,\epsilon x^2),
-\label{eq:taylor_coupling}
-\end{equation}
-where the bilinear term $c\,\epsilon x$ is the lowest-order \emph{non-additive} coupling between external strain and composition.
-Sequential strain-only and doping-only workflows estimate $e(\epsilon,x)$ by keeping only the linear terms $a\epsilon+bx$; they omit $c\,\epsilon x$ and all higher-order cross terms.
-For finite strain and discrete dopants, the same omitted content is estimated by a four-point finite difference.
+The physical hypothesis is the bilinear cross term $c\,\epsilon x$ in Eq.~\eqref{eq:taylor_coupling} (Introduction): under constrained load, $c\neq 0$ and can be large enough to invalidate additive screening.
+$\mathcal{S}$ is the symmetric four-corner finite-difference \emph{estimator} of that term at $+3$\% load---not a postulated order parameter (descriptor comparison: Supplemental Material, Table~\ref{S-tab:descriptor}; thermodynamic caveats: Sec.~\ref{sec:discussion_limitations}).
+Among relaxed free-energy differences $\Delta G$, enthalpic formation energies with chemical potentials, or pairwise binding increments, Eq.~\eqref{eq:synergy_order} is the unique four-corner construction that removes independent strain-only and doping-only contributions in one step.
 
-\paragraph{Four-corner finite difference [Eq.~\eqref{eq:synergy_order}].}
-We refer to this interaction energy as the \emph{strain--dopant coupling energy} $\mathcal{S}$ (a bilinear coupling metric, not an order parameter for a broken-symmetry phase):
 \begin{equation}
 \mathcal{S}(\epsilon,\delta)
 = \Delta E(\epsilon,\delta) - \bigl[\Delta E(\epsilon,0) + \Delta E(0,\delta)\bigr],
@@ -23,50 +13,34 @@ We refer to this interaction energy as the \emph{strain--dopant coupling energy}
 with
 $\Delta E(\epsilon,\delta)=\bigl[E(\epsilon,\delta)-E(0,\mathrm{pristine})\bigr]/N_{\mathrm{atoms}}$
 and $\delta{=}0$ denoting the pristine reference at the same supercell size $n\times\mathrm{C}_{60}$.
-Algebraically,
+Equivalently,
 \begin{equation}
 \mathcal{S}(\epsilon,\delta)=\frac{E(\epsilon,\delta)-E(\epsilon,0)-E(0,\delta)+E(0,0)}{N_{\mathrm{atoms}}},
 \label{eq:four_corner}
 \end{equation}
-so $\mathcal{S}$ depends only on the four corner totals and is independent of any arbitrary additive offset common to all cells.
-Only a four-state construction removes the linear strain response, the linear doping shift, and the shared pristine reference in one gauge-fixed estimator; three-point or sequential-difference schemes retain spurious linear contamination.
-In the limit of small $\epsilon$ and a smooth composition path, $\mathcal{S}/(\epsilon\,\Delta x)$ approaches a discrete mixed derivative $\partial^2 e/\partial\epsilon\,\partial x$; at the finite $+3$\% loads used here, $\mathcal{S}$ reports the \emph{nonlinear} cross term that additive models drop, not merely an infinitesimal curvature.
+which depends only on the four corner totals (reference independence).
+In the continuum limit of small strain and composition increments,
+\begin{equation}
+\mathcal{S}(\epsilon,\delta)\approx
+\frac{\partial^2 E}{\partial\epsilon\,\partial\delta}\,
+\Delta\epsilon\,\Delta\delta
++ \mathcal{O}(\Delta\epsilon^2,\Delta\delta^2,\Delta\epsilon^2\delta,\epsilon\delta^2),
+\label{eq:mixed_derivative}
+\end{equation}
+so $\mathcal{S}$ reports the discrete mixed second derivative of total energy on the audited $(\epsilon,\delta)$ grid.
+Only a four-state construction removes linear strain, linear doping, and shared reference offsets in one symmetric estimator; at finite $+3$\% load and discrete B/N/P labels, $\mathcal{S}$ quantifies the nonlinear cross term that additive models drop.
 
-\paragraph{Schematic energy functional.}
-Eq.~\eqref{eq:taylor_coupling} can be read as a minimal two-parameter energy functional
-$e(\epsilon,x)\approx e_{\mathrm{elastic}}(\epsilon)+e_{\mathrm{chem}}(x)+c\,\epsilon x$,
-where $e_{\mathrm{elastic}}$ and $e_{\mathrm{chem}}$ are the strain-only and composition-only increments estimated by separate scans, and $c\,\epsilon x$ is the omitted bilinear work when a dopant-induced \emph{internal stress field} overlaps nonlinearly with external biaxial load on a soft cage.
-In linear elastic inclusion theory the cross term vanishes at leading order; qHP C$_{60}$ departs from that limit because intramolecular buckling stores internal stress that external tension can release cooperatively (Discussion).
+We report $\mathcal{S}$ in meV per atom; $\mathcal{S}<0$ ($>0$) means the coupled corner is more (less) stable than the additive estimate.
+Strain $\epsilon$ and dopant label $\delta$ are not interchangeable control axes.
 
-\paragraph{Relation to interaction and formation energies.}
-Algebraically, Eq.~\eqref{eq:synergy_order} has the form of an interaction (coupling) energy, and we claim no novelty in that construction.
-Its distinct role is \emph{dimensional}: a formation or substitution energy subtracts a single reference state, and a binding or interaction energy measures the coupling of one fixed pair of fragments, whereas $\mathcal{S}$ is a symmetric \emph{double-reference cross term} over the four corners of the two-dimensional $(\epsilon,\delta)$ control space that is spanned by high-throughput screening.
-It therefore quantifies a quantity none of the pairwise energies provide: the error incurred when total energies under joint load are assembled additively from separate strain-only and doping-only scans (Sec.~\ref{sec:synergy}).
-Table~\ref{tab:descriptor} contrasts $\mathcal{S}$ with common stability and electronic descriptors on these axes.
-Consistent with this purely energetic definition, $|\mathcal{S}|$ is \emph{not} reducible to a single geometric ($\Delta\bar{d}$) or charge ($\Delta q$) channel (Sec.~\ref{sec:mechanistic}); it is this irreducibility, rather than any new functional form, that motivates reporting $\mathcal{S}$ as a coupling descriptor for the joint design space.
+If each corner carries uncorrelated per-atom uncertainty $\sigma_e$, error propagation gives $\sigma_{\mathcal{S}}=2\sigma_e$.
+Table~\ref{tab:sigma_S} lists demonstrated and pending contributions to the reporting band; we use $\sigma_{\mathcal{S}}\lesssim 2$~meV/atom as a conservative protocol floor on the $n\leq 4$ grid when interpreting the smallest periodic points ($2.3$--$3.0$~meV/atom for N and B at $n{=}1$).
+Periodic $\mathcal{S}$ values in the main text are from the $+3$\% size-scaling grid (Table~\ref{tab:IV}).
 
-When $\alpha_\delta=\mathrm{d}E/\mathrm{d}\epsilon$ denotes the \emph{total}-cell linear strain coefficient (meV per 1\% strain) at fixed $n$, a first-order estimate of the per-atom cross term is $\mathcal{S}(\epsilon,\delta)\approx(\alpha_\delta-\alpha_0)\,\epsilon/N_{\mathrm{atoms}}$ at small $\epsilon$ under the rigid-strain protocol; tetramer and periodic $n$ use different $N_{\mathrm{atoms}}$ and dopant concentrations, so this link is not used quantitatively in the periodic audit (Discussion, argument scope).
-
-\paragraph{Physical meaning, sign, and units.}
-Physically, $\mathcal{S}$ measures the energetic cost of \emph{nonlinear} interaction between externally imposed biaxial strain and dopant-induced internal stress: when internal cage distortion and macroscopic load are applied together, the total energy need not equal the sum of separate strain-only and doping-only increments.
-We report $\mathcal{S}$ in meV per atom so that values are comparable across supercell sizes $n\times\mathrm{C}_{60}$ at fixed one-substituent-per-C$_{60}$ loading (${\sim}1.67$~at.\% in periodic cells); the same per-atom unit is used for tetramer (${\sim}5$~at.\%) audits with the understanding that concentration differs (Sec.~\ref{sec:generality}).
-By convention, $\mathcal{S}<0$ means the coupled $(\epsilon,\delta)$ corner is \emph{more stable} than the additive estimate (cooperative or stabilizing coupling under load), whereas $\mathcal{S}>0$ means the coupled state is \emph{less stable} than additive sequential scans predict (anti-cooperative coupling).
-Because $\delta$ is a discrete chemical label rather than a continuous composition coordinate, $\mathcal{S}(\epsilon,\mathrm{B})$, $\mathcal{S}(\epsilon,\mathrm{N})$, and $\mathcal{S}(\epsilon,\mathrm{P})$ are not required to follow a single smooth surface in $\delta$; cross-species comparisons are meaningful only on matched site maps at the stated concentrations.
-
-\paragraph{Size scaling and uncertainty.}
-$|\mathcal{S}|$ is not constrained to decay linearly with $1/n$: electrostatic dilution, cutoff choice, and cage-local distortion can make the cross term peak at intermediate or small $n$ (Table~\ref{tab:IV}; Fig.~\ref{fig:synergy}).
-If each corner total energy is converged independently with an uncorrelated per-atom uncertainty $\sigma_e$, a conservative propagation estimate for Eq.~\eqref{eq:four_corner} is $\sigma_{\mathcal{S}}\approx 2\sigma_e$ (four equal contributions in quadrature).
-In practice, identical numerical settings across corners induce partial cancellation, so realized $\mathcal{S}$ noise is often below this upper bound (Sec.~\ref{sec:validation}).
-A partial cutoff audit shifts one corner total by only ${\sim}0.057$~meV/atom between 350 and 400~Ry at $6\times\mathrm{C}_{60}$ N and $+3$\%, implying $|\Delta\mathcal{S}|<0.2$~meV/atom for matched protocols when only one mesh parameter drifts.
-We therefore report conservative internal uncertainties of $\sigma_{\mathcal{S}}\lesssim 2$~meV/atom for the $n\leq 4$ production grid (well below the P peaks at 8--32~meV/atom) and treat $|{\mathcal{S}}|>{\sim}2$~meV/atom as above protocol noise for the smallest audited periodic points (e.g., $2.3$~meV/atom for N at $n{=}1$).
-Periodic $\mathcal{S}$ values in the main text are taken from the $+3$\% size-scaling grid (Table~\ref{tab:IV}).
-
-\paragraph{Additive failure metric.}
-To quantify how large a failure of additivity is, we report the \emph{additive fractional error}
+To quantify additive failure magnitude we report
 \begin{equation}
 \eta \equiv \frac{|\mathcal{S}|}{|\Delta E_{\mathrm{coupled}}|},
 \label{eq:additive_fraction}
 \end{equation}
-where $\Delta E_{\mathrm{coupled}}=(E(\epsilon,\delta)-E(0,0))/N_{\mathrm{atoms}}$ is the coupled corner increment from the pristine reference at the same supercell size.
-At $n{=}4$ and $+3$\% strain, $\eta\approx 8\%$ for P ($|\mathcal{S}|=23.7$~meV/atom vs.\ $|\Delta E_{\mathrm{coupled}}|\approx 283$~meV/atom), whereas B and N remain below $1\%$ because their $|\mathcal{S}|$ is small relative to the coupled shift dominated by substitution and strain-only increments.
-$\eta$ is a \emph{ranking} diagnostic for sequential workflows, not a universal thermodynamic significance threshold; it should be read alongside $|{\mathcal{S}}|$ and the audited distribution in Fig.~\ref{fig:synergy}(d).
+where $\Delta E_{\mathrm{coupled}}=(E(\epsilon,\delta)-E(0,0))/N_{\mathrm{atoms}}$.
+At $n{=}4$ and $+3$\% strain, $\eta\approx 8\%$ for P ($|\mathcal{S}|=23.7$~meV/atom vs.\ $|\Delta E_{\mathrm{coupled}}|\approx 283$~meV/atom), whereas B and N remain below $1$\%.

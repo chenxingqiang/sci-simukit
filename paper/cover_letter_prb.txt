@@ -1,7 +1,7 @@
 ================================================================================
 PHYSICAL REVIEW B — COVER LETTER (major revision response)
 Article type: Regular Article
-Manuscript: Breakdown of Additive Strain--Doping Energetics in Quasi-Hexagonal C60 Graphullerene
+Manuscript: Non-additive Strain--Dopant Energetics in Quasi-Hexagonal C60 Graphullerene
 Authors: Xingqiang Chen, Qixing Wang (Xiamen University)
 Corresponding author: xingqiang.chen@xmu.edu.cn
 ================================================================================
@@ -9,62 +9,65 @@ Corresponding author: xingqiang.chen@xmu.edu.cn
 Dear Editor,
 
 We submit the revised manuscript for consideration as a Regular Article in
-Physical Review B in response to the referee report. All former supplemental
-tables and figures are incorporated in the main text (Methods validation and
-Results subsections); no separate Supplemental Material file accompanies this
-revision.
+Physical Review B in response to the referee report.
+
+The contribution is a condensed-matter physics result, not a new computational
+descriptor. Under mechanically constrained joint load on quasi-hexagonal C60
+graphullerene, additive strain--dopant energetic screening fails: totals on the
+joint E(epsilon, delta) landscape need not equal the sum of separate strain-only
+and substitution-only increments. The bilinear cross term in a Taylor expansion
+of total energy can reach meV-per-atom magnitudes large enough to change
+high-throughput stability rankings for size-mismatched phosphorus, while linear
+strain coefficients alpha do not reliably predict that omitted term. The matched
+four-corner difference S is a finite-difference estimator of the mixed
+second-order coupling---a diagnostic protocol, not the physical discovery.
+Ionic relaxation nearly extinguishes |S|, indicating that the audited coupling
+originates predominantly from stored elastic work under constrained load rather
+than from an intrinsic electronic interaction term.
+
+All former supplemental tables and figures are incorporated in the main text;
+no separate Supplemental Material file accompanies this revision.
 
 Summary of revisions (Major comments):
 
-(1) Rigid-strain protocol — We state explicitly that rigid-cell $\alpha$ and
-    $\mathcal{S}$ are upper bounds until ionic-relaxation and alternate-placement
-    benchmarks complete (Tables~III--IV). Table~III defines a four-corner
-    fixed-cell GEO\_OPT benchmark (pristine and $P$ at $\epsilon{=}0$ and $+3$\%;
-    4/4 corners converged; $\mathcal{S}_{\mathrm{relaxed}}=-2.28$ vs.\ rigid $+0.96$~meV/atom,
-    sign not preserved; cross-functional legacy PBE vs.\ PBE+D3). The main text separates periodic rigid $\mathcal{S}(n)$ from
-    from tetramer relaxed cross terms and clarifies that $E_{\mathrm{sub}}$ is not
-    a thermodynamic formation enthalpy.
+(1) Rigid-strain protocol — Rigid-cell alpha and S are upper bounds for
+    mechanically constrained loading; ionic-relaxation tetramer benchmarks
+    (Table III, 4/4 corners) show sign reversal and orders-of-magnitude
+    suppression upon stress release. The main text separates periodic rigid
+    S(n) from tetramer relaxed cross terms and states that E_sub is not a
+    thermodynamic formation enthalpy.
 
-(2) Alternate dopant placement — Table~IV documents reference-placement
-    $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ on the archived legacy-PBE grid and a
-    completed alternate seed-137 map (18/18 PBE+D3 rigid ENERGY tasks): N $\alpha$
-    reverses sign vs.\ the reference placement; P $|\alpha|$ is placement-dominated
-    ($\sim 10^3$~meV/\%); $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ remains $\mathcal{O}(10)$~meV/atom
-    on the alternate map (cross-functional comparison to legacy-PBE reference column
-    remains qualitative). Periodic $\mathcal{S}$ magnitudes remain
-    configuration-specific; periodic placement audits (seeds 137 and 271; 16/16 rigid single-points converged; both preserve P$>$B$>$N $|\mathcal{S}|$ ranking at $+3$\%) are complete. Population-strain Hirshfeld tasks remain in the PRB queue.
+(2) Alternate dopant placement — Table IV documents reference and alternate
+    seed-137 maps (18/18 PBE+D3 rigid ENERGY tasks on the tetramer grid;
+    16/16 periodic placement audits on seeds 137 and 271). Periodic |S|
+    magnitudes remain configuration-specific; ranking trends are reported
+    with placement caveats.
 
-(3) Mechanistic depth — Table~V quantifies dopant--cage nearest-neighbor
-    distances and covalent-radius mismatch from archived XYZ structures
-    (geometric metrics only; Mayer bond order and Bader charges are not
-    computed). Discussion mechanistic synthesis cites these numbers together
-    with gap-vs-strain slopes (main Fig.~1a), $\pi$-DOS panels (main Fig.~1b;
-    standalone Fig.~2), and the fifteen-point synergy audit.
+(3) Mechanistic depth — Table V and Discussion IV.B give a primary /
+    secondary / tertiary hierarchy for phosphorus (geometric misfit strain,
+    electronic redistribution, pi-DOS morphology). Electronic structure
+    responds to the coupling rather than controlling it.
 
-(4) Argumentation — We rewrote the $\mathcal{S}$--$\alpha$ comparison as a
-    qualitative sanity check only (concentration mismatch), tightened stability
-    language to \emph{relative} margins among comparable chemistries (without
-    claiming reordering of widely separated $E_{\mathrm{sub}}$), and clarified
-    that $\mathcal{S}$ is a same-functional energy difference with largely
-    cancelling systematic errors.
+(4) Argumentation — The S--alpha comparison is qualitative only
+    (concentration and boundary mismatch). Stability language is scoped to
+    relative margins among comparable chemistries. Discussion IV is
+    restructured (main finding, mechanism, literature, limitations, outlook)
+    with PRB-appropriate passive tone.
 
-(5) Cutoff consistency — A matched 400~Ry single-point control for
-    $6\times\mathrm{C}_{60}$ N @ $+3$\% strain (Table~II; pending) is
-    documented; the reported N $\mathcal{S}(n)$ sign change between $n=6$ and
-    $n=8$ is excluded from design rules until the cutoff400 benchmark converges
-    (Table~III--IV tetramer controls are complete).
+(5) Robustness — Table sigma_S reports an error budget (SCF, cutoff, vdW,
+    ionic relaxation, k-sampling, XC sensitivity); SCAN/r2SCAN and dense-k
+    benchmarks remain honestly pending in Limitations.
 
 Minor comments: Removed internal repository paths from the main text (Data
-Availability only); merged former Supplemental tables/figures into standard
-PRB sections (Methods validation + Results subsections; no standalone
-Section~IV); removed synthetic FCWD placeholder from the transport figure;
-APS journal abbreviations for cited references; Pereira2026 and ShaikhPeng2025 arXiv
-entries marked as preprints.
+Availability only); APS journal abbreviations for cited references; figure
+captions aligned with the physics-first narrative (Fig. 2 workflow panel).
 
 Data availability: converged inputs/outputs and audit tables at
 https://github.com/chenxingqiang/graphullerene-strain-engineering
-Matched-functional rigid PBE+D3 (Table~III footnote, 4/4), periodic placement (16/16), and cutoff400 (41/41) are complete; population strain path remains in the PRB queue; Tables~III--IV tetramer benchmarks are complete.
-Marcus $\lambda$ (Fig.~3): eight vertical single-points at the neutral geometry are converged; B electron-channel $\lambda^{-}$ is negative and excluded (Limitations).
+
+Marcus lambda (Fig. 3): eight vertical single-points at the neutral geometry
+are converged; B electron-channel lambda- is negative and excluded
+(Limitations).
 
 Prior submission: none to APS journals. Not a joint submission.
 

@@ -8,6 +8,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
+import numpy as np
+
 HA_TO_MEV = 27.211386245988 * 1000.0
 
 
@@ -125,15 +127,41 @@ def n4_decomposition(sdc: dict[str, Any], dopant: str) -> dict[str, float]:
     raise KeyError(f"No n=4 decomposition for dopant {dopant}")
 
 
-def load_reference_pbed3_alpha_S() -> tuple[dict[str, float], dict[str, float], float]:
-    """Reference-placement PBE+D3 tetramer alpha and S@+3% (complete grid)."""
+def _alpha_fit_stderr(strains: list[float], energies_ha: list[float]) -> float:
+    """Standard error of least-squares slope (meV/%) on total-cell energies."""
+    ha_to_mev = 27.211386245988 * 1000.0
+    x = np.array(strains, dtype=float)
+    y = np.array(energies_ha, dtype=float)
+    if len(x) < 3:
+        return float("nan")
+    a = np.vstack([x, np.ones(len(x))]).T
+    coef, _, _, _ = np.linalg.lstsq(a, y, rcond=None)
+    yhat = a @ coef
+    se = np.sqrt(np.sum((y - yhat) ** 2) / (len(x) - 2))
+    return float(se * np.sqrt(1.0 / np.sum((x - x.mean()) ** 2)) * ha_to_mev)
+
+
+def load_reference_pbed3_alpha_S() -> tuple[
+    dict[str, float], dict[str, float], float, dict[str, float]
+]:
+    """Reference-placement PBE+D3 tetramer alpha, S@+3%, and linear-fit slope SEs."""
     ref = load_json("experiments/analysis/reference_placement_pbed3.json")
     if ref.get("status") != "complete":
         raise RuntimeError("reference_placement_pbed3 not complete")
     alpha = {d: float(ref["systems"][d]["alpha_meV_per_pct"]) for d in ("B", "N", "P")}
     alpha["pristine"] = float(ref["pristine"]["alpha_meV_per_pct"])
     s_tet = {d: float(ref["systems"][d]["S_meV_per_atom_at_eps3"]) for d in ("B", "N", "P")}
-    return alpha, s_tet, float(ref["pristine"]["alpha_meV_per_pct"])
+    alpha_err: dict[str, float] = {}
+    for key in ("B", "N", "P"):
+        se = ref["systems"][key]["strain_energies_ha"]
+        strains = sorted(float(k) for k in se)
+        es = [v for s in strains for k, v in se.items() if abs(float(k) - s) < 1e-9]
+        alpha_err[key] = _alpha_fit_stderr(strains, es)
+    pri_se = ref["pristine"]["strain_energies_ha"]
+    pri_strains = sorted(float(k) for k in pri_se)
+    pri_es = [v for s in pri_strains for k, v in pri_se.items() if abs(float(k) - s) < 1e-9]
+    alpha_err["pristine"] = _alpha_fit_stderr(pri_strains, pri_es)
+    return alpha, s_tet, float(ref["pristine"]["alpha_meV_per_pct"]), alpha_err
 
 
 def load_alternate_alpha_S() -> tuple[dict[str, float], dict[str, float]]:

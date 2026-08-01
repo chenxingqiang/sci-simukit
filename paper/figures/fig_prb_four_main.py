@@ -38,6 +38,7 @@ from _style import (
     SYNERGY_CMAP,
     add_reference_lines,
     apply_nature_style,
+    draw_additive_screening_schematic,
     panel_label,
     panel_subtitle,
     plot_error_band,
@@ -50,6 +51,38 @@ from _style import (
 )
 
 OUT = FIG_DIR / "out"
+
+
+def _energy_landscape_inset(ax) -> None:
+    """Schematic bilinear corner of E(epsilon, delta) — not from DFT data."""
+    inset = ax.inset_axes([0.03, 0.06, 0.36, 0.44])
+    eps = np.linspace(0.0, 1.0, 48)
+    comp = np.linspace(0.0, 1.0, 48)
+    E_grid, X_grid = np.meshgrid(eps, comp)
+    z = 0.18 * E_grid + 0.14 * X_grid + 0.42 * E_grid * X_grid
+    inset.contourf(E_grid, X_grid, z, levels=14, cmap="cividis", alpha=0.88)
+    inset.contour(E_grid, X_grid, z, levels=7, colors="white", linewidths=0.45, alpha=0.55)
+    for ex, xv in ((0.0, 0.0), (1.0, 0.0), (0.0, 1.0), (1.0, 1.0)):
+        inset.plot(ex, xv, "o", ms=4.0, mfc="white", mec=INK, mew=0.7, zorder=5)
+    inset.set_xticks([0.0, 1.0])
+    inset.set_xticklabels([r"$0$", r"$+3\%$"], fontsize=5.5)
+    inset.set_yticks([0.0, 1.0])
+    inset.set_yticklabels([r"ref.", r"dop."], fontsize=5.5)
+    inset.set_xlabel(r"$\epsilon$", fontsize=6, labelpad=0)
+    inset.set_ylabel(r"$\delta$", fontsize=6, labelpad=0)
+    inset.tick_params(labelsize=5.5, pad=1)
+    inset.text(
+        0.5,
+        1.12,
+        r"$E(\epsilon,\delta)$: bilinear corner",
+        transform=inset.transAxes,
+        fontsize=5.8,
+        ha="center",
+        color=INK,
+    )
+    for spine in inset.spines.values():
+        spine.set_linewidth(0.6)
+        spine.set_color(INK)
 
 
 def _save(fig: plt.Figure, stem: str) -> tuple[Path, Path]:
@@ -154,7 +187,7 @@ def _pdos_path(dop: str, strain_tag: str) -> Path:
 def build_fig1() -> tuple[Path, Path]:
     apply_nature_style()
     gaps = parse_exp7_gaps()
-    alpha_ref, _, _ = load_reference_pbed3_alpha_S()
+    alpha_ref, _, _, alpha_err = load_reference_pbed3_alpha_S()
 
     fig = plt.figure(figsize=(PRB_WIDTH_IN, 6.6), facecolor="white")
     gs = GridSpec(3, 2, figure=fig, height_ratios=[0.82, 1.32, 0.95],
@@ -204,6 +237,7 @@ def build_fig1() -> tuple[Path, Path]:
     ax_c.set_xlabel(r"$\epsilon$ (%)")
     ax_c.set_ylabel(r"$E_g$ (eV)")
     style_axes(ax_c)
+    _energy_landscape_inset(ax_c)
     _legend_in(ax_c, loc="upper right", ncol=2, fontsize=6.8)
 
     panel_label(ax_d, "d", nature=True)
@@ -228,11 +262,25 @@ def build_fig2() -> tuple[Path, Path]:
     fits = audit.get("size_scaling_fits", {})
     s_rig, s_rel = load_periodic_relax_n1_P()
 
-    fig = plt.figure(figsize=(PRB_WIDTH_IN, 5.2), facecolor="white")
-    gs = GridSpec(2, 3, figure=fig, height_ratios=[1.12, 1.0],
-                  hspace=0.36, wspace=0.34, left=0.08, right=0.97, top=0.93, bottom=0.11)
-    ax_a, ax_b = fig.add_subplot(gs[0, 0]), fig.add_subplot(gs[0, 1:])
-    ax_c, ax_d, ax_e = fig.add_subplot(gs[1, 0]), fig.add_subplot(gs[1, 1]), fig.add_subplot(gs[1, 2])
+    fig = plt.figure(figsize=(PRB_WIDTH_IN, 5.65), facecolor="white")
+    gs = GridSpec(
+        3,
+        3,
+        figure=fig,
+        height_ratios=[0.34, 1.12, 1.0],
+        hspace=0.38,
+        wspace=0.34,
+        left=0.08,
+        right=0.97,
+        top=0.93,
+        bottom=0.10,
+    )
+    ax_f = fig.add_subplot(gs[0, :])
+    ax_a, ax_b = fig.add_subplot(gs[1, 0]), fig.add_subplot(gs[1, 1:])
+    ax_c, ax_d, ax_e = fig.add_subplot(gs[2, 0]), fig.add_subplot(gs[2, 1]), fig.add_subplot(gs[2, 2])
+
+    panel_label(ax_f, "f", nature=True)
+    draw_additive_screening_schematic(ax_f)
 
     dopants = ["B", "N", "P"]
     ns = [1, 2, 4, 6, 8]
@@ -356,6 +404,7 @@ def build_fig2() -> tuple[Path, Path]:
     panel_label(ax_d, "d", nature=True)
     s_all_abs = np.array([abs(r["synergy_S_meV_per_atom"]) for r in audit["synergy_table"]])
     med_s = float(np.median(s_all_abs))
+    q1, q3 = np.percentile(s_all_abs, [25, 75])
     bins = np.linspace(0, max(s_all_abs) * 1.08, 9)
     ax_d.hist(
         s_all_abs,
@@ -366,9 +415,42 @@ def build_fig2() -> tuple[Path, Path]:
         linewidth=0.55,
         zorder=2,
     )
+    bp = ax_d.boxplot(
+        s_all_abs,
+        vert=True,
+        positions=[max(s_all_abs) * 1.02],
+        widths=max(s_all_abs) * 0.06,
+        patch_artist=True,
+        showfliers=False,
+        medianprops=dict(color=INK, linewidth=1.2),
+        boxprops=dict(facecolor="white", edgecolor=INK, linewidth=0.8, alpha=0.95),
+        whiskerprops=dict(color=INK, linewidth=0.7),
+        capprops=dict(color=INK, linewidth=0.7),
+        zorder=4,
+    )
+    _ = bp
     ax_d.axvline(float(np.max(s_all_abs)), color=DOPANT_COLORS["P"], ls="--", lw=1.1,
                  label=f"max ({float(np.max(s_all_abs)):.1f})")
     ax_d.axvline(med_s, color=INK, ls=":", lw=1.0, label=f"median ({med_s:.1f})")
+    inset = ax_d.inset_axes([0.58, 0.48, 0.36, 0.46])
+    inset.boxplot(
+        s_all_abs,
+        vert=True,
+        patch_artist=True,
+        medianprops=dict(color=INK, linewidth=1.0),
+        boxprops=dict(facecolor=NATURE_BLUE, edgecolor=INK, linewidth=0.7, alpha=0.5),
+        whiskerprops=dict(color=INK, linewidth=0.6),
+        capprops=dict(color=INK, linewidth=0.6),
+        flierprops=dict(marker="o", markersize=2.5, markerfacecolor=INK, alpha=0.45),
+    )
+    inset.set_xticks([])
+    inset.set_ylabel(r"$|\mathcal{S}|$", fontsize=5.6, labelpad=1)
+    inset.tick_params(labelsize=5.2)
+    inset.text(0.5, 1.05, f"Q1={q1:.1f}, Q3={q3:.1f}", transform=inset.transAxes,
+               ha="center", va="bottom", fontsize=5.4, color=NATURE_GRAY)
+    for spine in inset.spines.values():
+        spine.set_linewidth(0.5)
+        spine.set_color("#CCCCCC")
     ax_d.set_xlabel(r"$|\mathcal{S}|$ (meV/atom)")
     ax_d.set_ylabel("count")
     style_axes(ax_d)
@@ -393,13 +475,22 @@ def build_fig2() -> tuple[Path, Path]:
         arrowprops=dict(arrowstyle="-|>", color=DOPANT_COLORS["P"], lw=0.85),
         ha="center",
     )
+    ax_e.annotate(
+        "stress\nrelease",
+        xy=(1, s_rel),
+        xytext=(1.18, s_rel + 6.0),
+        fontsize=6.2,
+        color=INK,
+        arrowprops=dict(arrowstyle="-|>", color=INK, lw=0.75),
+        ha="center",
+    )
     panel_subtitle(ax_e, r"$n{=}1$ P @ $+3$\%", ha="right")
     return _save(fig, "figure_prb_2_synergy")
 
 
 def build_fig3() -> tuple[Path, Path]:
     apply_nature_style()
-    alpha_ref, _, _ = load_reference_pbed3_alpha_S()
+    alpha_ref, _, _, alpha_err = load_reference_pbed3_alpha_S()
     audit_mev = load_json("experiments/analysis/sdc/sdc_exp10_synergy_audit.json")
     qpaths, dpaths = _hirsh_paths(), _local_d_sigma_paths()
     dopants = ["B", "N", "P"]
@@ -449,29 +540,38 @@ def build_fig3() -> tuple[Path, Path]:
     abs_alpha = {d: abs(float(alpha_ref[d])) for d in dopants}
     abs_s4 = {d: abs(dict(synergy_rows(audit_mev, d))[4]) for d in dopants}
     abs_s1 = {d: abs(dict(synergy_rows(audit_mev, d))[1]) for d in dopants}
-    amax, smax = max(abs_alpha.values()) * 1.15, max(abs_s4.values()) * 1.25
+    amax = max(abs_alpha.values()) * 1.15
+    smax = max(abs_s4.values()) * 1.25
     s1_ref = max(abs_s1.values())
     ax_d.set_xlim(0, amax)
     ax_d.set_ylim(-smax * 0.08, smax)
     ax_d.axhspan(0, 8, xmin=0.42, xmax=1.0, color=DOPANT_FILLS["N"], alpha=0.45, zorder=0)
     ax_d.axhspan(12, smax, xmin=0.0, xmax=1.0, color=DOPANT_FILLS["P"], alpha=0.35, zorder=0)
     for d in dopants:
+        xerr = float(alpha_err.get(d, 0.0))
+        if np.isfinite(xerr) and xerr > 0:
+            ax_d.errorbar(
+                abs_alpha[d],
+                abs_s4[d],
+                xerr=xerr,
+                fmt="none",
+                ecolor=DOPANT_COLORS[d],
+                elinewidth=0.9,
+                capsize=2.5,
+                capthick=0.8,
+                alpha=0.85,
+                zorder=2,
+            )
         scatter_dopant(ax_d, abs_alpha[d], abs_s4[d], d, size=80 + 340 * (abs_s1[d] / s1_ref))
     ax_d.set_xlabel(r"$|\alpha|$ (meV/%)")
     ax_d.set_ylabel(r"$|\mathcal{S}|_{n=4}$ (meV/atom)")
     style_axes(ax_d)
     ax_d.text(0.98, 0.04, r"cloud size $\propto|\mathcal{S}|_{n=1}$", transform=ax_d.transAxes,
               ha="right", va="bottom", fontsize=6.8, color=NATURE_GRAY)
-    a_arr = np.array([abs_alpha[d] for d in dopants], dtype=float)
-    s_arr = np.array([abs_s4[d] for d in dopants], dtype=float)
-    r_pearson = float(np.corrcoef(a_arr, s_arr)[0, 1])
-    rank_a = np.argsort(np.argsort(a_arr))
-    rank_s = np.argsort(np.argsort(s_arr))
-    r_spear = float(np.corrcoef(rank_a, rank_s)[0, 1])
     ax_d.text(
         0.03,
         0.97,
-        f"Pearson r={r_pearson:+.2f}, R²={r_pearson**2:.2f}; Spearman ρ={r_spear:+.2f} (n=3)",
+        "qualitative rank comparison ($n{=}3$)",
         transform=ax_d.transAxes,
         ha="left",
         va="top",

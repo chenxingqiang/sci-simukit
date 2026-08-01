@@ -17,5 +17,6 @@ bash "$ROOT/figures/render_si_figures.sh"
 cd "$ROOT"
 latexmk -pdf -interaction=nonstopmode -file-line-error -f strain_doped_graphullerene.tex
 latexmk -pdf -interaction=nonstopmode -file-line-error -f supplementary_figures.tex
+latexmk -pdf -interaction=nonstopmode -file-line-error -f strain_doped_graphullerene.tex
 bash "$ROOT/scripts/prb_wordcount.sh" 2>/dev/null || true
 echo "OK: $ROOT/strain_doped_graphullerene.pdf + supplementary_figures.pdf"

@@ -523,3 +523,68 @@ def draw_research_schematic(ax: Axes) -> None:
     )
 
 
+def draw_additive_screening_schematic(ax: Axes) -> None:
+    """Graphical summary: when separate DFT scans fail additive screening."""
+    ax.set_xlim(0, 10)
+    ax.set_ylim(0, 1.05)
+    ax.axis("off")
+
+    def box(x, y, w, h, text, edge, face):
+        patch = FancyBboxPatch(
+            (x, y),
+            w,
+            h,
+            boxstyle="round,pad=0.02,rounding_size=0.08",
+            linewidth=0.95,
+            edgecolor=edge,
+            facecolor=face,
+            zorder=2,
+        )
+        ax.add_patch(patch)
+        ax.text(
+            x + w / 2,
+            y + h / 2,
+            text,
+            ha="center",
+            va="center",
+            fontsize=6.8,
+            color=edge,
+            fontweight="bold",
+            linespacing=1.22,
+            zorder=3,
+        )
+
+    def arrow(p0, p1):
+        ax.add_patch(
+            FancyArrowPatch(
+                p0,
+                p1,
+                arrowstyle="-|>",
+                mutation_scale=9.0,
+                lw=0.9,
+                color="#555555",
+                shrinkA=3,
+                shrinkB=3,
+                zorder=1,
+            )
+        )
+
+    box(0.15, 0.22, 1.55, 0.62, "separate\nstrain / dopant DFT", NATURE_GRAY, "#F6F6F6")
+    box(2.05, 0.22, 1.35, 0.62, "additive\nprediction", NATURE_GRAY, "#EEEEEE")
+    box(3.75, 0.22, 1.55, 0.62, "coupled\nfour-corner DFT", NATURE_BLUE, "#E8F1FA")
+    box(5.65, 0.22, 1.15, 0.62, r"$\mathcal{S}$ gap", INK, "#F4F4F4")
+    box(7.15, 0.22, 2.05, 0.62, "screening\ndecision changes", DOPANT_COLORS["P"], DOPANT_FILLS["P"])
+    arrow((1.7, 0.53), (2.05, 0.53))
+    arrow((3.4, 0.53), (3.75, 0.53))
+    arrow((5.3, 0.53), (5.65, 0.53))
+    arrow((6.8, 0.53), (7.15, 0.53))
+    ax.text(
+        5.0,
+        0.98,
+        "additive screening fails when $|\\mathcal{S}|$ exceeds protocol band",
+        ha="center",
+        va="top",
+        fontsize=7.2,
+        color=NATURE_GRAY,
+    )
+

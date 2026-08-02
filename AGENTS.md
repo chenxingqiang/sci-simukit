@@ -27,11 +27,11 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Periodic relax n=1 P** | **4/4** ✅ |
 | **Population B/N/P** | **18/18** ✅ |
 | **reference_pbed3** | **24/24** ✅ |
-| **运行中** | none（MO_CUBES **12/12** ✅） |
-| **最新 Loop** | **R413** |
-| **下一 B 任务** | Mayer/Bader backlog；SCAN/cutoff convergence curves |
+| **运行中** | `size_6x60_N_pos3pct_cutoff300`（R417 启动，300 Ry 单点，cutoff 三点曲线） |
+| **最新 Loop** | **R417** |
+| **下一 B 任务** | Mayer/Bader backlog；SCAN + dense-$k$ rows（Table~sigma_S） |
 | **主张-证据** | 主文 α/S = **PBE+D3 only**（Table IV + periodic）；legacy Table I = **SI 归档** |
-| **Loop C** | C-M1 **closed** ✅；C-M2 **closed** ✅；C-M3 **partial**（Hirshfeld **A**） |
+| **Loop C** | C-M1 **closed** ✅；C-M2 **closed** ✅；C-M3 **partial**（Hirshfeld **A**）；C-m3 去重 **closed** ✅ |
 | **SDC** | **15** synergy 点 |
 | **旗杆** | **PRB Regular Article** major revision |
 
@@ -557,7 +557,7 @@ Substantial improvements in validation, mechanistic depth, and argument rigor re
 | **C-M4** | $\alpha$ vs $\mathcal{S}$ 错配 | B | 已删并列数值；仅 Eq.(1) 四角落 | Discussion 无 concentration-matched 对比 | **文稿 ✅** |
 | **C-m1** | $\mathcal{S}$ / $\pi$ / 断词 | B | R251：PDOS→$\pi$-DOS；order parameter；`\hyphenation` | 主稿+SI 无 bare PDOS | **✅** |
 | **C-m2** | 参考文献格式 | B | R252： cited keys APS sentence case；[15]=SM 唯一 | **✅** |
-| **C-m3** | 写作结构 | B | 删 fourfold（R247）；删修回进度句（R249）；orthogonal 去重 | **无** `7/8`、`at revision` 于主文/SI/caption | **文稿 ✅** / 去重 open |
+| **C-m3** | 写作结构 | B | 删 fourfold（R247）；删修回进度句（R249）；orthogonal 去重（R417 grep：主文 0 处） | **无** `7/8`、`at revision`、`orthogonal` 于主文/SI/caption | **文稿 ✅** / 去重 ✅ |
 | **C-m4** | 图 1(c)(d) | B | `fig_prl_main.py` / `figure_prb_main`（R250） | N 柱内标签；$n{=}4$ 左下；max $|\mathcal{S}|$ @ $n{=}1$ | **✅** |
 | **C-m5** | $E_\mathrm{sub}$ 定义 | B | R252：Validation 指回 Methods 定义 | 非形成焓、无 $\mu$ | **✅** |
 
@@ -1400,6 +1400,16 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R417（2026-08-02，三轨）**：
+  - **Track A**：启动 `size_6x60_N_pos3pct_cutoff300` 单点（np=8，2/3 CPU；由 cutoff400 模板仅改 PROJECT/CUTOFF）→ cutoff 收敛曲线 300/350/400 + D4 截断对照；**running**
+  - **Track B（横切）**：`theory_enhancement_report` R417 台账；快照同步 R413→R417；根目录误产 Targa `1` → `/private/tmp/1_tga_render_artifact_R417`（可恢复）
+  - **Track C（C-m3）**：grep 审计 — 主文/SI 无 `orthogonal`/`fourfold`/`at revision`/`7/8` → 去重 **closed** ✅；response R7c Next 补 Track A 状态
+  - **创新审计**：cutoff300 = **A 待收敛**（未入稿）；C-m3 audit = **A**；Mayer = **C**
+  - **paper_gap**：Mayer/Bader；SCAN + dense-$k$ rows；cutoff300 收敛后更新 Table~sigma_S 行
+  - **Git**：`commit: 369975a` — `loop R417: cutoff300 single point, C-m3 dedup close, snapshot sync`；（push 可选）
+  - **下一轮**：cutoff300 converged → `post_exp10_converged` + Table sigma_S 三点行；或 Mayer/Bader
+- **补记 R414–R416（commit 溯源；原轮未写 AGENTS 笔记）**：R414 `8575c72` — drop Fig.1(e) flowchart schematic；R415 `8d3d687` — PRB Rounds 4-6 additive-screening narrative + Discussion restructure；R416 `0b94275` — Round 7b–7c theory appendix, SI corner energies, S error bars。
 
 - **Loop R413（2026-07-29，Track B · PRB Rounds 5–8）**：
  - **Track A**：idle — **不干预**

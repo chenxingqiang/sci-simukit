@@ -934,3 +934,4 @@ We thank the referee for recognizing the corrections to doping concentration, Ma
 
 **Verify:** `bash paper/compile_prb.sh`; `bash paper/figures/render_prb.sh`.
 
+**Next (R417):** Track A — $6\times\mathrm{C}_{60}$ N $+3$\% single point at 300 Ry launched (extends Table~\ref{tab:sigma_S} cutoff audit to a 300/350/400~Ry three-point curve); $\sigma_{\mathcal{S}}$ quadrature remains pending dense-$k$ and meta-GGA rows; Mayer/Bader analysis remains future work.

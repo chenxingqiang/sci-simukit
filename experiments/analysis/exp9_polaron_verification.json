@@ -1,6 +1,6 @@
 {
   "source": "dft_results/exp_9_charged_polaron/outputs",
-  "verified_date": "2026-07-10",
+  "verified_date": "2026-08-02",
   "converged": 12,
   "total": 12,
   "note": "Adiabatic IP/EA from last GEO_OPT ENERGY line. Marcus lambda requires vertical ENERGY at neutral geometry (inputs/vertical/, not yet in outputs).",

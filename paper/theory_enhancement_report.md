@@ -7,6 +7,19 @@
 
 
 
+### R417 audit（2026-08-02 go loops — cutoff300 Track A + C-m3 close）
+
+| 项 | 状态 | 证据 |
+|----|------|------|
+| cutoff300 单点 | **A 待收敛** | `size_6x60_N_pos3pct_cutoff300.inp`（cutoff400 模板仅改 PROJECT/CUTOFF，diff 2 行）；运行中 np=8（2/3 CPU）；未入稿 |
+| cutoff 审计扩展 | **C→B 待收敛** | Table~\ref{tab:sigma_S} 现 350 vs 400 一行 → 收敛后 300/350/400 三点曲线 |
+| C-m3 写作结构 | **A** | 主文 grep：`orthogonal` 0 处、`fourfold` 0、`at revision` 0、`7/8` 0 |
+| Mayer/Bader | **C** | Limitations future work only（unchanged） |
+
+**创新审计（R417）**：cutoff300 = **A**（待收敛）；C-m3 audit = **A**；Mayer = **C**
+
+
+
 ### R412 audit（2026-07-18 go loops — process figures + Loop C）
 
 | 项 | 状态 | 证据 |

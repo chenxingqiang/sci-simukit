@@ -1407,7 +1407,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
   - **Track C（C-m3）**：grep 审计 — 主文/SI 无 `orthogonal`/`fourfold`/`at revision`/`7/8` → 去重 **closed** ✅；response R7c Next 补 Track A 状态
   - **创新审计**：cutoff300 = **A 待收敛**（未入稿）；C-m3 audit = **A**；Mayer = **C**
   - **paper_gap**：Mayer/Bader；SCAN + dense-$k$ rows；cutoff300 收敛后更新 Table~sigma_S 行
-  - **Git**：`commit: 369975a` — `loop R417: cutoff300 single point, C-m3 dedup close, snapshot sync`；（push 可选）
+  - **Git**：`commit: 46509b4` — `loop R417: cutoff300 single point, C-m3 dedup close, snapshot sync`；（push 可选）
   - **下一轮**：cutoff300 converged → `post_exp10_converged` + Table sigma_S 三点行；或 Mayer/Bader
 - **补记 R414–R416（commit 溯源；原轮未写 AGENTS 笔记）**：R414 `8575c72` — drop Fig.1(e) flowchart schematic；R415 `8d3d687` — PRB Rounds 4-6 additive-screening narrative + Discussion restructure；R416 `0b94275` — Round 7b–7c theory appendix, SI corner energies, S error bars。
 

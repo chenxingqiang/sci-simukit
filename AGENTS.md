@@ -28,9 +28,11 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Population B/N/P** | **18/18** ✅ |
 | **reference_pbed3** | **24/24** ✅ |
 | **运行中** | `size_6x60_N_pos3pct_cutoff300`（R417 启动，300 Ry 单点，cutoff 三点曲线） |
-| **最新 Loop** | **R417** |
-| **下一 B 任务** | Mayer/Bader backlog；SCAN + dense-$k$ rows（Table~sigma_S） |
-| **主张-证据** | 主文 α/S = **PBE+D3 only**（Table IV + periodic）；legacy Table I = **SI 归档** |
+| **最新 Loop** | **R419** |
+| **下一 B 任务** | **P0**：`n=2` 四角以 EPS_SCF $10^{-6}$ 重算 + `n=8` 参考态复核（解除 reference-limited）；其后 dense-$k$ `n=1`、Mayer/Bader |
+| **主张-证据** | 主文 α/S = **PBE+D3 only**；α 带拟合标准误（仅 N $>2\sigma$）；`n=2`/`n=8` 行 = **reference-limited** |
+| **引用** | **18/18 经 Crossref 核验**（R419 修 11 条：1 条虚构、3 条 DOI 错配、多条作者/页码错） |
+| **数据审计** | `paper/scripts/verify_manuscript_numbers.py` → **50/50 PASS** |
 | **Loop C** | C-M1 **closed** ✅；C-M2 **closed** ✅；C-M3 **closed**（text branch：Limitations + Table~V；Mayer/Bader = C）✅；C-m3 去重 **closed** ✅ |
 | **SDC** | **15** synergy 点 |
 | **旗杆** | **PRB Regular Article** major revision |
@@ -1100,7 +1102,9 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 | **B 文稿** | 落地 | **`render_prl.sh`**、**`render_si_figures.sh`**、`fig_prl_main.py`、`_load_audit.py`、`compile_si.sh` |
 | **B 文稿** | SDC 工具 | **`c/simukit-sdc`** → `sdc_exp10_results.json`；`sdc_exp10_synergy_audit.json`（meV）；Python 仅图 |
 | **B 文稿** | 文献 | **WebSearch**、Semantic Scholar、DOI；更新 `strain_graphullerene_50refs.bib` |
-| **B 文稿** | 验证 | `latexmk -pdf`、创新审计表、csv↔out 对照 |
+| **B 文稿** | 验证 | **`paper/scripts/verify_manuscript_numbers.py`**（tex↔JSON 全量数字 + 主稿边界 grep）、`latexmk -pdf`、创新审计表 |
+| **B 文稿** | 引用核验 | Crossref DOI 比对（**每次新增/改 bib 必做**；R419 曾查出 1 条虚构 + 3 条 DOI 错配） |
+| **B 文稿** | 参考态检验 | `experiments/analysis/reference_consistency_audit.json`（pristine 应变能须与 $n$ 无关） |
 | **共用** | 进化 | **`AGENTS.md`**、`dft_results/`、`paper/` |
 
 ---
@@ -1400,6 +1404,23 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R419（2026-08-16，Track B 专轮 · 严谨性审计）**：
+ - **Track A**：仅快照，**不干预**（`cutoff300` 仍 running）
+ - **Track B（横切 · 引用/数据/图文）**：
+ - **引用（底线级）**：18 条 cited 全部对 Crossref 核验 → 修 **11** 条。`Materials2024untangling`（Adv. Mater. 36, 2301234）**DOI 404 且检索不到 → 判定虚构**，曾被引 **3 次**（含 Intro 核心论断）→ 换 `Lee2023localised`（Nanoscale 15, 7227，真做 strain/doping 解耦）；`Yang2021two` DOI 指向 Co3O4 纳米带论文 → 换 `Hou2022synthesis`（Nature 606, 507）；`vandewalle2009cluster` DOI 指向无关 MRS 新闻 → 换 `Sanchez1984generalized` + `Laks1992efficient`；`Li2024strain`/`Katiyar2025strain` DOI 错；`Capobianco2024electron` 页码 7891→**8335**；4 条作者表错/缺；`cp2k2025`→`VandeVondele2005quickstep`（key 年份与论文不符）；10 条标题首字母补大写 + `{G}aussian` 保护
+ - **数据（P0）**：Table III alternate placement 全部 6 个数值来自 **8/18 部分网格**（R352 era），24/24 收敛后从未刷新 → 以 canonical JSON 改为 $-45/-60/+1028$、$+1.9/+0.3/-32.3$（**3 个符号原本是反的**）；`_load_audit.py` 三处硬编码 → 改读 JSON 并在 grid 未完成/provisional 时**拒绝出数**
+ - **新发现（P0，影响已发表论断）**：**pristine 参考态一致性检验** — pristine $+3$\% 应变能/atom 与 $n$ 无关，实测 $n{=}1,4,6$ = 2.99/3.05/3.10（复现到 **0.06** meV/atom，比 ±2 floor 紧两个量级），但 $n{=}2$ = $-1.18$（该组用 **EPS_SCF 1e-5**）、$n{=}8$ = $+8.49$ → 两行带 **4.2/5.4** meV/atom 系统偏移。因 S 含 pristine 应变项的**负号**，$S(8,\mathrm{N})=-2.30$ 小于其自身 5.4 偏移 → **「N 在 n=8 变号」不成立（撤回，含 Fig.2(a) 标注）**；两行归一后 $S(n)$ 近乎与尺寸无关（B $-5.8$~$-8.4$、N $+2.2$~$+3.1$、P $-23.7$~$-32.5$）— 比原「非单调」叙事更干净
+ - **显著性分层**：P = **12–16× floor**、$\eta=8$–$12$\%；B 可分辨但 $\eta<1$\%；N 在 floor 上（~1.2×）→ Abstract/Results/Conclusion 改为「选择性失效」而非「普遍失效」
+ - **α 过度精度**：$+58.7/-297.5/+456.0$ 的拟合标准误为 $\pm116/\pm110/\pm870$ → 仅 N $>2\sigma$；改为带误差报告，Fig.3(d) 改**带符号 α**（|α| 下 ±870 无定义）
+ - **图文匹配**：Fig.1(c) gap 数据源 `.out` 未入库 → 改从**已归档 `.pdos`** 解析（12 点，复现 B +0.026/N −0.138/P +0.054 eV）；y 轴原 $-0.08$ 下限把正文引用的 N($-0.14$) **裁在panel 外** → 扩轴 + 改标 $E_{\mathrm{H-L}}$ 并说明负值=能级交叉；Fig.1(a) "pristine" 被裁 + 色块用稿件配色（B=蓝）而图中 CPK 是 B=品红/N=蓝 → 改 CPK 色块；Fig.4(a)(b) caption「radius 不能排序」与所绘数据（N<B<P 单调）**相反** → 改为「排序成立、比例不成立」
+ - **图表专业化**：`scatter_dopant` 轨道缩略图缺失时回退标准标记 → **四张主图现可在干净仓库复现**；Fig.4(b)(d) 加 ±2 floor 带 + 误差棒（N 误差棒触底一目了然）；Fig.3(b) 尖刺填充带 → 误差棒；Fig.2(a) `n=2/8` 粉色列 + 分尺寸误差棒；修 `\%` 转义；窄表改单栏 → **消除近空白页 5，11 页 0 overfull**
+ - **表格 label**：`tab:I`→Table III、`tab:III`→Table V 的错位（正是 caption 指错图的根因）→ 语义化 `tab:sigma_S/relax/placement/sgrid/geometry`，渲染编号不变
+ - **新工具**：`paper/scripts/verify_manuscript_numbers.py`（**50/50 PASS**，含主稿边界 grep）；`experiments/analysis/reference_consistency_audit.json`
+ - **创新审计**：引用核验 = **A**；参考态一致性检验 = **A**（自洽推导 + JSON）；显著性分层 = **A**；rigid-vs-relaxed 物理定位 = **B**（见下）
+ - **物理可靠性结论（需用户决策）**：periodic $n{=}1$ P 弛豫后 $S$: $-31.91\to+0.0001$ meV/atom（**移除 99.9997%**，弛豫后 pristine 与掺杂应变能相同 → 差分为零）；且 $|S|/|$linear strain term$|$ 达 **10.7–23.9**，即 Eq.(1) 的双线性展开在 $+3$\% 处**未收敛**。→ 建议把主张重构为「rigid 筛选高估耦合，量级与共价半径失配标定；弛豫后加和性恢复」的**定量负结果**，而非「非加性耦合」正结果
+ - **Git**：`373db04` 引用、`51c26d1` Table III、`473d603` 图文、`1b4b033` label、`8db4c7a` 参考态一致性；**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**
+ - **下一轮**：`n=2` 四角 EPS_SCF $10^{-6}$ 重算（解除 reference-limited）；`n=1` dense-$k$ 四角（headline 数字的最弱支点）
 
 - **Loop R417（2026-08-02，三轨）**：
   - **Track A**：启动 `size_6x60_N_pos3pct_cutoff300` 单点（np=8，2/3 CPU；由 cutoff400 模板仅改 PROJECT/CUTOFF）→ cutoff 收敛曲线 300/350/400 + D4 截断对照；**running**
@@ -4027,6 +4048,13 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 ### Gotchas
 
+- **bib 必须对 Crossref 核验**：R419 在 18 条 cited 里查出 **11 条**错误，其中 `Materials2024untangling` 无法检索到（判定虚构）却被引 3 次。**新增或修改 bib 条目后必须用 `https://api.crossref.org/works/<doi>` 比对 title/journal/volume/pages/authors**，勿凭记忆填 DOI。
+- **部分网格数值会冻进 tex**：Table III 的 alternate placement 曾长期停留在 8/18 时期的值（含 3 个错误符号）。凡 tex/py 里出现来自未完成网格的数字，**必须由 analysis JSON 读取**并在 `status != complete` 或 `alpha_provisional` 时抛错，勿硬编码（`_load_audit.load_seed137_alpha_S` 为范例）。
+- **pristine 参考态一致性**：pristine 同一应变的能量/atom 与超胞尺寸**无关**，是免费的自检。$n{=}2$（EPS_SCF 1e-5）与 $n{=}8$ 偏离 $n{=}1,4,6$ 平台 4.2/5.4 meV/atom；因 $\mathcal{S}$ 含该项的负号，这两行的 $\mathcal{S}$ 带同量级系统偏移 — **不要用它们做尺寸趋势论断**。改 EPS_SCF 时须同步 Table~I 误差预算。
+- **图注必须对着渲染出的图核**：R419 发现 Fig.4 caption 的「radius 不能排序」与所绘单调数据相反，Fig.1(c) 的 y 轴把正文引用的负值裁在 panel 外。**改 caption 前先 `pdftoppm` 出图看一眼**。
+- **表格 label 勿用罗马数字**：`tab:I` 曾渲染成 Table III，直接导致 caption 指错图。用语义 label（`tab:relax`、`tab:sgrid` …）。
+- **α 过度精度**：六点四聚体网格的线性拟合标准误达 $\pm110$–$870$ meV/%；仅 N 超 $2\sigma$。报 α 必须带标准误，且 $|\alpha|$ 轴无法承载 $\pm870$（用带符号 α）。
+- **VMD 缩略图缓存未入库**：`figures/final_figures/_vbm_cbm_cache_surf_doped/` 为 VMD 产物且不跟踪，干净 checkout 会让 Fig.3/4 渲染失败 → `scatter_dopant` 已回退标准标记（对 PRB 也更合规）。
 - **seed137 EPS**：tetramer 默认 `SEED137_EPS=1.0E-5`（`generate_seed137_inputs.py`）；`SEED137_EPS_ONLY=1` 仅改 EPS 不动坐标；掺杂位锁定见 `seed137_reroll_offsets.json`（勿用 `hash(dop)` 重生成）。
 - **reference_pbed3 慢收敛**：seed~42 四聚体 EPS $10^{-6}$ 下内层 OT 可触 300 步并触发**外层 SCF** 重启（`+0.0_N` 参考 266 OT）；`+2.5_B` 外层 21 轮 ABORT 后 **EPS $10^{-5}$** 收敛；`+2.5_P` 可昨夜近 EPS 后外层能量阶梯回跳（outer${\geq}15$、grad${\gg}$EPS，status **OSC**）— **勿杀 job**，等 ABORT 再 `relax_reference_pbed3_eps`；续跑须 `SKIP_GENERATE=1`（`continue_reference_pbed3_pending.sh`）以免 `generate_*` 覆盖 EPS。
 - **seed137 unlinked .out**：CP2K 运行中 `rm` 路径会使 `lsof +L1` link=0；`cleanup_stale_cp2k` 的 `lsof path` 检测失效。跑前/后 `bash experiments/guard_unlinked_cp2k_out.sh`；`exp5_seed137_status_line` 标 `UNLINKED`。

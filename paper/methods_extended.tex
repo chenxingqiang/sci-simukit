@@ -2,18 +2,18 @@
 
 \subsubsection{Alternate-placement benchmark}
 \label{sec:methods_placement}
-An independent dopant configuration at the same nominal ${\sim}5$~at.\% loading repeats the B/N/P strain grid under rigid PBE+D3 (Table~\ref{tab:I}).
+An independent dopant configuration at the same nominal ${\sim}5$~at.\% loading repeats the B/N/P strain grid under rigid PBE+D3 (Table~\ref{tab:placement}).
 Main-text quantitative $\alpha$ and $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ use the reference-placement map in Fig.~\ref{fig:decoupling}(a,b); the alternate seed~137 grid is archived only.
-At periodic $n{=}4$, two independent site maps repeat the four-corner Eq.~\eqref{eq:synergy_order} audit; the $|\mathcal{S}|$ ranking at $+3$\% matches the production map in Table~\ref{tab:IV}.
+At periodic $n{=}4$, two independent site maps repeat the four-corner Eq.~\eqref{eq:synergy_order} audit; the $|\mathcal{S}|$ ranking at $+3$\% matches the production map in Table~\ref{tab:sgrid}.
 
 \subsubsection{Ionic-relaxation benchmark}
 \label{sec:methods_relax}
 Fixed-cell BFGS geometry optimization is performed on the tetramer pristine/$P$ corners at $\epsilon{=}0$ and $+3$\% (force thresholds $4.5\times10^{-4}$ and $3.0\times10^{-4}$~Ha/bohr, ${\sim}0.023$ and ${\sim}0.015$~eV/\AA; displacement thresholds $3.0\times10^{-3}$ and $1.5\times10^{-3}$~bohr).
 These thresholds are tighter than typical 0.02~eV/\AA\ defaults because relaxation can drive $|\mathcal{S}|$ toward zero and must be resolved at sub-meV/atom scale.
-A matched-functional rigid PBE+D3 control at the relaxed coordinates quantifies how $\mathcal{S}$ changes upon relaxation (Table~\ref{tab:II}).
+A matched-functional rigid PBE+D3 control at the relaxed coordinates quantifies how $\mathcal{S}$ changes upon relaxation (Table~\ref{tab:relax}).
 The same BFGS thresholds are used for the periodic $n{=}1$ P four-corner relaxation reported in Fig.~\ref{fig:synergy}(b).
 
 \subsubsection{Hirshfeld population along strain}
 \label{sec:methods_population}
 Hirshfeld atomic charges are computed along $\epsilon\in\{-5,-2.5,0,+2.5,+3,+5\}$\% on periodic $n{=}1$ B/N/P cells (spin-polarized KS for odd electron counts).
-They complement geometric $\bar{d}$ in Table~\ref{tab:III}.
+They complement geometric $\bar{d}$ in Table~\ref{tab:geometry}.

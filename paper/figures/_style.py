@@ -422,7 +422,17 @@ def scatter_dopant(
     offset: tuple[float, float] = (7, 4),
     use_orbital: bool = True,
 ) -> None:
-    """Place dopant glyph. Default: electron-cloud thumbnail (not triangle/square)."""
+    """Place dopant glyph.
+
+    Uses the electron-cloud thumbnail when the rendered cache is available and
+    falls back to the standard per-dopant marker otherwise, so the figure stays
+    reproducible from a clean checkout (the thumbnails are VMD products and are
+    not tracked).
+    """
+    if use_orbital and dop in DOPANT_ORBITAL_PNG:
+        cached = DOPANT_ORBITAL_PNG.get(dop)
+        if cached is None or not cached.is_file():
+            use_orbital = False
     if use_orbital and dop in DOPANT_ORBITAL_PNG:
         # Matplotlib scatter ``s`` is area in points^2; map to OffsetImage zoom.
         zoom = min(0.30, 0.11 + 0.00016 * float(size))
@@ -451,7 +461,7 @@ def scatter_dopant(
             y,
             s=size,
             color=DOPANT_COLORS[dop],
-            marker="o",
+            marker=DOPANT_MARKERS.get(dop, "o"),
             edgecolors=INK,
             linewidths=0.85,
             zorder=4,
@@ -713,7 +723,7 @@ def draw_energy_coupling_schematic(ax: Axes) -> None:
     ax.axvline(3.0, color="#DDDDDD", lw=0.7, ls=":", zorder=0)
     ax.set_xlim(0.0, 3.2)
     ax.set_ylim(0.0, 0.82)
-    ax.set_xlabel(r"$\epsilon$ (\%)")
+    ax.set_xlabel(r"$\epsilon$ (%)")
     ax.set_ylabel(r"$\Delta E$ (arb. units)")
     mid = 0.5 * (e_add + e_cpl)
     idx = int(len(eps) * 0.42)

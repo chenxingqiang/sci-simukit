@@ -398,15 +398,24 @@ def build_fig2() -> tuple[Path, Path]:
     panel_label(ax_a, "a", nature=True)
     ax_a.axhspan(-SIGMA_S_MEV, SIGMA_S_MEV, color="#E8E8E8", zorder=0)
     ax_a.axhline(0.0, color="#D5D5D5", lw=0.65, zorder=1)
+    # Per-size uncertainty: the pristine +3% strain reference must be
+    # n-independent, so its deviation from the converged n=1,4,6 plateau is a
+    # systematic uncertainty on that row and is added to the reporting floor.
+    ref_audit = load_json("experiments/analysis/reference_consistency_audit.json")
+    ref_sys = {
+        int(k): float(v["systematic_uncertainty_meV_per_atom"])
+        for k, v in ref_audit["per_n"].items()
+    }
     for dop in dopants:
         rows = synergy_rows(audit, dop)
         n_all = np.array([r[0] for r in rows], dtype=float)
         s_all = np.array([r[1] for r in rows])
+        yerr = np.array([SIGMA_S_MEV + ref_sys.get(int(n), 0.0) for n in n_all])
         plot_trajectory(ax_a, n_all, s_all, DOPANT_COLORS[dop], label=dop, fill_mode="band", fill=True)
         ax_a.errorbar(
             n_all,
             s_all,
-            yerr=np.full_like(s_all, SIGMA_S_MEV),
+            yerr=yerr,
             fmt="none",
             ecolor=DOPANT_COLORS[dop],
             elinewidth=0.85,
@@ -415,6 +424,10 @@ def build_fig2() -> tuple[Path, Path]:
             alpha=0.75,
             zorder=4,
         )
+    # Flag the two rows whose pristine reference is off the plateau.
+    for n, meta in ref_audit["per_n"].items():
+        if meta["outlier"]:
+            ax_a.axvspan(int(n) - 0.28, int(n) + 0.28, color="#F2C9C9", alpha=0.35, lw=0, zorder=0)
     ax_a.set_xticks(ns)
     ax_a.set_xlim(0.55, 8.70)
     ax_a.set_ylim(-38.5, 13.0)
@@ -453,13 +466,13 @@ def build_fig2() -> tuple[Path, Path]:
         zorder=6,
     )
     ax_a.annotate(
-        r"N sign flip",
+        "reference-limited",
         xy=(8.0, -2.30),
-        xytext=(6.90, 8.0),
+        xytext=(6.55, 8.4),
         textcoords="data",
         fontsize=5.7,
-        color=DOPANT_COLORS["N"],
-        arrowprops=dict(arrowstyle="-|>", color=DOPANT_COLORS["N"], lw=0.7, shrinkA=2, shrinkB=4),
+        color=NATURE_GRAY,
+        arrowprops=dict(arrowstyle="-|>", color=NATURE_GRAY, lw=0.7, shrinkA=2, shrinkB=4),
         ha="center",
         va="bottom",
         zorder=6,
@@ -467,7 +480,7 @@ def build_fig2() -> tuple[Path, Path]:
     ax_a.text(
         0.02,
         0.03,
-        r"gray: $\pm 2$ meV floor",
+        "gray: $\\pm 2$ meV floor   pink: reference-limited $n$",
         transform=ax_a.transAxes,
         ha="left",
         va="bottom",
@@ -556,7 +569,13 @@ def build_fig3() -> tuple[Path, Path]:
     lo, hi = np.inf, -np.inf
     for d in dopants:
         xs, dbar, sig = dpaths[d]
-        plot_error_band(ax_b, xs, dbar, sig, DOPANT_COLORS[d], label=d)
+        # Error bars rather than a filled band: sigma(d_bar) varies sharply with
+        # strain, and the filled polygons crossed each other into spikes.
+        ax_b.errorbar(
+            xs, dbar, yerr=sig, fmt="-o", color=DOPANT_COLORS[d], label=d,
+            markersize=4.6, markerfacecolor="white", markeredgewidth=1.05,
+            lw=1.3, elinewidth=0.85, capsize=2.2, capthick=0.7, zorder=3,
+        )
         lo = min(lo, float(np.min(dbar - sig)))
         hi = max(hi, float(np.max(dbar + sig)))
     pad = 0.004 * (hi - lo + 1e-9)
@@ -571,7 +590,7 @@ def build_fig3() -> tuple[Path, Path]:
     panel_label(ax_c, "c", nature=True)
     for d in dopants:
         xs, _, sig = dpaths[d]
-        plot_trajectory(ax_c, xs, sig * 1e3, DOPANT_COLORS[d], label=d, fill_to=0)
+        plot_trajectory(ax_c, xs, sig * 1e3, DOPANT_COLORS[d], label=d, fill=False)
     strain_guide(ax_c)
     ax_c.set_xlabel(r"$\epsilon$ (%)")
     ax_c.set_ylabel(r"$\sigma(\bar{d})$ (mÅ)")
@@ -585,56 +604,49 @@ def build_fig3() -> tuple[Path, Path]:
     amax = max(abs_alpha.values()) * 1.15
     smax = max(abs_s4.values()) * 1.25
     s1_ref = max(abs_s1.values())
-    ax_d.set_xlim(0, amax)
+    # Signed alpha keeps the donor/acceptor sign split visible and, unlike |alpha|,
+    # stays well defined when the fit standard error exceeds the slope.
+    signed_alpha = {d: float(alpha_ref[d]) for d in dopants}
+    xlo = min(signed_alpha[d] - float(alpha_err.get(d, 0.0)) for d in dopants)
+    xhi = max(signed_alpha[d] + float(alpha_err.get(d, 0.0)) for d in dopants)
+    xpad = 0.08 * (xhi - xlo)
+    ax_d.set_xlim(xlo - xpad, xhi + xpad)
     ax_d.set_ylim(-smax * 0.08, smax)
-    ax_d.axhspan(0, 8, xmin=0.42, xmax=1.0, color=DOPANT_FILLS["N"], alpha=0.45, zorder=0)
-    ax_d.axhspan(12, smax, xmin=0.0, xmax=1.0, color=DOPANT_FILLS["P"], alpha=0.35, zorder=0)
+    ax_d.axhspan(0, SIGMA_S_MEV, color="#BFBFBF", alpha=0.45, lw=0, zorder=0)
+    ax_d.axvline(0.0, color="#D5D5D5", lw=0.65, zorder=0)
     for d in dopants:
         xerr = float(alpha_err.get(d, 0.0))
-        if np.isfinite(xerr) and xerr > 0:
-            ax_d.errorbar(
-                abs_alpha[d],
-                abs_s4[d],
-                xerr=xerr,
-                yerr=SIGMA_S_MEV,
-                fmt="none",
-                ecolor=DOPANT_COLORS[d],
-                elinewidth=0.9,
-                capsize=2.5,
-                capthick=0.8,
-                alpha=0.85,
-                zorder=2,
-            )
-        else:
-            ax_d.errorbar(
-                abs_alpha[d],
-                abs_s4[d],
-                yerr=SIGMA_S_MEV,
-                fmt="none",
-                ecolor=DOPANT_COLORS[d],
-                elinewidth=0.85,
-                capsize=2.2,
-                capthick=0.7,
-                alpha=0.75,
-                zorder=2,
-            )
+        ax_d.errorbar(
+            signed_alpha[d],
+            abs_s4[d],
+            xerr=xerr if (np.isfinite(xerr) and xerr > 0) else None,
+            yerr=SIGMA_S_MEV,
+            fmt="none",
+            ecolor=DOPANT_COLORS[d],
+            elinewidth=0.9,
+            capsize=2.5,
+            capthick=0.8,
+            alpha=0.85,
+            zorder=2,
+        )
         scatter_dopant(
             ax_d,
-            abs_alpha[d],
+            signed_alpha[d],
             abs_s4[d],
             d,
-            size=50 + 160 * (abs_s1[d] / s1_ref),
-            offset={"B": (12, -14), "N": (-16, 12), "P": (14, 10)}[d],
+            size=130,
+            offset={"B": (10, 12), "N": (12, 12), "P": (-24, 10)}[d],
         )
-    ax_d.set_xlabel(r"$|\alpha|$ (meV/%)")
+    ax_d.set_xlabel(r"$\alpha$ (meV/%)")
     ax_d.set_ylabel(r"$|\mathcal{S}|_{n=4}$ (meV/atom)")
     style_axes(ax_d)
-    ax_d.text(0.98, 0.04, r"cloud size $\propto|\mathcal{S}|_{n=1}$", transform=ax_d.transAxes,
-              ha="right", va="bottom", fontsize=6.8, color=NATURE_GRAY)
+    ax_d.text(0.98, 0.05, "bars: linear-fit s.e.\nonly N resolved $>2\\sigma$",
+              transform=ax_d.transAxes, ha="right", va="bottom",
+              fontsize=6.0, color=NATURE_GRAY, linespacing=1.35)
     ax_d.text(
         0.03,
         0.97,
-        "qualitative rank comparison ($n{=}3$)",
+        "$\\alpha$ does not predict $|\\mathcal{S}|$ ($n{=}3$ dopants)",
         transform=ax_d.transAxes,
         ha="left",
         va="top",
@@ -671,7 +683,7 @@ def build_fig4() -> tuple[Path, Path]:
     ax_a.set_xlim(-0.8, max(dd.values()) * 1.35)
     ax_a.set_ylim(0, max(dq_frac.values()) * 1.28)
     for d in dopants:
-        scatter_dopant(ax_a, dd[d], dq_frac[d], d, size=90 + 420 * (s_abs[d] / sref),
+        scatter_dopant(ax_a, dd[d], dq_frac[d], d, size=130,
                        offset={"B": (14, -14), "N": (-18, 12), "P": (14, 12)}[d])
     ax_a.set_xlabel(r"$|\Delta\bar{d}|_{0\to+3\%}$ (mÅ)")
     ax_a.set_ylabel(r"$|\Delta q/q|_{0\to+3\%}$ (%)")
@@ -682,6 +694,14 @@ def build_fig4() -> tuple[Path, Path]:
     ax_b.set_ylim(-max(s_abs.values()) * 0.1, max(s_abs.values()) * 1.28)
     ax_b.axvspan(20, 45, color=DOPANT_FILLS["P"], alpha=0.40, zorder=0)
     ax_b.axvline(20, color=DOPANT_COLORS["P"], ls="--", lw=0.95, alpha=0.75)
+    # Reporting floor: values inside the band are not resolved against the
+    # protocol uncertainty, which is what separates P from B and N.
+    ax_b.axhspan(0, SIGMA_S_MEV, color="#BFBFBF", alpha=0.45, lw=0, zorder=0)
+    ax_b.text(
+        0.98, SIGMA_S_MEV, r"$\pm 2$ meV/atom floor",
+        transform=ax_b.get_yaxis_transform(), ha="right", va="bottom",
+        fontsize=5.8, color=NATURE_GRAY, zorder=1,
+    )
     for d in dopants:
         ax_b.errorbar(
             dr[d],
@@ -696,7 +716,7 @@ def build_fig4() -> tuple[Path, Path]:
             zorder=2,
         )
         scatter_dopant(ax_b, dr[d], s_abs[d], d, size=130,
-                       offset={"B": (14, -16), "N": (14, 14), "P": (-20, 0)}[d])
+                       offset={"B": (13, 9), "N": (-15, -14), "P": (-22, 8)}[d])
     ax_b.set_xlabel(r"$|\Delta r_{\mathrm{cov}}|$ (pm)")
     ax_b.set_ylabel(r"$|\mathcal{S}|_{n=4}$ (meV/atom)")
     style_axes(ax_b)
@@ -722,9 +742,20 @@ def build_fig4() -> tuple[Path, Path]:
     s1s = {d: abs(float(mm[d]["S_meV_per_atom_n1"])) for d in dopants}
     ax_d.set_xlim(-2, max(mfs.values()) * 1.22)
     ax_d.set_ylim(-max(s1s.values()) * 0.1, max(s1s.values()) * 1.28)
+    ax_d.axhspan(0, SIGMA_S_MEV, color="#BFBFBF", alpha=0.45, lw=0, zorder=0)
+    ax_d.text(
+        0.98, SIGMA_S_MEV, r"$\pm 2$ meV/atom floor",
+        transform=ax_d.get_yaxis_transform(), ha="right", va="bottom",
+        fontsize=5.8, color=NATURE_GRAY, zorder=1,
+    )
     for d in dopants:
+        ax_d.errorbar(
+            mfs[d], s1s[d], yerr=SIGMA_S_MEV, fmt="none",
+            ecolor=DOPANT_COLORS[d], elinewidth=0.85, capsize=2.2,
+            capthick=0.7, alpha=0.8, zorder=2,
+        )
         scatter_dopant(ax_d, mfs[d], s1s[d], d, size=140,
-                       offset={"B": (14, -14), "N": (14, 14), "P": (-20, 0)}[d])
+                       offset={"B": (13, 10), "N": (-15, -14), "P": (-22, 8)}[d])
     ax_d.set_xlabel("Covalent mismatch (%)")
     ax_d.set_ylabel(r"$|\mathcal{S}|_{n=1}$ (meV/atom)")
     style_axes(ax_d)

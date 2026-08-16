@@ -88,6 +88,7 @@ Dense-$k$ ($2\times 2\times 1$) four-corner benchmarks on $n{=}1$ B/N/P at $+3$\
 
 \paragraph{SCF convergence and four-corner precision.}
 Unless noted otherwise, the SCF threshold is $\mathrm{EPS\_SCF}=10^{-6}$~$E_{\mathrm{h}}$ in inner and outer orbital-transformation loops (MAX\_SCF 300; OUTER\_SCF MAX 30).
+The $2\times\mathrm{C}_{60}$ cells are the exception: they cycled at $10^{-6}$ and were converged at $10^{-5}$~$E_{\mathrm{h}}$, which is why their pristine reference lies off the size-converged plateau and why we flag that row as reference-limited (Table~\ref{tab:sigma_S}; Sec.~\ref{sec:synergy}).
 Charged-state workflows in the Supplemental Material tighten this to $10^{-7}$~$E_{\mathrm{h}}$; selected stiff tetramer corners may use $10^{-5}$~$E_{\mathrm{h}}$ when outer SCF cycling persists at $10^{-6}$, which stays inside the ${\sim}2$~meV/atom reporting floor of Table~\ref{tab:sigma_S}.
 Because $\mathcal{S}$ is built from four independently converged totals [Eq.~\eqref{eq:synergy_order}], uncertainty is propagated as $\sigma_{\mathcal{S}}=2\sigma_e$ for uncorrelated per-atom corner errors $\sigma_e$ [Eq.~\eqref{eq:sigma_propagation}; Supplemental Material, Sec.~\ref{S-sec:error_prop}] (Table~\ref{tab:sigma_S}).
 We use $\sigma_{\mathcal{S}}\lesssim 2$~meV/atom as the conservative reporting band on the $n\leq 4$ production grid.
@@ -145,8 +146,14 @@ Supplemental Material gives full $\pi$-DOS stacks and periodic VBM/CBM isosurfac
 Figure~\ref{fig:synergy} is the central audit.
 Panel~(c) defines the test: strain-only and substitution-only increments are summed and compared with the coupled four-corner total; $\mathcal{S}$ [Eq.~\eqref{eq:four_corner}] is that signed gap.
 Panel~(a) and Table~\ref{tab:sgrid} report the fifteen periodic $+3$\% $\mathcal{S}(n,\delta)$ values.
-$|\mathcal{S}|$ is not a monotonic $1/n$ dilution: P remains large and negative through $n{=}8$ ($23.7$--$31.9$~meV/atom), B stays negative but varies non-monotonically ($2.2$--$11.3$~meV/atom), and N changes sign at $n{=}8$.
-At $n{=}4$, $\mathcal{S}=-6.2\pm 2$ (B), $+3.0\pm 2$ (N), and $-23.7\pm 2$~meV/atom (P), where $\pm$ is the conservative protocol floor (Table~\ref{tab:sigma_S}).
+$|\mathcal{S}|$ shows no $1/n$ dilution: P remains large and negative through $n{=}8$ ($23.7$--$31.9$~meV/atom), B stays negative ($2.2$--$11.3$~meV/atom), and N stays small and positive except at $n{=}8$.
+The apparent $n$ dependence must, however, be read against a reference test that the four-corner construction makes available at no extra cost.
+The pristine $+3$\% strain cost per atom is the same physical quantity in every supercell, so its spread across $n$ measures protocol reproducibility directly.
+It is $2.99$, $3.05$, and $3.10$~meV/atom at $n{=}1$, $4$, and $6$---reproducible to $0.06$~meV/atom, two orders of magnitude tighter than the $\pm 2$~meV/atom reporting band---but $-1.18$~meV/atom at $n{=}2$ and $8.49$~meV/atom at $n{=}8$.
+Because $\mathcal{S}$ contains the pristine strain term with a negative sign, those two rows inherit systematic offsets of $4.2$ and $5.4$~meV/atom (Table~\ref{tab:sigma_S}); the $n{=}2$ cells are the ones that required a relaxed $\mathrm{EPS\_SCF}=10^{-5}$ (Sec.~\ref{sec:methods}).
+Rescaling both references onto the converged plateau leaves $\mathcal{S}(n)$ nearly size-independent for each substituent---B $-5.8$ to $-8.4$, N $+2.2$ to $+3.1$, P $-23.7$ to $-32.5$~meV/atom---and removes the sign change at $n{=}8$.
+We therefore report N as small and positive at all audited sizes and treat the $n{=}2$ and $n{=}8$ rows as reference-limited rather than as evidence of a size trend.
+At $n{=}4$, on the converged reference, $\mathcal{S}=-6.2\pm 2$ (B), $+3.0\pm 2$ (N), and $-23.7\pm 2$~meV/atom (P), where $\pm$ is the conservative protocol floor (Table~\ref{tab:sigma_S}).
 The three substituents are therefore not equally resolved.
 Referred to that floor, $|\mathcal{S}|$ is $12$--$16$ times the band for P at every audited size, $1$--$6$ times for B, and ${\sim}1$--$1.5$ times for N except at $n{=}2$ ($3.4$); expressed as the additive-failure fraction of Eq.~\eqref{eq:additive_fraction}, $\eta=8$--$12$\% for P but stays below $1$\% for B ($0.2$--$0.9$\%) and N ($0.1$--$0.4$\%).
 Only P is thus large enough on this grid to reorder stability, B carries a resolved but small cross term, and N sits at the detection floor---a stratification we treat as the main quantitative result rather than a uniform failure of additivity.
@@ -228,6 +235,8 @@ Main-text $\alpha$ and $\mathcal{S}$ use PBE+D3 under the rigid-strain protocol;
 Eq.~\eqref{eq:taylor_coupling} and the four-corner link [Eq.~\eqref{eq:mixed_derivative}] assume small perturbations on a single smooth energy branch; they lose validity at large strain (e.g.\ ${\gtrsim}10$\%) or across structural phase transitions, and the production audits intentionally remain at $+3$\% biaxial load inside the nominally elastic regime.
 All totals are 0~K Born--Oppenheimer energies; finite-temperature free energies and configurational entropy remain unexplored and could reorder sub-meV competitors without restoring additivity if bilinear coupling persists at the electronic-structure level.
 Production periodic cells use $\Gamma$-only sampling; dense-$k$ and SCAN/r$^2$SCAN four-corner checks are not reported (Table~\ref{tab:sigma_S}).
+The largest reported $|\mathcal{S}|$ is at $n{=}1$, the cell for which $\Gamma$-only sampling is least adequate, so that single value carries the weakest numerical support in the set even though the size-independence of $\mathcal{S}$ does not rest on it.
+Two of the five supercell sizes ($n{=}2$, $8$) have pristine references off the converged plateau by $4$--$5$~meV/atom, so their $\mathcal{S}$ rows are reported but not used for size-trend claims; recomputing those four corners at $\mathrm{EPS\_SCF}=10^{-6}$ and matched cutoff is the cheapest remaining improvement to the audit.
 Alternate placements (Table~\ref{tab:placement}) bound configuration specificity; Table~\ref{tab:geometry} geometry is a tetramer proxy (${\sim}5$~at.\%) without Mayer/Bader partitioning or matched periodic $n{=}4$ bond statistics.
 With only three substitutional labels, the $\alpha$--$|\mathcal{S}|$ map [Fig.~\ref{fig:decoupling}(d)] is a qualitative rank comparison among $n{=}3$ chemistries, not a fitted correlation law or predictive model for linear $\alpha$.
 Direct elastic-vs.-electronic energetic decomposition (Mayer bond order, Bader strain partitioning, virial stress) and dispersion cross-term audits for B/N periodic cells remain open (Table~\ref{tab:sigma_S}).

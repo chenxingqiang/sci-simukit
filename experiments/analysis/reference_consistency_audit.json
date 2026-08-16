@@ -1,0 +1,88 @@
+{
+ "method": "pristine +3% strain cost is n-independent by construction; its deviation from the n=1,4,6 plateau is a systematic uncertainty on that row of S (S contains minus the pristine strain term)",
+ "plateau_meV_per_atom": 3.0475,
+ "plateau_internal_spread_meV_per_atom": 0.0564,
+ "per_n": {
+  "1": {
+   "eps_scf": "1e-6",
+   "cutoff_ry": 400,
+   "strain_cost_meV_per_atom": 2.9911,
+   "deviation_meV_per_atom": -0.0564,
+   "systematic_uncertainty_meV_per_atom": 0.0564,
+   "outlier": false
+  },
+  "2": {
+   "eps_scf": "1e-5",
+   "cutoff_ry": 400,
+   "strain_cost_meV_per_atom": -1.1815,
+   "deviation_meV_per_atom": -4.229,
+   "systematic_uncertainty_meV_per_atom": 4.229,
+   "outlier": true
+  },
+  "4": {
+   "eps_scf": "1e-6",
+   "cutoff_ry": 400,
+   "strain_cost_meV_per_atom": 3.0535,
+   "deviation_meV_per_atom": 0.006,
+   "systematic_uncertainty_meV_per_atom": 0.006,
+   "outlier": false
+  },
+  "6": {
+   "eps_scf": "1e-6",
+   "cutoff_ry": 350,
+   "strain_cost_meV_per_atom": 3.0979,
+   "deviation_meV_per_atom": 0.0504,
+   "systematic_uncertainty_meV_per_atom": 0.0504,
+   "outlier": false
+  },
+  "8": {
+   "eps_scf": "1e-6",
+   "cutoff_ry": 350,
+   "strain_cost_meV_per_atom": 8.4943,
+   "deviation_meV_per_atom": 5.4468,
+   "systematic_uncertainty_meV_per_atom": 5.4468,
+   "outlier": true
+  }
+ },
+ "S_published_meV_per_atom": {
+  "n1_B": -8.38,
+  "n1_N": 2.3,
+  "n1_P": -31.91,
+  "n2_B": -2.18,
+  "n2_N": 6.85,
+  "n2_P": -28.29,
+  "n4_B": -6.23,
+  "n4_N": 2.95,
+  "n4_P": -23.71,
+  "n6_B": -7.76,
+  "n6_N": 2.38,
+  "n6_P": -31.89,
+  "n8_B": -11.26,
+  "n8_N": -2.3,
+  "n8_P": -29.94
+ },
+ "S_reference_rescaled_meV_per_atom": {
+  "n1_B": -8.436,
+  "n1_N": 2.244,
+  "n1_P": -31.966,
+  "n2_B": -6.409,
+  "n2_N": 2.621,
+  "n2_P": -32.519,
+  "n4_B": -6.224,
+  "n4_N": 2.956,
+  "n4_P": -23.704,
+  "n6_B": -7.71,
+  "n6_N": 2.43,
+  "n6_P": -31.84,
+  "n8_B": -5.813,
+  "n8_N": 3.147,
+  "n8_P": -24.493
+ },
+ "conclusions": [
+  "n=1,4,6 reference reproducibility <= 0.06 meV/atom, far tighter than the +-2 meV/atom reporting floor",
+  "n=2 (EPS_SCF 1e-5) and n=8 carry 4.2 and 5.4 meV/atom reference offsets",
+  "the N sign change at n=8 is smaller than the n=8 systematic uncertainty and is not established",
+  "published S(n) non-monotonicity is dominated by these two rows; rescaling makes S(n) nearly size-independent",
+  "only P has |S| far above the reference offsets at every size"
+ ]
+}

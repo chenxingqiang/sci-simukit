@@ -1,7 +1,7 @@
 % Legacy merge
 
 \begin{table*}[t]
-\caption{\label{tab:I}Linear strain sensitivities and substitution energies for tetramer models (archived rigid-strain grid, legacy PBE without D3; not mixed with periodic PBE+D3 $\mathcal{S}$ in Table~\ref{tab:II}).
+\caption{\label{tab:placement}Linear strain sensitivities and substitution energies for tetramer models (archived rigid-strain grid, legacy PBE without D3; not mixed with periodic PBE+D3 $\mathcal{S}$ in Table~\ref{tab:relax}).
 $E_{\mathrm{sub}}=(E_{\mathrm{doped}}-E_{\mathrm{pristine}})/n_{\mathrm{dopants}}$ at $\epsilon{=}0$ with no chemical-potential reference (not a standard formation enthalpy).
 $n_{\mathrm{dopants}}$ is counted from archived input coordinates (nominal 5\% target; B: 13, N: 12, P: 12).}
 \begin{ruledtabular}
@@ -21,7 +21,7 @@ P-doped & 12 & $-1370.4965$ & $-1370.4888$ & $-19.1$ & $-15.8$ \\
 \input{tables/tab_II_archive.tex}
 
 \begin{table*}[t]
-\caption{\label{tab:III}Ionic-relaxation benchmark for the tetramer $P$-substitution four-corner grid (four fixed-cell geometry-optimization corners: pristine and $P$ at $\epsilon{=}0$ and $+3$\%, same biaxial cell).
+\caption{\label{tab:geometry}Ionic-relaxation benchmark for the tetramer $P$-substitution four-corner grid (four fixed-cell geometry-optimization corners: pristine and $P$ at $\epsilon{=}0$ and $+3$\%, same biaxial cell).
 This benchmark is \emph{sign-qualitative only}: the rigid reference uses legacy PBE without D3, whereas relaxed corners use PBE+D3, so $|\mathcal{S}_{\mathrm{relaxed}}|/|\mathcal{S}_{\mathrm{rigid}}|$ is \emph{not} a quantitative retention ratio on the legacy grid. Matched-functional rigid reference (PBE+D3, same four corners): $\mathcal{S}_{\mathrm{rigid}}^{\mathrm{PBE+D3}}=+1.19$~meV/atom; $|\mathcal{S}_{\mathrm{relaxed}}|/|\mathcal{S}_{\mathrm{rigid}}^{\mathrm{PBE+D3}}|\approx 1.9$ (sign \emph{not} preserved on the matched-functional grid). We test whether $\mathcal{S}$ retains \emph{sign} \emph{within the tetramer grid only}; it does \emph{not} calibrate periodic main-text $\mathcal{S}(n)$, which uses different dopant concentration and boundary conditions.
 Rigid reference energies: archived fixed-coordinate tetramer single-point grid (legacy PBE, no D3). Relaxed energies: PBE+D3 fixed-cell geometry optimization (400~Ry) from archived inputs in the open repository.
 $\mathcal{S}$ follows Eq.~\eqref{eq:synergy_order} with $N{=}240$ atoms.}
@@ -40,8 +40,8 @@ Sign of $\mathcal{S}$ vs.\ rigid & $+$ & $-$ (not preserved) \\
 \end{table*}
 
 \begin{table*}[t]
-\caption{\label{tab:IV}Alternate dopant-placement sensitivity (\emph{tetramer only}, rigid strain).
-The \emph{reference} placement defines main-text tetramer $\alpha$ (Table~\ref{tab:I}) and the periodic supercell site map (one substituent per C$_{60}$); its $\alpha$ and $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ use the archived legacy-PBE grid (no D3).
+\caption{\label{tab:sgrid}Alternate dopant-placement sensitivity (\emph{tetramer only}, rigid strain).
+The \emph{reference} placement defines main-text tetramer $\alpha$ (Table~\ref{tab:placement}) and the periodic supercell site map (one substituent per C$_{60}$); its $\alpha$ and $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ use the archived legacy-PBE grid (no D3).
 The \emph{alternate} placement repeats the full B/N/P strain grid ($\epsilon\in\{-5,-2.5,0,+2.5,+3,+5\}$\%; 18 rigid single-points) with PBE+D3 on an independently rerolled substitution map (Sec.~\ref{sec:methods_s4_seed}); alternate rows report verified placement sensitivity at ${\sim}5$\% nominal doping without mixing periodic boundary conditions.
 $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ follows Eq.~\eqref{eq:synergy_order} on the archived rigid tetramer four-corner grid ($N{=}240$).
 Periodic $\mathcal{S}(n)$ is \emph{not} tabulated here because concentration and boundary conditions differ; main-text periodic magnitudes are configuration-specific until alternate periodic placements are computed.}
@@ -49,12 +49,12 @@ Periodic $\mathcal{S}(n)$ is \emph{not} tabulated here because concentration and
 \begin{tabular}{lcccc}
 Dopant & Placement & $\alpha$ (meV/\%) & $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ (meV/atom) & Status \\
 \hline
-B & reference & $+56.9$ & $+3.8$ & verified (Table~\ref{tab:I}) \\
+B & reference & $+56.9$ & $+3.8$ & verified (Table~\ref{tab:placement}) \\
 N & reference & $-303.2$ & $+5.7$ & verified \\
 P & reference & $-19.1$ & $+1.0$ & verified \\
-B & alternate & $+21.4$ & $-2.6$ & verified (alternate) \\
-N & alternate & $+45.4$ & $+12.6$ & verified (alternate) \\
-P & alternate & $+989.6$ & $+41.4$ & verified (alternate) \\
+B & alternate (seed~137) & $-45$ & $+1.9$ & verified (alternate) \\
+N & alternate (seed~137) & $-60$ & $+0.3$ & verified (alternate) \\
+P & alternate (seed~137) & $+1028$ & $-32.3$ & verified (alternate) \\
 \end{tabular}
 \end{ruledtabular}
 \end{table*}

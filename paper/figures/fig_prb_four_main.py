@@ -248,17 +248,22 @@ def build_fig1() -> tuple[Path, Path]:
     panel_label(ax_a, "a", nature=True)
     ax_a.imshow(_structure_mosaic(), aspect="equal", interpolation="lanczos")
     ax_a.axis("off")
-    # Top-row labels in the mosaic gutter; bottom-row labels under the panel.
+    # Single legend row under the mosaic: quadrant order is pristine, B (top),
+    # N, P (bottom). Keeping the labels off the cages avoids clipping the
+    # longest entry against the panel edge. Swatches use the CPK colors of the
+    # rendered heteroatoms, not the (c)-(d) trajectory palette, so the key
+    # matches what is actually drawn in the mosaic.
+    cpk = {"B": "#990099", "N": "#0000CE", "P": "#AF3A00"}
     cell_labels = (
-        (0.25, 0.51, "pristine", NATURE_GRAY),
-        (0.75, 0.51, "B", DOPANT_COLORS["B"]),
-        (0.25, -0.045, "N", DOPANT_COLORS["N"]),
-        (0.75, -0.045, "P", DOPANT_COLORS["P"]),
+        (0.045, "pristine", "#606060"),
+        (0.375, "B", cpk["B"]),
+        (0.560, "N", cpk["N"]),
+        (0.745, "P", cpk["P"]),
     )
-    for x, y, lab, col in cell_labels:
+    for x, lab, col in cell_labels:
         ax_a.plot(
-            x - 0.07,
-            y,
+            x,
+            -0.05,
             "s",
             transform=ax_a.transAxes,
             color=col,
@@ -267,11 +272,11 @@ def build_fig1() -> tuple[Path, Path]:
             zorder=5,
         )
         ax_a.text(
-            x,
-            y,
+            x + 0.035,
+            -0.05,
             lab,
             transform=ax_a.transAxes,
-            ha="center",
+            ha="left",
             va="center",
             fontsize=7.0,
             fontweight="bold",
@@ -327,16 +332,17 @@ def build_fig1() -> tuple[Path, Path]:
         plot_trajectory(ax_c, xs, ys, DOPANT_COLORS[dop], label=lab, fill=False, lw=1.05, ms=3.4)
     add_reference_lines(ax_c)
     ax_c.set_xlabel(r"$\epsilon$ (%)")
-    ax_c.set_ylabel(r"$E_g$ (eV)")
-    ax_c.set_ylim(-0.08, 1.68)
+    ax_c.set_ylabel(r"$E_{\mathrm{H-L}}$ (eV)")
+    ax_c.set_ylim(-0.28, 1.72)
+    ax_c.axhline(0.0, color=NATURE_GRAY, lw=0.5, ls=":", zorder=0)
     ax_c.text(
-        0.03,
-        0.08,
-        "B/N/P near gapless",
+        0.04,
+        0.30,
+        "B/N/P: gap closed ($|E_{\\mathrm{H-L}}|\\lesssim 0.2$ eV)\nsign flip = frontier-level crossing",
         transform=ax_c.transAxes,
         ha="left",
         va="bottom",
-        fontsize=6.2,
+        fontsize=6.0,
         color=NATURE_GRAY,
     )
     style_axes(ax_c)

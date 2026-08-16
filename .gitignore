@@ -107,3 +107,7 @@ experiments/.seed137_batch.lock
 paper/*Notes.bib
 **/*.pre_protocol_fix_*
 **/*.restart.bak-*
+
+# LoopX local state (do not commit private goal/evidence)
+.loopx/
+.codex/goals/

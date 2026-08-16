@@ -10,7 +10,7 @@ import numpy as np
 from matplotlib.axes import Axes
 from matplotlib.colors import LinearSegmentedColormap
 from matplotlib.offsetbox import AnnotationBbox, OffsetImage
-from matplotlib.patches import FancyArrowPatch, FancyBboxPatch
+from matplotlib.patches import Circle, FancyArrowPatch, FancyBboxPatch
 from PIL import Image
 
 # Single-column PRL width
@@ -24,29 +24,29 @@ COLOR_VBM = "#7B4FB3"
 COLOR_CBM = "#2BAFA3"
 COLOR_TOTAL = "#333333"
 
-# Nature/Science reference palette (high-contrast, print-safe)
-NATURE_BLUE = "#2E6DB4"   # primary / Optimal / Reference
-NATURE_RED = "#C0392B"    # contrast / Random / Alternate
-NATURE_GREEN = "#2E8B57"  # tertiary / Baseline accent
-NATURE_GRAY = "#7A7A7A"
-NATURE_LIGHT = "#F2F2F2"
-NATURE_GRID = "#E8E8E8"
-INK = "#1A1A1A"
+# Nature/Science reference palette (high-contrast, print-safe, slightly boosted saturation)
+NATURE_BLUE = "#2563EB"   # primary / B channel
+NATURE_RED = "#DC2626"    # N donor channel
+NATURE_GREEN = "#059669"  # tertiary accent
+NATURE_GRAY = "#64748B"
+NATURE_LIGHT = "#F4F6F8"
+NATURE_GRID = "#E2E8F0"
+INK = "#0F172A"
 
 DOPANT_COLORS = {
     "pristine": NATURE_GRAY,
     "B": NATURE_BLUE,
     "N": NATURE_RED,
-    "P": "#6B4C9A",  # purple — distinct from green baseline; size-mismatch channel
+    "P": "#7C3AED",  # vivid purple — P size-mismatch channel
 }
 
 DOPANT_MARKERS = {"B": "o", "N": "s", "P": "^", "pristine": "D"}
 
 DOPANT_FILLS = {
-    "pristine": "#F0F0F0",
-    "B": "#E8F1FA",
-    "N": "#FBEAEA",
-    "P": "#EDE8F5",
+    "pristine": "#F1F5F9",
+    "B": "#DBEAFE",
+    "N": "#FEE2E2",
+    "P": "#EDE9FE",
 }
 
 # Distinct orbital / electron-cloud glyphs (no geometric markers).
@@ -59,9 +59,12 @@ DOPANT_ORBITAL_PNG = {
     "P": _ORB_CACHE / "P_n4_cbm.png",
 }
 
-# Colorblind-friendly diverging map (Nature Methods style)
+_C60_PRISTINE = _FIG_DIR / "final_figures" / "C60_strain_+0.0_pristine_synergy.png"
+_C60_P_DOPED = _FIG_DIR / "final_figures" / "C60_strain_+0.0_P_doped_synergy.png"
+
+# Colorblind-friendly diverging map — stronger blue/red wings for heatmaps
 SYNERGY_CMAP = LinearSegmentedColormap.from_list(
-    "synergy_div", ["#2166AC", "#F7F7F7", "#B2182B"], N=256
+    "synergy_div", ["#1D4ED8", "#F8FAFC", "#DC2626"], N=256
 )
 
 
@@ -149,8 +152,8 @@ def apply_prb_style() -> None:
             "ytick.labelsize": 7.5,
             "legend.fontsize": 7,
             "axes.linewidth": 0.9,
-            "lines.linewidth": 1.3,
-            "lines.markersize": 5.5,
+            "lines.linewidth": 1.55,
+            "lines.markersize": 6.0,
             "xtick.major.width": 0.9,
             "ytick.major.width": 0.9,
             "xtick.major.size": 3.5,
@@ -249,11 +252,17 @@ def panel_subtitle(ax: Axes, text: str, *, ha: str = "left") -> None:
     )
 
 
-def style_colorbar(cbar, *, label: str = "") -> None:
+def style_colorbar(cbar, *, label: str = "", label_axis: str = "y") -> None:
     cbar.outline.set_linewidth(0.55)
     cbar.outline.set_edgecolor("#BBBBBB")
     if label:
-        cbar.set_label(label, fontsize=8, labelpad=4)
+        if label_axis == "x":
+            cbar.ax.set_xlabel(label, fontsize=7, labelpad=5)
+        elif label_axis == "left":
+            cbar.ax.set_ylabel(label, fontsize=7, labelpad=1, rotation=90, va="center")
+            cbar.ax.yaxis.set_label_position("left")
+        else:
+            cbar.set_label(label, fontsize=7, labelpad=6, rotation=270, va="bottom")
     cbar.ax.tick_params(labelsize=6.5, width=0.55, length=2.5)
 
 
@@ -278,9 +287,9 @@ def plot_trajectory(
     fill: bool = True,
     fill_to: float | None = None,
     fill_mode: str = "baseline",
-    lw: float = 1.5,
-    ms: float = 5.8,
-    alpha_line: float = 0.72,
+    lw: float = 1.75,
+    ms: float = 6.5,
+    alpha_line: float = 0.9,
     zorder: int = 3,
 ) -> None:
     x = np.asarray(x, dtype=float)
@@ -291,7 +300,7 @@ def plot_trajectory(
             ax.fill_between(x, y - pad, y + pad, color=color, alpha=0.14, linewidth=0, zorder=1)
         else:
             base = float(fill_to) if fill_to is not None else float(np.nanmin(y))
-            ax.fill_between(x, y, base, color=color, alpha=0.11, linewidth=0, zorder=1)
+            ax.fill_between(x, y, base, color=color, alpha=0.16, linewidth=0, zorder=1)
     ax.plot(x, y, "-", color=color, lw=lw, alpha=alpha_line, zorder=2)
     ax.plot(
         x,
@@ -300,7 +309,7 @@ def plot_trajectory(
         color=color,
         markersize=ms,
         markerfacecolor="white",
-        markeredgewidth=1.2,
+        markeredgewidth=1.35,
         lw=0,
         label=label,
         zorder=zorder,
@@ -368,10 +377,38 @@ def _orbital_rgba(dop: str, diam_px: int = 180) -> np.ndarray:
     hex_c = DOPANT_COLORS[dop].lstrip("#")
     tint = np.array([int(hex_c[i:i+2], 16) for i in (0, 2, 4)], dtype=np.float32)
     ink = out[..., :3].mean(axis=-1, keepdims=True)
-    mix = np.clip((255.0 - ink) / 180.0, 0.0, 1.0)  # stronger on dark atoms/clouds
-    out[..., :3] = (1.0 - 0.35 * mix) * out[..., :3] + 0.35 * mix * tint
-    out[..., 3] = out[..., 3] * alpha
+    mix = np.clip((255.0 - ink) / 160.0, 0.0, 1.0)
+    out[..., :3] = (1.0 - 0.48 * mix) * out[..., :3] + 0.48 * mix * tint
+    out[..., 3] = np.clip(out[..., 3] * alpha * 1.05, 0.0, 255.0)
     return out.astype(np.uint8)
+
+
+def _trim_white(im: Image.Image, *, threshold: int = 248, pad: int = 8) -> Image.Image:
+    arr = np.asarray(im.convert("RGBA"))
+    mask = np.any(arr[..., :3] < threshold, axis=-1)
+    ys, xs = np.where(mask)
+    if len(xs) == 0:
+        return im
+    y0, y1 = max(0, ys.min() - pad), min(arr.shape[0], ys.max() + pad + 1)
+    x0, x1 = max(0, xs.min() - pad), min(arr.shape[1], xs.max() + pad + 1)
+    return im.crop((x0, y0, x1, y1))
+
+
+@lru_cache(maxsize=8)
+def _c60_rgba(*, doped: bool = False, quad: int | None = None, max_px: int = 220) -> np.ndarray:
+    """Load a rendered C60 cage (optionally one quadrant of the 2x2 synergy plate)."""
+    path = _C60_P_DOPED if doped else _C60_PRISTINE
+    im = Image.open(path).convert("RGBA")
+    im = _trim_white(im)
+    if quad is not None:
+        w, h = im.size
+        cw, ch = w // 2, h // 2
+        boxes = ((0, 0, cw, ch), (cw, 0, w, ch), (0, ch, cw, h), (cw, ch, w, h))
+        im = _trim_white(im.crop(boxes[quad]), pad=4)
+    w, h = im.size
+    scale = max_px / max(w, h)
+    im = im.resize((max(1, int(w * scale)), max(1, int(h * scale))), Image.Resampling.LANCZOS)
+    return np.asarray(im)
 
 
 def scatter_dopant(
@@ -388,13 +425,13 @@ def scatter_dopant(
     """Place dopant glyph. Default: electron-cloud thumbnail (not triangle/square)."""
     if use_orbital and dop in DOPANT_ORBITAL_PNG:
         # Matplotlib scatter ``s`` is area in points^2; map to OffsetImage zoom.
-        zoom = 0.14 + 0.00020 * float(size)
+        zoom = min(0.30, 0.11 + 0.00016 * float(size))
         rgba = _orbital_rgba(dop)
         imagebox = OffsetImage(rgba, zoom=zoom)
         # Colored under-dot (identity) + frameless orbital cloud (no square/triangle markers)
         ax.scatter(
-            [x], [y], s=max(size * 0.55, 70),
-            color=DOPANT_COLORS[dop], alpha=0.22, linewidths=0, zorder=4,
+            [x], [y], s=max(size * 0.62, 85),
+            color=DOPANT_COLORS[dop], alpha=0.32, linewidths=0, zorder=4,
         )
         ab = AnnotationBbox(
             imagebox,
@@ -524,67 +561,172 @@ def draw_research_schematic(ax: Axes) -> None:
 
 
 def draw_additive_screening_schematic(ax: Axes) -> None:
-    """Graphical summary: when separate DFT scans fail additive screening."""
-    ax.set_xlim(0, 10)
-    ax.set_ylim(0, 1.05)
+    """ChemDraw-like protocol using rendered C60 cages."""
+    ax.set_xlim(0.0, 12.0)
+    ax.set_ylim(0.0, 3.05)
     ax.axis("off")
 
-    def box(x, y, w, h, text, edge, face):
-        patch = FancyBboxPatch(
-            (x, y),
-            w,
-            h,
-            boxstyle="round,pad=0.02,rounding_size=0.08",
-            linewidth=0.95,
-            edgecolor=edge,
-            facecolor=face,
-            zorder=2,
+    def pill(cx, cy, w, h, text, face, edge, *, fs=6.0):
+        ax.add_patch(
+            FancyBboxPatch(
+                (cx - w / 2, cy - h / 2),
+                w,
+                h,
+                boxstyle="round,pad=0.018,rounding_size=0.10",
+                linewidth=0.90,
+                edgecolor=edge,
+                facecolor=face,
+                zorder=2,
+                clip_on=False,
+            )
         )
-        ax.add_patch(patch)
         ax.text(
-            x + w / 2,
-            y + h / 2,
+            cx,
+            cy,
             text,
             ha="center",
             va="center",
-            fontsize=6.8,
-            color=edge,
-            fontweight="bold",
-            linespacing=1.22,
+            fontsize=fs,
+            color=INK,
+            linespacing=1.15,
             zorder=3,
+            clip_on=False,
         )
 
-    def arrow(p0, p1):
-        ax.add_patch(
-            FancyArrowPatch(
-                p0,
-                p1,
-                arrowstyle="-|>",
-                mutation_scale=9.0,
-                lw=0.9,
-                color="#555555",
-                shrinkA=3,
-                shrinkB=3,
-                zorder=1,
+    def mol(cx, cy, rgba, label, *, zoom=0.20):
+        ax.add_artist(
+            AnnotationBbox(
+                OffsetImage(rgba, zoom=zoom),
+                (cx, cy + 0.08),
+                xycoords=ax.transData,
+                frameon=False,
+                pad=0.0,
+                box_alignment=(0.5, 0.5),
+                zorder=3,
+                annotation_clip=False,
             )
         )
+        ax.text(
+            cx,
+            cy - 0.52,
+            label,
+            ha="center",
+            va="top",
+            fontsize=5.8,
+            color=INK,
+            zorder=4,
+            clip_on=False,
+        )
 
-    box(0.15, 0.22, 1.55, 0.62, "separate\nstrain / dopant DFT", NATURE_GRAY, "#F6F6F6")
-    box(2.05, 0.22, 1.35, 0.62, "additive\nprediction", NATURE_GRAY, "#EEEEEE")
-    box(3.75, 0.22, 1.55, 0.62, "coupled\nfour-corner DFT", NATURE_BLUE, "#E8F1FA")
-    box(5.65, 0.22, 1.15, 0.62, r"$\mathcal{S}$ gap", INK, "#F4F4F4")
-    box(7.15, 0.22, 2.05, 0.62, "screening\ndecision changes", DOPANT_COLORS["P"], DOPANT_FILLS["P"])
-    arrow((1.7, 0.53), (2.05, 0.53))
-    arrow((3.4, 0.53), (3.75, 0.53))
-    arrow((5.3, 0.53), (5.65, 0.53))
-    arrow((6.8, 0.53), (7.15, 0.53))
+    def rxn_arrow(xy0, xy1, label="", *, dy=0.20, above=True):
+        ax.annotate(
+            "",
+            xy=xy1,
+            xytext=xy0,
+            arrowprops=dict(
+                arrowstyle="-|>",
+                color=INK,
+                lw=1.05,
+                shrinkA=2.0,
+                shrinkB=2.0,
+                mutation_scale=10,
+            ),
+            zorder=1,
+        )
+        if label:
+            mx, my = 0.5 * (xy0[0] + xy1[0]), 0.5 * (xy0[1] + xy1[1])
+            ax.text(
+                mx,
+                my + (dy if above else -dy),
+                label,
+                ha="center",
+                va="bottom" if above else "top",
+                fontsize=5.4,
+                color=NATURE_GRAY,
+                style="italic",
+                zorder=3,
+                clip_on=False,
+            )
+
     ax.text(
-        5.0,
-        0.98,
-        "additive screening fails when $|\\mathcal{S}|$ exceeds protocol band",
+        0.15,
+        2.96,
+        r"Scheme. Separate scans $+$ four-corner DFT $\rightarrow$ $\mathcal{S}$",
+        ha="left",
+        va="top",
+        fontsize=6.0,
+        color=NATURE_GRAY,
+        style="italic",
+        clip_on=False,
+    )
+
+    y_top, y_bot, y_mid = 1.95, 0.58, 1.26
+    cage = _c60_rgba(doped=False, quad=3, max_px=160)
+    dop_cage = _c60_rgba(doped=True, quad=0, max_px=160)
+    tetramer = _c60_rgba(doped=False, quad=None, max_px=180)
+
+    mol(0.95, y_top, cage, r"strain DFT", zoom=0.12)
+    ax.text(1.90, y_top + 0.08, "+", ha="center", va="center", fontsize=11, color=INK, fontweight="bold")
+    mol(2.85, y_top, dop_cage, r"dopant DFT", zoom=0.12)
+    rxn_arrow((3.45, y_top), (4.15, y_top), "additive", dy=0.28)
+    pill(4.90, y_top, 1.18, 0.52, r"$E_{\mathrm{add}}$", "#F8FAFC", NATURE_GRAY, fs=6.4)
+
+    mol(1.90, y_bot, tetramer, r"4-corner $(\epsilon,\delta)$", zoom=0.09)
+    rxn_arrow((2.70, y_bot), (4.15, y_bot), "coupled", dy=0.28, above=False)
+    pill(4.90, y_bot, 1.18, 0.52, r"$E_{\mathrm{cpl}}$", "#DBEAFE", NATURE_BLUE, fs=6.4)
+
+    rxn_arrow((5.52, y_top), (6.55, y_mid + 0.16))
+    rxn_arrow((5.52, y_bot), (6.55, y_mid - 0.16))
+    ax.add_patch(
+        Circle((7.05, y_mid), 0.36, facecolor="#F8FAFC", edgecolor=INK, linewidth=1.05, zorder=2, clip_on=False)
+    )
+    ax.text(7.05, y_mid, r"$\mathcal{S}$", ha="center", va="center", fontsize=8.6, color=INK, zorder=3)
+    ax.text(
+        7.05,
+        y_mid - 0.48,
+        r"$E_{\mathrm{cpl}}-E_{\mathrm{add}}$",
         ha="center",
         va="top",
-        fontsize=7.2,
+        fontsize=5.3,
         color=NATURE_GRAY,
+        style="italic",
+        zorder=3,
+        clip_on=False,
     )
+
+    rxn_arrow((7.46, y_mid), (8.35, y_mid), r"$|\mathcal{S}|$", dy=0.20)
+    pill(9.20, y_mid, 1.28, 0.58, "decision", DOPANT_FILLS["P"], DOPANT_COLORS["P"])
+    rxn_arrow((9.88, y_mid), (10.55, y_mid))
+    pill(11.20, y_mid, 1.18, 0.58, "update", "#F1F5F9", NATURE_GRAY)
+
+
+def draw_energy_coupling_schematic(ax: Axes) -> None:
+    """Theory panel: additive vs coupled E(epsilon) under joint load (schematic, not DFT)."""
+    eps = np.linspace(0.0, 3.0, 80)
+    # additive: sum of separate linear strain responses
+    e_add = 0.12 * eps + 0.08
+    # coupled: bilinear cross term bends the joint-load path
+    e_cpl = 0.12 * eps + 0.08 + 0.035 * eps**2
+    ax.plot(eps, e_add, "--", color=NATURE_GRAY, lw=1.35, label="additive sum", zorder=2)
+    ax.plot(eps, e_cpl, "-", color=NATURE_BLUE, lw=1.65, label="coupled load", zorder=3)
+    ax.fill_between(eps, e_add, e_cpl, color=DOPANT_COLORS["P"], alpha=0.12, zorder=1)
+    ax.axvline(3.0, color="#DDDDDD", lw=0.7, ls=":", zorder=0)
+    ax.set_xlim(0.0, 3.2)
+    ax.set_ylim(0.0, 0.82)
+    ax.set_xlabel(r"$\epsilon$ (\%)")
+    ax.set_ylabel(r"$\Delta E$ (arb. units)")
+    mid = 0.5 * (e_add + e_cpl)
+    idx = int(len(eps) * 0.42)
+    ax.text(
+        eps[idx],
+        mid[idx] + 0.03,
+        r"$c\,\epsilon\delta$",
+        ha="center",
+        va="bottom",
+        fontsize=6.2,
+        color=DOPANT_COLORS["P"],
+        zorder=4,
+    )
+    style_axes(ax)
+    ax.legend(loc="upper left", fontsize=5.8, frameon=False, borderaxespad=0.35)
 

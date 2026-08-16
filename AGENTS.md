@@ -31,7 +31,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **最新 Loop** | **R417** |
 | **下一 B 任务** | Mayer/Bader backlog；SCAN + dense-$k$ rows（Table~sigma_S） |
 | **主张-证据** | 主文 α/S = **PBE+D3 only**（Table IV + periodic）；legacy Table I = **SI 归档** |
-| **Loop C** | C-M1 **closed** ✅；C-M2 **closed** ✅；C-M3 **partial**（Hirshfeld **A**）；C-m3 去重 **closed** ✅ |
+| **Loop C** | C-M1 **closed** ✅；C-M2 **closed** ✅；C-M3 **closed**（text branch：Limitations + Table~V；Mayer/Bader = C）✅；C-m3 去重 **closed** ✅ |
 | **SDC** | **15** synergy 点 |
 | **旗杆** | **PRB Regular Article** major revision |
 
@@ -553,7 +553,7 @@ Substantial improvements in validation, mechanistic depth, and argument rigor re
 |----|----------|------|-----------------|------------------|------|
 | **C-M1** | 刚性应变缺弛豫验证 | **A** + B | `relax_validation/` 4/4 ✅；`rigid_pbed3/` matched PBE+D3 | upper bound + sign reversal；matched retention pending | **partial**（sign **A** / ratio **B**） |
 | **C-M2** | 单 seed 周期性 | **A** + B | `seed_validation/` + `placement_validation/` n=4 | 构型特异性措辞；`tab_Sgrid` | **partial**（infra **A** / DFT **B**） |
-| **C-M3** | 机理定量 | B (+A) | Table~V；`population_validation/` Hirshfeld | λ⁻ 机制；population pending | **partial** |
+| **C-M3** | 机理定量 | B (+A) | Table~V（σ(d̄)，label tab:III）+ `population_validation/` Hirshfeld 18/18；Limitations 显式 Mayer/Bader 缺口（tex L185/268/270/281） | 机理以 Hirshfeld A 数据 + 显式缺口支撑 | **closed**（text branch ✅；Mayer/Bader = C backlog） |
 | **C-M4** | $\alpha$ vs $\mathcal{S}$ 错配 | B | 已删并列数值；仅 Eq.(1) 四角落 | Discussion 无 concentration-matched 对比 | **文稿 ✅** |
 | **C-m1** | $\mathcal{S}$ / $\pi$ / 断词 | B | R251：PDOS→$\pi$-DOS；order parameter；`\hyphenation` | 主稿+SI 无 bare PDOS | **✅** |
 | **C-m2** | 参考文献格式 | B | R252： cited keys APS sentence case；[15]=SM 唯一 | **✅** |

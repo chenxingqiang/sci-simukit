@@ -1,22 +1,21 @@
-\begin{table}[t]
-\caption{\label{tab:sigma_S}Error budget for four-corner $\mathcal{S}$ [Eq.~\eqref{eq:four_corner}]; SCF propagation follows Eq.~\eqref{eq:sigma_propagation} when corner errors are uncorrelated and equal.
-$\sigma_{\mathcal{S}}\approx 2\sigma_e$ assumes uncorrelated per-atom corner errors $\sigma_e$; identical XC, $k$-point, and cell settings across all four corners induce partial cancellation, so realized noise is often smaller.
-Rows marked ``pending'' are targeted sensitivity tests (Limitations); no meta-GGA or dense-$k$ numbers appear without converged outputs.
-The reporting band ($\pm 2$~meV/atom) is a conservative protocol floor, not a quadrature sum of independent rows.}
+\begin{table*}[t]
+\caption{\label{tab:sigma_S}Error budget for four-corner $\mathcal{S}$ [Eq.~\eqref{eq:four_corner}].
+$\sigma_{\mathcal{S}}\approx 2\sigma_e$ when per-atom corner errors $\sigma_e$ are uncorrelated and equal [Eq.~\eqref{eq:sigma_propagation}]; shared XC, $k$, and cell settings induce partial cancellation.
+Rows marked ``not reported'' are targeted sensitivity tests (Limitations); no meta-GGA or dense-$k$ numbers appear without converged outputs.
+The $\pm 2$~meV/atom band is a conservative protocol floor, not a quadrature sum.}
 \begin{ruledtabular}
-\small
 \begin{tabular}{lcc}
 Source & $|\Delta\mathcal{S}|$ or $\sigma_{\mathcal{S}}$ (meV/atom) & Status \\
 \hline
-SCF convergence ($\mathrm{EPS\_SCF}=10^{-6}$) & $\lesssim 2$ ($\sigma_{\mathcal{S}}\approx 2\sigma_e$) & Analytic bound \\
-Plane-wave cutoff (350 vs 400~Ry) & $<0.2$ & Partial ($6\times\mathrm{C}_{60}$ N, $+3$\%) \\
-D3 dispersion cross term & $|\mathcal{S}_{\mathrm{vdW}}|\approx 0.33$ & Tetramer $P$ grid \\
-D3 dispersion (B/N periodic) & --- & Pending \\
-Ionic relaxation (rigid vs.\ relaxed $P$) & $\gg 2$ (orders of magnitude) & Table~\ref{tab:II} \\
-$k$-point ($\Gamma$ vs $2\times 2\times 1$) & --- & Pending \\
-XC (PBE+D3 vs SCAN / r$^2$SCAN) & --- & Pending \\
+SCF ($\mathrm{EPS\_SCF}=10^{-6}$) & $\lesssim 2$ ($\sigma_{\mathcal{S}}\approx 2\sigma_e$) & Analytic bound \\
+Cutoff (350 vs 400~Ry) & $<0.2$ & Partial ($6\times\mathrm{C}_{60}$ N, $+3$\%) \\
+D3 cross term & $|\mathcal{S}_{\mathrm{vdW}}|\approx 0.33$ & Tetramer $P$ \\
+D3 (B/N periodic) & --- & Not reported \\
+Ionic relaxation (rigid vs.\ relaxed $P$) & $\gg 2$ & Table~\ref{tab:II} \\
+$k$ mesh ($\Gamma$ vs $2\times 2\times 1$) & --- & Not reported \\
+XC (PBE+D3 vs SCAN / r$^2$SCAN) & --- & Not reported \\
 \hline
 \multicolumn{3}{l}{\emph{Adopted reporting band ($n\leq 4$): $\pm 2$~meV/atom.}} \\
 \end{tabular}
 \end{ruledtabular}
-\end{table}
+\end{table*}

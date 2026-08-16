@@ -1,14 +1,7 @@
 \subsection{Strain--dopant coupling energy}
 \label{sec:methods_coupling}
 
-The physical hypothesis is the bilinear cross term in Eq.~\eqref{eq:taylor_coupling} (Introduction): under constrained load, $c\neq 0$ and can be large enough to invalidate additive screening.
-The continuum coefficient $\gamma\equiv\partial^2 E/\partial\epsilon\,\partial\delta$ per atom (equivalently $c$ in Eq.~\eqref{eq:taylor_coupling}) characterizes the \emph{intrinsic} mixed energetic response of the host under stated boundary conditions.
-$\mathcal{S}$ is the symmetric four-corner \emph{finite-difference estimator} of that response at $+3$\% load---not a postulated order parameter and not interchangeable with $\gamma$ unless higher-order remainders are negligible (descriptor comparison: Supplemental Material, Table~\ref{S-tab:descriptor}; full derivation: Supplemental Material, Sec.~\ref{S-sec:appendix_fd}).
-
-\paragraph{Taylor expansion and discrete composition.}
-Eq.~\eqref{eq:taylor_coupling} is a local expansion of the energy per atom $e(\epsilon,x)$ about the pristine reference.
-Although dopant composition is sampled discretely (one substituent label per C$_{60}$ on a fixed map), the expansion is interpreted as a finite-difference representation of the underlying $E(\epsilon,\delta)$ functional on the audited stencil, not as a strict differential expansion in a continuous concentration field.
-It requires sufficiently small strain and a single smooth energy branch; at large strain (${\gtrsim}10$\%) or across phase transitions, Eq.~\eqref{eq:taylor_coupling} no longer applies (Sec.~\ref{sec:discussion_limitations}).
+$\mathcal{S}$ is the symmetric four-corner finite-difference estimator of $\gamma\equiv\partial^2 E/\partial\epsilon\,\partial\delta$ at $+3$\% load---not an order parameter and not interchangeable with $\gamma$ unless higher-order remainders are negligible (Supplemental Material, Table~\ref{S-tab:descriptor} and Sec.~\ref{S-sec:appendix_fd}).
 
 \begin{equation}
 \mathcal{S}(\epsilon,\delta)
@@ -26,9 +19,8 @@ Equivalently, on corners $(0,0)$, $(\Delta\epsilon,0)$, $(0,\Delta\delta)$, $(\D
 which depends only on the four corner totals (reference independence).
 
 \paragraph{Why a four-point stencil?}
-Among relaxed free-energy differences $\Delta G$, enthalpic formation energies with chemical potentials, or pairwise binding increments, the symmetric four-corner form in Eqs.~\eqref{eq:synergy_order}--\eqref{eq:four_corner} is the minimal rectangular-grid stencil that (i)~uses four DFT totals, (ii)~is second-order accurate in $(\Delta\epsilon,\Delta\delta)$ for the bilinear term, (iii)~cancels all first-order strain and composition increments and any shared energy offset, and (iv)~equals the additive-screening bias by construction.
-It is not unique: central-difference, least-squares polynomial fits, or full mixed Hessians on continuous composition fields are alternative estimators of $\partial^2 E/\partial\epsilon\,\partial\delta$ with different cost, bias, and interpretability (Supplemental Material, Sec.~\ref{S-sec:why_four}; Table~\ref{S-tab:descriptor}).
-Asymmetric three-point schemes retain linear contamination; alternative asymmetric stencils differ from Eq.~\eqref{eq:four_corner} by $\mathcal{O}(\Delta\epsilon,\Delta\delta)$.
+Eqs.~\eqref{eq:synergy_order}--\eqref{eq:four_corner} are the minimal rectangular stencil that uses four DFT totals, is second-order accurate in the bilinear term, cancels first-order increments and a shared offset, and equals the additive-screening bias by construction.
+Asymmetric three-point schemes retain linear contamination; other estimators are compared in Supplemental Material, Sec.~\ref{S-sec:why_four}.
 
 \paragraph{Finite-difference link to the mixed derivative.}
 Expanding each corner total to second order and forming Eq.~\eqref{eq:four_corner} cancels $E_\epsilon\,\Delta\epsilon$ and $E_\delta\,\Delta\delta$ identically (Supplemental Material, Sec.~\ref{S-sec:four_corner_deriv}), yielding
@@ -43,11 +35,7 @@ so $\mathcal{S}$ reports the discrete mixed second derivative of total energy on
 At finite $+3$\% biaxial load and discrete B/N/P labels, higher-order terms in Eq.~\eqref{eq:mixed_derivative} are not separately resolved on the production periodic map; multi-amplitude strain audits ($\epsilon=1$--$3$\%) are targeted sensitivity tests (Limitations).
 Throughout the main text, ``nonlinear coupling'' refers to a nonzero mixed response estimated by $\mathcal{S}$, not to $\mathcal{S}$ itself as a fundamental constant.
 
-\paragraph{Units, symmetry, and gauge invariance.}
-$\mathcal{S}$ is reported in meV per atom; $\eta$ [Eq.~\eqref{eq:additive_fraction}] is dimensionless; $\gamma=\partial^2 E/\partial\epsilon\,\partial\delta$ carries units of energy per atom per strain increment per composition increment, with $\mathcal{S}\approx\gamma\,\Delta\epsilon\,\Delta\delta$ on the production grid up to truncation error.
-The symmetric stencil is invariant under exchanging the order of the $\epsilon$ and $\delta$ increments on the grid when mixed partials commute (Clairaut symmetry; Supplemental Material, Sec.~\ref{S-sec:symmetry_gauge})---a property of the estimator, not a claim that strain and chemical substitution are interchangeable controls.
-$\mathcal{S}$ is invariant under arbitrary uniform energy offsets shared by all four corners.
-Strain $\epsilon$ and dopant label $\delta$ are distinct physical control axes in the production protocol.
+$\mathcal{S}$ is reported in meV per atom and is invariant under a uniform energy offset shared by all four corners (Supplemental Material, Sec.~\ref{S-sec:symmetry_gauge}).
 
 \paragraph{Error propagation.}
 If each corner carries uncorrelated equal per-atom uncertainty $\sigma_e$,
@@ -58,15 +46,11 @@ If each corner carries uncorrelated equal per-atom uncertainty $\sigma_e$,
 \label{eq:sigma_propagation}
 \end{equation}
 from the four-term difference in Eq.~\eqref{eq:four_corner} (derivation: Supplemental Material, Sec.~\ref{S-sec:error_prop}).
-Table~\ref{tab:sigma_S} lists demonstrated and pending contributions to the reporting band; we use $\sigma_{\mathcal{S}}\lesssim 2$~meV/atom as a conservative protocol floor on the $n\leq 4$ grid when interpreting the smallest periodic points ($2.3$--$3.0$~meV/atom for N and B at $n{=}1$).
-Periodic $\mathcal{S}$ values in the main text are from the $+3$\% size-scaling grid (Table~\ref{tab:IV}).
-
-We report $\mathcal{S}$ in meV per atom; $\mathcal{S}<0$ ($>0$) means the coupled corner is more (less) stable than the additive estimate.
-
-To quantify additive failure magnitude we report
+Table~\ref{tab:sigma_S} lists contributions to the reporting band; we use $\sigma_{\mathcal{S}}\lesssim 2$~meV/atom as a conservative protocol floor on the $n\leq 4$ grid.
+$\mathcal{S}<0$ ($>0$) means the coupled corner is more (less) stable than the additive estimate.
+Additive-failure magnitude is
 \begin{equation}
 \eta \equiv \frac{|\mathcal{S}|}{|\Delta E_{\mathrm{coupled}}|},
 \label{eq:additive_fraction}
 \end{equation}
 where $\Delta E_{\mathrm{coupled}}=(E(\epsilon,\delta)-E(0,0))/N_{\mathrm{atoms}}$.
-At $n{=}4$ and $+3$\% strain, $\eta\approx 8\%$ for P ($|\mathcal{S}|=23.7$~meV/atom vs.\ $|\Delta E_{\mathrm{coupled}}|\approx 283$~meV/atom), whereas B and N remain below $1$\%.

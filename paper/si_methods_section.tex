@@ -1,8 +1,8 @@
 \section*{Computational Methods (full protocol)}
 
-All total-energy and electronic-structure calculations use CP2K~\cite{cp2k2025} with PBE~\cite{Perdew1996generalized} and Grimme DFT-D3 (Becke--Johnson damping)~\cite{Grimme2011effect}, GTH pseudopotentials, and the DZVP-MOLOPT-SR-GTH basis.
+All total-energy and electronic-structure calculations use CP2K~\cite{VandeVondele2005quickstep} with PBE~\cite{Perdew1996generalized} and Grimme DFT-D3 (Becke--Johnson damping)~\cite{Grimme2011effect}, GTH pseudopotentials, and the DZVP-MOLOPT-SR-GTH basis.
 Unless stated otherwise, biaxial strain scales the in-plane lattice vectors of the pristine equilibrium cell at fixed fractional coordinates (rigid-strain protocol).
-Reported $\mathcal{S}$ magnitudes under this protocol are upper bounds at fixed coordinates; Table~\ref{tab:III} in the main text benchmarks the tetramer $P$ four-corner ionic-relaxation grid.
+Reported $\mathcal{S}$ magnitudes under this protocol are upper bounds at fixed coordinates; Table~\ref{tab:geometry} in the main text benchmarks the tetramer $P$ four-corner ionic-relaxation grid.
 Plane-wave cutoffs are 400~Ry for $n\leq 4$ and 350~Ry for $n\geq 6$; $\mathcal{S}(n)$ comparisons at fixed $n$ use identical cutoffs.
 Production supercells use $\Gamma$-only sampling.
 Because $\mathcal{S}$ is a four-corner difference on the same cell, sensitivity should be audited on $\mathcal{S}(\mathrm{cutoff})$ and $\mathcal{S}(k)$, not on bare total energies alone.
@@ -14,7 +14,7 @@ Tetramer models ($4\times\mathrm{C}_{60}$) use B/N/P substitution at nominal ${\
 Periodic scaling cells contain one substituent per C$_{60}$ ($n=1$--$8$) on a fixed production site map.
 Dopant sites are not thermodynamically re-optimized.
 Linear $\alpha=\mathrm{d}E/\mathrm{d}\epsilon$ and substitution energy differences $\Delta E_{\mathrm{sub}}$ follow the main-text definitions.
-A calculation inventory appears in Tables~\ref{tab:II} and~\ref{tab:inventory_archive}.
+A calculation inventory appears in Tables~\ref{tab:relax} and~\ref{tab:inventory_archive}.
 
 \paragraph{Marcus vertical step (Supplemental only).}
 Charged-state geometry optimizations and vertical single-points at neutral geometries yield adiabatic IP/EA and Marcus $\lambda^{\pm}$, following Ref.~\citenum{Capobianco2024electron}.

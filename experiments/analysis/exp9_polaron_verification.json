@@ -3,7 +3,7 @@
   "verified_date": "2026-08-02",
   "converged": 12,
   "total": 12,
-  "note": "Adiabatic IP/EA from last GEO_OPT ENERGY line. Marcus lambda requires vertical ENERGY at neutral geometry (inputs/vertical/, not yet in outputs).",
+  "note": "Adiabatic IP/EA from last GEO_OPT ENERGY line. Marcus lambda requires vertical ENERGY at neutral geometry (inputs/vertical/ -> dft_results/exp_9_charged_polaron/outputs/).",
   "systems": {
     "pristine": {
       "0": {
@@ -144,16 +144,7 @@
   },
   "vertical_sp": {
     "inputs_dir": "experiments/exp_9_charged_polaron/inputs/vertical",
-    "inputs_pending": [
-      "polaron_B_qneg1_vert_neutral_geom_sp",
-      "polaron_B_qpos1_vert_neutral_geom_sp",
-      "polaron_N_qneg1_vert_neutral_geom_sp",
-      "polaron_N_qpos1_vert_neutral_geom_sp",
-      "polaron_P_qneg1_vert_neutral_geom_sp",
-      "polaron_P_qpos1_vert_neutral_geom_sp",
-      "polaron_pristine_qneg1_vert_neutral_geom_sp",
-      "polaron_pristine_qpos1_vert_neutral_geom_sp"
-    ],
+    "inputs_pending": [],
     "outputs_converged": [
       "polaron_B_qneg1_vert_neutral_geom_sp",
       "polaron_B_qpos1_vert_neutral_geom_sp",

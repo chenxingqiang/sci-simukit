@@ -178,11 +178,20 @@ def main() -> None:
             derived["fundamental_gap_eV"][dopant] = block["IP"] - block["EA"]
 
     vertical_dir = REPO / "experiments" / "exp_9_charged_polaron" / "inputs" / "vertical"
-    vertical_pending = sorted(p.stem for p in vertical_dir.glob("*.inp")) if vertical_dir.exists() else []
     vertical_done = sorted(
         p.stem
         for p in OUT_DIR.glob("polaron_*_vert_*.out")
         if "SCF run converged" in p.read_text(errors="ignore")
+    )
+    vertical_done_set = set(vertical_done)
+    vertical_pending = (
+        sorted(
+            p.stem
+            for p in vertical_dir.glob("*.inp")
+            if p.stem not in vertical_done_set
+        )
+        if vertical_dir.exists()
+        else []
     )
 
     lambda_eV: dict[str, dict[str, float | None]] = {}
@@ -206,7 +215,7 @@ def main() -> None:
         "note": (
             "Adiabatic IP/EA from last GEO_OPT ENERGY line. "
             "Marcus lambda requires vertical ENERGY at neutral geometry "
-            "(inputs/vertical/, not yet in outputs)."
+            "(inputs/vertical/ -> dft_results/exp_9_charged_polaron/outputs/)."
         ),
         "systems": systems,
         "derived": derived,

@@ -9,6 +9,7 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.gridspec import GridSpec
+from matplotlib.lines import Line2D
 from matplotlib.offsetbox import AnnotationBbox, OffsetImage
 from PIL import Image
 
@@ -32,6 +33,7 @@ from _pdos import gaussian_dos, parse_pdos
 from _style import (
     DOPANT_COLORS,
     DOPANT_FILLS,
+    DOPANT_MARKERS,
     INK,
     NATURE_BLUE,
     NATURE_GRAY,
@@ -222,6 +224,38 @@ def _pdos_path(dop: str, strain_tag: str) -> Path:
     return root / f"elec_{strain_tag}_{dop}-k1-1.pdos"
 
 
+def _gap_trace(ax, xs, ys, dop: str, *, label: str | None = None) -> None:
+    color = DOPANT_COLORS[dop]
+    marker = DOPANT_MARKERS[dop]
+    ax.plot(xs, ys, "-", color=color, lw=1.65, zorder=2, solid_capstyle="round")
+    ax.plot(
+        xs,
+        ys,
+        marker,
+        color=color,
+        markersize=6.4,
+        markerfacecolor=color,
+        markeredgecolor="white",
+        markeredgewidth=0.75,
+        label=label,
+        zorder=3,
+        clip_on=True,
+    )
+
+
+def _axis_break(ax_hi, ax_lo) -> None:
+    ax_hi.spines["bottom"].set_visible(False)
+    ax_lo.spines["top"].set_visible(False)
+    ax_hi.tick_params(axis="x", which="both", bottom=False, labelbottom=False, top=True)
+    ax_lo.tick_params(axis="x", which="both", top=False)
+    d = 0.018
+    kw = dict(color=INK, lw=0.9, clip_on=False, solid_capstyle="butt")
+    ax_hi.plot((-d, +d), (-d, +d), transform=ax_hi.transAxes, **kw)
+    ax_hi.plot((1.0 - d, 1.0 + d), (-d, +d), transform=ax_hi.transAxes, **kw)
+    ax_lo.plot((-d, +d), (1.0 - d, 1.0 + d), transform=ax_lo.transAxes, **kw)
+    ax_lo.plot((1.0 - d, 1.0 + d), (1.0 - d, 1.0 + d), transform=ax_lo.transAxes, **kw)
+
+
 def build_fig1() -> tuple[Path, Path]:
     apply_nature_style()
     gaps = parse_exp7_gaps()
@@ -242,7 +276,9 @@ def build_fig1() -> tuple[Path, Path]:
     )
     ax_a = fig.add_subplot(gs[0, 0])
     ax_b = fig.add_subplot(gs[0, 1])
-    ax_c = fig.add_subplot(gs[1, 0])
+    gs_c = gs[1, 0].subgridspec(2, 1, height_ratios=[1.08, 1.00], hspace=0.06)
+    ax_c_hi = fig.add_subplot(gs_c[0])
+    ax_c_lo = fig.add_subplot(gs_c[1], sharex=ax_c_hi)
     ax_d = fig.add_subplot(gs[1, 1])
 
     panel_label(ax_a, "a", nature=True)
@@ -318,29 +354,73 @@ def build_fig1() -> tuple[Path, Path]:
     )
     style_axes(ax_b)
 
-    panel_label(ax_c, "c", nature=True)
-    for dop, lab in (("pristine", "pristine"), ("B", "B"), ("N", "N"), ("P", "P")):
+    panel_label(ax_c_hi, "c", nature=True)
+    gap_series: dict[str, tuple[np.ndarray, np.ndarray]] = {}
+    for dop in ("pristine", "B", "N", "P"):
         pts = sorted([(p.strain_pct, p.gap_ev) for p in gaps if p.dopant == dop and p.converged])
         if len(pts) < 2:
             continue
         xs, ys = map(np.array, zip(*pts))
-        plot_trajectory(ax_c, xs, ys, DOPANT_COLORS[dop], label=lab, fill=False, lw=1.05, ms=3.4)
-    add_reference_lines(ax_c)
-    ax_c.set_xlabel(r"$\epsilon$ (%)")
-    ax_c.set_ylabel(r"$E_g$ (eV)")
-    ax_c.set_ylim(-0.08, 1.68)
-    ax_c.text(
+        gap_series[dop] = (xs, ys)
+        if dop == "pristine":
+            _gap_trace(ax_c_hi, xs, ys, dop, label=dop)
+        else:
+            _gap_trace(ax_c_lo, xs, ys, dop, label=dop)
+    ax_c_lo.axhspan(-0.30, 0.0, color="#F1F5F9", zorder=0)
+    ax_c_lo.axhline(0.0, color="#94A3B8", lw=0.7, ls=(0, (3, 2)), zorder=1)
+    ax_c_hi.axvline(0.0, color="#D5D5D5", lw=0.65, zorder=0)
+    ax_c_lo.axvline(0.0, color="#D5D5D5", lw=0.65, zorder=0)
+    ax_c_hi.set_ylim(0.82, 1.68)
+    ax_c_lo.set_ylim(-0.22, 0.26)
+    ax_c_hi.set_yticks([1.0, 1.5])
+    ax_c_lo.set_yticks([-0.2, 0.0, 0.2])
+    ax_c_lo.set_xticks([-5, 0, 5])
+    ax_c_lo.set_xlim(-5.8, 5.8)
+    ax_c_lo.set_xlabel(r"$\epsilon$ (%)")
+    ax_c_lo.set_ylabel(r"$E_g$ (eV)")
+    ax_c_lo.text(
         0.03,
         0.08,
-        "B/N/P near gapless",
-        transform=ax_c.transAxes,
+        "overlap",
+        transform=ax_c_lo.transAxes,
         ha="left",
         va="bottom",
-        fontsize=6.2,
+        fontsize=6.0,
         color=NATURE_GRAY,
     )
-    style_axes(ax_c)
-    _legend_in(ax_c, loc="upper right", fontsize=6.4, ncol=2)
+    e0 = {dop: float(dict(zip(xs, ys)).get(0.0, np.nan)) for dop, (xs, ys) in gap_series.items()}
+    style_axes(ax_c_hi)
+    style_axes(ax_c_lo)
+    _axis_break(ax_c_hi, ax_c_lo)
+    legend_labs = {
+        "pristine": rf"pristine ${e0.get('pristine', float('nan')):+.2f}$",
+        "B": rf"B ${e0.get('B', float('nan')):+.2f}$",
+        "N": rf"N ${e0.get('N', float('nan')):+.2f}$",
+        "P": rf"P ${e0.get('P', float('nan')):+.2f}$",
+    }
+    _legend_in(
+        ax_c_hi,
+        loc="upper right",
+        fontsize=6.2,
+        ncol=1,
+        handlelength=1.15,
+        handles=[
+            Line2D(
+                [0],
+                [0],
+                color=DOPANT_COLORS[dop],
+                marker=DOPANT_MARKERS[dop],
+                lw=1.4,
+                markersize=5.4,
+                markerfacecolor=DOPANT_COLORS[dop],
+                markeredgecolor="white",
+                markeredgewidth=0.55,
+                label=legend_labs[dop],
+            )
+            for dop in ("pristine", "B", "N", "P")
+            if dop in e0
+        ],
+    )
 
     panel_label(ax_d, "d", nature=True)
     xs, ys = _ref_pristine_dE_meV_atom()

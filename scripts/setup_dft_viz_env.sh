@@ -15,8 +15,20 @@ fi
 # MSMS for VMD molecular-surface reps (probe 1.2--1.4 A via VMD_MSMS_PROBE).
 if [[ -z "${MSMSSERVER:-}" ]]; then
   _msms=""
-  if command -v python3 >/dev/null 2>&1; then
-    _msms="$(python3 -c "
+  _py="${PYTHON:-}"
+  if [[ -z "$_py" ]]; then
+    for cand in \
+      /opt/homebrew/Caskroom/miniconda/base/bin/python3 \
+      "$HOME/.local/bin/python3" \
+      python3; do
+      if command -v "$cand" >/dev/null 2>&1; then
+        _py="$cand"
+        break
+      fi
+    done
+  fi
+  if [[ -n "$_py" ]]; then
+    _msms="$("$_py" -c "
 import importlib.util
 spec = importlib.util.find_spec('msms_binary')
 if spec and spec.origin:
@@ -26,6 +38,7 @@ if spec and spec.origin:
         print(p)
 " 2>/dev/null || true)"
   fi
+  unset _py
   if [[ -z "$_msms" && -x "${ROOT:-}/dft_results/bin/msms" ]]; then
     _msms="${ROOT}/dft_results/bin/msms"
   fi

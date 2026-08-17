@@ -28,7 +28,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Population B/N/P** | **18/18** ✅ |
 | **reference_pbed3** | **24/24** ✅ |
 | **运行中** | 无（R421：Cloud VM 无 CP2K；`exp10_status.json` 误刷新已 restore，勿提交） |
-| **最新 Loop** | **R421** |
+| **最新 Loop** | **R422** |
 | **下一 B 任务** | **P0**：`n=2` 四角以 EPS_SCF $10^{-6}$ 重算 + `n=8` 参考态复核（解除 reference-limited）；其后 dense-$k$ `n=1`、Mayer/Bader |
 | **主张-证据** | 主文 α/S = **PBE+D3 only**；α 带拟合标准误（仅 N $>2\sigma$）；`n=2`/`n=8` 行 = **reference-limited** |
 | **引用** | **18/18 经 Crossref 核验**（R419 修 11 条：1 条虚构、3 条 DOI 错配、多条作者/页码错） |
@@ -1437,8 +1437,17 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track C**：无新主文泄漏；C-m3 保持 closed；P0 仍为 $n{=}2$+$n{=}8$（不伪造 DFT）。
  - **创新审计**：Exp10 JSON restore = **A**；R420 hash = **A**；$n{=}2$/$n{=}8$ 仍 **C**（reference-limited）。
  - **paper_gap**：P0 $n{=}2$ 四角 EPS $10^{-6}$ + $n{=}8$ 参考态。
- - **Git**：`commit: 3ec4449` — `loop R421: restore Exp10 JSON, fix R420 hash, idle CP2K gate`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **Git**：`commit: 7b60bd2` — `loop R421: restore Exp10 JSON, fix R420 hash, idle CP2K gate`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
  - **下一轮**：本机有 CP2K 时跑 $n{=}2$ 四角；勿在无 `.out` 的 VM 上 refresh Exp10 JSON。
+
+- **Loop R422（2026-08-17，三轨）**：
+ - **Track A**：Cloud VM 无 CP2K — **idle / 不干预**；**勿**刷新 `exp10_status.json`
+ - **Track B（VII Discussion）**：`sec:discussion_literature` 补 C$_{24}$ graphullerene 应变–光学图 vs 四角 $\mathcal{S}$ 审计一句（已有 bib `Li2024graphullerene`，DOI 10.1021/acsanm.4c06013）；Khan2025 已在主文 L64/L222/L224，**不**重复加 bib
+ - **Track C（C-m3）**：grep `7/8|at revision|orthogonal|fourfold` 主文/SI **0** 命中 — 去重 **closed** ✅；**不**再改 caption / SI archive 注释
+ - **创新审计**：Li2024graphullerene 对比 = **B+**（已有 bib，新入 tex）；Khan 已引 = **A**；$n{=}2$/$n{=}8$ DFT = **C**
+ - **paper_gap**：P0 $n{=}2$ 四角 EPS $10^{-6}$ + $n{=}8$ 参考态复核
+ - **Git**：`commit: ed77f84` — `loop R422: cite Li2024graphullerene C24 contrast in Discussion`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **下一轮**：本机有 CP2K 时跑 $n{=}2$ 四角；**不**伪造 DFT
 
 - **Loop R417（2026-08-02，三轨）**：
   - **Track A**：启动 `size_6x60_N_pos3pct_cutoff300` 单点（np=8，2/3 CPU；由 cutoff400 模板仅改 PROJECT/CUTOFF）→ cutoff 收敛曲线 300/350/400 + D4 截断对照；**running**

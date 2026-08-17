@@ -27,8 +27,8 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Periodic relax n=1 P** | **4/4** ✅ |
 | **Population B/N/P** | **18/18** ✅ |
 | **reference_pbed3** | **24/24** ✅ |
-| **运行中** | 无（R420 未启动新 CP2K；协议闸门 idle） |
-| **最新 Loop** | **R420** |
+| **运行中** | 无（R421：Cloud VM 无 CP2K；`exp10_status.json` 误刷新已 restore，勿提交） |
+| **最新 Loop** | **R421** |
 | **下一 B 任务** | **P0**：`n=2` 四角以 EPS_SCF $10^{-6}$ 重算 + `n=8` 参考态复核（解除 reference-limited）；其后 dense-$k$ `n=1`、Mayer/Bader |
 | **主张-证据** | 主文 α/S = **PBE+D3 only**；α 带拟合标准误（仅 N $>2\sigma$）；`n=2`/`n=8` 行 = **reference-limited** |
 | **引用** | **18/18 经 Crossref 核验**（R419 修 11 条：1 条虚构、3 条 DOI 错配、多条作者/页码错） |
@@ -1428,8 +1428,17 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track C**：扩表 tetramer 应变无效化闭环；主文/SI 边界 grep 无 `orthogonal`/`at revision`/`7/8`
  - **创新审计**：扩表 recast = **A**；tetramer $\alpha$/$\mathcal{S}$ = **invalid**；周期 $n{=}1$ P 弛豫 = **A**
  - **paper_gap**：`n=2` 四角 EPS $10^{-6}$；`n=8` 参考态重算；dense-$k$ $n{=}1$；Mayer/Bader
- - **Git**：`commit: e953e5e` — `loop R420: recast cluster tables, compile 11+7, numbers 50/50`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **Git**：`commit: 2f08642` — `loop R420: recast cluster tables, compile 11+7, numbers 50/50`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
  - **下一轮**：`n=2` 四角 EPS_SCF $10^{-6}$ 重算（解除 reference-limited）；其后 $n{=}8$ 参考态；dense-$k$ $n{=}1$ / Mayer/Bader
+
+- **Loop R421（2026-08-17，三轨 · 闸门）**：
+ - **Track A**：Cloud VM 无 CP2K PATH；idle。误跑 `update_exp10_status.py` 把归档 `exp10_status.json` 写成 0/42 → **`git restore` 恢复 41/41**（`updated: 2026-08-02`）。**未**启动 $n{=}2$/$n{=}8$ DFT。
+ - **Track B**：R420 Git 哈希 `e953e5e`→`2f08642`；剩余 biaxial/verified/retention 命中均为周期格或 ARCHIVE 注释。
+ - **Track C**：无新主文泄漏；C-m3 保持 closed；P0 仍为 $n{=}2$+$n{=}8$（不伪造 DFT）。
+ - **创新审计**：Exp10 JSON restore = **A**；R420 hash = **A**；$n{=}2$/$n{=}8$ 仍 **C**（reference-limited）。
+ - **paper_gap**：P0 $n{=}2$ 四角 EPS $10^{-6}$ + $n{=}8$ 参考态。
+ - **Git**：`commit: 3ec4449` — `loop R421: restore Exp10 JSON, fix R420 hash, idle CP2K gate`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **下一轮**：本机有 CP2K 时跑 $n{=}2$ 四角；勿在无 `.out` 的 VM 上 refresh Exp10 JSON。
 
 - **Loop R417（2026-08-02，三轨）**：
   - **Track A**：启动 `size_6x60_N_pos3pct_cutoff300` 单点（np=8，2/3 CPU；由 cutoff400 模板仅改 PROJECT/CUTOFF）→ cutoff 收敛曲线 300/350/400 + D4 截断对照；**running**
@@ -4057,6 +4066,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 ### Gotchas
 
+- **Cloud VM 无本地 Exp10 `.out`**：`update_exp10_status.py` / `exp10_status_line.sh` 会报 Exp10 **0/42**。这不是归档 41/41 被抹掉；立即 `git restore experiments/analysis/exp10_status.json`，**勿提交** Cloud VM 刷新后的 JSON。R421 已踩坑。
 - **bib 必须对 Crossref 核验**：R419 在 18 条 cited 里查出 **11 条**错误，其中 `Materials2024untangling` 无法检索到（判定虚构）却被引 3 次。**新增或修改 bib 条目后必须用 `https://api.crossref.org/works/<doi>` 比对 title/journal/volume/pages/authors**，勿凭记忆填 DOI。
 - **部分网格数值会冻进 tex**：Table III 的 alternate placement 曾长期停留在 8/18 时期的值（含 3 个错误符号）。凡 tex/py 里出现来自未完成网格的数字，**必须由 analysis JSON 读取**并在 `status != complete` 或 `alpha_provisional` 时抛错，勿硬编码（`_load_audit.load_seed137_alpha_S` 为范例）。
 - **pristine 参考态一致性**：pristine 同一应变的能量/atom 与超胞尺寸**无关**，是免费的自检。$n{=}2$（EPS_SCF 1e-5）与 $n{=}8$ 偏离 $n{=}1,4,6$ 平台 4.2/5.4 meV/atom；因 $\mathcal{S}$ 含该项的负号，这两行的 $\mathcal{S}$ 带同量级系统偏移 — **不要用它们做尺寸趋势论断**。改 EPS_SCF 时须同步 Table~I 误差预算。

@@ -7,6 +7,15 @@
 
 
 
+### R421 audit（2026-08-17 go loops — Exp10 JSON restore + idle CP2K gate）
+
+| 主张 | 文献/数据 | 差异 | 等级 |
+|------|-----------|------|------|
+| Exp10 archived 41/41 | `experiments/analysis/exp10_status.json` `updated=2026-08-02` `converged=41` `total=41` `pending=0` | Cloud `update_exp10_status.py` 无本地 `.out` 曾写成 `0/42`；已 `git restore`，**不提交** | **A** |
+| R420 Git hash | `2f08642` `loop R420: recast cluster tables, compile 11+7, numbers 50/50` | 快照曾误写 `e953e5e` | **A** |
+| Track A n=2/n=8 | `which cp2k.psmp` 空；`pgrep` idle | P0 计算仍 blocked | **C**（无新 `.out`） |
+| Loop C | 无新 `7/8`/`at revision`/`experiments/` 泄漏；不重写已 recast 四聚体 caption | C-m3 保持 closed | **A** |
+
 ### R417 audit（2026-08-02 go loops — cutoff300 Track A + C-m3 close）
 
 | 项 | 状态 | 证据 |

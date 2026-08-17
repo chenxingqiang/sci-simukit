@@ -7,6 +7,16 @@
 
 
 
+### R441 audit (2026-08-17, Track B · III Literature)
+
+- **Phase**: III Literature.
+- **主张**: Stress-related anisotropy of qHP versus qTP C$_{60}$ is a uniaxial-stress geometry map, not a four-corner $\mathcal{S}$ on a substitutional B/N/P grid.
+- **文献中是否已有**: Wang *ACS Appl. Nano Mater.* **7**, 3456 (2024) maps qHP/qTP C$_{60}$ stress anisotropy for optoelectronic devices; it does not evaluate a four-corner total-energy $\mathcal{S}$ on substitutional B/N/P.
+- **我方差异**: Intro now cites `Wang2024simulation` as that uniaxial-stress geometry map; the SI positioning table first row includes the same key. No new DOI; no Abstract/Results quantitative change.
+- **证据等级**: **B+** (existing bib + one Intro contrast sentence + SI table cite).
+- **Loop C**: `7/8|at revision|referee` = 0 in `paper/*.tex`.
+- **验证**: `Wang2024simulation` = 1 in main tex and 1 in SI table; Intro SCF-gate = 1; charged-defect = 2.
+
 ### R440 audit (2026-08-17, Track B · II Introduction)
 
 | 项 | 值 |

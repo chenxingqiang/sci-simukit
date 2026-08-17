@@ -28,8 +28,8 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Population B/N/P** | **18/18** ✅ |
 | **reference_pbed3** | **24/24** ✅ |
 | **运行中** | 无（R421：Cloud VM 无 CP2K；`exp10_status.json` 误刷新已 restore，勿提交） |
-| **最新 Loop** | **R440** |
-| **下一 B 任务** | **P0**：`n=2` 四角以 EPS_SCF $10^{-6}$ 重算 + `n=8` 参考态复核（解除 reference-limited）；其后 dense-$k$ `n=1`、Mayer/Bader；R440 Intro undoped-corner SCF-gate 句已落地 |
+| **最新 Loop** | **R441** |
+| **下一 B 任务** | **P0**：`n=2` 四角以 EPS_SCF $10^{-6}$ 重算 + `n=8` 参考态复核（解除 reference-limited）；其后 dense-$k$ `n=1`、Mayer/Bader；R441 Intro Wang2024simulation uniaxial-stress vs four-corner S 句已落地 |
 | **主张-证据** | 主文 α/S = **PBE+D3 only**；α 带拟合标准误（仅 N $>2\sigma$）；`n=2`/`n=8` 行 = **reference-limited** |
 | **引用** | **18/18 经 Crossref 核验**（R419 修 11 条：1 条虚构、3 条 DOI 错配、多条作者/页码错） |
 | **数据审计** | `paper/scripts/verify_manuscript_numbers.py` → **50/50 PASS** |
@@ -38,6 +38,15 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **旗杆** | **PRB Regular Article** major revision |
 
 ---
+
+- **Loop R441（2026-08-17，三轨 · III Literature）**：
+  - **Track A**：NO_CP2K — **不干预**
+  - **Track B（III Literature）**：Intro 在 Hou 宿主句之后写入 Wang2024simulation：qHP/qTP C60 应力各向异性是单轴应力几何图，不是置换 B/N/P 网格上的四角 S；SI positioning 表第一行补同一 citekey；**不**新 DOI、**不**改 Abstract/Results 定量
+  - **Loop C**：`7/8|at revision|referee` = 0
+  - **创新审计**：Wang2024simulation 单轴应力 vs 四角 S = **B+**
+  - **paper_gap**：Mayer/Bader = **C**；SCAN + dense-k = **C**；n=2 四角 @ EPS 1e-6 = **C**
+  - **Git**：`commit: c2f7a4f` — `loop R441: Intro Wang2024simulation uniaxial-stress map vs four-corner S`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+  - **下一轮**：R442 IV Methods 或下一未引用 bib 对比句
 
 - **Loop R440（2026-08-17，三轨 · II Introduction）**：
   - **Track A**：NO_CP2K — **不干预**

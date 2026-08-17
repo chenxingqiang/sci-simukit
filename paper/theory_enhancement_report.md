@@ -7,6 +7,18 @@
 
 
 
+### R443 audit (2026-08-17, 横切 B4/B5)
+
+- **Phase**: 横切（质控层 / B4+B5）。write.mdc 轮转默认 VI Results，但 `sec:synergy` L162–169 已写 n=2/n=8 reference-limited（offsets 4.2/5.4 meV/atom；rescaling removes the n=8 sign change；treat as reference-limited rather than a size trend）。**本轮不改 Results 定量，不抄 R442 same-350-Ry 句进 Results。**
+- **R442 补记**：Methods L102 — n=8 undoped +3% offset 高于 n=1/4/6 plateau，但 n=8 与 n=6 **同属 350 Ry**，故 **not a cutoff-class change** 且 **not a size-trend sign change**。Table~sigma_S：cutoff (350 vs 400) <0.2 meV/atom；n=8 pristine offset 5.4 meV/atom。
+- **Loop C**：`grep -E '7/8|at revision|referee' paper/*.tex` = **0**。
+- **证据**：Results 边界 = **A**（已落地，本轮不扩写）；R442 Methods same-350-Ry = **A**（`ef5db72`）；Mayer/Bader = **C**。
+
+### R442 audit (2026-08-17, Track B · IV Methodology)
+
+- **Phase**: IV Methodology。Methods n=8 same-350-Ry undoped-corner 句（L102）。闸门 `is not a cutoff-class change and is not reported as a size-trend sign change` = 1。
+- **Git**：`commit: ef5db72`（二次 amend 后真实 HEAD；笔记曾写 35aeeab）。
+
 ### R441 audit (2026-08-17, Track B · III Literature)
 
 - **Phase**: III Literature.

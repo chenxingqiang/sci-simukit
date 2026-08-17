@@ -28,8 +28,8 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Population B/N/P** | **18/18** ✅ |
 | **reference_pbed3** | **24/24** ✅ |
 | **运行中** | 无（R421：Cloud VM 无 CP2K；`exp10_status.json` 误刷新已 restore，勿提交） |
-| **最新 Loop** | **R431** |
-| **下一 B 任务** | **P0**：`n=2` 四角以 EPS_SCF $10^{-6}$ 重算 + `n=8` 参考态复核（解除 reference-limited）；R432：Methods 四角落 vs 带电表面契约；其后 dense-$k$ `n=1`、Mayer/Bader |
+| **最新 Loop** | **R432** |
+| **下一 B 任务** | **P0**：`n=2` 四角以 EPS_SCF $10^{-6}$ 重算 + `n=8` 参考态复核（解除 reference-limited）；其后 dense-$k$ `n=1`、Mayer/Bader |
 | **主张-证据** | 主文 α/S = **PBE+D3 only**；α 带拟合标准误（仅 N $>2\sigma$）；`n=2`/`n=8` 行 = **reference-limited** |
 | **引用** | **18/18 经 Crossref 核验**（R419 修 11 条：1 条虚构、3 条 DOI 错配、多条作者/页码错） |
 | **数据审计** | `paper/scripts/verify_manuscript_numbers.py` → **50/50 PASS** |
@@ -1495,8 +1495,18 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track C**：grep `7/8|at revision|orthogonal|fourfold` 主文/SI **0**
  - **创新审计**：Discussion SIC 边界 = **A**（bib 已有；无新 DFT）；n=2/n=8 = **C / reference-limited**；Mayer = **C**
  - **paper_gap**：R432 Methods 四角落 vs 带电表面契约；dense-$k$ / Mayer
- - **Git**：`commit: 827b0c4` — `loop R431: Falletta polaron SIC vs four-corner S boundary`；（**pushed: (pending)**）
+ - **Git**：`commit: 9f72cc4` — `loop R431: Falletta polaron SIC vs four-corner S boundary`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
  - **下一轮**：Methods 契约句；勿再插 Xu/Nie/Falletta
+
+- **Loop R432（2026-08-17，三轨 · Methods 四角落 vs 带电表面契约）**：
+ - **Track A**：Exp10 **41/41**、Exp8 **6/6**、Exp9 **12/12+8/8**、reference_pbed3 **24/24**；running=none；**NO_CP2K** — **不干预**
+ - **Track B（IV Methods）**：`sdc_method_section.tex` 在 Eq.~(four_corner) 后加一句：四角落在同一中性 Born--Oppenheimer 面上求值；模板不是 charged-defect 或 polaron-rate 估计器（**不 cite** Falletta；不碰 Results 定量）
+ - **Track C**：grep `7/8|at revision|referee` → **0**
+ - **创新审计**：Methods 中性表面契约 = **A**；Falletta 仍仅 Discussion 1 处 = **A**；Mayer = **C**
+ - **paper_gap**：P0 `n=2` 四角 $10^{-6}$ + `n=8` 参考态；dense-$k$ / Mayer
+ - **Git**：`commit: e01a1bf` — `loop R432: Methods four-corner vs charged-surface contract`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **下一轮**：Conclusion 中性四角落边界收口（不 cite Falletta）；cutoff300 仅 idle 监控
+
 - **Loop R428（2026-08-17，三轨 · VII Discussion / III Literature）**：
 
  - **Track A**：CP2K 仍不可用 — **不干预**；n=2/n=8 仍 **C / reference-limited**

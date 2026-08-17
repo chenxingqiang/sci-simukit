@@ -7,6 +7,12 @@
 
 
 
+### R432 audit（2026-08-17 go loops — Methods four-corner vs charged-surface contract）
+- **Phase**：IV Methods（`sdc_method_section.tex`）
+- **主张**：四角总能量在同一中性 Born--Oppenheimer 面上求值；模板不是 charged-defect 或 polaron-rate 估计器
+- **证据等级**：A（方法学契约；无新 `.out`；不 cite Falletta）
+- **Loop C**：grep `7/8|at revision|referee` → 0
+
 ### R431 audit（2026-08-17 go loops — Falletta SIC vs four-corner \(\mathcal{S}\) boundary）
 
 - **Loop**: R431 (write.mdc VII Discussion; Track B + Loop C)

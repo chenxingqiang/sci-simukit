@@ -7,6 +7,16 @@
 
 
 
+### R436 audit（2026-08-17 go loops — Intro Qiu2025atomic mechanical/tribological vs four-corner $\mathcal{S}$）
+
+| 主张 | 证据等级 | 状态 | 源 |
+|------|----------|------|-----|
+| Intro：graphullerene 力学/摩擦原子尺度图不构成四角 $\mathcal{S}$ 审计 | **B+** | **[verified R436]** | `Qiu2025atomic`（Tribol. Int. 204, 110756）；主文 **1** 处 Intro cite；无新 bib、无新定量 |
+| 文献检索 2026 qHP C$_{60}$ 四角 $\mathcal{S}$ | **C** | **[no new bib]** | Capobianco/Khan/Makov/C24/Graphullerite 已覆盖；citing 仍为 Xu C70 / Nie C20（禁止第三处） |
+| 禁止第三处 Xu/Nie/Falletta | **A** | **[verified]** | 本轮未改 Discussion；仅 Intro 1 句 Qiu |
+| 过期台账：Discussion Context 已 cite Qiu | **P0 纠错** | **[fixed R436]** | 原 L611 声称 Discussion cite——主文当时 **0** 命中；现改为 Intro R436 |
+| Loop C 主文 `7/8`/`at revision`/`referee` | **A** | **[verified 0]** | `grep paper/*.tex` |
+
 ### R435 audit（2026-08-17 go loops — Intro four-corner vs charged-defect/polaron-rate）
 - **Phase**: II Introduction (write.mdc 阶段2)
 - **Change**: Intro L61 diagnostic sentence now also states $\\mathcal{S}$ is not a charged-defect or polaron-rate estimator (Abstract L40 + Methods `eq:four_corner` + Conclusions L272). No new quantitative claim; Falletta remains Discussion-only (L233).
@@ -608,7 +618,7 @@
 | Falletta2025 charged vs neutral polaron DFT | **B+** | **[R259 Literature]** | Discussion context; Marcus path unchanged |
 | SI Overview Exp9 诚实化 | **A** | **[R161; R279]** | 12/12 GEO + **8/8** vertical |
 | Discussion Santra2024 formation-energy strain | **B+** | **[R218]** | npj 2D Mater. DOI 10.1038/s41699-024-00472-x vs $\mathcal{S}$ cross term |
-| Discussion Qiu2025 力学对比 | **B+** | **[verified R154]** | `strain_doped_graphullerene.tex` Context 段 cite `Qiu2025atomic` |
+| Intro Qiu2025 力学/摩擦 vs 四角 $\mathcal{S}$ | **B+** | **[verified R436]** | `strain_doped_graphullerene.tex` Intro cite `Qiu2025atomic`（R154 台账过期：Discussion 当时未 cite） |
 | Abstract partial Exp9 | **N/A** | **[withdrawn R67]** | PRB 摘要无 Exp9 计数 |
 | Abstract $\alpha$/|$\mathcal{S}$| vs audit | **A** | **[R175--R176; R192 (P,$n{=}1$)]** | Abstract max $31.9$ + fifteen-point grid |
 | Abstract PRL gate (169 w, 1072 chars, no cite) | **A** | **[R280]** | PRB 无硬顶；legacy PBE vs periodic PBE+D3 分层 |

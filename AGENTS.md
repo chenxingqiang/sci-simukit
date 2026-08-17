@@ -28,8 +28,8 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Population B/N/P** | **18/18** ✅ |
 | **reference_pbed3** | **24/24** ✅ |
 | **运行中** | 无（R421：Cloud VM 无 CP2K；`exp10_status.json` 误刷新已 restore，勿提交） |
-| **最新 Loop** | **R430** |
-| **下一 B 任务** | **P0**：`n=2` 四角以 EPS_SCF $10^{-6}$ 重算 + `n=8` 参考态复核（解除 reference-limited）；其后 dense-$k$ `n=1`、Mayer/Bader |
+| **最新 Loop** | **R431** |
+| **下一 B 任务** | **P0**：`n=2` 四角以 EPS_SCF $10^{-6}$ 重算 + `n=8` 参考态复核（解除 reference-limited）；R432：Methods 四角落 vs 带电表面契约；其后 dense-$k$ `n=1`、Mayer/Bader |
 | **主张-证据** | 主文 α/S = **PBE+D3 only**；α 带拟合标准误（仅 N $>2\sigma$）；`n=2`/`n=8` 行 = **reference-limited** |
 | **引用** | **18/18 经 Crossref 核验**（R419 修 11 条：1 条虚构、3 条 DOI 错配、多条作者/页码错） |
 | **数据审计** | `paper/scripts/verify_manuscript_numbers.py` → **50/50 PASS** |
@@ -1487,8 +1487,16 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track C**：grep `7/8|at revision|orthogonal|fourfold` 主文/SI **0**
  - **创新审计**：Conclusion 文献闭环 = **A**（bib 已有；无新 DFT）；n=2/n=8 = **C / reference-limited**；Mayer = **C**
  - **paper_gap**：下一 bib 候选 Falletta2025polaronDFT；dense-$k$ / Mayer
-   - **Git**：`commit: ba71b0c` — `loop R430: Conclusion C70/C20 vs four-corner S closure`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+   - **Git**：`commit: 6fdbb82` — `loop R430: Conclusion C70/C20 vs four-corner S closure`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
  - **下一轮**：横切 audit 或 Falletta 一句；勿再插 Xu/Nie
+- **Loop R431（2026-08-17，三轨 · write.mdc VII Discussion）**：
+ - **Track A**：NO_CP2K — **不干预**
+ - **Track B（VII Discussion）**：Falletta2025 polaron SIC vs 四角落 \(\mathcal{S}\) 边界一句（带电/中性 DFT 等价 **不**把四角落审计变成 Marcus 速率或带电缺陷形成能）；无新定量、无第三 bib、无第三处 Xu/Nie
+ - **Track C**：grep `7/8|at revision|orthogonal|fourfold` 主文/SI **0**
+ - **创新审计**：Discussion SIC 边界 = **A**（bib 已有；无新 DFT）；n=2/n=8 = **C / reference-limited**；Mayer = **C**
+ - **paper_gap**：R432 Methods 四角落 vs 带电表面契约；dense-$k$ / Mayer
+ - **Git**：`commit: 827b0c4` — `loop R431: Falletta polaron SIC vs four-corner S boundary`；（**pushed: (pending)**）
+ - **下一轮**：Methods 契约句；勿再插 Xu/Nie/Falletta
 - **Loop R428（2026-08-17，三轨 · VII Discussion / III Literature）**：
 
  - **Track A**：CP2K 仍不可用 — **不干预**；n=2/n=8 仍 **C / reference-limited**

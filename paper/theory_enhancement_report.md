@@ -7,6 +7,15 @@
 
 
 
+### R431 audit（2026-08-17 go loops — Falletta SIC vs four-corner \(\mathcal{S}\) boundary）
+
+- **Loop**: R431 (write.mdc VII Discussion; Track B + Loop C)
+- **Track A**: NO_CP2K; idle; **不干预**
+- **Track B**: Discussion one-sentence boundary — charged vs.\ neutral DFT equivalent for polaron SIC (\(\texttt{Falletta2025polaronDFT}\)) does **not** convert the four-corner \(\mathcal{S}\) audit into a Marcus rate or a charged-defect formation energy; **no** new quantitative, **no** new bib, **no** third Xu/Nie
+- **Track C**: grep `7/8|at revision|orthogonal|fourfold` on `paper/*.tex` = **0**
+- **Evidence**: **A** (existing bib; Discussion-only); \(n{=}2\)/\(n{=}8\) = **C / reference-limited**; Mayer/Bader = **C**
+- **paper_gap**: Methods four-corner vs.\ charged-surface contract; dense-\(k\) / Mayer; **P0** \(n{=}2\) four-corner at EPS_SCF \(10^{-6}\) + \(n{=}8\) reference recheck
+
 ### R421 audit（2026-08-17 go loops — Exp10 JSON restore + idle CP2K gate）
 
 | 主张 | 文献/数据 | 差异 | 等级 |

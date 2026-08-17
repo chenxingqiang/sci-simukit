@@ -28,8 +28,8 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Population B/N/P** | **18/18** ✅ |
 | **reference_pbed3** | **24/24** ✅ |
 | **运行中** | 无（R421：Cloud VM 无 CP2K；`exp10_status.json` 误刷新已 restore，勿提交） |
-| **最新 Loop** | **R441** |
-| **下一 B 任务** | **P0**：`n=2` 四角以 EPS_SCF $10^{-6}$ 重算 + `n=8` 参考态复核（解除 reference-limited）；其后 dense-$k$ `n=1`、Mayer/Bader；R441 Intro Wang2024simulation uniaxial-stress vs four-corner S 句已落地 |
+| **最新 Loop** | **R442** |
+| **下一 B 任务** | **P0**：`n=2` 四角以 EPS_SCF $10^{-6}$ 重算 + `n=8` 参考态复核（解除 reference-limited）；其后 dense-$k$ `n=1`、Mayer/Bader；R442 Methods n=8 same-350-Ry undoped-corner 句已落地 |
 | **主张-证据** | 主文 α/S = **PBE+D3 only**；α 带拟合标准误（仅 N $>2\sigma$）；`n=2`/`n=8` 行 = **reference-limited** |
 | **引用** | **18/18 经 Crossref 核验**（R419 修 11 条：1 条虚构、3 条 DOI 错配、多条作者/页码错） |
 | **数据审计** | `paper/scripts/verify_manuscript_numbers.py` → **50/50 PASS** |
@@ -39,13 +39,22 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 
 ---
 
+- **Loop R442（2026-08-17，三轨 · IV Methodology）**：
+ - **Track A**：NO_CP2K — **不干预**
+ - **Track B（IV Methods）**：Methods 补 $n{=}8$ 未掺杂角：与 $n{=}6$ 同属 $350$~Ry，offset 非 cutoff-class、不报尺寸趋势变号；**无新定量**
+ - **Track C（C-M3）**：主文无 `7/8`/`at revision`/`referee`
+ - **创新审计**：n=8 same-350-Ry 分类 = **A**（audit JSON）；cutoff-class 误读已纠正 = **A**
+ - **paper_gap**：Mayer/Bader = **C**；SCAN + dense-$k$ = **C**；$n{=}2$ 四角 @ EPS $10^{-6}$ = **C**
+ - **Git**：`commit: 35aeeab` — `loop R442: Methods n=8 same-350-Ry undoped-corner offset not cutoff-class`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **下一轮**：R443 横切 / $n{=}2$ 四角重算；勿再抄 n=8 Methods 句
+
 - **Loop R441（2026-08-17，三轨 · III Literature）**：
   - **Track A**：NO_CP2K — **不干预**
   - **Track B（III Literature）**：Intro 在 Hou 宿主句之后写入 Wang2024simulation：qHP/qTP C60 应力各向异性是单轴应力几何图，不是置换 B/N/P 网格上的四角 S；SI positioning 表第一行补同一 citekey；**不**新 DOI、**不**改 Abstract/Results 定量
   - **Loop C**：`7/8|at revision|referee` = 0
   - **创新审计**：Wang2024simulation 单轴应力 vs 四角 S = **B+**
   - **paper_gap**：Mayer/Bader = **C**；SCAN + dense-k = **C**；n=2 四角 @ EPS 1e-6 = **C**
-  - **Git**：`commit: c2f7a4f` — `loop R441: Intro Wang2024simulation uniaxial-stress map vs four-corner S`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+  - **Git**：`commit: f8dc903` — `loop R441: Intro Wang2024simulation uniaxial-stress map vs four-corner S`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
   - **下一轮**：R442 IV Methods 或下一未引用 bib 对比句
 
 - **Loop R440（2026-08-17，三轨 · II Introduction）**：

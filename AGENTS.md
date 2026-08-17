@@ -28,7 +28,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Population B/N/P** | **18/18** ✅ |
 | **reference_pbed3** | **24/24** ✅ |
 | **运行中** | 无（R421：Cloud VM 无 CP2K；`exp10_status.json` 误刷新已 restore，勿提交） |
-| **最新 Loop** | **R428** |
+| **最新 Loop** | **R429** |
 | **下一 B 任务** | **P0**：`n=2` 四角以 EPS_SCF $10^{-6}$ 重算 + `n=8` 参考态复核（解除 reference-limited）；其后 dense-$k$ `n=1`、Mayer/Bader |
 | **主张-证据** | 主文 α/S = **PBE+D3 only**；α 带拟合标准误（仅 N $>2\sigma$）；`n=2`/`n=8` 行 = **reference-limited** |
 | **引用** | **18/18 经 Crossref 核验**（R419 修 11 条：1 条虚构、3 条 DOI 错配、多条作者/页码错） |
@@ -1473,7 +1473,16 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **paper_gap**：其余未入稿 keys（Pereira/Xu/Nie/Falletta）；cutoff300 本 VM 无 CP2K
  - **Git**：`commit: 5fd35b3` — `loop R426: Discussion Shi2023 strain-mobility vs four-corner S`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
  - **下一轮**：下一未入稿 key 一句；无 CP2K 不伪造 n=2/n=8
+- **Loop R429（2026-08-17，三轨 · III Literature）**：
+ - **Track A**：idle / **不干预**
+ - **Track B（III Literature）**：Discussion Context 加 `Nie2026strainC20`（PRB 113, 045401, DOI 10.1103/cctw-8r8r）— C$_{20}$ 单层应变诱导磁性/半金属是另一笼同素异形体的磁响应，不是 qHP C$_{60}$ 上置换 B/N/P 加冻结双轴四隅 $\mathcal{S}$
+ - **Track C**：主文/SI `7/8|at revision|orthogonal|fourfold` = **0**；**未**改 Abstract/Results 定量
+ - **创新审计**：C$_{20}$ 应变磁性 vs 四隅 $\mathcal{S}$ = **B+**（已有 bib；差异化句）
+ - **paper_gap**：下一 bib 候选 `Falletta2025polaronDFT`（**勿**本轮插）；P0 n=2/n=8
+ - **Git**：`commit: TBD` — `loop R429: Discussion Nie2026 C20 strain-magnetism vs four-corner S`
+ - **下一轮**：R430 **VIII Conclusion** — 与 Intro/Discussion 文献定位闭环；**勿**再插第三篇 bib
 - **Loop R428（2026-08-17，三轨 · VII Discussion / III Literature）**：
+
  - **Track A**：CP2K 仍不可用 — **不干预**；n=2/n=8 仍 **C / reference-limited**
  - **Track B**：Discussion 在 Pereira 句后插入 `Xu2025C70network` 一句（C70 能带工程 vs 本文 qHP C60 置换四隅 $\mathcal{S}$）
  - **Track C（C-m3）**：grep 主文/SI `7/8|at revision|orthogonal|fourfold` = 0

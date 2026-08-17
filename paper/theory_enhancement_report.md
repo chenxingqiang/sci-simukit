@@ -7,6 +7,13 @@
 
 
 
+### R435 audit（2026-08-17 go loops — Intro four-corner vs charged-defect/polaron-rate）
+- **Phase**: II Introduction (write.mdc 阶段2)
+- **Change**: Intro L61 diagnostic sentence now also states $\\mathcal{S}$ is not a charged-defect or polaron-rate estimator (Abstract L40 + Methods `eq:four_corner` + Conclusions L272). No new quantitative claim; Falletta remains Discussion-only (L233).
+- **Loop C**: C-m3 — grep `7/8|at revision|referee` on `paper/*.tex` = 0
+- **Evidence**: **A** (scope only; no new `.out`)
+- **paper_gap**: Mayer/Bader C; SCAN + dense-$k$ C; $n{=}2$ four-corner @ EPS $10^{-6}$ C
+
 ### R434 audit（2026-08-17 go loops — Abstract four-corner vs charged-defect/polaron-rate）
 
 - **write.mdc Phase**：I Abstract（R433 为 VIII；R434 收口 Abstract 与 Methods/Conclusion 四角落边界）。

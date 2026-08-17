@@ -7,6 +7,16 @@
 
 
 
+### R438 audit (Loop R438, 2026-08-17)
+
+| 项 | 状态 |
+|----|------|
+| **Phase** | VIII Conclusion |
+| **Loop C** | C-m3: n=2 reporting closure at undoped-corner SCF exception (Methods; Table~sigma_S) |
+| **Conclusions** | `$n{=}2$ $\mathcal{S}(n)$ row is reference-limited at the undoped corner ... not a sign change of the mixed derivative.` |
+| **未改** | Abstract/Results 定量; Methods R437; Intro Qiu; cheapest-improvement |
+| **grep** | `7/8\|at revision\|referee` = 0 |
+
 ### R437 audit（2026-08-17 go loops — Methods n=2 four-corner inherits pristine SCF exception）
 
 - **Phase**: IV Methodology（write.mdc 阶段3）

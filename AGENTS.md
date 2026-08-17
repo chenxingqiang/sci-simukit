@@ -45,7 +45,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
  - **Track C（C-M3）**：主文无 `7/8`/`at revision`/`referee`
  - **创新审计**：n=8 cutoff-class 闭环 = **A**（Methods + Limitations）；`not a cutoff-class change` = **2**
  - **paper_gap**：Mayer/Bader = **C**；SCAN + dense-$k$ = **C**；$n{=}2$ 四角 @ EPS $10^{-6}$ = **C**
- - **Git**：`commit: TBD` — `loop R444: Limitations n=8 cutoff-class pointer, Loop C`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **Git**：`commit: ba143dc` — `loop R444: Limitations n=8 cutoff-class pointer, Loop C`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
  - **下一轮**：R445 / $n{=}2$ 四角重算；勿再抄 n=8 cutoff-class
 - **Loop R443（2026-08-17，三轨 · 横切 B4/B5）**：
  - **Track A**：NO_CP2K — **不干预**

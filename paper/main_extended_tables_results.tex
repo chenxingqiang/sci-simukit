@@ -1,7 +1,7 @@
 % Results tables (I, III--V); calculation inventory (II) is in Methods.
 
 \begin{table}[!ht]
-\caption{\label{tab:placement}Linear strain sensitivities and substitution energies for tetramer models (archived rigid-strain grid, legacy PBE without D3; not mixed with periodic PBE+D3 $\mathcal{S}$ in Table~\ref{tab:relax}).
+\caption{\label{tab:I}Archived tetramer cluster map (legacy PBE without D3). Cartesian coordinates are \emph{not} affinely scaled across vacuum-box labels; these are not monolayer strain coefficients and are not mixed with periodic PBE+D3 $\mathcal{S}$. The valid ionic-relaxation test is periodic $n{=}1$ $P$ (Fig.~\ref{fig:synergy}(b)), not Table~\ref{tab:relax}.
 $E_{\mathrm{sub}}=(E_{\mathrm{doped}}-E_{\mathrm{pristine}})/n_{\mathrm{dopants}}$ at $\epsilon{=}0$ with no chemical-potential reference (not a standard formation enthalpy).
 $n_{\mathrm{dopants}}$ is counted from archived input coordinates (nominal 5\% target; B: 13, N: 12, P: 12).}
 \begin{ruledtabular}
@@ -17,10 +17,7 @@ P-doped & 12 & $-1370.4965$ & $-1370.4888$ & $-19.1$ & $-15.8$ \\
 \end{table}
 
 \begin{table}[!ht]
-\caption{\label{tab:geometry}Ionic-relaxation benchmark for the tetramer $P$-substitution four-corner grid (four fixed-cell geometry-optimization corners: pristine and $P$ at $\epsilon{=}0$ and $+3$\%, same biaxial cell).
-This benchmark is \emph{sign-qualitative only}: the rigid reference uses legacy PBE without D3, whereas relaxed corners use PBE+D3. Matched-functional rigid reference (PBE+D3, same four corners): $\mathcal{S}_{\mathrm{rigid}}^{\mathrm{PBE+D3}}=+1.19$~meV/atom; $|\mathcal{S}_{\mathrm{relaxed}}|/|\mathcal{S}_{\mathrm{rigid}}^{\mathrm{PBE+D3}}|\approx 1.9$ (sign \emph{not} preserved on the matched-functional grid). We test whether $\mathcal{S}$ retains \emph{sign} \emph{within the tetramer grid only}.
-Relaxed energies: PBE+D3 fixed-cell geometry optimization (400~Ry) from archived inputs in the open repository.
-$\mathcal{S}$ follows Eq.~\eqref{eq:synergy_order} with $N{=}240$ atoms.}
+\caption{\label{tab:relaxext}Cluster-map diagnostic for the tetramer $P$-substitution four-corner grid (pristine and $P$ at two vacuum-box labels). Cartesian coordinates are \emph{not} affinely scaled; only the vacuum box changes, so this is \emph{not} a monolayer strain-retention test. The valid ionic-relaxation control is periodic $n{=}1$ $P$ at affine $+3$\%: $\mathcal{S}_{\mathrm{rigid}}=-31.9$~meV/atom $\to$ $\mathcal{S}_{\mathrm{relaxed}}\approx 0$. Relaxed energies: PBE+D3 fixed-cell geometry optimization (400~Ry) from archived inputs in the open repository. $\mathcal{S}$ follows Eq.~\eqref{eq:synergy_order} with $N{=}240$ atoms.}
 \begin{ruledtabular}
 \begin{tabular}{lcc}
 Quantity & Rigid (legacy tetramer) & Relaxed (geometry opt.) \\
@@ -36,28 +33,28 @@ Sign of $\mathcal{S}$ vs.\ rigid & $+$ & $-$ (not preserved) \\
 \end{table}
 
 \begin{table}[!ht]
-\caption{\label{tab:sgrid}Alternate dopant-placement sensitivity (\emph{tetramer only}, rigid strain).
-The \emph{reference} placement defines main-text tetramer $\alpha$ (Table~\ref{tab:placement}) and the periodic supercell site map (one substituent per C$_{60}$); its $\alpha$ and $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ use the archived legacy-PBE grid (no D3).
-The \emph{alternate} placement repeats the full B/N/P strain grid ($\epsilon\in\{-5,-2.5,0,+2.5,+3,+5\}$\%; 18 rigid single-points) with PBE+D3 on an independently rerolled substitution map (Sec.~\ref{sec:methods_s4_seed}); alternate rows report verified placement sensitivity at ${\sim}5$\% nominal doping without mixing periodic boundary conditions.
-$\mathcal{S}_{+3\%}^{\mathrm{tet}}$ follows Eq.~\eqref{eq:synergy_order} on the archived rigid tetramer four-corner grid ($N{=}240$).
-Periodic $\mathcal{S}(n)$ is \emph{not} tabulated here because concentration and boundary conditions differ; main-text periodic magnitudes are configuration-specific until alternate periodic placements are computed.}
+\caption{\label{tab:sgrid}Cluster-map diagnostic on two independently rerolled tetramer substitution maps (\emph{not} a monolayer strain-placement scan). Cartesian coordinates are identical across archived vacuum-box labels; only the vacuum box and dopant identities change.
+The \emph{reference} cluster map supplies the archived $\alpha$ in Table~\ref{tab:I}; those slopes and $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ are cluster diagnostics on the legacy-PBE grid (no D3), not monolayer strain coefficients.
+The \emph{alternate} map repeats the same vacuum-box labels ($\epsilon\in\{-5,-2.5,0,+2.5,+3,+5\}$\%; 18 rigid single-points) with PBE+D3 (Sec.~\ref{sec:methods_s4_seed}).
+$\mathcal{S}_{+3\%}^{\mathrm{tet}}$ follows Eq.~\eqref{eq:synergy_order} on the archived tetramer four-corner grid ($N{=}240$).
+Periodic $\mathcal{S}(n)$ is tabulated in the main text; $n{=}4$ ranking $P{>}B{>}N$ is reproduced on periodic seeds 42, 137, and 271.}
 \begin{ruledtabular}
 \begin{tabular}{lcccc}
 Dopant & Placement & $\alpha$ (meV/\%) & $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ (meV/atom) & Status \\
 \hline
-B & reference & $+56.9$ & $+3.8$ & verified (Table~\ref{tab:placement}) \\
-N & reference & $-303.2$ & $+5.7$ & verified \\
-P & reference & $-19.1$ & $+1.0$ & verified \\
-B & alternate (seed~137) & $-45$ & $+1.9$ & verified (alternate) \\
-N & alternate (seed~137) & $-60$ & $+0.3$ & verified (alternate) \\
-P & alternate (seed~137) & $+1028$ & $-32.3$ & verified (alternate) \\
+B & reference & $+56.9$ & $+3.8$ & cluster diagnostic (Table~\ref{tab:placement}) \\
+N & reference & $-303.2$ & $+5.7$ & cluster diagnostic (Table~\ref{tab:placement}) \\
+P & reference & $-19.1$ & $+1.0$ & cluster diagnostic (Table~\ref{tab:placement}) \\
+B & alternate (seed~137) & $-45$ & $+1.9$ & cluster diagnostic (Table~\ref{tab:placement}) \\
+N & alternate (seed~137) & $-60$ & $+0.3$ & cluster diagnostic (Table~\ref{tab:placement}) \\
+P & alternate (seed~137) & $+1028$ & $-32.3$ & cluster diagnostic (Table~\ref{tab:placement}) \\
 \end{tabular}
 \end{ruledtabular}
 \end{table}
 
 \begin{table}[!ht]
 \caption{\label{tab:V}Local dopant--cage structure from archived tetramer XYZ (mean nearest C distance $\bar{d}$ in \AA; standard deviation $\sigma(\bar{d})$ across dopant sites; covalent-radius excess vs.\ C in pm).
-Strain-induced change $\Delta\bar{d}=\bar{d}(\epsilon{=}+3\%)-\bar{d}(\epsilon{=}0)$ summarizes how tensile load couples to pre-existing distortion (Discussion mechanistic synthesis (ii),(vi)).
+The Cartesian coordinates are \emph{not} affinely scaled between the labeled $\epsilon{=}0$ and $+3$\% tags, so $\Delta\bar{d}=\bar{d}(\mathrm{tag}{=}+3\%)-\bar{d}(\mathrm{tag}{=}0)$ is a cluster-map / vacuum-box diagnostic, not tensile-load coupling (Discussion mechanistic synthesis).
 Values are computed from archived tetramer coordinates in the open data release; Mayer bond order and Bader charges are not included.}
 \begin{ruledtabular}
 \begin{tabular}{lccccc}

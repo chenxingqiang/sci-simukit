@@ -1,8 +1,8 @@
 \section*{Computational Methods (full protocol)}
 
 All total-energy and electronic-structure calculations use CP2K~\cite{VandeVondele2005quickstep} with PBE~\cite{Perdew1996generalized} and Grimme DFT-D3 (Becke--Johnson damping)~\cite{Grimme2011effect}, GTH pseudopotentials, and the DZVP-MOLOPT-SR-GTH basis.
-Unless stated otherwise, biaxial strain scales the in-plane lattice vectors of the pristine equilibrium cell at fixed fractional coordinates (rigid-strain protocol).
-Reported $\mathcal{S}$ magnitudes under this protocol are upper bounds at fixed coordinates; Table~\ref{tab:geometry} in the main text benchmarks the tetramer $P$ four-corner ionic-relaxation grid.
+Unless stated otherwise, biaxial strain on \emph{periodic} cells scales the in-plane lattice vectors of the pristine equilibrium cell at fixed fractional coordinates (rigid-strain protocol). Cluster tetramer grids labeled by $\epsilon$ change only the vacuum box and are not used as strain-physics evidence.
+Reported periodic $\mathcal{S}$ magnitudes under this protocol are upper bounds at fixed coordinates. Table~\ref{tab:relax} is an invalid cluster/vacuum-box diagnostic; the valid ionic-relaxation test is the periodic $n{=}1$ $P$ four-corner grid in Fig.~\ref{fig:synergy}(b), where $\mathcal{S}_{\mathrm{relaxed}}{\approx}0$.
 Plane-wave cutoffs are 400~Ry for $n\leq 4$ and 350~Ry for $n\geq 6$; $\mathcal{S}(n)$ comparisons at fixed $n$ use identical cutoffs.
 Production supercells use $\Gamma$-only sampling.
 Because $\mathcal{S}$ is a four-corner difference on the same cell, sensitivity should be audited on $\mathcal{S}(\mathrm{cutoff})$ and $\mathcal{S}(k)$, not on bare total energies alone.

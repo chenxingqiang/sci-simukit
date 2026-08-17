@@ -27,8 +27,8 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Periodic relax n=1 P** | **4/4** ✅ |
 | **Population B/N/P** | **18/18** ✅ |
 | **reference_pbed3** | **24/24** ✅ |
-| **运行中** | `size_6x60_N_pos3pct_cutoff300`（R417 启动，300 Ry 单点，cutoff 三点曲线） |
-| **最新 Loop** | **R419** |
+| **运行中** | 无（R420 未启动新 CP2K；协议闸门 idle） |
+| **最新 Loop** | **R420** |
 | **下一 B 任务** | **P0**：`n=2` 四角以 EPS_SCF $10^{-6}$ 重算 + `n=8` 参考态复核（解除 reference-limited）；其后 dense-$k$ `n=1`、Mayer/Bader |
 | **主张-证据** | 主文 α/S = **PBE+D3 only**；α 带拟合标准误（仅 N $>2\sigma$）；`n=2`/`n=8` 行 = **reference-limited** |
 | **引用** | **18/18 经 Crossref 核验**（R419 修 11 条：1 条虚构、3 条 DOI 错配、多条作者/页码错） |
@@ -1421,6 +1421,15 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **物理可靠性结论（需用户决策）**：periodic $n{=}1$ P 弛豫后 $S$: $-31.91\to+0.0001$ meV/atom（**移除 99.9997%**，弛豫后 pristine 与掺杂应变能相同 → 差分为零）；且 $|S|/|$linear strain term$|$ 达 **10.7–23.9**，即 Eq.(1) 的双线性展开在 $+3$\% 处**未收敛**。→ 建议把主张重构为「rigid 筛选高估耦合，量级与共价半径失配标定；弛豫后加和性恢复」的**定量负结果**，而非「非加性耦合」正结果
  - **Git**：`373db04` 引用、`51c26d1` Table III、`473d603` 图文、`1b4b033` label、`8db4c7a` 参考态一致性；**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**
  - **下一轮**：`n=2` 四角 EPS_SCF $10^{-6}$ 重算（解除 reference-limited）；`n=1` dense-$k$ 四角（headline 数字的最弱支点）
+
+- **Loop R420（2026-08-17，三轨 · 扩展表 tetramer 应变无效化）**：
+ - **Track A**：协议闸门 **idle** — **不干预**；未启动新 CP2K
+ - **Track B（横切）**：`tab:I` / `tab:sgrid` / `tab:relaxext` 扩表 caption 改写为 cluster-map diagnostic；Cartesian 坐标未仿射缩放、仅真空盒改变、**不是** monolayer 应变 retention 测试；有效对照 = 周期 $n{=}1$ P（$-31.9\to\approx 0$）；`tab:relaxext` 与 `tab:geometry` 去重；编译主文 **11** 页 + SI **7** 页；numbers **50/50**；协议 **33/33** affine PASS
+ - **Track C**：扩表 tetramer 应变无效化闭环；主文/SI 边界 grep 无 `orthogonal`/`at revision`/`7/8`
+ - **创新审计**：扩表 recast = **A**；tetramer $\alpha$/$\mathcal{S}$ = **invalid**；周期 $n{=}1$ P 弛豫 = **A**
+ - **paper_gap**：`n=2` 四角 EPS $10^{-6}$；`n=8` 参考态重算；dense-$k$ $n{=}1$；Mayer/Bader
+ - **Git**：`commit: e953e5e` — `loop R420: recast cluster tables, compile 11+7, numbers 50/50`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **下一轮**：`n=2` 四角 EPS_SCF $10^{-6}$ 重算（解除 reference-limited）；其后 $n{=}8$ 参考态；dense-$k$ $n{=}1$ / Mayer/Bader
 
 - **Loop R417（2026-08-02，三轨）**：
   - **Track A**：启动 `size_6x60_N_pos3pct_cutoff300` 单点（np=8，2/3 CPU；由 cutoff400 模板仅改 PROJECT/CUTOFF）→ cutoff 收敛曲线 300/350/400 + D4 截断对照；**running**

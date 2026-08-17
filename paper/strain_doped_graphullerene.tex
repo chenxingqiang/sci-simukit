@@ -33,10 +33,12 @@
 
 \begin{abstract}
 Under mechanically constrained loading on quasi-hexagonal (qHP) C$_{60}$ graphullerene, measurable deviations from additive strain--dopant energetics arise because frozen elastic incompatibility introduces a bilinear strain--composition interaction that can reach magnitudes comparable to high-throughput screening margins---not because a finite-difference estimator is merely nonzero.
-The additive approximation in sequential workflows corresponds to neglecting the mixed second derivative $\partial^2 E/\partial\epsilon\,\partial\delta$ in the total-energy functional; matched four-corner audits on B/N/P tetramers and periodic $n\times\mathrm{C}_{60}$ supercells ($n=1$--$8$, PBE+D3 rigid protocol) show that this term is large enough to change stability rankings for size-mismatched phosphorus ($|\mathcal{S}|=31.9\pm 2$~meV/atom at $n{=}1$, $\eta\approx 8\%$ at $n{=}4$).
+The additive approximation in sequential workflows corresponds to neglecting the mixed second derivative $\partial^2 E/\partial\epsilon\,\partial\delta$ in the total-energy functional.
+Matched four-corner audits on periodic $n\times\mathrm{C}_{60}$ supercells ($n=1$--$8$, PBE+D3, affine biaxial strain with locked dopant sites) show that this term is large enough to change stability rankings for size-mismatched phosphorus ($|\mathcal{S}|=31.9\pm 2$~meV/atom at $n{=}1$, $\eta\approx 8\%$ at $n{=}4$).
+Cluster tetramer ``strain'' grids do not affine-scale the molecular coordinates and are not used as strain-physics evidence.
 The four-corner difference $\mathcal{S}$ estimates that coupling on the audited grid and is not a new thermodynamic observable.
 Only the size-mismatched substituent resolves clearly against the protocol floor---$|\mathcal{S}|$ reaches $12$--$16$ times the $2$~meV/atom reporting band for P at every audited size, against $1$--$6$ for B and ${\sim}1$ for N---so the coupling is set by covalent-radius mismatch rather than donor/acceptor character, in both sign and rank.
-Ionic relaxation nearly extinguishes $|\mathcal{S}|$, consistent with a dominant elastic-work contribution under constrained load rather than a partitioned claim of intrinsic electronic cross-coupling.
+Ionic relaxation of the periodic $n{=}1$ P four-corner recovers additivity to the reporting floor ($|\mathcal{S}_{\mathrm{relaxed}}|<10^{-3}$~meV/atom), consistent with a dominant elastic-work contribution under constrained load rather than a partitioned claim of intrinsic electronic cross-coupling.
 The audit signals when sequential additive workflows should be replaced by explicit coupled evaluations on the $E(\epsilon,\delta)$ landscape.
 \end{abstract}
 
@@ -75,7 +77,7 @@ All total-energy calculations use CP2K~\cite{VandeVondele2005quickstep} with Goe
 \paragraph{Exchange-correlation and dispersion.}
 We use PBE~\cite{Perdew1996generalized} with Grimme DFT-D3 (Becke--Johnson damping)~\cite{Grimme2011effect} for the production dataset.
 Hybrids or meta-GGAs (SCAN, r$^2$SCAN) can shift absolute totals by tens of meV per atom in carbon networks; production rankings are therefore framed as \emph{within-PBE+D3} comparisons of $\mathcal{S}$ among B, N, and P under matched load.
-The four-corner construction [Sec.~\ref{sec:methods_coupling}] subtracts totals computed with identical XC, basis, dispersion, and numerical settings, so systematic shifts largely cancel when \emph{ranking} dopants at fixed protocol---but cancellation is not assumed without audit: on the tetramer $P$ grid, Grimme-D3 non-additivity contributes only $\mathcal{S}_{\mathrm{vdW}}\approx +0.33$~meV/atom (Table~\ref{tab:sigma_S}), far below $|\mathcal{S}_{\mathrm{rigid}}^{\mathrm{PBE+D3}}|$ (Table~\ref{tab:relax}).
+The four-corner construction [Sec.~\ref{sec:methods_coupling}] subtracts totals computed with identical XC, basis, dispersion, and numerical settings, so systematic shifts largely cancel when \emph{ranking} dopants at fixed protocol---but cancellation is not assumed without audit: on the isolated-cage tetramer $P$ grid (not a strained covalent network), Grimme-D3 non-additivity is $\mathcal{S}_{\mathrm{vdW}}\approx +0.33$~meV/atom (Table~\ref{tab:sigma_S})---a cluster-protocol bound, not a strain-physics decomposition of periodic $\mathcal{S}$.
 No meta-GGA $\mathcal{S}$ values are reported (Table~\ref{tab:sigma_S}; Limitations).
 
 \paragraph{Plane-wave mesh and Brillouin-zone sampling.}
@@ -101,21 +103,23 @@ We do not apply compensating background charge or charged supercells in the $\ma
 \label{sec:notation}
 Biaxial strain is $\epsilon=(a-a_0)/a_0\times 100\%$, with $a$ ($a_0$) the strained (equilibrium) in-plane lattice constant; $\delta\in\{\mathrm{B},\mathrm{N},\mathrm{P}\}$.
 $\mathcal{S}$ is defined in Sec.~\ref{sec:methods_coupling}; $\pi$-projected densities of states are written $\pi$-DOS.
-Tetramers ($4\times\mathrm{C}_{60}$) substitute B, N, or P at ${\sim}5$~at.\% on a fixed site map; periodic cells place one substituent per C$_{60}$ (${\sim}1.67$~at.\%) on one production map for $n=1$--$8$.
-Linear strain sensitivity $\alpha=\mathrm{d}E/\mathrm{d}\epsilon$ (meV per 1\% biaxial strain) is fit on rigid PBE+D3 tetramer grids.
+Periodic $n\times\mathrm{C}_{60}$ cells place one substituent per cage (${\sim}1.67$~at.\%) and affine-scale both lattice vectors and Cartesian coordinates; that protocol supplies every $\mathcal{S}(n)$ value in this paper.
+Isolated-cage tetramer clusters ($4\times\mathrm{C}_{60}$, ${\sim}5$~at.\% substitution) are not a covalently networked monolayer: labeled tetramer ``strain'' grids change only the vacuum box and do not affine-scale the molecular coordinates, so they are not used as strain-physics evidence.
 The substitution energy $\Delta E_{\mathrm{sub}}=(E_{\mathrm{doped}}-E_{\mathrm{pristine}})/n_{\mathrm{dopants}}$ is not a formation enthalpy (no elemental chemical potentials).
 
 \paragraph{Rigid vs.\ relaxed protocols.}
-\emph{Rigid strain} scales lattice vectors at fixed fractional coordinates and is the production protocol unless Table~\ref{tab:relax} or Fig.~\ref{fig:synergy}(b) states otherwise.
+\emph{Rigid strain} on periodic cells scales lattice vectors at fixed fractional coordinates and is the production protocol for $\mathcal{S}(n)$.
 It is an upper bound on $|\mathcal{S}|$ when internal stress cannot relax (epitaxial clamp, strong adhesion, or ultrafast load), not an equilibrium free-energy difference.
-\emph{Relaxed strain} uses fixed-cell BFGS at each corner before evaluating $\mathcal{S}$ (Table~\ref{tab:relax}; Fig.~\ref{fig:synergy}(b); Sec.~\ref{sec:methods_relax}); ionic relaxation can reverse or nearly extinguish the rigid value.
+\emph{Relaxed strain} uses fixed-cell BFGS at each bilinear corner on the periodic $n{=}1$ P cell before evaluating $\mathcal{S}$ [Fig.~\ref{fig:synergy}(b)].
 Force thresholds are $4.5\times10^{-4}$ and $3.0\times10^{-4}$~Ha/bohr (${\sim}0.023$ and ${\sim}0.015$~eV/\AA) at $\epsilon{=}0$ and $+3$\%, tighter than typical 0.02~eV/\AA\ defaults so that near-zero relaxed $|\mathcal{S}|$ is resolved.
+Table~\ref{tab:relax} records a tetramer protocol diagnostic that is not a strain scan; Table~\ref{tab:placement} records a tetramer seed diagnostic that is likewise not strain physics.
+The physically interpreted ionic-relaxation and placement tests are the periodic $n{=}1$ P four-corner set and the periodic $n{=}4$ three-seed set (seeds 42, 137, and 271).
 
 \input{sdc_method_section.tex}
 
 \subsection{Validation benchmarks}
 \label{sec:validation}
-Interpretation rests on four checks: numerical hygiene (Table~\ref{tab:sigma_S}); ionic relaxation of tetramer $P$ and periodic $n{=}1$ $P$ (Table~\ref{tab:relax}; Fig.~\ref{fig:synergy}(b)); matched-functional rigid vs.\ relaxed tetramer $P$ (Table~\ref{tab:relax}); and alternate placement (Table~\ref{tab:placement}).
+Interpretation rests on four checks: numerical hygiene (Table~\ref{tab:sigma_S}); ionic relaxation of periodic $n{=}1$ $P$ (Fig.~\ref{fig:synergy}(b)), the only valid large-$|\mathcal{S}|$ relaxation test; a cluster/vacuum-box diagnostic for tetramer $P$ that does not strain the molecules (Table~\ref{tab:relax}); and periodic $n{=}4$ placement seeds~$42$, $137$, and $271$ (Table~\ref{tab:sgrid}). Table~\ref{tab:placement} is a cluster configuration diagnostic, not a strain grid.
 Periodic $n{=}4$ $P$ relaxation, B/N periodic relaxations, dense-$k$ / meta-GGA four-corner checks, and two-body image tests beyond $n{=}8$ are not reported (Table~\ref{tab:sigma_S}; Limitations).
 A calculation-group inventory is given only in the Supplemental Material.
 
@@ -135,7 +139,7 @@ Total-energy audits use matched periodic supercells and the reference tetramer m
 
 \input{tables/fig_main_1.tex}
 Figure~\ref{fig:electronic}(a) shows the reference tetramer: pristine and B/N/P-substituted cages at $\epsilon{=}0$ with highlighted substituent sites (covalent-radius excess in Table~\ref{tab:geometry}).
-Panels~(b)--(d) are the one-parameter slices used in sequential screens: the N $\pi$-DOS waterfall shifts with biaxial strain; the frontier HOMO--LUMO separation $E_{\mathrm{H-L}}(\epsilon)$ separates pristine, which retains $1.0$--$1.5$~eV over $\epsilon=-5$ to $+5$\%, from all three substituted cages, which close to $|E_{\mathrm{H-L}}|\lesssim 0.2$~eV and are mutually indistinguishable at $\epsilon{=}0$ within that window ($+0.03$, $-0.14$, and $+0.05$~eV for B, N, and P); panel~(d) is the pristine mechanical $\Delta E(\epsilon)$ path.
+Panels~(b)--(d) are archived cluster-map / vacuum-box slices, not monolayer biaxial-strain screens: the N $\pi$-DOS waterfall is stacked by the vacuum-box label; the frontier HOMO--LUMO separation $E_{\mathrm{H-L}}$ separates pristine, which retains $1.0$--$1.5$~eV over the archived labels $\epsilon=-5$ to $+5$\%, from all three substituted cages, which close to $|E_{\mathrm{H-L}}|\lesssim 0.2$~eV and are mutually indistinguishable at the $\epsilon{=}0$ snapshot within that window ($+0.03$, $-0.14$, and $+0.05$~eV for B, N, and P); panel~(d) is the pristine cluster-map $\Delta E$ path, not a monolayer mechanical $\alpha$.
 The negative entries mark inverted frontier-level ordering (gap closure), not a physical negative gap, and PBE underestimates gaps, so only the pristine-vs.-substituted contrast is interpreted.
 Supplemental Material gives full $\pi$-DOS stacks and periodic VBM/CBM isosurfaces (N size series; P $n{=}4$): frontier density remains cage-localized for $n=2$--$6$.
 
@@ -146,7 +150,7 @@ Supplemental Material gives full $\pi$-DOS stacks and periodic VBM/CBM isosurfac
 Figure~\ref{fig:synergy} is the central audit.
 Panel~(c) defines the test: strain-only and substitution-only increments are summed and compared with the coupled four-corner total; $\mathcal{S}$ [Eq.~\eqref{eq:four_corner}] is that signed gap.
 Panel~(a) and Table~\ref{tab:sgrid} report the fifteen periodic $+3$\% $\mathcal{S}(n,\delta)$ values.
-$|\mathcal{S}|$ shows no $1/n$ dilution: P remains large and negative through $n{=}8$ ($23.7$--$31.9$~meV/atom), B stays negative ($2.2$--$11.3$~meV/atom), and N stays small and positive except at $n{=}8$.
+$|\mathcal{S}|$ shows no $1/n$ dilution: P remains large and negative through $n{=}8$ ($23.7$--$31.9$~meV/atom), B stays negative ($2.2$--$11.3$~meV/atom), and N stays at the reporting floor at every size that shares the plateau reference.
 The apparent $n$ dependence must, however, be read against a reference test that the four-corner construction makes available at no extra cost.
 The pristine $+3$\% strain cost per atom is the same physical quantity in every supercell, so its spread across $n$ measures protocol reproducibility directly.
 It is $2.99$, $3.05$, and $3.10$~meV/atom at $n{=}1$, $4$, and $6$---reproducible to $0.06$~meV/atom, two orders of magnitude tighter than the $\pm 2$~meV/atom reporting band---but $-1.18$~meV/atom at $n{=}2$ and $8.49$~meV/atom at $n{=}8$.
@@ -162,14 +166,14 @@ We do not extrapolate $\mathcal{S}_\infty$.
 Rows with $n\geq 6$ (350~Ry) are in Supplemental Material Table~S1.
 Negative $\mathcal{S}$ (B, P at $n{=}4$) means the coupled corner lies below the additive estimate; positive $\mathcal{S}$ (N) means it lies above.
 Panel~(b) is the protocol bound on a different system from the tetramer row of Table~\ref{tab:relax}: periodic $n{=}1$ P at $+3$\% falls from $\mathcal{S}_{\mathrm{rig}}\approx -31.9$~meV/atom to near zero after ionic relaxation.
-The matched-functional tetramer $P$ grid in Table~\ref{tab:relax} instead reverses sign ($+1.19$ vs.\ $-2.28$~meV/atom).
+Table~\ref{tab:relax} also lists a matched-functional tetramer $P$ grid ($+1.19$ vs.\ $-2.28$~meV/atom); that cluster protocol is not a strain scan and is not a retention benchmark.
 Both checks show that rigid $|\mathcal{S}|$ is an upper bound, not an equilibrium free-energy difference.
 Panel~(d) is a schematic of the bilinear $c\,\epsilon\delta$ term, not a DFT fit.
 
 \subsection{\label{sec:strain_response}Mechanical strain sensitivity}
 
 Pristine tetramers yield $\alpha_{\mathrm{pris}}=+1.2\pm 0.1$~meV/\% on the six-point reference grid.
-Substituted least-squares slopes are $+59\pm 116$ (B), $-297\pm 110$ (N), and $+456\pm 870$~meV/\% (P), where $\pm$ is the linear-fit standard error on the same six strain points [Fig.~\ref{fig:decoupling}(d)].
+On the same cluster map, least-squares slopes versus the vacuum-box label are $+59\pm 116$ (B), $-297\pm 110$ (N), and $+456\pm 870$~meV/\% (P) [Fig.~\ref{fig:decoupling}(d)]. These numbers are cluster diagnostics, not monolayer strain coefficients.
 Only N is resolved beyond $2\sigma$; the B and P slopes are not statistically distinguishable from zero, so $\alpha$ is reported as an order-of-magnitude descriptor and the strain response of the substituted tetramers is manifestly not well described by a single linear coefficient.
 That poor conditioning is itself part of the argument: a descriptor this noisy cannot be the basis for the additive extrapolation that sequential screens perform.
 \input{tables/tab_V.tex}
@@ -177,7 +181,7 @@ Table~\ref{tab:geometry} reports $\bar{d}$, $\sigma(\bar{d})$, and $\Delta r_{\m
 At $+3$\%, P shows $\Delta\bar{d}\approx 3\times 10^{-5}$~\AA\ versus ${\sim}8.5\times 10^{-3}$~\AA\ for B.
 
 \input{tables/fig_main_3.tex}
-Figure~\ref{fig:decoupling} traces microscopic strain paths on the reference map.
+Figure~\ref{fig:decoupling} compares periodic Hirshfeld charges with the cluster-map geometry diagnostic.
 Hirshfeld $q(\epsilon)$ and $\bar{d}(\epsilon)$ [panels~(a,b)] vary with dopant and strain.
 Local disorder $\sigma(\bar{d})(\epsilon)$ [panel~(c)] broadens for B and N under tension while remaining near the $\epsilon{=}0$ baseline for P.
 Panel~(d) maps reference-map $|\alpha|$ against periodic $|\mathcal{S}|_{n=4}$ (marker area $\propto|\mathcal{S}|_{n=1}$): N lies in the high-$|\alpha|$/low-$|\mathcal{S}|_{n=4}$ quadrant and P in the high-$|\mathcal{S}|$ region---a qualitative rank inversion among three dopants, not a fitted correlation.
@@ -231,7 +235,7 @@ Laboratory tests need not resolve $\mathcal{S}$: cage-mode Raman/IR or substrate
 \subsection{Limitations}
 \label{sec:discussion_limitations}
 
-Main-text $\alpha$ and $\mathcal{S}$ use PBE+D3 under the rigid-strain protocol; ionic relaxation can reverse or nearly extinguish $\mathcal{S}$ (Table~\ref{tab:relax}).
+Main-text $\alpha$ and $\mathcal{S}$ use PBE+D3. Periodic production cells are affinely strained at fixed fractional coordinates; cluster tetramer grids change only the vacuum box and are not used as strain physics. Ionic relaxation of periodic $n{=}1$ $P$ recovers additivity ($|\mathcal{S}_{\mathrm{relaxed}}|<10^{-3}$~meV/atom); Table~\ref{tab:relax} is an invalid cluster diagnostic.
 Eq.~\eqref{eq:taylor_coupling} and the four-corner link [Eq.~\eqref{eq:mixed_derivative}] assume small perturbations on a single smooth energy branch; they lose validity at large strain (e.g.\ ${\gtrsim}10$\%) or across structural phase transitions, and the production audits intentionally remain at $+3$\% biaxial load inside the nominally elastic regime.
 All totals are 0~K Born--Oppenheimer energies; finite-temperature free energies and configurational entropy remain unexplored and could reorder sub-meV competitors without restoring additivity if bilinear coupling persists at the electronic-structure level.
 Production periodic cells use $\Gamma$-only sampling; dense-$k$ and SCAN/r$^2$SCAN four-corner checks are not reported (Table~\ref{tab:sigma_S}).

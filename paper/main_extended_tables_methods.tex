@@ -4,10 +4,9 @@
 \input{tables/tab_II_archive.tex}
 
 \begin{table}[!ht]
-\caption{\label{tab:geometry}Ionic-relaxation benchmark for the tetramer $P$-substitution four-corner grid (four fixed-cell geometry-optimization corners: pristine and $P$ at $\epsilon{=}0$ and $+3$\%, same biaxial cell).
-This benchmark is \emph{sign-qualitative only}: the rigid reference uses legacy PBE without D3, whereas relaxed corners use PBE+D3, so $|\mathcal{S}_{\mathrm{relaxed}}|/|\mathcal{S}_{\mathrm{rigid}}|$ is \emph{not} a quantitative retention ratio until a matched-functional rigid grid is recomputed.
-We test whether $\mathcal{S}$ retains \emph{sign} after ionic relaxation \emph{within the tetramer grid only}; it does \emph{not} calibrate periodic main-text $\mathcal{S}(n)$, which uses different dopant concentration and boundary conditions.
-Relaxed energies: PBE+D3 fixed-cell geometry optimization (400~Ry) from archived inputs in the open repository.
+\caption{\label{tab:relaxext}Cluster four-corner diagnostic on the $P$-substituted tetramer (pristine and $P$ at two archived vacuum-box labels). Cartesian coordinates are \emph{not} affine-scaled, so this table is \emph{not} a monolayer strain-relaxation benchmark and does \emph{not} report a retention ratio.
+The valid large-$|\mathcal{S}|$ test is periodic $n{=}1$ $P$ (PBE+D3, fixed-cell geometry optimization): $\mathcal{S}_{\mathrm{rigid}}=-31.9$~meV/atom recovers $\mathcal{S}_{\mathrm{relaxed}}{\approx}0$ after ionic relaxation.
+Relaxed cluster energies: PBE+D3 fixed-cell geometry optimization (400~Ry) from archived inputs in the open repository.
 $\mathcal{S}$ follows Eq.~\eqref{eq:synergy_order} with $N{=}240$ atoms.}
 \begin{ruledtabular}
 \begin{tabular}{lcc}
@@ -24,21 +23,21 @@ Sign of $\mathcal{S}$ vs.\ rigid & $+$ & $-$ (not preserved) \\
 \end{table}
 
 \begin{table}[!ht]
-\caption{\label{tab:sgrid}Alternate dopant-placement sensitivity (\emph{tetramer only}, rigid strain, legacy PBE without D3; same archive as Table~\ref{tab:placement}).
-The \emph{reference} placement defines all main-text tetramer $\alpha$ and the periodic supercell site map (one substituent per C$_{60}$).
-An \emph{alternate} independent placement repeats the full B/N/P strain grid ($\epsilon\in\{-5,-2.5,0,+2.5,+3,+5\}$\%; 24 single-point energies: 18 dopant-strain points plus six pristine references) to test whether tetramer $\alpha$ and $\mathcal{S}$ at $+3$\% are placement-sensitive at ${\sim}5$\% nominal doping.
-$\mathcal{S}_{+3\%}^{\mathrm{tet}}$ follows Eq.~\eqref{eq:synergy_order} on the archived rigid tetramer four-corner grid ($N{=}240$).
-Periodic $\mathcal{S}(n)$ is \emph{not} tabulated here because concentration and boundary conditions differ; main-text periodic magnitudes are configuration-specific until alternate periodic placements are computed.}
+\caption{\label{tab:sgrid}Cluster-map diagnostic on two independently rerolled tetramer substitution maps (\emph{not} a monolayer strain-placement scan; legacy PBE without D3). Cartesian coordinates are identical across archived vacuum-box labels; only the vacuum box and dopant identities change.
+The \emph{reference} cluster map supplies the archived cluster-map $\alpha$ diagnostic; those slopes and $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ are not monolayer strain coefficients.
+An \emph{alternate} independent map repeats the same vacuum-box labels ($\epsilon\in\{-5,-2.5,0,+2.5,+3,+5\}$\%; 24 single-point energies: 18 dopant points plus six pristine references).
+$\mathcal{S}_{+3\%}^{\mathrm{tet}}$ follows Eq.~\eqref{eq:synergy_order} on the archived tetramer four-corner grid ($N{=}240$).
+Periodic $\mathcal{S}(n)$ is tabulated in the main text; $n{=}4$ ranking $P{>}B{>}N$ is reproduced on periodic seeds 42, 137, and 271.}
 \begin{ruledtabular}
 \begin{tabular}{lcccc}
 Dopant & Placement & $\alpha$ (meV/\%) & $\mathcal{S}_{+3\%}^{\mathrm{tet}}$ (meV/atom) & Status \\
 \hline
-B & reference & $+56.9$ & $+3.8$ & verified (Table~\ref{tab:placement}) \\
-N & reference & $-303.2$ & $+5.7$ & verified \\
-P & reference & $-19.1$ & $+1.0$ & verified \\
-B & alternate (seed~137) & $-45$ & $+1.9$ & verified (alternate) \\
-N & alternate (seed~137) & $-60$ & $+0.3$ & verified (alternate) \\
-P & alternate (seed~137) & $+1028$ & $-32.3$ & verified (alternate) \\
+B & reference & $+56.9$ & $+3.8$ & cluster diagnostic (Table~\ref{tab:placement}) \\
+N & reference & $-303.2$ & $+5.7$ & cluster diagnostic (Table~\ref{tab:placement}) \\
+P & reference & $-19.1$ & $+1.0$ & cluster diagnostic (Table~\ref{tab:placement}) \\
+B & alternate (seed~137) & $-45$ & $+1.9$ & cluster diagnostic (Table~\ref{tab:placement}) \\
+N & alternate (seed~137) & $-60$ & $+0.3$ & cluster diagnostic (Table~\ref{tab:placement}) \\
+P & alternate (seed~137) & $+1028$ & $-32.3$ & cluster diagnostic (Table~\ref{tab:placement}) \\
 \end{tabular}
 \end{ruledtabular}
 \end{table}

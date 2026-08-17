@@ -28,7 +28,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Population B/N/P** | **18/18** ✅ |
 | **reference_pbed3** | **24/24** ✅ |
 | **运行中** | 无（R421：Cloud VM 无 CP2K；`exp10_status.json` 误刷新已 restore，勿提交） |
-| **最新 Loop** | **R438** |
+| **最新 Loop** | **R439** |
 | **下一 B 任务** | **P0**：`n=2` 四角以 EPS_SCF $10^{-6}$ 重算 + `n=8` 参考态复核（解除 reference-limited）；其后 dense-$k$ `n=1`、Mayer/Bader；R437 Methods $n{=}2$ undoped-corner 句已落地 |
 | **主张-证据** | 主文 α/S = **PBE+D3 only**；α 带拟合标准误（仅 N $>2\sigma$）；`n=2`/`n=8` 行 = **reference-limited** |
 | **引用** | **18/18 经 Crossref 核验**（R419 修 11 条：1 条虚构、3 条 DOI 错配、多条作者/页码错） |
@@ -39,13 +39,22 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 
 ---
 
+- **Loop R439（2026-08-17，三轨 · I Abstract）**：
+ - **Track A**：`NO_CP2K` — **不干预**
+ - **Track B（I Abstract）**：Abstract 对齐 Conclusions R438 — $n{=}2$ $\mathcal{S}(n)$ row is reference-limited at the undoped corner, not a sign change of the mixed derivative（无 Methods table 引用、无新定量）
+ - **Loop C**：主文无 `7/8|at revision|referee`
+ - **创新审计**：Abstract n=2 边界 = **A**；Mayer = **C**
+ - **paper_gap**：Mayer/Bader = **C**；SCAN + dense-$k$ = **C**；$n{=}2$ 四角 @ EPS $10^{-6}$ = **C**
+ - **Git**：`commit: 55d04b6` — `loop R439: Abstract n=2 undoped-corner reference-limited, not mixed-derivative sign change`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **下一轮**：R440 II Intro 或横切；勿再插同一句
+
 - **Loop R438（2026-08-17，三轨 · VIII Conclusion）**：
   - **Track A**：`NO_CP2K` — **不干预**
   - **Track B（VIII Conclusion）**：Conclusions 对齐 Methods R437 — $n{=}2$ $\mathcal{S}(n)$ row is reference-limited at the undoped corner (Methods; Table~sigma_S), not a sign change of the mixed derivative
   - **Loop C**：主文无 `7/8|at revision|referee`
   - **创新审计**：Conclusions n=2 边界 = **A**；Mayer = **C**
   - **paper_gap**：Mayer/Bader = **C**；SCAN + dense-$k$ = **C**；$n{=}2$ 四角 @ EPS $10^{-6}$ = **C**
-  - **Git**：`commit: 37e20c1` — `loop R438: Conclusions n=2 undoped-corner reference-limited, not mixed-derivative sign change`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+  - **Git**：`commit: 5f0b499` — `loop R438: Conclusions n=2 undoped-corner reference-limited, not mixed-derivative sign change`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
   - **下一轮**：R439 Abstract 或横切；勿再插同一句
 
 ### PRL Desk Review Gate（审稿升格 · 通用闸门）

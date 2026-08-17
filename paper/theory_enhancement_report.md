@@ -7,6 +7,13 @@
 
 
 
+### R439 audit (Loop R439, 2026-08-17)
+Phase: I Abstract
+Loop C: C-m3 Abstract n=2 undoped-corner (no Methods table ref; no new numbers)
+Abstract: The n=2 S(n) row is reference-limited at the undoped corner, not a sign change of the mixed derivative.
+未改: Methods R437; Conclusions R438; Results 定量; cheapest-improvement; 未再插 charged-defect 第三处
+grep: 7/8|at revision|referee = 0
+
 ### R438 audit (Loop R438, 2026-08-17)
 
 | 项 | 状态 |

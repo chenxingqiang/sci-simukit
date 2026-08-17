@@ -28,7 +28,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Population B/N/P** | **18/18** ✅ |
 | **reference_pbed3** | **24/24** ✅ |
 | **运行中** | 无（R421：Cloud VM 无 CP2K；`exp10_status.json` 误刷新已 restore，勿提交） |
-| **最新 Loop** | **R429** |
+| **最新 Loop** | **R430** |
 | **下一 B 任务** | **P0**：`n=2` 四角以 EPS_SCF $10^{-6}$ 重算 + `n=8` 参考态复核（解除 reference-limited）；其后 dense-$k$ `n=1`、Mayer/Bader |
 | **主张-证据** | 主文 α/S = **PBE+D3 only**；α 带拟合标准误（仅 N $>2\sigma$）；`n=2`/`n=8` 行 = **reference-limited** |
 | **引用** | **18/18 经 Crossref 核验**（R419 修 11 条：1 条虚构、3 条 DOI 错配、多条作者/页码错） |
@@ -1479,8 +1479,16 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track C**：主文/SI `7/8|at revision|orthogonal|fourfold` = **0**；**未**改 Abstract/Results 定量
  - **创新审计**：C$_{20}$ 应变磁性 vs 四隅 $\mathcal{S}$ = **B+**（已有 bib；差异化句）
  - **paper_gap**：下一 bib 候选 `Falletta2025polaronDFT`（**勿**本轮插）；P0 n=2/n=8
- - **Git**：`commit: TBD` — `loop R429: Discussion Nie2026 C20 strain-magnetism vs four-corner S`
+ - **Git**：`commit: 4a56ee6` — `loop R429: Discussion Nie2026 C20 strain-magnetism vs four-corner S`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
  - **下一轮**：R430 **VIII Conclusion** — 与 Intro/Discussion 文献定位闭环；**勿**再插第三篇 bib
+- **Loop R430（2026-08-17，三轨 · write.mdc VIII Conclusion）**：
+ - **Track A**：NO_CP2K — **不干预**
+ - **Track B（VIII Conclusion）**：Conclusions 补 cage-allotrope caveat — C$_{70}$ band-edge / C$_{20}$ strain-magnetism **不**替代 qHP C$_{60}$ 四角落 $\mathcal{S}$；无新定量、无第三 bib
+ - **Track C**：grep `7/8|at revision|orthogonal|fourfold` 主文/SI **0**
+ - **创新审计**：Conclusion 文献闭环 = **A**（bib 已有；无新 DFT）；n=2/n=8 = **C / reference-limited**；Mayer = **C**
+ - **paper_gap**：下一 bib 候选 Falletta2025polaronDFT；dense-$k$ / Mayer
+   - **Git**：`commit: ba71b0c` — `loop R430: Conclusion C70/C20 vs four-corner S closure`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **下一轮**：横切 audit 或 Falletta 一句；勿再插 Xu/Nie
 - **Loop R428（2026-08-17，三轨 · VII Discussion / III Literature）**：
 
  - **Track A**：CP2K 仍不可用 — **不干预**；n=2/n=8 仍 **C / reference-limited**

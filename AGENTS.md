@@ -28,7 +28,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Population B/N/P** | **18/18** ✅ |
 | **reference_pbed3** | **24/24** ✅ |
 | **运行中** | 无（R421：Cloud VM 无 CP2K；`exp10_status.json` 误刷新已 restore，勿提交） |
-| **最新 Loop** | **R423** |
+| **最新 Loop** | **R424** |
 | **下一 B 任务** | **P0**：`n=2` 四角以 EPS_SCF $10^{-6}$ 重算 + `n=8` 参考态复核（解除 reference-limited）；其后 dense-$k$ `n=1`、Mayer/Bader |
 | **主张-证据** | 主文 α/S = **PBE+D3 only**；α 带拟合标准误（仅 N $>2\sigma$）；`n=2`/`n=8` 行 = **reference-limited** |
 | **引用** | **18/18 经 Crossref 核验**（R419 修 11 条：1 条虚构、3 条 DOI 错配、多条作者/页码错） |
@@ -1449,13 +1449,22 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Git**：`commit: ed77f84` — `loop R422: cite Li2024graphullerene C24 contrast in Discussion`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
  - **下一轮**：本机有 CP2K 时跑 $n{=}2$ 四角；**不**伪造 DFT
 
+- **Loop R424（2026-08-17，三轨 · PR #3）**：
+ - **Track A**：无 `cp2k.psmp` — idle；**不干预**；**不伪造** n=2/n=8
+ - **Track B（II Introduction）**：Intro 增 C$_{24}$ vs qHP C$_{60}$ 一句（`Li2024graphullerene`）；R423 实际 commit `5ba5a3a`
+ - **Track C（C-m3）**：grep `7/8|at revision|orthogonal|fourfold` 于 `paper/*.tex` = **0**
+ - **创新审计**：Intro C$_{24}$ 化学区分 = **A**（已有 bib）；n=2/n=8 = **C / reference-limited**
+ - **paper_gap**：n=2/n=8 重算（Cloud VM 无 CP2K）
+ - **Git**：`commit: ba8ebf1` — `loop R424: Intro C24 vs qHP C60 sentence`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **下一轮**：n=2/n=8 DFT；或下一文献线程
 - **Loop R423（2026-08-17，三轨 · positioning 表 cite 对齐）**：
+
  - **Track A**：Cloud VM 无 CP2K — idle / **不干预**；勿刷新 `exp10_status.json`
  - **Track B（横切）**：`tab_lit_positioning` 第一行补 `\cite{Li2024graphullerene}`，与 Discussion L223 C$_{24}$ 对比句对齐
  - **Track C**：`grep -E '7/8|at revision|orthogonal|fourfold' paper/*.tex` = **0**
  - **创新审计**：表–文 cite 对齐 = **A**；n=2/n=8 DFT = **C**
  - **paper_gap**：周期 n=2/n=8 仍 **C**
- - **Git**：`commit: TBD` — `loop R423: add Li2024graphullerene to literature positioning table`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **Git**：`commit: 10b28fc` — `loop R423: add Li2024graphullerene to literature positioning table`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
  - **下一轮**：本机有 CP2K 时跑 $n{=}2$ 四角；**不**伪造 DFT
 
 - **Loop R417（2026-08-02，三轨）**：

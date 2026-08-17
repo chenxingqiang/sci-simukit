@@ -28,8 +28,8 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Population B/N/P** | **18/18** ✅ |
 | **reference_pbed3** | **24/24** ✅ |
 | **运行中** | 无（R421：Cloud VM 无 CP2K；`exp10_status.json` 误刷新已 restore，勿提交） |
-| **最新 Loop** | **R439** |
-| **下一 B 任务** | **P0**：`n=2` 四角以 EPS_SCF $10^{-6}$ 重算 + `n=8` 参考态复核（解除 reference-limited）；其后 dense-$k$ `n=1`、Mayer/Bader；R437 Methods $n{=}2$ undoped-corner 句已落地 |
+| **最新 Loop** | **R440** |
+| **下一 B 任务** | **P0**：`n=2` 四角以 EPS_SCF $10^{-6}$ 重算 + `n=8` 参考态复核（解除 reference-limited）；其后 dense-$k$ `n=1`、Mayer/Bader；R440 Intro undoped-corner SCF-gate 句已落地 |
 | **主张-证据** | 主文 α/S = **PBE+D3 only**；α 带拟合标准误（仅 N $>2\sigma$）；`n=2`/`n=8` 行 = **reference-limited** |
 | **引用** | **18/18 经 Crossref 核验**（R419 修 11 条：1 条虚构、3 条 DOI 错配、多条作者/页码错） |
 | **数据审计** | `paper/scripts/verify_manuscript_numbers.py` → **50/50 PASS** |
@@ -39,6 +39,14 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 
 ---
 
+- **Loop R440（2026-08-17，三轨 · II Introduction）**：
+  - **Track A**：NO_CP2K — **不干预**
+  - **Track B（II Introduction）**：Intro 在 charged-defect 边界句之后写入 finite-size $\mathcal{S}(n)$ 条目若未过 undoped-corner SCF gate 则为 reference-limited、不得读成 dopant-rank trend；**不**抄 Abstract/Methods/Conclusions 原句、**不** cite `eq:four_corner`、**不加**第三处 charged-defect
+  - **Track C（C-m3）**：主文边界 grep 0
+  - **创新审计**：Intro SCF-gate 读法 = **A**（与 Abstract/Methods/Conclusions 闭环）；n=2 重算 = **C**
+  - **paper_gap**：Mayer/Bader = **C**；SCAN + dense-$k$ = **C**；$n{=}2$ 四角 @ EPS $10^{-6}$ = **C**
+  - **Git**：`commit: 14f7269` — `loop R440: Intro n=2 SCF-gate reference-limited, not dopant-rank trend`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+  - **下一轮**：dense-$k$ / Mayer；或 Results caption 对齐 SCF-gate 读法
 - **Loop R439（2026-08-17，三轨 · I Abstract）**：
  - **Track A**：`NO_CP2K` — **不干预**
  - **Track B（I Abstract）**：Abstract 对齐 Conclusions R438 — $n{=}2$ $\mathcal{S}(n)$ row is reference-limited at the undoped corner, not a sign change of the mixed derivative（无 Methods table 引用、无新定量）

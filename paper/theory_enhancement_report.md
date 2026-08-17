@@ -7,7 +7,16 @@
 
 
 
-### R439 audit (Loop R439, 2026-08-17)
+### R440 audit (2026-08-17, Track B · II Introduction)
+
+| 项 | 值 |
+|----|-----|
+| **Phase** | II Introduction |
+| **主张** | Finite-size $\mathcal{S}(n)$ entries that fail the undoped-corner SCF gate are reference-limited and must not be read as a dopant-rank trend. |
+| **证据等级** | **A**（Intro 读法闸门；无新 DFT） |
+| **未入稿** | 无新定量；未第三处 charged-defect；未 Intro `eq:four_corner`；未抄 cheapest-improvement |
+
+## R439 audit (Loop R439, 2026-08-17)
 Phase: I Abstract
 Loop C: C-m3 Abstract n=2 undoped-corner (no Methods table ref; no new numbers)
 Abstract: The n=2 S(n) row is reference-limited at the undoped corner, not a sign change of the mixed derivative.

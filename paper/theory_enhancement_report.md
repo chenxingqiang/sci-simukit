@@ -7,6 +7,13 @@
 
 
 
+### R433 audit（2026-08-17 go loops — Conclusion four-corner vs charged-defect/Marcus）
+
+- **Phase**: VIII Conclusion.
+- **Landing**: Conclusions now close the Falletta thread without a new cite: $\mathcal{S}$ is a cross term among the four *neutral* corner totals, not a charged-defect formation energy or a Marcus rate (R431 Discussion + R432 Methods).
+- **Loop C**: `grep -E '7/8|at revision|referee' paper/*.tex` → 0; main-text `experiments/` → 0.
+- **Evidence**: **A** (wording; no new DFT). Falletta remains Discussion-only.
+
 ### R432 audit（2026-08-17 go loops — Methods four-corner vs charged-surface contract）
 - **Phase**：IV Methods（`sdc_method_section.tex`）
 - **主张**：四角总能量在同一中性 Born--Oppenheimer 面上求值；模板不是 charged-defect 或 polaron-rate 估计器

@@ -7,6 +7,13 @@
 
 
 
+### R444 audit (2026-08-17, VII Discussion)
+
+- **Phase**: VII Discussion (Limitations). Results L162–169 already covers n=8 same-350-Ry + 5.4 meV/atom; this loop adds a Limitations pointer only.
+- **Track B**: After the cheapest-improvement sentence, added that the $n{=}8$ offset is not a cutoff-class change because that supercell shares the $n{=}6$ production cutoff (Methods). No new DFT numbers.
+- **Loop C**: `grep -E '7/8|at revision|referee' paper/*.tex` = 0. `not a cutoff-class change` = 2 (Methods + Limitations).
+- **Evidence**: Methods L102 + Results L165–168 + Limitations pointer. Mayer/Bader = **C**.
+
 ### R443 audit (2026-08-17, 横切 B4/B5)
 
 - **Phase**: 横切（质控层 / B4+B5）。write.mdc 轮转默认 VI Results，但 `sec:synergy` L162–169 已写 n=2/n=8 reference-limited（offsets 4.2/5.4 meV/atom；rescaling removes the n=8 sign change；treat as reference-limited rather than a size trend）。**本轮不改 Results 定量，不抄 R442 same-350-Ry 句进 Results。**

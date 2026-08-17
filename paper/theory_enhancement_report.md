@@ -7,6 +7,14 @@
 
 
 
+### R434 audit（2026-08-17 go loops — Abstract four-corner vs charged-defect/polaron-rate）
+
+- **write.mdc Phase**：I Abstract（R433 为 VIII；R434 收口 Abstract 与 Methods/Conclusion 四角落边界）。
+- **落地**：`strain_doped_graphullerene.tex` Abstract 在「not a new thermodynamic observable」后增一句无 cite、无新定量：four-corner $\mathcal{S}$ **is not a charged-defect or polaron-rate estimator**；对齐 Methods `sdc_method_section` 与 Conclusions L271。
+- **证据等级**：四角落边界 = **A**（读者语言；无 cite）；Abstract 仍无 `\cite`（D6）。
+- **Loop C**：C-m3 grep 0。
+- **R433 Git 更正**：笔记曾写 `06c0ce4`；amend 后实际 HEAD **`9d27d3b`**（已 push）。
+
 ### R433 audit（2026-08-17 go loops — Conclusion four-corner vs charged-defect/Marcus）
 
 - **Phase**: VIII Conclusion.

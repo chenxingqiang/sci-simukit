@@ -28,8 +28,8 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Population B/N/P** | **18/18** ✅ |
 | **reference_pbed3** | **24/24** ✅ |
 | **运行中** | 无（R421：Cloud VM 无 CP2K；`exp10_status.json` 误刷新已 restore，勿提交） |
-| **最新 Loop** | **R433** |
-| **下一 B 任务** | **P0**：`n=2` 四角以 EPS_SCF $10^{-6}$ 重算 + `n=8` 参考态复核（解除 reference-limited）；其后 dense-$k$ `n=1`、Mayer/Bader；R433 中性四角落 Conclusion 收口已落地 |
+| **最新 Loop** | **R434** |
+| **下一 B 任务** | **P0**：`n=2` 四角以 EPS_SCF $10^{-6}$ 重算 + `n=8` 参考态复核（解除 reference-limited）；其后 dense-$k$ `n=1`、Mayer/Bader；R434 Abstract 四角落 charged-defect/polaron-rate 边界已落地 |
 | **主张-证据** | 主文 α/S = **PBE+D3 only**；α 带拟合标准误（仅 N $>2\sigma$）；`n=2`/`n=8` 行 = **reference-limited** |
 | **引用** | **18/18 经 Crossref 核验**（R419 修 11 条：1 条虚构、3 条 DOI 错配、多条作者/页码错） |
 | **数据审计** | `paper/scripts/verify_manuscript_numbers.py` → **50/50 PASS** |
@@ -1498,6 +1498,14 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Git**：`commit: 9f72cc4` — `loop R431: Falletta polaron SIC vs four-corner S boundary`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
  - **下一轮**：Methods 契约句；勿再插 Xu/Nie/Falletta
 
+- **Loop R434（2026-08-17，三轨）**：
+ - **Track A**：Cloud VM **NO_CP2K** — **不干预**；canonical Exp10 **41/41**
+ - **Track B（I Abstract）**：四角落 $\mathcal{S}$ 补一句：非 charged-defect / polaron-rate estimator（无 cite、无新定量）；对齐 Methods R432 + Conclusions R433
+ - **Track C**：C-m3 grep `7/8|at revision|referee` = 0；Abstract 无 `\cite`（D6）
+ - **创新审计**：Abstract 四角落边界 = **A**（无 cite）；R433 实际 HEAD `9d27d3b`（笔记曾写 `06c0ce4`）
+ - **paper_gap**：`n=2` 四角 EPS $10^{-6}$；`n=8` 参考态；Mayer/Bader；SCAN + dense-$k$
+ - **Git**：`commit: 5bda587` — `loop R434: Abstract four-corner vs charged-defect/polaron-rate`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **下一轮**：`n=2` 四角或 SCAN 单点（无 CP2K 则横切）
 - **Loop R433（2026-08-17，三轨 · go loops）**：
  - **Track A**：NO_CP2K — **不干预**
  - **Track B（VIII Conclusion）**：Conclusions 在 thermodynamic-observable 句后补中性四角落 $\mathcal{S}$ 边界（非 charged-defect / Marcus）；不 cite Falletta

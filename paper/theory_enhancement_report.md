@@ -7,6 +7,15 @@
 
 
 
+### R437 audit（2026-08-17 go loops — Methods n=2 four-corner inherits pristine SCF exception）
+
+- **Phase**: IV Methodology（write.mdc 阶段3）
+- **主瓶颈**: n=2 行是 undoped 参考角的 SCF 例外（EPS $10^{-5}$），不是 mixed derivative 符号翻转
+- **落地**: `strain_doped_graphullerene.tex` Methods SCF 段 — 四角 stencil 含 pristine total → n=2 reference-limited at undoped corner
+- **契约**: 无新定量；与 `*.inp` 及 Table~sigma_S n=2 注一致；未把 cheapest-improvement 句抄进 Methods
+- **Loop C**: C-M3 文稿侧已 closed；本轮 Methods 诚实化 n=2 参考角
+- **证据等级**: Methods 契约 = **A**；n=2 四角 @ $10^{-6}$ 仍 **C** backlog
+
 ### R436 audit（2026-08-17 go loops — Intro Qiu2025atomic mechanical/tribological vs four-corner $\mathcal{S}$）
 
 | 主张 | 证据等级 | 状态 | 源 |

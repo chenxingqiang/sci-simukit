@@ -28,8 +28,8 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Population B/N/P** | **18/18** ✅ |
 | **reference_pbed3** | **24/24** ✅ |
 | **运行中** | 无（R421：Cloud VM 无 CP2K；`exp10_status.json` 误刷新已 restore，勿提交） |
-| **最新 Loop** | **R436** |
-| **下一 B 任务** | **P0**：`n=2` 四角以 EPS_SCF $10^{-6}$ 重算 + `n=8` 参考态复核（解除 reference-limited）；其后 dense-$k$ `n=1`、Mayer/Bader；R436 Intro `Qiu2025atomic` cite 已落地 |
+| **最新 Loop** | **R437** |
+| **下一 B 任务** | **P0**：`n=2` 四角以 EPS_SCF $10^{-6}$ 重算 + `n=8` 参考态复核（解除 reference-limited）；其后 dense-$k$ `n=1`、Mayer/Bader；R437 Methods $n{=}2$ undoped-corner 句已落地 |
 | **主张-证据** | 主文 α/S = **PBE+D3 only**；α 带拟合标准误（仅 N $>2\sigma$）；`n=2`/`n=8` 行 = **reference-limited** |
 | **引用** | **18/18 经 Crossref 核验**（R419 修 11 条：1 条虚构、3 条 DOI 错配、多条作者/页码错） |
 | **数据审计** | `paper/scripts/verify_manuscript_numbers.py` → **50/50 PASS** |
@@ -1498,6 +1498,14 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Git**：`commit: 9f72cc4` — `loop R431: Falletta polaron SIC vs four-corner S boundary`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
  - **下一轮**：Methods 契约句；勿再插 Xu/Nie/Falletta
 
+- **Loop R437（2026-08-17，三轨 · IV Methodology）**：
+  - **Track A**：`NO_CP2K` — **不干预**；canonical Exp10 **41/41**、Exp8 **6/6**、Exp9 **12/12+8/8**
+  - **Track B**：Methods n=2 四角继承 pristine $10^{-5}$ 例外 — reference-limited at **undoped corner**，非 mixed-derivative 符号翻转；无新定量
+  - **Track C**：主文/SI `7/8|at revision|referee` = 0
+  - **创新审计**：Methods 契约 = **A**；n=2 四角 @ $10^{-6}$ = **C**；Mayer = **C**
+  - **paper_gap**：Mayer/Bader；SCAN + dense-$k$；n=2 四角 @ EPS $10^{-6}$
+  - **Git**：`commit: 99fa114` — `loop R437: Methods n=2 four-corner inherits pristine SCF exception`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+  - **下一轮**：禁止再插 Intro Qiu / 第三处 Xu·Nie·Falletta / Methods cheapest-improvement 复述
 - **Loop R436（2026-08-17，三轨 · III Literature）**：
  - **Track A**：`NO_CP2K` — **不干预**；canonical Exp10 **41/41**、Exp8 **6/6**、Exp9 **12/12+8/8**
  - **Track B（III Literature）**：Intro C24 句后 1 句 `Qiu2025atomic`（力学/摩擦原子尺度图 ≠ 四角 $\mathcal{S}$）；无新 bib、无新定量；禁止第三处 Xu/Nie/Falletta；纠正 theory L611 过期「Discussion 已 cite Qiu」

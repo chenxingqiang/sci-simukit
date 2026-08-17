@@ -94,6 +94,7 @@ Dense-$k$ ($2\times 2\times 1$) four-corner benchmarks on $n{=}1$ B/N/P at $+3$\
 \paragraph{SCF convergence and four-corner precision.}
 Unless noted otherwise, the SCF threshold is $\mathrm{EPS\_SCF}=10^{-6}$~$E_{\mathrm{h}}$ in inner and outer orbital-transformation loops (MAX\_SCF 300; OUTER\_SCF MAX 30).
 The $2\times\mathrm{C}_{60}$ cells are the exception: they cycled at $10^{-6}$ and were converged at $10^{-5}$~$E_{\mathrm{h}}$, which is why their pristine reference lies off the size-converged plateau and why we flag that row as reference-limited (Table~\ref{tab:sigma_S}; Sec.~\ref{sec:synergy}).
+Because the four-corner stencil of Eq.~\eqref{eq:four_corner} includes that pristine total, the $n{=}2$ row is reference-limited at the undoped corner rather than by a sign change of the mixed derivative.
 Charged-state workflows in the Supplemental Material tighten this to $10^{-7}$~$E_{\mathrm{h}}$; selected stiff tetramer corners may use $10^{-5}$~$E_{\mathrm{h}}$ when outer SCF cycling persists at $10^{-6}$, which stays inside the ${\sim}2$~meV/atom reporting floor of Table~\ref{tab:sigma_S}.
 Because $\mathcal{S}$ is built from four independently converged totals [Eq.~\eqref{eq:synergy_order}], uncertainty is propagated as $\sigma_{\mathcal{S}}=2\sigma_e$ for uncorrelated per-atom corner errors $\sigma_e$ [Eq.~\eqref{eq:sigma_propagation}; Supplemental Material, Sec.~\ref{S-sec:error_prop}] (Table~\ref{tab:sigma_S}).
 We use $\sigma_{\mathcal{S}}\lesssim 2$~meV/atom as the conservative reporting band on the $n\leq 4$ production grid.

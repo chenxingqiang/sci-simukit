@@ -13,7 +13,7 @@
 - **Action**: Ledger only — Abstract has no `\\cite`, no Koopmans/rVV10; `31.9`/`\\eta`/`8`/`10^{-3}` already present. Canonical audit `n_synergy=15`; P $E_f=-15.8$ eV/dopant. No Abstract rewrite.
 - **Evidence**: `sdc_exp10_synergy_audit.json`; `table1_verification.json`.
 - **Grade**: Abstract contract = **A**; Mayer/Bader = **C**.
-- **Git**: `commit: TBD`
+- **Git**: `commit: 293a7af`
 
 ### R479 audit (2026-08-18, 横切)
 

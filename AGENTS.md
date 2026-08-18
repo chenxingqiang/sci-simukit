@@ -53,7 +53,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
  - **Loop C**：C-m3 grep = 0；R463 audit
  - **创新审计**：横切 grep = **A**
  - **paper_gap**：$n{=}2$ 四角 EPS $10^{-6}$
- - **Git**： commit: TBD — `loop R463: cross-cut grep audit; no tex rewrite`
+ - **Git**：commit: 52ba68e
  - **下一轮**：R464 I Abstract (`464 % 8 = 0`；已闭合 — ledger only)
 - **Loop R462（2026-08-18，三轨 · VIII Conclusion ledger）**：
  - **Track A**：NO_CP2K — **不干预**；canonical Exp10 **41/41**、Exp8 **6/6**、Exp9 **12/12+8/8**

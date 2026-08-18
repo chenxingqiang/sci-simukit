@@ -7,6 +7,11 @@
 
 
 
+### R471 audit (2026-08-18, 横切 / Loop C)
+- Phase: 横切 (`471 % 8 = 7`). Loop C `grep -E '7/8|at revision|referee' paper/*.tex` = 0.
+- Evidence: no C-level leak in main/SI. No new .out.
+- Action: no tex rewrite. Next: R472 I Abstract (`472 % 8 = 0`).
+
 ### R470 audit (2026-08-18, VIII Conclusion / Loop C)
 - Phase: VIII Conclusion (`470 % 8 = 6`). Loop C `grep -E '7/8|at revision|referee' paper/*.tex` = 0.
 - Evidence: Conclusion already closed (R462). No new .out.

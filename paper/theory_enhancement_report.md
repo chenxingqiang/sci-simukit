@@ -7,6 +7,9 @@
 
 
 
+### R450 audit (2026-08-18, III Literature / Loop C)
+- Phase: III Literature. No new `.out`. Ledger-only: Khan PRM 9, 034001; Li C24 ACSANM; Wang2024simulation; Makov npj Comp Mater; Xu2025 C70; Nie2026 C20; Pereira endohedral — already cited. No new bib (≤3/round gate). Loop C grep `7/8|at revision|referee` = 0. SCAN + dense-$k$ = C open; cutoff400 = A closed.
+
 ### R449 audit (2026-08-17, II Intro / Loop C)
 - Phase: II Intro. No new `.out`. Intro already carries SCF-gate (L64), charged-defect/polaron-rate estimator (L62), Wang2024simulation (L67), Li2024graphullerene, and Qiu2025atomic. **No Intro wording added.**
 - Track B: ledger only. Horizontal grep: `7/8|at revision|referee` in `paper/*.tex` = 0. `not a cutoff-class change` = 2. `Wang2024simulation` = 1 (Intro L67).

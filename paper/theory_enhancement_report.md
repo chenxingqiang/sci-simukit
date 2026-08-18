@@ -132,7 +132,7 @@
 - **Claim**: No new `.out` -> **no tex rewrite**. No C-level SCAN/Mayer as A-grade. Main-text alpha/S remains PBE+D3-only.
 - **Evidence**: grep C-level tokens -> 0; C-m3 still closed.
 - **Grade**: Discussion contract = **A**; SCAN/Mayer = **C**
-- **Git**: `commit: PLACEHOLDER` --- `loop R493: Discussion-contract ledger; no tex rewrite`
+- **Git**: `commit: 34527e8` --- `loop R493: Discussion-contract ledger; no tex rewrite`
 - **Next**: R494 VIII Conclusion (`494 % 8 = 6`).
 
 ### R492 audit (2026-08-18, VI Results)

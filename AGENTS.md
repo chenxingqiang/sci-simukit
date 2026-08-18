@@ -28,7 +28,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Population B/N/P** | **18/18** ✅ |
 | **reference_pbed3** | **24/24** ✅ |
 | **运行中** | 无（R421：Cloud VM 无 CP2K；`exp10_status.json` 误刷新已 restore，勿提交） |
-| **最新 Loop** | **R453** |
+| **最新 Loop** | **R454** |
 | **下一 B 任务** | SCAN + dense-$k$；$n{=}2$ 四角 @ EPS $10^{-6}$；$n{=}8$ 参考态。**勿再抄** cutoff-class / same-350-Ry / 5.4 / (4.3) / R7-1.2 |
 | **主张-证据** | 主文 α/S = **PBE+D3 only**；α 带拟合标准误（仅 N $>2\sigma$）；`n=2`/`n=8` 行 = **reference-limited** |
 | **引用** | **18/18 经 Crossref 核验**（R419 修 11 条：1 条虚构、3 条 DOI 错配、多条作者/页码错） |
@@ -39,6 +39,14 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 
 ---
 
+- **Loop R454（2026-08-18，三轨 · VIII Conclusion）**：
+  - **Track A**：Cloud VM **NO_CP2K** — **不干预**
+  - **Track B（VIII Conclusion）**：`454 % 8 = 6`. Conclusions already close the three Intro questions, n=2 undoped-corner (L277), Mayer/Bader follow-up (L273), and C70/C20 caveat (L285--L286). **No tex rewrite.**
+  - **Track C**：C-m3 grep `7/8|at revision|referee` on `paper/*.tex` = **0**
+  - **创新审计**：Conclusion contract = **A** (closed); Intro--Conclusion loop = **A**
+  - **paper_gap**：SCAN + dense-$k$; Mayer/Bader; $n{=}2$ four-corner @ EPS $10^{-6}$; $n{=}8$ reference
+  - **Git**：`commit: PLACEHOLDER` — `loop R454: Conclusion contract ledger; no Conclusion rewrite`
+  - **下一轮**：R455 横切
 - **Loop R453（2026-08-18，三轨 · VII Discussion）**：
   - **Track A**：Cloud VM **NO_CP2K** — **不干预**
   - **Track B（VII Discussion）**：`453 % 8 = 5`。`sec:discussion_literature` already cites Capobianco/Li/Khan/Peng/Lee, Li C24 (`Li2024graphullerene`), cluster-expansion (Sanchez, Laks), ShaikhPeng thermal, Shi2023, Pereira endohedral, Xu2025 C70, Nie2026 C20, and Falletta SIC. **No tex rewrite.**

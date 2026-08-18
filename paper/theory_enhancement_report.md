@@ -7,6 +7,18 @@
 
 
 
+### R454 audit (2026-08-18, VIII Conclusion / Loop C)
+- **Phase**: VIII Conclusion. Ledger only.
+- **Evidence**: Conclusions already close three Intro questions; n=2 undoped-corner (L277); Mayer/Bader (L273); C70/C20 (L285--L286). No new `.out`. Do not recopy.
+- **Loop C**: grep `7/8|at revision|referee` = **0**.
+- **Innovation audit**: Conclusion contract = **A**; SCAN/Mayer = **C** open.
+
+### R453 audit (2026-08-18, VII Discussion / Loop C)
+- **Phase**: VII Discussion. Ledger only.
+- **Evidence**: Discussion already has Capobianco/Li/Khan/Peng/Lee; Li C24; Nie2026strainC20; Falletta2025polaronDFT. No new `.out`. Do not recopy.
+- **Loop C**: grep `7/8|at revision|referee` = **0**.
+- **Innovation audit**: Discussion literature = **A**; SCAN/Mayer = **C** open.
+
 ### R452 audit (2026-08-18, VI Results / Loop C)
 
 - **Phase**: VI Results (`sec:synergy`). Ledger only.

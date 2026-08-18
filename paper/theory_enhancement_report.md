@@ -73,6 +73,15 @@
 - Evidence: Literature ledger = **A**; SCAN/dense-$k$ = **C**.
 - Next: R475 IV Methods (`475 % 8 = 3`).
 
+### R482 audit (2026-08-18, III Literature / Loop C)
+- Phase: III Literature (`482 % 8 = 2`).
+- Track A: NO_CP2K. Do not start jobs.
+- Track B: Ledger-only. Khan/Qiu/Peng/Capobianco/Tromer/Alihosseini/LopezAlcalay/Lv/ShaikhPeng already cited. WebSearch 2025–2026 hits already in bib or off-topic. No new four-corner S prior art. **No tex rewrite**.
+- Track C: grep 7/8|at revision|referee paper/*.tex = 0.
+- Evidence: Literature ledger = **A**; SCAN/dense-$k$ = **C**.
+- Next: R483 IV Methods (`483 % 8 = 3`).
+- **Git**: `commit: TBD`
+
 ### R473 audit (2026-08-18, II Intro / Loop C)
 - Phase: II Intro (`473 % 8 = 1`). Intro already contains covalent-network gap. **No tex rewrite**.
 - Track C: grep = 0.

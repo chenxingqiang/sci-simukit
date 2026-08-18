@@ -35,13 +35,22 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Population B/N/P** | **18/18** ✅ |
 | **reference_pbed3** | **24/24** ✅ |
 | **运行中** | NO_CP2K（Cloud Agent VM） |
-| **最新 Loop** | **R481** |
-| **下一 B 任务** | R482 III Literature（`482 % 8 = 2`） |
+| **最新 Loop** | **R482** |
+| **下一 B 任务** | R483 IV Methods（`483 % 8 = 3`） |
 | **主张-证据** | 主文 α/S = **PBE+D3 only**（Table IV + periodic）；legacy Table I = **SI 归档** |
 | **Loop C** | C-M1 **closed** ✅；C-M2 **closed** ✅；C-M3 **closed**（text）；C-m1–m5 **closed** ✅ |
 | **SDC** | **15** synergy 点 |
 | **旗杆** | **PRB Regular Article** major revision |
 
+- **Loop R482（2026-08-18，三轨 · III Literature）**：
+ - **Track A**：`NO_CP2K`；canonical Exp10 **41/41**、Exp8 **6/6**、Exp9 GEO **12/12** + vertical **8/8** — **不干预**、不启 job
+ - **Track B（III Literature）**：ledger-only；主文已 cite Khan/Qiu/Peng/Capobianco/Tromer/Alihosseini/LopezAlcalay/Lv/ShaikhPeng 等；WebSearch `graphullerene strain doping 2025 2026 qHP C60` 命中均已入 bib 或 off-topic；**无未覆盖的 2025–2026 四角 $\mathcal{S}$ 文**；不新增 bib、不改 tex
+ - **Track C**：C-m3 `orthogonal|fourfold|at revision|7/8` = **0** hits（`paper/*.tex`）
+ - **创新审计**：Literature 覆盖 = **A**（已有 cite + SI S-tab:lit_positioning）；新四角 $\mathcal{S}$ 文 = **无**；tex 未改 = **A**
+ - **paper_gap**：R483 IV Methods（cutoff 分层 / Hirshfeld / Table II 契约）；SCAN/Mayer = **C** backlog
+ - **prl_gate**：D1 narrative=Y；abstract 无 `\cite`；relax=done Table III
+ - **Git**：`commit: TBD` — `loop R482: Literature ledger; no tex rewrite`；（push 后补）
+ - **下一轮**：R483 IV Methods（`483 % 8 = 3`）
 - **Loop R481（2026-08-18，三轨 · II Intro）**：
  - **Track A**：`NO_CP2K` — **不启 job**
  - **Track B（II Intro）**：Ledger-only。Intro 已有 covalent-network framing、qHP 作 elastically soft host、C$_{24}$/ tribology 差异化；与 Abstract constrained-loading / bilinear / screening-margin 契约一致。无 Intro 复写。

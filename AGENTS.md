@@ -44,7 +44,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
  - **Track B（I Abstract）**：Abstract 已闭合（n=2 undoped-corner + charged-defect）。Ledger only。**勿改 tex。**
  - **Track C**：grep `7/8|at revision|referee` = **0**
  - **创新审计**：Abstract contract = **A**；SCAN/Mayer = **C**
- - **Git**：`commit: PENDING` — `loop R456: Abstract contract ledger; no Abstract rewrite`
+ - **Git**：`commit: 9cf90d5` — `loop R456: Abstract contract ledger; no Abstract rewrite`
  - **下一轮**：R457 Intro 轮转（`457 % 8 = 1`）
 - **Loop R455（2026-08-18，三轨 · 横切）**：
   - **Track A**：Cloud VM **NO_CP2K** — **不干预**

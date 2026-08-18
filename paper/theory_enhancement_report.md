@@ -126,6 +126,19 @@
 - Git: `commit: 82e86be`
 - Next: R488 I Abstract (`488 % 8 = 0`).
 
+### R496 audit (2026-08-18, I Abstract / Loop C)
+
+- **Phase Declaration**: In the Abstract phase, I recorded an evidence ledger.
+- **Track A**: Exp10 **41/41**, Exp8 **6/6**, Exp9 GEO **12/12** + vertical **8/8**; Cloud VM `exp10_status_line` `0/42` is a false miss --- **do not overwrite** canonical; **NO_CP2K**; **do not start** a job.
+- **Track B (I Abstract)**: `fifteen periodic` **True**; `abstract_has_cite` **False**; `abstract_chars` **1627** (PRB has no 600-character cap; informational); no `rVV10`/`Koopmans`/`orthogonal`/`at revision`/`7/8`; opener is mechanically constrained loading + bilinear strain-composition + PBE+D3 four-corner; P $E_f$ JSON **-15.8** eV / `n` **12** is not an Abstract quantitative claim; Exp10 inp `XC_FUNCTIONAL PBE`; **no new `.out` --- no tex rewrite**.
+- **Track C (C-m3)**: Abstract has no revision-progress sentence.
+- **Innovation audit**: Abstract contract = **A**; PBE+D3 Methods-inp = **A**; Mayer/Bader = **C**.
+- **paper_gap**: Mayer/Bader; SCAN + dense-$k$; cutoff300 not in manuscript.
+- **prl_gate**: D6 Abstract has no `\cite`; D2 upper-bound is in Abstract; relax=done.
+- **loop_c:** C-m3 Abstract boundary **closed**; C-M3 Mayer = **C**.
+- **Git**: `commit: PLACEHOLDER` --- `loop R496: Abstract ledger; no tex rewrite`; (**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**)
+- **Next**: R497 II Intro (`497 % 8 = 1`); **do not start** CP2K.
+
 ### R495 audit (2026-08-18, 横切 / Loop C)
 
 - **Phase**: 横切 evidence ledger. Main tex: 0 hits for orthogonal|fourfold|at revision|7/8|rVV10|Koopmans|cm^2|775|300%|8.75; SI theory keeps superseded 8.75× / pending 775%/300% / rVV10–Koopmans outlook (not main-text claims).

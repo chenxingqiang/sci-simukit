@@ -35,8 +35,8 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Population B/N/P** | **18/18** ✅ |
 | **reference_pbed3** | **24/24** ✅ |
 | **运行中** | NO_CP2K（Cloud Agent VM） |
-| **最新 Loop** | **R495** |
-| **下一 B 任务** | R496 I Abstract（`496 % 8 = 0`） |
+| **最新 Loop** | **R496** |
+| **下一 B 任务** | R497 II Intro（`497 % 8 = 1`） |
 | **主张-证据** | 主文 α/S = **PBE+D3 only**（Table IV + periodic）；legacy Table I = **SI 归档** |
 | **Loop C** | C-M1 **closed** ✅；C-M2 **closed** ✅；C-M3 **closed**（text）；C-m1–m5 **closed** ✅ |
 | **SDC** | **15** synergy 点 |
@@ -94,6 +94,16 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
  - **创新审计**：横切 grep = **A**；SCAN/Mayer = **C** backlog。
  - **paper_gap**：R488 I Abstract（`488 % 8 = 0`）
  - **Git**：`commit: 82e86be` — `loop R487: cross-cut grep ledger; no tex rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+- **Loop R496（2026-08-18，三轨 · I Abstract）**：
+ - **Track A**：Exp10 **41/41**、Exp8 **6/6**、Exp9 GEO **12/12** + vertical **8/8**；`exp10_status_line` Cloud VM `0/42` 误报 — **不覆盖** canonical；**NO_CP2K**；**不启** job
+ - **Track B（I Abstract）**：Phase Declaration — *In the Abstract phase, I recorded an evidence ledger.* Abstract `fifteen periodic` **True**；`abstract_has_cite` **False**；`abstract_chars` **1627**（PRB 无 600 字符硬顶，信息性）；无 `rVV10`/`Koopmans`/`orthogonal`/`at revision`/`7/8`；开篇 mechanically constrained loading + bilinear strain–composition + PBE+D3 four-corner；P $E_f$ JSON **-15.8** eV/`n` **12** 未写入摘要定量；Exp10 inp `XC_FUNCTIONAL PBE`；**无新 `.out` → no tex rewrite**
+ - **Track C（C-m3）**：Abstract 无修回进度句
+ - **创新审计**：Abstract 契约 = **A**；PBE+D3 Methods–inp = **A**；Mayer/Bader = **C**
+ - **paper_gap**：Mayer/Bader；SCAN + dense-$k$；cutoff300 未入稿
+ - **prl_gate**：D6 Abstract 无 `\cite`；D2 upper-bound 在 Abstract；relax=done
+ - **loop_c：** C-m3 Abstract 边界 **closed**；C-M3 Mayer = **C**
+ - **Git**：`commit: PLACEHOLDER` — `loop R496: Abstract ledger; no tex rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **下一轮**：R497 II Intro（`497 % 8 = 1`）；**不启** CP2K
 - **Loop R495（2026-08-18，三轨 · 横切）**：
  - **Track A**：`NO_CP2K`；canonical Exp10 **41/41**、Exp8 **6/6**、Exp9 GEO **12/12** + vertical **8/8**、cutoff300 still **pending** — **不启** job。
  - **Track B（横切）**：In the cross-cut evidence-ledger phase, I recorded a grep audit. No new `.out` → **no tex rewrite**. Main tex: 0 hits for orthogonal|fourfold|at revision|7/8|rVV10|Koopmans|cm^2|775|300%|8.75; SI theory keeps superseded 8.75× / pending 775%/300% / rVV10–Koopmans outlook (not main-text claims); no repo paths in main tex.

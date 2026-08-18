@@ -48,7 +48,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
  - **Track C（C-m3）**：`orthogonal`/`fourfold`/`at revision`/`7/8` 主文/SI = **0**
  - **创新审计**：Intro–Abstract 契约 = **A**；无 C 级 Intro 核心句 = **A**
  - **paper_gap**：Mayer/Bader still **C**；SCAN + dense-$k$；n=2 corners at EPS $10^{-6}$；n=8 参考态
- - **Git**：`commit: TBD` — `loop R481: Intro ledger; no tex rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **Git**：`commit: 0b45acd` — `loop R481: Intro ledger; no tex rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
  - **下一轮**：R482 III Literature
 - **Loop R480（2026-08-18，三轨 · I Abstract）**：
  - **Track A**：Cloud VM `NO_CP2K` — **不干预**
@@ -1918,7 +1918,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Track C（C-m3）**：grep 主文/SI `7/8|at revision|orthogonal|fourfold` = 0
  - **创新审计**：Xu C70 合成/带边设计 vs 四隅 $\mathcal{S}$ = **B+**（已有 bib）；n=2/n=8 = **C**
  - **paper_gap**：下一未入稿 bib：**Nie2026strainC20**、Falletta（各 1 句、不要新加 bib）
- - **Git**：`commit: TBD`
+ - **Git**：`commit: 0b45acd`
  - **下一轮**：Nie C20 磁性/半金属 vs 本文中性总能量 $\mathcal{S}$；勿新加 bib
 - **Loop R427（2026-08-17，三轨 · VII Discussion / III Literature）**：
  - **Track A**：CP2K 仍不可用 — **不干预**；n=2/n=8 仍 **C / reference-limited**

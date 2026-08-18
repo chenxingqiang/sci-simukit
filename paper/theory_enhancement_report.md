@@ -13,7 +13,7 @@
 - **Evidence**: Intro already carries covalent-network framing, qHP C60 as elastically soft host, and C24/tribology contrast to four-corner S. Aligns with Abstract constrained-loading / bilinear / screening-margin contract. No Intro rewrite.
 - **Loop C**: C-m3 `orthogonal|fourfold|at revision|7/8` = 0 in main/SI.
 - **Track A**: NO_CP2K — did not start a job.
-- **Git**: `commit: TBD`
+- **Git**: `commit: 0b45acd`
 
 ### R480 audit (2026-08-18)
 

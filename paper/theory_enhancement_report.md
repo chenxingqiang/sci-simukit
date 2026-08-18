@@ -100,6 +100,16 @@
 - Next: R485 VII Discussion (`485 % 8 = 5`).
 - **Git**: `commit: 10d693d`
 
+### R485 audit (2026-08-18, VII Discussion, ledger-only)
+
+- **Phase**: write.mdc VII Discussion. No new `.out` → no Discussion quantitative rewrite; no new bib.
+- **Track A**: `NO_CP2K`; canonical Exp10 **41/41**, Exp8 **6/6**, Exp9 GEO **12/12** + vertical **8/8**. Cloud VM `exp10_status_line.sh` may report `0/42` = **false positive**.
+- **Track B**: claim–evidence lock: main-text α/S = **PBE+D3 only** (Table IV + periodic); legacy Table I = **SI archive**. No tex rewrite.
+- **Track C**: C-m3 `orthogonal|fourfold|at revision|7/8` in `paper/*.tex` = **0** hits.
+- **创新审计**: Discussion quantitative boundary = **A** (no new numbers); SCAN/Mayer = **C** backlog.
+- **paper_gap**: R486 VIII Conclusion (`486 % 8 = 6`)
+- **Git**: `commit: PLACEHOLDER` — `loop R485: Discussion ledger; no tex rewrite`
+
 ### R473 audit (2026-08-18, II Intro / Loop C)
 - Phase: II Intro (`473 % 8 = 1`). Intro already contains covalent-network gap. **No tex rewrite**.
 - Track C: grep = 0.

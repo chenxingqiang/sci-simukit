@@ -25,19 +25,31 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Exp9** | **12/12** GEO_OPT ✅；vertical SP **8/8** ✅ |
 | **Table IV seed137** | **24/24** ✅ |
 | **Periodic relax n=1 P** | **4/4** ✅ |
+| 项 | 值 |
+|----|-----|
+| **Exp10** | **41/41** ✅（incl. cutoff400） |
+| **Exp8** | **6/6** ✅ |
+| **Exp9** | **12/12** GEO_OPT ✅；vertical SP **8/8** ✅ |
+| **Table IV seed137** | **24/24** ✅ |
+| **Periodic relax n=1 P** | **4/4** ✅ |
 | **Population B/N/P** | **18/18** ✅ |
 | **reference_pbed3** | **24/24** ✅ |
-| **运行中** | 无（R421：Cloud VM 无 CP2K；`exp10_status.json` 误刷新已 restore，勿提交） |
-| **最新 Loop** | **R476** |
-| **下一 B 任务** | R477 VII Discussion（`477 % 8 = 5`）；SCAN + dense-$k$ + $n{=}2$ 四角 + $n{=}8$ 参考态。**勿再抄** 已写 Discussion 句 |
-| **主张-证据** | 主文 α/S = **PBE+D3 only**；α 带拟合标准误（仅 N $>2\sigma$）；`n=2`/`n=8` 行 = **reference-limited** |
-| **引用** | **18/18 经 Crossref 核验**（R419 修 11 条：1 条虚构、3 条 DOI 错配、多条作者/页码错） |
-| **数据审计** | `paper/scripts/verify_manuscript_numbers.py` → **50/50 PASS** |
-| **Loop C** | C-M1 **closed** ✅；C-M2 **closed** ✅；C-M3 **closed**（text branch：Limitations + Table~V；Mayer/Bader = C）✅；C-m3 去重 **closed** ✅ |
+| **运行中** | NO_CP2K（Cloud Agent VM） |
+| **最新 Loop** | **R477** |
+| **下一 B 任务** | R478 VIII Conclusion（`478 % 8 = 6`） |
+| **主张-证据** | 主文 α/S = **PBE+D3 only**（Table IV + periodic）；legacy Table I = **SI 归档** |
+| **Loop C** | C-M1 **closed** ✅；C-M2 **closed** ✅；C-M3 **closed**（text）；C-m1–m5 **closed** ✅ |
 | **SDC** | **15** synergy 点 |
 | **旗杆** | **PRB Regular Article** major revision |
 
----
+- **Loop R477（2026-08-18，三轨 · VII Discussion）**：
+ - **Track A**：NO_CP2K — **不干预**
+ - **Track B（VII Discussion）**：`477 % 8 = 5`。核对 Discussion 机理/文献对比句与证据等级（Hirshfeld A；Mayer/Bader C）。本轮仅台账，**不复写** Discussion 句。Loop C grep = **0**。
+ - **Track C**：C-M3 文稿 **closed**；Mayer/Bader = **C**
+ - **创新审计**：Discussion 机理契约 = **A**（已有句）；SCAN/dense-$k$ = **C**
+ - **paper_gap**：SCAN + dense-$k$；$n{=}2$ corners；$n{=}8$ reference
+ - **Git**：`commit: TBD` — `loop R477: Discussion ledger; no tex rewrite`
+ - **下一轮**：R478 VIII Conclusion（`478 % 8 = 6`）
 
 - **Loop R476（2026-08-18，三轨 · VI Results）**：
  - **Track A**：NO_CP2K — **不干预**

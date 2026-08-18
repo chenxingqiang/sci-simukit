@@ -7,6 +7,14 @@
 
 
 
+### R477 audit (2026-08-18)
+- Phase: VII Discussion (`477 % 8 = 5`).
+- Discussion already contains Hirshfeld $q(\epsilon)$ vs $\bar d(\epsilon)$ ranking (N ${\sim}18$\%, P ${\sim}10$\%, B ${\sim}6$\%) = **A**; Mayer/Bader gap is explicit in Limitations = **C**.
+- Literature contrast (Capobianco/Li/Khan) is already in Discussion; SCAN/dense-$k$ remain unreported (Limitations).
+- Loop C grep (`7/8|at revision|referee|experiments/` in `paper/*.tex`): **0** (tikz `% DATA:` comments only).
+- No tex rewrite this round (already-written Discussion sentences).
+- Next: R478 VIII Conclusion (`478 % 8 = 6`).
+
 ### R476 audit (2026-08-18, VI Results / Loop C)
 
 - **Phase**: VI Results (`476 % 8 = 4`). Ledger only — no Results rewrite.

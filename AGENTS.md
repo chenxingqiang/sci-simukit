@@ -102,7 +102,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
  - **paper_gap**：Mayer/Bader；SCAN + dense-$k$；cutoff300 未入稿
  - **prl_gate**：D6 Abstract 无 `\cite`；D2 upper-bound 在 Abstract；relax=done
  - **loop_c：** C-m3 Abstract 边界 **closed**；C-M3 Mayer = **C**
- - **Git**：`commit: PLACEHOLDER` — `loop R496: Abstract ledger; no tex rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **Git**：`commit: 6b9ffe7` — `loop R496: Abstract ledger; no tex rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
  - **下一轮**：R497 II Intro（`497 % 8 = 1`）；**不启** CP2K
 - **Loop R495（2026-08-18，三轨 · 横切）**：
  - **Track A**：`NO_CP2K`；canonical Exp10 **41/41**、Exp8 **6/6**、Exp9 GEO **12/12** + vertical **8/8**、cutoff300 still **pending** — **不启** job。

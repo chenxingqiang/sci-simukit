@@ -136,7 +136,7 @@
 - **paper_gap**: Mayer/Bader; SCAN + dense-$k$; cutoff300 not in manuscript.
 - **prl_gate**: D6 Abstract has no `\cite`; D2 upper-bound is in Abstract; relax=done.
 - **loop_c:** C-m3 Abstract boundary **closed**; C-M3 Mayer = **C**.
-- **Git**: `commit: PLACEHOLDER` --- `loop R496: Abstract ledger; no tex rewrite`; (**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**)
+- **Git**: `commit: 6b9ffe7` --- `loop R496: Abstract ledger; no tex rewrite`; (**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**)
 - **Next**: R497 II Intro (`497 % 8 = 1`); **do not start** CP2K.
 
 ### R495 audit (2026-08-18, 横切 / Loop C)

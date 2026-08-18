@@ -45,7 +45,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
   - **Track C**：grep `7/8|at revision|referee` = **0**; C-m3 **closed**
   - **创新审计**：Methods–inp = **A**; SCAN = **C** open; cutoff400 = **A** closed
   - **paper_gap**：SCAN + dense-$k$; Mayer/Bader; $n{=}2$ four-corner @ EPS $10^{-6}$
-  - **Git**：`commit: PLACEHOLDER` — `loop R451: Methods contract ledger; no Methods rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+  - **Git**：`commit: 54d076b` — `loop R451: Methods contract ledger; no Methods rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
   - **下一轮**：VI Results（$452 \\bmod 8 = 4$）
 - **Loop R450（2026-08-18，三轨 · III Literature）**：
   - **Track A**：NO_CP2K — **不干预**

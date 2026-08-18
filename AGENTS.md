@@ -100,7 +100,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
  - **Track C（C-m3）**：去重仍 **closed** ✅。
  - **创新审计**：Abstract 契约 = **A**；SCAN/Mayer = **C** backlog。
  - **paper_gap**：R489 II Intro（`489 % 8 = 1`）
- - **Git**：`commit: PLACEHOLDER` — `loop R488: Abstract ledger; no tex rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **Git**：`commit: f639b64` — `loop R488: Abstract ledger; no tex rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
  - **下一轮**：R489 II Intro（`489 % 8 = 1`）
 
  - **下一轮**：R488 I Abstract（`488 % 8 = 0`）

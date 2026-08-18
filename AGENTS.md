@@ -45,7 +45,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
   - **Track C**：C-m3 grep `7/8|at revision|referee` on `paper/*.tex` = **0**
   - **创新审计**：Discussion contract = **A** (closed); literature ledger = **A**
   - **paper_gap**：SCAN + dense-$k$; Mayer/Bader; $n{=}2$ four-corner @ EPS $10^{-6}$; $n{=}8$ reference
-  - **Git**：`commit: PLACEHOLDER` — `loop R453: Discussion contract ledger; no Discussion rewrite`
+  - **Git**：`commit: f6a5b11` — `loop R453: Discussion contract ledger; no Discussion rewrite`
   - **下一轮**：R454 VIII Conclusion
 - **Loop R452（2026-08-18，三轨 · VI Results）**：
  - **Track A**：NO_CP2K — **不干预**

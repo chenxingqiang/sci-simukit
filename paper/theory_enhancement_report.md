@@ -15,7 +15,7 @@
 - **P0**: no C-level claim in Abstract/Results; Methods remain PBE+D3; S numbers stay in Results/Conclusion as previously verified.
 - **Loop C**: C-M1/M2/M3 manuscript closed; Mayer/Bader = C.
 - **Evidence grade**: cross-cut cleanliness = **A**; SCAN/dense-$k$ = **C** (open).
-- **Git**: `commit: TBD`
+- **Git**: `commit: c716a79`
 
 ### R478 audit (2026-08-18)
 

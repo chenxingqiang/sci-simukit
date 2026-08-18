@@ -7,6 +7,13 @@
 
 
 
+### R451 audit (2026-08-18, IV Methods / Loop C)
+- **Phase**: IV Methods. **Track A**: NO_CP2K — 不干预.
+- **Landing**: ledger only. Methods already state PBE+D3, cutoff 400 vs 350 Ry, $n{=}2$ EPS $10^{-5}$, $n{=}8$ same-350-Ry (not a cutoff-class). SCAN is a within-PBE+D3 bound, not a completed calculation.
+- **Loop C**: grep `7/8|at revision|referee` on `paper/*.tex` = **0**. C-m3 **closed**.
+- **创新审计**: Methods–inp = **A**; SCAN = **C** open; cutoff400 = **A** closed.
+- **paper_gap**: SCAN + dense-$k$; Mayer/Bader; $n{=}2$ four-corner @ EPS $10^{-6}$.
+
 ### R450 audit (2026-08-18, III Literature / Loop C)
 - Phase: III Literature. No new `.out`. Ledger-only: Khan PRM 9, 034001; Li C24 ACSANM; Wang2024simulation; Makov npj Comp Mater; Xu2025 C70; Nie2026 C20; Pereira endohedral — already cited. No new bib (≤3/round gate). Loop C grep `7/8|at revision|referee` = 0. SCAN + dense-$k$ = C open; cutoff400 = A closed.
 

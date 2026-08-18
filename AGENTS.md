@@ -28,7 +28,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Population B/N/P** | **18/18** ✅ |
 | **reference_pbed3** | **24/24** ✅ |
 | **运行中** | 无（R421：Cloud VM 无 CP2K；`exp10_status.json` 误刷新已 restore，勿提交） |
-| **最新 Loop** | **R448** |
+| **最新 Loop** | **R449** |
 | **下一 B 任务** | SCAN + dense-$k$；$n{=}2$ 四角 @ EPS $10^{-6}$；$n{=}8$ 参考态。**勿再抄** cutoff-class / same-350-Ry / 5.4 / (4.3) / R7-1.2 |
 | **主张-证据** | 主文 α/S = **PBE+D3 only**；α 带拟合标准误（仅 N $>2\sigma$）；`n=2`/`n=8` 行 = **reference-limited** |
 | **引用** | **18/18 经 Crossref 核验**（R419 修 11 条：1 条虚构、3 条 DOI 错配、多条作者/页码错） |
@@ -39,6 +39,14 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 
 ---
 
+- **Loop R449（2026-08-17，三轨 · II Intro）**：
+ - **Track A**：Cloud VM **NO_CP2K** — **不干预**
+ - **Track B（II Intro）**：Intro already carries SCF-gate, charged-defect/polaron-rate estimator, Wang2024simulation, Li2024, and Qiu2025. **No Intro wording added.** Ledger: `7/8|at revision|referee` = 0; `not a cutoff-class change` = 2; `Wang2024simulation` = 1
+ - **Track C**：Intro already matches the closed manuscript contract. SCAN / Mayer/Bader remain C
+ - **创新审计**：Intro contract = **A**（already in tex）；SCAN / Mayer = **C**
+ - **paper_gap**：n=2 / n=8 four-corner @ EPS \(10^{-6}\)；SCAN / Mayer/Bader
+ - **Git**：`commit: PLACEHOLDER` — `loop R449: Intro contract ledger; no Intro rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **下一轮**：R450 III Literature（mod 8 = 2）；SCAN / Mayer/Bader
 - **Loop R448（2026-08-17，三轨 · I Abstract / Loop C）**：
  - **Track A**：Cloud VM **NO_CP2K** — **不干预**
  - **Track B（I Abstract）**：Abstract 已对齐（constrained loading / bilinear / n=2 undoped-corner / charged-defect 边界）；无新 `.out`，**不改**摘要措辞

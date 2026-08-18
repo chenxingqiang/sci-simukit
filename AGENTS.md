@@ -45,7 +45,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
   - **Track C**：C-m3 grep `7/8|at revision|referee` on `paper/*.tex` = **0**
   - **创新审计**：Conclusion contract = **A** (closed); Intro--Conclusion loop = **A**
   - **paper_gap**：SCAN + dense-$k$; Mayer/Bader; $n{=}2$ four-corner @ EPS $10^{-6}$; $n{=}8$ reference
-  - **Git**：`commit: PLACEHOLDER` — `loop R454: Conclusion contract ledger; no Conclusion rewrite`
+  - **Git**：`commit: d5a76fe` — `loop R454: Conclusion contract ledger; no Conclusion rewrite`
   - **下一轮**：R455 横切
 - **Loop R453（2026-08-18，三轨 · VII Discussion）**：
   - **Track A**：Cloud VM **NO_CP2K** — **不干预**

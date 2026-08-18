@@ -28,7 +28,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Population B/N/P** | **18/18** ✅ |
 | **reference_pbed3** | **24/24** ✅ |
 | **运行中** | 无（R421：Cloud VM 无 CP2K；`exp10_status.json` 误刷新已 restore，勿提交） |
-| **最新 Loop** | **R456** |
+| **最新 Loop** | **R457** |
 | **下一 B 任务** | SCAN + dense-$k$；$n{=}2$ 四角 @ EPS $10^{-6}$；$n{=}8$ 参考态。**勿再抄** cutoff-class / same-350-Ry / 5.4 / (4.3) / R7-1.2 |
 | **主张-证据** | 主文 α/S = **PBE+D3 only**；α 带拟合标准误（仅 N $>2\sigma$）；`n=2`/`n=8` 行 = **reference-limited** |
 | **引用** | **18/18 经 Crossref 核验**（R419 修 11 条：1 条虚构、3 条 DOI 错配、多条作者/页码错） |
@@ -39,6 +39,14 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 
 ---
 
+- **Loop R457（2026-08-18，三轨 · II Introduction）**：
+ - **Track A**：Cloud VM **NO_CP2K** — **不干预**；canonical Exp10 **41/41**、Exp8 **6/6**、Exp9 **12/12+8/8**
+ - **Track B（II Introduction ledger）**：R457 = 457 % 8 = 1 → II Intro。Wang L67、Qiu L71、Falletta L240、charged-defect L62、SCF-gate L64 **均在位**；**不改 tex、不重复抄写**。下一轮 R458 III Literature（458 % 8 = 2）
+ - **Track C（C-m3）**：`grep -E '7/8|at revision|referee' paper/*.tex` = **0**；C-M3 **closed**（text）
+ - **创新审计**：Intro literature ledger = **A**；Wang/Qiu/Falletta = **A**；SCAN/Mayer = **C**
+ - **paper_gap**：SCAN + dense-$k$；Mayer/Bader **C**
+ - **Git**：`commit: PENDING` — `loop R457: Intro literature ledger; no Intro rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **下一轮**：R458 III Literature
 - **Loop R456（2026-08-18，三轨 · I Abstract）**：
  - **Track A**：Cloud VM NO_CP2K — **不干预**
  - **Track B（I Abstract）**：Abstract 已闭合（n=2 undoped-corner + charged-defect）。Ledger only。**勿改 tex。**

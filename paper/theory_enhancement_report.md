@@ -7,6 +7,14 @@
 
 
 
+### R457 audit (2026-08-18, II Introduction / Loop C)
+
+- **Phase**: II Introduction (write.mdc stage 2). R457 = 457 % 8 = 1.
+- **Track B**: Wang L67, Qiu L71, Falletta L240, charged-defect L62, SCF-gate L64 all present. No tex rewrite.
+- **Loop C**: `grep -E '7/8|at revision|referee' paper/*.tex` = 0. C-M3 closed (text).
+- **Evidence**: Intro literature ledger = A; SCAN/Mayer = C.
+- **Next B**: R458 III Literature (458 % 8 = 2).
+
 ### R456 audit (2026-08-18, I Abstract / Loop C)
 - **Phase**: I Abstract (`456 % 8 = 0`). Ledger only. **No Abstract rewrite.**
 - **Evidence**: Abstract already has n=2 undoped-corner (L41) + charged-defect/polaron-rate (L40). No new `.out`. Do not recopy.

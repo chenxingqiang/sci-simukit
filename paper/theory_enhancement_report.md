@@ -7,6 +7,14 @@
 
 
 
+### R478 audit (2026-08-18)
+
+- **Phase**: VIII Conclusion (`478 % 8 = 6`). Intro–Conclusion 三问闭环 = **A**（additive-screening 选择性失败；四角 $\mathcal{S}$ 估混合导数、非新热力学量；qHP C$_{60}$ 为模型体系）。Limitations 已诚实：PBE+D3；affine 固定分数坐标；弛豫恢复加和性；Mayer/Bader = **C**；SCAN/dense-$k$ open。本轮 **不复写** Conclusion。Loop C grep = **0**。
+- **Evidence**: Abstract/Results $\mathcal{S}$ 定量 = **A**；SCAN/dense-$k$ = **C**；Mayer/Bader = **C**
+- **Loop C**: C-M1/M2/M3 文稿 **closed**；主文无 `7/8`/`at revision`/`referee`/`experiments/`
+- **paper_gap**: SCAN + dense-$k$；$n{=}2$ corners；$n{=}8$ reference
+- **Git**: `commit: TBD` — `loop R478: Conclusion ledger; no tex rewrite`
+
 ### R477 audit (2026-08-18)
 - Phase: VII Discussion (`477 % 8 = 5`).
 - Discussion already contains Hirshfeld $q(\epsilon)$ vs $\bar d(\epsilon)$ ranking (N ${\sim}18$\%, P ${\sim}10$\%, B ${\sim}6$\%) = **A**; Mayer/Bader gap is explicit in Limitations = **C**.

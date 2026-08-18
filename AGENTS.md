@@ -35,13 +35,21 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Population B/N/P** | **18/18** ✅ |
 | **reference_pbed3** | **24/24** ✅ |
 | **运行中** | NO_CP2K（Cloud Agent VM） |
-| **最新 Loop** | **R477** |
-| **下一 B 任务** | R478 VIII Conclusion（`478 % 8 = 6`） |
+| **最新 Loop** | **R478** |
+| **下一 B 任务** | R479 横切 audit（`479 % 8 = 7`） |
 | **主张-证据** | 主文 α/S = **PBE+D3 only**（Table IV + periodic）；legacy Table I = **SI 归档** |
 | **Loop C** | C-M1 **closed** ✅；C-M2 **closed** ✅；C-M3 **closed**（text）；C-m1–m5 **closed** ✅ |
 | **SDC** | **15** synergy 点 |
 | **旗杆** | **PRB Regular Article** major revision |
 
+- **Loop R478（2026-08-18，三轨 · VIII Conclusion）**：
+  - **Track A**：NO_CP2K — **不干预**
+  - **Track B（VIII Conclusion）**：`478 % 8 = 6`。核对 Conclusion 与 Intro 三问闭环、upper-bound、Limitations。本轮仅台账，**不复写** Conclusion 句。Loop C grep = **0**。
+  - **Track C**：C-M1/M2/M3 文稿 **closed**；Mayer/Bader = **C**
+  - **创新审计**：Conclusion 闭环 = **A**（已有句）；SCAN/dense-$k$ = **C**
+  - **paper_gap**：SCAN + dense-$k$；$n{=}2$ corners；$n{=}8$ reference
+  - **Git**：`commit: TBD` — `loop R478: Conclusion ledger; no tex rewrite`
+  - **下一轮**：R479 横切 audit（`479 % 8 = 7`）
 - **Loop R477（2026-08-18，三轨 · VII Discussion）**：
  - **Track A**：NO_CP2K — **不干预**
  - **Track B（VII Discussion）**：`477 % 8 = 5`。核对 Discussion 机理/文献对比句与证据等级（Hirshfeld A；Mayer/Bader C）。本轮仅台账，**不复写** Discussion 句。Loop C grep = **0**。

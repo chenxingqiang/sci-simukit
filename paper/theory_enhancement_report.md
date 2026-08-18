@@ -7,6 +7,11 @@
 
 
 
+### R461 audit (2026-08-18, VII Discussion / Loop C)
+- Phase: VII Discussion (`461 % 8 = 5`). Loop C `grep -E '7/8|at revision|referee' paper/*.tex` = 0.
+- Evidence: Discussion already closed (R453): Capobianco/Li/Khan/Peng/Lee; Li C24; Nie2026strainC20; Falletta2025polaronDFT. No new .out.
+- Action: no tex rewrite. Next: R462 VIII Conclusion (`462 % 8 = 6`).
+
 ### R460 audit (2026-08-18, VI Results / Loop C)
 
 - **Phase**: VI Results. **Loop C**: `grep -E '7/8|at revision|referee' paper/*.tex` = **0**.

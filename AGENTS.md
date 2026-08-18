@@ -40,13 +40,13 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 ---
 
 - **Loop R452（2026-08-18，三轨 · VI Results）**：
-  - **Track A**：NO_CP2K — **不干预**
-  - **Track B（VI Results）**：ledger only — $n{=}2$/$n{=}8$ reference-limited $\mathcal{S}$ already in `sec:synergy`; offsets 4.2 and 5.4 meV/atom already stated; $n{\geq}6$ 350 Ry already in SM Table S1
-  - **Track C**：grep `7/8|at revision|referee` = **0**; C-m3 **closed**
-  - **创新审计**：Results $n{=}2$/$n{=}8$ = **A**; $n{\geq}6$ 350 Ry = **A** SI; SCAN = **C** open
-  - **paper_gap**：SCAN + dense-$k$; Mayer/Bader; $n{=}2$ four-corner @ EPS $10^{-6}$
-  - **Git**：`commit: PLACEHOLDER` — `loop R452: Results contract ledger; no Results rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
-  - **下一轮**：VII Discussion（$453 \bmod 8 = 5$）
+ - **Track A**：NO_CP2K — **不干预**
+ - **Track B（VI Results）**：ledger only — $n{=}2$/$n{=}8$ reference-limited $\mathcal{S}$ already in `sec:synergy`; offsets 4.2 and 5.4 meV/atom already stated; $n{\geq}6$ 350 Ry already in SM Table S1
+ - **Track C**：grep `7/8|at revision|referee` = **0**; C-m3 **closed**
+ - **创新审计**：Results $n{=}2$/$n{=}8$ = **A**; $n{\geq}6$ 350 Ry = **A** SI; SCAN = **C** open
+ - **paper_gap**：SCAN + dense-$k$; Mayer/Bader; $n{=}2$ four-corner @ EPS $10^{-6}$
+ - **Git**：`commit: 9628f97` — `loop R452: Results contract ledger; no Results rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **下一轮**：VII Discussion（$453 \bmod 8 = 5$）
 - **Loop R451（2026-08-18，三轨 · IV Methods）**：
   - **Track A**：NO_CP2K — **不干预**
   - **Track B（IV Methods）**：ledger only — PBE+D3 / cutoff 400 vs 350 / $n{=}2$ EPS $10^{-5}$ / $n{=}8$ same-350-Ry already in Methods; SCAN not claimed done

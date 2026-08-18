@@ -13,7 +13,7 @@
 - **Evidence**: Abstract/Results $\mathcal{S}$ 定量 = **A**；SCAN/dense-$k$ = **C**；Mayer/Bader = **C**
 - **Loop C**: C-M1/M2/M3 文稿 **closed**；主文无 `7/8`/`at revision`/`referee`/`experiments/`
 - **paper_gap**: SCAN + dense-$k$；$n{=}2$ corners；$n{=}8$ reference
-- **Git**: `commit: TBD` — `loop R478: Conclusion ledger; no tex rewrite`
+- **Git**: `commit: def6f3c` — `loop R478: Conclusion ledger; no tex rewrite`
 
 ### R477 audit (2026-08-18)
 - Phase: VII Discussion (`477 % 8 = 5`).

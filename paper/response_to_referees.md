@@ -101,7 +101,7 @@
 **Referee concern (simulated Referee \#2):** Functional choice is stated without justification; meV-scale conclusions require XC sensitivity discussion; reviewer would request at least one SCAN (or r$^2$SCAN) spot-check.
 
 **Response:** Methods now justify PBE+D3 for \emph{matched} four-corner grids at meV resolution, contrast with hybrid/meta-GGA and Capobianco rVV10 scope (gaps/transport), and state that $\mathcal{S}$ is a within-functional difference so absolute gap errors largely cancel.
-A SCAN/r$^2$SCAN representative corner is **not** in the current dataset; Limitations and future work flag this as a targeted sensitivity test (no fabricated SCAN numbers).
+Cutoff400 four-corner $\mathcal{S}$ is **closed** (Table~sigma_S; $|S_{400}-S_{350}|<0.2$~meV/atom). The remaining functional gap is a SCAN/r$^2$SCAN representative corner, which is **not** in the current dataset; Limitations flag this as a targeted sensitivity test (no fabricated meta-GGA numbers).
 
 **Manuscript:** Sec.~Electronic structure method, ``Exchange-correlation and dispersion''; Limitations outlook.
 
@@ -578,7 +578,7 @@ We thank the referee for recognizing the corrections to doping concentration, Ma
 
 ### Major Concern 8 — Functional (SCAN)
 
-**Response:** Methods + Limitations: PBE+D3 production; **SCAN/r$^2$SCAN spot-check listed as future work** — no fabricated meta-GGA numbers.
+**Response:** Methods + Limitations: PBE+D3 production; cutoff400 four-corner $\mathcal{S}$ closed (Table~sigma_S). SCAN/r$^2$SCAN spot-check remains future work --- no fabricated meta-GGA numbers.
 
 ### Major Concern 9 — Literature (cluster expansion / mixed derivative)
 
@@ -592,7 +592,7 @@ We thank the referee for recognizing the corrections to doping concentration, Ma
 
 > Publish after Major Revision — interesting first-principles results; strengthen theoretical interpretation, rigid-strain relevance, and direct validation narrative for the coupling energy.
 
-**Still open (Track A / honest backlog):** full $\mathcal{S}(\mathrm{cutoff},k,\mathrm{EPS})$ curves; Mayer/Bader; SCAN single-point; optional second host (graphene) four-corner grid.
+**Still open (Track A / honest backlog):** SCAN single-point; dense-$k$ $\mathcal{S}(k)$ rows; Mayer/Bader; optional second-host (graphene) four-corner grid. Closed this revision: cutoff400 four-corner $\mathcal{S}$ (Table~sigma_S; $|S_{400}-S_{350}|<0.2$~meV/atom). A dedicated $\mathcal{S}(\mathrm{cutoff})$ SI figure remains optional and is not blocking.
 
 
 ---

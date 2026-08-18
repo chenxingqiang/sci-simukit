@@ -35,8 +35,8 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Population B/N/P** | **18/18** ✅ |
 | **reference_pbed3** | **24/24** ✅ |
 | **运行中** | NO_CP2K（Cloud Agent VM） |
-| **最新 Loop** | **R497** |
-| **下一 B 任务** | R498 III Literature（`498 % 8 = 2`） |
+| **最新 Loop** | **R498** |
+| **下一 B 任务** | R499 IV Methods（`499 % 8 = 3`；inp 契约，无新 `.out`） |
 | **主张-证据** | 主文 α/S = **PBE+D3 only**（Table IV + periodic）；legacy Table I = **SI 归档** |
 | **Loop C** | C-M1 **closed** ✅；C-M2 **closed** ✅；C-M3 **closed**（text）；C-m1–m5 **closed** ✅ |
 | **SDC** | **15** synergy 点 |
@@ -94,6 +94,14 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
  - **创新审计**：横切 grep = **A**；SCAN/Mayer = **C** backlog。
  - **paper_gap**：R488 I Abstract（`488 % 8 = 0`）
  - **Git**：`commit: 82e86be` — `loop R487: cross-cut grep ledger; no tex rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+- **Loop R498（2026-08-18，三轨 · III Literature）**：
+  - **Track A**：canonical Exp10 **41/41**、Exp8 **6/6**、Exp9 GEO **12/12** + vertical **8/8**；Cloud VM 误报 Exp10 0/42 / Exp8 0/6 / vertical 0/8；**NO_CP2K** — **不干预**、**不启** cutoff300
+  - **Track B（III Literature）**：query `(graphullerene OR "fullerene network" OR qHP C60) strain doping polaron 2025 2026` → Capobianco *Nano Lett.* 4c01695 / Li thermoelectric 5.0211458 / ShaikhPeng arXiv:2504.02037 / Xu C70 / Nie C20 / Khan BN-doping chemrxiv **均已在 bib**（`Capobianco2024electron`、`Li2024strain`、`ShaikhPeng2025thermal`、`Xu2025C70network`、`Nie2026strainC20`、`Khan2025tuning`）；BN 共掺 vs 本文 B/N/P 置换 $\mathcal{S}$ **不对等**。**bib +0**；**no tex rewrite**
+  - **Track C**：主文/SI grep `7/8|at revision|referee|experiments/` = **0**（C-m3 **closed**）
+  - **创新审计**：文献定位 = **B+**（已有 bib，无新 unique prior art）；Mayer = **C**
+  - **paper_gap**：R499 IV Methods（`499 % 8 = 3`）
+  - **Git**：`commit: PLACEHOLDER` --- `loop R498: Literature ledger; no tex rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+  - **下一轮**：R499 IV Methods
 - **Loop R497（2026-08-18，三轨 · II Intro）**：
  - **Track A**：Exp10 **41/41**、Exp8 **6/6**、Exp9 GEO **12/12** + vertical **8/8**；Cloud VM 误报 Exp10 0/42、Exp8 0/6、vertical 0/8；**NO_CP2K** — **不干预**、**不启** cutoff300
  - **Track B（II Intro）**：In the Introduction phase, I am recording an evidence ledger. Intro 扫描 `covalent molecular`/`qHP`/`graphullerene` = True；`fifteen periodic`/`non-additive`/`PBE+D3` = False；`rVV10`/`Koopmans`/`orthogonal`/`at revision`/`7/8` = False；`\cite` = True。开篇 substitutional doping + mechanical strain + covalent molecular networks（Katiyar cite）。无新 `.out` → **no tex rewrite**

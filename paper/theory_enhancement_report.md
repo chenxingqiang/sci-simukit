@@ -126,6 +126,14 @@
 - Git: `commit: 82e86be`
 - Next: R488 I Abstract (`488 % 8 = 0`).
 
+### R498 audit (2026-08-18, III Literature)
+
+- **Track A**: Exp10 **41/41**, Exp8 **6/6**, Exp9 GEO **12/12** + vertical **8/8** (canonical). Cloud VM `exp10_status_line` reports Exp10 **0/42** / Exp8 **0/6** / vertical **0/8** --- **do not overwrite canonical**. `NO_CP2K` --- **do not start** cutoff300.
+- **Track B (III Literature)**: Query `(graphullerene OR "fullerene network" OR qHP C60) strain doping polaron 2025 2026`. Hits already in bib: Capobianco2024electron, Li2024strain, Khan2025tuning / Arjun2024influence (BN co-doping ≠ substitutional B/N/P $\mathcal{S}$), ShaikhPeng2025thermal, Xu2025C70network, Nie2026strainC20, Wang2024simulation / Peng2025monolayer. **bib +0**. **no tex rewrite**.
+- **Loop C**: C-m3 **closed** (`C_CLEAN`). Mayer/Bader = **C**.
+- **创新审计**: 2025--2026 graphullerene/qHP literature vs substitutional $(\epsilon,\delta)$ $\mathcal{S}$ = **B+** (existing bib; no new cite); Mayer = **C**.
+- **Git**: `commit: PLACEHOLDER` --- `loop R498: Literature ledger; no tex rewrite` --- **pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**.
+
 ### R497 audit
 - Loop: R497 (2026-08-18)
 - Phase: II Introduction

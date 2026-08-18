@@ -45,7 +45,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
   - **Track C**：grep `7/8|at revision|referee` = **0**; C-m3 **closed**
   - **创新审计**：literature ledger = **A**; SCAN = **C** open; cutoff400 = **A** closed
   - **paper_gap**：SCAN + dense-$k$; Mayer/Bader; n=2 four-corner @ EPS $10^{-6}$
-  - **Git**：`commit: PLACEHOLDER` — `loop R450: literature ledger, no new bib`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+  - **Git**：`commit: a121cdb` — `loop R450: literature ledger, no new bib`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
   - **下一轮**：IV Methods
 - **Loop R449（2026-08-17，三轨 · II Intro）**：
  - **Track A**：Cloud VM **NO_CP2K** — **不干预**

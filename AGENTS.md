@@ -45,7 +45,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
   - **Track C**：`grep -E '7/8|at revision|referee' paper/*.tex` = **0**
   - **创新审计**：文献检索 = **A**（已覆盖，无新 prior art）；文献线程 = **A**（已闭合）；SCAN/Mayer = **C**
   - **paper_gap**：SCAN + $n{=}2$ 四角 + $n{=}8$ 参考态；**勿再抄** cutoff-class / bilinear / $\eta$ / $\sigma_{\mathcal{S}}$ / 文献线程
-  - **Git**：`commit: PENDING` — `loop R458: Literature ledger; no tex rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+  - **Git**：`commit: bad05c8` — `loop R458: Literature ledger; no tex rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
   - **下一轮**：R459 IV Methods（`459 % 8 = 3`）；**不重复** R437/R442 Methods 句
 - **Loop R457（2026-08-18，三轨 · II Introduction）**：
  - **Track A**：Cloud VM **NO_CP2K** — **不干预**；canonical Exp10 **41/41**、Exp8 **6/6**、Exp9 **12/12+8/8**

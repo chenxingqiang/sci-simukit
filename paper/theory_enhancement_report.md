@@ -98,7 +98,7 @@
 - Track C: C-m3 `orthogonal|fourfold|at revision|7/8` in `paper/*.tex` = **0** hits.
 - Innovation audit: Results quantitative boundary = **A** (no new numbers); SCAN/Mayer = **C** backlog.
 - Next: R485 VII Discussion (`485 % 8 = 5`).
-- **Git**: `commit: TBD`
+- **Git**: `commit: 10d693d`
 
 ### R473 audit (2026-08-18, II Intro / Loop C)
 - Phase: II Intro (`473 % 8 = 1`). Intro already contains covalent-network gap. **No tex rewrite**.

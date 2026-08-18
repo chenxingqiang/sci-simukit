@@ -7,6 +7,11 @@
 
 
 
+### R472 audit (2026-08-18, I Abstract / Loop C)
+- Phase: I Abstract (`472 % 8 = 0`). Abstract already closed (R456/R464). Loop C `grep -E '7/8|at revision|referee' paper/*.tex` = 0.
+- Evidence: no new .out; no tex rewrite.
+- Action: ledger only. Next: R473 II Intro (`473 % 8 = 1`).
+
 ### R471 audit (2026-08-18, 横切 / Loop C)
 - Phase: 横切 (`471 % 8 = 7`). Loop C `grep -E '7/8|at revision|referee' paper/*.tex` = 0.
 - Evidence: no C-level leak in main/SI. No new .out.

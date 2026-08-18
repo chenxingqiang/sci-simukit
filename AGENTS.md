@@ -28,8 +28,8 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Population B/N/P** | **18/18** ✅ |
 | **reference_pbed3** | **24/24** ✅ |
 | **运行中** | 无（R421：Cloud VM 无 CP2K；`exp10_status.json` 误刷新已 restore，勿提交） |
-| **最新 Loop** | **R475** |
-| **下一 B 任务** | R476 VI Results（`476 % 8 = 4`）；SCAN + dense-$k$ + $n{=}2$ 四角 + $n{=}8$ 参考态。**勿再抄** 已写句 |
+| **最新 Loop** | **R476** |
+| **下一 B 任务** | R477 VII Discussion（`477 % 8 = 5`）；SCAN + dense-$k$ + $n{=}2$ 四角 + $n{=}8$ 参考态。**勿再抄** 已写 Discussion 句 |
 | **主张-证据** | 主文 α/S = **PBE+D3 only**；α 带拟合标准误（仅 N $>2\sigma$）；`n=2`/`n=8` 行 = **reference-limited** |
 | **引用** | **18/18 经 Crossref 核验**（R419 修 11 条：1 条虚构、3 条 DOI 错配、多条作者/页码错） |
 | **数据审计** | `paper/scripts/verify_manuscript_numbers.py` → **50/50 PASS** |
@@ -39,6 +39,14 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 
 ---
 
+- **Loop R476（2026-08-18，三轨 · VI Results）**：
+ - **Track A**：NO_CP2K — **不干预**
+ - **Track B（VI Results）**：`476 % 8 = 4`。主文 $\mathcal{S}$ 锚点仍在：max **31.9** meV/atom（P, $n{=}1$）、$n{=}4$ P **23.7**；`\mathcal{S}` 统一；无仓库路径、无 `at revision`。本轮仅台账，**不复写** Results 句。Loop C grep = **0**。
+ - **Track C**：C-M3 文稿 **closed**；Mayer/Bader = **C**
+ - **创新审计**：Results $\mathcal{S}$ 契约 = **A**；SCAN/dense-$k$ = **C**
+ - **paper_gap**：SCAN + dense-$k$；$n{=}2$ corners；$n{=}8$ reference
+ - **Git**：`commit: TBD` — `loop R476: Results S ledger; no tex rewrite`
+ - **下一轮**：R477 VII Discussion（`477 % 8 = 5`）
 - **Loop R475（2026-08-18，三轨 · IV Methods）**：
   - **Track A**：NO_CP2K — **不干预**
   - **Track B（IV Methods）**：`475 % 8 = 3`。主文 cutoff 契约与 inp 一致：n≤4 CUTOFF 400、n≥6 CUTOFF 350、REL_CUTOFF 50、PBE+D3。本轮仅台账，**不复写** Methods 句。Loop C grep = **0**。

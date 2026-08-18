@@ -7,6 +7,14 @@
 
 
 
+### R476 audit (2026-08-18, VI Results / Loop C)
+
+- **Phase**: VI Results (`476 % 8 = 4`). Ledger only — no Results rewrite.
+- **S anchors**: max 31.9 meV/atom (P, n=1); n=4 P 23.7; `\mathcal{S}` count 88; 31.9×6; 23.7×4.
+- **Main-text hygiene**: `experiments/`=False; `at revision`=False; Loop C grep=0.
+- **Evidence**: Results $\mathcal{S}$ contract = **A**; SCAN/dense-$k$ = **C**.
+- **Next**: R477 VII Discussion (`477 % 8 = 5`).
+
 ### R475 audit (2026-08-18, IV Methods / Loop C)
 - Phase: IV Methods (`475 % 8 = 3`).
 - Track A: NO_CP2K. Do not start jobs.

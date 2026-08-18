@@ -101,7 +101,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
  - **paper_gap**：Mayer/Bader；SCAN + dense-$k$；cutoff300 未收敛 → 不入稿
  - **loop_c：** C-M1/C-M2/C-M3 text closed；Mayer = C
  - **prl_gate：** D2 closed Table III；narrative=Y；relax=done
- - **Git**：`commit: PLACEHOLDER` — `loop R497: Intro ledger; no tex rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **Git**：`commit: df32015` — `loop R497: Intro ledger; no tex rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
  - **下一轮**：R498 III Literature（`498 % 8 = 2`）；**不启** CP2K
 - **Loop R496（2026-08-18，三轨 · I Abstract）**：
  - **Track A**：Exp10 **41/41**、Exp8 **6/6**、Exp9 GEO **12/12** + vertical **8/8**；`exp10_status_line` Cloud VM `0/42` 误报 — **不覆盖** canonical；**NO_CP2K**；**不启** job

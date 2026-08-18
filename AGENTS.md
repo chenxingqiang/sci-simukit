@@ -46,7 +46,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
  - **创新审计**：Abstract 契约核对 = **A**；横切 grep = **A**；SCAN / Mayer = **C**
  - **paper_gap**：n=2 四角 @ EPS $10^{-6}$；n=8 参考态；SCAN + dense-$k$；Mayer/Bader
  - **prl_gate**：D4 n=8 误读 closed；SCAN / Mayer = C
- - **Git**：`commit: PLACEHOLDER` — `loop R448: Abstract contract ledger; no Abstract rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **Git**：`commit: 49203cf` — `loop R448: Abstract contract ledger; no Abstract rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
  - **下一轮**：n=2 四角 @ EPS $10^{-6}$；SCAN 单点；Mayer/Bader
 - **Loop R447（2026-08-17，三轨 · 横切 / Loop C）**：
   - **Track A**：Cloud VM **NO_CP2K** — **不干预**

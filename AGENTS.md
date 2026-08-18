@@ -45,7 +45,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
  - **Track C**：`grep -E '7/8|at revision|referee' paper/*.tex` = 0
  - **创新审计**：Methods 契约 = **A**；SCAN = **C**
  - **paper_gap**：SCAN + \(n{=}2\) 四角 + \(n{=}8\) 参考态
- - **Git**：PENDING
+ - **Git**：commit: 4dff8cb
  - **下一轮**：R460 VI Results（`460 % 8 = 4`）；**勿再抄** Methods 句
 - **Loop R458（2026-08-18，三轨 · III Literature ledger）**：
   - **Track A**：Cloud VM **NO_CP2K**；canonical Exp10 **41/41**、Exp8 **6/6**、Exp9 **12/12+8/8** — **不干预**、不伪造 DFT

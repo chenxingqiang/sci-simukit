@@ -126,6 +126,14 @@
 - Git: `commit: 82e86be`
 - Next: R488 I Abstract (`488 % 8 = 0`).
 
+### R491 audit (2026-08-18, IV Methods)
+
+- **Phase**: Methodology — Methods–inp contract ledger; no tex rewrite.
+- **Scan**: `rVV10|Koopmans|cm^2|775|300%|8.75` in main tex = **0** hits. Exp10 `size_1x60_*.inp`: `XC_FUNCTIONAL PBE` + `VDW_POTENTIAL` DFTD3. Main Methods L85: PBE + Grimme DFT-D3 (BJ). C-m3 grep = **0** hits.
+- **Evidence**: Methods–inp contract = **A**. SCAN/Mayer = **C** backlog. No new `.out` → no Abstract/Results numbers.
+- **Git**: `commit: PLACEHOLDER` — `loop R491: Methods-inp contract ledger; no tex rewrite`
+- **Next**: R492 VI Results (`492 % 8 = 4`)
+
 ### R490 audit (2026-08-18, III Literature)
 - Phase: III Literature (`490 % 8 = 2`). WebSearch 2025-2026 graphullerene strain/doping: Khan/Li/Peng/Capobianco/Wang/Qiu already in bib; Nie/Xu/Lv/Pereira already classified. No uncovered required cite → **no new bib**. No new `.out` → **no tex rewrite**.
 - Track A: `NO_CP2K`; canonical Exp10 **41/41**. Cloud VM `0/42` = false positive.

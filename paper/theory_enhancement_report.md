@@ -126,6 +126,12 @@
 - Git: `commit: 82e86be`
 - Next: R488 I Abstract (`488 % 8 = 0`).
 
+### R489 audit (2026-08-18, II Intro)
+- Phase: II Intro (`489 % 8 = 1`). Intro covalent-network anchor and qHP-as-model-host framing already in place; contrast sentences vs Wang/Li/Qiu remain non-four-corner. No new `.out` → **no Intro quantitative rewrite**. **No tex rewrite**.
+- Track A: `NO_CP2K`; canonical Exp10 **41/41**. Cloud VM `0/42` = false positive.
+- Git: `commit: PLACEHOLDER`
+- Next: R490 III Literature (`490 % 8 = 2`).
+
 ### R488 audit (2026-08-18, I Abstract)
 - Phase: I Abstract (`488 % 8 = 0`). Abstract has no `\cite`; quantitative claims already aligned with Table IV / periodic $\mathcal{S}$ (PBE+D3; $|\mathcal{S}|=31.9\pm 2$ meV/atom at $n{=}1$; $\eta\approx 8\%$ at $n{=}4$). No new `.out` → **no Abstract quantitative rewrite**. **No tex rewrite**.
 - Track A: `NO_CP2K`; canonical Exp10 **41/41**. Cloud VM `0/42` = false positive.

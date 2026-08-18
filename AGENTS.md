@@ -35,13 +35,21 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Population B/N/P** | **18/18** ✅ |
 | **reference_pbed3** | **24/24** ✅ |
 | **运行中** | NO_CP2K（Cloud Agent VM） |
-| **最新 Loop** | **R479** |
+| **最新 Loop** | **R480** |
 | **下一 B 任务** | R480 I Abstract（`480 % 8 = 0`） |
 | **主张-证据** | 主文 α/S = **PBE+D3 only**（Table IV + periodic）；legacy Table I = **SI 归档** |
 | **Loop C** | C-M1 **closed** ✅；C-M2 **closed** ✅；C-M3 **closed**（text）；C-m1–m5 **closed** ✅ |
 | **SDC** | **15** synergy 点 |
 | **旗杆** | **PRB Regular Article** major revision |
 
+- **Loop R480（2026-08-18，三轨 · I Abstract）**：
+ - **Track A**：Cloud VM `NO_CP2K` — **不干预**
+ - **Track B（I Abstract）**：`grep` Abstract：无 `\\cite`、无 Koopmans/rVV10；`31.9`/`\\eta`/`8`/`10^{-3}` 已在摘要。audit `n_synergy=15`；P $E_f=-15.8$ eV/dopant。**不复写**已写定量句
+ - **Track C**：C-M3 closed（text）；C-m3 主文 0 命中
+ - **创新审计**：Abstract 契约 = **A**（无新定量）；Mayer = **C**
+ - **paper_gap**：n=2 四角；n=8 参考；SCAN + dense-$k$
+ - **Git**：`commit: TBD` — `loop R480: Abstract ledger; no tex rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **下一轮**：R481 II Intro
 - **Loop R479（2026-08-18，三轨 · 横切 audit）**：
   - **Track A**：NO_CP2K — **不干预**
   - **Track B（横切）**：`479 % 8 = 7`。全稿 grep + Abstract–Conclusion 契约台账。本轮仅台账，**不复写**已写句。Loop C grep = **0**。

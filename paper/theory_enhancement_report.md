@@ -7,6 +7,12 @@
 
 
 
+### R448 audit (2026-08-17, I Abstract / Loop C)
+- Phase: I Abstract. No new `.out`. Abstract already carries constrained-loading, bilinear cross derivative, four-corner $n=1$--$8$ PBE+D3, tetramer-not-strain-evidence, $\mathcal{S}$ not a new thermodynamic variable, not a charged-defect or polaron-rate estimator, $n{=}2$ reference-limited at the undoped corner, and P-mismatch ranking. **No Abstract wording added.**
+- Track B: ledger only. Horizontal grep: `7/8|at revision|referee` in `paper/*.tex` = 0. `not a cutoff-class change` = 2. `Wang2024simulation` = 1 (Intro L67).
+- Loop C: Abstract already matches the closed manuscript contract. SCAN / Mayer/Bader remain C.
+- Evidence: Abstract n=2 / charged-defect / bilinear sentences already in tex. Mayer/Bader = C. SCAN = C.
+
 ### R447 audit (2026-08-17, horizontal grep / Loop C)
 - Phase: 横切. Main-text n=8 cutoff-class is already closed (Methods L102 + Limitations L260). R446 closed-open split is already in the referee response. This loop adds the ledger only.
 - Track B: no new main-text or response wording. Horizontal grep: `7/8|at revision|referee` in `paper/*.tex` = 0. `not a cutoff-class change` = 2. `Wang2024simulation` = 1 (Intro L67).

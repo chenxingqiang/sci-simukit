@@ -7,6 +7,12 @@
 
 
 
+### R455 audit (2026-08-18, 横切 / Loop C)
+- **Phase**: 横切 (`455 % 8 = 7`). Ledger only. **No tex rewrite.**
+- **Evidence**: Cross-cut grep: `7/8|at revision|referee` = **0** on `paper/*.tex`. Main tex has no rVV10/Koopmans/`experiments/`/`dft_results`. SI theory L262--263 still lists rVV10/Koopmans as historical (not Abstract/Results).
+- **Loop C**: C-m3 = **0**.
+- **Innovation audit**: grepclean main = **A**; SCAN/Mayer = **C** open.
+
 ### R454 audit (2026-08-18, VIII Conclusion / Loop C)
 - **Phase**: VIII Conclusion. Ledger only.
 - **Evidence**: Conclusions already close three Intro questions; n=2 undoped-corner (L277); Mayer/Bader (L273); C70/C20 (L285--L286). No new `.out`. Do not recopy.

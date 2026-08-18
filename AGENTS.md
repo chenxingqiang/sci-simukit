@@ -49,7 +49,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
  - **创新审计**：Literature 覆盖 = **A**（已有 cite + SI S-tab:lit_positioning）；新四角 $\mathcal{S}$ 文 = **无**；tex 未改 = **A**
  - **paper_gap**：R483 IV Methods（cutoff 分层 / Hirshfeld / Table II 契约）；SCAN/Mayer = **C** backlog
  - **prl_gate**：D1 narrative=Y；abstract 无 `\cite`；relax=done Table III
- - **Git**：`commit: TBD` — `loop R482: Literature ledger; no tex rewrite`；（push 后补）
+ - **Git**：`commit: 998143f` — `loop R482: Literature ledger; no tex rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
  - **下一轮**：R483 IV Methods（`483 % 8 = 3`）
 - **Loop R481（2026-08-18，三轨 · II Intro）**：
  - **Track A**：`NO_CP2K` — **不启 job**

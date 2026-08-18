@@ -132,7 +132,7 @@
 - **Track B (III Literature)**: Query `(graphullerene OR "fullerene network" OR qHP C60) strain doping polaron 2025 2026`. Hits already in bib: Capobianco2024electron, Li2024strain, Khan2025tuning / Arjun2024influence (BN co-doping ≠ substitutional B/N/P $\mathcal{S}$), ShaikhPeng2025thermal, Xu2025C70network, Nie2026strainC20, Wang2024simulation / Peng2025monolayer. **bib +0**. **no tex rewrite**.
 - **Loop C**: C-m3 **closed** (`C_CLEAN`). Mayer/Bader = **C**.
 - **创新审计**: 2025--2026 graphullerene/qHP literature vs substitutional $(\epsilon,\delta)$ $\mathcal{S}$ = **B+** (existing bib; no new cite); Mayer = **C**.
-- **Git**: `commit: PLACEHOLDER` --- `loop R498: Literature ledger; no tex rewrite` --- **pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**.
+- **Git**: `commit: 4281732` --- `loop R498: Literature ledger; no tex rewrite` --- **pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**.
 
 ### R497 audit
 - Loop: R497 (2026-08-18)

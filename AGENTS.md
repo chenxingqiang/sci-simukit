@@ -100,7 +100,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
   - **Track C**：主文/SI grep `7/8|at revision|referee|experiments/` = **0**（C-m3 **closed**）
   - **创新审计**：文献定位 = **B+**（已有 bib，无新 unique prior art）；Mayer = **C**
   - **paper_gap**：R499 IV Methods（`499 % 8 = 3`）
-  - **Git**：`commit: PLACEHOLDER` --- `loop R498: Literature ledger; no tex rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+  - **Git**：`commit: 4281732` --- `loop R498: Literature ledger; no tex rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
   - **下一轮**：R499 IV Methods
 - **Loop R497（2026-08-18，三轨 · II Intro）**：
  - **Track A**：Exp10 **41/41**、Exp8 **6/6**、Exp9 GEO **12/12** + vertical **8/8**；Cloud VM 误报 Exp10 0/42、Exp8 0/6、vertical 0/8；**NO_CP2K** — **不干预**、**不启** cutoff300

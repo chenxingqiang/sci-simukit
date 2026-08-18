@@ -48,7 +48,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
   - **Track C**：C-M1/M2/M3 文稿 **closed**；Mayer/Bader = **C**
   - **创新审计**：横切契约 = **A**（无 C 级泄漏）；SCAN/dense-$k$ = **C**
   - **paper_gap**：SCAN + dense-$k$；$n{=}2$ corners；$n{=}8$ reference
-  - **Git**：`commit: TBD` — `loop R479: cross-cut grep audit; no tex rewrite`
+  - **Git**：`commit: c716a79` — `loop R479: cross-cut grep audit; no tex rewrite`
   - **下一轮**：R480 I Abstract（`480 % 8 = 0`）
 
 - **Loop R478（2026-08-18，三轨 · VIII Conclusion）**：

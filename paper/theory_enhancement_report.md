@@ -83,13 +83,13 @@
 - **Git**: `commit: 998143f`
 
 ### R483 audit (2026-08-18, IV Methods / Loop C)
-- Loop: R483. Phase: IV Methods (`483 % 8 = 3`). Flagship: PRB Regular Article, major revision.
+- Loop R483. Phase: IV Methods (`483 % 8 = 3`). Flagship: PRB Regular Article, major revision.
 - Track A: `NO_CP2K`; canonical Exp10 **41/41**, Exp8 **6/6**, Exp9 GEO **12/12** + vertical **8/8** — no job started.
 - Track B: Ledger-only. PBE+D3 / cutoff 400 Ry ($n\leq 4$) / 350 Ry ($n\geq 6$) / Hirshfeld match inp. No rVV10/Koopmans production claim. No tex rewrite.
 - Track C: C-m3 `orthogonal|fourfold|at revision|7/8` in `paper/*.tex` = **0** hits.
 - Innovation audit: Methods–inp contract = **A**; SCAN/Mayer = **C** backlog.
 - Next: R484 VI Results (`484 % 8 = 4`).
-- **Git**: `commit: TBD`
+- **Git**: `commit: 1f916f7`
 
 
 

@@ -35,13 +35,21 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Population B/N/P** | **18/18** ✅ |
 | **reference_pbed3** | **24/24** ✅ |
 | **运行中** | NO_CP2K（Cloud Agent VM） |
-| **最新 Loop** | **R480** |
-| **下一 B 任务** | R480 I Abstract（`480 % 8 = 0`） |
+| **最新 Loop** | **R481** |
+| **下一 B 任务** | R482 III Literature（`482 % 8 = 2`） |
 | **主张-证据** | 主文 α/S = **PBE+D3 only**（Table IV + periodic）；legacy Table I = **SI 归档** |
 | **Loop C** | C-M1 **closed** ✅；C-M2 **closed** ✅；C-M3 **closed**（text）；C-m1–m5 **closed** ✅ |
 | **SDC** | **15** synergy 点 |
 | **旗杆** | **PRB Regular Article** major revision |
 
+- **Loop R481（2026-08-18，三轨 · II Intro）**：
+ - **Track A**：`NO_CP2K` — **不启 job**
+ - **Track B（II Intro）**：Ledger-only。Intro 已有 covalent-network framing、qHP 作 elastically soft host、C$_{24}$/ tribology 差异化；与 Abstract constrained-loading / bilinear / screening-margin 契约一致。无 Intro 复写。
+ - **Track C（C-m3）**：`orthogonal`/`fourfold`/`at revision`/`7/8` 主文/SI = **0**
+ - **创新审计**：Intro–Abstract 契约 = **A**；无 C 级 Intro 核心句 = **A**
+ - **paper_gap**：Mayer/Bader still **C**；SCAN + dense-$k$；n=2 corners at EPS $10^{-6}$；n=8 参考态
+ - **Git**：`commit: TBD` — `loop R481: Intro ledger; no tex rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **下一轮**：R482 III Literature
 - **Loop R480（2026-08-18，三轨 · I Abstract）**：
  - **Track A**：Cloud VM `NO_CP2K` — **不干预**
  - **Track B（I Abstract）**：`grep` Abstract：无 `\\cite`、无 Koopmans/rVV10；`31.9`/`\\eta`/`8`/`10^{-3}` 已在摘要。audit `n_synergy=15`；P $E_f=-15.8$ eV/dopant。**不复写**已写定量句
@@ -701,7 +709,7 @@ python3 -c "import json; t=json.load(open('experiments/analysis/table1_verificat
 | 项 | 示例 |
 |----|------|
 | **文稿 P 瓶颈** | `Methods 缺 sdc_method_section` / `Electron-Intro 未对齐` |
-| **下一 B 任务** | R480 I Abstract（`480 % 8 = 0`） |
+| **下一 B 任务** | `P1: 补 Capobianco Discussion 段` |
 | **主张-证据** | `transport=C, SDC=A, Exp9 λ= B pending` |
 | **旗杆** | `Electron.pdf` / `PRL` / `Nature Mat` |
 

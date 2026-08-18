@@ -7,6 +7,14 @@
 
 
 
+### R481 audit (2026-08-18 · II Intro)
+
+- **Phase**: II Introduction (write.mdc 阶段2)
+- **Evidence**: Intro already carries covalent-network framing, qHP C60 as elastically soft host, and C24/tribology contrast to four-corner S. Aligns with Abstract constrained-loading / bilinear / screening-margin contract. No Intro rewrite.
+- **Loop C**: C-m3 `orthogonal|fourfold|at revision|7/8` = 0 in main/SI.
+- **Track A**: NO_CP2K — did not start a job.
+- **Git**: `commit: TBD`
+
 ### R480 audit (2026-08-18)
 
 - **Phase**: I Abstract (write.mdc 阶段1).

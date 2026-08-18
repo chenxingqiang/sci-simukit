@@ -45,7 +45,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
  - **Track C**：C-M3 文稿 **closed**；Mayer/Bader = **C**
  - **创新审计**：Discussion 台账 = **A**；SCAN/dense-$k$ = **C**
  - **paper_gap**：SCAN + dense-$k$；$n{=}2$ corners；$n{=}8$ reference
- - **Git**：`commit: TBD` — `loop R469: Discussion ledger; no tex rewrite`
+ - **Git**：`commit: 07d0481` — `loop R469: Discussion ledger; no tex rewrite`
  - **下一轮**：R470 VIII Conclusion（`470 % 8 = 6`；已闭合 — 仅台账）
 - **Loop R468（2026-08-18，三轨 · VI Results）**：
  - **Track A**：NO_CP2K — **不干预**

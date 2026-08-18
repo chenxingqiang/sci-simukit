@@ -7,6 +7,11 @@
 
 
 
+### R469 audit (2026-08-18, VII Discussion / Loop C)
+- Phase: VII Discussion (`469 % 8 = 5`). Loop C `grep -E '7/8|at revision|referee' paper/*.tex` = 0.
+- Evidence: Discussion already closed (R461). No new .out.
+- Action: no tex rewrite. Next: R470 VIII Conclusion (`470 % 8 = 6`; already closed — ledger only).
+
 ### R468 audit (2026-08-18, VI Results / Loop C)
 - Phase: VI Results (`468 % 8 = 4`). Loop C `grep -E '7/8|at revision|referee' paper/*.tex` = 0.
 - Evidence: Results already closed (R460). No new .out.

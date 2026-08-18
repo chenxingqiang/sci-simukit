@@ -126,6 +126,12 @@
 - Git: `commit: 82e86be`
 - Next: R488 I Abstract (`488 % 8 = 0`).
 
+### R490 audit (2026-08-18, III Literature)
+- Phase: III Literature (`490 % 8 = 2`). WebSearch 2025-2026 graphullerene strain/doping: Khan/Li/Peng/Capobianco/Wang/Qiu already in bib; Nie/Xu/Lv/Pereira already classified. No uncovered required cite → **no new bib**. No new `.out` → **no tex rewrite**.
+- Track A: `NO_CP2K`; canonical Exp10 **41/41**. Cloud VM `0/42` = false positive.
+- Git: `commit: PLACEHOLDER`
+- Next: R491 IV Methods (`491 % 8 = 3`).
+
 ### R489 audit (2026-08-18, II Intro)
 - Phase: II Intro (`489 % 8 = 1`). Intro covalent-network anchor and qHP-as-model-host framing already in place; contrast sentences vs Wang/Li/Qiu remain non-four-corner. No new `.out` → **no Intro quantitative rewrite**. **No tex rewrite**.
 - Track A: `NO_CP2K`; canonical Exp10 **41/41**. Cloud VM `0/42` = false positive.

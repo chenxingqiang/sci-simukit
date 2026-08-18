@@ -35,8 +35,8 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Population B/N/P** | **18/18** ✅ |
 | **reference_pbed3** | **24/24** ✅ |
 | **运行中** | NO_CP2K（Cloud Agent VM） |
-| **最新 Loop** | **R489** |
-| **下一 B 任务** | R490 III Literature（`490 % 8 = 2`） |
+| **最新 Loop** | **R490** |
+| **下一 B 任务** | R491 IV Methods（`491 % 8 = 3`） |
 | **主张-证据** | 主文 α/S = **PBE+D3 only**（Table IV + periodic）；legacy Table I = **SI 归档** |
 | **Loop C** | C-M1 **closed** ✅；C-M2 **closed** ✅；C-M3 **closed**（text）；C-m1–m5 **closed** ✅ |
 | **SDC** | **15** synergy 点 |
@@ -94,6 +94,14 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
  - **创新审计**：横切 grep = **A**；SCAN/Mayer = **C** backlog。
  - **paper_gap**：R488 I Abstract（`488 % 8 = 0`）
  - **Git**：`commit: 82e86be` — `loop R487: cross-cut grep ledger; no tex rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+- **Loop R490（2026-08-18，三轨 · III Literature）**：
+ - **Track A**：`NO_CP2K`；canonical Exp10 **41/41**、Exp8 **6/6**、Exp9 GEO **12/12** + vertical **8/8** — **不启** job。Cloud VM `exp10_status_line.sh` 可报 `0/42` = **误报**。
+ - **Track B（III Literature）**：WebSearch `graphullerene strain doping 2025 2026 qHP C60` → Khan/Li/Peng/Capobianco/Wang/Qiu 已覆盖；Nie2026/Xu2025/Lv2026/Pereira 已判定 support/contrast 或 off-topic。无未覆盖必引缺口 → **不新增 bib**。无新 `.out` → **不改** tex。无 tex 改写。
+ - **Track C（C-m3）**：去重仍 **closed** ✅。
+ - **创新审计**：文献覆盖 = **A**（已有 bib）；SCAN/Mayer = **C** backlog。
+ - **paper_gap**：R491 IV Methods（`491 % 8 = 3`）
+ - **Git**：`commit: PLACEHOLDER` — `loop R490: Literature ledger; no tex rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **下一轮**：R491 IV Methods（`491 % 8 = 3`）
 - **Loop R489（2026-08-18，三轨 · II Intro）**：
  - **Track A**：`NO_CP2K`；canonical Exp10 **41/41**、Exp8 **6/6**、Exp9 GEO **12/12** + vertical **8/8** — **不启** job。Cloud VM `exp10_status_line.sh` 可报 `0/42` = **误报**。
  - **Track B（II Intro）**：Intro 共价分子网络锚点在位；qHP 为模型体系；与 Wang/Li/Qiu 对照非四角落 $\mathcal{S}$。无新 `.out` → **不改** Intro 定量。无 tex 改写。

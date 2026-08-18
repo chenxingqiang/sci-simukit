@@ -35,8 +35,8 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Population B/N/P** | **18/18** ✅ |
 | **reference_pbed3** | **24/24** ✅ |
 | **运行中** | NO_CP2K（Cloud Agent VM） |
-| **最新 Loop** | **R496** |
-| **下一 B 任务** | R497 II Intro（`497 % 8 = 1`） |
+| **最新 Loop** | **R497** |
+| **下一 B 任务** | R498 III Literature（`498 % 8 = 2`） |
 | **主张-证据** | 主文 α/S = **PBE+D3 only**（Table IV + periodic）；legacy Table I = **SI 归档** |
 | **Loop C** | C-M1 **closed** ✅；C-M2 **closed** ✅；C-M3 **closed**（text）；C-m1–m5 **closed** ✅ |
 | **SDC** | **15** synergy 点 |
@@ -94,6 +94,15 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
  - **创新审计**：横切 grep = **A**；SCAN/Mayer = **C** backlog。
  - **paper_gap**：R488 I Abstract（`488 % 8 = 0`）
  - **Git**：`commit: 82e86be` — `loop R487: cross-cut grep ledger; no tex rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+- **Loop R497（2026-08-18，三轨 · II Intro）**：
+ - **Track A**：Exp10 **41/41**、Exp8 **6/6**、Exp9 GEO **12/12** + vertical **8/8**；Cloud VM 误报 Exp10 0/42、Exp8 0/6、vertical 0/8；**NO_CP2K** — **不干预**、**不启** cutoff300
+ - **Track B（II Intro）**：In the Introduction phase, I am recording an evidence ledger. Intro 扫描 `covalent molecular`/`qHP`/`graphullerene` = True；`fifteen periodic`/`non-additive`/`PBE+D3` = False；`rVV10`/`Koopmans`/`orthogonal`/`at revision`/`7/8` = False；`\cite` = True。开篇 substitutional doping + mechanical strain + covalent molecular networks（Katiyar cite）。无新 `.out` → **no tex rewrite**
+ - **创新审计**：Intro 契约 = **A**；Mayer = **C**
+ - **paper_gap**：Mayer/Bader；SCAN + dense-$k$；cutoff300 未收敛 → 不入稿
+ - **loop_c：** C-M1/C-M2/C-M3 text closed；Mayer = C
+ - **prl_gate：** D2 closed Table III；narrative=Y；relax=done
+ - **Git**：`commit: PLACEHOLDER` — `loop R497: Intro ledger; no tex rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **下一轮**：R498 III Literature（`498 % 8 = 2`）；**不启** CP2K
 - **Loop R496（2026-08-18，三轨 · I Abstract）**：
  - **Track A**：Exp10 **41/41**、Exp8 **6/6**、Exp9 GEO **12/12** + vertical **8/8**；`exp10_status_line` Cloud VM `0/42` 误报 — **不覆盖** canonical；**NO_CP2K**；**不启** job
  - **Track B（I Abstract）**：Phase Declaration — *In the Abstract phase, I recorded an evidence ledger.* Abstract `fifteen periodic` **True**；`abstract_has_cite` **False**；`abstract_chars` **1627**（PRB 无 600 字符硬顶，信息性）；无 `rVV10`/`Koopmans`/`orthogonal`/`at revision`/`7/8`；开篇 mechanically constrained loading + bilinear strain–composition + PBE+D3 four-corner；P $E_f$ JSON **-15.8** eV/`n` **12** 未写入摘要定量；Exp10 inp `XC_FUNCTIONAL PBE`；**无新 `.out` → no tex rewrite**

@@ -126,6 +126,16 @@
 - Git: `commit: 82e86be`
 - Next: R488 I Abstract (`488 % 8 = 0`).
 
+### R497 audit
+- Loop: R497 (2026-08-18)
+- Phase: II Introduction
+- Track A: Exp10 41/41; Exp8 6/6; Exp9 GEO 12/12 + vertical 8/8; NO_CP2K — no new job
+- Track B: Intro ledger. Anchors True (covalent molecular / qHP / graphullerene); False (fifteen periodic / non-additive / PBE+D3); banned False (rVV10 / Koopmans / orthogonal / at revision / 7/8); cite True. Opener: substitutional doping + mechanical strain + covalent molecular networks (Katiyar cite). No new `.out` → no tex rewrite.
+- Evidence: A (ledger); Mayer C
+- loop_c: C-M1/C-M2/C-M3 text closed; Mayer = C
+- Git: `commit: PLACEHOLDER` --- `loop R497: Intro ledger; no tex rewrite`; (**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**)
+- Next: R498 III Literature (`498 % 8 = 2`); do not start CP2K
+
 ### R496 audit (2026-08-18, I Abstract / Loop C)
 
 - **Phase Declaration**: In the Abstract phase, I recorded an evidence ledger.

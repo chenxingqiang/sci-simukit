@@ -28,8 +28,8 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Population B/N/P** | **18/18** ✅ |
 | **reference_pbed3** | **24/24** ✅ |
 | **运行中** | 无（R421：Cloud VM 无 CP2K；`exp10_status.json` 误刷新已 restore，勿提交） |
-| **最新 Loop** | **R458** |
-| **下一 B 任务** | R459 IV Methods（`459 % 8 = 3`）；SCAN + $n{=}2$ 四角 + $n{=}8$ 参考态。**勿再抄** cutoff-class / bilinear / $\eta$ / $\sigma_{\mathcal{S}}$ / 文献线程 |
+| **最新 Loop** | **R459** |
+| **下一 B 任务** | R460 VI Results（`460 % 8 = 4`）；SCAN + $n{=}2$ 四角 + $n{=}8$ 参考态。**勿再抄** cutoff-class / bilinear / $\eta$ / $\sigma_{\mathcal{S}}$ / 文献线程 / Methods 句 |
 | **主张-证据** | 主文 α/S = **PBE+D3 only**；α 带拟合标准误（仅 N $>2\sigma$）；`n=2`/`n=8` 行 = **reference-limited** |
 | **引用** | **18/18 经 Crossref 核验**（R419 修 11 条：1 条虚构、3 条 DOI 错配、多条作者/页码错） |
 | **数据审计** | `paper/scripts/verify_manuscript_numbers.py` → **50/50 PASS** |
@@ -39,6 +39,14 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 
 ---
 
+- **Loop R459（2026-08-18，三轨 · IV Methods ledger）**：
+ - **Track A**：NO_CP2K — **不干预**；canonical Exp10 **41/41**、Exp8 **6/6**、Exp9 **12/12+8/8**
+ - **Track B（IV Methods）**：Methods 已闭合（cutoff-class / bilinear / \(\eta\) / \(\sigma_{\mathcal{S}}\) / \(n{=}2,8\) reference-limited）；**不改 tex**
+ - **Track C**：`grep -E '7/8|at revision|referee' paper/*.tex` = 0
+ - **创新审计**：Methods 契约 = **A**；SCAN = **C**
+ - **paper_gap**：SCAN + \(n{=}2\) 四角 + \(n{=}8\) 参考态
+ - **Git**：PENDING
+ - **下一轮**：R460 VI Results（`460 % 8 = 4`）；**勿再抄** Methods 句
 - **Loop R458（2026-08-18，三轨 · III Literature ledger）**：
   - **Track A**：Cloud VM **NO_CP2K**；canonical Exp10 **41/41**、Exp8 **6/6**、Exp9 **12/12+8/8** — **不干预**、不伪造 DFT
   - **Track B（III Literature）**：WebSearch `graphullerene qHP C60 strain doping 2025 2026` — **Khan2025tuning**、**Makov2023graphullerene**、**Capobianco2024electron**、**Li2024graphullerene** 均已在 bib 且已 cite；**不改 tex、不加 bib、不重复抄写**

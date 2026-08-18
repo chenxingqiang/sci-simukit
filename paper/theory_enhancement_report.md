@@ -7,6 +7,13 @@
 
 
 
+### R459 audit (2026-08-18, IV Methods / Loop C)
+
+- **Phase**: IV Methods (write.mdc 阶段3). Loop C: `grep -E '7/8|at revision|referee' paper/*.tex` = 0.
+- **Methods already closed** (R437/R442/R451): SCAN/r²SCAN withheld; cutoff 400/350 Ry; Γ-only; \(n{=}2\) EPS \(10^{-5}\) and \(n{=}8\) reference-limited; \(\sigma_{\mathcal{S}}=2\sigma_e\); \(\lesssim 2\) meV/atom reporting band.
+- **No tex rewrite**; no new DFT (Cloud VM NO_CP2K).
+- **Next**: R460 VI Results (`460 % 8 = 4`). Do not recopy Methods sentences.
+
 ### R458 audit (2026-08-18, III Literature / Loop C)
 
 - **Phase**: III Literature (write.mdc stage 2). Evidence: **A** (search hits already in bib and cited).

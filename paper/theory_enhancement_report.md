@@ -7,6 +7,13 @@
 
 
 
+### R445 audit (2026-08-17, VII Discussion / Loop C)
+
+- **Phase**: VII Discussion rotation. Main-text n=8 cutoff-class is already closed (Methods L102 + Limitations L260). This loop edits the referee response only.
+- **Track B**: `response_to_referees.md` (4.3) + Residual + R7-1.2: cutoff400 41/41 closed; n=6 and n=8 share 350 Ry, so the n=8 offset is not a cutoff-class change; SCAN remains DFT open.
+- **Loop C**: `grep -E '7/8|at revision|referee' paper/*.tex` = 0. `not a cutoff-class change` = 2.
+- **Evidence**: Table II cutoff400 41/41; Table~sigma_S 350 vs 400 $<0.2$ meV/atom. Mayer/Bader = **C**. SCAN = **C**.
+
 ### R444 audit (2026-08-17, VII Discussion)
 
 - **Phase**: VII Discussion (Limitations). Results L162–169 already covers n=8 same-350-Ry + 5.4 meV/atom; this loop adds a Limitations pointer only.

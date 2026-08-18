@@ -206,7 +206,7 @@ Full four-corner $\mathcal{S}(\mathrm{cutoff})$ curves are honestly deferred to 
 ### R4-Methods-A — Round 4.1 overall verdict (simulated Referee \#2)
 
 **Referee summary:** Methods II.A upgraded from ``we use PBE+D3'' to functional/dispersion justification, four-corner SCF logic, partial $\mathcal{S}$ cutoff bound, $\Gamma$-only scope, spin/charge/rigid BCs, and honest gaps (no SCAN subset; no full $\mathcal{S}(\mathrm{cutoff}/k/\mathrm{EPS})$ curves yet).
-Residual Major-level backlog: **Track A** SCAN spot-check; four-corner cutoff400 grid for direct $\mathcal{S}(\mathrm{cutoff})$ SI figure.
+Residual Major-level backlog: **Track A** SCAN spot-check. The four-corner cutoff400 grid is closed (Exp10 41/41; Table~sigma_S); a dedicated $\mathcal{S}(\mathrm{cutoff})$ SI figure remains optional, not blocking.
 
 **Author response:** Main Methods + SI Methods + `sdc_method_section` terminology harmonization (``coupling energy $\mathcal{S}$''); Validation benchmarks expanded; Limitations outlook updated.
 
@@ -439,7 +439,7 @@ We thank the referee for recognizing the corrections to doping concentration, Ma
 **Response:**
 - (4.1) We **removed** the side-by-side numeric contrast between tetramer $(\alpha_\delta-\alpha_0)\epsilon$ estimates (${\sim}5$\% doping) and periodic $n{=}4$ $\mathcal{S}$ (${\sim}1.7$\% per atom) from Discussion---the referee correctly notes that concentration and boundary-condition mismatch invalidates this as a nonlinearity test. Non-additivity is argued only via Eq.~\eqref{eq:synergy_order} on matched four-corner grids.
 - (4.2) Stability language tightened to **relative margins** among comparable $|E_{\mathrm{sub}}|$; B vs.\ P ranks at $\epsilon{=}0$ are **unchanged** by meV/atom $\mathcal{S}$.
-- (4.3) Core claims focus on $n\leq 4$ at matched 400~Ry; $n\geq 6$ uses 350~Ry and N sign change is **excluded** from conclusions until Table~II cutoff400 control completes.
+- (4.3) Core claims remain on $n\leq 4$ at matched 400~Ry. The $n{=}6$ and $n{=}8$ production cells share the same 350~Ry cutoff (Methods); the $n{=}8$ offset is therefore not a cutoff-class change and is not reported as a size-trend sign change. The historical N sign change is excluded from conclusions. Table~II cutoff400 is closed (41/41); Table~sigma_S lists the 350 vs 400 cutoff shift as $<0.2$~meV/atom, well below the $n{=}8$ undoped-corner offset.
 
 **Manuscript:** Discussion (v)--(vii), Design implications; validation protocol (Tables~II--IV); Results synergy; Conclusions.
 
@@ -874,7 +874,7 @@ We thank the referee for recognizing the corrections to doping concentration, Ma
 | ID | Referee theme | Response / manuscript action | Status |
 |----|---------------|------------------------------|--------|
 | **R7-1.1** | $\Gamma$-only $k$ corrupts $\mathcal{S}$ | Agree in principle. **Track A:** four-corner $\mathcal{S}$ for $n{=}1$ B/N/P at $2\times2\times1$; fold into Table~\ref{tab:sigma_S} and $\sigma_{\mathcal{S}}$ when converged. **Text:** Limitations + pending row (no new main-text numbers). | **partial** (disclosure); **DFT open** |
-| **R7-1.2** | Dual cutoff 400/350 Ry unjustified for P | Agree. **Track A:** matched $n{=}1$ P four-corner at 350/400 Ry; optional uniform 400 Ry for $n\geq6$. **Text:** existing $6\times$C$_{60}$ N single-point + pending P audit in Table~\ref{tab:sigma_S}. | **partial**; **DFT open** |
+| **R7-1.2** | Dual cutoff 400/350 Ry unjustified for P | Agree on the protocol. Table~II cutoff400 is closed (41/41). Table~sigma_S lists the 350 vs 400 cutoff shift as $<0.2$~meV/atom, well below the $n{=}8$ undoped-corner offset; that offset is not a cutoff-class change ($n{=}6$ and $n{=}8$ share 350~Ry). Remaining **Track A:** SCAN spot-check. | **closed** (cutoff400); SCAN **DFT open** |
 | **R7-1.3** | SCAN / meta-GGA sensitivity | Agree. **Track A:** SCAN four-corner $n{=}1$ P @ $+3$\%. **Text:** Table~\ref{tab:sigma_S} XC row pending; ranking claims scoped to PBE+D3. | **partial**; **DFT open** |
 | **R7-1.4** | vdW cross-term only tetramer P | Agree. **Track A:** B/N periodic vdW audits. **Text:** added pending row in Table~\ref{tab:sigma_S}. | **partial**; **DFT open** |
 | **R7-2.1** | Finite-strain truncation at +3% | Agree. Eq.~\eqref{eq:mixed_derivative} already lists $\mathcal{O}(\epsilon^2\delta,\ldots)$; **Methods** note multi-amplitude ($\epsilon=1$--$3$\%) audit as targeted sensitivity (Limitations). **Track A:** multi-strain $\mathcal{S}$ for $n{=}1$ P. | **partial** (text); **DFT open** |

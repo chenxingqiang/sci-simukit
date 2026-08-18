@@ -28,8 +28,8 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Population B/N/P** | **18/18** ✅ |
 | **reference_pbed3** | **24/24** ✅ |
 | **运行中** | 无（R421：Cloud VM 无 CP2K；`exp10_status.json` 误刷新已 restore，勿提交） |
-| **最新 Loop** | **R444** |
-| **下一 B 任务** | **P0**：`n=2` 四角以 EPS_SCF $10^{-6}$ 重算 + `n=8` 参考态复核（解除 reference-limited）；其后 dense-$k$ `n=1`、Mayer/Bader；R444 Limitations n=8 cutoff-class 指针已入，勿再抄 same-350-Ry / 5.4 |
+| **最新 Loop** | **R445** |
+| **下一 B 任务** | SCAN + dense-$k$；$n{=}2$ 四角 @ EPS $10^{-6}$；$n{=}8$ 参考态。**勿再抄** cutoff-class / same-350-Ry / 5.4 / (4.3) / R7-1.2 |
 | **主张-证据** | 主文 α/S = **PBE+D3 only**；α 带拟合标准误（仅 N $>2\sigma$）；`n=2`/`n=8` 行 = **reference-limited** |
 | **引用** | **18/18 经 Crossref 核验**（R419 修 11 条：1 条虚构、3 条 DOI 错配、多条作者/页码错） |
 | **数据审计** | `paper/scripts/verify_manuscript_numbers.py` → **50/50 PASS** |
@@ -39,6 +39,14 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 
 ---
 
+- **Loop R445（2026-08-17，三轨 · VII Discussion / Loop C）**：
+  - **Track A**：NO_CP2K — **不干预**
+  - **Track B**：response (4.3) + Residual + R7-1.2：cutoff400 41/41 closed；n=6/n=8 同属 350 Ry，n=8 offset 不是 cutoff-class；SCAN 仍 DFT open。**不改主文**
+  - **Track C**：主文边界 0；response D4 台账对齐
+  - **创新审计**：cutoff400 = **A**（41/41）；SCAN = **C**
+  - **paper_gap**：Mayer/Bader = **C**；SCAN + dense-$k$ = **C**；$n{=}2$ 四角 @ EPS $10^{-6}$ = **C**
+  - **Git**：`commit: dbee0e9` — `loop R445: response D4 cutoff400 closed, n=8 not cutoff-class`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+  - **下一轮**：R446 VIII Conclusion；勿再抄 cutoff-class / same-350-Ry / 5.4 / (4.3) / R7-1.2
 - **Loop R444（2026-08-17，三轨 · VII Discussion）**：
  - **Track A**：NO_CP2K — **不干预**
  - **Track B（VII Discussion）**：Limitations 增 n=8 cutoff-class 指针（指向 Methods；不重复 5.4 数字）

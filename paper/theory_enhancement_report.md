@@ -7,6 +7,10 @@
 
 
 
+### R467 audit (2026-08-18, IV Methods / Loop C)
+- Phase: IV Methods (`467 % 8 = 3`). Loop C `grep -E '7/8|at revision|referee' paper/*.tex` = 0.
+- Evidence: Methods already closed (R459). No new .out.
+- Action: no tex rewrite. Next: R468 VI Results (`468 % 8 = 4`; already closed — ledger only).
 ### R466 audit (2026-08-18, III Literature / Loop C)
 - Phase: III Literature (`466 % 8 = 2`). Loop C `grep -E '7/8|at revision|referee' paper/*.tex` = 0.
 - Evidence: Literature already closed (R458). No new .out.

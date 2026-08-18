@@ -129,7 +129,7 @@
 ### R490 audit (2026-08-18, III Literature)
 - Phase: III Literature (`490 % 8 = 2`). WebSearch 2025-2026 graphullerene strain/doping: Khan/Li/Peng/Capobianco/Wang/Qiu already in bib; Nie/Xu/Lv/Pereira already classified. No uncovered required cite → **no new bib**. No new `.out` → **no tex rewrite**.
 - Track A: `NO_CP2K`; canonical Exp10 **41/41**. Cloud VM `0/42` = false positive.
-- Git: `commit: PLACEHOLDER`
+- Git: `commit: 1fc62dd`
 - Next: R491 IV Methods (`491 % 8 = 3`).
 
 ### R489 audit (2026-08-18, II Intro)

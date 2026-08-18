@@ -7,6 +7,11 @@
 
 
 
+### R463 audit (2026-08-18, 横切 / Loop C)
+- Phase: 横切 (`463 % 8 = 7`). Loop C `grep -E '7/8|at revision|referee' paper/*.tex` = 0.
+- Evidence: no repo paths in main/SI tex (tikz `% DATA:` comments only); rVV10/Koopmans only SI theory L262–263 (historical; not Abstract/Results). No new .out.
+- Action: no tex rewrite. Next: R464 I Abstract (`464 % 8 = 0`; already closed R456 — ledger only).
+
 ### R462 audit (2026-08-18, VIII Conclusion / Loop C)
 - Phase: VIII Conclusion (`462 % 8 = 6`). Loop C `grep -E '7/8|at revision|referee' paper/*.tex` = 0.
 - Evidence: Conclusion already closed (R454): three-question closure; C70/C20; Wang2024simulation; Lee2026strain; SCAN/Mayer C. No new .out.

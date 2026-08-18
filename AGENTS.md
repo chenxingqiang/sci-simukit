@@ -28,8 +28,8 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Population B/N/P** | **18/18** ✅ |
 | **reference_pbed3** | **24/24** ✅ |
 | **运行中** | 无（R421：Cloud VM 无 CP2K；`exp10_status.json` 误刷新已 restore，勿提交） |
-| **最新 Loop** | **R462** |
-| **下一 B 任务** | R463 横切（`463 % 8 = 7`）；SCAN + $n{=}2$ 四角 + $n{=}8$ 参考态。**勿再抄** Conclusion 已写句 |
+| **最新 Loop** | **R463** |
+| **下一 B 任务** | R464 I Abstract（`464 % 8 = 0`；已闭合 — ledger only）；SCAN + dense-$k$ + $n{=}2$ 四角 + $n{=}8$ 参考态。**勿再抄** Abstract 已写句 |
 | **主张-证据** | 主文 α/S = **PBE+D3 only**；α 带拟合标准误（仅 N $>2\sigma$）；`n=2`/`n=8` 行 = **reference-limited** |
 | **引用** | **18/18 经 Crossref 核验**（R419 修 11 条：1 条虚构、3 条 DOI 错配、多条作者/页码错） |
 | **数据审计** | `paper/scripts/verify_manuscript_numbers.py` → **50/50 PASS** |
@@ -47,6 +47,14 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
  - **paper_gap**：SCAN + \(n{=}2\) 四角 + \(n{=}8\) 参考态
  - **Git**：commit: 4dff8cb
  - **下一轮**：R460 VI Results（`460 % 8 = 4`）；**勿再抄** Methods 句
+- **Loop R463（2026-08-18，三轨）**：
+ - **Track A**：Cloud VM **NO_CP2K** — **不干预**
+ - **Track B（横切）**：Loop C grep = **0**；仓库路径仅 tikz `% DATA:`；rVV10/Koopmans 仅 SI theory L262–263。**未改正文**
+ - **Loop C**：C-m3 grep = 0；R463 audit
+ - **创新审计**：横切 grep = **A**
+ - **paper_gap**：$n{=}2$ 四角 EPS $10^{-6}$
+ - **Git**： commit: TBD — `loop R463: cross-cut grep audit; no tex rewrite`
+ - **下一轮**：R464 I Abstract (`464 % 8 = 0`；已闭合 — ledger only)
 - **Loop R462（2026-08-18，三轨 · VIII Conclusion ledger）**：
  - **Track A**：NO_CP2K — **不干预**；canonical Exp10 **41/41**、Exp8 **6/6**、Exp9 **12/12+8/8**
  - **Track B（VIII Conclusion）**：Conclusion 已闭合（R454：三问闭环；C70/C20；Wang2024simulation；Lee2026strain）；**不改 tex**

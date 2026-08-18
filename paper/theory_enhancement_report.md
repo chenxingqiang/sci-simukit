@@ -129,7 +129,7 @@
 ### R489 audit (2026-08-18, II Intro)
 - Phase: II Intro (`489 % 8 = 1`). Intro covalent-network anchor and qHP-as-model-host framing already in place; contrast sentences vs Wang/Li/Qiu remain non-four-corner. No new `.out` → **no Intro quantitative rewrite**. **No tex rewrite**.
 - Track A: `NO_CP2K`; canonical Exp10 **41/41**. Cloud VM `0/42` = false positive.
-- Git: `commit: PLACEHOLDER`
+- Git: `commit: 30eb311`
 - Next: R490 III Literature (`490 % 8 = 2`).
 
 ### R488 audit (2026-08-18, I Abstract)

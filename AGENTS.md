@@ -45,7 +45,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
   - **Track C**：C-m3 = **0** hits
   - **创新审计**： grepclean main = **A**; SCAN/Mayer = **C**
   - **paper_gap**：SCAN + dense-$k$; Mayer/Bader; $n{=}2$ four-corner @ EPS $10^{-6}$; $n{=}8$ reference
-  - **Git**：`commit: R455_BODY` — `loop R455: cross-cut grep audit; no tex rewrite`
+  - **Git**：`commit: 9a6b2ca` — `loop R455: cross-cut grep audit; no tex rewrite`
   - **下一轮**：R456 Abstract 轮转（`456 % 8 = 0`）
 - **Loop R454（2026-08-18，三轨 · VIII Conclusion）**：
   - **Track A**：Cloud VM **NO_CP2K** — **不干预**

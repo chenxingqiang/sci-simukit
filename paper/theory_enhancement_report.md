@@ -110,6 +110,16 @@
 - **paper_gap**: R486 VIII Conclusion (`486 % 8 = 6`)
 - **Git**: `commit: 5bde17a` — `loop R485: Discussion ledger; no tex rewrite`
 
+### R486 audit (2026-08-18, VIII Conclusion, ledger-only)
+
+- **Phase**: write.mdc VIII Conclusion. No new `.out` → no Conclusion quantitative rewrite; Intro–Conclusion closure held (three questions + upper-bound); no new bib.
+- **Track A**: `NO_CP2K`; canonical Exp10 **41/41**, Exp8 **6/6**, Exp9 GEO **12/12** + vertical **8/8**. Cloud VM `exp10_status_line.sh` may report `0/42` = **false positive**.
+- **Track B**: no tex rewrite.
+- **Track C**: C-m3 `orthogonal|fourfold|at revision|7/8` in `paper/*.tex` = **0** hits.
+- **创新审计**: Intro–Conclusion closure = **A** (no new numbers); SCAN/Mayer = **C** backlog.
+- **paper_gap**: R487 横切 (`487 % 8 = 7`)
+- **Git**: `commit: PLACEHOLDER` — `loop R486: Conclusion ledger; no tex rewrite`
+
 ### R473 audit (2026-08-18, II Intro / Loop C)
 - Phase: II Intro (`473 % 8 = 1`). Intro already contains covalent-network gap. **No tex rewrite**.
 - Track C: grep = 0.

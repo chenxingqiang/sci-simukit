@@ -131,7 +131,7 @@
 - **Phase**: Methodology — Methods–inp contract ledger; no tex rewrite.
 - **Scan**: `rVV10|Koopmans|cm^2|775|300%|8.75` in main tex = **0** hits. Exp10 `size_1x60_*.inp`: `XC_FUNCTIONAL PBE` + `VDW_POTENTIAL` DFTD3. Main Methods L85: PBE + Grimme DFT-D3 (BJ). C-m3 grep = **0** hits.
 - **Evidence**: Methods–inp contract = **A**. SCAN/Mayer = **C** backlog. No new `.out` → no Abstract/Results numbers.
-- **Git**: `commit: PLACEHOLDER` — `loop R491: Methods-inp contract ledger; no tex rewrite`
+- **Git**: `commit: 0e5caf7` — `loop R491: Methods-inp contract ledger; no tex rewrite`
 - **Next**: R492 VI Results (`492 % 8 = 4`)
 
 ### R490 audit (2026-08-18, III Literature)

@@ -100,7 +100,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
   - **Track C（C-m3）**：去重仍 **closed** ✅。
   - **创新审计**：Methods–inp 契约 = **A**；SCAN/Mayer = **C** backlog。
   - **paper_gap**：R492 VI Results（`492 % 8 = 4`）
-  - **Git**：`commit: PLACEHOLDER` — `loop R491: Methods-inp contract ledger; no tex rewrite`
+  - **Git**：`commit: 0e5caf7` — `loop R491: Methods-inp contract ledger; no tex rewrite`
   - **下一轮**：R492 VI Results（`492 % 8 = 4`）
 - **Loop R490（2026-08-18，三轨 · III Literature）**：
  - **Track A**：`NO_CP2K`；canonical Exp10 **41/41**、Exp8 **6/6**、Exp9 GEO **12/12** + vertical **8/8** — **不启** job。Cloud VM `exp10_status_line.sh` 可报 `0/42` = **误报**。

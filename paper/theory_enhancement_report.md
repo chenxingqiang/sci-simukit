@@ -120,6 +120,12 @@
 - **paper_gap**: R487 横切 (`487 % 8 = 7`)
 - **Git**: `commit: 342c351` — `loop R486: Conclusion ledger; no tex rewrite`
 
+### R487 audit (2026-08-18, 横切 / Loop C)
+- Phase: 横切 (`487 % 8 = 7`). C-m3 `orthogonal|fourfold|at revision|7/8` in `paper/*.tex` = **0** hits; P0 `rVV10|Koopmans|cm^2|775|300%|8.75` = **0** hits. **No tex rewrite**.
+- Track A: `NO_CP2K`; canonical Exp10 **41/41**. Cloud VM `0/42` = false positive.
+- Git: `commit: PLACEHOLDER`
+- Next: R488 I Abstract (`488 % 8 = 0`).
+
 ### R473 audit (2026-08-18, II Intro / Loop C)
 - Phase: II Intro (`473 % 8 = 1`). Intro already contains covalent-network gap. **No tex rewrite**.
 - Track C: grep = 0.

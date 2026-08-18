@@ -35,8 +35,8 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Population B/N/P** | **18/18** ✅ |
 | **reference_pbed3** | **24/24** ✅ |
 | **运行中** | NO_CP2K（Cloud Agent VM） |
-| **最新 Loop** | **R486** |
-| **下一 B 任务** | R487 横切（`487 % 8 = 7`） |
+| **最新 Loop** | **R487** |
+| **下一 B 任务** | R488 I Abstract（`488 % 8 = 0`） |
 | **主张-证据** | 主文 α/S = **PBE+D3 only**（Table IV + periodic）；legacy Table I = **SI 归档** |
 | **Loop C** | C-M1 **closed** ✅；C-M2 **closed** ✅；C-M3 **closed**（text）；C-m1–m5 **closed** ✅ |
 | **SDC** | **15** synergy 点 |
@@ -86,6 +86,15 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
  - **paper_gap**：R487 横切（`487 % 8 = 7`）
  - **Git**：`commit: 342c351` — `loop R486: Conclusion ledger; no tex rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
  - **下一轮**：R487 横切（`487 % 8 = 7`）
+
+- **Loop R487（2026-08-18，三轨 · 横切）**：
+ - **Track A**：`NO_CP2K`；canonical Exp10 **41/41**、Exp8 **6/6**、Exp9 GEO **12/12** + vertical **8/8** — **不启** job。Cloud VM `exp10_status_line.sh` 可报 `0/42` = **误报**。
+ - **Track B（横切）**：C-m3 `orthogonal|fourfold|at revision|7/8` 于 `paper/*.tex` = **0** hits；P0 `rVV10|Koopmans|cm^2|775|300%|8.75` = **0** hits。无 tex 改写。
+ - **Track C（C-m3）**：去重 **closed** ✅。
+ - **创新审计**：横切 grep = **A**；SCAN/Mayer = **C** backlog。
+ - **paper_gap**：R488 I Abstract（`488 % 8 = 0`）
+ - **Git**：`commit: PLACEHOLDER` — `loop R487: cross-cut grep ledger; no tex rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **下一轮**：R488 I Abstract（`488 % 8 = 0`）
 
 - **Loop R481（2026-08-18，三轨 · II Intro）**：
  - **Track A**：`NO_CP2K` — **不启 job**

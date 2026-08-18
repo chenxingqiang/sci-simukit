@@ -7,6 +7,11 @@
 
 
 
+### R462 audit (2026-08-18, VIII Conclusion / Loop C)
+- Phase: VIII Conclusion (`462 % 8 = 6`). Loop C `grep -E '7/8|at revision|referee' paper/*.tex` = 0.
+- Evidence: Conclusion already closed (R454): three-question closure; C70/C20; Wang2024simulation; Lee2026strain; SCAN/Mayer C. No new .out.
+- Action: no tex rewrite. Next: R463 横切 (`463 % 8 = 7`).
+
 ### R461 audit (2026-08-18, VII Discussion / Loop C)
 - Phase: VII Discussion (`461 % 8 = 5`). Loop C `grep -E '7/8|at revision|referee' paper/*.tex` = 0.
 - Evidence: Discussion already closed (R453): Capobianco/Li/Khan/Peng/Lee; Li C24; Nie2026strainC20; Falletta2025polaronDFT. No new .out.

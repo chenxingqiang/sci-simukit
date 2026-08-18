@@ -100,7 +100,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
  - **Track C（C-m3）**：去重仍 **closed** ✅。
  - **创新审计**：Intro 契约 = **A**；SCAN/Mayer = **C** backlog。
  - **paper_gap**：R490 III Literature（`490 % 8 = 2`）
- - **Git**：`commit: PLACEHOLDER` — `loop R489: Intro ledger; no tex rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **Git**：`commit: 30eb311` — `loop R489: Intro ledger; no tex rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
  - **下一轮**：R490 III Literature（`490 % 8 = 2`）
 - **Loop R488（2026-08-18，三轨 · I Abstract）**：
  - **Track A**：`NO_CP2K`；canonical Exp10 **41/41**、Exp8 **6/6**、Exp9 GEO **12/12** + vertical **8/8** — **不启** job。Cloud VM `exp10_status_line.sh` 可报 `0/42` = **误报**。

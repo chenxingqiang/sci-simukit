@@ -133,7 +133,7 @@
 - Track B: Conclusion-contract ledger only; **no tex rewrite**. Additive-screening failure remains **selective** (P |S|=31.9±2 meV/atom at n=1; η≈8% at n=4). S remains a mixed derivative, not a new thermodynamic observable. SCAN/Mayer follow-up remains C/open.
 - Track C: C-m3 still closed (orthogonal/fourfold/at revision/7/8 = 0 in main tex).
 - Evidence grade: Conclusion contract = **A** (no new numbers); SCAN/Mayer = **C**.
-- Git: `commit: PLACEHOLDER` --- `loop R494: Conclusion-contract ledger; no tex rewrite`
+- Git: `commit: b9ee186` --- `loop R494: Conclusion-contract ledger; no tex rewrite`
 
 ### R493 audit (2026-08-18, VII Discussion)
 

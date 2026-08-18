@@ -53,7 +53,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
  - **Track C**：`grep -E '7/8|at revision|referee' paper/*.tex` = 0
  - **创新审计**：Discussion 文献 = **A**；SCAN = **C**
  - **paper_gap**：SCAN + \(n{=}2\) 四角 + \(n{=}8\) 参考态
- - **Git**：commit: TBD
+ - **Git**：commit: 8da3b60
  - **下一轮**：R462 VIII Conclusion（`462 % 8 = 6`）；**勿再抄** Discussion 已写句
 - **Loop R460（2026-08-18，三轨 · VI Results ledger）**：
  - **Track A**：NO_CP2K — **不干预**；canonical Exp10 **41/41**、Exp8 **6/6**、Exp9 **12/12+8/8**

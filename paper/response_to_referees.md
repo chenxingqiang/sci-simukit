@@ -1,6 +1,8 @@
 > **Loop C 索引**：**Report No. 2** (2026) — IDs **R2-M1…R2-M5**, **R2-m1…R2-m4**; Report No. 1 retained below as **C-M1…C-m5**.
 >
 > **2026-08-17 (R421)** — Cluster tetramer “strain” grids (`reference_pbed3`, `seed137`, `relax_validation`) do **not** affine-scale molecular coordinates (Cartesian frames byte-identical; only the vacuum box changes). They are **not** strain-physics evidence. Valid $\mathcal{S}(n)$ evidence is periodic Exp10; the valid large-$|\mathcal{S}|$ relaxation test is periodic $n{=}1$ P (`S_{\mathrm{rigid}}=-31.906$ meV/atom $\to$ $S_{\mathrm{relaxed}}\approx 0$). Historical replies below that cite tetramer $\alpha$, tetramer $\mathcal{S}$, or tetramer retention/sign-flip are **superseded** by this protocol finding. The live manuscript title is *Non-additive Strain--Dopant Energetics in Quasi-Hexagonal C$_{60}$ Graphullerene*.
+>
+> **R499 (Track C / IV Methods):** Production inp remains PBE+D3 BJ with 400/350 Ry cutoffs; main-text Methods already matches. No Abstract/Results numbers. C-m3 remains closed (`C_CLEAN`). Mayer/Bader stays **C**.
 
 # Response to Referees — PRB Major Revision (Report No. 2)
 

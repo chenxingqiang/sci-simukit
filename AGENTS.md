@@ -28,8 +28,8 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Population B/N/P** | **18/18** ✅ |
 | **reference_pbed3** | **24/24** ✅ |
 | **运行中** | 无（R421：Cloud VM 无 CP2K；`exp10_status.json` 误刷新已 restore，勿提交） |
-| **最新 Loop** | **R473** |
-| **下一 B 任务** | R474 III Literature（`474 % 8 = 2`）；SCAN + dense-$k$ + $n{=}2$ 四角 + $n{=}8$ 参考态。**勿再抄** 已写句 |
+| **最新 Loop** | **R474** |
+| **下一 B 任务** | R475 IV Methods（`475 % 8 = 3`）；SCAN + dense-$k$ + $n{=}2$ 四角 + $n{=}8$ 参考态。**勿再抄** 已写句 |
 | **主张-证据** | 主文 α/S = **PBE+D3 only**；α 带拟合标准误（仅 N $>2\sigma$）；`n=2`/`n=8` 行 = **reference-limited** |
 | **引用** | **18/18 经 Crossref 核验**（R419 修 11 条：1 条虚构、3 条 DOI 错配、多条作者/页码错） |
 | **数据审计** | `paper/scripts/verify_manuscript_numbers.py` → **50/50 PASS** |
@@ -39,6 +39,14 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 
 ---
 
+- **Loop R474（2026-08-18，三轨 · III Literature）**：
+  - **Track A**：NO_CP2K — **不干预**
+  - **Track B（III Literature）**：`474 % 8 = 2`。WebSearch 2025–26：Khan PRM 9,034001、Capobianco *Nano Lett.* 2024、Li *Phys. Rev. B* 110, 045415、Wang *Phys. Chem. Chem. Phys.* 26, 24531 已入主文；无新四角 \(\mathcal{S}\) prior art。本轮仅台账，**不复写** Literature 句。Loop C grep = **0**。
+  - **Track C**：C-M3 文稿 **closed**；Mayer/Bader = **C**
+  - **创新审计**：Literature 台账 = **A**；SCAN/dense-$k$ = **C**
+  - **paper_gap**：SCAN + dense-$k$；$n{=}2$ corners；$n{=}8$ reference
+  - **Git**：`commit: TBD` — `loop R474: Literature ledger; no tex rewrite`
+  - **下一轮**：R475 IV Methods（`475 % 8 = 3`）
 - **Loop R473（2026-08-18，三轨 · II Intro）**：
   - **Track A**：NO_CP2K — **不干预**
   - **Track B（II Intro）**：`473 % 8 = 1`。Intro 契约已闭合（R457/R465）；本轮仅台账，**不复写** Intro 句。Loop C `grep -E '7/8|at revision|referee' paper/*.tex` = **0**。

@@ -7,6 +7,19 @@
 
 
 
+### R474 audit (2026-08-18, III Literature / Loop C)
+- Phase: III Literature (`474 % 8 = 2`).
+- Track A: NO_CP2K. Do not start jobs.
+- Track B: WebSearch 2025–26. Already in manuscript: Khan PRM 9,034001; Capobianco *Nano Lett.* 2024; Li *Phys. Rev. B* 110, 045415; Wang *Phys. Chem. Chem. Phys.* 26, 24531. No new four-corner $\mathcal{S}$ prior art. **No tex rewrite**.
+- Track C: grep 7/8|at revision|referee paper/*.tex = 0.
+- Evidence: Literature ledger = **A**; SCAN/dense-$k$ = **C**.
+- Next: R475 IV Methods (`475 % 8 = 3`).
+
+### R473 audit (2026-08-18, II Intro / Loop C)
+- Phase: II Intro (`473 % 8 = 1`). Intro already contains covalent-network gap. **No tex rewrite**.
+- Track C: grep = 0.
+- Next: R474 III Literature (`474 % 8 = 2`).
+
 ### R472 audit (2026-08-18, I Abstract / Loop C)
 - Phase: I Abstract (`472 % 8 = 0`). Abstract already closed (R456/R464). Loop C `grep -E '7/8|at revision|referee' paper/*.tex` = 0.
 - Evidence: no new .out; no tex rewrite.

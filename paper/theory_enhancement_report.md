@@ -7,6 +7,11 @@
 
 
 
+### R464 audit (2026-08-18, I Abstract / Loop C)
+- Phase: I Abstract (`464 % 8 = 0`). Loop C `grep -E '7/8|at revision|referee' paper/*.tex` = 0.
+- Evidence: Abstract already closed (R456); fifteen periodic still in place. No new .out.
+- Action: no tex rewrite. Next: R465 II Intro (`465 % 8 = 1`; already closed — ledger only).
+
 ### R463 audit (2026-08-18, 横切 / Loop C)
 - Phase: 横切 (`463 % 8 = 7`). Loop C `grep -E '7/8|at revision|referee' paper/*.tex` = 0.
 - Evidence: no repo paths in main/SI tex (tikz `% DATA:` comments only); rVV10/Koopmans only SI theory L262–263 (historical; not Abstract/Results). No new .out.

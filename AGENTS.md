@@ -84,7 +84,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
  - **Track C（C-m3）**：`orthogonal|fourfold|at revision|7/8` 于 `paper/*.tex` = **0** hits。
  - **创新审计**：Intro–Conclusion 闭环 = **A**（无新数）；SCAN/Mayer = **C** backlog。
  - **paper_gap**：R487 横切（`487 % 8 = 7`）
- - **Git**：`commit: PLACEHOLDER` — `loop R486: Conclusion ledger; no tex rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **Git**：`commit: 342c351` — `loop R486: Conclusion ledger; no tex rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
  - **下一轮**：R487 横切（`487 % 8 = 7`）
 
 - **Loop R481（2026-08-18，三轨 · II Intro）**：

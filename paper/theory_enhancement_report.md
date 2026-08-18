@@ -108,7 +108,7 @@
 - **Track C**: C-m3 `orthogonal|fourfold|at revision|7/8` in `paper/*.tex` = **0** hits.
 - **创新审计**: Discussion quantitative boundary = **A** (no new numbers); SCAN/Mayer = **C** backlog.
 - **paper_gap**: R486 VIII Conclusion (`486 % 8 = 6`)
-- **Git**: `commit: PLACEHOLDER` — `loop R485: Discussion ledger; no tex rewrite`
+- **Git**: `commit: 5bde17a` — `loop R485: Discussion ledger; no tex rewrite`
 
 ### R473 audit (2026-08-18, II Intro / Loop C)
 - Phase: II Intro (`473 % 8 = 1`). Intro already contains covalent-network gap. **No tex rewrite**.

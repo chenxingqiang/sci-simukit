@@ -126,6 +126,15 @@
 - Git: `commit: 82e86be`
 - Next: R488 I Abstract (`488 % 8 = 0`).
 
+### R494 audit (2026-08-18)
+
+- Loop: **R494** (VIII Conclusion; `494 % 8 = 6`)
+- Track A: `NO_CP2K`; canonical Exp10 41/41, Exp8 6/6, Exp9 GEO 12/12 + vertical 8/8; cutoff300 pending --- no new job.
+- Track B: Conclusion-contract ledger only; **no tex rewrite**. Additive-screening failure remains **selective** (P |S|=31.9±2 meV/atom at n=1; η≈8% at n=4). S remains a mixed derivative, not a new thermodynamic observable. SCAN/Mayer follow-up remains C/open.
+- Track C: C-m3 still closed (orthogonal/fourfold/at revision/7/8 = 0 in main tex).
+- Evidence grade: Conclusion contract = **A** (no new numbers); SCAN/Mayer = **C**.
+- Git: `commit: PLACEHOLDER` --- `loop R494: Conclusion-contract ledger; no tex rewrite`
+
 ### R493 audit (2026-08-18, VII Discussion)
 
 - **Phase**: VII Discussion (`493 % 8 = 5`). In the Discussion phase, I recorded a Discussion-contract ledger. L121/L179 upper-bound; L221 Hirshfeld does not rank $|S|$; L257/L261/L263 SCAN/Mayer remain C/open.

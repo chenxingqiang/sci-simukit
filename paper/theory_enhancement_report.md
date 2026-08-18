@@ -7,6 +7,14 @@
 
 
 
+### R458 audit (2026-08-18, III Literature / Loop C)
+
+- **Phase**: III Literature (write.mdc stage 2). Evidence: **A** (search hits already in bib and cited).
+- **Search**: `graphullerene qHP C60 strain doping 2025 2026` → Khan2025tuning, Makov2023graphullerene, Capobianco2024electron, Li2024graphullerene — all already cited; no new bib; no tex rewrite.
+- **Loop C**: `grep -E '7/8|at revision|referee' paper/*.tex` = **0**.
+- **Manuscript**: no quantitative change; literature thread already closed (R422/R429/R441/R450).
+- **Next**: R459 IV Methods; do not recopy Methods sentences.
+
 ### R457 audit (2026-08-18, II Introduction / Loop C)
 
 - **Phase**: II Introduction (write.mdc stage 2). R457 = 457 % 8 = 1.

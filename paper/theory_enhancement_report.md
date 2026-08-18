@@ -126,6 +126,15 @@
 - Git: `commit: 82e86be`
 - Next: R488 I Abstract (`488 % 8 = 0`).
 
+### R493 audit (2026-08-18, VII Discussion)
+
+- **Phase**: VII Discussion (`493 % 8 = 5`). In the Discussion phase, I recorded a Discussion-contract ledger. L121/L179 upper-bound; L221 Hirshfeld does not rank $|S|$; L257/L261/L263 SCAN/Mayer remain C/open.
+- **Claim**: No new `.out` -> **no tex rewrite**. No C-level SCAN/Mayer as A-grade. Main-text alpha/S remains PBE+D3-only.
+- **Evidence**: grep C-level tokens -> 0; C-m3 still closed.
+- **Grade**: Discussion contract = **A**; SCAN/Mayer = **C**
+- **Git**: `commit: PLACEHOLDER` --- `loop R493: Discussion-contract ledger; no tex rewrite`
+- **Next**: R494 VIII Conclusion (`494 % 8 = 6`).
+
 ### R492 audit (2026-08-18, VI Results)
 
 - **Phase**: VI Results (`492 % 8 = 4`). In the Results phase, I recorded a Results-contract ledger. Results L210/L231/L236/L254 remain honest: alpha/S is PBE+D3-only; the localization map is not a mobility or gap-closing map.

@@ -35,8 +35,8 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Population B/N/P** | **18/18** ✅ |
 | **reference_pbed3** | **24/24** ✅ |
 | **运行中** | NO_CP2K（Cloud Agent VM） |
-| **最新 Loop** | **R492** |
-| **下一 B 任务** | R493 VII Discussion（`493 % 8 = 5`） |
+| **最新 Loop** | **R493** |
+| **下一 B 任务** | R494 VIII Conclusion（`494 % 8 = 6`） |
 | **主张-证据** | 主文 α/S = **PBE+D3 only**（Table IV + periodic）；legacy Table I = **SI 归档** |
 | **Loop C** | C-M1 **closed** ✅；C-M2 **closed** ✅；C-M3 **closed**（text）；C-m1–m5 **closed** ✅ |
 | **SDC** | **15** synergy 点 |
@@ -94,6 +94,15 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
  - **创新审计**：横切 grep = **A**；SCAN/Mayer = **C** backlog。
  - **paper_gap**：R488 I Abstract（`488 % 8 = 0`）
  - **Git**：`commit: 82e86be` — `loop R487: cross-cut grep ledger; no tex rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+- **Loop R493（2026-08-18，三轨 · VII Discussion）**：
+  - **Track A**：`NO_CP2K`；canonical Exp10 **41/41**、Exp8 **6/6**、Exp9 GEO **12/12** + vertical **8/8**、cutoff300 still **pending** — **不启** job。
+  - **Track B（VII Discussion）**：In the Discussion phase, I recorded a Discussion-contract ledger. No new `.out` → **no tex rewrite**. L121/L179 keep rigid $|\mathcal{S}|$ as an **upper bound**; L221 Hirshfeld $\Delta q/q$ does **not** rank $|\mathcal{S}|$; L257/L261/L263 SCAN and Mayer/Bader remain C/open.
+  - **Track C（C-m3）**：去重仍 **closed** ✅。
+  - **创新审计**：Discussion 契约 = **A**（无新定量）；SCAN/Mayer = **C** backlog。
+  - **paper_gap**：R494 VIII Conclusion（`494 % 8 = 6`）
+  - **Git**：`commit: PLACEHOLDER` — `loop R493: Discussion-contract ledger; no tex rewrite`
+  - **下一轮**：R494 VIII Conclusion
+
 - **Loop R492（2026-08-18，三轨 · VI Results）**：
  - **Track A**：`NO_CP2K`；canonical Exp10 **41/41**、Exp8 **6/6**、Exp9 GEO **12/12** + vertical **8/8** — **不启** job。Cloud VM 误报勿覆盖 canonical。
  - **Track B（VI Results）**：In the Results phase, I recorded a Results-contract ledger. No new `.out` → **no tex rewrite**. No C-level transport/ML; main-text α/S remains PBE+D3-only. Results states this is not a mobility/gap map.

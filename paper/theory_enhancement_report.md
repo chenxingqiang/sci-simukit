@@ -7,6 +7,13 @@
 
 
 
+### R460 audit (2026-08-18, VI Results / Loop C)
+
+- **Phase**: VI Results. **Loop C**: `grep -E '7/8|at revision|referee' paper/*.tex` = **0**.
+- **Evidence (A, no tex rewrite)**: `table1_verification.json` P \(E_f=-15.8\) eV/dopant, \(n=12\); `sdc_exp10_synergy_audit.json` \(n_{\mathrm{synergy}}=15\). Results already closed (R452).
+- **Scan**: no P0 mismatch vs canonical JSON; **SCAN = C**.
+- **Action**: **no tex rewrite**. Next: R461 VII Discussion.
+
 ### R459 audit (2026-08-18, IV Methods / Loop C)
 
 - **Phase**: IV Methods (write.mdc 阶段3). Loop C: `grep -E '7/8|at revision|referee' paper/*.tex` = 0.

@@ -7,6 +7,12 @@
 
 
 
+### R456 audit (2026-08-18, I Abstract / Loop C)
+- **Phase**: I Abstract (`456 % 8 = 0`). Ledger only. **No Abstract rewrite.**
+- **Evidence**: Abstract already has n=2 undoped-corner (L41) + charged-defect/polaron-rate (L40). No new `.out`. Do not recopy.
+- **Loop C**: C-m3 = **0**.
+- **Innovation audit**: Abstract contract = **A**; SCAN/Mayer = **C** open.
+
 ### R455 audit (2026-08-18, 横切 / Loop C)
 - **Phase**: 横切 (`455 % 8 = 7`). Ledger only. **No tex rewrite.**
 - **Evidence**: Cross-cut grep: `7/8|at revision|referee` = **0** on `paper/*.tex`. Main tex has no rVV10/Koopmans/`experiments/`/`dft_results`. SI theory L262--263 still lists rVV10/Koopmans as historical (not Abstract/Results).

@@ -100,7 +100,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
  - **Track C（C-m3）**：去重仍 **closed** ✅。
  - **创新审计**：横切 grep = **A**；SCAN/Mayer = **C** backlog。
  - **paper_gap**：R496 I Abstract（`496 % 8 = 0`）
- - **Git**：`commit: PLACEHOLDER` — `loop R495: cross-cut grep ledger; no tex rewrite`
+ - **Git**：`commit: 8cbfa4e` — `loop R495: cross-cut grep ledger; no tex rewrite`
  - **下一轮**：R496 I Abstract
 - **Loop R494（2026-08-18，三轨 · VIII Conclusion）**：
  - **Track A**：`NO_CP2K`；canonical Exp10 **41/41**、Exp8 **6/6**、Exp9 GEO **12/12** + vertical **8/8**、cutoff300 still **pending** — **不启** job。

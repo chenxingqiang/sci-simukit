@@ -131,7 +131,7 @@
 - **Phase**: 横切 evidence ledger. Main tex: 0 hits for orthogonal|fourfold|at revision|7/8|rVV10|Koopmans|cm^2|775|300%|8.75; SI theory keeps superseded 8.75× / pending 775%/300% / rVV10–Koopmans outlook (not main-text claims).
 - **Claim**: C-m3 去重仍 closed; SCAN/Mayer remain C/open.
 - **Evidence grade**: grep = **A**; SCAN/Mayer = **C**.
-- **Git**: `commit: PLACEHOLDER` --- `loop R495: cross-cut grep ledger; no tex rewrite`
+- **Git**: `commit: 8cbfa4e` --- `loop R495: cross-cut grep ledger; no tex rewrite`
 
 ### R494 audit (2026-08-18)
 

@@ -45,7 +45,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
  - **Track C**：Intro already matches the closed manuscript contract. SCAN / Mayer/Bader remain C
  - **创新审计**：Intro contract = **A**（already in tex）；SCAN / Mayer = **C**
  - **paper_gap**：n=2 / n=8 four-corner @ EPS \(10^{-6}\)；SCAN / Mayer/Bader
- - **Git**：`commit: PLACEHOLDER` — `loop R449: Intro contract ledger; no Intro rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **Git**：`commit: c02a542` — `loop R449: Intro contract ledger; no Intro rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
  - **下一轮**：R450 III Literature（mod 8 = 2）；SCAN / Mayer/Bader
 - **Loop R448（2026-08-17，三轨 · I Abstract / Loop C）**：
  - **Track A**：Cloud VM **NO_CP2K** — **不干预**

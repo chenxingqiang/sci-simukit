@@ -7,6 +7,13 @@
 
 
 
+### R452 audit (2026-08-18, VI Results / Loop C)
+
+- **Phase**: VI Results (`sec:synergy`). Ledger only.
+- **Evidence**: `sec:synergy` already states $n{=}2$/$n{=}8$ as **reference-limited**; offsets 4.2 and 5.4 meV/atom already in Results; $n{\geq}6$ 350 Ry already in SM Table S1. No new `.out`.
+- **Loop C**: grep `7/8|at revision|referee` = **0**.
+- **Innovation audit**: Results $n{=}2$/$n{=}8$ = **A**; $n{\geq}6$ 350 Ry = **A** SI; SCAN = **C** open.
+
 ### R451 audit (2026-08-18, IV Methods / Loop C)
 - **Phase**: IV Methods. **Track A**: NO_CP2K — 不干预.
 - **Landing**: ledger only. Methods already state PBE+D3, cutoff 400 vs 350 Ry, $n{=}2$ EPS $10^{-5}$, $n{=}8$ same-350-Ry (not a cutoff-class). SCAN is a within-PBE+D3 bound, not a completed calculation.

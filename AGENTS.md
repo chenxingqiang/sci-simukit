@@ -100,7 +100,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
  - **Track C（C-m3）**：去重仍 **closed** ✅。
  - **创新审计**：Results 契约 = **A**（无新定量）；SCAN/Mayer = **C** backlog。
  - **paper_gap**：R493 VII Discussion（`493 % 8 = 5`）
- - **Git**：`commit: PLACEHOLDER` — `loop R492: Results-contract ledger; no tex rewrite`
+ - **Git**：`commit: e45c130` — `loop R492: Results-contract ledger; no tex rewrite`
  - **下一轮**：R493 VII Discussion（`493 % 8 = 5`）
 
 - **Loop R491（2026-08-18，三轨 · IV Methods）**：

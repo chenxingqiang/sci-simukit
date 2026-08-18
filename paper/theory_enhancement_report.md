@@ -126,6 +126,13 @@
 - Git: `commit: 82e86be`
 - Next: R488 I Abstract (`488 % 8 = 0`).
 
+### R488 audit (2026-08-18, I Abstract)
+- Phase: I Abstract (`488 % 8 = 0`). Abstract has no `\cite`; quantitative claims already aligned with Table IV / periodic $\mathcal{S}$ (PBE+D3; $|\mathcal{S}|=31.9\pm 2$ meV/atom at $n{=}1$; $\eta\approx 8\%$ at $n{=}4$). No new `.out` → **no Abstract quantitative rewrite**. **No tex rewrite**.
+- Track A: `NO_CP2K`; canonical Exp10 **41/41**. Cloud VM `0/42` = false positive.
+- Git: `commit: PLACEHOLDER`
+- Next: R489 II Intro (`489 % 8 = 1`).
+
+
 ### R473 audit (2026-08-18, II Intro / Loop C)
 - Phase: II Intro (`473 % 8 = 1`). Intro already contains covalent-network gap. **No tex rewrite**.
 - Track C: grep = 0.

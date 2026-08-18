@@ -45,7 +45,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
  - **Track C**：R4-Methods-A1 + Major Concern 8 + Residual 「Still open」把 cutoff400 **closed** 与 SCAN **still open** 分开；**无 SCAN 数字**
  - **创新审计**：SCAN vs cutoff400 闭合边界 = **A**；SCAN DFT = **C** open
  - **paper_gap**：SCAN + dense-$k$；$n{=}2$ 四角 @ EPS $10^{-6}$；$n{=}8$ 参考态。**勿再抄** SCAN-in-Conclusions / cutoff-class / same-350-Ry / 5.4 / (4.3) / R7-1.2
- - **Git**：`commit: f1f35d1` — `loop R446: SCAN vs cutoff400 closed-open split in response`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **Git**：`commit: 5b548bf` — `loop R446: SCAN vs cutoff400 closed-open split in response`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
  - **下一轮**：R447 横切；勿再抄 SCAN-in-Conclusions / cutoff-class / same-350-Ry / 5.4 / (4.3) / R7-1.2
 - **Loop R445（2026-08-17，三轨 · VII Discussion / Loop C）**：
   - **Track A**：NO_CP2K — **不干预**

@@ -7,6 +7,14 @@
 
 
 
+### R475 audit (2026-08-18, IV Methods / Loop C)
+- Phase: IV Methods (`475 % 8 = 3`).
+- Track A: NO_CP2K. Do not start jobs.
+- Track B: Main-text cutoff matches inp: n≤4 CUTOFF 400; n≥6 CUTOFF 350; REL_CUTOFF 50; PBE+D3. **No tex rewrite**.
+- Track C: grep 7/8|at revision|referee paper/*.tex = 0.
+- Evidence: Methods–inp = **A**; SCAN/dense-$k$ = **C**.
+- Next: R476 VI Results (`476 % 8 = 4`).
+
 ### R474 audit (2026-08-18, III Literature / Loop C)
 - Phase: III Literature (`474 % 8 = 2`).
 - Track A: NO_CP2K. Do not start jobs.

@@ -35,12 +35,21 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Population B/N/P** | **18/18** ✅ |
 | **reference_pbed3** | **24/24** ✅ |
 | **运行中** | NO_CP2K（Cloud Agent VM） |
-| **最新 Loop** | **R478** |
-| **下一 B 任务** | R479 横切 audit（`479 % 8 = 7`） |
+| **最新 Loop** | **R479** |
+| **下一 B 任务** | R480 I Abstract（`480 % 8 = 0`） |
 | **主张-证据** | 主文 α/S = **PBE+D3 only**（Table IV + periodic）；legacy Table I = **SI 归档** |
 | **Loop C** | C-M1 **closed** ✅；C-M2 **closed** ✅；C-M3 **closed**（text）；C-m1–m5 **closed** ✅ |
 | **SDC** | **15** synergy 点 |
 | **旗杆** | **PRB Regular Article** major revision |
+
+- **Loop R479（2026-08-18，三轨 · 横切 audit）**：
+  - **Track A**：NO_CP2K — **不干预**
+  - **Track B（横切）**：`479 % 8 = 7`。全稿 grep + Abstract–Conclusion 契约台账。本轮仅台账，**不复写**已写句。Loop C grep = **0**。
+  - **Track C**：C-M1/M2/M3 文稿 **closed**；Mayer/Bader = **C**
+  - **创新审计**：横切契约 = **A**（无 C 级泄漏）；SCAN/dense-$k$ = **C**
+  - **paper_gap**：SCAN + dense-$k$；$n{=}2$ corners；$n{=}8$ reference
+  - **Git**：`commit: TBD` — `loop R479: cross-cut grep audit; no tex rewrite`
+  - **下一轮**：R480 I Abstract（`480 % 8 = 0`）
 
 - **Loop R478（2026-08-18，三轨 · VIII Conclusion）**：
   - **Track A**：NO_CP2K — **不干预**
@@ -684,7 +693,7 @@ python3 -c "import json; t=json.load(open('experiments/analysis/table1_verificat
 | 项 | 示例 |
 |----|------|
 | **文稿 P 瓶颈** | `Methods 缺 sdc_method_section` / `Electron-Intro 未对齐` |
-| **下一 B 任务** | `P1: 补 Capobianco Discussion 段` |
+| **下一 B 任务** | R480 I Abstract（`480 % 8 = 0`） |
 | **主张-证据** | `transport=C, SDC=A, Exp9 λ= B pending` |
 | **旗杆** | `Electron.pdf` / `PRL` / `Nature Mat` |
 

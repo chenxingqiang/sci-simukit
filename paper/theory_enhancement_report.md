@@ -7,6 +7,16 @@
 
 
 
+### R479 audit (2026-08-18, 横切)
+
+- **Phase**: 横切 B4/B5 — full-manuscript grep + Abstract–Conclusion contract.
+- **Scan**: `7/8|at revision|referee|experiments/` in `paper/*.tex` = **0** main-text hits (tikz `% DATA:` comments only).
+- **Contract**: Abstract–Intro–Methods–Results–Discussion–Conclusion already closed in R472–R478; **no tex rewrite**.
+- **P0**: no C-level claim in Abstract/Results; Methods remain PBE+D3; S numbers stay in Results/Conclusion as previously verified.
+- **Loop C**: C-M1/M2/M3 manuscript closed; Mayer/Bader = C.
+- **Evidence grade**: cross-cut cleanliness = **A**; SCAN/dense-$k$ = **C** (open).
+- **Git**: `commit: TBD`
+
 ### R478 audit (2026-08-18)
 
 - **Phase**: VIII Conclusion (`478 % 8 = 6`). Intro–Conclusion 三问闭环 = **A**（additive-screening 选择性失败；四角 $\mathcal{S}$ 估混合导数、非新热力学量；qHP C$_{60}$ 为模型体系）。Limitations 已诚实：PBE+D3；affine 固定分数坐标；弛豫恢复加和性；Mayer/Bader = **C**；SCAN/dense-$k$ open。本轮 **不复写** Conclusion。Loop C grep = **0**。

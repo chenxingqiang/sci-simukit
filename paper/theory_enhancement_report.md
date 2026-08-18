@@ -7,6 +7,11 @@
 
 
 
+### R465 audit (2026-08-18, II Intro / Loop C)
+- Phase: II Intro (`465 % 8 = 1`). Loop C `grep -E '7/8|at revision|referee' paper/*.tex` = 0.
+- Evidence: Intro already closed (R457). No new .out.
+- Action: no tex rewrite. Next: R466 III Literature (`466 % 8 = 2`; already closed — ledger only).
+
 ### R464 audit (2026-08-18, I Abstract / Loop C)
 - Phase: I Abstract (`464 % 8 = 0`). Loop C `grep -E '7/8|at revision|referee' paper/*.tex` = 0.
 - Evidence: Abstract already closed (R456); fifteen periodic still in place. No new .out.

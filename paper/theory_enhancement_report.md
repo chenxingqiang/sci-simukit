@@ -7,6 +7,18 @@
 
 
 
+### R447 audit (2026-08-17, horizontal grep / Loop C)
+- Phase: 横切. Main-text n=8 cutoff-class is already closed (Methods L102 + Limitations L260). R446 closed-open split is already in the referee response. This loop adds the ledger only.
+- Track B: no new main-text or response wording. Horizontal grep: `7/8|at revision|referee` in `paper/*.tex` = 0. `not a cutoff-class change` = 2. `Wang2024simulation` = 1 (Intro L67).
+- Loop C: ledger records R446 SCAN vs cutoff400 closed-open split. SCAN / Mayer/Bader remain C.
+- Evidence: Table II cutoff400 41/41; Table~sigma_S 350 vs 400 <0.2 meV/atom. Mayer/Bader = C. SCAN = C.
+
+### R446 audit (2026-08-17, VII Discussion / Loop C)
+- Phase: VII Discussion rotation. Main-text n=8 cutoff-class is already closed (Methods L102 + Limitations L260). This loop edits the referee response only.
+- Track B: response_to_referees.md (4.3) + Residual + R7-1.2 + R4-Methods-A1 + Major Concern 8: cutoff400 four-corner `S` is closed (Table~sigma_S; `|S_400-S_350|<0.2` meV/atom). SCAN / dense-`k` / Mayer/Bader remain Track A backlog; no fabricated meta-GGA numbers.
+- Loop C: grep = 0. `not a cutoff-class change` = 2.
+- Evidence: Table II cutoff400 41/41; Table~sigma_S 350 vs 400 <0.2 meV/atom. Mayer/Bader = C. SCAN = C.
+
 ### R445 audit (2026-08-17, VII Discussion / Loop C)
 
 - **Phase**: VII Discussion rotation. Main-text n=8 cutoff-class is already closed (Methods L102 + Limitations L260). This loop edits the referee response only.

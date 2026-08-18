@@ -91,7 +91,14 @@
 - Next: R484 VI Results (`484 % 8 = 4`).
 - **Git**: `commit: 1f916f7`
 
-
+### R484 audit (2026-08-18, VI Results / Loop C)
+- Loop R484. Phase: VI Results (`484 % 8 = 4`). Flagship: PRB Regular Article, major revision.
+- Track A: `NO_CP2K`; canonical Exp10 **41/41**, Exp8 **6/6**, Exp9 GEO **12/12** + vertical **8/8** — no job started. Cloud VM `exp10_status_line.sh` may report `0/42` (**miscount**).
+- Track B: Ledger-only. No new `.out` — no Results quantitative rewrite. Main-text α/S = **PBE+D3 only** (Table IV + periodic); legacy Table I = SI archive. No tex rewrite.
+- Track C: C-m3 `orthogonal|fourfold|at revision|7/8` in `paper/*.tex` = **0** hits.
+- Innovation audit: Results quantitative boundary = **A** (no new numbers); SCAN/Mayer = **C** backlog.
+- Next: R485 VII Discussion (`485 % 8 = 5`).
+- **Git**: `commit: TBD`
 
 ### R473 audit (2026-08-18, II Intro / Loop C)
 - Phase: II Intro (`473 % 8 = 1`). Intro already contains covalent-network gap. **No tex rewrite**.

@@ -131,7 +131,7 @@
 - **Phase**: IV Methodology (write.mdc 阶段3). Methods already matches production inp (PBE+D3 BJ; 400/350 Ry; Hirshfeld). **no tex rewrite**.
 - **Track A**: Canonical Exp10 **41/41** / Exp8 **6/6** / Exp9 **12/12+8/8**. Cloud VM `0/42` = false positive. `NO_CP2K`.
 - **Loop C**: C-m3 **closed** (`C_CLEAN`). Mayer/Bader = **C**.
-- **Git**: `commit: PLACEHOLDER` — `loop R499: Methods ledger; no tex rewrite`.
+- **Git**: `commit: a0fb4c5` — `loop R499: Methods ledger; no tex rewrite`.
 - **Next**: R500 VI Results (`500 % 8 = 4`). Do not start CP2K.
 
 ### R498 audit (2026-08-18, III Literature)

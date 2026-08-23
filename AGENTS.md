@@ -101,7 +101,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
   - **创新审计**：Methods–inp = **A**；Mayer = **C**
   - **paper_gap**：Mayer/Bader；SCAN + dense-$k$；cutoff300 未入稿
   - **四轮自问**：文稿 / Methods–inp 已对齐 / 诚实化台账 / 高于空转改稿
-  - **Git**：`commit: PLACEHOLDER` — `loop R499: Methods ledger; no tex rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+  - **Git**：`commit: a0fb4c5` — `loop R499: Methods ledger; no tex rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
   - **下一轮**：R500 VI Results（`500 % 8 = 4`）；**不启动** CP2K
 - **Loop R498（2026-08-18，三轨 · III Literature）**：
   - **Track A**：canonical Exp10 **41/41**、Exp8 **6/6**、Exp9 GEO **12/12** + vertical **8/8**；Cloud VM 误报 Exp10 0/42 / Exp8 0/6 / vertical 0/8；**NO_CP2K** — **不干预**、**不启** cutoff300

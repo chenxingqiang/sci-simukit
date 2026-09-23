@@ -35,8 +35,8 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Population B/N/P** | **18/18** ✅ |
 | **reference_pbed3** | **24/24** ✅ |
 | **运行中** | NO_CP2K（Cloud Agent VM） |
-| **最新 Loop** | **R499** |
-| **下一 B 任务** | R500 VI Results（`500 % 8 = 4`；仅 A 级 caption，无新 `.out`） |
+| **最新 Loop** | **R500** |
+| **下一 B 任务** | R501 VII Discussion（`501 % 8 = 5`；无新 `.out` 不改定量） |
 | **主张-证据** | 主文 α/S = **PBE+D3 only**（Table IV + periodic）；legacy Table I = **SI 归档** |
 | **Loop C** | C-M1 **closed** ✅；C-M2 **closed** ✅；C-M3 **closed**（text）；C-m1–m5 **closed** ✅ |
 | **SDC** | **15** synergy 点 |
@@ -103,6 +103,13 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
   - **四轮自问**：文稿 / Methods–inp 已对齐 / 诚实化台账 / 高于空转改稿
   - **Git**：`commit: a0fb4c5` — `loop R499: Methods ledger; no tex rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
   - **下一轮**：R500 VI Results（`500 % 8 = 4`）；**不启动** CP2K
+- **Loop R500（2026-09-23，三轨 · merge origin/main）**：
+  - **Track A**：`NO_CP2K`；canonical Exp10 **41/41**。合并保留 pristine \(2\times\mathrm{C}_{60}\) `EPS_SCF` \(1.0\times10^{-5}\)（拒 origin/main 的 \(10^{-6}\)）。**不启** job
+  - **Track B（VI Results）**：合并保留 Fig.~1 archived cluster-map（真空盒标签；panel d 非单层力学 \(\alpha\)）与 Fig.~2 \(n{=}2,8\) N 粉色 reference-limited 柱。拒 origin/main `fig_prb_four_main.py` 断轴 signed HOMO–LUMO gap。摘要与 Results L151/L160/L167 **未改**。非冲突 SI 渲染与 Exp9 `vertical_pending` 过滤取自 origin/main
+  - **创新审计**：cluster-map Fig.~1 = **A**；\(n{=}8\) N reference-limited = **A**；signed-gap 断轴 panel = **rejected**
+  - **paper_gap**：Mayer/Bader = **C**；SCAN + dense-\(k\)
+  - **Git**：merge commit（本条）；hash 见下一笔 hash-sync
+  - **下一轮**：R501 VII Discussion（`501 % 8 = 5`）；**不启** CP2K
 - **Loop R498（2026-08-18，三轨 · III Literature）**：
   - **Track A**：canonical Exp10 **41/41**、Exp8 **6/6**、Exp9 GEO **12/12** + vertical **8/8**；Cloud VM 误报 Exp10 0/42 / Exp8 0/6 / vertical 0/8；**NO_CP2K** — **不干预**、**不启** cutoff300
   - **Track B（III Literature）**：query `(graphullerene OR "fullerene network" OR qHP C60) strain doping polaron 2025 2026` → Capobianco *Nano Lett.* 4c01695 / Li thermoelectric 5.0211458 / ShaikhPeng arXiv:2504.02037 / Xu C70 / Nie C20 / Khan BN-doping chemrxiv **均已在 bib**（`Capobianco2024electron`、`Li2024strain`、`ShaikhPeng2025thermal`、`Xu2025C70network`、`Nie2026strainC20`、`Khan2025tuning`）；BN 共掺 vs 本文 B/N/P 置换 $\mathcal{S}$ **不对等**。**bib +0**；**no tex rewrite**

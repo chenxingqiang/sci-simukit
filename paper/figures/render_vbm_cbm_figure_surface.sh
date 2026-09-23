@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/opt/homebrew/bin/bash
 # QuickSurf / MSMS molecular-surface Figure S4 (parallel to CPK and ball-and-stick scripts).
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/../.." && pwd)"

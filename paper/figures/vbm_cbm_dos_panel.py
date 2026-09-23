@@ -126,13 +126,19 @@ def postprocess_surface_snapshot(
   *,
   bg_threshold: int = 32,
 ) -> Image.Image:
-  """Tachyon MSMS renders on a black plate; lift only the background to white."""
+  """Tachyon MSMS renders on a black plate; lift background to white and boost vividness."""
+  from PIL import ImageEnhance
+
   arr = np.asarray(img.convert("RGB"), dtype=np.float32)
   lum = arr.mean(axis=2)
   bg = lum < bg_threshold
   rgb = arr.copy()
   rgb[bg] = 255.0
-  return Image.fromarray(rgb.astype(np.uint8))
+  out = Image.fromarray(rgb.astype(np.uint8))
+  out = ImageEnhance.Contrast(out).enhance(1.10)
+  out = ImageEnhance.Color(out).enhance(1.15)
+  out = ImageEnhance.Sharpness(out).enhance(1.08)
+  return out
 
 
 def trim_white_margins(img: Image.Image, *, threshold: int = 248, pad: int = 12) -> Image.Image:

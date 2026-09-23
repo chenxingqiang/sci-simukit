@@ -13,14 +13,14 @@ file mkdir $out_dir
 
 proc apply_pub_style {} {
     color Element C gray
-    color Element B magenta
-    color Element N blue
+    color Element B blue
+    color Element N red
     color Element P orange
     color Display Background white
     display shadows on
     display ambientocclusion on
-    display aoambient 0.8
-    display aodirect 0.3
+    display aoambient 0.55
+    display aodirect 0.65
     display depthcue off
     display projection Orthographic
     axes location Off
@@ -28,20 +28,20 @@ proc apply_pub_style {} {
 
 proc style_mol {mol_id} {
     mol delrep 0 $mol_id
-    mol representation DynamicBonds 1.6 0.10 12.0
+    mol representation DynamicBonds 1.6 0.12 12.0
     mol color Element
     mol selection {all}
     mol material AOEdgy
     mol addrep $mol_id
-    mol representation VDW 0.28 12.0
+    mol representation VDW 0.30 12.0
     mol color Element
     mol selection {name C}
     mol material AOChalky
     mol addrep $mol_id
-    mol representation VDW 0.55 12.0
+    mol representation VDW 0.62 12.0
     mol color Element
     mol selection {name B or name N or name P}
-    mol material Glossy
+    mol material GlassBubble
     mol addrep $mol_id
 }
 

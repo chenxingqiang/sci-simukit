@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/opt/homebrew/bin/bash
 # QuickSurf / MSMS Figure S4 for B/N/P (parallel to doped CPK script).
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/../.." && pwd)"

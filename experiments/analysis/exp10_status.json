@@ -1,8 +1,10 @@
 {
   "updated": "2026-08-02",
   "converged": 41,
-  "total": 41,
-  "pending": [],
+  "total": 42,
+  "pending": [
+    "size_6x60_N_pos3pct_cutoff300"
+  ],
   "tasks": [
     {
       "task": "size_1x60_B_pos0pct",
@@ -173,6 +175,12 @@
       "last_grad": 9.7e-07
     },
     {
+      "task": "size_6x60_N_pos3pct_cutoff300",
+      "converged": false,
+      "last_ot_step": 15,
+      "last_grad": 0.00062008
+    },
+    {
       "task": "size_6x60_N_pos3pct_cutoff400",
       "converged": true,
       "last_ot_step": 280,
@@ -250,5 +258,30 @@
       "last_ot_step": 250,
       "last_grad": 8.3e-07
     }
+  ],
+  "running_task": "size_6x60_N_pos3pct_cutoff300",
+  "running_snapshot": {
+    "last_ot_step": 15,
+    "last_grad": 0.00062008,
+    "reference_task": "size_6x60_N_pos0pct",
+    "reference_ot_steps": 196,
+    "ot_progress_pct": 7.7,
+    "eps_scf": 1e-06,
+    "grad_ratio_to_eps": 620.1,
+    "time_per_ot_step_s": 6.8,
+    "eta_minutes_to_ref_ot": 21.0,
+    "grad_trend": "decreasing",
+    "grad_drop_per_ot_step": 0.00041383571428571433,
+    "eta_minutes_to_eps": 0.0
+  },
+  "pending_reference_ot": {
+    "size_6x60_N_pos3pct_cutoff300": {
+      "reference_task": "size_6x60_N_pos0pct",
+      "reference_ot_steps": 196,
+      "eps_scf": 1e-06
+    }
+  },
+  "batch_queue": [
+    "size_6x60_N_pos3pct_cutoff300"
   ]
 }

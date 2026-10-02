@@ -108,7 +108,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
   - **Track B**：$\mathcal{S}_\delta(\epsilon)$ 定为固定掺杂物种的离散 strain--substitution interaction；mixed derivative 仅在局域组分坐标 $x$ 下表述。rigid $|\mathcal{S}|$ 从普适上界降为相对本文 fixed-cell 全弛豫协议的 upper-end protocol estimate。ranking / $20$ pm threshold 降级：screening-scale 措辞；三取代审计中显著偏离在 $+30$ pm（P）；headline $n{=}4$ $|\mathcal{S}|=23.7\pm 2$ meV/atom（审计跨度 $23.7$--$31.9$）。DAS + README 对齐 `https://github.com/chenxingqiang/sci-simukit` 分支 `cursor/prb-manuscript-rigor-audit-1d10`（Loop R501）；无 DOI
   - **创新审计**：离散记号 = **A**（措辞，无新 `.out`）；protocol wording = **A**；ranking/$20$ pm = **A**（措辞）；Mayer/SCAN/dense-$k$ = **C** backlog
   - **paper_gap**：Mayer/Bader；SCAN + dense-$k$ 仍不进主结论
-  - **Git**：`commit:`（本轮提交后回填）
+  - **Git**：`commit: 374a2c5` — `loop R501: discrete S_delta, protocol bound, ranking/20pm, DAS+README`；（**pushed: (local only)**）
   - **下一轮**：回投包装已收口；不启 CP2K
 - **Loop R498（2026-08-18，三轨 · III Literature）**：
   - **Track A**：canonical Exp10 **41/41**、Exp8 **6/6**、Exp9 GEO **12/12** + vertical **8/8**；Cloud VM 误报 Exp10 0/42 / Exp8 0/6 / vertical 0/8；**NO_CP2K** — **不干预**、**不启** cutoff300

@@ -14,7 +14,7 @@ Context.
 Strain and heteroatom substitution are standard levers in materials design, yet high-throughput pipelines almost always superpose separate strain-only and doping-only scans. That additivity assumption is rarely tested for discrete covalent pi-networks---fullerene frameworks, COF-like sheets, and molecular crystals---where sequential screens can mis-rank dopants or strain set-points. Quasi-hexagonal (qHP) C60 graphullerene provides a rigorous model platform with experimentally accessible synthesis and well-defined pi connectivity.
 
 Key findings.
-We introduce a synergy order parameter S that quantifies the total-energy cross term when biaxial strain and B/N/P substitution are applied jointly. In periodic qHP cells, |S| reaches 31.9 meV/atom for P at +3% tension---enough to reorder sequential-screening margins---yet does not track the linear strain coefficient alpha (opposite signs for N vs. B; smallest |alpha| but largest |S| for P). Three mechanistic classes (electronic B/N, structural P, finite-size N) support a general correction principle for strain-doping co-design beyond a single material. IPR/J transport-adjacent checks are confined to Supplemental Material.
+We introduce a synergy order parameter S_delta(epsilon) that quantifies the discrete strain-substitution interaction at fixed dopant species when biaxial strain and B, N, or P substitution are evaluated jointly. B, N, and P are discrete labels, not points on one continuous derivative coordinate. In periodic qHP cells the representative value is the n=4 phosphorus point, |S|=23.7+/-2 meV/atom at +3% tension (about twelve times the reporting floor). Across the audited sizes the phosphorus cross term spans 23.7-31.9 meV/atom. That scale can alter energy differences relevant to energetic screening when candidate separations are comparable to |S|; it does not by itself demonstrate a ranking reversal. The cross term does not track the linear strain coefficient alpha (opposite signs for N vs. B; smallest |alpha| but largest |S| for P). In the three-substituent audit the clearly large deviation occurs for the largest covalent-radius mismatch (+30 pm, P), not at a fitted 20 pm threshold. The misfit picture is consistent with the data; it does not uniquely partition elastic and electronic energy. IPR/J transport-adjacent checks are confined to Supplemental Material.
 
 Audience and fit.
 The Letter addresses a cross-cutting assumption in condensed-matter and materials physics, not a niche graphullerene parameter study. The correction principle is posed for discrete pi-networks generally; qHP C60 supplies converged model evidence. We believe the result merits PRL's broad readership rather than a specialty materials journal.
@@ -33,7 +33,7 @@ Supplemental Material.
 A Supplemental Material PDF provides energy tables (including ionic-relaxation benchmarks, Table III), the DFT campaign ledger, pi-DOS panels, Marcus schematics (lambda partially pending), and the J factorial. All core non-additivity conclusions are stated in the main Letter.
 
 Data availability.
-Converged CP2K inputs/outputs and analysis JSON are archived in a public GitHub repository (URL in the Data Availability statement); a tagged release will be issued upon acceptance.
+Converged CP2K inputs/outputs and analysis JSON are archived at https://github.com/chenxingqiang/sci-simukit (branch cursor/prb-manuscript-rigor-audit-1d10, Loop R501). No DOI is assigned.
 
 Suggested referees (optional — edit before submission).
 [Referee 1: strain engineering / 2D molecular networks]

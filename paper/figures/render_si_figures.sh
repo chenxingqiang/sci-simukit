@@ -2,7 +2,7 @@
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
 cd "$ROOT"
-PY="${PYTHON:-/opt/homebrew/Caskroom/miniconda/base/bin/python3}"
+PY="${PYTHON:-python3}"
 "$PY" paper/figures/fig_si_s1_pdos_exp7.py
 "$PY" paper/figures/fig_si_s2_marcus.py
 "$PY" paper/figures/fig_si_s3_j_exp4.py

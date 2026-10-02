@@ -8,8 +8,8 @@ At periodic $n{=}4$, two independent site maps repeat the four-corner Eq.~\eqref
 
 \subsubsection{Ionic-relaxation benchmark}
 \label{sec:methods_relax}
-The tetramer pristine/$P$ four-corner BFGS grid does \emph{not} affine-scale molecular coordinates (only the vacuum box changes), so Table~\ref{tab:relax} is an invalid cluster/vacuum-box diagnostic, not a strain-physics retention ratio.
-The valid ionic-relaxation test is the periodic $n{=}1$ $P$ four-corner fixed-cell BFGS protocol (force thresholds $4.5\times10^{-4}$ and $3.0\times10^{-4}$~Ha/bohr, ${\sim}0.023$ and ${\sim}0.015$~eV/\AA; displacement thresholds $3.0\times10^{-3}$ and $1.5\times10^{-3}$~bohr), reported in Fig.~\ref{fig:synergy}(b).
+Two boundary conditions are kept separate. The periodic $n{=}1$ $P$ four-corner fixed-cell BFGS protocol (force thresholds $4.5\times10^{-4}$ and $3.0\times10^{-4}$~Ha/bohr, ${\sim}0.023$ and ${\sim}0.015$~eV/\AA; displacement thresholds $3.0\times10^{-3}$ and $1.5\times10^{-3}$~bohr) is the constrained diagnostic reported in Fig.~\ref{fig:synergy}(b): ionic relaxation suppresses the cross term to the reporting floor. Rigid $|\mathcal{S}|$ on this path is an upper-end protocol estimate relative to that fully relaxed fixed-cell protocol, not a universal bound on every substrate, adhesion, or load path.
+The tetramer pristine/$P$ four-corner BFGS grid does \emph{not} affine-scale molecular coordinates (only the vacuum box changes). Table~\ref{tab:relax} is therefore a distinct boundary condition, not a retention ratio for the periodic series: the cross term reverses sign and increases in magnitude ($+1.19\to-2.28$~meV/atom).
 These thresholds are tighter than typical 0.02~eV/\AA\ defaults because relaxation can drive $|\mathcal{S}|$ toward zero and must be resolved at sub-meV/atom scale.
 
 \subsubsection{Hirshfeld population along strain}

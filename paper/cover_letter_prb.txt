@@ -16,26 +16,44 @@ descriptor. Under mechanically constrained joint load on quasi-hexagonal C60
 graphullerene, additive strain--dopant energetic screening fails: totals on the
 joint E(epsilon, delta) landscape need not equal the sum of separate strain-only
 and substitution-only increments. The bilinear cross term in a Taylor expansion
-of total energy can reach meV-per-atom magnitudes large enough to change
-high-throughput stability rankings for size-mismatched phosphorus, while linear
-strain coefficients alpha do not reliably predict that omitted term. The matched
-four-corner difference S is a finite-difference estimator of the mixed
-second-order coupling---a diagnostic protocol, not the physical discovery.
-Ionic relaxation nearly extinguishes |S|, indicating that the audited coupling
-originates predominantly from stored elastic work under constrained load rather
-than from an intrinsic electronic interaction term.
+of total energy can reach meV-per-atom magnitudes large enough to alter
+energy differences at the scale relevant to energetic screening for
+size-mismatched phosphorus, and large enough to invalidate an additive ranking
+when candidate separations are comparable to |S|. Linear strain coefficients
+alpha do not reliably predict that omitted term. The matched four-corner
+difference S_delta(epsilon) is the discrete strain--substitution interaction at
+fixed dopant species delta. A local composition coordinate x, held at that
+species, is the only place a mixed derivative partial^2 e / partial epsilon
+partial x is identified with the finite difference. The quantity is a
+constrained fixed-coordinate diagnostic: an upper-end protocol estimate
+relative to the fully relaxed fixed-cell protocol studied here, not a universal
+bound on every constraint and not the physical discovery. Two boundary conditions are kept separate. On periodic n=1 P at
++3%, ionic relaxation suppresses the constrained cross term to the reporting
+floor. The tetramer P benchmark is a distinct boundary condition (vacuum box;
+coordinates not affinely strained): the cross term changes from +1.19 to
+-2.28 meV/atom (sign reversal and larger magnitude). It is not a retention
+ratio for the periodic grid, and the data do not uniquely partition elastic
+and electronic energy.
 
-All former supplemental tables and figures are incorporated in the main text;
-no separate Supplemental Material file accompanies this revision.
+A separate Supplemental Material file (supplementary_figures.pdf) accompanies
+this revision and is cited from the main text. It contains the finite-difference
+derivation, literature-positioning and descriptor tables, the archived
+legacy-PBE tetramer baseline and calculation inventory, tetramer pi-DOS and
+periodic VBM/CBM isosurfaces, n>=6 coupling-energy rows, four-corner total
+energies, Marcus reorganization energies, and the hopping-integral discussion.
 
 Summary of revisions (Major comments):
 
-(1) Rigid-strain protocol — Rigid-cell alpha and S are upper bounds for
-    mechanically constrained loading; ionic-relaxation tetramer benchmarks
-    (Table III, 4/4 corners) show sign reversal and orders-of-magnitude
-    suppression upon stress release. The main text separates periodic rigid
-    S(n) from tetramer relaxed cross terms and states that E_sub is not a
-    thermodynamic formation enthalpy.
+(1) Constrained-load protocol — Fixed-coordinate alpha and S are a
+    constrained diagnostic for epitaxial clamp, strong adhesion, or ultrafast
+    load. Rigid |S| is an upper-end protocol estimate relative to the fully
+    relaxed fixed-cell protocol studied here, not a universal bound on every
+    substrate or load path. Periodic
+    n=1 P at +3% shows ionic relaxation suppressing the cross term to the
+    reporting floor. The tetramer P corners (Table relax) are a distinct
+    boundary condition: +1.19 to -2.28 meV/atom (sign reversal and larger
+    magnitude), not a retention ratio and not an orders-of-magnitude drop.
+    E_sub is not a thermodynamic formation enthalpy.
 
 (2) Alternate dopant placement — Table IV documents reference and alternate
     seed-137 maps (18/18 PBE+D3 rigid ENERGY tasks on the tetramer grid;
@@ -43,10 +61,12 @@ Summary of revisions (Major comments):
     magnitudes remain configuration-specific; ranking trends are reported
     with placement caveats.
 
-(3) Mechanistic depth — Table V and Discussion IV.B give a primary /
-    secondary / tertiary hierarchy for phosphorus (geometric misfit strain,
-    electronic redistribution, pi-DOS morphology). Electronic structure
-    responds to the coupling rather than controlling it.
+(3) Mechanistic depth — Table V and Discussion report observables
+    (covalent-radius mismatch, mean cage distortion, Hirshfeld charge, and
+    pi-DOS) that are consistent with a pre-strain, geometry-mediated
+    contribution for phosphorus. The data do not uniquely partition S into
+    elastic and electronic energetic components. Mayer bond orders and Bader
+    charges were not computed.
 
 (4) Argumentation — The S--alpha comparison is qualitative only
     (concentration and boundary mismatch). Stability language is scoped to
@@ -60,10 +80,18 @@ Summary of revisions (Major comments):
 
 Minor comments: Removed internal repository paths from the main text (Data
 Availability only); APS journal abbreviations for cited references; figure
-captions aligned with the physics-first narrative (Fig. 2 workflow panel).
+captions aligned with the locked scheme (cluster-map tetramer Fig. 1).
+On Fig. 2, filled markers and connecting lines are the matched 400 Ry core
+(n=1, 2, 4). Open markers and pink columns mark n=6 and n=8 at 350 Ry as
+reference only; they are not used for mechanistic or asymptotic inference.
+The S_infinity + A/n guide is removed from the main figure.
 
-Data availability: converged inputs/outputs and audit tables at
-https://github.com/chenxingqiang/graphullerene-strain-engineering
+Data availability: computational inputs, outputs, four-corner energy tables,
+and reproduction materials are in the repository that contains this
+manuscript:
+https://github.com/chenxingqiang/sci-simukit
+branch cursor/prb-manuscript-rigor-audit-1d10 (Loop R501). No separate DOI is
+claimed for this resubmission.
 
 Marcus lambda (Fig. 3): eight vertical single-points at the neutral geometry
 are converged; B electron-channel lambda- is negative and excluded

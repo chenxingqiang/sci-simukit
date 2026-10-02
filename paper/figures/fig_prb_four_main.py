@@ -406,12 +406,37 @@ def build_fig2() -> tuple[Path, Path]:
         int(k): float(v["systematic_uncertainty_meV_per_atom"])
         for k, v in ref_audit["per_n"].items()
     }
+    core_n = {1, 2, 4}
+    ref_n = {6, 8}
     for dop in dopants:
         rows = synergy_rows(audit, dop)
         n_all = np.array([r[0] for r in rows], dtype=float)
         s_all = np.array([r[1] for r in rows])
+        core = np.array([int(n) in core_n for n in n_all])
+        ref = np.array([int(n) in ref_n for n in n_all])
         yerr = np.array([SIGMA_S_MEV + ref_sys.get(int(n), 0.0) for n in n_all])
-        plot_trajectory(ax_a, n_all, s_all, DOPANT_COLORS[dop], label=dop, fill_mode="band", fill=True)
+        # Matched 400 Ry core only: filled markers and a connecting line.
+        plot_trajectory(
+            ax_a,
+            n_all[core],
+            s_all[core],
+            DOPANT_COLORS[dop],
+            label=dop,
+            fill_mode="band",
+            fill=True,
+        )
+        # 350 Ry n=6,8: open markers, no connecting line, not used for inference.
+        ax_a.plot(
+            n_all[ref],
+            s_all[ref],
+            linestyle="None",
+            marker="o",
+            markersize=5.5,
+            markerfacecolor="none",
+            markeredgecolor=DOPANT_COLORS[dop],
+            markeredgewidth=1.15,
+            zorder=5,
+        )
         ax_a.errorbar(
             n_all,
             s_all,
@@ -424,10 +449,9 @@ def build_fig2() -> tuple[Path, Path]:
             alpha=0.75,
             zorder=4,
         )
-    # Flag the two rows whose pristine reference is off the plateau.
-    for n, meta in ref_audit["per_n"].items():
-        if meta["outlier"]:
-            ax_a.axvspan(int(n) - 0.28, int(n) + 0.28, color="#F2C9C9", alpha=0.35, lw=0, zorder=0)
+    # Pink only the 350 Ry reference-only sizes, not the 400 Ry n=2 core.
+    for n in sorted(ref_n):
+        ax_a.axvspan(int(n) - 0.28, int(n) + 0.28, color="#F2C9C9", alpha=0.35, lw=0, zorder=0)
     ax_a.set_xticks(ns)
     ax_a.set_xlim(0.55, 8.70)
     ax_a.set_ylim(-38.5, 13.0)
@@ -436,7 +460,7 @@ def build_fig2() -> tuple[Path, Path]:
     ax_a.tick_params(axis="x", pad=2)
     style_axes(ax_a)
     ax_a.set_title(
-        r"larger cell $\neq$ smaller $|\mathcal{S}|$",
+        r"400 Ry core ($n{=}1,2,4$); open: 350 Ry",
         loc="left",
         fontsize=7.0,
         pad=2.0,
@@ -454,9 +478,9 @@ def build_fig2() -> tuple[Path, Path]:
         frameon=False,
     )
     ax_a.annotate(
-        r"P stays $\sim\!-30$",
+        r"P core $\sim\!-24$ to $-32$",
         xy=(4.0, -23.71),
-        xytext=(3.20, -16.0),
+        xytext=(2.55, -14.5),
         textcoords="data",
         fontsize=5.7,
         color=DOPANT_COLORS["P"],
@@ -466,9 +490,9 @@ def build_fig2() -> tuple[Path, Path]:
         zorder=6,
     )
     ax_a.annotate(
-        "reference-limited",
+        "350 Ry\nreference-only",
         xy=(8.0, -2.30),
-        xytext=(6.55, 8.4),
+        xytext=(6.35, 8.4),
         textcoords="data",
         fontsize=5.7,
         color=NATURE_GRAY,
@@ -480,7 +504,7 @@ def build_fig2() -> tuple[Path, Path]:
     ax_a.text(
         0.02,
         0.03,
-        "gray: $\\pm 2$ meV floor   pink: reference-limited $n$",
+        "gray: $\\pm 2$ meV floor   pink: 350 Ry reference-only",
         transform=ax_a.transAxes,
         ha="left",
         va="bottom",
@@ -509,7 +533,7 @@ def build_fig2() -> tuple[Path, Path]:
     ax_b.set_ylabel(r"$\mathcal{S}$ (meV/atom)")
     style_axes(ax_b)
     ax_b.annotate(
-        "upper-bound\nprotocol",
+        "constrained\ndiagnostic",
         xy=(0, s_rig),
         xytext=(8, -14),
         textcoords="offset points",

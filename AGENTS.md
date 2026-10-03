@@ -27,15 +27,545 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Periodic relax n=1 P** | **4/4** ✅ |
 | **Population B/N/P** | **18/18** ✅ |
 | **reference_pbed3** | **24/24** ✅ |
-| **运行中** | `size_6x60_N_pos3pct_cutoff300`（R417 启动，300 Ry 单点，cutoff 三点曲线） |
-| **最新 Loop** | **R417** |
-| **下一 B 任务** | Mayer/Bader backlog；SCAN + dense-$k$ rows（Table~sigma_S） |
-| **主张-证据** | 主文 α/S = **PBE+D3 only**（Table IV + periodic）；legacy Table I = **SI 归档** |
-| **Loop C** | C-M1 **closed** ✅；C-M2 **closed** ✅；C-M3 **closed**（text branch：Limitations + Table~V；Mayer/Bader = C）✅；C-m3 去重 **closed** ✅ |
+| **运行中** | NO_CP2K（Cloud Agent VM） |
+| **最新 Loop** | **R501** |
+| **下一 B 任务** | Mayer/Bader、SCAN/r²SCAN、dense-$k$ 仍为 Limitations（本轮不新算） |
+| **主张-证据** | 主文 $\mathcal{S}_\delta$ = 固定物种离散交叉项；headline $n{=}4$ $23.7\pm 2$；rigid $|\mathcal{S}|$ = protocol estimate |
+| **Loop C** | C-M1 **closed** ✅；C-M2 **closed** ✅；C-M3 **closed**（text）；C-m1–m5 **closed** ✅ |
 | **SDC** | **15** synergy 点 |
 | **旗杆** | **PRB Regular Article** major revision |
 
----
+- **Loop R482（2026-08-18，三轨 · III Literature）**：
+ - **Track A**：`NO_CP2K`；canonical Exp10 **41/41**、Exp8 **6/6**、Exp9 GEO **12/12** + vertical **8/8** — **不干预**、不启 job
+ - **Track B（III Literature）**：ledger-only；主文已 cite Khan/Qiu/Peng/Capobianco/Tromer/Alihosseini/LopezAlcalay/Lv/ShaikhPeng 等；WebSearch `graphullerene strain doping 2025 2026 qHP C60` 命中均已入 bib 或 off-topic；**无未覆盖的 2025–2026 四角 $\mathcal{S}$ 文**；不新增 bib、不改 tex
+ - **Track C**：C-m3 `orthogonal|fourfold|at revision|7/8` = **0** hits（`paper/*.tex`）
+ - **创新审计**：Literature 覆盖 = **A**（已有 cite + SI S-tab:lit_positioning）；新四角 $\mathcal{S}$ 文 = **无**；tex 未改 = **A**
+ - **paper_gap**：R483 IV Methods（cutoff 分层 / Hirshfeld / Table II 契约）；SCAN/Mayer = **C** backlog
+ - **prl_gate**：D1 narrative=Y；abstract 无 `\cite`；relax=done Table III
+ - **Git**：`commit: 998143f` — `loop R482: Literature ledger; no tex rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **下一轮**：R483 IV Methods（`483 % 8 = 3`）
+- **Loop R483（2026-08-18，三轨 · IV Methods）**：
+ - **Track A**：`NO_CP2K`；canonical Exp10 **41/41**、Exp8 **6/6**、Exp9 GEO **12/12** + vertical **8/8** — **不干预**、不启 job
+ - **Track B（IV Methods）**：ledger-only；PBE+D3 / cutoff 400 Ry ($n{\leq}4$) / 350 Ry ($n{\geq}6$) / Hirshfeld 与 inp 一致；无 rVV10/Koopmans 生产声称 — **不改 tex**
+ - **Track C（C-m3）**：`orthogonal|fourfold|at revision|7/8` 于 `paper/*.tex` = **0** hits — 保持 closed
+ - **创新审计**：Methods–inp 契约 = **A**；SCAN/Mayer = **C** backlog
+ - **paper_gap**：R484 VI Results
+ - **Git**：`commit: 1f916f7` — `loop R483: Methods ledger; no tex rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **下一轮**：R484 VI Results（`484 % 8 = 4`）
+
+- **Loop R484（2026-08-18，三轨 · VI Results）**：
+ - **Track A**：`NO_CP2K`；canonical Exp10 **41/41**、Exp8 **6/6**、Exp9 GEO **12/12** + vertical **8/8** — **不启** job。Cloud VM `exp10_status_line.sh` 可报 `0/42` = **误报**。
+ - **Track B（VI Results）**：无新 `.out` — **不改** Results 定量。主张-证据：主文 α/S = **PBE+D3 only**（Table IV + periodic）；legacy Table I = **SI 归档**。无 tex 改写。
+ - **Track C（C-m3）**：`orthogonal|fourfold|at revision|7/8` 于 `paper/*.tex` = **0** hits。
+ - **创新审计**：Results 定量边界 = **A**（无新数）；SCAN/Mayer = **C** backlog。
+ - **paper_gap**：R485 VII Discussion（`485 % 8 = 5`）
+ - **Git**：`commit: 10d693d` — `loop R484: Results ledger; no tex rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **下一轮**：R485 VII Discussion（`485 % 8 = 5`）
+
+- **Loop R485（2026-08-18，三轨 · VII Discussion）**：
+ - **Track A**：`NO_CP2K`；canonical Exp10 **41/41**、Exp8 **6/6**、Exp9 GEO **12/12** + vertical **8/8** — **不启** job。Cloud VM `exp10_status_line.sh` 可报 `0/42` = **误报**。
+ - **Track B（VII Discussion）**：无新 `.out` — **不改** Discussion 定量。主张-证据：主文 α/S = **PBE+D3 only**（Table IV + periodic）；legacy Table I = **SI 归档**。无 tex 改写。
+ - **Track C（C-m3）**：`orthogonal|fourfold|at revision|7/8` 于 `paper/*.tex` = **0** hits。
+ - **创新审计**：Discussion 定量边界 = **A**（无新数）；SCAN/Mayer = **C** backlog。
+ - **paper_gap**：R486 VIII Conclusion（`486 % 8 = 6`）
+ - **Git**：`commit: 5bde17a` — `loop R485: Discussion ledger; no tex rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **下一轮**：R486 VIII Conclusion（`486 % 8 = 6`）
+
+- **Loop R486（2026-08-18，三轨 · VIII Conclusion）**：
+ - **Track A**：`NO_CP2K`；canonical Exp10 **41/41**、Exp8 **6/6**、Exp9 GEO **12/12** + vertical **8/8** — **不启** job。Cloud VM `exp10_status_line.sh` 可报 `0/42` = **误报**。
+ - **Track B（VIII Conclusion）**：无新 `.out` — **不改** Conclusion 定量。Intro–Conclusion 闭环保持（三问 + upper-bound）。无 tex 改写。
+ - **Track C（C-m3）**：`orthogonal|fourfold|at revision|7/8` 于 `paper/*.tex` = **0** hits。
+ - **创新审计**：Intro–Conclusion 闭环 = **A**（无新数）；SCAN/Mayer = **C** backlog。
+ - **paper_gap**：R487 横切（`487 % 8 = 7`）
+ - **Git**：`commit: 342c351` — `loop R486: Conclusion ledger; no tex rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **下一轮**：R487 横切（`487 % 8 = 7`）
+
+- **Loop R487（2026-08-18，三轨 · 横切）**：
+ - **Track A**：`NO_CP2K`；canonical Exp10 **41/41**、Exp8 **6/6**、Exp9 GEO **12/12** + vertical **8/8** — **不启** job。Cloud VM `exp10_status_line.sh` 可报 `0/42` = **误报**。
+ - **Track B（横切）**：C-m3 `orthogonal|fourfold|at revision|7/8` 于 `paper/*.tex` = **0** hits；P0 `rVV10|Koopmans|cm^2|775|300%|8.75` = **0** hits。无 tex 改写。
+ - **Track C（C-m3）**：去重 **closed** ✅。
+ - **创新审计**：横切 grep = **A**；SCAN/Mayer = **C** backlog。
+ - **paper_gap**：R488 I Abstract（`488 % 8 = 0`）
+ - **Git**：`commit: 82e86be` — `loop R487: cross-cut grep ledger; no tex rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+- **Loop R499（2026-08-18，三轨 · IV Methods）**：
+  - **Track A**：Exp10 **41/41**、Exp8 **6/6**、Exp9 GEO **12/12** + vertical **8/8**（canonical；Cloud VM `exp10_status_line` **0/42** = false positive）。`NO_CP2K` — **不启动** cutoff300
+  - **Track B（IV Methods）**：主文 Methods 已与生产 inp 对齐（PBE+D3 BJ；\(n{\leq}4\) 400 Ry / \(n{\geq}6\) 350 Ry；Hirshfeld；主文 \(\alpha\)/\(\mathcal{S}\) = PBE+D3 only）。**no tex rewrite**
+  - **Loop C**：C-m3 **closed**（`C_CLEAN`）；Mayer/Bader = **C**
+  - **创新审计**：Methods–inp = **A**；Mayer = **C**
+  - **paper_gap**：Mayer/Bader；SCAN + dense-$k$；cutoff300 未入稿
+  - **四轮自问**：文稿 / Methods–inp 已对齐 / 诚实化台账 / 高于空转改稿
+  - **Git**：`commit: a0fb4c5` — `loop R499: Methods ledger; no tex rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+  - **下一轮**：R500 VI Results（`500 % 8 = 4`）；**不启动** CP2K
+- **Loop R500（2026-09-23，三轨 · merge origin/main）**：
+  - **Track A**：`NO_CP2K`；canonical Exp10 **41/41**。合并保留 pristine \(2\times\mathrm{C}_{60}\) `EPS_SCF` \(1.0\times10^{-5}\)（拒 origin/main 的 \(10^{-6}\)）。**不启** job
+  - **Track B（VI Results）**：合并保留 Fig.~1 archived cluster-map（真空盒标签；panel d 非单层力学 \(\alpha\)）与 Fig.~2 \(n{=}2,8\) N 粉色 reference-limited 柱。拒 origin/main `fig_prb_four_main.py` 断轴 signed HOMO–LUMO gap。摘要与 Results L151/L160/L167 **未改**。非冲突 SI 渲染与 Exp9 `vertical_pending` 过滤取自 origin/main
+  - **创新审计**：cluster-map Fig.~1 = **A**；\(n{=}8\) N reference-limited = **A**；signed-gap 断轴 panel = **rejected**
+  - **paper_gap**：Mayer/Bader = **C**；SCAN + dense-\(k\)
+  - **Git**：merge commit（本条）；hash 见下一笔 hash-sync
+  - **下一轮**：R501 VII Discussion（`501 % 8 = 5`）；**不启** CP2K
+- **Loop R501（2026-10-02，三轨 · VII Discussion + 投稿包）**：
+  - **Track A**：`NO_CP2K`；canonical Exp10 **41/41**、Exp8 **6/6**、Exp9 GEO **12/12** + vertical **8/8** — **不干预**、不启 job
+  - **Track B**：$\mathcal{S}_\delta(\epsilon)$ 定为固定掺杂物种的离散 strain--substitution interaction；mixed derivative 仅在局域组分坐标 $x$ 下表述。rigid $|\mathcal{S}|$ 从普适上界降为相对本文 fixed-cell 全弛豫协议的 upper-end protocol estimate。ranking / $20$ pm threshold 降级：screening-scale 措辞；三取代审计中显著偏离在 $+30$ pm（P）；headline $n{=}4$ $|\mathcal{S}|=23.7\pm 2$ meV/atom（审计跨度 $23.7$--$31.9$）。DAS + README 对齐 `https://github.com/chenxingqiang/sci-simukit` 分支 `cursor/prb-manuscript-rigor-audit-1d10`（Loop R501）；无 DOI
+  - **创新审计**：离散记号 = **A**（措辞，无新 `.out`）；protocol wording = **A**；ranking/$20$ pm = **A**（措辞）；Mayer/SCAN/dense-$k$ = **C** backlog
+  - **paper_gap**：Mayer/Bader；SCAN + dense-$k$ 仍不进主结论
+  - **Git**：`commit: 374a2c5` — `loop R501: discrete S_delta, protocol bound, ranking/20pm, DAS+README`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**；hash-sync `e75e271`）
+  - **下一轮**：回投包装已收口；不启 CP2K
+- **Loop R498（2026-08-18，三轨 · III Literature）**：
+  - **Track A**：canonical Exp10 **41/41**、Exp8 **6/6**、Exp9 GEO **12/12** + vertical **8/8**；Cloud VM 误报 Exp10 0/42 / Exp8 0/6 / vertical 0/8；**NO_CP2K** — **不干预**、**不启** cutoff300
+  - **Track B（III Literature）**：query `(graphullerene OR "fullerene network" OR qHP C60) strain doping polaron 2025 2026` → Capobianco *Nano Lett.* 4c01695 / Li thermoelectric 5.0211458 / ShaikhPeng arXiv:2504.02037 / Xu C70 / Nie C20 / Khan BN-doping chemrxiv **均已在 bib**（`Capobianco2024electron`、`Li2024strain`、`ShaikhPeng2025thermal`、`Xu2025C70network`、`Nie2026strainC20`、`Khan2025tuning`）；BN 共掺 vs 本文 B/N/P 置换 $\mathcal{S}$ **不对等**。**bib +0**；**no tex rewrite**
+  - **Track C**：主文/SI grep `7/8|at revision|referee|experiments/` = **0**（C-m3 **closed**）
+  - **创新审计**：文献定位 = **B+**（已有 bib，无新 unique prior art）；Mayer = **C**
+  - **paper_gap**：R499 IV Methods（`499 % 8 = 3`）
+  - **Git**：`commit: 4281732` --- `loop R498: Literature ledger; no tex rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+  - **下一轮**：R499 IV Methods
+- **Loop R497（2026-08-18，三轨 · II Intro）**：
+ - **Track A**：Exp10 **41/41**、Exp8 **6/6**、Exp9 GEO **12/12** + vertical **8/8**；Cloud VM 误报 Exp10 0/42、Exp8 0/6、vertical 0/8；**NO_CP2K** — **不干预**、**不启** cutoff300
+ - **Track B（II Intro）**：In the Introduction phase, I am recording an evidence ledger. Intro 扫描 `covalent molecular`/`qHP`/`graphullerene` = True；`fifteen periodic`/`non-additive`/`PBE+D3` = False；`rVV10`/`Koopmans`/`orthogonal`/`at revision`/`7/8` = False；`\cite` = True。开篇 substitutional doping + mechanical strain + covalent molecular networks（Katiyar cite）。无新 `.out` → **no tex rewrite**
+ - **创新审计**：Intro 契约 = **A**；Mayer = **C**
+ - **paper_gap**：Mayer/Bader；SCAN + dense-$k$；cutoff300 未收敛 → 不入稿
+ - **loop_c：** C-M1/C-M2/C-M3 text closed；Mayer = C
+ - **prl_gate：** D2 closed Table III；narrative=Y；relax=done
+ - **Git**：`commit: df32015` — `loop R497: Intro ledger; no tex rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **下一轮**：R498 III Literature（`498 % 8 = 2`）；**不启** CP2K
+- **Loop R496（2026-08-18，三轨 · I Abstract）**：
+ - **Track A**：Exp10 **41/41**、Exp8 **6/6**、Exp9 GEO **12/12** + vertical **8/8**；`exp10_status_line` Cloud VM `0/42` 误报 — **不覆盖** canonical；**NO_CP2K**；**不启** job
+ - **Track B（I Abstract）**：Phase Declaration — *In the Abstract phase, I recorded an evidence ledger.* Abstract `fifteen periodic` **True**；`abstract_has_cite` **False**；`abstract_chars` **1627**（PRB 无 600 字符硬顶，信息性）；无 `rVV10`/`Koopmans`/`orthogonal`/`at revision`/`7/8`；开篇 mechanically constrained loading + bilinear strain–composition + PBE+D3 four-corner；P $E_f$ JSON **-15.8** eV/`n` **12** 未写入摘要定量；Exp10 inp `XC_FUNCTIONAL PBE`；**无新 `.out` → no tex rewrite**
+ - **Track C（C-m3）**：Abstract 无修回进度句
+ - **创新审计**：Abstract 契约 = **A**；PBE+D3 Methods–inp = **A**；Mayer/Bader = **C**
+ - **paper_gap**：Mayer/Bader；SCAN + dense-$k$；cutoff300 未入稿
+ - **prl_gate**：D6 Abstract 无 `\cite`；D2 upper-bound 在 Abstract；relax=done
+ - **loop_c：** C-m3 Abstract 边界 **closed**；C-M3 Mayer = **C**
+ - **Git**：`commit: 6b9ffe7` — `loop R496: Abstract ledger; no tex rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **下一轮**：R497 II Intro（`497 % 8 = 1`）；**不启** CP2K
+- **Loop R495（2026-08-18，三轨 · 横切）**：
+ - **Track A**：`NO_CP2K`；canonical Exp10 **41/41**、Exp8 **6/6**、Exp9 GEO **12/12** + vertical **8/8**、cutoff300 still **pending** — **不启** job。
+ - **Track B（横切）**：In the cross-cut evidence-ledger phase, I recorded a grep audit. No new `.out` → **no tex rewrite**. Main tex: 0 hits for orthogonal|fourfold|at revision|7/8|rVV10|Koopmans|cm^2|775|300%|8.75; SI theory keeps superseded 8.75× / pending 775%/300% / rVV10–Koopmans outlook (not main-text claims); no repo paths in main tex.
+ - **Track C（C-m3）**：去重仍 **closed** ✅。
+ - **创新审计**：横切 grep = **A**；SCAN/Mayer = **C** backlog。
+ - **paper_gap**：R496 I Abstract（`496 % 8 = 0`）
+ - **Git**：`commit: 8cbfa4e` — `loop R495: cross-cut grep ledger; no tex rewrite`
+ - **下一轮**：R496 I Abstract
+- **Loop R494（2026-08-18，三轨 · VIII Conclusion）**：
+ - **Track A**：`NO_CP2K`；canonical Exp10 **41/41**、Exp8 **6/6**、Exp9 GEO **12/12** + vertical **8/8**、cutoff300 still **pending** — **不启** job。
+ - **Track B（VIII Conclusion）**：In the Conclusion phase, I recorded a Conclusion-contract ledger. No new `.out` → **no tex rewrite**. L277--L278 keep additive-screening failure **selective** (P |S|=31.9±2 meV/atom at n=1; η≈8% at n=4); L280--L281 keep S as mixed derivative, **not** a new thermodynamic observable; L273 SCAN/Mayer follow-up remains C/open.
+ - **Track C（C-m3）**：去重仍 **closed** ✅。
+ - **创新审计**：Conclusion 契约 = **A**（无新定量）；SCAN/Mayer = **C** backlog。
+ - **paper_gap**：R495 横切（`495 % 8 = 7`）
+ - **Git**：`commit: b9ee186` — `loop R494: Conclusion-contract ledger; no tex rewrite`
+ - **下一轮**：R495 横切
+
+- **Loop R493（2026-08-18，三轨 · VII Discussion）**：
+  - **Track A**：`NO_CP2K`；canonical Exp10 **41/41**、Exp8 **6/6**、Exp9 GEO **12/12** + vertical **8/8**、cutoff300 still **pending** — **不启** job。
+  - **Track B（VII Discussion）**：In the Discussion phase, I recorded a Discussion-contract ledger. No new `.out` → **no tex rewrite**. L121/L179 keep rigid $|\mathcal{S}|$ as an **upper bound**; L221 Hirshfeld $\Delta q/q$ does **not** rank $|\mathcal{S}|$; L257/L261/L263 SCAN and Mayer/Bader remain C/open.
+  - **Track C（C-m3）**：去重仍 **closed** ✅。
+  - **创新审计**：Discussion 契约 = **A**（无新定量）；SCAN/Mayer = **C** backlog。
+  - **paper_gap**：R494 VIII Conclusion（`494 % 8 = 6`）
+  - **Git**：`commit: 34527e8` — `loop R493: Discussion-contract ledger; no tex rewrite`
+  - **下一轮**：R494 VIII Conclusion
+
+- **Loop R492（2026-08-18，三轨 · VI Results）**：
+ - **Track A**：`NO_CP2K`；canonical Exp10 **41/41**、Exp8 **6/6**、Exp9 GEO **12/12** + vertical **8/8** — **不启** job。Cloud VM 误报勿覆盖 canonical。
+ - **Track B（VI Results）**：In the Results phase, I recorded a Results-contract ledger. No new `.out` → **no tex rewrite**. No C-level transport/ML; main-text α/S remains PBE+D3-only. Results states this is not a mobility/gap map.
+ - **Track C（C-m3）**：去重仍 **closed** ✅。
+ - **创新审计**：Results 契约 = **A**（无新定量）；SCAN/Mayer = **C** backlog。
+ - **paper_gap**：R493 VII Discussion（`493 % 8 = 5`）
+ - **Git**：`commit: e45c130` — `loop R492: Results-contract ledger; no tex rewrite`
+ - **下一轮**：R493 VII Discussion（`493 % 8 = 5`）
+
+- **Loop R491（2026-08-18，三轨 · IV Methods）**：
+  - **Track A**：`NO_CP2K`；canonical Exp10 **41/41**、Exp8 **6/6**、Exp9 GEO **12/12** + vertical **8/8** — **不启** job。Cloud VM `exp10_status_line.sh` 可报 `0/42` = **误报**。
+  - **Track B（IV Methods）**：In the Methodology phase, I recorded a Methods–inp contract ledger. Main tex has no rVV10/Koopmans; Exp10 `size_1x60_*.inp` uses `XC_FUNCTIONAL PBE` + `VDW_POTENTIAL` DFTD3, matching Methods PBE+D3. No new `.out` → **no tex rewrite**.
+  - **Track C（C-m3）**：去重仍 **closed** ✅。
+  - **创新审计**：Methods–inp 契约 = **A**；SCAN/Mayer = **C** backlog。
+  - **paper_gap**：R492 VI Results（`492 % 8 = 4`）
+  - **Git**：`commit: 0e5caf7` — `loop R491: Methods-inp contract ledger; no tex rewrite`
+  - **下一轮**：R492 VI Results（`492 % 8 = 4`）
+- **Loop R490（2026-08-18，三轨 · III Literature）**：
+ - **Track A**：`NO_CP2K`；canonical Exp10 **41/41**、Exp8 **6/6**、Exp9 GEO **12/12** + vertical **8/8** — **不启** job。Cloud VM `exp10_status_line.sh` 可报 `0/42` = **误报**。
+ - **Track B（III Literature）**：WebSearch `graphullerene strain doping 2025 2026 qHP C60` → Khan/Li/Peng/Capobianco/Wang/Qiu 已覆盖；Nie2026/Xu2025/Lv2026/Pereira 已判定 support/contrast 或 off-topic。无未覆盖必引缺口 → **不新增 bib**。无新 `.out` → **不改** tex。无 tex 改写。
+ - **Track C（C-m3）**：去重仍 **closed** ✅。
+ - **创新审计**：文献覆盖 = **A**（已有 bib）；SCAN/Mayer = **C** backlog。
+ - **paper_gap**：R491 IV Methods（`491 % 8 = 3`）
+ - **Git**：`commit: 1fc62dd` — `loop R490: Literature ledger; no tex rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **下一轮**：R491 IV Methods（`491 % 8 = 3`）
+- **Loop R489（2026-08-18，三轨 · II Intro）**：
+ - **Track A**：`NO_CP2K`；canonical Exp10 **41/41**、Exp8 **6/6**、Exp9 GEO **12/12** + vertical **8/8** — **不启** job。Cloud VM `exp10_status_line.sh` 可报 `0/42` = **误报**。
+ - **Track B（II Intro）**：Intro 共价分子网络锚点在位；qHP 为模型体系；与 Wang/Li/Qiu 对照非四角落 $\mathcal{S}$。无新 `.out` → **不改** Intro 定量。无 tex 改写。
+ - **Track C（C-m3）**：去重仍 **closed** ✅。
+ - **创新审计**：Intro 契约 = **A**；SCAN/Mayer = **C** backlog。
+ - **paper_gap**：R490 III Literature（`490 % 8 = 2`）
+ - **Git**：`commit: 30eb311` — `loop R489: Intro ledger; no tex rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **下一轮**：R490 III Literature（`490 % 8 = 2`）
+- **Loop R488（2026-08-18，三轨 · I Abstract）**：
+ - **Track A**：`NO_CP2K`；canonical Exp10 **41/41**、Exp8 **6/6**、Exp9 GEO **12/12** + vertical **8/8** — **不启** job。Cloud VM `exp10_status_line.sh` 可报 `0/42` = **误报**。
+ - **Track B（I Abstract）**：Abstract 无 `\cite`；定量已与 Table IV / periodic $\mathcal{S}$ 对齐（PBE+D3；$|\mathcal{S}|=31.9\pm 2$ meV/atom at $n{=}1$；$\eta\approx 8\%$ at $n{=}4$）。无新 `.out` → **不改** Abstract 定量。无 tex 改写。
+ - **Track C（C-m3）**：去重仍 **closed** ✅。
+ - **创新审计**：Abstract 契约 = **A**；SCAN/Mayer = **C** backlog。
+ - **paper_gap**：R489 II Intro（`489 % 8 = 1`）
+ - **Git**：`commit: f639b64` — `loop R488: Abstract ledger; no tex rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **下一轮**：R489 II Intro（`489 % 8 = 1`）
+
+ - **下一轮**：R488 I Abstract（`488 % 8 = 0`）
+
+- **Loop R481（2026-08-18，三轨 · II Intro）**：
+ - **Track A**：`NO_CP2K` — **不启 job**
+ - **Track B（II Intro）**：Ledger-only。Intro 已有 covalent-network framing、qHP 作 elastically soft host、C$_{24}$/ tribology 差异化；与 Abstract constrained-loading / bilinear / screening-margin 契约一致。无 Intro 复写。
+ - **Track C（C-m3）**：`orthogonal`/`fourfold`/`at revision`/`7/8` 主文/SI = **0**
+ - **创新审计**：Intro–Abstract 契约 = **A**；无 C 级 Intro 核心句 = **A**
+ - **paper_gap**：Mayer/Bader still **C**；SCAN + dense-$k$；n=2 corners at EPS $10^{-6}$；n=8 参考态
+ - **Git**：`commit: 0b45acd` — `loop R481: Intro ledger; no tex rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **下一轮**：R482 III Literature
+- **Loop R480（2026-08-18，三轨 · I Abstract）**：
+ - **Track A**：Cloud VM `NO_CP2K` — **不干预**
+ - **Track B（I Abstract）**：`grep` Abstract：无 `\\cite`、无 Koopmans/rVV10；`31.9`/`\\eta`/`8`/`10^{-3}` 已在摘要。audit `n_synergy=15`；P $E_f=-15.8$ eV/dopant。**不复写**已写定量句
+ - **Track C**：C-M3 closed（text）；C-m3 主文 0 命中
+ - **创新审计**：Abstract 契约 = **A**（无新定量）；Mayer = **C**
+ - **paper_gap**：n=2 四角；n=8 参考；SCAN + dense-$k$
+ - **Git**：`commit: 293a7af` — `loop R480: Abstract ledger; no tex rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **下一轮**：R481 II Intro
+- **Loop R479（2026-08-18，三轨 · 横切 audit）**：
+  - **Track A**：NO_CP2K — **不干预**
+  - **Track B（横切）**：`479 % 8 = 7`。全稿 grep + Abstract–Conclusion 契约台账。本轮仅台账，**不复写**已写句。Loop C grep = **0**。
+  - **Track C**：C-M1/M2/M3 文稿 **closed**；Mayer/Bader = **C**
+  - **创新审计**：横切契约 = **A**（无 C 级泄漏）；SCAN/dense-$k$ = **C**
+  - **paper_gap**：SCAN + dense-$k$；$n{=}2$ corners；$n{=}8$ reference
+  - **Git**：`commit: c716a79` — `loop R479: cross-cut grep audit; no tex rewrite`
+  - **下一轮**：R480 I Abstract（`480 % 8 = 0`）
+
+- **Loop R478（2026-08-18，三轨 · VIII Conclusion）**：
+  - **Track A**：NO_CP2K — **不干预**
+  - **Track B（VIII Conclusion）**：`478 % 8 = 6`。核对 Conclusion 与 Intro 三问闭环、upper-bound、Limitations。本轮仅台账，**不复写** Conclusion 句。Loop C grep = **0**。
+  - **Track C**：C-M1/M2/M3 文稿 **closed**；Mayer/Bader = **C**
+  - **创新审计**：Conclusion 闭环 = **A**（已有句）；SCAN/dense-$k$ = **C**
+  - **paper_gap**：SCAN + dense-$k$；$n{=}2$ corners；$n{=}8$ reference
+  - **Git**：`commit: def6f3c` — `loop R478: Conclusion ledger; no tex rewrite`
+  - **下一轮**：R479 横切 audit（`479 % 8 = 7`）
+- **Loop R477（2026-08-18，三轨 · VII Discussion）**：
+ - **Track A**：NO_CP2K — **不干预**
+ - **Track B（VII Discussion）**：`477 % 8 = 5`。核对 Discussion 机理/文献对比句与证据等级（Hirshfeld A；Mayer/Bader C）。本轮仅台账，**不复写** Discussion 句。Loop C grep = **0**。
+ - **Track C**：C-M3 文稿 **closed**；Mayer/Bader = **C**
+ - **创新审计**：Discussion 机理契约 = **A**（已有句）；SCAN/dense-$k$ = **C**
+ - **paper_gap**：SCAN + dense-$k$；$n{=}2$ corners；$n{=}8$ reference
+ - **Git**：`commit: 906ade0` — `loop R477: Discussion ledger; no tex rewrite`
+ - **下一轮**：R478 VIII Conclusion（`478 % 8 = 6`）
+
+- **Loop R476（2026-08-18，三轨 · VI Results）**：
+ - **Track A**：NO_CP2K — **不干预**
+ - **Track B（VI Results）**：`476 % 8 = 4`。主文 $\mathcal{S}$ 锚点仍在：max **31.9** meV/atom（P, $n{=}1$）、$n{=}4$ P **23.7**；`\mathcal{S}` 统一；无仓库路径、无 `at revision`。本轮仅台账，**不复写** Results 句。Loop C grep = **0**。
+ - **Track C**：C-M3 文稿 **closed**；Mayer/Bader = **C**
+ - **创新审计**：Results $\mathcal{S}$ 契约 = **A**；SCAN/dense-$k$ = **C**
+ - **paper_gap**：SCAN + dense-$k$；$n{=}2$ corners；$n{=}8$ reference
+ - **Git**：`commit: 80b6ecc` — `loop R476: Results S ledger; no tex rewrite`
+ - **下一轮**：R477 VII Discussion（`477 % 8 = 5`）
+- **Loop R475（2026-08-18，三轨 · IV Methods）**：
+  - **Track A**：NO_CP2K — **不干预**
+  - **Track B（IV Methods）**：`475 % 8 = 3`。主文 cutoff 契约与 inp 一致：n≤4 CUTOFF 400、n≥6 CUTOFF 350、REL_CUTOFF 50、PBE+D3。本轮仅台账，**不复写** Methods 句。Loop C grep = **0**。
+  - **Track C**：C-M3 文稿 **closed**；Mayer/Bader = **C**
+  - **创新审计**：Methods–inp 契约 = **A**；SCAN/dense-$k$ = **C**
+  - **paper_gap**：SCAN + dense-$k$；$n{=}2$ corners；$n{=}8$ reference
+  - **Git**：`commit: 54458c2` — `loop R475: Methods-inp ledger; no tex rewrite`
+  - **下一轮**：R476 VI Results（`476 % 8 = 4`）
+- **Loop R474（2026-08-18，三轨 · III Literature）**：
+  - **Track A**：NO_CP2K — **不干预**
+  - **Track B（III Literature）**：`474 % 8 = 2`。WebSearch 2025–26：Khan PRM 9,034001、Capobianco *Nano Lett.* 2024、Li *Phys. Rev. B* 110, 045415、Wang *Phys. Chem. Chem. Phys.* 26, 24531 已入主文；无新四角 \(\mathcal{S}\) prior art。本轮仅台账，**不复写** Literature 句。Loop C grep = **0**。
+  - **Track C**：C-M3 文稿 **closed**；Mayer/Bader = **C**
+  - **创新审计**：Literature 台账 = **A**；SCAN/dense-$k$ = **C**
+  - **paper_gap**：SCAN + dense-$k$；$n{=}2$ corners；$n{=}8$ reference
+  - **Git**：`commit: cccc911` — `loop R474: Literature ledger; no tex rewrite`
+  - **下一轮**：R475 IV Methods（`475 % 8 = 3`）
+- **Loop R473（2026-08-18，三轨 · II Intro）**：
+  - **Track A**：NO_CP2K — **不干预**
+  - **Track B（II Intro）**：`473 % 8 = 1`。Intro 契约已闭合（R457/R465）；本轮仅台账，**不复写** Intro 句。Loop C `grep -E '7/8|at revision|referee' paper/*.tex` = **0**。
+  - **Track C**：C-M3 文稿 **closed**；Mayer/Bader = **C**
+  - **创新审计**：Intro 台账 = **A**；SCAN/dense-$k$ = **C**
+  - **paper_gap**：SCAN + dense-$k$；$n{=}2$ corners；$n{=}8$ reference
+  - **Git**：`commit: 788af21` — `loop R473: Intro ledger; no tex rewrite`
+  - **下一轮**：R474 III Literature（`474 % 8 = 2`）
+- **Loop R472（2026-08-18，三轨 · I Abstract）**：
+  - **Track A**：NO_CP2K — **不干预**
+  - **Track B（I Abstract）**：`472 % 8 = 0`。Abstract 契约已闭合（R456/R464）；本轮仅台账，**不复写** Abstract 句。Loop C `grep -E '7/8|at revision|referee' paper/*.tex` = **0**。
+  - **Track C**：C-M3 文稿 **closed**；Mayer/Bader = **C**
+  - **创新审计**：Abstract 台账 = **A**；SCAN/dense-$k$ = **C**
+  - **paper_gap**：SCAN + dense-$k$；$n{=}2$ corners；$n{=}8$ reference
+  - **Git**：`commit: e086aa6` — `loop R472: Abstract ledger; no tex rewrite`
+  - **下一轮**：R473 II Intro（`473 % 8 = 1`）
+- **Loop R471（2026-08-18，三轨 · 横切）**：
+ - **Track A**：NO_CP2K — **不干预**
+ - **Track B（横切）**：`471 % 8 = 7`。全稿 grep 审计；主文/SI 无 `7/8`/`at revision`/`referee`；**不复写** tex。Loop C `grep -E '7/8|at revision|referee' paper/*.tex` = **0**。
+ - **Track C**：C-M3 文稿 **closed**；Mayer/Bader = **C**
+ - **创新审计**：横切 grep = **A**；SCAN/dense-$k$ = **C**
+ - **paper_gap**：SCAN + dense-$k$；$n{=}2$ corners；$n{=}8$ reference
+ - **Git**：`commit: 5f2fbb6` — `loop R471: cross-cut grep audit; no tex rewrite`
+ - **下一轮**：R472 I Abstract（`472 % 8 = 0`；已闭合 — 仅台账）
+- **Loop R470（2026-08-18，三轨 · VIII Conclusion）**：
+ - **Track A**：NO_CP2K — **不干预**
+ - **Track B（VIII Conclusion）**：`470 % 8 = 6`。Conclusion 契约已闭合（R462）；本轮仅台账，**不复写** Conclusion 句。Loop C `grep -E '7/8|at revision|referee' paper/*.tex` = **0**。
+ - **Track C**：C-M3 文稿 **closed**；Mayer/Bader = **C**
+ - **创新审计**：Conclusion 台账 = **A**；SCAN/dense-$k$ = **C**
+ - **paper_gap**：SCAN + dense-$k$；$n{=}2$ corners；$n{=}8$ reference
+ - **Git**：`commit: f10127b` — `loop R470: Conclusion ledger; no tex rewrite`
+ - **下一轮**：R471 横切（`471 % 8 = 7`）
+- **Loop R469（2026-08-18，三轨 · VII Discussion）**：
+ - **Track A**：NO_CP2K — **不干预**
+ - **Track B（VII Discussion）**：`469 % 8 = 5`。Discussion 契约已闭合（R461）；本轮仅台账，**不复写** Discussion 句。Loop C `grep -E '7/8|at revision|referee' paper/*.tex` = **0**。
+ - **Track C**：C-M3 文稿 **closed**；Mayer/Bader = **C**
+ - **创新审计**：Discussion 台账 = **A**；SCAN/dense-$k$ = **C**
+ - **paper_gap**：SCAN + dense-$k$；$n{=}2$ corners；$n{=}8$ reference
+ - **Git**：`commit: 07d0481` — `loop R469: Discussion ledger; no tex rewrite`
+ - **下一轮**：R470 VIII Conclusion（`470 % 8 = 6`；已闭合 — 仅台账）
+- **Loop R468（2026-08-18，三轨 · VI Results）**：
+ - **Track A**：NO_CP2K — **不干预**
+ - **Track B（VI Results）**：`468 % 8 = 4`。Results 契约已闭合（R460）；本轮仅台账，**不复写** Results 句。Loop C `grep -E '7/8|at revision|referee' paper/*.tex` = **0**。
+ - **Track C**：C-M3 文稿 **closed**；Mayer/Bader = **C**
+ - **创新审计**：Results 台账 = **A**；SCAN/dense-$k$ = **C**
+ - **paper_gap**：SCAN + dense-$k$；$n{=}2$ corners；$n{=}8$ reference
+ - **Git**：`commit: c40cbe7` — `loop R468: Results ledger; no tex rewrite`
+ - **下一轮**：R469 VII Discussion（`469 % 8 = 5`；已闭合 — 仅台账）
+- **Loop R467（2026-08-18，三轨 · IV Methods）**：
+ - **Track A**：NO_CP2K — **不干预**
+ - **Track B（IV Methods）**：`467 % 8 = 3`。Methods 契约已闭合（R459）；本轮仅台账，**不复写** Methods 句。Loop C `grep -E '7/8|at revision|referee' paper/*.tex` = **0**。
+ - **Track C**：C-M3 文稿 **closed**；Mayer/Bader = **C**
+ - **创新审计**：Methods 台账 = **A**；SCAN/dense-$k$ = **C**
+ - **paper_gap**：SCAN + dense-$k$；$n{=}2$ corners；$n{=}8$ reference
+ - **Git**：`commit: d761286` — `loop R467: Methods ledger; no tex rewrite`
+ - **下一轮**：R468 VI Results（`468 % 8 = 4`；已闭合 — 仅台账）
+- **Loop R466（2026-08-18，三轨 · III Literature）**：
+ - **Track A**：NO_CP2K — **不干预**
+ - **Track B（III Literature）**：`466 % 8 = 2`。文献线已闭合（R458）；本轮仅台账，**不复写** 文献句。Loop C `grep -E '7/8|at revision|referee' paper/*.tex` = **0**。
+ - **Track C**：C-M3 文稿 **closed**；Mayer/Bader = **C**
+ - **创新审计**：Literature 台账 = **A**；SCAN/dense-$k$ = **C**
+ - **paper_gap**：SCAN + dense-$k$；$n{=}2$ corners；$n{=}8$ reference
+ - **Git**：`commit: f75c19b` — `loop R466: Literature ledger; no tex rewrite`
+ - **下一轮**：R467 IV Methods（`467 % 8 = 3`；已闭合 — 仅台账）
+- **Loop R465（2026-08-18，三轨 · II Intro）**：
+ - **Track A**：NO_CP2K — **不干预**
+ - **Track B（II Intro）**：`465 % 8 = 1`。Intro 已闭合（R457）；本轮仅台账，**不复写** Intro 句。Loop C `grep -E '7/8|at revision|referee' paper/*.tex` = **0**。
+ - **Track C**：C-M3 文稿 **closed**；Mayer/Bader = **C**
+ - **创新审计**：Intro 台账 = **A**；SCAN/dense-$k$ = **C**
+ - **paper_gap**：SCAN + dense-$k$；$n{=}2$ corners；$n{=}8$ reference
+ - **Git**：`commit: 3a3edd4` — `loop R465: Intro ledger; no tex rewrite`
+ - **下一轮**：R466 III Literature（`466 % 8 = 2`；已闭合 — 仅台账）
+- **Loop R459（2026-08-18，三轨 · IV Methods ledger）**：
+
+ - **Track A**：NO_CP2K — **不干预**；canonical Exp10 **41/41**、Exp8 **6/6**、Exp9 **12/12+8/8**
+ - **Track B（IV Methods）**：Methods 已闭合（cutoff-class / bilinear / \(\eta\) / \(\sigma_{\mathcal{S}}\) / \(n{=}2,8\) reference-limited）；**不改 tex**
+ - **Track C**：`grep -E '7/8|at revision|referee' paper/*.tex` = 0
+ - **创新审计**：Methods 契约 = **A**；SCAN = **C**
+ - **paper_gap**：SCAN + \(n{=}2\) 四角 + \(n{=}8\) 参考态
+ - **Git**：commit: 4dff8cb
+ - **下一轮**：R460 VI Results（`460 % 8 = 4`）；**勿再抄** Methods 句
+- **Loop R464（2026-08-18，三轨）**：
+ - **Track A**：Cloud VM **NO_CP2K** — **不干预**
+ - **Track B（I Abstract）**：已闭合（R456）；不改 tex；fifteen periodic 仍在位
+ - **Loop C**：C-m3 grep = 0
+ - **创新审计**：Abstract 契约 = **A**
+ - **paper_gap**：$n{=}2$ 四角 EPS $10^{-6}$
+ - **Git**：commit: 0182059
+ - **下一轮**：R465 II Intro（`465 % 8 = 1`；已闭合 — ledger only）
+- **Loop R463（2026-08-18，三轨）**：
+ - **Track A**：Cloud VM **NO_CP2K** — **不干预**
+ - **Track B（横切）**：Loop C grep = **0**；仓库路径仅 tikz `% DATA:`；rVV10/Koopmans 仅 SI theory L262–263。**未改正文**
+ - **Loop C**：C-m3 grep = 0；R463 audit
+ - **创新审计**：横切 grep = **A**
+ - **paper_gap**：$n{=}2$ 四角 EPS $10^{-6}$
+ - **Git**：commit: 52ba68e
+ - **下一轮**：R464 I Abstract (`464 % 8 = 0`；已闭合 — ledger only)
+- **Loop R462（2026-08-18，三轨 · VIII Conclusion ledger）**：
+ - **Track A**：NO_CP2K — **不干预**；canonical Exp10 **41/41**、Exp8 **6/6**、Exp9 **12/12+8/8**
+ - **Track B（VIII Conclusion）**：Conclusion 已闭合（R454：三问闭环；C70/C20；Wang2024simulation；Lee2026strain）；**不改 tex**
+ - **Track C**：`grep -E '7/8|at revision|referee' paper/*.tex` = 0
+ - **创新审计**：Conclusion 闭环 = **A**；SCAN = **C**
+ - **paper_gap**：SCAN + $n{=}2$ 四角 + $n{=}8$ 参考态
+ - **Git**：commit: 25dcba7
+ - **下一轮**：R463 横切（`463 % 8 = 7`）；**勿再抄** Conclusion 已写句
+- **Loop R461（2026-08-18，三轨 · VII Discussion ledger）**：
+ - **Track A**：NO_CP2K — **不干预**；canonical Exp10 **41/41**、Exp8 **6/6**、Exp9 **12/12+8/8**
+ - **Track B（VII Discussion）**：Discussion 已闭合（R453：Capobianco/Li/Khan/Peng/Lee；Li C24；Nie2026；Falletta）；**不改 tex**
+ - **Track C**：`grep -E '7/8|at revision|referee' paper/*.tex` = 0
+ - **创新审计**：Discussion 文献 = **A**；SCAN = **C**
+ - **paper_gap**：SCAN + \(n{=}2\) 四角 + \(n{=}8\) 参考态
+ - **Git**：commit: 8da3b60
+ - **下一轮**：R462 VIII Conclusion（`462 % 8 = 6`）；**勿再抄** Discussion 已写句
+- **Loop R460（2026-08-18，三轨 · VI Results ledger）**：
+ - **Track A**：NO_CP2K — **不干预**；canonical Exp10 **41/41**、Exp8 **6/6**、Exp9 **12/12+8/8**
+ - **Track B（VI Results）**：Results 已闭合（P \(E_f=-15.8\) / \(n=12\) / SDC 15 点）；**不改 tex**
+ - **Track C**：`grep -E '7/8|at revision|referee' paper/*.tex` = 0
+ - **创新审计**：Results 契约 = **A**；SCAN = **C**
+ - **paper_gap**：SCAN + \(n{=}2\) 四角 + \(n{=}8\) 参考态
+ - **Git**：commit: 0931acf
+ - **下一轮**：R461 VII Discussion（`461 % 8 = 5`）；**勿再抄** Results 定量句
+- **Loop R458（2026-08-18，三轨 · III Literature ledger）**：
+  - **Track A**：Cloud VM **NO_CP2K**；canonical Exp10 **41/41**、Exp8 **6/6**、Exp9 **12/12+8/8** — **不干预**、不伪造 DFT
+  - **Track B（III Literature）**：WebSearch `graphullerene qHP C60 strain doping 2025 2026` — **Khan2025tuning**、**Makov2023graphullerene**、**Capobianco2024electron**、**Li2024graphullerene** 均已在 bib 且已 cite；**不改 tex、不加 bib、不重复抄写**
+  - **Track C**：`grep -E '7/8|at revision|referee' paper/*.tex` = **0**
+  - **创新审计**：文献检索 = **A**（已覆盖，无新 prior art）；文献线程 = **A**（已闭合）；SCAN/Mayer = **C**
+  - **paper_gap**：SCAN + $n{=}2$ 四角 + $n{=}8$ 参考态；**勿再抄** cutoff-class / bilinear / $\eta$ / $\sigma_{\mathcal{S}}$ / 文献线程
+  - **Git**：`commit: bad05c8` — `loop R458: Literature ledger; no tex rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+  - **下一轮**：R459 IV Methods（`459 % 8 = 3`）；**不重复** R437/R442 Methods 句
+- **Loop R457（2026-08-18，三轨 · II Introduction）**：
+ - **Track A**：Cloud VM **NO_CP2K** — **不干预**；canonical Exp10 **41/41**、Exp8 **6/6**、Exp9 **12/12+8/8**
+ - **Track B（II Introduction ledger）**：R457 = 457 % 8 = 1 → II Intro。Wang L67、Qiu L71、Falletta L240、charged-defect L62、SCF-gate L64 **均在位**；**不改 tex、不重复抄写**。下一轮 R458 III Literature（458 % 8 = 2）
+ - **Track C（C-m3）**：`grep -E '7/8|at revision|referee' paper/*.tex` = **0**；C-M3 **closed**（text）
+ - **创新审计**：Intro literature ledger = **A**；Wang/Qiu/Falletta = **A**；SCAN/Mayer = **C**
+ - **paper_gap**：SCAN + dense-$k$；Mayer/Bader **C**
+   - **Git**：`commit: f2413a7` — `loop R457: Intro literature ledger; no Intro rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **下一轮**：R458 III Literature
+- **Loop R456（2026-08-18，三轨 · I Abstract）**：
+ - **Track A**：Cloud VM NO_CP2K — **不干预**
+ - **Track B（I Abstract）**：Abstract 已闭合（n=2 undoped-corner + charged-defect）。Ledger only。**勿改 tex。**
+ - **Track C**：grep `7/8|at revision|referee` = **0**
+ - **创新审计**：Abstract contract = **A**；SCAN/Mayer = **C**
+ - **Git**：`commit: 9cf90d5` — `loop R456: Abstract contract ledger; no Abstract rewrite`
+ - **下一轮**：R457 Intro 轮转（`457 % 8 = 1`）
+- **Loop R455（2026-08-18，三轨 · 横切）**：
+  - **Track A**：Cloud VM **NO_CP2K** — **不干预**
+  - **Track B（横切）**：`455 % 8 = 7`. Full-manuscript grep: `7/8|at revision|referee` = **0** on `paper/*.tex`. Main tex has no rVV10/Koopmans/`experiments/`/`dft_results`. SI theory L262--263 still lists rVV10/Koopmans as historical (not Abstract/Results). **No tex rewrite.**
+  - **Track C**：C-m3 = **0** hits
+  - **创新审计**： grepclean main = **A**; SCAN/Mayer = **C**
+  - **paper_gap**：SCAN + dense-$k$; Mayer/Bader; $n{=}2$ four-corner @ EPS $10^{-6}$; $n{=}8$ reference
+  - **Git**：`commit: 9a6b2ca` — `loop R455: cross-cut grep audit; no tex rewrite`
+  - **下一轮**：R456 Abstract 轮转（`456 % 8 = 0`）
+- **Loop R454（2026-08-18，三轨 · VIII Conclusion）**：
+  - **Track A**：Cloud VM **NO_CP2K** — **不干预**
+  - **Track B（VIII Conclusion）**：`454 % 8 = 6`. Conclusions already close the three Intro questions, n=2 undoped-corner (L277), Mayer/Bader follow-up (L273), and C70/C20 caveat (L285--L286). **No tex rewrite.**
+  - **Track C**：C-m3 grep `7/8|at revision|referee` on `paper/*.tex` = **0**
+  - **创新审计**：Conclusion contract = **A** (closed); Intro--Conclusion loop = **A**
+  - **paper_gap**：SCAN + dense-$k$; Mayer/Bader; $n{=}2$ four-corner @ EPS $10^{-6}$; $n{=}8$ reference
+  - **Git**：`commit: d5a76fe` — `loop R454: Conclusion contract ledger; no Conclusion rewrite`
+  - **下一轮**：R455 横切
+- **Loop R453（2026-08-18，三轨 · VII Discussion）**：
+  - **Track A**：Cloud VM **NO_CP2K** — **不干预**
+  - **Track B（VII Discussion）**：`453 % 8 = 5`。`sec:discussion_literature` already cites Capobianco/Li/Khan/Peng/Lee, Li C24 (`Li2024graphullerene`), cluster-expansion (Sanchez, Laks), ShaikhPeng thermal, Shi2023, Pereira endohedral, Xu2025 C70, Nie2026 C20, and Falletta SIC. **No tex rewrite.**
+  - **Track C**：C-m3 grep `7/8|at revision|referee` on `paper/*.tex` = **0**
+  - **创新审计**：Discussion contract = **A** (closed); literature ledger = **A**
+  - **paper_gap**：SCAN + dense-$k$; Mayer/Bader; $n{=}2$ four-corner @ EPS $10^{-6}$; $n{=}8$ reference
+  - **Git**：`commit: f6a5b11` — `loop R453: Discussion contract ledger; no Discussion rewrite`
+  - **下一轮**：R454 VIII Conclusion
+- **Loop R452（2026-08-18，三轨 · VI Results）**：
+ - **Track A**：NO_CP2K — **不干预**
+ - **Track B（VI Results）**：ledger only — $n{=}2$/$n{=}8$ reference-limited $\mathcal{S}$ already in `sec:synergy`; offsets 4.2 and 5.4 meV/atom already stated; $n{\geq}6$ 350 Ry already in SM Table S1
+ - **Track C**：grep `7/8|at revision|referee` = **0**; C-m3 **closed**
+ - **创新审计**：Results $n{=}2$/$n{=}8$ = **A**; $n{\geq}6$ 350 Ry = **A** SI; SCAN = **C** open
+ - **paper_gap**：SCAN + dense-$k$; Mayer/Bader; $n{=}2$ four-corner @ EPS $10^{-6}$
+ - **Git**：`commit: 9628f97` — `loop R452: Results contract ledger; no Results rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **下一轮**：VII Discussion（$453 \bmod 8 = 5$）
+- **Loop R451（2026-08-18，三轨 · IV Methods）**：
+  - **Track A**：NO_CP2K — **不干预**
+  - **Track B（IV Methods）**：ledger only — PBE+D3 / cutoff 400 vs 350 / $n{=}2$ EPS $10^{-5}$ / $n{=}8$ same-350-Ry already in Methods; SCAN not claimed done
+  - **Track C**：grep `7/8|at revision|referee` = **0**; C-m3 **closed**
+  - **创新审计**：Methods–inp = **A**; SCAN = **C** open; cutoff400 = **A** closed
+  - **paper_gap**：SCAN + dense-$k$; Mayer/Bader; $n{=}2$ four-corner @ EPS $10^{-6}$
+  - **Git**：`commit: 54d076b` — `loop R451: Methods contract ledger; no Methods rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+  - **下一轮**：VI Results（$452 \\bmod 8 = 4$）
+- **Loop R450（2026-08-18，三轨 · III Literature）**：
+  - **Track A**：NO_CP2K — **不干预**
+  - **Track B（III Literature）**：ledger only — Khan/Li C24/Wang/Makov/Xu C70/Nie C20/Pereira endohedral already in tex; no new bib
+  - **Track C**：grep `7/8|at revision|referee` = **0**; C-m3 **closed**
+  - **创新审计**：literature ledger = **A**; SCAN = **C** open; cutoff400 = **A** closed
+  - **paper_gap**：SCAN + dense-$k$; Mayer/Bader; n=2 four-corner @ EPS $10^{-6}$
+  - **Git**：`commit: a121cdb` — `loop R450: literature ledger, no new bib`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+  - **下一轮**：IV Methods
+- **Loop R449（2026-08-17，三轨 · II Intro）**：
+ - **Track A**：Cloud VM **NO_CP2K** — **不干预**
+ - **Track B（II Intro）**：Intro already carries SCF-gate, charged-defect/polaron-rate estimator, Wang2024simulation, Li2024, and Qiu2025. **No Intro wording added.** Ledger: `7/8|at revision|referee` = 0; `not a cutoff-class change` = 2; `Wang2024simulation` = 1
+ - **Track C**：Intro already matches the closed manuscript contract. SCAN / Mayer/Bader remain C
+ - **创新审计**：Intro contract = **A**（already in tex）；SCAN / Mayer = **C**
+ - **paper_gap**：n=2 / n=8 four-corner @ EPS \(10^{-6}\)；SCAN / Mayer/Bader
+ - **Git**：`commit: c02a542` — `loop R449: Intro contract ledger; no Intro rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **下一轮**：R450 III Literature（mod 8 = 2）；SCAN / Mayer/Bader
+- **Loop R448（2026-08-17，三轨 · I Abstract / Loop C）**：
+ - **Track A**：Cloud VM **NO_CP2K** — **不干预**
+ - **Track B（I Abstract）**：Abstract 已对齐（constrained loading / bilinear / n=2 undoped-corner / charged-defect 边界）；无新 `.out`，**不改**摘要措辞
+ - **Track C**：`7/8|at revision|referee` = **0**；`not a cutoff-class change` = **2**；`Wang2024simulation` = **1**（Intro L67）；theory report 补 R448 台账
+ - **创新审计**：Abstract 契约核对 = **A**；横切 grep = **A**；SCAN / Mayer = **C**
+ - **paper_gap**：n=2 四角 @ EPS $10^{-6}$；n=8 参考态；SCAN + dense-$k$；Mayer/Bader
+ - **prl_gate**：D4 n=8 误读 closed；SCAN / Mayer = C
+ - **Git**：`commit: 49203cf` — `loop R448: Abstract contract ledger; no Abstract rewrite`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **下一轮**：n=2 四角 @ EPS $10^{-6}$；SCAN 单点；Mayer/Bader
+- **Loop R447（2026-08-17，三轨 · 横切 / Loop C）**：
+  - **Track A**：Cloud VM **NO_CP2K** — **不干预**
+  - **Track B（横切）**：`theory_enhancement_report` 补 R446 closed-open 台账 + R447 横切 grep；主文 n=8 cutoff-class 已闭合（Methods L102 + Limitations L260），**不改**
+  - **Track C**：`7/8|at revision|referee` = **0**；`not a cutoff-class change` = **2**；`Wang2024simulation` = **1**（Intro L67）
+  - **创新审计**：横切 grep = **A**；cutoff400 closed-open ledger = **A**（response）；SCAN / Mayer = **C**
+  - **paper_gap**：n=2 四角 @ EPS $10^{-6}$；n=8 参考态；SCAN + dense-$k$；Mayer/Bader
+  - **prl_gate**：D4 n=8 误读 closed；SCAN / Mayer = C
+  - **Git**：`commit: 4feca77` — `loop R447: theory-report closed-open ledger + horizontal grep`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+  - **下一轮**：n=2 四角 @ EPS $10^{-6}$；SCAN 单点；Mayer/Bader
+- **Loop R446（2026-08-17，三轨 · VIII Conclusion / Loop C）**：
+ - **Track A**：idle / **NO_CP2K** — **不干预**
+ - **Track B（VIII Conclusion）**：Conclusions 已写完 n=2 / charged-defect / C70/C20 — **无新主文句**。SCAN 缺口仅写 response（不进 Conclusions）。
+ - **Track C**：R4-Methods-A1 + Major Concern 8 + Residual 「Still open」把 cutoff400 **closed** 与 SCAN **still open** 分开；**无 SCAN 数字**
+ - **创新审计**：SCAN vs cutoff400 闭合边界 = **A**；SCAN DFT = **C** open
+ - **paper_gap**：SCAN + dense-$k$；$n{=}2$ 四角 @ EPS $10^{-6}$；$n{=}8$ 参考态。**勿再抄** SCAN-in-Conclusions / cutoff-class / same-350-Ry / 5.4 / (4.3) / R7-1.2
+ - **Git**：`commit: 5b548bf` — `loop R446: SCAN vs cutoff400 closed-open split in response`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **下一轮**：R447 横切；勿再抄 SCAN-in-Conclusions / cutoff-class / same-350-Ry / 5.4 / (4.3) / R7-1.2
+- **Loop R445（2026-08-17，三轨 · VII Discussion / Loop C）**：
+  - **Track A**：NO_CP2K — **不干预**
+  - **Track B**：response (4.3) + Residual + R7-1.2：cutoff400 41/41 closed；n=6/n=8 同属 350 Ry，n=8 offset 不是 cutoff-class；SCAN 仍 DFT open。**不改主文**
+  - **Track C**：主文边界 0；response D4 台账对齐
+  - **创新审计**：cutoff400 = **A**（41/41）；SCAN = **C**
+  - **paper_gap**：Mayer/Bader = **C**；SCAN + dense-$k$ = **C**；$n{=}2$ 四角 @ EPS $10^{-6}$ = **C**
+  - **Git**：`commit: dbee0e9` — `loop R445: response D4 cutoff400 closed, n=8 not cutoff-class`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+  - **下一轮**：R446 VIII Conclusion；勿再抄 cutoff-class / same-350-Ry / 5.4 / (4.3) / R7-1.2
+- **Loop R444（2026-08-17，三轨 · VII Discussion）**：
+ - **Track A**：NO_CP2K — **不干预**
+ - **Track B（VII Discussion）**：Limitations 增 n=8 cutoff-class 指针（指向 Methods；不重复 5.4 数字）
+ - **Track C（C-M3）**：主文无 `7/8`/`at revision`/`referee`
+ - **创新审计**：n=8 cutoff-class 闭环 = **A**（Methods + Limitations）；`not a cutoff-class change` = **2**
+ - **paper_gap**：Mayer/Bader = **C**；SCAN + dense-$k$ = **C**；$n{=}2$ 四角 @ EPS $10^{-6}$ = **C**
+ - **Git**：`commit: ba143dc` — `loop R444: Limitations n=8 cutoff-class pointer, Loop C`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **下一轮**：R445 / $n{=}2$ 四角重算；勿再抄 n=8 cutoff-class
+- **Loop R443（2026-08-17，三轨 · 横切 B4/B5）**：
+ - **Track A**：NO_CP2K — **不干预**
+ - **Track B（横切）**：theory report 记录 Results L162–169 已覆盖 n=2/n=8 reference-limited；不改 Results 定量、不抄 R442 same-350-Ry 句
+ - **Track C（C-M3）**：主文无 `7/8`/`at revision`/`referee`
+ - **创新审计**：横切契约 = **A**；n=8 Methods 分类仍 = **A**（R442）
+ - **paper_gap**：Mayer/Bader = **C**；SCAN + dense-$k$ = **C**；$n{=}2$ 四角 @ EPS $10^{-6}$ = **C**
+ - **Git**：`commit: 797b4ee` — `loop R443: theory-report n=8 Results already covered, Loop C`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **下一轮**：R444 / $n{=}2$ 四角重算；勿再抄 n=8 Methods 句
+- **Loop R442（2026-08-17，三轨 · IV Methodology）**：
+ - **Track A**：NO_CP2K — **不干预**
+ - **Track B（IV Methods）**：Methods 补 $n{=}8$ 未掺杂角：与 $n{=}6$ 同属 $350$~Ry，offset 非 cutoff-class、不报尺寸趋势变号；**无新定量**
+ - **Track C（C-M3）**：主文无 `7/8`/`at revision`/`referee`
+ - **创新审计**：n=8 same-350-Ry 分类 = **A**（audit JSON）；cutoff-class 误读已纠正 = **A**
+ - **paper_gap**：Mayer/Bader = **C**；SCAN + dense-$k$ = **C**；$n{=}2$ 四角 @ EPS $10^{-6}$ = **C**
+ - **Git**：`commit: 35aeeab` — `loop R442: Methods n=8 same-350-Ry undoped-corner offset not cutoff-class`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **下一轮**：R443 横切 / $n{=}2$ 四角重算；勿再抄 n=8 Methods 句
+
+- **Loop R441（2026-08-17，三轨 · III Literature）**：
+  - **Track A**：NO_CP2K — **不干预**
+  - **Track B（III Literature）**：Intro 在 Hou 宿主句之后写入 Wang2024simulation：qHP/qTP C60 应力各向异性是单轴应力几何图，不是置换 B/N/P 网格上的四角 S；SI positioning 表第一行补同一 citekey；**不**新 DOI、**不**改 Abstract/Results 定量
+  - **Loop C**：`7/8|at revision|referee` = 0
+  - **创新审计**：Wang2024simulation 单轴应力 vs 四角 S = **B+**
+  - **paper_gap**：Mayer/Bader = **C**；SCAN + dense-k = **C**；n=2 四角 @ EPS 1e-6 = **C**
+  - **Git**：`commit: f8dc903` — `loop R441: Intro Wang2024simulation uniaxial-stress map vs four-corner S`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+  - **下一轮**：R442 IV Methods 或下一未引用 bib 对比句
+
+- **Loop R440（2026-08-17，三轨 · II Introduction）**：
+  - **Track A**：NO_CP2K — **不干预**
+  - **Track B（II Introduction）**：Intro 在 charged-defect 边界句之后写入 finite-size $\mathcal{S}(n)$ 条目若未过 undoped-corner SCF gate 则为 reference-limited、不得读成 dopant-rank trend；**不**抄 Abstract/Methods/Conclusions 原句、**不** cite `eq:four_corner`、**不加**第三处 charged-defect
+  - **Track C（C-m3）**：主文边界 grep 0
+  - **创新审计**：Intro SCF-gate 读法 = **A**（与 Abstract/Methods/Conclusions 闭环）；n=2 重算 = **C**
+  - **paper_gap**：Mayer/Bader = **C**；SCAN + dense-$k$ = **C**；$n{=}2$ 四角 @ EPS $10^{-6}$ = **C**
+  - **Git**：`commit: 14f7269` — `loop R440: Intro n=2 SCF-gate reference-limited, not dopant-rank trend`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+  - **下一轮**：dense-$k$ / Mayer；或 Results caption 对齐 SCF-gate 读法
+- **Loop R439（2026-08-17，三轨 · I Abstract）**：
+ - **Track A**：`NO_CP2K` — **不干预**
+ - **Track B（I Abstract）**：Abstract 对齐 Conclusions R438 — $n{=}2$ $\mathcal{S}(n)$ row is reference-limited at the undoped corner, not a sign change of the mixed derivative（无 Methods table 引用、无新定量）
+ - **Loop C**：主文无 `7/8|at revision|referee`
+ - **创新审计**：Abstract n=2 边界 = **A**；Mayer = **C**
+ - **paper_gap**：Mayer/Bader = **C**；SCAN + dense-$k$ = **C**；$n{=}2$ 四角 @ EPS $10^{-6}$ = **C**
+ - **Git**：`commit: 55d04b6` — `loop R439: Abstract n=2 undoped-corner reference-limited, not mixed-derivative sign change`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **下一轮**：R440 II Intro 或横切；勿再插同一句
+
+- **Loop R438（2026-08-17，三轨 · VIII Conclusion）**：
+  - **Track A**：`NO_CP2K` — **不干预**
+  - **Track B（VIII Conclusion）**：Conclusions 对齐 Methods R437 — $n{=}2$ $\mathcal{S}(n)$ row is reference-limited at the undoped corner (Methods; Table~sigma_S), not a sign change of the mixed derivative
+  - **Loop C**：主文无 `7/8|at revision|referee`
+  - **创新审计**：Conclusions n=2 边界 = **A**；Mayer = **C**
+  - **paper_gap**：Mayer/Bader = **C**；SCAN + dense-$k$ = **C**；$n{=}2$ 四角 @ EPS $10^{-6}$ = **C**
+  - **Git**：`commit: 5f0b499` — `loop R438: Conclusions n=2 undoped-corner reference-limited, not mixed-derivative sign change`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+  - **下一轮**：R439 Abstract 或横切；勿再插同一句
 
 ### PRL Desk Review Gate（审稿升格 · 通用闸门）
 
@@ -1100,7 +1630,9 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 | **B 文稿** | 落地 | **`render_prl.sh`**、**`render_si_figures.sh`**、`fig_prl_main.py`、`_load_audit.py`、`compile_si.sh` |
 | **B 文稿** | SDC 工具 | **`c/simukit-sdc`** → `sdc_exp10_results.json`；`sdc_exp10_synergy_audit.json`（meV）；Python 仅图 |
 | **B 文稿** | 文献 | **WebSearch**、Semantic Scholar、DOI；更新 `strain_graphullerene_50refs.bib` |
-| **B 文稿** | 验证 | `latexmk -pdf`、创新审计表、csv↔out 对照 |
+| **B 文稿** | 验证 | **`paper/scripts/verify_manuscript_numbers.py`**（tex↔JSON 全量数字 + 主稿边界 grep）、`latexmk -pdf`、创新审计表 |
+| **B 文稿** | 引用核验 | Crossref DOI 比对（**每次新增/改 bib 必做**；R419 曾查出 1 条虚构 + 3 条 DOI 错配） |
+| **B 文稿** | 参考态检验 | `experiments/analysis/reference_consistency_audit.json`（pristine 应变能须与 $n$ 无关） |
 | **共用** | 进化 | **`AGENTS.md`**、`dft_results/`、`paper/` |
 
 ---
@@ -1400,6 +1932,176 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 
 
+
+- **Loop R419（2026-08-16，Track B 专轮 · 严谨性审计）**：
+ - **Track A**：仅快照，**不干预**（`cutoff300` 仍 running）
+ - **Track B（横切 · 引用/数据/图文）**：
+ - **引用（底线级）**：18 条 cited 全部对 Crossref 核验 → 修 **11** 条。`Materials2024untangling`（Adv. Mater. 36, 2301234）**DOI 404 且检索不到 → 判定虚构**，曾被引 **3 次**（含 Intro 核心论断）→ 换 `Lee2023localised`（Nanoscale 15, 7227，真做 strain/doping 解耦）；`Yang2021two` DOI 指向 Co3O4 纳米带论文 → 换 `Hou2022synthesis`（Nature 606, 507）；`vandewalle2009cluster` DOI 指向无关 MRS 新闻 → 换 `Sanchez1984generalized` + `Laks1992efficient`；`Li2024strain`/`Katiyar2025strain` DOI 错；`Capobianco2024electron` 页码 7891→**8335**；4 条作者表错/缺；`cp2k2025`→`VandeVondele2005quickstep`（key 年份与论文不符）；10 条标题首字母补大写 + `{G}aussian` 保护
+ - **数据（P0）**：Table III alternate placement 全部 6 个数值来自 **8/18 部分网格**（R352 era），24/24 收敛后从未刷新 → 以 canonical JSON 改为 $-45/-60/+1028$、$+1.9/+0.3/-32.3$（**3 个符号原本是反的**）；`_load_audit.py` 三处硬编码 → 改读 JSON 并在 grid 未完成/provisional 时**拒绝出数**
+ - **新发现（P0，影响已发表论断）**：**pristine 参考态一致性检验** — pristine $+3$\% 应变能/atom 与 $n$ 无关，实测 $n{=}1,4,6$ = 2.99/3.05/3.10（复现到 **0.06** meV/atom，比 ±2 floor 紧两个量级），但 $n{=}2$ = $-1.18$（该组用 **EPS_SCF 1e-5**）、$n{=}8$ = $+8.49$ → 两行带 **4.2/5.4** meV/atom 系统偏移。因 S 含 pristine 应变项的**负号**，$S(8,\mathrm{N})=-2.30$ 小于其自身 5.4 偏移 → **「N 在 n=8 变号」不成立（撤回，含 Fig.2(a) 标注）**；两行归一后 $S(n)$ 近乎与尺寸无关（B $-5.8$~$-8.4$、N $+2.2$~$+3.1$、P $-23.7$~$-32.5$）— 比原「非单调」叙事更干净
+ - **显著性分层**：P = **12–16× floor**、$\eta=8$–$12$\%；B 可分辨但 $\eta<1$\%；N 在 floor 上（~1.2×）→ Abstract/Results/Conclusion 改为「选择性失效」而非「普遍失效」
+ - **α 过度精度**：$+58.7/-297.5/+456.0$ 的拟合标准误为 $\pm116/\pm110/\pm870$ → 仅 N $>2\sigma$；改为带误差报告，Fig.3(d) 改**带符号 α**（|α| 下 ±870 无定义）
+ - **图文匹配**：Fig.1(c) gap 数据源 `.out` 未入库 → 改从**已归档 `.pdos`** 解析（12 点，复现 B +0.026/N −0.138/P +0.054 eV）；y 轴原 $-0.08$ 下限把正文引用的 N($-0.14$) **裁在panel 外** → 扩轴 + 改标 $E_{\mathrm{H-L}}$ 并说明负值=能级交叉；Fig.1(a) "pristine" 被裁 + 色块用稿件配色（B=蓝）而图中 CPK 是 B=品红/N=蓝 → 改 CPK 色块；Fig.4(a)(b) caption「radius 不能排序」与所绘数据（N<B<P 单调）**相反** → 改为「排序成立、比例不成立」
+ - **图表专业化**：`scatter_dopant` 轨道缩略图缺失时回退标准标记 → **四张主图现可在干净仓库复现**；Fig.4(b)(d) 加 ±2 floor 带 + 误差棒（N 误差棒触底一目了然）；Fig.3(b) 尖刺填充带 → 误差棒；Fig.2(a) `n=2/8` 粉色列 + 分尺寸误差棒；修 `\%` 转义；窄表改单栏 → **消除近空白页 5，11 页 0 overfull**
+ - **表格 label**：`tab:I`→Table III、`tab:III`→Table V 的错位（正是 caption 指错图的根因）→ 语义化 `tab:sigma_S/relax/placement/sgrid/geometry`，渲染编号不变
+ - **新工具**：`paper/scripts/verify_manuscript_numbers.py`（**50/50 PASS**，含主稿边界 grep）；`experiments/analysis/reference_consistency_audit.json`
+ - **创新审计**：引用核验 = **A**；参考态一致性检验 = **A**（自洽推导 + JSON）；显著性分层 = **A**；rigid-vs-relaxed 物理定位 = **B**（见下）
+ - **物理可靠性结论（需用户决策）**：periodic $n{=}1$ P 弛豫后 $S$: $-31.91\to+0.0001$ meV/atom（**移除 99.9997%**，弛豫后 pristine 与掺杂应变能相同 → 差分为零）；且 $|S|/|$linear strain term$|$ 达 **10.7–23.9**，即 Eq.(1) 的双线性展开在 $+3$\% 处**未收敛**。→ 建议把主张重构为「rigid 筛选高估耦合，量级与共价半径失配标定；弛豫后加和性恢复」的**定量负结果**，而非「非加性耦合」正结果
+ - **Git**：`373db04` 引用、`51c26d1` Table III、`473d603` 图文、`1b4b033` label、`8db4c7a` 参考态一致性；**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**
+ - **下一轮**：`n=2` 四角 EPS_SCF $10^{-6}$ 重算（解除 reference-limited）；`n=1` dense-$k$ 四角（headline 数字的最弱支点）
+
+- **Loop R420（2026-08-17，三轨 · 扩展表 tetramer 应变无效化）**：
+ - **Track A**：协议闸门 **idle** — **不干预**；未启动新 CP2K
+ - **Track B（横切）**：`tab:I` / `tab:sgrid` / `tab:relaxext` 扩表 caption 改写为 cluster-map diagnostic；Cartesian 坐标未仿射缩放、仅真空盒改变、**不是** monolayer 应变 retention 测试；有效对照 = 周期 $n{=}1$ P（$-31.9\to\approx 0$）；`tab:relaxext` 与 `tab:geometry` 去重；编译主文 **11** 页 + SI **7** 页；numbers **50/50**；协议 **33/33** affine PASS
+ - **Track C**：扩表 tetramer 应变无效化闭环；主文/SI 边界 grep 无 `orthogonal`/`at revision`/`7/8`
+ - **创新审计**：扩表 recast = **A**；tetramer $\alpha$/$\mathcal{S}$ = **invalid**；周期 $n{=}1$ P 弛豫 = **A**
+ - **paper_gap**：`n=2` 四角 EPS $10^{-6}$；`n=8` 参考态重算；dense-$k$ $n{=}1$；Mayer/Bader
+ - **Git**：`commit: 2f08642` — `loop R420: recast cluster tables, compile 11+7, numbers 50/50`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **下一轮**：`n=2` 四角 EPS_SCF $10^{-6}$ 重算（解除 reference-limited）；其后 $n{=}8$ 参考态；dense-$k$ $n{=}1$ / Mayer/Bader
+
+- **Loop R421（2026-08-17，三轨 · 闸门）**：
+ - **Track A**：Cloud VM 无 CP2K PATH；idle。误跑 `update_exp10_status.py` 把归档 `exp10_status.json` 写成 0/42 → **`git restore` 恢复 41/41**（`updated: 2026-08-02`）。**未**启动 $n{=}2$/$n{=}8$ DFT。
+ - **Track B**：R420 Git 哈希 `e953e5e`→`2f08642`；剩余 biaxial/verified/retention 命中均为周期格或 ARCHIVE 注释。
+ - **Track C**：无新主文泄漏；C-m3 保持 closed；P0 仍为 $n{=}2$+$n{=}8$（不伪造 DFT）。
+ - **创新审计**：Exp10 JSON restore = **A**；R420 hash = **A**；$n{=}2$/$n{=}8$ 仍 **C**（reference-limited）。
+ - **paper_gap**：P0 $n{=}2$ 四角 EPS $10^{-6}$ + $n{=}8$ 参考态。
+ - **Git**：`commit: 7b60bd2` — `loop R421: restore Exp10 JSON, fix R420 hash, idle CP2K gate`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **下一轮**：本机有 CP2K 时跑 $n{=}2$ 四角；勿在无 `.out` 的 VM 上 refresh Exp10 JSON。
+
+- **Loop R422（2026-08-17，三轨）**：
+ - **Track A**：Cloud VM 无 CP2K — **idle / 不干预**；**勿**刷新 `exp10_status.json`
+ - **Track B（VII Discussion）**：`sec:discussion_literature` 补 C$_{24}$ graphullerene 应变–光学图 vs 四角 $\mathcal{S}$ 审计一句（已有 bib `Li2024graphullerene`，DOI 10.1021/acsanm.4c06013）；Khan2025 已在主文 L64/L222/L224，**不**重复加 bib
+ - **Track C（C-m3）**：grep `7/8|at revision|orthogonal|fourfold` 主文/SI **0** 命中 — 去重 **closed** ✅；**不**再改 caption / SI archive 注释
+ - **创新审计**：Li2024graphullerene 对比 = **B+**（已有 bib，新入 tex）；Khan 已引 = **A**；$n{=}2$/$n{=}8$ DFT = **C**
+ - **paper_gap**：P0 $n{=}2$ 四角 EPS $10^{-6}$ + $n{=}8$ 参考态复核
+ - **Git**：`commit: ed77f84` — `loop R422: cite Li2024graphullerene C24 contrast in Discussion`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **下一轮**：本机有 CP2K 时跑 $n{=}2$ 四角；**不**伪造 DFT
+
+- **Loop R424（2026-08-17，三轨 · PR #3）**：
+ - **Track A**：无 `cp2k.psmp` — idle；**不干预**；**不伪造** n=2/n=8
+ - **Track B（II Introduction）**：Intro 增 C$_{24}$ vs qHP C$_{60}$ 一句（`Li2024graphullerene`）；R423 实际 commit `5ba5a3a`
+ - **Track C（C-m3）**：grep `7/8|at revision|orthogonal|fourfold` 于 `paper/*.tex` = **0**
+ - **创新审计**：Intro C$_{24}$ 化学区分 = **A**（已有 bib）；n=2/n=8 = **C / reference-limited**
+ - **paper_gap**：n=2/n=8 重算（Cloud VM 无 CP2K）
+ - **Git**：`commit: ba8ebf1` — `loop R424: Intro C24 vs qHP C60 sentence`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **下一轮**：n=2/n=8 DFT；或下一文献线程
+- **Loop R425（2026-08-17，三轨 · PR #3）**：
+ - **Track A**：无 `cp2k.psmp` — idle；**不干预**；`git checkout -- experiments/analysis/exp10_status.json`
+ - **Track B（III Literature）**：Discussion 补 `ShaikhPeng2025thermal` 一句（quasi-harmonic expansion vs frozen biaxial $\mathcal{S}$；无新 bib）
+ - **Track C（C-m3）**：grep `7/8|at revision|orthogonal|fourfold` 于 `paper/*.tex` = **0**
+ - **创新审计**：热膨胀 vs 四隅 $\mathcal{S}$ = **B+**（已有 bib）；n=2/n=8 = **C / reference-limited**
+ - **paper_gap**：其余未入稿 keys（Shi/Pereira/Xu/Nie/Falletta）；cutoff300 本 VM 无 CP2K
+ - **Git**：`commit: 61aff22` — `loop R425: Discussion ShaikhPeng thermal vs frozen S`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **下一轮**：下一未入稿 key 一句；勿 amend
+- **Loop R426（2026-08-17，三轨）**：
+ - **Track A**：Cloud VM 无 CP2K — idle；**不干预**
+ - **Track B（III Literature）**：Discussion 补 `Shi2023strainC60` 一句（C$_{60}$ 纳米结构应变–带边/迁移率 vs 四隅 $\mathcal{S}$）；无新 bib、无新定量
+ - **Track C**：主文/SI `7/8|at revision|orthogonal|fourfold` = **0**
+ - **创新审计**：Shi2023 定位 = **B+**（既有 bib）；n=2/n=8 = **C / reference-limited**
+ - **paper_gap**：其余未入稿 keys（Pereira/Xu/Nie/Falletta）；cutoff300 本 VM 无 CP2K
+ - **Git**：`commit: 5fd35b3` — `loop R426: Discussion Shi2023 strain-mobility vs four-corner S`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **下一轮**：下一未入稿 key 一句；无 CP2K 不伪造 n=2/n=8
+- **Loop R429（2026-08-17，三轨 · III Literature）**：
+ - **Track A**：idle / **不干预**
+ - **Track B（III Literature）**：Discussion Context 加 `Nie2026strainC20`（PRB 113, 045401, DOI 10.1103/cctw-8r8r）— C$_{20}$ 单层应变诱导磁性/半金属是另一笼同素异形体的磁响应，不是 qHP C$_{60}$ 上置换 B/N/P 加冻结双轴四隅 $\mathcal{S}$
+ - **Track C**：主文/SI `7/8|at revision|orthogonal|fourfold` = **0**；**未**改 Abstract/Results 定量
+ - **创新审计**：C$_{20}$ 应变磁性 vs 四隅 $\mathcal{S}$ = **B+**（已有 bib；差异化句）
+ - **paper_gap**：下一 bib 候选 `Falletta2025polaronDFT`（**勿**本轮插）；P0 n=2/n=8
+ - **Git**：`commit: 4a56ee6` — `loop R429: Discussion Nie2026 C20 strain-magnetism vs four-corner S`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **下一轮**：R430 **VIII Conclusion** — 与 Intro/Discussion 文献定位闭环；**勿**再插第三篇 bib
+- **Loop R430（2026-08-17，三轨 · write.mdc VIII Conclusion）**：
+ - **Track A**：NO_CP2K — **不干预**
+ - **Track B（VIII Conclusion）**：Conclusions 补 cage-allotrope caveat — C$_{70}$ band-edge / C$_{20}$ strain-magnetism **不**替代 qHP C$_{60}$ 四角落 $\mathcal{S}$；无新定量、无第三 bib
+ - **Track C**：grep `7/8|at revision|orthogonal|fourfold` 主文/SI **0**
+ - **创新审计**：Conclusion 文献闭环 = **A**（bib 已有；无新 DFT）；n=2/n=8 = **C / reference-limited**；Mayer = **C**
+ - **paper_gap**：下一 bib 候选 Falletta2025polaronDFT；dense-$k$ / Mayer
+   - **Git**：`commit: 6fdbb82` — `loop R430: Conclusion C70/C20 vs four-corner S closure`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **下一轮**：横切 audit 或 Falletta 一句；勿再插 Xu/Nie
+- **Loop R431（2026-08-17，三轨 · write.mdc VII Discussion）**：
+ - **Track A**：NO_CP2K — **不干预**
+ - **Track B（VII Discussion）**：Falletta2025 polaron SIC vs 四角落 \(\mathcal{S}\) 边界一句（带电/中性 DFT 等价 **不**把四角落审计变成 Marcus 速率或带电缺陷形成能）；无新定量、无第三 bib、无第三处 Xu/Nie
+ - **Track C**：grep `7/8|at revision|orthogonal|fourfold` 主文/SI **0**
+ - **创新审计**：Discussion SIC 边界 = **A**（bib 已有；无新 DFT）；n=2/n=8 = **C / reference-limited**；Mayer = **C**
+ - **paper_gap**：R432 Methods 四角落 vs 带电表面契约；dense-$k$ / Mayer
+ - **Git**：`commit: 9f72cc4` — `loop R431: Falletta polaron SIC vs four-corner S boundary`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **下一轮**：Methods 契约句；勿再插 Xu/Nie/Falletta
+
+- **Loop R437（2026-08-17，三轨 · IV Methodology）**：
+  - **Track A**：`NO_CP2K` — **不干预**；canonical Exp10 **41/41**、Exp8 **6/6**、Exp9 **12/12+8/8**
+  - **Track B**：Methods n=2 四角继承 pristine $10^{-5}$ 例外 — reference-limited at **undoped corner**，非 mixed-derivative 符号翻转；无新定量
+  - **Track C**：主文/SI `7/8|at revision|referee` = 0
+  - **创新审计**：Methods 契约 = **A**；n=2 四角 @ $10^{-6}$ = **C**；Mayer = **C**
+  - **paper_gap**：Mayer/Bader；SCAN + dense-$k$；n=2 四角 @ EPS $10^{-6}$
+  - **Git**：`commit: 99fa114` — `loop R437: Methods n=2 four-corner inherits pristine SCF exception`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+  - **下一轮**：禁止再插 Intro Qiu / 第三处 Xu·Nie·Falletta / Methods cheapest-improvement 复述
+- **Loop R436（2026-08-17，三轨 · III Literature）**：
+ - **Track A**：`NO_CP2K` — **不干预**；canonical Exp10 **41/41**、Exp8 **6/6**、Exp9 **12/12+8/8**
+ - **Track B（III Literature）**：Intro C24 句后 1 句 `Qiu2025atomic`（力学/摩擦原子尺度图 ≠ 四角 $\mathcal{S}$）；无新 bib、无新定量；禁止第三处 Xu/Nie/Falletta；纠正 theory L611 过期「Discussion 已 cite Qiu」
+ - **Track C**：主文 `7/8`/`at revision`/`referee` = **0**
+ - **创新审计**：Qiu vs 四角 $\mathcal{S}$ = **B+**；无新 bib = **A**；L611 P0 纠错 = **A**
+ - **paper_gap**：Mayer/Bader = **C**；SCAN + dense-$k$ = **C**；$n{=}2$ four-corner @ EPS $10^{-6}$ = **C**
+ - **Git**：`commit: 6cde2a5` — `loop R436: Intro Qiu2025atomic mechanical/tribological vs four-corner S`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **下一轮**：Methods（mod 8）或 `n=2` 四角 EPS $10^{-6}$
+- **Loop R435（2026-08-17，三轨）**：
+ - **Track A**：Exp10 **41/41**；running=**NO_CP2K**；**不干预**
+ - **Track B（II Intro）**：L61 诊断句后补「not a charged-defect or polaron-rate estimator」；对齐 Abstract L40 / Methods `eq:four_corner` / Conclusions L272；无新定量、无第三处 Falletta
+ - **Track C（C-m3）**：grep `7/8|at revision|referee` = **0**
+ - **创新审计**：Intro 范围句 = **A**（契约，无 `.out`）；Mayer = **C**
+ - **paper_gap**：Mayer/Bader；SCAN + dense-$k$；$n{=}2$ 四角 @ EPS $10^{-6}$
+ - **Git**：`commit: d43936b' — `loop R435: Intro four-corner vs charged-defect/polaron-rate`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **下一轮**：Literature 2026 扫描（禁止第三处 Xu/Nie/Falletta）或 Methods 契约
+
+- **Loop R434（2026-08-17，三轨）**：
+ - **Track A**：Cloud VM **NO_CP2K** — **不干预**；canonical Exp10 **41/41**
+ - **Track B（I Abstract）**：四角落 $\mathcal{S}$ 补一句：非 charged-defect / polaron-rate estimator（无 cite、无新定量）；对齐 Methods R432 + Conclusions R433
+ - **Track C**：C-m3 grep `7/8|at revision|referee` = 0；Abstract 无 `\cite`（D6）
+ - **创新审计**：Abstract 四角落边界 = **A**（无 cite）；R433 实际 HEAD `9d27d3b`（笔记曾写 `06c0ce4`）
+ - **paper_gap**：`n=2` 四角 EPS $10^{-6}$；`n=8` 参考态；Mayer/Bader；SCAN + dense-$k$
+ - **Git**：`commit: 5bda587` — `loop R434: Abstract four-corner vs charged-defect/polaron-rate`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **下一轮**：`n=2` 四角或 SCAN 单点（无 CP2K 则横切）
+- **Loop R433（2026-08-17，三轨 · go loops）**：
+ - **Track A**：NO_CP2K — **不干预**
+ - **Track B（VIII Conclusion）**：Conclusions 在 thermodynamic-observable 句后补中性四角落 $\mathcal{S}$ 边界（非 charged-defect / Marcus）；不 cite Falletta
+ - **Track C（C-m3）**：grep 主文/SI `7/8|at revision|referee` = 0；主文 0 处 `experiments/`
+ - **创新审计**：Conclusion 中性四角落收口 = **A**；Falletta 仍 Discussion 1 cite；Methods 契约已落地
+ - **paper_gap**：`n=2` 四角 EPS $10^{-6}$；`n=8` 参考态
+ - **Git**：`commit: 06c0ce4` — `loop R433: Conclusion four-corner vs charged-defect/Marcus`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **下一轮**：`n=2` 重算或 SCAN
+- **Loop R432（2026-08-17，三轨 · Methods 四角落 vs 带电表面契约）**：
+ - **Track A**：Exp10 **41/41**、Exp8 **6/6**、Exp9 **12/12+8/8**、reference_pbed3 **24/24**；running=none；**NO_CP2K** — **不干预**
+ - **Track B（IV Methods）**：`sdc_method_section.tex` 在 Eq.~(four_corner) 后加一句：四角落在同一中性 Born--Oppenheimer 面上求值；模板不是 charged-defect 或 polaron-rate 估计器（**不 cite** Falletta；不碰 Results 定量）
+ - **Track C**：grep `7/8|at revision|referee` → **0**
+ - **创新审计**：Methods 中性表面契约 = **A**；Falletta 仍仅 Discussion 1 处 = **A**；Mayer = **C**
+ - **paper_gap**：P0 `n=2` 四角 $10^{-6}$ + `n=8` 参考态；dense-$k$ / Mayer
+ - **Git**：`commit: 8db93dd` — `loop R432: Methods four-corner vs charged-surface contract`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **下一轮**：Conclusion 中性四角落边界收口（不 cite Falletta）；cutoff300 仅 idle 监控
+
+- **Loop R428（2026-08-17，三轨 · VII Discussion / III Literature）**：
+
+ - **Track A**：CP2K 仍不可用 — **不干预**；n=2/n=8 仍 **C / reference-limited**
+ - **Track B**：Discussion 在 Pereira 句后插入 `Xu2025C70network` 一句（C70 能带工程 vs 本文 qHP C60 置换四隅 $\mathcal{S}$）
+ - **Track C（C-m3）**：grep 主文/SI `7/8|at revision|orthogonal|fourfold` = 0
+ - **创新审计**：Xu C70 合成/带边设计 vs 四隅 $\mathcal{S}$ = **B+**（已有 bib）；n=2/n=8 = **C**
+ - **paper_gap**：下一未入稿 bib：**Nie2026strainC20**、Falletta（各 1 句、不要新加 bib）
+ - **Git**：`commit: 0b45acd`
+ - **下一轮**：Nie C20 磁性/半金属 vs 本文中性总能量 $\mathcal{S}$；勿新加 bib
+- **Loop R427（2026-08-17，三轨 · VII Discussion / III Literature）**：
+ - **Track A**：CP2K 仍不可用 — **不干预**；n=2/n=8 仍 **C / reference-limited**
+ - **Track B（VII Discussion / III Literature）**：Discussion 在 Shi 句后插入 `Pereira2026endohedral` 一句（endohedral 电子/光学 vs 本文置换 + 冻结双轴四隅 $\mathcal{S}$；bib 已有，无新条目）
+ - **Track C（C-m3）**：grep 主文/SI `7/8|at revision|orthogonal|fourfold` = 0
+ - **创新审计**：Pereira vs 四隅 $\mathcal{S}$ = **B+**（已有 bib，差异化句）；n=2/n=8 = **C**
+ - **paper_gap**：下一未入稿 bib key **各 1 句、不要新加 bib**：`Xu2025C70network`、`Nie2026strainC20`、`Falletta2025polaronDFT`
+ - **Git**：`commit: 17d36aa` — `loop R427: Discussion Pereira endohedral vs substitutional four-corner S`；（push 随 mr）
+ - **下一轮**：Xu / Nie / Falletta 各 1 句；或本机 CP2K 后 n=2/n=8
+- **Loop R423（2026-08-17，三轨 · positioning 表 cite 对齐）**：
+
+ - **Track A**：Cloud VM 无 CP2K — idle / **不干预**；勿刷新 `exp10_status.json`
+ - **Track B（横切）**：`tab_lit_positioning` 第一行补 `\cite{Li2024graphullerene}`，与 Discussion L223 C$_{24}$ 对比句对齐
+ - **Track C**：`grep -E '7/8|at revision|orthogonal|fourfold' paper/*.tex` = **0**
+ - **创新审计**：表–文 cite 对齐 = **A**；n=2/n=8 DFT = **C**
+ - **paper_gap**：周期 n=2/n=8 仍 **C**
+ - **Git**：`commit: 10b28fc` — `loop R423: add Li2024graphullerene to literature positioning table`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
+ - **下一轮**：本机有 CP2K 时跑 $n{=}2$ 四角；**不**伪造 DFT
 
 - **Loop R417（2026-08-02，三轨）**：
   - **Track A**：启动 `size_6x60_N_pos3pct_cutoff300` 单点（np=8，2/3 CPU；由 cutoff400 模板仅改 PROJECT/CUTOFF）→ cutoff 收敛曲线 300/350/400 + D4 截断对照；**running**
@@ -4027,6 +4729,14 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
 
 ### Gotchas
 
+- **Cloud VM 无本地 Exp10 `.out`**：`update_exp10_status.py` / `exp10_status_line.sh` 会报 Exp10 **0/42**。这不是归档 41/41 被抹掉；立即 `git restore experiments/analysis/exp10_status.json`，**勿提交** Cloud VM 刷新后的 JSON。R421 已踩坑。
+- **bib 必须对 Crossref 核验**：R419 在 18 条 cited 里查出 **11 条**错误，其中 `Materials2024untangling` 无法检索到（判定虚构）却被引 3 次。**新增或修改 bib 条目后必须用 `https://api.crossref.org/works/<doi>` 比对 title/journal/volume/pages/authors**，勿凭记忆填 DOI。
+- **部分网格数值会冻进 tex**：Table III 的 alternate placement 曾长期停留在 8/18 时期的值（含 3 个错误符号）。凡 tex/py 里出现来自未完成网格的数字，**必须由 analysis JSON 读取**并在 `status != complete` 或 `alpha_provisional` 时抛错，勿硬编码（`_load_audit.load_seed137_alpha_S` 为范例）。
+- **pristine 参考态一致性**：pristine 同一应变的能量/atom 与超胞尺寸**无关**，是免费的自检。$n{=}2$（EPS_SCF 1e-5）与 $n{=}8$ 偏离 $n{=}1,4,6$ 平台 4.2/5.4 meV/atom；因 $\mathcal{S}$ 含该项的负号，这两行的 $\mathcal{S}$ 带同量级系统偏移 — **不要用它们做尺寸趋势论断**。改 EPS_SCF 时须同步 Table~I 误差预算。
+- **图注必须对着渲染出的图核**：R419 发现 Fig.4 caption 的「radius 不能排序」与所绘单调数据相反，Fig.1(c) 的 y 轴把正文引用的负值裁在 panel 外。**改 caption 前先 `pdftoppm` 出图看一眼**。
+- **表格 label 勿用罗马数字**：`tab:I` 曾渲染成 Table III，直接导致 caption 指错图。用语义 label（`tab:relax`、`tab:sgrid` …）。
+- **α 过度精度**：六点四聚体网格的线性拟合标准误达 $\pm110$–$870$ meV/%；仅 N 超 $2\sigma$。报 α 必须带标准误，且 $|\alpha|$ 轴无法承载 $\pm870$（用带符号 α）。
+- **VMD 缩略图缓存未入库**：`figures/final_figures/_vbm_cbm_cache_surf_doped/` 为 VMD 产物且不跟踪，干净 checkout 会让 Fig.3/4 渲染失败 → `scatter_dopant` 已回退标准标记（对 PRB 也更合规）。
 - **seed137 EPS**：tetramer 默认 `SEED137_EPS=1.0E-5`（`generate_seed137_inputs.py`）；`SEED137_EPS_ONLY=1` 仅改 EPS 不动坐标；掺杂位锁定见 `seed137_reroll_offsets.json`（勿用 `hash(dop)` 重生成）。
 - **reference_pbed3 慢收敛**：seed~42 四聚体 EPS $10^{-6}$ 下内层 OT 可触 300 步并触发**外层 SCF** 重启（`+0.0_N` 参考 266 OT）；`+2.5_B` 外层 21 轮 ABORT 后 **EPS $10^{-5}$** 收敛；`+2.5_P` 可昨夜近 EPS 后外层能量阶梯回跳（outer${\geq}15$、grad${\gg}$EPS，status **OSC**）— **勿杀 job**，等 ABORT 再 `relax_reference_pbed3_eps`；续跑须 `SKIP_GENERATE=1`（`continue_reference_pbed3_pending.sh`）以免 `generate_*` 覆盖 EPS。
 - **seed137 unlinked .out**：CP2K 运行中 `rm` 路径会使 `lsof +L1` link=0；`cleanup_stale_cp2k` 的 `lsof path` 检测失效。跑前/后 `bash experiments/guard_unlinked_cp2k_out.sh`；`exp5_seed137_status_line` 标 `UNLINKED`。

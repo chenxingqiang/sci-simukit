@@ -1,10 +1,12 @@
 \subsection{Strain--dopant coupling energy}
 \label{sec:methods_coupling}
 
-$\mathcal{S}$ is the symmetric four-corner finite-difference estimator of $\gamma\equiv\partial^2 E/\partial\epsilon\,\partial\delta$ at $+3$\% load---not an order parameter and not interchangeable with $\gamma$ unless higher-order remainders are negligible (Supplemental Material, Table~\ref{S-tab:descriptor} and Sec.~\ref{S-sec:appendix_fd}).
+$\mathcal{S}_\delta(\epsilon)$ is the discrete strain--substitution interaction for a fixed dopant species $\delta\in\{\mathrm{B},\mathrm{N},\mathrm{P}\}$ at $+3$\% load.
+It is not a continuum derivative $\partial^2 E/\partial\epsilon\,\partial\delta$, not an order parameter, and not interchangeable with a mixed derivative unless a local composition coordinate is introduced and higher-order remainders are negligible (Supplemental Material, Table~\ref{S-tab:descriptor} and Sec.~\ref{S-sec:appendix_fd}).
+B, N, and P are distinct chemical labels, not three numerical points on one continuous $\delta$ axis.
 
 \begin{equation}
-\mathcal{S}(\epsilon,\delta)
+\mathcal{S}_\delta(\epsilon)
 = \Delta E(\epsilon,\delta) - \bigl[\Delta E(\epsilon,0) + \Delta E(0,\delta)\bigr],
 \label{eq:synergy_order}
 \end{equation}
@@ -13,27 +15,31 @@ $\Delta E(\epsilon,\delta)=\bigl[E(\epsilon,\delta)-E(0,\mathrm{pristine})\bigr]
 and $\delta{=}0$ denoting the pristine reference at the same supercell size $n\times\mathrm{C}_{60}$.
 Equivalently, on corners $(0,0)$, $(\Delta\epsilon,0)$, $(0,\Delta\delta)$, $(\Delta\epsilon,\Delta\delta)$,
 \begin{equation}
-\mathcal{S}(\epsilon,\delta)=\frac{E(\epsilon,\delta)-E(\epsilon,0)-E(0,\delta)+E(0,0)}{N_{\mathrm{atoms}}},
+\mathcal{S}_\delta(\epsilon)=\frac{E(\epsilon,\delta)-E(\epsilon,0)-E(0,\delta)+E(0,0)}{N_{\mathrm{atoms}}},
 \label{eq:four_corner}
 \end{equation}
 which depends only on the four corner totals (reference independence).
+The four corner totals are evaluated on the same neutral Born--Oppenheimer surface; the stencil is not a charged-defect or polaron-rate estimator.
 
 \paragraph{Why a four-point stencil?}
 Eqs.~\eqref{eq:synergy_order}--\eqref{eq:four_corner} are the minimal rectangular stencil that uses four DFT totals, is second-order accurate in the bilinear term, cancels first-order increments and a shared offset, and equals the additive-screening bias by construction.
 Asymmetric three-point schemes retain linear contamination; other estimators are compared in Supplemental Material, Sec.~\ref{S-sec:why_four}.
 
-\paragraph{Finite-difference link to the mixed derivative.}
-Expanding each corner total to second order and forming Eq.~\eqref{eq:four_corner} cancels $E_\epsilon\,\Delta\epsilon$ and $E_\delta\,\Delta\delta$ identically (Supplemental Material, Sec.~\ref{S-sec:four_corner_deriv}), yielding
+\paragraph{Finite-difference link after a local composition coordinate.}
+The species label $\delta$ is discrete.
+A mixed derivative $\partial^2 e/\partial\epsilon\,\partial x$ is defined only after a local continuous composition coordinate $x$ is introduced at that fixed species (main text, Eq.~\eqref{eq:taylor_coupling}).
+Expanding each corner total in $(\epsilon,x)$ to second order and forming Eq.~\eqref{eq:four_corner} cancels the first-order increments identically (Supplemental Material, Sec.~\ref{S-sec:four_corner_deriv}), yielding
 \begin{equation}
-\mathcal{S}(\epsilon,\delta)\approx
-\frac{\partial^2 E}{\partial\epsilon\,\partial\delta}\,
-\frac{\Delta\epsilon\,\Delta\delta}{N_{\mathrm{atoms}}}
-+ \mathcal{O}(\Delta\epsilon^2,\Delta\delta^2,\Delta\epsilon^2\delta,\epsilon\delta^2),
+\mathcal{S}_\delta(\epsilon)\approx
+\frac{\partial^2 e}{\partial\epsilon\,\partial x}\,
+\Delta\epsilon\,\Delta x
++ \mathcal{O}(\Delta\epsilon^2,\Delta x^2),
 \label{eq:mixed_derivative}
 \end{equation}
-so $\mathcal{S}$ reports the discrete mixed second derivative of total energy on the audited $(\epsilon,\delta)$ grid.
+where $\Delta x$ is a formal step of that local coordinate, not a spacing that places B, N, and P on one axis.
+Eq.~\eqref{eq:mixed_derivative} is therefore not $\partial^2 E/\partial\epsilon\,\partial\delta$ with B/N/P treated as numerical points of a shared $\delta$.
 At finite $+3$\% biaxial load and discrete B/N/P labels, higher-order terms in Eq.~\eqref{eq:mixed_derivative} are not separately resolved on the production periodic map; multi-amplitude strain audits ($\epsilon=1$--$3$\%) are targeted sensitivity tests (Limitations).
-Throughout the main text, ``nonlinear coupling'' refers to a nonzero mixed response estimated by $\mathcal{S}$, not to $\mathcal{S}$ itself as a fundamental constant.
+Throughout the main text, ``nonlinear coupling'' refers to a nonzero discrete strain--substitution interaction estimated by $\mathcal{S}_\delta(\epsilon)$, not to $\mathcal{S}$ itself as a fundamental constant and not to a continuum mixed derivative along a shared dopant axis.
 
 $\mathcal{S}$ is reported in meV per atom and is invariant under a uniform energy offset shared by all four corners (Supplemental Material, Sec.~\ref{S-sec:symmetry_gauge}).
 

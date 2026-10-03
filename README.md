@@ -1,182 +1,73 @@
-# 🚀 Strain-Tuned Heteroatom-Doped Graphullerene Networks
+# Non-additive Strain--Dopant Energetics in Quasi-Hexagonal C60 Graphullerene
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
-[![CP2K](https://img.shields.io/badge/CP2K-2025.2-green.svg)](https://www.cp2k.org/)
+Computational archive for a Physical Review B Regular Article (major revision).
 
-## 📖 Overview
+**Authors:** Xingqiang Chen and Qixing Wang, Xiamen University  
+**Contact:** xingqiang.chen@xmu.edu.cn  
+**Repository:** https://github.com/chenxingqiang/sci-simukit  
+**Revision:** branch `cursor/prb-manuscript-rigor-audit-1d10` (Loop R501)
 
-This repository contains the complete implementation of our research on **"Strain-Tuned Heteroatom-Doped Graphullerene Networks: Engineering Quantum Transport Properties through Controlled Lattice Deformation"**.
+Production calculations use PBE+D3 (BJ) in CP2K. The reported quantity is the four-corner strain--substitution interaction at fixed dopant species,
 
-We present a comprehensive computational framework combining:
-- 🔬 First-principles DFT calculations (CP2K)
-- 🤖 Graph Neural Networks for property prediction
-- 🧪 High-throughput materials screening
-- 📊 Multi-scale modeling approach
+$$\mathcal{S}_\delta(\epsilon)=\frac{E(\epsilon,\delta)-E(\epsilon,0)-E(0,\delta)+E(0,0)}{N_{\mathrm{atoms}}}.$$
 
-## 🎯 Key Innovations
+B, N, and P are discrete chemical labels, not three points on one continuous derivative coordinate. A mixed derivative appears only after a local composition coordinate is introduced at fixed species.
 
-- **300% Enhancement** in electron mobility through optimal strain-doping combinations
-- **Tunable Band Gap** range: 1.2-2.4 eV via synergistic strain and heteroatom effects
-- **Machine Learning** acceleration: R² > 0.95 for property predictions
-- **Device Applications**: Flexible electronics, strain sensors, optoelectronics
+The representative main-text value is the periodic $n=4$ phosphorus point, $|\mathcal{S}|=23.7\pm 2$ meV/atom at $+3\%$ biaxial tension (about twelve times the $\lesssim 2$ meV/atom reporting floor). Across the audited sizes the phosphorus cross term spans $23.7$--$31.9$ meV/atom. That scale can alter energy differences relevant to energetic screening when candidate separations are comparable to $|\mathcal{S}|$. It is not, by itself, a demonstrated ranking reversal.
 
-## 📁 Project Structure
+Fixed-coordinate $|\mathcal{S}|$ is an upper-end estimate relative to the fully relaxed fixed-cell protocol studied here (epitaxial clamp, strong adhesion, or ultrafast load, where ions cannot follow). It is not a universal bound on every constraint manifold. Periodic $n=1$ phosphorus fixed-cell relaxation suppresses the cross term to the reporting floor. The $n=2$ and $n=8$ cells are reference-limited and are not used for size-trend claims.
 
-```
-sci-simukit/
-├── 📄 README.md                    # This file
-├── 📜 LICENSE                      # MIT License
-├── 📋 requirements.txt             # Python dependencies
-├── 🎓 paper/                       # LaTeX manuscript and figures
-│   ├── strain_doped_graphullerene.tex
-│   ├── strain_graphullerene_50refs.bib
-│   └── figures/                    # Paper figures
-├── 🔧 src/                         # Structure generation + SDC Python wrapper
-│   ├── strain_generator.py         # Strain structure generation
-│   ├── doping_generator.py         # Heteroatom doping
-│   ├── strain_doping_combiner.py   # Combined strain+doping
-│   └── sdc_coupling_analysis.py    # SDC plots (canonical: c/simukit-sdc)
-├── ⚙️ c/                           # C DFT coupling core (CP2K parse/run/SDC)
-│   ├── include/simukit/            # Public headers
-│   ├── src/                        # libsimukit sources
-│   └── Makefile                    # `make` → simukit-run, simukit-sdc
-├── 📋 AGENTS.md                    # Dual-track optimization loop (Track A+B)
-├── 🔬 experiments/                 # Experimental workflows
-│   ├── run_complete_experiment.py  # Full pipeline
-│   └── fullerene_strain_search.py  # Literature search tool
-├── 📊 data/                        # Generated structures and results
-│   ├── strained_structures/
-│   ├── doped_structures/
-│   └── strain_doped_structures/
-└── 📈 results/                     # Analysis and visualizations
-    ├── figures/
-    └── reports/
+In the three-substituent audit (covalent-radius mismatches of $-6$, $+7$, and $+30$ pm for N, B, and P), the clearly large deviation occurs for the largest mismatch ($+30$ pm, P). Three chemical points do not define a $20$ pm threshold.
+
+Mayer bond orders, Bader charges, SCAN/r2SCAN, and a dense $k$-mesh are not reported and remain limitations. No mobility, band-gap device, or machine-learning performance claim is part of this manuscript.
+
+## Manuscript
+
+```text
+paper/strain_doped_graphullerene.tex    main text
+paper/supplementary_figures.tex         supplemental material
+paper/response_to_referees.md           revision response (not part of the article)
+paper/cover_letter_prb.txt              PRB cover letter
 ```
 
-## 🛠️ Installation
+Compile the article with `bash paper/compile_prb.sh`.
 
-### Prerequisites
-- Python 3.9+
-- CP2K 2025.2 (for DFT calculations)
-- CUDA-capable GPU (optional, for ML training)
+## Repository layout
 
-### Setup Environment
-
-```bash
-# Clone the repository
-git clone https://github.com/chenxingqiang/graphullerene-strain-engineering.git
-cd graphullerene-strain-engineering
-
-# Create virtual environment
-python3 -m venv fullerene-env
-source fullerene-env/bin/activate  # On Windows: fullerene-env\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt
+```text
+paper/          LaTeX manuscript, figures, and tables
+experiments/    CP2K inputs, workflows, and analysis JSON
+c/              CP2K output parser, batch runner, and SDC analysis
+src/            Python structure helpers and plot wrappers
+dft_results/    archived converged outputs
+AGENTS.md       internal computation and manuscript loop notes
 ```
 
-## 🚀 Quick Start
+## Reproduce the coupling table
 
-### 1. Generate Structures
-```bash
-# Generate strain structures
-python src/strain_generator.py --strain_range -5 5 --strain_step 2.5
-
-# Generate doped structures
-python src/doping_generator.py --concentrations 2.5 5.0 7.5 --dopants B N P
-
-# Generate combined strain+doping structures
-python src/strain_doping_combiner.py --quick_test
-```
-
-### 2. Run Complete Experiment
-```bash
-# Quick test mode
-python experiments/run_complete_experiment.py --mode quick
-
-# Full production mode (requires HPC)
-python experiments/run_complete_experiment.py --mode full
-```
-
-### 3. C DFT Core (CP2K parse, batch run, SDC analysis)
 ```bash
 cd c && make
 export CP2K_DATA=/opt/homebrew/share/cp2k/data   # adjust for your install
 ./simukit-sdc ../experiments/exp_10_size_scaling/inputs
-./simukit-run --exp8-sp ../experiments/exp_10_size_scaling/inputs
 ```
 
-See `AGENTS.md` for the dual-track optimization loop.
+`simukit-sdc` writes the canonical synergy JSON. The Python wrapper must not overwrite that file.
 
-## 📊 Paper Figures and Tables
+## Citation
 
-The paper requires the following figures and tables (see `paper/figures/` for outputs):
-
-### Figures
-1. **Fig. 1**: Graphullerene structure and strain/doping schemes
-2. **Fig. 2**: Band structure evolution under strain
-3. **Fig. 3**: Electron mobility vs. strain for different dopants
-4. **Fig. 4**: ML model architecture and performance
-5. **Fig. 5**: Phase diagram of optimal properties
-6. **Fig. 6**: Device application schematics
-
-### Tables
-1. **Table 1**: Electronic properties of pristine and doped networks
-2. **Table 2**: ML model performance metrics
-3. **Table 3**: Comparison with experimental/literature values
-
-## 💻 High-Performance Computing
-
-For production DFT calculations on HPC clusters:
-
-```bash
-# Prepare batch job
-sbatch hpc_scripts/run_cp2k_batch.sh
-
-# Monitor progress
-squeue -u $USER
-
-# Collect results
-python scripts/collect_hpc_results.py
-```
-
-## 📚 Citation
-
-If you use this code in your research, please cite:
+A journal DOI is not yet assigned. Until acceptance, cite the repository revision:
 
 ```bibtex
-@article{chen2024strain,
-  title={Strain-Tuned Heteroatom-Doped Graphullerene Networks: Engineering Quantum Transport Properties through Controlled Lattice Deformation},
-  author={Chen, Xingqiang and Wang, Ying and Zhang, Ming and Li, Hao and Liu, Zhi and Zhang, Xue},
-  journal={Nature Materials},
-  year={2025},
-  note={Submitted} 
+@misc{chen2026graphullereneS,
+  title={Non-additive Strain--Dopant Energetics in Quasi-Hexagonal {C}$_{60}$ Graphullerene},
+  author={Chen, Xingqiang and Wang, Qixing},
+  year={2026},
+  howpublished={GitHub},
+  url={https://github.com/chenxingqiang/sci-simukit},
+  note={Branch cursor/prb-manuscript-rigor-audit-1d10, Loop R501}
 }
 ```
 
-## 🤝 Contributing
+## License
 
-We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 👥 Contact
-
-- **Principal Investigator**: Prof. Xingqiang Chen
-- **Email**: xingqiang.chen@university.edu
-- **Lab Website**: https://graphullerene-lab.org
-
-## 🙏 Acknowledgments
-
-- CP2K developers for the excellent DFT software
-- PyTorch Geometric team for graph neural network tools
-- Funding agencies for computational resources
-
----
-
-<p align="center">
-Made with ❤️ by the Graphullerene Research Team
-</p>
+MIT. See `LICENSE`.

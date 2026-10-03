@@ -55,6 +55,14 @@ from _style import (
 OUT = FIG_DIR / "out"
 
 
+def _marker_area(abs_s: float, ref: float, *, lo: float = 70.0, hi: float = 220.0) -> float:
+    """Scatter area scales with |S| / max|S| on the panel (audit JSON, not a fit)."""
+    if ref <= 0:
+        return 130.0
+    t = min(max(abs_s / ref, 0.0), 1.0)
+    return lo + (hi - lo) * t
+
+
 def _energy_landscape_inset(ax) -> None:
     """Schematic bilinear corner of E(epsilon, delta) — not from DFT data."""
     inset = ax.inset_axes([0.03, 0.06, 0.36, 0.44])
@@ -477,9 +485,12 @@ def build_fig2() -> tuple[Path, Path]:
         labelspacing=0.25,
         frameon=False,
     )
+    p_rows = dict(synergy_rows(audit, "P"))
+    s_p4 = float(p_rows[4])
+    s_p1 = float(p_rows[1])
     ax_a.annotate(
-        r"P core $\sim\!-24$ to $-32$",
-        xy=(4.0, -23.71),
+        rf"$n{{=}}4$: {s_p4:.1f}" + "\n" + rf"$n{{=}}1$: {s_p1:.1f}",
+        xy=(4.0, s_p4),
         xytext=(2.55, -14.5),
         textcoords="data",
         fontsize=5.7,
@@ -529,11 +540,11 @@ def build_fig2() -> tuple[Path, Path]:
     add_reference_lines(ax_b)
     ax_b.set_xlim(-0.02, 1.02)
     ax_b.set_xticks([0, 1])
-    ax_b.set_xticklabels(["rigid\n(misfit + load)", "relaxed\n(stress release)"])
+    ax_b.set_xticklabels(["rigid\n(fixed coords)", "relaxed\n(fixed-cell)"])
     ax_b.set_ylabel(r"$\mathcal{S}$ (meV/atom)")
     style_axes(ax_b)
     ax_b.annotate(
-        "constrained\ndiagnostic",
+        "upper-end\nprotocol est.",
         xy=(0, s_rig),
         xytext=(8, -14),
         textcoords="offset points",
@@ -545,7 +556,7 @@ def build_fig2() -> tuple[Path, Path]:
         clip_on=True,
     )
     ax_b.annotate(
-        "stress\nrelease",
+        "fully relaxed\nfixed-cell",
         xy=(1, s_rel),
         xytext=(-36, 0),
         textcoords="offset points",
@@ -658,7 +669,7 @@ def build_fig3() -> tuple[Path, Path]:
             signed_alpha[d],
             abs_s4[d],
             d,
-            size=130,
+            size=_marker_area(abs_s1[d], s1_ref),
             offset={"B": (10, 12), "N": (12, 12), "P": (-24, 10)}[d],
         )
     ax_d.set_xlabel(r"$\alpha$ (meV/%)")
@@ -707,7 +718,7 @@ def build_fig4() -> tuple[Path, Path]:
     ax_a.set_xlim(-0.8, max(dd.values()) * 1.35)
     ax_a.set_ylim(0, max(dq_frac.values()) * 1.28)
     for d in dopants:
-        scatter_dopant(ax_a, dd[d], dq_frac[d], d, size=130,
+        scatter_dopant(ax_a, dd[d], dq_frac[d], d, size=_marker_area(s_abs[d], sref),
                        offset={"B": (14, -14), "N": (-18, 12), "P": (14, 12)}[d])
     ax_a.set_xlabel(r"$|\Delta\bar{d}|_{0\to+3\%}$ (mÅ)")
     ax_a.set_ylabel(r"$|\Delta q/q|_{0\to+3\%}$ (%)")
@@ -716,8 +727,6 @@ def build_fig4() -> tuple[Path, Path]:
     panel_label(ax_b, "b", nature=True)
     ax_b.set_xlim(-2, max(dr.values()) * 1.22)
     ax_b.set_ylim(-max(s_abs.values()) * 0.1, max(s_abs.values()) * 1.28)
-    ax_b.axvspan(20, 45, color=DOPANT_FILLS["P"], alpha=0.40, zorder=0)
-    ax_b.axvline(20, color=DOPANT_COLORS["P"], ls="--", lw=0.95, alpha=0.75)
     # Reporting floor: values inside the band are not resolved against the
     # protocol uncertainty, which is what separates P from B and N.
     ax_b.axhspan(0, SIGMA_S_MEV, color="#BFBFBF", alpha=0.45, lw=0, zorder=0)

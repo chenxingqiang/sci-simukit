@@ -18,8 +18,7 @@ joint E(epsilon, delta) landscape need not equal the sum of separate strain-only
 and substitution-only increments. The bilinear cross term in a Taylor expansion
 of total energy can reach meV-per-atom magnitudes large enough to alter
 energy differences at the scale relevant to energetic screening for
-size-mismatched phosphorus, and large enough to invalidate an additive ranking
-when candidate separations are comparable to |S|. Linear strain coefficients
+size-mismatched phosphorus. Linear strain coefficients
 alpha do not reliably predict that omitted term. The matched four-corner
 difference S_delta(epsilon) is the discrete strain--substitution interaction at
 fixed dopant species delta. A local composition coordinate x, held at that
@@ -90,7 +89,7 @@ Data availability: computational inputs, outputs, four-corner energy tables,
 and reproduction materials are in the repository that contains this
 manuscript:
 https://github.com/chenxingqiang/sci-simukit
-branch cursor/prb-manuscript-rigor-audit-1d10 (Loop R501). No separate DOI is
+branch cursor/prb-resubmission-boundary-1d10, commit cbc4e398ca122f2ce821aee36b295ba44392b99a. No separate DOI is
 claimed for this resubmission.
 
 Marcus lambda (Fig. 3): eight vertical single-points at the neutral geometry

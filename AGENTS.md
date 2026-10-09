@@ -28,7 +28,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Population B/N/P** | **18/18** ✅ |
 | **reference_pbed3** | **24/24** ✅ |
 | **运行中** | NO_CP2K（Cloud Agent VM） |
-| **最新 Loop** | **R503** |
+| **最新 Loop** | **R504b** |
 | **下一 B 任务** | Mayer/Bader、SCAN/r²SCAN、dense-$k$ 仍为 Limitations（本轮不新算） |
 | **主张-证据** | 主文 $\mathcal{S}_\delta$ = 固定物种离散交叉项；headline $n{=}4$ $23.7\pm 2$；rigid $|\mathcal{S}|$ = upper-end protocol estimate（非普适上界）；Fig.~3(d)/4(a) 标记面积 $\propto|\mathcal{S}|$；无 20 pm 阈值线 |
 | **Loop C** | C-M1 **closed** ✅；C-M2 **closed** ✅；C-M3 **closed**（text）；C-m1–m5 **closed** ✅ |
@@ -117,6 +117,20 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
   - **paper_gap**：Mayer/Bader、SCAN/r$^2$SCAN、dense-$k$ 仍为 Limitations
   - **Git**：`commit: f76c71f` — `loop R503: ledger sync for R502 figure claims`；`pushed: origin/cursor/prb-manuscript-rigor-audit-1d10`
   - **下一轮**：不启 CP2K；台账已对齐 R502
+- **Loop R504（2026-10-09，投稿包 · VII Discussion 措辞）**：
+  - **Track A**：NO_CP2K。canonical Exp10 **41/41**；不启 Mayer/SCAN/dense-$k$。
+  - **Track B**：主文两处 “invalidate an additive ranking” 降为 screening-scale（可改变与 $|\mathcal{S}|$ 相当的能量差；不声称已发生排序反转）。封面信删去同一从句。定量、20 pm、protocol bound、离散 $\mathcal{S}_\delta$ 不改。DAS/README 的 commit 钉在随后的 hash-sync，不钉 `2d275d8`。
+  - **创新审计**：ranking 措辞 = **A**（无新 `.out`）；Mayer/SCAN/dense-$k$ = **C**
+  - **paper_gap**：hash-sync 把内容提交完整 SHA 写入 DAS、README、两封 cover letter
+  - **Git**：`commit: cbc4e39` — `loop R504: screening-scale ranking wording`；`cbc4e398ca122f2ce821aee36b295ba44392b99a`
+  - **下一轮**：R504b hash-sync
+- **Loop R504b（2026-10-09，投稿包 · hash-sync）**：
+  - **Track A**：NO_CP2K。不启 Mayer/SCAN/dense-$k$。
+  - **Track B**：DAS、README、两封 cover letter、response banner、theory report 当前 Data URL 钉到科学内容提交 `cbc4e398ca122f2ce821aee36b295ba44392b99a`，分支 `cursor/prb-resubmission-boundary-1d10`。不钉 `2d275d8`，不钉旧分支 `cursor/prb-manuscript-rigor-audit-1d10`。历史 Loop 笔记中的旧分支名保留为当时 push 记录。
+  - **创新审计**：投稿包 pin = **A**（无新 `.out`）；Mayer/SCAN/dense-$k$ = **C**
+  - **paper_gap**：CI test/lint 仍红（依赖安装阶段，非 DFT）；SI theory 残留 mobility/R² outlook 未本轮改写
+  - **Git**：`commit: 005a98b` — `loop R504b: pin scientific commit cbc4e39`
+  - **下一轮**：push 本分支并开 draft PR；不重开已合并的 PR #3
 - **Loop R498（2026-08-18，三轨 · III Literature）**：
   - **Track A**：canonical Exp10 **41/41**、Exp8 **6/6**、Exp9 GEO **12/12** + vertical **8/8**；Cloud VM 误报 Exp10 0/42 / Exp8 0/6 / vertical 0/8；**NO_CP2K** — **不干预**、**不启** cutoff300
   - **Track B（III Literature）**：query `(graphullerene OR "fullerene network" OR qHP C60) strain doping polaron 2025 2026` → Capobianco *Nano Lett.* 4c01695 / Li thermoelectric 5.0211458 / ShaikhPeng arXiv:2504.02037 / Xu C70 / Nie C20 / Khan BN-doping chemrxiv **均已在 bib**（`Capobianco2024electron`、`Li2024strain`、`ShaikhPeng2025thermal`、`Xu2025C70network`、`Nie2026strainC20`、`Khan2025tuning`）；BN 共掺 vs 本文 B/N/P 置换 $\mathcal{S}$ **不对等**。**bib +0**；**no tex rewrite**

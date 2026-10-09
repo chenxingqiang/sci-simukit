@@ -129,7 +129,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
   - **Track B**：DAS、README、两封 cover letter、response banner、theory report 当前 Data URL 钉到科学内容提交 `cbc4e398ca122f2ce821aee36b295ba44392b99a`，分支 `cursor/prb-resubmission-boundary-1d10`。不钉 `2d275d8`，不钉旧分支 `cursor/prb-manuscript-rigor-audit-1d10`。历史 Loop 笔记中的旧分支名保留为当时 push 记录。
   - **创新审计**：投稿包 pin = **A**（无新 `.out`）；Mayer/SCAN/dense-$k$ = **C**
   - **paper_gap**：CI test/lint 仍红（依赖安装阶段，非 DFT）；SI theory 残留 mobility/R² outlook 未本轮改写
-  - **Git**：`commit: pending-hash-sync` — `loop R504b: pin scientific commit cbc4e39`
+  - **Git**：`commit: 005a98b` — `loop R504b: pin scientific commit cbc4e39`
   - **下一轮**：push 本分支并开 draft PR；不重开已合并的 PR #3
 - **Loop R498（2026-08-18，三轨 · III Literature）**：
   - **Track A**：canonical Exp10 **41/41**、Exp8 **6/6**、Exp9 GEO **12/12** + vertical **8/8**；Cloud VM 误报 Exp10 0/42 / Exp8 0/6 / vertical 0/8；**NO_CP2K** — **不干预**、**不启** cutoff300

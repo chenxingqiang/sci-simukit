@@ -11,6 +11,14 @@ Phase: write.mdc 阶段6 Discussion 措辞。Track A: NO_CP2K。无新 DFT 数�
 
 证据等级：措辞边界 = **A**；Mayer/SCAN/dense-$k$ = **C**。
 
+### R504b ledger (2026-10-09 · packaging · hash-sync)
+
+Phase: write.mdc 横切。Track A: NO_CP2K。无新 DFT 数，主文定量不改。
+
+内容提交是 `230e279c4821d64e8db23987354c425ac720d869`（`loop R504: screening-scale ranking wording`）。DAS、README、两封 cover letter 与本台账的 Data URL 钉到这一完整 SHA。不钉审稿检查点 `2d275d8`（该提交早于 R501–R504 的离散记号、protocol bound、ranking 与 20 pm 降级）。Mayer/Bader、SCAN/r²SCAN、dense-$k$ 仍为 **C** / not reported。
+
+证据等级：投稿包指针 = **A**（元数据）；科学主张不因本条改变。
+
 ### R503 ledger (2026-10-09 · 横切 B4/B5 · figure–text contract for R502)
 
 Phase: write.mdc 阶段 7 横切。Track A: NO_CP2K（Cloud Agent VM 无 `.out`；canonical Exp10 仍为 41/41；cutoff300 未启动）。主文定量未改。
@@ -26,7 +34,7 @@ Phase: write.mdc 阶段 7 横切。Track A: NO_CP2K（Cloud Agent VM 无 `.out`�
 
 证据等级：图–文契约 = **A**（措辞与既有 audit 对齐，无新 DFT 数）；Mayer/SCAN/dense-$k$/cutoff300 = **C**。
 
-Data URL：`https://github.com/chenxingqiang/sci-simukit` branch `cursor/prb-manuscript-rigor-audit-1d10`，Loop R503，无 DOI。
+Data URL：`https://github.com/chenxingqiang/sci-simukit` branch `cursor/prb-manuscript-rigor-audit-1d10`，commit `230e279c4821d64e8db23987354c425ac720d869`，无 DOI。
 
 ### R501 ledger (2026-10-02 · constrained diagnostic; supersedes main-text upper bound and $S_\infty$)
 
@@ -39,7 +47,7 @@ Data URL：`https://github.com/chenxingqiang/sci-simukit` branch `cursor/prb-man
 - **Resolution**: $\sigma_{\mathcal{S}}\approx 2\sigma_e\lesssim 2$ meV/atom is a protocol floor, not a 95\% confidence interval and not a physical significance cutoff. The $2\sigma_e$ quadrature phrase in the SI appendix is a conservative reporting floor on corner noise and is distinct from the rigid-protocol estimate (upper end relative to the fully relaxed fixed-cell protocol studied here, not a universal bound).
 - **Notation**: $\mathcal{S}_\delta(\epsilon)$ is the discrete strain--substitution interaction at fixed dopant species. B/N/P are not points on one continuous $\delta$ axis. A mixed derivative is stated only after a local composition coordinate $x$.
 - **Ranking / mismatch**: no explicit additive-to-coupled ranking reversal is claimed. $|\mathcal{S}|$ can alter energy differences at a screening-relevant scale when candidate separations are comparable to $|\mathcal{S}|$. Headline representative is $n{=}4$, $|\mathcal{S}|=23.7\pm 2$ meV/atom, across the audited P span $23.7$--$31.9$. Three substituents ($-6,+7,+30$ pm) do not establish a $20$ pm threshold; the clearly large deviation is $+30$ pm (P).
-- **Data**: \url{https://github.com/chenxingqiang/sci-simukit} (branch `cursor/prb-manuscript-rigor-audit-1d10`, Loop R501). No DOI invented.
+- **Data**: \url{https://github.com/chenxingqiang/sci-simukit} (branch `cursor/prb-manuscript-rigor-audit-1d10`, commit `230e279c4821d64e8db23987354c425ac720d869`). No DOI invented.
 - **Evidence grade**: existing periodic numbers remain **A**; new dense-$k$ / SCAN / $1$--$3$\% meshes remain **C** (not run).
 - **Track A**: NO_CP2K.
 

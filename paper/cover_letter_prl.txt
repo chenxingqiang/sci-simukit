@@ -33,7 +33,7 @@ Supplemental Material.
 A Supplemental Material PDF provides energy tables (including ionic-relaxation benchmarks, Table III), the DFT campaign ledger, pi-DOS panels, Marcus schematics (lambda partially pending), and the J factorial. All core non-additivity conclusions are stated in the main Letter.
 
 Data availability.
-Converged CP2K inputs/outputs and analysis JSON are archived at https://github.com/chenxingqiang/sci-simukit (branch cursor/prb-manuscript-rigor-audit-1d10, Loop R501). No DOI is assigned.
+Converged CP2K inputs/outputs and analysis JSON are archived at https://github.com/chenxingqiang/sci-simukit (branch cursor/prb-manuscript-rigor-audit-1d10, commit 230e279c4821d64e8db23987354c425ac720d869). No DOI is assigned.
 
 Suggested referees (optional — edit before submission).
 [Referee 1: strain engineering / 2D molecular networks]

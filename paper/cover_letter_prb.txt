@@ -89,7 +89,7 @@ Data availability: computational inputs, outputs, four-corner energy tables,
 and reproduction materials are in the repository that contains this
 manuscript:
 https://github.com/chenxingqiang/sci-simukit
-branch cursor/prb-manuscript-rigor-audit-1d10 (Loop R501). No separate DOI is
+branch cursor/prb-manuscript-rigor-audit-1d10, commit 230e279c4821d64e8db23987354c425ac720d869. No separate DOI is
 claimed for this resubmission.
 
 Marcus lambda (Fig. 3): eight vertical single-points at the neutral geometry

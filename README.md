@@ -5,7 +5,7 @@ Computational archive for a Physical Review B Regular Article (major revision).
 **Authors:** Xingqiang Chen and Qixing Wang, Xiamen University  
 **Contact:** xingqiang.chen@xmu.edu.cn  
 **Repository:** https://github.com/chenxingqiang/sci-simukit  
-**Revision:** branch `cursor/prb-manuscript-rigor-audit-1d10` (Loop R501)
+**Revision:** branch `cursor/prb-manuscript-rigor-audit-1d10`, commit `230e279c4821d64e8db23987354c425ac720d869`
 
 Production calculations use PBE+D3 (BJ) in CP2K. The reported quantity is the four-corner strain--substitution interaction at fixed dopant species,
 
@@ -64,7 +64,7 @@ A journal DOI is not yet assigned. Until acceptance, cite the repository revisio
   year={2026},
   howpublished={GitHub},
   url={https://github.com/chenxingqiang/sci-simukit},
-  note={Branch cursor/prb-manuscript-rigor-audit-1d10, Loop R501}
+  note={Branch cursor/prb-manuscript-rigor-audit-1d10, commit 230e279c4821d64e8db23987354c425ac720d869}
 }
 ```
 

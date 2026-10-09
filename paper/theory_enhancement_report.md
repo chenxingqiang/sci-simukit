@@ -7,7 +7,7 @@
 
 Phase: write.mdc 阶段6 Discussion 措辞。Track A: NO_CP2K。无新 DFT 数。
 
-主文两句与 PRB cover letter 去掉 “invalidate an additive ranking”。保留的主张是：$|\mathcal{S}|$ 可以改变与该交叉项相当的筛选相关能量差；没有展示 additive-to-coupled 排序反转。headline 仍为 $n{=}4$ $|\mathcal{S}|=23.7\pm 2$ meV/atom。Data URL 的精确 commit 在随后的 hash-sync 写入，不回钉 `2d275d8`。
+主文两句与 PRB cover letter 去掉 “invalidate an additive ranking”。保留的主张是：$|\mathcal{S}|$ 可以改变与该交叉项相当的筛选相关能量差；没有展示 additive-to-coupled 排序反转。headline 仍为 $n{=}4$ $|\mathcal{S}|=23.7\pm 2$ meV/atom。科学内容提交为 `cbc4e398ca122f2ce821aee36b295ba44392b99a`（分支 `cursor/prb-resubmission-boundary-1d10`）。不回钉 `2d275d8`。
 
 证据等级：措辞边界 = **A**；Mayer/SCAN/dense-$k$ = **C**。
 
@@ -26,7 +26,7 @@ Phase: write.mdc 阶段 7 横切。Track A: NO_CP2K（Cloud Agent VM 无 `.out`�
 
 证据等级：图–文契约 = **A**（措辞与既有 audit 对齐，无新 DFT 数）；Mayer/SCAN/dense-$k$/cutoff300 = **C**。
 
-Data URL：`https://github.com/chenxingqiang/sci-simukit` branch `cursor/prb-manuscript-rigor-audit-1d10`，Loop R503，无 DOI。
+Data URL：`https://github.com/chenxingqiang/sci-simukit` branch `cursor/prb-resubmission-boundary-1d10`，commit `cbc4e398ca122f2ce821aee36b295ba44392b99a`，无 DOI。
 
 ### R501 ledger (2026-10-02 · constrained diagnostic; supersedes main-text upper bound and $S_\infty$)
 
@@ -39,7 +39,7 @@ Data URL：`https://github.com/chenxingqiang/sci-simukit` branch `cursor/prb-man
 - **Resolution**: $\sigma_{\mathcal{S}}\approx 2\sigma_e\lesssim 2$ meV/atom is a protocol floor, not a 95\% confidence interval and not a physical significance cutoff. The $2\sigma_e$ quadrature phrase in the SI appendix is a conservative reporting floor on corner noise and is distinct from the rigid-protocol estimate (upper end relative to the fully relaxed fixed-cell protocol studied here, not a universal bound).
 - **Notation**: $\mathcal{S}_\delta(\epsilon)$ is the discrete strain--substitution interaction at fixed dopant species. B/N/P are not points on one continuous $\delta$ axis. A mixed derivative is stated only after a local composition coordinate $x$.
 - **Ranking / mismatch**: no explicit additive-to-coupled ranking reversal is claimed. $|\mathcal{S}|$ can alter energy differences at a screening-relevant scale when candidate separations are comparable to $|\mathcal{S}|$. Headline representative is $n{=}4$, $|\mathcal{S}|=23.7\pm 2$ meV/atom, across the audited P span $23.7$--$31.9$. Three substituents ($-6,+7,+30$ pm) do not establish a $20$ pm threshold; the clearly large deviation is $+30$ pm (P).
-- **Data**: \url{https://github.com/chenxingqiang/sci-simukit} (branch `cursor/prb-manuscript-rigor-audit-1d10`, Loop R501). No DOI invented.
+- **Data**: \url{https://github.com/chenxingqiang/sci-simukit} (branch `cursor/prb-resubmission-boundary-1d10`, commit `cbc4e398ca122f2ce821aee36b295ba44392b99a`). No DOI invented.
 - **Evidence grade**: existing periodic numbers remain **A**; new dense-$k$ / SCAN / $1$--$3$\% meshes remain **C** (not run).
 - **Track A**: NO_CP2K.
 

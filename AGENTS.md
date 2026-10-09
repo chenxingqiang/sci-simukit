@@ -115,7 +115,7 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
   - **Track B**：`theory_enhancement_report` 增 R503 台账，把 R502 图件主张写回（Fig.~2 upper-end protocol estimate vs fully relaxed fixed-cell；Fig.~3(d)/4(a) 标记面积按 audit $|\mathcal{S}|$；Fig.~4(b) 去掉 20 pm 视觉；$\Delta r_{\mathrm{cov}}=+30$ pm）。无新 DFT 数，不改主文。
   - **创新审计**：图–文契约 = **A**（措辞）；Mayer/SCAN/dense-$k$/cutoff300 = **C**
   - **paper_gap**：Mayer/Bader、SCAN/r$^2$SCAN、dense-$k$ 仍为 Limitations
-  - **Git**：`commit: pending` — `loop R503: ledger sync for R502 figure claims`；`pushed: origin/cursor/prb-manuscript-rigor-audit-1d10`
+  - **Git**：`commit: f76c71f` — `loop R503: ledger sync for R502 figure claims`；`pushed: origin/cursor/prb-manuscript-rigor-audit-1d10`
   - **下一轮**：不启 CP2K；台账已对齐 R502
 - **Loop R498（2026-08-18，三轨 · III Literature）**：
   - **Track A**：canonical Exp10 **41/41**、Exp8 **6/6**、Exp9 GEO **12/12** + vertical **8/8**；Cloud VM 误报 Exp10 0/42 / Exp8 0/6 / vertical 0/8；**NO_CP2K** — **不干预**、**不启** cutoff300

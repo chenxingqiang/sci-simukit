@@ -155,6 +155,180 @@ def check_file(path: Path, rules: dict) -> list[str]:
     return errs
 
 
+def _cell_and_coords(path: Path) -> tuple[float | None, list[tuple[str, float, float, float]]]:
+    """In-plane lattice constant and the atom list of a CP2K input."""
+    a: float | None = None
+    atoms: list[tuple[str, float, float, float]] = []
+    inside = False
+    for line in path.read_text(encoding="utf-8", errors="replace").splitlines():
+        s = line.strip()
+        if a is None:
+            m = re.match(r"ABC\s+([\d.]+)", s) or re.match(r"A\s+([\d.]+)\s", s)
+            if m:
+                a = float(m.group(1))
+        if "&COORD" in line:
+            inside = True
+            continue
+        if "&END COORD" in line:
+            inside = False
+            continue
+        if inside:
+            f = line.split()
+            if len(f) == 4:
+                atoms.append((f[0], float(f[1]), float(f[2]), float(f[3])))
+    return a, atoms
+
+
+def check_strain_pair(zero: Path, strained: Path, tol: float = 2e-4) -> list[str]:
+    """A strained input must scale the coordinates with the cell and keep the sites.
+
+    Two protocol errors are invisible to the per-file rules above and both
+    silently destroy a four-corner evaluation: scaling only the cell (so the
+    material is never strained, and the energy change is a periodic-image
+    artifact) and re-drawing the dopant sites between corners (so the difference
+    measures configuration, not strain).
+    """
+    a0, x = _cell_and_coords(zero)
+    a1, y = _cell_and_coords(strained)
+    errs: list[str] = []
+    if a0 is None or a1 is None:
+        return ["cell not parsed"]
+    if len(x) != len(y):
+        return [f"atom count {len(x)} vs {len(y)}"]
+    cell_ratio = a1 / a0
+    if abs(cell_ratio - 1.0) < 1e-9:
+        return []
+    ratios = []
+    for p, q in zip(x, y):
+        for i in (1, 2):  # in-plane x, y
+            if abs(p[i]) > 1e-6:
+                ratios.append(q[i] / p[i])
+    if not ratios:
+        return ["no in-plane coordinates"]
+    if abs(min(ratios) - cell_ratio) > tol or abs(max(ratios) - cell_ratio) > tol:
+        errs.append(
+            f"coordinates not scaled with cell (cell x{cell_ratio:.6f}, "
+            f"coords x{min(ratios):.6f}-{max(ratios):.6f})"
+        )
+    sites0 = {s for s, *_ in ((a[0], a) for a in x) if s not in ("C", "H")}
+    if sites0:
+        def dopant_sites(atoms, scale):
+            return {
+                (round(a[1] / scale, 3), round(a[2] / scale, 3), round(a[3], 3))
+                for a in atoms
+                if a[0] not in ("C", "H")
+            }
+
+        d0 = dopant_sites(x, 1.0)
+        d1 = dopant_sites(y, cell_ratio)
+        if d0 != d1:
+            errs.append(f"dopant sites differ between corners ({len(d0 & d1)}/{len(d0)} shared)")
+    return errs
+
+
+# (label, directory, eps0 glob, strained-name substitution)
+STRAIN_PAIRS = [
+    (
+        "exp10 periodic",
+        REPO / "experiments/exp_10_size_scaling/inputs",
+        "size_*_pos0pct.inp",
+        ("pos0pct", "pos3pct"),
+    ),
+    (
+        "periodic placement",
+        REPO / "experiments/exp_10_size_scaling/placement_validation/inputs",
+        "place_*_pos0pct.inp",
+        ("pos0pct", "pos3pct"),
+    ),
+    (
+        "periodic relaxation",
+        REPO / "experiments/exp_10_size_scaling/periodic_relax_validation/inputs",
+        "per_relax_*_eps0_geo.inp",
+        ("eps0", "eps3"),
+    ),
+    (
+        "Hirshfeld population",
+        REPO / "experiments/exp_7_electronic_structure/population_validation/inputs",
+        "pop_*_strainp0.0pct.inp",
+        ("strainp0.0pct", "strainp3.0pct"),
+    ),
+]
+
+# Documented-invalid tetramer pairs: vacuum-cell or dopant-site redraws.
+# They MUST fail check_strain_pair; a pass is a checker bug.
+INVALID_STRAIN_PAIRS = [
+    (
+        REPO / "experiments/exp_5_synergy/reference_pbed3/inputs"
+        / "refpbed3_pristine_strainp0.0_rigid.inp",
+        REPO / "experiments/exp_5_synergy/reference_pbed3/inputs"
+        / "refpbed3_pristine_strainp3.0_rigid.inp",
+    ),
+    (
+        REPO / "experiments/exp_5_synergy/reference_pbed3/inputs"
+        / "refpbed3_P_strainp0.0_rigid.inp",
+        REPO / "experiments/exp_5_synergy/reference_pbed3/inputs"
+        / "refpbed3_P_strainp3.0_rigid.inp",
+    ),
+    (
+        REPO / "experiments/exp_5_synergy/seed_validation/inputs"
+        / "seed137_pristine_strainp0.0_rigid.inp",
+        REPO / "experiments/exp_5_synergy/seed_validation/inputs"
+        / "seed137_pristine_strainp3.0_rigid.inp",
+    ),
+    (
+        REPO / "experiments/exp_5_synergy/seed_validation/inputs"
+        / "seed137_P_strainp0.0_rigid.inp",
+        REPO / "experiments/exp_5_synergy/seed_validation/inputs"
+        / "seed137_P_strainp3.0_rigid.inp",
+    ),
+    (
+        REPO / "experiments/exp_5_synergy/relax_validation/inputs"
+        / "relax_pristine_eps0_geo.inp",
+        REPO / "experiments/exp_5_synergy/relax_validation/inputs"
+        / "relax_pristine_eps3_geo.inp",
+    ),
+    (
+        REPO / "experiments/exp_5_synergy/relax_validation/inputs"
+        / "relax_P_eps0_geo.inp",
+        REPO / "experiments/exp_5_synergy/relax_validation/inputs"
+        / "relax_P_eps3_geo.inp",
+    ),
+]
+
+
+def check_strain_protocol() -> tuple[int, int, int]:
+    failed = checked = 0
+    for label, directory, pattern, (old, new) in STRAIN_PAIRS:
+        if not directory.is_dir():
+            print(f"SKIP {label}: missing {directory.relative_to(REPO)}")
+            continue
+        for zero in sorted(directory.glob(pattern)):
+            strained = zero.with_name(zero.name.replace(old, new))
+            if not strained.is_file():
+                continue
+            checked += 1
+            errs = check_strain_pair(zero, strained)
+            if errs:
+                print(f"FAIL {strained.relative_to(REPO)}: {', '.join(errs)}")
+                failed += 1
+            else:
+                print(f"PASS affine strain: {zero.name} -> {strained.name}")
+    invalid_ok = 0
+    for zero, strained in INVALID_STRAIN_PAIRS:
+        if not (zero.is_file() and strained.is_file()):
+            print(f"SKIP invalid pair missing: {zero.name}")
+            continue
+        errs = check_strain_pair(zero, strained)
+        if not errs:
+            print(f"FAIL expected-invalid pair passed: {zero.name}")
+            failed += 1
+            checked += 1
+        else:
+            invalid_ok += 1
+            print(f"PASS expected-fail: {zero.name} ({errs[0]})")
+    return failed, checked, invalid_ok
+
+
 def main() -> int:
     failed = 0
     checked = 0
@@ -174,10 +348,19 @@ def main() -> int:
             if errs:
                 print(f"FAIL {path.relative_to(REPO)}: {', '.join(errs)}")
                 failed += 1
+    strain_failed, strain_checked, invalid_ok = check_strain_protocol()
+    checked += strain_checked
+    failed += strain_failed
+    affine_ok = strain_checked - strain_failed
+
     if failed:
-        print(f"\n{failed}/{checked} file(s) failed")
+        print(f"\n{failed}/{checked} check(s) failed")
         return 1
-    print(f"verify_dft_protocol: OK ({checked} files)")
+    print(
+        f"verify_dft_protocol: OK ({checked} files; "
+        f"{affine_ok}/{strain_checked} affine pairs PASS; "
+        f"{invalid_ok} expected-fail tetramer pairs)"
+    )
     return 0
 
 

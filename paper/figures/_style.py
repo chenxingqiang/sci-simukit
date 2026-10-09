@@ -422,15 +422,25 @@ def scatter_dopant(
     offset: tuple[float, float] = (7, 4),
     use_orbital: bool = True,
 ) -> None:
-    """Place dopant glyph. Default: electron-cloud thumbnail (not triangle/square)."""
+    """Place dopant glyph.
+
+    Uses the electron-cloud thumbnail when the rendered cache is available and
+    falls back to the standard per-dopant marker otherwise, so the figure stays
+    reproducible from a clean checkout (the thumbnails are VMD products and are
+    not tracked).
+    """
+    if use_orbital and dop in DOPANT_ORBITAL_PNG:
+        cached = DOPANT_ORBITAL_PNG.get(dop)
+        if cached is None or not cached.is_file():
+            use_orbital = False
     if use_orbital and dop in DOPANT_ORBITAL_PNG:
         # Matplotlib scatter ``s`` is area in points^2; map to OffsetImage zoom.
-        zoom = min(0.30, 0.11 + 0.00016 * float(size))
+        zoom = min(0.30, 0.129 * np.sqrt(max(float(size), 1.0) / 120.0))
         rgba = _orbital_rgba(dop)
         imagebox = OffsetImage(rgba, zoom=zoom)
         # Colored under-dot (identity) + frameless orbital cloud (no square/triangle markers)
         ax.scatter(
-            [x], [y], s=max(size * 0.62, 85),
+            [x], [y], s=max(size * 0.55, 40.0),
             color=DOPANT_COLORS[dop], alpha=0.32, linewidths=0, zorder=4,
         )
         ab = AnnotationBbox(
@@ -451,7 +461,7 @@ def scatter_dopant(
             y,
             s=size,
             color=DOPANT_COLORS[dop],
-            marker="o",
+            marker=DOPANT_MARKERS.get(dop, "o"),
             edgecolors=INK,
             linewidths=0.85,
             zorder=4,
@@ -651,7 +661,7 @@ def draw_additive_screening_schematic(ax: Axes) -> None:
     ax.text(
         0.15,
         2.96,
-        r"Scheme. Separate scans $+$ four-corner DFT $\rightarrow$ $\mathcal{S}$",
+        r"$\mathcal{S}_\delta(\epsilon)=E_{\mathrm{cpl}}-E_{\mathrm{add}}$ at fixed $\delta$",
         ha="left",
         va="top",
         fontsize=6.0,
@@ -671,7 +681,7 @@ def draw_additive_screening_schematic(ax: Axes) -> None:
     rxn_arrow((3.45, y_top), (4.15, y_top), "additive", dy=0.28)
     pill(4.90, y_top, 1.18, 0.52, r"$E_{\mathrm{add}}$", "#F8FAFC", NATURE_GRAY, fs=6.4)
 
-    mol(1.90, y_bot, tetramer, r"4-corner $(\epsilon,\delta)$", zoom=0.09)
+    mol(1.90, y_bot, tetramer, r"4-corner, fixed $\delta$", zoom=0.09)
     rxn_arrow((2.70, y_bot), (4.15, y_bot), "coupled", dy=0.28, above=False)
     pill(4.90, y_bot, 1.18, 0.52, r"$E_{\mathrm{cpl}}$", "#DBEAFE", NATURE_BLUE, fs=6.4)
 
@@ -695,9 +705,17 @@ def draw_additive_screening_schematic(ax: Axes) -> None:
     )
 
     rxn_arrow((7.46, y_mid), (8.35, y_mid), r"$|\mathcal{S}|$", dy=0.20)
-    pill(9.20, y_mid, 1.28, 0.58, "decision", DOPANT_FILLS["P"], DOPANT_COLORS["P"])
-    rxn_arrow((9.88, y_mid), (10.55, y_mid))
-    pill(11.20, y_mid, 1.18, 0.58, "update", "#F1F5F9", NATURE_GRAY)
+    ax.text(
+        9.55,
+        y_mid,
+        r"$\mathcal{S}_\delta(\epsilon)$" + "\n" + r"fixed species $\delta$",
+        ha="center",
+        va="center",
+        fontsize=6.2,
+        color=INK,
+        clip_on=False,
+        zorder=3,
+    )
 
 
 def draw_energy_coupling_schematic(ax: Axes) -> None:
@@ -713,14 +731,14 @@ def draw_energy_coupling_schematic(ax: Axes) -> None:
     ax.axvline(3.0, color="#DDDDDD", lw=0.7, ls=":", zorder=0)
     ax.set_xlim(0.0, 3.2)
     ax.set_ylim(0.0, 0.82)
-    ax.set_xlabel(r"$\epsilon$ (\%)")
+    ax.set_xlabel(r"$\epsilon$ (%)")
     ax.set_ylabel(r"$\Delta E$ (arb. units)")
     mid = 0.5 * (e_add + e_cpl)
     idx = int(len(eps) * 0.42)
     ax.text(
         eps[idx],
         mid[idx] + 0.03,
-        r"$c\,\epsilon\delta$",
+        r"$c\,\epsilon x$",
         ha="center",
         va="bottom",
         fontsize=6.2,

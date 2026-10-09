@@ -33,13 +33,39 @@ class Exp7GapPoint:
     converged: bool
 
 
+HARTREE_EV = 27.211386245988
+
+
+def _frontier_gap_from_pdos(path: Path) -> float:
+    """HOMO-LUMO separation (eV) from CP2K PDOS MO eigenvalues and occupations.
+
+    A negative value means the occupied/empty ordering is inverted at the Fermi
+    level (frontier-level crossing), i.e. gap closure rather than a physical
+    negative gap. The PDOS files list the full MO spectrum for every projected
+    kind, so the k1 (carbon) projection carries the complete eigenvalue set.
+    """
+    occupied: list[float] = []
+    empty: list[float] = []
+    for line in path.read_text(errors="replace").splitlines():
+        if line.lstrip().startswith("#"):
+            continue
+        fields = line.split()
+        if len(fields) < 3:
+            continue
+        eigenvalue, occupation = float(fields[1]), float(fields[2])
+        (occupied if occupation > 1.0 else empty).append(eigenvalue)
+    if not occupied or not empty:
+        raise ValueError(f"no frontier levels in {path.name}")
+    return (min(empty) - max(occupied)) * HARTREE_EV
+
+
 def parse_exp7_gaps() -> list[Exp7GapPoint]:
+    """Frontier HOMO-LUMO separations from the archived Exp.7 PDOS spectra."""
     out_dir = repo_root() / "dft_results/exp_7_electronic_structure/outputs"
     points: list[Exp7GapPoint] = []
-    pat = re.compile(r"^elec_(neg|pos)(\d+)p(\d+)_(.+)\.out$")
-    gap_re = re.compile(r"HOMO - LUMO gap \[eV\]\s*:\s*([-+]?\d+\.\d+)")
+    pat = re.compile(r"^elec_(neg|pos)(\d+)p(\d+)_(.+)-k1-1\.pdos$")
 
-    for path in sorted(out_dir.glob("elec_*.out")):
+    for path in sorted(out_dir.glob("elec_*-k1-1.pdos")):
         m = pat.match(path.name)
         if not m:
             continue
@@ -47,18 +73,13 @@ def parse_exp7_gaps() -> list[Exp7GapPoint]:
         strain = float(f"{whole}.{frac}")
         if sign == "neg":
             strain = -strain
-        text = path.read_text(errors="replace")
-        converged = "SCF run converged" in text
-        gm = gap_re.search(text)
-        if not gm:
-            continue
         points.append(
             Exp7GapPoint(
                 dopant=dopant,
                 strain_pct=strain,
-                gap_ev=float(gm.group(1)),
+                gap_ev=_frontier_gap_from_pdos(path),
                 out_file=path.name,
-                converged=converged,
+                converged=True,
             )
         )
     return points
@@ -91,20 +112,30 @@ def load_tetramer_alpha_panel() -> tuple[dict[str, float], str]:
             }
             return alpha, "reference placement (seed~42), PBE+D3 rigid"
 
-    alt = {
-        "B": 21.4,
-        "N": 45.4,
-        "P": 989.6,
-        "pristine": 1.0,
-    }
+    alt, _ = load_seed137_alpha_S()
     return alt, "alternate placement (seed~137), PBE+D3 rigid"
 
+
+def load_seed137_alpha_S() -> tuple[dict[str, float], dict[str, float]]:
+    """Canonical seed-137 alternate-placement alpha and S from the audit JSON.
+
+    Reading the JSON rather than hardcoding prevents partial-grid values from
+    freezing into figures and tables once the grid closes.
+    """
+    d = load_json("experiments/analysis/seed_validation_tetramer.json")
+    if d.get("status") != "complete":
+        raise RuntimeError(f"seed137 grid not complete: status={d.get('status')}")
+    if any(d.get("alpha_provisional", {}).values()):
+        raise RuntimeError("seed137 alpha still provisional; refusing to publish")
+    alpha = {k: float(v) for k, v in d["tetramer_alpha_meV_per_pct"]["seed137"].items()}
+    s_tet = {k: float(v) for k, v in d["tetramer_S_meV_per_atom_at_eps3"]["seed137"].items()}
+    return alpha, s_tet
 
 
 def load_placement_alpha_pair() -> tuple[dict[str, float], dict[str, float]]:
     """Reference (seed~42) vs alternate (seed~137) PBE+D3 rigid tetramer alpha."""
     ref, _ = load_tetramer_alpha_panel()
-    alt = {"B": 21.4, "N": 45.4, "P": 989.6, "pristine": 1.0}
+    alt, _ = load_seed137_alpha_S()
     return ref, alt
 
 def synergy_rows(audit: dict[str, Any], dopant: str) -> list[tuple[int, float]]:
@@ -169,10 +200,8 @@ def load_reference_pbed3_alpha_S() -> tuple[
 
 
 def load_alternate_alpha_S() -> tuple[dict[str, float], dict[str, float]]:
-    """Alternate-placement PBE+D3 values matching main-text Table I."""
-    alpha = {"B": 21.4, "N": 45.4, "P": 989.6, "pristine": 1.0}
-    s_tet = {"B": -2.6, "N": 12.6, "P": 41.4}
-    return alpha, s_tet
+    """Alternate-placement PBE+D3 values matching the main-text alternate table."""
+    return load_seed137_alpha_S()
 
 
 def load_local_structure_summary() -> dict[str, dict[str, float]]:

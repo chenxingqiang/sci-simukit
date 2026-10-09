@@ -1,4 +1,12 @@
 > **Loop C 索引**：**Report No. 2** (2026) — IDs **R2-M1…R2-M5**, **R2-m1…R2-m4**; Report No. 1 retained below as **C-M1…C-m5**.
+>
+> **R501 (2026-10-02, supersedes generalized upper-bound replies)** — Fixed-coordinate $\mathcal{S}$ is a **constrained diagnostic** (epitaxial clamp, strong adhesion, or ultrafast load). It is **not** a general mathematical upper bound ($|\mathcal{S}_{\mathrm{rigid}}|\ge|\mathcal{S}_{\mathrm{relaxed}}|$) and not an equilibrium free-energy difference. Two boundary conditions stay separate. Periodic $n{=}1$ P at $+3$\%: ionic relaxation suppresses the cross term to the reporting floor ($S_{\mathrm{rigid}}=-31.906$ meV/atom $\to$ $|S_{\mathrm{relaxed}}|<10^{-3}$ meV/atom). Tetramer P ($+1.19\to-2.28$ meV/atom) is a distinct vacuum-box condition (coordinates not affinely strained): sign reversal and **larger** magnitude, not a retention ratio and not orders-of-magnitude suppression (consistent with R421). The matched 400 Ry core is $n\in\{1,2,4\}$; $n\ge 6$ (350 Ry) is reference-only and is not used for mechanistic or asymptotic inference. The $S_\infty+A/n$ guide is removed from the main figure. Mechanism language is evidence-consistent (pre-strain / geometry-mediated contribution); the data do not uniquely partition elastic vs.\ electronic energy. No new DFT this round: dense-$k$, SCAN/r2SCAN, $1$--$3$\% strain meshes, and Mayer/Bader remain Limitations. Historical sentences below that call rigid $|\mathcal{S}|$ an upper bound, or that fit $S_\infty$ in the main text, are **superseded** by this note.
+>
+> **R501b (2026-10-02, notation, ranking, and data statement)** — $\mathcal{S}_\delta(\epsilon)\equiv[E(\epsilon,\delta)-E(\epsilon,0)-E(0,\delta)+E(0,0)]/N_{\mathrm{atoms}}$ is the discrete strain--substitution interaction at fixed dopant species $\delta\in\{\mathrm{B},\mathrm{N},\mathrm{P}\}$. It is not $\partial^2 E/\partial\epsilon\partial\delta$. A mixed derivative is identified only after a local composition coordinate $x$ at that fixed species. Wording that the cross term is "large enough to change/reorder stability rankings" is demoted: $|\mathcal{S}|$ can alter energy differences at the scale relevant to energetic screening when candidate separations are comparable to $|\mathcal{S}|$. No explicit additive-to-coupled ranking reversal is added. The "$|\Delta r_{\mathrm{cov}}|\gtrsim 20$ pm" threshold is withdrawn. In the three-substituent audit ($-6$, $+7$, $+30$ pm) the clearly large deviation is the largest mismatch ($+30$ pm, P). The headline representative is $n{=}4$, $|\mathcal{S}|=23.7\pm 2$ meV/atom; the audited phosphorus span is $23.7$--$31.9$ meV/atom. Data availability points to https://github.com/chenxingqiang/sci-simukit (branch `cursor/prb-manuscript-rigor-audit-1d10`, Loop R501). No DOI is invented. README is aligned to the same revision and no longer states mobility, band-gap, or machine-learning performance claims. Historical replies below that still say "reorder" or "upper bound" are superseded by R501 and R501b.
+>
+> **2026-08-17 (R421)** — Cluster tetramer “strain” grids (`reference_pbed3`, `seed137`, `relax_validation`) do **not** affine-scale molecular coordinates (Cartesian frames byte-identical; only the vacuum box changes). They are **not** strain-physics evidence. Valid $\mathcal{S}(n)$ evidence is periodic Exp10; the valid large-$|\mathcal{S}|$ relaxation test is periodic $n{=}1$ P (`S_{\mathrm{rigid}}=-31.906$ meV/atom $\to$ $S_{\mathrm{relaxed}}\approx 0$). Historical replies below that cite tetramer $\alpha$, tetramer $\mathcal{S}$, or tetramer retention/sign-flip are **superseded** by this protocol finding. The live manuscript title is *Non-additive Strain--Dopant Energetics in Quasi-Hexagonal C$_{60}$ Graphullerene*.
+>
+> **R499 (Track C / IV Methods):** Production inp remains PBE+D3 BJ with 400/350 Ry cutoffs; main-text Methods already matches. No Abstract/Results numbers. C-m3 remains closed (`C_CLEAN`). Mayer/Bader stays **C**.
 
 # Response to Referees — PRB Major Revision (Report No. 2)
 
@@ -99,7 +107,7 @@
 **Referee concern (simulated Referee \#2):** Functional choice is stated without justification; meV-scale conclusions require XC sensitivity discussion; reviewer would request at least one SCAN (or r$^2$SCAN) spot-check.
 
 **Response:** Methods now justify PBE+D3 for \emph{matched} four-corner grids at meV resolution, contrast with hybrid/meta-GGA and Capobianco rVV10 scope (gaps/transport), and state that $\mathcal{S}$ is a within-functional difference so absolute gap errors largely cancel.
-A SCAN/r$^2$SCAN representative corner is **not** in the current dataset; Limitations and future work flag this as a targeted sensitivity test (no fabricated SCAN numbers).
+Cutoff400 four-corner $\mathcal{S}$ is **closed** (Table~sigma_S; $|S_{400}-S_{350}|<0.2$~meV/atom). The remaining functional gap is a SCAN/r$^2$SCAN representative corner, which is **not** in the current dataset; Limitations flag this as a targeted sensitivity test (no fabricated meta-GGA numbers).
 
 **Manuscript:** Sec.~Electronic structure method, ``Exchange-correlation and dispersion''; Limitations outlook.
 
@@ -204,7 +212,7 @@ Full four-corner $\mathcal{S}(\mathrm{cutoff})$ curves are honestly deferred to 
 ### R4-Methods-A — Round 4.1 overall verdict (simulated Referee \#2)
 
 **Referee summary:** Methods II.A upgraded from ``we use PBE+D3'' to functional/dispersion justification, four-corner SCF logic, partial $\mathcal{S}$ cutoff bound, $\Gamma$-only scope, spin/charge/rigid BCs, and honest gaps (no SCAN subset; no full $\mathcal{S}(\mathrm{cutoff}/k/\mathrm{EPS})$ curves yet).
-Residual Major-level backlog: **Track A** SCAN spot-check; four-corner cutoff400 grid for direct $\mathcal{S}(\mathrm{cutoff})$ SI figure.
+Residual Major-level backlog: **Track A** SCAN spot-check. The four-corner cutoff400 grid is closed (Exp10 41/41; Table~sigma_S); a dedicated $\mathcal{S}(\mathrm{cutoff})$ SI figure remains optional, not blocking.
 
 **Author response:** Main Methods + SI Methods + `sdc_method_section` terminology harmonization (``coupling energy $\mathcal{S}$''); Validation benchmarks expanded; Limitations outlook updated.
 
@@ -437,7 +445,7 @@ We thank the referee for recognizing the corrections to doping concentration, Ma
 **Response:**
 - (4.1) We **removed** the side-by-side numeric contrast between tetramer $(\alpha_\delta-\alpha_0)\epsilon$ estimates (${\sim}5$\% doping) and periodic $n{=}4$ $\mathcal{S}$ (${\sim}1.7$\% per atom) from Discussion---the referee correctly notes that concentration and boundary-condition mismatch invalidates this as a nonlinearity test. Non-additivity is argued only via Eq.~\eqref{eq:synergy_order} on matched four-corner grids.
 - (4.2) Stability language tightened to **relative margins** among comparable $|E_{\mathrm{sub}}|$; B vs.\ P ranks at $\epsilon{=}0$ are **unchanged** by meV/atom $\mathcal{S}$.
-- (4.3) Core claims focus on $n\leq 4$ at matched 400~Ry; $n\geq 6$ uses 350~Ry and N sign change is **excluded** from conclusions until Table~II cutoff400 control completes.
+- (4.3) Core claims remain on $n\leq 4$ at matched 400~Ry. The $n{=}6$ and $n{=}8$ production cells share the same 350~Ry cutoff (Methods); the $n{=}8$ offset is therefore not a cutoff-class change and is not reported as a size-trend sign change. The historical N sign change is excluded from conclusions. Table~II cutoff400 is closed (41/41); Table~sigma_S lists the 350 vs 400 cutoff shift as $<0.2$~meV/atom, well below the $n{=}8$ undoped-corner offset.
 
 **Manuscript:** Discussion (v)--(vii), Design implications; validation protocol (Tables~II--IV); Results synergy; Conclusions.
 
@@ -576,7 +584,7 @@ We thank the referee for recognizing the corrections to doping concentration, Ma
 
 ### Major Concern 8 — Functional (SCAN)
 
-**Response:** Methods + Limitations: PBE+D3 production; **SCAN/r$^2$SCAN spot-check listed as future work** — no fabricated meta-GGA numbers.
+**Response:** Methods + Limitations: PBE+D3 production; cutoff400 four-corner $\mathcal{S}$ closed (Table~sigma_S). SCAN/r$^2$SCAN spot-check remains future work --- no fabricated meta-GGA numbers.
 
 ### Major Concern 9 — Literature (cluster expansion / mixed derivative)
 
@@ -590,7 +598,7 @@ We thank the referee for recognizing the corrections to doping concentration, Ma
 
 > Publish after Major Revision — interesting first-principles results; strengthen theoretical interpretation, rigid-strain relevance, and direct validation narrative for the coupling energy.
 
-**Still open (Track A / honest backlog):** full $\mathcal{S}(\mathrm{cutoff},k,\mathrm{EPS})$ curves; Mayer/Bader; SCAN single-point; optional second host (graphene) four-corner grid.
+**Still open (Track A / honest backlog):** SCAN single-point; dense-$k$ $\mathcal{S}(k)$ rows; Mayer/Bader; optional second-host (graphene) four-corner grid. Closed this revision: cutoff400 four-corner $\mathcal{S}$ (Table~sigma_S; $|S_{400}-S_{350}|<0.2$~meV/atom). A dedicated $\mathcal{S}(\mathrm{cutoff})$ SI figure remains optional and is not blocking.
 
 
 ---
@@ -872,7 +880,7 @@ We thank the referee for recognizing the corrections to doping concentration, Ma
 | ID | Referee theme | Response / manuscript action | Status |
 |----|---------------|------------------------------|--------|
 | **R7-1.1** | $\Gamma$-only $k$ corrupts $\mathcal{S}$ | Agree in principle. **Track A:** four-corner $\mathcal{S}$ for $n{=}1$ B/N/P at $2\times2\times1$; fold into Table~\ref{tab:sigma_S} and $\sigma_{\mathcal{S}}$ when converged. **Text:** Limitations + pending row (no new main-text numbers). | **partial** (disclosure); **DFT open** |
-| **R7-1.2** | Dual cutoff 400/350 Ry unjustified for P | Agree. **Track A:** matched $n{=}1$ P four-corner at 350/400 Ry; optional uniform 400 Ry for $n\geq6$. **Text:** existing $6\times$C$_{60}$ N single-point + pending P audit in Table~\ref{tab:sigma_S}. | **partial**; **DFT open** |
+| **R7-1.2** | Dual cutoff 400/350 Ry unjustified for P | Agree on the protocol. Table~II cutoff400 is closed (41/41). Table~sigma_S lists the 350 vs 400 cutoff shift as $<0.2$~meV/atom, well below the $n{=}8$ undoped-corner offset; that offset is not a cutoff-class change ($n{=}6$ and $n{=}8$ share 350~Ry). Remaining **Track A:** SCAN spot-check. | **closed** (cutoff400); SCAN **DFT open** |
 | **R7-1.3** | SCAN / meta-GGA sensitivity | Agree. **Track A:** SCAN four-corner $n{=}1$ P @ $+3$\%. **Text:** Table~\ref{tab:sigma_S} XC row pending; ranking claims scoped to PBE+D3. | **partial**; **DFT open** |
 | **R7-1.4** | vdW cross-term only tetramer P | Agree. **Track A:** B/N periodic vdW audits. **Text:** added pending row in Table~\ref{tab:sigma_S}. | **partial**; **DFT open** |
 | **R7-2.1** | Finite-strain truncation at +3% | Agree. Eq.~\eqref{eq:mixed_derivative} already lists $\mathcal{O}(\epsilon^2\delta,\ldots)$; **Methods** note multi-amplitude ($\epsilon=1$--$3$\%) audit as targeted sensitivity (Limitations). **Track A:** multi-strain $\mathcal{S}$ for $n{=}1$ P. | **partial** (text); **DFT open** |

@@ -112,6 +112,16 @@ def _legend_in(ax, **kw):
     ax.legend(**kw)
 
 
+def _axis_break(ax_top, ax_bot, size: float = 0.018) -> None:
+    """Diagonal ticks marking a broken y-axis between two stacked panels."""
+    d = size
+    kw = dict(color=INK, clip_on=False, lw=0.9, solid_capstyle="butt", zorder=6)
+    ax_top.plot((-d, +d), (-d, +d), transform=ax_top.transAxes, **kw)
+    ax_top.plot((1 - d, 1 + d), (-d, +d), transform=ax_top.transAxes, **kw)
+    ax_bot.plot((-d, +d), (1 - d, 1 + d), transform=ax_bot.transAxes, **kw)
+    ax_bot.plot((1 - d, 1 + d), (1 - d, 1 + d), transform=ax_bot.transAxes, **kw)
+
+
 def _trim_white_margins(img: Image.Image, *, threshold: int = 248, pad: int = 12) -> Image.Image:
     arr = np.asarray(img.convert("RGB"))
     mask = np.any(arr < threshold, axis=2)
@@ -159,8 +169,8 @@ def _prep_structure_image(path: Path) -> Image.Image:
     return im
 
 
-def _structure_mosaic() -> np.ndarray:
-    """2×2 of ε=0 tetramers: pristine, B / N, P."""
+def _structure_panels() -> list[Image.Image]:
+    """ε=0 tetramers in caption order: pristine, B, N, P."""
     root = repo_root() / "paper/figures/final_figures"
     names = (
         "C60_strain_+0.0_pristine_synergy.png",
@@ -168,25 +178,7 @@ def _structure_mosaic() -> np.ndarray:
         "C60_strain_+0.0_N_doped_synergy.png",
         "C60_strain_+0.0_P_doped_synergy.png",
     )
-    panels = [_prep_structure_image(root / name) for name in names]
-    h = max(im.size[1] for im in panels)
-    resized = [
-        im.resize((int(round(im.size[0] * h / im.size[1])), h), Image.Resampling.LANCZOS)
-        for im in panels
-    ]
-    w = max(im.size[0] for im in resized)
-    cells = []
-    for im in resized:
-        cell = Image.new("RGB", (w, h), (255, 255, 255))
-        cell.paste(im, ((w - im.size[0]) // 2, (h - im.size[1]) // 2))
-        cells.append(cell)
-    gutter = max(4, h // 80)
-    canvas = Image.new("RGB", (2 * w + gutter, 2 * h + gutter), (255, 255, 255))
-    canvas.paste(cells[0], (0, 0))
-    canvas.paste(cells[1], (w + gutter, 0))
-    canvas.paste(cells[2], (0, h + gutter))
-    canvas.paste(cells[3], (w + gutter, h + gutter))
-    return np.asarray(canvas)
+    return [_prep_structure_image(root / name) for name in names]
 
 
 def _ref_pristine_dE_meV_atom() -> tuple[np.ndarray, np.ndarray]:
@@ -236,62 +228,36 @@ def build_fig1() -> tuple[Path, Path]:
     gaps = parse_exp7_gaps()
     alpha_ref, _, _, _alpha_err = load_reference_pbed3_alpha_S()
 
-    fig = plt.figure(figsize=(PRB_WIDTH_IN, 5.05), facecolor="white")
+    fig = plt.figure(figsize=(PRB_WIDTH_IN, 5.45), facecolor="white")
     gs = GridSpec(
         2,
         2,
         figure=fig,
-        height_ratios=[1.12, 1.00],
-        hspace=0.42,
-        wspace=0.32,
+        height_ratios=[1.05, 1.12],
+        hspace=0.38,
+        wspace=0.30,
         left=0.08,
         right=0.98,
-        top=0.94,
-        bottom=0.09,
+        top=0.96,
+        bottom=0.08,
     )
-    ax_a = fig.add_subplot(gs[0, 0])
     ax_b = fig.add_subplot(gs[0, 1])
-    ax_c = fig.add_subplot(gs[1, 0])
+    gap_gs = gs[1, 0].subgridspec(2, 1, height_ratios=[1.05, 1.0], hspace=0.08)
+    ax_hi = fig.add_subplot(gap_gs[0])
+    ax_lo = fig.add_subplot(gap_gs[1])
     ax_d = fig.add_subplot(gs[1, 1])
 
-    panel_label(ax_a, "a", nature=True)
-    ax_a.imshow(_structure_mosaic(), aspect="equal", interpolation="lanczos")
-    ax_a.axis("off")
-    # Single legend row under the mosaic: quadrant order is pristine, B (top),
-    # N, P (bottom). Keeping the labels off the cages avoids clipping the
-    # longest entry against the panel edge. Swatches use the CPK colors of the
-    # rendered heteroatoms, not the (c)-(d) trajectory palette, so the key
-    # matches what is actually drawn in the mosaic.
-    cpk = {"B": "#990099", "N": "#0000CE", "P": "#AF3A00"}
-    cell_labels = (
-        (0.045, "pristine", "#606060"),
-        (0.375, "B", cpk["B"]),
-        (0.560, "N", cpk["N"]),
-        (0.745, "P", cpk["P"]),
-    )
-    for x, lab, col in cell_labels:
-        ax_a.plot(
-            x,
-            -0.05,
-            "s",
-            transform=ax_a.transAxes,
-            color=col,
-            ms=3.6,
-            clip_on=False,
-            zorder=5,
-        )
-        ax_a.text(
-            x + 0.035,
-            -0.05,
-            lab,
-            transform=ax_a.transAxes,
-            ha="left",
-            va="center",
-            fontsize=7.0,
-            fontweight="bold",
-            color=INK,
-            clip_on=False,
-        )
+    struct_gs = gs[0, 0].subgridspec(2, 2, wspace=0.04, hspace=0.18)
+    for i, (im, lab) in enumerate(zip(_structure_panels(), ("pristine", "B", "N", "P"))):
+        ax = fig.add_subplot(struct_gs[i // 2, i % 2])
+        ax.imshow(np.asarray(im), interpolation="lanczos")
+        ax.set_xticks([])
+        ax.set_yticks([])
+        for spine in ax.spines.values():
+            spine.set_visible(False)
+        ax.set_xlabel(lab, fontsize=7.6, fontweight="bold", color=INK, labelpad=1)
+        if i == 0:
+            panel_label(ax, "a", nature=True)
 
     panel_label(ax_b, "b", nature=True)
     grid = np.linspace(-2.5, 2.5, 600)
@@ -308,14 +274,14 @@ def build_fig1() -> tuple[Path, Path]:
         series = parse_pdos(path)
         dos = gaussian_dos(series.energy_ev, series.pi_weight, grid, sigma_ev=0.065)
         dos = dos / (np.max(dos) + 1e-12)
-        curve = yoff + dos * 0.88
-        ax_b.fill_between(grid, yoff, curve, color=DOPANT_COLORS["N"], alpha=0.16, linewidth=0, zorder=2)
-        ax_b.plot(grid, curve, color=DOPANT_COLORS["N"], lw=1.15, zorder=3, solid_capstyle="round")
-        ax_b.axhline(yoff, color="#E4E7EA", lw=0.6, zorder=1)
+        curve = yoff + dos * 0.92
+        ax_b.fill_between(grid, yoff, curve, color=DOPANT_COLORS["N"], alpha=0.22, linewidth=0, zorder=2)
+        ax_b.plot(grid, curve, color=DOPANT_COLORS["N"], lw=1.45, zorder=3, solid_capstyle="round")
+        ax_b.plot(grid, np.full_like(grid, yoff), color=DOPANT_COLORS["N"], lw=0.45, alpha=0.35, zorder=1)
         yticks.append(yoff)
         yticklabels.append(lab)
-    ax_b.axvline(0.0, color=INK, lw=0.55, ls=(0, (2.5, 2.0)), zorder=2)
-    ax_b.text(0.06, 3.28, r"$E_{\mathrm{F}}$", ha="left", va="top", fontsize=6.4, color=NATURE_GRAY)
+    ax_b.axvline(0.0, color=INK, lw=0.7, ls=(0, (2.2, 1.8)), zorder=2)
+    ax_b.text(0.04, 1.02, r"$E_{\mathrm{F}}$", transform=ax_b.transAxes, ha="left", va="bottom", fontsize=6.6, color=NATURE_GRAY)
     ax_b.set_xlim(-2.35, 2.45)
     ax_b.set_ylim(-0.22, 3.42)
     ax_b.set_yticks(yticks)
@@ -334,39 +300,47 @@ def build_fig1() -> tuple[Path, Path]:
     )
     style_axes(ax_b)
 
-    panel_label(ax_c, "c", nature=True)
-    for dop, lab in (("pristine", "pristine"), ("B", "B"), ("N", "N"), ("P", "P")):
-        pts = sorted([(p.strain_pct, p.gap_ev) for p in gaps if p.dopant == dop and p.converged])
-        if len(pts) < 2:
-            continue
-        xs, ys = map(np.array, zip(*pts))
-        plot_trajectory(ax_c, xs, ys, DOPANT_COLORS[dop], label=lab, fill=False, lw=1.25, ms=4.2)
-    add_reference_lines(ax_c)
-    ax_c.set_xlabel(r"$\epsilon$ (%)")
-    ax_c.set_ylabel(r"$E_{\mathrm{H-L}}$ (eV)")
-    ax_c.set_ylim(-0.28, 1.78)
-    ax_c.axhline(0.0, color=NATURE_GRAY, lw=0.45, ls=(0, (2, 2)), zorder=0)
-    style_axes(ax_c)
-    _legend_in(ax_c, loc="upper left", fontsize=6.4, ncol=2, borderaxespad=0.15)
-    zoom = ax_c.inset_axes([0.50, 0.28, 0.46, 0.32])
+    panel_label(ax_hi, "c", nature=True)
+    pris = sorted([(p.strain_pct, p.gap_ev) for p in gaps if p.dopant == "pristine" and p.converged])
+    if len(pris) >= 2:
+        xs, ys = map(np.array, zip(*pris))
+        plot_trajectory(ax_hi, xs, ys, DOPANT_COLORS["pristine"], fill=False, lw=1.55, ms=5.2, filled=True)
+    ax_hi.set_ylim(0.82, 1.72)
+    ax_hi.set_ylabel(r"$E_{\mathrm{H-L}}$ (eV)")
+    style_axes(ax_hi)
+    ax_hi.tick_params(labelbottom=False, bottom=False)
+    ax_hi.spines["bottom"].set_visible(False)
+    ax_hi.text(0.98, 0.90, "pristine", transform=ax_hi.transAxes, ha="right", va="top", fontsize=7.0, color=DOPANT_COLORS["pristine"])
+
     for dop in ("B", "N", "P"):
         pts = sorted([(p.strain_pct, p.gap_ev) for p in gaps if p.dopant == dop and p.converged])
         if len(pts) < 2:
             continue
         xs, ys = map(np.array, zip(*pts))
-        zoom.plot(xs, ys, "-o", color=DOPANT_COLORS[dop], lw=1.05, ms=3.2, mfc="white", mew=0.9)
-    zoom.axhline(0.0, color=NATURE_GRAY, lw=0.4, ls=(0, (2, 2)))
-    zoom.set_ylim(-0.22, 0.26)
-    zoom.set_xlim(-5.4, 5.4)
-    zoom.tick_params(labelsize=5.2, length=2.2, width=0.5, pad=1)
-    zoom.set_title("B/N/P", fontsize=5.6, color=NATURE_GRAY, pad=1.5)
-    for spine in zoom.spines.values():
-        spine.set_linewidth(0.55)
-        spine.set_color(INK)
+        plot_trajectory(ax_lo, xs, ys, DOPANT_COLORS[dop], fill=False, lw=1.45, ms=4.8, filled=True)
+        ax_lo.annotate(
+            dop,
+            xy=(float(xs[-1]), float(ys[-1])),
+            xytext=(6, 0),
+            textcoords="offset points",
+            fontsize=7.0,
+            color=DOPANT_COLORS[dop],
+            va="center",
+            ha="left",
+        )
+    ax_lo.axhline(0.0, color="#C5C9CE", lw=0.6, ls=(0, (2, 2)), zorder=0)
+    ax_lo.set_ylim(-0.24, 0.32)
+    ax_lo.set_xlim(-5.6, 6.6)
+    ax_hi.set_xlim(-5.6, 6.6)
+    ax_lo.set_xlabel(r"$\epsilon$ (%)")
+    style_axes(ax_lo)
+    ax_lo.spines["top"].set_visible(False)
+    ax_lo.tick_params(top=False)
+    _axis_break(ax_hi, ax_lo)
 
     panel_label(ax_d, "d", nature=True)
     xs, ys = _ref_pristine_dE_meV_atom()
-    plot_trajectory(ax_d, xs, ys, INK, label="DFT", fill=False, lw=1.35, ms=4.4)
+    plot_trajectory(ax_d, xs, ys, INK, label="DFT", fill=False, lw=1.55, ms=5.4, filled=True)
     coef = np.polyfit(xs, ys, 1)
     xfit = np.linspace(float(xs.min()), float(xs.max()), 80)
     ax_d.plot(
@@ -391,19 +365,19 @@ def build_fig2() -> tuple[Path, Path]:
     audit = load_json("experiments/analysis/sdc/sdc_exp10_synergy_audit.json")
     s_rig, s_rel = load_periodic_relax_n1_P()
 
-    fig = plt.figure(figsize=(PRB_WIDTH_IN, 4.85), facecolor="white")
+    fig = plt.figure(figsize=(PRB_WIDTH_IN, 5.05), facecolor="white")
     gs = GridSpec(
         2,
         2,
         figure=fig,
         width_ratios=[1.55, 1.0],
-        height_ratios=[1.18, 0.92],
-        hspace=0.42,
-        wspace=0.32,
+        height_ratios=[1.15, 0.95],
+        hspace=0.40,
+        wspace=0.30,
         left=0.08,
-        right=0.97,
-        top=0.91,
-        bottom=0.10,
+        right=0.98,
+        top=0.88,
+        bottom=0.09,
     )
     ax_a, ax_b = fig.add_subplot(gs[0, 0]), fig.add_subplot(gs[0, 1])
     ax_c, ax_d = fig.add_subplot(gs[1, 0]), fig.add_subplot(gs[1, 1])
@@ -439,8 +413,9 @@ def build_fig2() -> tuple[Path, Path]:
             DOPANT_COLORS[dop],
             label=dop,
             fill=False,
-            lw=1.45,
-            ms=6.2,
+            lw=1.7,
+            ms=7.0,
+            filled=True,
         )
         # 350 Ry n=6,8: open markers, no connecting line, not used for inference.
         ax_a.plot(
@@ -448,10 +423,10 @@ def build_fig2() -> tuple[Path, Path]:
             s_all[ref],
             linestyle="None",
             marker="o",
-            markersize=5.5,
-            markerfacecolor="none",
+            markersize=6.4,
+            markerfacecolor="white",
             markeredgecolor=DOPANT_COLORS[dop],
-            markeredgewidth=1.15,
+            markeredgewidth=1.35,
             zorder=5,
         )
         ax_a.errorbar(
@@ -468,7 +443,7 @@ def build_fig2() -> tuple[Path, Path]:
         )
     # Pale columns only on the 350 Ry reference sizes, not the 400 Ry n=2 core.
     for n in sorted(ref_n):
-        ax_a.axvspan(int(n) - 0.32, int(n) + 0.32, color="#F6E4E4", alpha=0.85, lw=0, zorder=0)
+        ax_a.axvspan(int(n) - 0.28, int(n) + 0.28, color="#F8EEEE", alpha=1.0, lw=0, zorder=0)
     ax_a.set_xticks(ns)
     ax_a.set_xlim(0.55, 8.70)
     ax_a.set_ylim(-40.0, 17.5)
@@ -476,22 +451,24 @@ def build_fig2() -> tuple[Path, Path]:
     ax_a.set_ylabel(r"$\mathcal{S}$ (meV/atom)", labelpad=4)
     ax_a.tick_params(axis="x", pad=2)
     style_axes(ax_a)
-    ax_a.set_title(
-        r"filled: 400 Ry    open: 350 Ry",
-        loc="left",
-        fontsize=7.0,
-        pad=3.0,
-        color=NATURE_GRAY,
-    )
-    _legend_in(
-        ax_a,
-        loc="center",
-        bbox_to_anchor=(0.30, 0.42),
-        ncol=3,
-        fontsize=6.2,
+    from matplotlib.lines import Line2D
+    key = [
+        Line2D([0], [0], color=DOPANT_COLORS[d], marker="o", mfc=DOPANT_COLORS[d], mec="white", mew=0.6, lw=1.6, ms=5.6, label=d)
+        for d in dopants
+    ] + [
+        Line2D([0], [0], color=INK, marker="o", mfc=INK, mec="white", lw=0, ms=5.6, label="400 Ry"),
+        Line2D([0], [0], color=INK, marker="o", mfc="white", mec=INK, mew=1.1, lw=0, ms=5.6, label="350 Ry"),
+    ]
+    ax_a.legend(
+        handles=key,
+        loc="lower left",
+        bbox_to_anchor=(0.16, 1.02),
+        ncol=5,
+        frameon=False,
+        fontsize=6.4,
         borderaxespad=0.0,
-        handletextpad=0.25,
-        columnspacing=0.65,
+        handletextpad=0.3,
+        columnspacing=0.7,
     )
     p_rows = dict(synergy_rows(audit, "P"))
     s_p4 = float(p_rows[4])
@@ -530,15 +507,17 @@ def build_fig2() -> tuple[Path, Path]:
     )
 
     panel_label(ax_b, "b", nature=True)
-    ax_b.plot([0, 1], [s_rig, s_rel], "-", color=DOPANT_COLORS["P"], lw=1.6, zorder=2)
+    ax_b.axhspan(-SIGMA_S_MEV, SIGMA_S_MEV, color="#F0F2F4", zorder=0)
+    ax_b.plot([0, 1], [s_rig, s_rel], "-", color=DOPANT_COLORS["P"], lw=2.0, zorder=2, solid_capstyle="round")
     ax_b.plot(
         [0, 1],
         [s_rig, s_rel],
         "o",
         color=DOPANT_COLORS["P"],
-        markersize=8,
-        markerfacecolor="white",
-        markeredgewidth=1.3,
+        markersize=9.0,
+        markerfacecolor=DOPANT_COLORS["P"],
+        markeredgecolor="white",
+        markeredgewidth=0.9,
         zorder=3,
     )
     add_reference_lines(ax_b, vzero=False)
@@ -585,30 +564,26 @@ def build_fig3() -> tuple[Path, Path]:
     qpaths, dpaths = _hirsh_paths(), _local_d_sigma_paths()
     dopants = ["B", "N", "P"]
 
-    fig = plt.figure(figsize=(PRB_WIDTH_IN, 5.4), facecolor="white")
-    gs = GridSpec(2, 2, figure=fig, hspace=0.34, wspace=0.28, left=0.09, right=0.97, top=0.94, bottom=0.11)
+    fig = plt.figure(figsize=(PRB_WIDTH_IN, 5.55), facecolor="white")
+    gs = GridSpec(2, 2, figure=fig, hspace=0.38, wspace=0.28, left=0.09, right=0.97, top=0.90, bottom=0.10)
     ax_a, ax_b, ax_c, ax_d = [fig.add_subplot(gs[i, j]) for i in range(2) for j in range(2)]
 
     panel_label(ax_a, "a", nature=True)
     for d in dopants:
         xs, ys = qpaths[d]
-        plot_trajectory(ax_a, xs, ys, DOPANT_COLORS[d], label=d, fill=False, lw=1.45, ms=5.4)
+        plot_trajectory(ax_a, xs, ys, DOPANT_COLORS[d], label=d, fill=False, lw=1.7, ms=5.6, filled=True)
     add_reference_lines(ax_a, vzero=True)
     strain_guide(ax_a)
     ax_a.set_xlabel(r"$\epsilon$ (%)")
     ax_a.set_ylabel(r"$q_{\mathrm{Hirsh}}$ ($e$)")
     style_axes(ax_a)
-    _legend_in(
-        ax_a, loc="lower left", bbox_to_anchor=(0.18, 1.01), ncol=3,
-        fontsize=6.4, borderaxespad=0.0,
-    )
 
     panel_label(ax_b, "b", nature=True)
     for d in dopants:
         xs, dbar, _sig = dpaths[d]
         # sigma(d_bar) is panel (c). Drawing it as y-error here spans the
         # whole axis and hides the mean nearest-neighbor trend.
-        plot_trajectory(ax_b, xs, dbar, DOPANT_COLORS[d], label=d, fill=False, lw=1.35, ms=4.8)
+        plot_trajectory(ax_b, xs, dbar, DOPANT_COLORS[d], label=d, fill=False, lw=1.6, ms=5.2, filled=True)
     d_all = np.concatenate([dpaths[d][1] for d in dopants])
     d_pad = 0.35 * (float(d_all.max()) - float(d_all.min()) + 1e-4)
     ax_b.set_ylim(float(d_all.min()) - d_pad, float(d_all.max()) + d_pad)
@@ -617,24 +592,15 @@ def build_fig3() -> tuple[Path, Path]:
     ax_b.set_xlabel(r"$\epsilon$ (%)")
     ax_b.set_ylabel(r"$\bar{d}$ (Å)")
     style_axes(ax_b)
-    # Upper-right "best" sits on the +3% d-bar spike. Keep the key above the axes.
-    _legend_in(
-        ax_b, loc="lower left", bbox_to_anchor=(0.18, 1.01), ncol=3,
-        fontsize=6.4, borderaxespad=0.0,
-    )
 
     panel_label(ax_c, "c", nature=True)
     for d in dopants:
         xs, _, sig = dpaths[d]
-        plot_trajectory(ax_c, xs, sig * 1e3, DOPANT_COLORS[d], label=d, fill=False, lw=1.35, ms=4.6)
+        plot_trajectory(ax_c, xs, sig * 1e3, DOPANT_COLORS[d], label=d, fill=False, lw=1.6, ms=5.2, filled=True)
     strain_guide(ax_c)
     ax_c.set_xlabel(r"$\epsilon$ (%)")
     ax_c.set_ylabel(r"$\sigma(\bar{d})$ (mÅ)")
     style_axes(ax_c)
-    _legend_in(
-        ax_c, loc="lower left", bbox_to_anchor=(0.18, 1.02), ncol=3,
-        fontsize=6.2, borderaxespad=0.0,
-    )
 
     panel_label(ax_d, "d", nature=True)
     abs_alpha = {d: abs(float(alpha_ref[d])) for d in dopants}
@@ -662,10 +628,10 @@ def build_fig3() -> tuple[Path, Path]:
             yerr=SIGMA_S_MEV,
             fmt="none",
             ecolor=DOPANT_COLORS[d],
-            elinewidth=0.7,
-            capsize=2.2,
-            capthick=0.65,
-            alpha=0.9,
+            elinewidth=0.55,
+            capsize=2.0,
+            capthick=0.5,
+            alpha=0.45,
             zorder=2,
         )
         scatter_dopant(
@@ -679,15 +645,19 @@ def build_fig3() -> tuple[Path, Path]:
     ax_d.set_xlabel(r"$\alpha$ (meV/%)")
     ax_d.set_ylabel(r"$|\mathcal{S}|_{n=4}$ (meV/atom)")
     style_axes(ax_d)
-    ax_d.text(
-        0.98,
-        0.04,
-        "bars: fit s.e.",
-        transform=ax_d.transAxes,
-        ha="right",
-        va="bottom",
-        fontsize=6.0,
-        color=NATURE_GRAY,
+    from matplotlib.lines import Line2D
+    fig.legend(
+        handles=[
+            Line2D([0], [0], color=DOPANT_COLORS[d], marker="o", mfc=DOPANT_COLORS[d], mec="white", mew=0.6, lw=1.6, ms=5.4, label=d)
+            for d in dopants
+        ],
+        loc="upper center",
+        bbox_to_anchor=(0.55, 0.985),
+        ncol=3,
+        frameon=False,
+        fontsize=7.2,
+        handlelength=1.6,
+        columnspacing=1.2,
     )
     return _save(fig, "figure_prb_3_decoupling")
 
@@ -759,22 +729,36 @@ def build_fig4() -> tuple[Path, Path]:
         xs_q, ys_q = qpaths[d]
         xs_d, ys_d, _ = dpaths[d]
         q0, d0 = float(dict(zip(xs_q, ys_q))[0.0]), float(dict(zip(xs_d, ys_d))[0.0])
-        ax_c.plot(xs_q, ys_q / q0, "-o", color=DOPANT_COLORS[d], markersize=4.6,
-                  markerfacecolor="white", markeredgewidth=1.0, lw=1.35, label=d)
-        ax_c.plot(xs_d, ys_d / d0, "--", color=DOPANT_COLORS[d], lw=1.05, alpha=0.85)
+        ax_c.plot(
+            xs_q, ys_q / q0, "-o", color=DOPANT_COLORS[d], markersize=5.2,
+            markerfacecolor=DOPANT_COLORS[d], markeredgecolor="white", markeredgewidth=0.6,
+            lw=1.55, label=d, zorder=3,
+        )
+        ax_c.plot(xs_d, ys_d / d0, "--", color=DOPANT_COLORS[d], lw=1.15, alpha=0.9, zorder=2)
+        ax_c.annotate(
+            d,
+            xy=(float(xs_q[-1]), float(ys_q[-1]) / q0),
+            xytext=(5, 0),
+            textcoords="offset points",
+            fontsize=7.0,
+            color=DOPANT_COLORS[d],
+            va="center",
+            ha="left",
+            zorder=4,
+        )
     ax_c.axhline(1.0, color="#D5D5D5", lw=0.7)
     strain_guide(ax_c)
+    ax_c.set_xlim(-5.8, 6.8)
     ax_c.set_xlabel(r"$\epsilon$ (%)")
     ax_c.set_ylabel(r"value / value$_{\epsilon=0}$")
+    ax_c.set_title(
+        r"solid $q/q_0$    dashed $\bar{d}/\bar{d}_0$",
+        loc="right",
+        fontsize=6.5,
+        color=NATURE_GRAY,
+        pad=2,
+    )
     style_axes(ax_c)
-    from matplotlib.lines import Line2D
-    style_handles = [
-        Line2D([0], [0], color=INK, lw=1.35, marker="o", mfc="white", ms=4.2, label=r"$q/q_0$"),
-        Line2D([0], [0], color=INK, lw=1.05, ls="--", label=r"$\bar{d}/\bar{d}_0$"),
-    ]
-    leg_c = ax_c.legend(loc="lower right", bbox_to_anchor=(0.98, 0.22), fontsize=6.2, frameon=False)
-    ax_c.add_artist(leg_c)
-    ax_c.legend(handles=style_handles, loc="lower right", bbox_to_anchor=(0.98, 0.02), fontsize=6.0, frameon=False)
 
     panel_label(ax_d, "d", nature=True)
     mfs = {d: 100.0 * float(mm[d]["mismatch_fraction"]) for d in dopants}

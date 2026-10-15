@@ -11,7 +11,7 @@ from matplotlib import patheffects as pe
 from matplotlib.axes import Axes
 from matplotlib.colors import LinearSegmentedColormap
 from matplotlib.offsetbox import AnnotationBbox, OffsetImage
-from matplotlib.patches import Circle, FancyArrowPatch, FancyBboxPatch
+from matplotlib.patches import FancyArrowPatch, FancyBboxPatch
 from PIL import Image
 
 # Single-column PRL width
@@ -25,29 +25,30 @@ COLOR_VBM = "#7B4FB3"
 COLOR_CBM = "#2BAFA3"
 COLOR_TOTAL = "#333333"
 
-# Print palette: muted steel / crimson / violet (not web-dashboard primaries).
-NATURE_BLUE = "#1F6AA5"   # primary / B channel
-NATURE_RED = "#C0392B"    # N donor channel
-NATURE_GREEN = "#1F7A4D"  # tertiary accent
-NATURE_GRAY = "#5E6A75"
+# NPG / Lancet print palette: navy, vermilion, violet. Not web primaries.
+NATURE_BLUE = "#3C5488"   # primary / B channel
+NATURE_RED = "#E64B35"    # N donor channel
+NATURE_GREEN = "#00A087"  # tertiary accent
+NATURE_GRAY = "#4A5560"
 NATURE_LIGHT = "#F7F8F9"
 NATURE_GRID = "#E6E8EB"
 INK = "#1A1A1A"
+P_VIOLET = "#6A3D9A"
 
 DOPANT_COLORS = {
-    "pristine": NATURE_GRAY,
+    "pristine": "#5C6770",
     "B": NATURE_BLUE,
     "N": NATURE_RED,
-    "P": "#6B4C9A",  # muted violet — P size-mismatch channel
+    "P": P_VIOLET,
 }
 
 DOPANT_MARKERS = {"B": "o", "N": "s", "P": "^", "pristine": "D"}
 
 DOPANT_FILLS = {
-    "pristine": "#F4F6F7",
-    "B": "#E7F1F8",
-    "N": "#F8E8E6",
-    "P": "#F0EAF6",
+    "pristine": "#F3F5F6",
+    "B": "#E7EDF5",
+    "N": "#FBECEA",
+    "P": "#F3EAF6",
 }
 
 # Distinct orbital / electron-cloud glyphs (no geometric markers).
@@ -291,8 +292,9 @@ def plot_trajectory(
     fill_mode: str = "baseline",
     lw: float = 1.75,
     ms: float = 6.5,
-    alpha_line: float = 0.9,
+    alpha_line: float = 0.95,
     zorder: int = 3,
+    filled: bool = False,
 ) -> None:
     x = np.asarray(x, dtype=float)
     y = np.asarray(y, dtype=float)
@@ -303,15 +305,16 @@ def plot_trajectory(
         else:
             base = float(fill_to) if fill_to is not None else float(np.nanmin(y))
             ax.fill_between(x, y, base, color=color, alpha=0.16, linewidth=0, zorder=1)
-    ax.plot(x, y, "-", color=color, lw=lw, alpha=alpha_line, zorder=2)
+    ax.plot(x, y, "-", color=color, lw=lw, alpha=alpha_line, zorder=2, solid_capstyle="round")
     ax.plot(
         x,
         y,
         "o",
         color=color,
         markersize=ms,
-        markerfacecolor="white",
-        markeredgewidth=1.15,
+        markerfacecolor=color if filled else "white",
+        markeredgecolor="white" if filled else color,
+        markeredgewidth=0.8 if filled else 1.15,
         lw=0,
         label=label,
         zorder=zorder,
@@ -574,111 +577,57 @@ def draw_research_schematic(ax: Axes) -> None:
 
 
 def draw_additive_screening_schematic(ax: Axes) -> None:
-    """Two-row protocol: separate scans vs four-corner total, same rendered cages."""
-    ax.set_xlim(0.0, 10.6)
-    ax.set_ylim(0.0, 3.15)
+    """Definition panel: one tetramer plus the four-corner identity. Not a data plot."""
+    ax.set_xlim(0.0, 10.0)
+    ax.set_ylim(0.0, 10.0)
     ax.axis("off")
 
-    def pill(cx, cy, w, h, text, face, edge, *, fs=7.0):
-        ax.add_patch(
-            FancyBboxPatch(
-                (cx - w / 2, cy - h / 2),
-                w,
-                h,
-                boxstyle="round,pad=0.012,rounding_size=0.08",
-                linewidth=0.8,
-                edgecolor=edge,
-                facecolor=face,
-                zorder=2,
-                clip_on=False,
-            )
-        )
-        ax.text(cx, cy, text, ha="center", va="center", fontsize=fs, color=INK, zorder=3, clip_on=False)
-
-    def mol(cx, cy, rgba, *, zoom=0.16):
-        ax.add_artist(
-            AnnotationBbox(
-                OffsetImage(rgba, zoom=zoom),
-                (cx, cy),
-                xycoords=ax.transData,
-                frameon=False,
-                pad=0.0,
-                box_alignment=(0.5, 0.5),
-                zorder=3,
-                annotation_clip=False,
-            )
-        )
-
-    def arrow(xy0, xy1):
-        ax.annotate(
-            "",
-            xy=xy1,
-            xytext=xy0,
-            arrowprops=dict(arrowstyle="-|>", color=INK, lw=0.9, shrinkA=1, shrinkB=1, mutation_scale=9),
-            zorder=1,
-        )
-
-    cage = _c60_rgba(doped=False, quad=3, max_px=200)
-    dop_cage = _c60_rgba(doped=True, quad=0, max_px=200)
-    y_top, y_bot = 2.15, 0.72
-
-    ax.text(0.05, 3.02, "separate scans", ha="left", va="top", fontsize=6.6, color=NATURE_GRAY)
-    mol(0.85, y_top, cage, zoom=0.15)
-    ax.text(1.85, y_top, "+", ha="center", va="center", fontsize=12, color=INK)
-    mol(2.75, y_top, dop_cage, zoom=0.15)
-    arrow((3.45, y_top), (4.15, y_top))
-    pill(5.05, y_top, 1.35, 0.48, r"$E_{\mathrm{add}}$", "#F7F8F9", NATURE_GRAY)
-
-    ax.text(0.05, 1.55, "joint load", ha="left", va="top", fontsize=6.6, color=NATURE_BLUE)
-    mol(1.80, y_bot, cage, zoom=0.15)
-    ax.text(1.80, 0.18, r"four corners, fixed $\delta$", ha="center", va="bottom", fontsize=6.0, color=NATURE_GRAY)
-    arrow((2.55, y_bot), (4.15, y_bot))
-    pill(5.05, y_bot, 1.35, 0.48, r"$E_{\mathrm{cpl}}$", DOPANT_FILLS["B"], NATURE_BLUE)
-
-    arrow((5.85, y_top), (6.85, 1.55))
-    arrow((5.85, y_bot), (6.85, 1.15))
-    ax.add_patch(Circle((7.35, 1.35), 0.38, facecolor="white", edgecolor=INK, linewidth=0.9, zorder=2, clip_on=False))
-    ax.text(7.35, 1.35, r"$\mathcal{S}$", ha="center", va="center", fontsize=9.0, color=INK, zorder=3)
-    arrow((7.85, 1.35), (8.55, 1.35))
+    iax = ax.inset_axes([0.00, 0.06, 0.40, 0.88])
+    iax.imshow(_c60_rgba(doped=True, quad=None, max_px=720))
+    iax.set_xticks([])
+    iax.set_yticks([])
+    for spine in iax.spines.values():
+        spine.set_visible(False)
+    ax.text(4.35, 8.55, "separate scans", ha="left", va="center", fontsize=7.4, color=NATURE_GRAY)
+    ax.text(4.35, 7.15, r"$E(\epsilon,0)+E(0,\delta)$", ha="left", va="center", fontsize=9.2, color=INK)
+    ax.text(4.35, 5.85, r"$=E_{\mathrm{add}}$", ha="left", va="center", fontsize=9.2, color=INK)
+    ax.plot([4.35, 9.7], [4.95, 4.95], color="#E1E4E8", lw=0.8, solid_capstyle="butt")
+    ax.text(4.35, 3.95, "joint load, fixed $\\delta$", ha="left", va="center", fontsize=7.4, color=NATURE_BLUE)
+    ax.text(4.35, 2.55, r"$E(\epsilon,\delta)=E_{\mathrm{cpl}}$", ha="left", va="center", fontsize=9.2, color=INK)
+    ax.plot([4.35, 9.7], [1.70, 1.70], color="#E1E4E8", lw=0.8, solid_capstyle="butt")
     ax.text(
-        9.55,
-        1.35,
-        r"$\mathcal{S}_\delta(\epsilon)$" + "\n" + r"$=E_{\mathrm{cpl}}-E_{\mathrm{add}}$",
-        ha="center",
+        4.35,
+        0.75,
+        r"$\mathcal{S}_\delta(\epsilon)=E_{\mathrm{cpl}}-E_{\mathrm{add}}$",
+        ha="left",
         va="center",
-        fontsize=6.6,
+        fontsize=8.8,
         color=INK,
-        linespacing=1.35,
-        clip_on=False,
-        zorder=3,
     )
 
 
 def draw_energy_coupling_schematic(ax: Axes) -> None:
     """Theory panel: additive vs coupled E(epsilon) under joint load (schematic, not DFT)."""
-    eps = np.linspace(0.0, 3.0, 80)
-    # additive: sum of separate linear strain responses
+    eps = np.linspace(0.0, 3.0, 120)
     e_add = 0.12 * eps + 0.08
-    # coupled: bilinear cross term bends the joint-load path
     e_cpl = 0.12 * eps + 0.08 + 0.035 * eps**2
-    ax.plot(eps, e_add, "--", color=NATURE_GRAY, lw=1.35, label="additive sum", zorder=2)
-    ax.plot(eps, e_cpl, "-", color=NATURE_BLUE, lw=1.7, label="coupled load", zorder=3)
-    ax.fill_between(eps, e_add, e_cpl, color=DOPANT_COLORS["P"], alpha=0.16, linewidth=0, zorder=1)
-    ax.set_xlim(0.0, 3.15)
+    ax.plot(eps, e_add, "--", color=NATURE_GRAY, lw=1.45, label="additive sum", zorder=2, dash_capstyle="round")
+    ax.plot(eps, e_cpl, "-", color=NATURE_BLUE, lw=2.0, label="coupled load", zorder=3, solid_capstyle="round")
+    ax.set_xlim(0.0, 3.05)
     ax.set_ylim(0.0, 0.92)
     ax.set_xlabel(r"$\epsilon$ (%)")
     ax.set_ylabel(r"$\Delta E$ (arb.)")
-    xb = 2.05
+    xb = 2.15
     y_lo = 0.12 * xb + 0.08
     y_hi = y_lo + 0.035 * xb**2
     ax.annotate(
         "",
         xy=(xb, y_lo),
         xytext=(xb, y_hi),
-        arrowprops=dict(arrowstyle="<->", color=DOPANT_COLORS["P"], lw=0.8, shrinkA=0, shrinkB=0),
+        arrowprops=dict(arrowstyle="<->", color=DOPANT_COLORS["P"], lw=1.0, shrinkA=0, shrinkB=0),
         zorder=4,
     )
-    ax.text(xb + 0.08, 0.5 * (y_lo + y_hi), r"$c\,\epsilon x$", color=DOPANT_COLORS["P"], fontsize=7.0, va="center")
+    ax.text(xb + 0.10, 0.5 * (y_lo + y_hi), r"$c\,\epsilon x$", color=DOPANT_COLORS["P"], fontsize=8.0, va="center")
     style_axes(ax)
-    ax.legend(loc="upper left", fontsize=6.2, frameon=False, borderaxespad=0.2)
+    ax.legend(loc="upper left", fontsize=6.6, frameon=False, borderaxespad=0.25, handlelength=1.8)
 

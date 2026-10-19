@@ -2124,6 +2124,12 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Git**：`commit: 10b28fc` — `loop R423: add Li2024graphullerene to literature positioning table`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
  - **下一轮**：本机有 CP2K 时跑 $n{=}2$ 四角；**不**伪造 DFT
 
+- **Loop R418（2026-10-19，Track B · VI Results 主图重构）**：
+ - **Track A**：idle — **不干预**
+ - **Track B**：删除 `fig_prb_four_main.py` 与 `_style.py` 中仅主图使用的绘图函数；新 `prb_theme.py` + `prb_main_figures.py` 重绘 Fig.1–4（Fig.2 增 S 数值条、pristine/substituted 应变代价、rigid/relaxed 哑铃、n=4 P 四角能量图；Fig.3 增 rank 斜率图；Fig.4 增平行坐标）；`fig_main_{1..4}.tex` 与主文面板引用同步（弛豫诊断 Fig.2(b)→(c)）
+ - **数据勘误**：旧 Fig.1(d) 纵轴误乘 1000（现为 meV/晶胞，斜率=α_p）；「B 拉伸最大」与 Table V 不符（N 8.7 > B 8.5 mÅ），已改为 comparable
+ - **创新审计**：图件数值全部来自 audit JSON / 角能量 CSV = **A**；无新定量主张
+ - **Git**：`commit:` loop R418 — figure rebuild；（push 可选）
 - **Loop R417（2026-08-02，三轨）**：
   - **Track A**：启动 `size_6x60_N_pos3pct_cutoff300` 单点（np=8，2/3 CPU；由 cutoff400 模板仅改 PROJECT/CUTOFF）→ cutoff 收敛曲线 300/350/400 + D4 截断对照；**running**
   - **Track B（横切）**：`theory_enhancement_report` R417 台账；快照同步 R413→R417；根目录误产 Targa `1` → `/private/tmp/1_tga_render_artifact_R417`（可恢复）

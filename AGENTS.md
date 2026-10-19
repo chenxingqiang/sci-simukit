@@ -1,5 +1,13 @@
 # AGENTS.md
 
+## 归档（2026-10-19）：投稿闭环已停止
+
+文稿**不投稿**。记录见 [`docs/archive/2026-10-19-submission-withdrawn.md`](docs/archive/2026-10-19-submission-withdrawn.md)。
+
+`go loops`、Track B 文稿优化、Track C 审稿回复**不再执行**。不要改 `paper/*.tex` 的科学主张，不要重画主图，不要启新的 DFT 来补这一稿。`experiments/` 与 `dft_results/` 保持为计算记录。
+
+下文是归档前的循环笔记，只供查阅。
+
 ## Graphullerene 投稿无限优化闭环（Infinite Optimization Loop）
 
 本仓库的持续改进**没有终止条件**。每一轮闭环的目标不是「算完就停」，而是：
@@ -28,12 +36,12 @@ Cloud Agent 与人类协作者都应把 `AGENTS.md` 当作活文档；每轮验�
 | **Population B/N/P** | **18/18** ✅ |
 | **reference_pbed3** | **24/24** ✅ |
 | **运行中** | NO_CP2K（Cloud Agent VM） |
-| **最新 Loop** | **R504b**（内容 SHA `230e279c4821d64e8db23987354c425ac720d869`；不钉 `2d275d8`） |
-| **下一 B 任务** | Mayer/Bader、SCAN/r²SCAN、dense-$k$ 仍为 Limitations（本轮不新算） |
-| **主张-证据** | 主文 $\mathcal{S}_\delta$ = 固定物种离散交叉项；headline $n{=}4$ $23.7\pm 2$；rigid $|\mathcal{S}|$ = upper-end protocol estimate（非普适上界）；Fig.~3(d)/4(a) 标记面积 $\propto|\mathcal{S}|$；无 20 pm 阈值线 |
-| **Loop C** | C-M1 **closed** ✅；C-M2 **closed** ✅；C-M3 **closed**（text）；C-m1–m5 **closed** ✅ |
-| **SDC** | **15** synergy 点 |
-| **旗杆** | **PRB Regular Article** major revision |
+| **最新 Loop** | **归档 2026-10-19**（投稿停止；此前笔记停在 R504b） |
+| **下一 B 任务** | 无。投稿与文稿优化已停止 |
+| **主张-证据** | 已撤回。B/N/P 三点不能支撑机理；周期 n=1 P 弛豫后交叉项落到报告下限 |
+| **Loop C** | 停止。回复稿保留，不寄出 |
+| **SDC** | **15** synergy 点（计算记录） |
+| **旗杆** | **已归档（2026-10-19），不投稿** |
 
 - **Loop R482（2026-08-18，三轨 · III Literature）**：
  - **Track A**：`NO_CP2K`；canonical Exp10 **41/41**、Exp8 **6/6**、Exp9 GEO **12/12** + vertical **8/8** — **不干预**、不启 job
@@ -2124,6 +2132,11 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data
  - **Git**：`commit: 10b28fc` — `loop R423: add Li2024graphullerene to literature positioning table`；（**pushed: origin/cursor/prb-manuscript-rigor-audit-1d10**）
  - **下一轮**：本机有 CP2K 时跑 $n{=}2$ 四角；**不**伪造 DFT
 
+- **归档记录（2026-10-19）**：
+ - **决定**：投稿线停止。B/N/P 三点不能支撑机理；周期 n=1 P 刚性 −31.9 meV/atom，固定晶胞弛豫后约 10⁻⁴ meV/atom；四聚体 +1.19→−2.28 meV/atom，符号相反。
+ - **落地**：`docs/archive/2026-10-19-submission-withdrawn.md`；README、封面信、回复稿和主文 `\preprint` 标明不投稿。数据与 tex 留在原路径。
+ - **创新审计**：归档决定 = **A**（既有审计，无新计算）
+ - **下一轮**：无
 - **Loop R418（2026-10-19，Track B · VI Results 主图重构）**：
  - **Track A**：idle — **不干预**
  - **Track B**：删除 `fig_prb_four_main.py` 与 `_style.py` 中仅主图使用的绘图函数；新 `prb_theme.py` + `prb_main_figures.py` 重绘 Fig.1–4（Fig.2 增 S 数值条、pristine/substituted 应变代价、rigid/relaxed 哑铃、n=4 P 四角能量图；Fig.3 增 rank 斜率图；Fig.4 增平行坐标）；`fig_main_{1..4}.tex` 与主文面板引用同步（弛豫诊断 Fig.2(b)→(c)）

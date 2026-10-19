@@ -1,6 +1,10 @@
 # Non-additive Strain--Dopant Energetics in Quasi-Hexagonal C60 Graphullerene
 
-Computational archive for a Physical Review B Regular Article (major revision).
+**Archived on 2026-10-19. Not a submission.** The manuscript is not for Physical Review B, Physical Review Letters, or any other journal. Record: [`docs/archive/2026-10-19-submission-withdrawn.md`](docs/archive/2026-10-19-submission-withdrawn.md).
+
+The calculation record stays in this repository. Three substituents (B, N, P) do not support a coupling mechanism. The periodic n=1 phosphorus cross term that is large at fixed coordinates falls to the reporting floor after fixed-cell ionic relaxation. The tetramer boundary condition changes the sign. That is not a paper.
+
+The files below are the frozen text of that withdrawn draft, not a manuscript to revise or send.
 
 **Authors:** Xingqiang Chen and Qixing Wang, Xiamen University  
 **Contact:** xingqiang.chen@xmu.edu.cn  
@@ -55,7 +59,7 @@ export CP2K_DATA=/opt/homebrew/share/cp2k/data   # adjust for your install
 
 ## Citation
 
-A journal DOI is not yet assigned. Until acceptance, cite the repository revision:
+Do not cite this repository as a journal article. A DOI will not be assigned for this draft. The calculation record, if needed, is:
 
 ```bibtex
 @misc{chen2026graphullereneS,
